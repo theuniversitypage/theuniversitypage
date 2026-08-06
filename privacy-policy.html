@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Privacy Policy - Abhinandan Updates</title>
     
     <!-- Fonts & Font Awesome -->
@@ -11,88 +11,176 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
-        .policy-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 48px;
-            box-shadow: var(--shadow-md);
-            max-width: 960px;
+        *, *::before, *::after {
+            box-sizing: border-box !important;
+            max-width: 100%;
+        }
+
+        html, body {
+            width: 100% !important;
+            max-width: 100% !important;
+            overflow-x: hidden !important;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-main, #FDFBF7);
+            color: var(--text-dark, #0F172A);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-container {
+            flex: 1;
+            width: 100%;
+            max-width: 1000px;
             margin: 0 auto;
+            padding: 20px 16px 40px;
+        }
+
+        .policy-card {
+            background: var(--surface, #FFFFFF);
+            border: 1px solid var(--border, #E2E8F0);
+            border-radius: var(--radius-lg, 20px);
+            padding: 40px 32px;
+            box-shadow: var(--shadow-md);
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .policy-header {
-            border-bottom: 1px solid var(--border-subtle);
-            padding-bottom: 24px;
-            margin-bottom: 32px;
+            border-bottom: 1px solid var(--border-subtle, #F1F5F9);
+            padding-bottom: 20px;
+            margin-bottom: 28px;
         }
 
         .policy-header h1 {
-            font-size: 2.2rem;
+            font-size: 1.85rem;
             font-weight: 800;
-            color: var(--text-dark);
+            color: var(--text-dark, #0F172A);
             letter-spacing: -0.5px;
             margin-bottom: 8px;
+            word-break: break-word;
         }
 
         .policy-header p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
+            color: var(--text-muted, #64748B);
+            font-size: 0.88rem;
             font-weight: 600;
         }
 
         .policy-content {
-            color: var(--text-body);
-            font-size: 0.98rem;
-            line-height: 1.8;
+            color: var(--text-body, #334155);
+            font-size: 0.95rem;
+            line-height: 1.75;
             display: flex;
             flex-direction: column;
-            gap: 28px;
+            gap: 24px;
         }
 
         .policy-section h2 {
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             font-weight: 800;
-            color: var(--text-dark);
-            margin-bottom: 12px;
+            color: var(--text-dark, #0F172A);
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
             gap: 10px;
+            word-break: break-word;
         }
 
         .policy-section h2 i {
-            color: var(--primary);
-            font-size: 1.1rem;
+            color: var(--primary, #4F46E5);
+            font-size: 1rem;
+            flex-shrink: 0;
         }
 
         .policy-section p {
-            margin-bottom: 12px;
+            margin-bottom: 10px;
+            word-wrap: break-word;
         }
 
         .policy-section ul {
             list-style: disc;
-            margin-left: 20px;
+            margin-left: 18px;
             display: flex;
             flex-direction: column;
             gap: 8px;
         }
 
-        .highlight-box {
-            background: var(--primary-light);
-            border-left: 4px solid var(--primary);
-            padding: 20px;
-            border-radius: 0 var(--radius-md) var(--radius-md) 0;
-            font-weight: 500;
-            color: var(--text-dark);
+        .policy-section li {
+            word-wrap: break-word;
         }
 
+        .highlight-box {
+            background: var(--primary-light, #EEF2FF);
+            border-left: 4px solid var(--primary, #4F46E5);
+            padding: 16px 18px;
+            border-radius: 0 var(--radius-md, 12px) var(--radius-md, 12px) 0;
+            font-weight: 500;
+            color: var(--text-dark, #0F172A);
+            font-size: 0.92rem;
+            line-height: 1.6;
+            word-wrap: break-word;
+        }
+
+        /* STRICT 1-LINE FOOTER STYLES */
+        footer {
+            background: var(--surface, #FFFFFF);
+            border-top: 1px solid var(--border, #E2E8F0);
+            padding: 24px 12px 18px;
+            text-align: center;
+            width: 100% !important;
+            margin-top: auto;
+        }
+
+        .footer-links {
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            gap: 20px !important;
+            flex-wrap: nowrap !important;
+            margin-bottom: 10px !important;
+            width: 100% !important;
+        }
+
+        .footer-links a {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-body, #334155);
+            white-space: nowrap !important;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary, #4F46E5);
+        }
+
+        .copyright {
+            color: var(--text-muted, #64748B);
+            font-size: 0.78rem;
+            margin-top: 4px;
+        }
+
+        /* RESPONSIVE BREAKPOINTS */
         @media (max-width: 768px) {
-            .policy-card {
-                padding: 28px 20px;
-            }
-            .policy-header h1 {
-                font-size: 1.75rem;
-            }
+            .main-container { padding: 12px 10px 30px; }
+            .policy-card { padding: 22px 16px; border-radius: 16px; }
+            .policy-header h1 { font-size: 1.4rem; }
+            .policy-content { font-size: 0.88rem; gap: 18px; }
+            .policy-section h2 { font-size: 1.02rem; }
+            .highlight-box { padding: 12px 14px; font-size: 0.85rem; }
+
+            footer { padding: 18px 8px 14px; }
+            .footer-links { gap: 10px !important; }
+            .footer-links a { font-size: 0.76rem !important; }
+            .copyright { font-size: 0.72rem; }
+        }
+
+        @media (max-width: 400px) {
+            .footer-links { gap: 8px !important; }
+            .footer-links a { font-size: 0.72rem !important; }
         }
     </style>
 </head>
@@ -186,7 +274,7 @@
 
                 <div class="policy-section">
                     <h2><i class="fa-solid fa-headset"></i> 7. Contact Us</h2>
-                    <p>If you have additional questions or require more information about our Privacy Policy, do not hesitate to reach out via our <a href="contact-us.html" style="color: var(--primary); font-weight: 700;">Contact Us</a> page.</p>
+                    <p>If you have additional questions or require more information about our Privacy Policy, do not hesitate to reach out via our <a href="contact-us.html" style="color: var(--primary, #4F46E5); font-weight: 700; text-decoration: none;">Contact Us</a> page.</p>
                 </div>
 
             </div>
@@ -199,12 +287,11 @@
     <footer>
         <div class="footer-links">
             <a href="contact-us.html">Contact Us</a>
-            <a href="privacy-policy.html" style="color: var(--primary);">Privacy Policy</a>
+            <a href="privacy-policy.html" style="color: var(--primary, #4F46E5);">Privacy Policy</a>
             <a href="disclaimer.html">Disclaimer</a>
         </div>
         <div class="copyright">
             <p>&copy; 2026 Abhinandan Updates. All rights reserved.</p>
-            <p style="margin-top: 4px;">Designed by <span class="developer">Ajmal Mansoori</span></p>
         </div>
     </footer>
 
