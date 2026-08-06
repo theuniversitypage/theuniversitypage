@@ -8,6 +8,39 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* 1-Line Clean Footer for All Screen Sizes */
+        footer {
+            padding: 40px 16px 24px;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: nowrap; /* Single line me lock karne ke liye */
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            font-size: 0.9rem;
+            font-weight: 600;
+            white-space: nowrap; /* Text line-break nahi hoga */
+            transition: var(--transition);
+        }
+
+        @media (max-width: 480px) {
+            .footer-links {
+                gap: 12px;
+            }
+            .footer-links a {
+                font-size: 0.78rem; /* Mobile me fit rehne ke liye scaling */
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -113,7 +146,7 @@
                 <a href="latest-jobs.html" class="show-more-link">Show more <i class="fas fa-arrow-right"></i></a>
             </div>
 
-            <!-- Admit Card Box (Default Links + Dynamic Multi-line Sync) -->
+            <!-- Admit Card Box -->
             <div class="samarth-box rose">
                 <h2><i class="fas fa-id-card"></i> Admit Card</h2>
                 <ul class="samarth-list" id="admitCardList">
@@ -126,7 +159,7 @@
                 <a href="admitcard.html" class="show-more-link">Show more <i class="fas fa-arrow-right"></i></a>
             </div>
 
-            <!-- Cutoff Box (Default Links + Dynamic Multi-line Sync) -->
+            <!-- Cutoff Box -->
             <div class="samarth-box">
                 <h2><i class="fas fa-chart-line"></i> Cutoff</h2>
                 <ul class="samarth-list" id="cutoffList">
@@ -189,11 +222,10 @@
         </div>
         <div class="copyright">
             <p>&copy; 2026 Abhinandan Updates. All rights reserved.</p>
-            <p style="margin-top: 4px;">Designed by <span class="developer">Ajmal Mansoori</span></p>
         </div>
     </footer>
 
-    <!-- REALTIME SCRIPT: DYNAMIC NEW POSTS UPAR PREPEND HONGE -->
+    <!-- REALTIME SCRIPT -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
