@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Latest Answer Keys 2026 - The University Page</title>
+    
+    <!-- Google Fonts & Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box !important;
+            max-width: 100%;
+        }
+
+        html, body {
+            width: 100% !important;
+            max-width: 100% !important;
+            overflow-x: hidden !important;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-main, #FDFBF7);
+            color: var(--text-dark, #0F172A);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        .container {
+            flex: 1;
+            width: 100% !important;
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 20px 16px 40px;
+            box-sizing: border-box;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #D97706, #B45309);
+            color: white;
+            border-radius: var(--radius-lg, 20px);
+            padding: 28px 20px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 20px;
+            text-align: center;
+            width: 100% !important;
+        }
+
+        .page-header h1 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+            word-break: break-word;
+        }
+
+        .page-header p {
+            font-size: 0.9rem;
+            opacity: 0.92;
+            font-weight: 500;
+        }
+
+        .filter-bar {
+            background: var(--surface, #FFFFFF);
+            padding: 14px 16px;
+            border-radius: var(--radius-md, 14px);
+            border: 1px solid var(--border, #E2E8F0);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 20px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            justify-content: space-between;
+            width: 100% !important;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: #F8FAFC;
+            border: 1px solid var(--border, #E2E8F0);
+            padding: 10px 16px;
+            border-radius: 30px;
+            flex: 1;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .search-box:focus-within {
+            background: #FFFFFF;
+            border-color: #D97706;
+            box-shadow: 0 0 0 4px rgba(217, 119, 6, 0.15);
+        }
+
+        .search-box input {
+            border: none;
+            background: transparent;
+            outline: none;
+            padding-left: 10px;
+            width: 100%;
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--text-dark, #0F172A);
+        }
+
+        .search-box i {
+            color: #D97706;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 18px;
+            width: 100% !important;
+        }
+
+        .card {
+            background: var(--surface, #FFFFFF);
+            border-radius: var(--radius-lg, 20px);
+            border: 1px solid var(--border, #E2E8F0);
+            padding: 22px 18px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 100% !important;
+            min-width: 0;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(217, 119, 6, 0.3);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .status-badge {
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            background: #FEF3C7;
+            color: #D97706;
+        }
+
+        .card-date {
+            font-size: 0.8rem;
+            color: var(--text-muted, #64748B);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+        }
+
+        .card-title {
+            font-size: 1.08rem;
+            font-weight: 800;
+            color: var(--text-dark, #0F172A);
+            margin-bottom: 8px;
+            line-height: 1.4;
+            letter-spacing: -0.3px;
+            word-break: break-word;
+        }
+
+        .card-org {
+            font-size: 0.85rem;
+            color: var(--text-muted, #64748B);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+        }
+
+        .card-meta {
+            border-top: 1px dashed var(--border, #E2E8F0);
+            padding-top: 10px;
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.82rem;
+            color: var(--text-body, #334155);
+            font-weight: 600;
+        }
+
+        .btn-check {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: #D97706;
+            color: white;
+            padding: 11px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.88rem;
+            transition: var(--transition);
+            text-align: center;
+            width: 100%;
+            box-shadow: 0 4px 12px rgba(217, 119, 6, 0.25);
+            text-decoration: none;
+        }
+
+        .btn-check:hover {
+            background: #B45309;
+            transform: translateY(-1px);
+        }
+
+        /* STRICT 1-LINE FOOTER */
+        footer {
+            background: var(--surface, #FFFFFF);
+            border-top: 1px solid var(--border, #E2E8F0);
+            padding: 24px 12px 18px;
+            text-align: center;
+            width: 100% !important;
+            margin-top: auto;
+        }
+
+        .footer-links {
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            gap: 20px !important;
+            flex-wrap: nowrap !important;
+            margin-bottom: 10px !important;
+            width: 100% !important;
+        }
+
+        .footer-links a {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-body, #334155);
+            white-space: nowrap !important;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover { color: #D97706; }
+        .copyright { color: var(--text-muted, #64748B); font-size: 0.78rem; }
+
+        @media (max-width: 768px) {
+            .container { padding: 12px 10px 30px; }
+            .page-header { padding: 20px 16px; border-radius: 14px; }
+            .page-header h1 { font-size: 1.35rem; }
+            .grid-container { grid-template-columns: 1fr !important; }
+
+            footer { padding: 18px 8px 14px; }
+            .footer-links { gap: 10px !important; }
+            .footer-links a { font-size: 0.76rem !important; }
+            .copyright { font-size: 0.72rem; }
+        }
+
+        @media (max-width: 400px) {
+            .footer-links { gap: 8px !important; }
+            .footer-links a { font-size: 0.72rem !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- === HEADER === -->
+    <header class="header-wrapper">
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <div class="logo-badge"><i class="fas fa-graduation-cap"></i></div>
+                <span>The University Page</span>
+            </a>
+            
+            <div class="header-right">
+                <button class="menu-toggle-btn" id="sidebarToggle">
+                    <i class="fa-solid fa-bars-staggered"></i>
+                </button>
+            </div>
+        </nav>
+
+        <div class="nav-drawer" id="navDrawer">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="latest-jobs.html">Latest Job</a></li>
+                <li><a href="admitcard.html">Admit Card</a></li>
+                <li><a href="result.html">Result</a></li>
+                <li><a href="cutoff.html">Cutoff</a></li>
+                <li><a href="admission.html">Admission</a></li>
+                <li><a href="syllabus.html">Syllabus</a></li>
+                <li><a href="answer-key.html" class="active">Answer Key</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- === MAIN CONTAINER === -->
+    <main class="container">
+        <div class="page-header">
+            <h1><i class="fas fa-key"></i> Latest Answer Keys 2026</h1>
+            <p>Download Official Question Papers, Response Sheets & Raise Objections</p>
+        </div>
+
+        <div class="filter-bar">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search Answer Key (e.g. SSC CGL, CTET, UP B.Ed)...">
+            </div>
+        </div>
+
+        <div class="grid-container" id="keysGrid">
+            <!-- Static Fallback Card 1 -->
+            <div class="card">
+                <div>
+                    <div class="card-header">
+                        <span class="status-badge">Out Now</span>
+                        <span class="card-date"><i class="far fa-calendar-alt"></i> Aug 2026</span>
+                    </div>
+                    <h2 class="card-title">SSC CGL Tier-I Official Answer Key & Response Sheet 2026</h2>
+                    <p class="card-org"><i class="fas fa-building" style="color: #D97706;"></i> Staff Selection Commission</p>
+                    <div class="card-meta">
+                        <span><i class="fas fa-clock" style="color: #D97706;"></i> Objection: Open</span>
+                        <span><i class="fas fa-file-alt" style="color: #D97706;"></i> Tier-1 Paper</span>
+                    </div>
+                </div>
+                <a href="answerkey-details.html" class="btn-check">
+                    <i class="fas fa-file-invoice"></i> Check Answer Key
+                </a>
+            </div>
+
+            <!-- Static Fallback Card 2 -->
+            <div class="card">
+                <div>
+                    <div class="card-header">
+                        <span class="status-badge">Revised Key</span>
+                        <span class="card-date"><i class="far fa-calendar-alt"></i> Aug 2026</span>
+                    </div>
+                    <h2 class="card-title">CUET UG 2026 Official Provisional Answer Key</h2>
+                    <p class="card-org"><i class="fas fa-university" style="color: #D97706;"></i> National Testing Agency</p>
+                    <div class="card-meta">
+                        <span><i class="fas fa-check-circle" style="color: #10B981;"></i> Final Key</span>
+                        <span><i class="fas fa-globe" style="color: #D97706;"></i> All Papers</span>
+                    </div>
+                </div>
+                <a href="answerkey-details.html" class="btn-check">
+                    <i class="fas fa-file-invoice"></i> Check Answer Key
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- === FOOTER === -->
+    <footer>
+        <div class="footer-links">
+            <a href="contact-us.html">Contact Us</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="disclaimer.html">Disclaimer</a>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 The University Page. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- REALTIME FIREBASE SCRIPT FOR ANSWER KEYS GRID -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+      import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyD837pmW5N21lMgeVlpgWPx0FaMisSnxwU",
+        authDomain: "theuniversitypage-cc4a7.firebaseapp.com",
+        projectId: "theuniversitypage-cc4a7",
+        storageBucket: "theuniversitypage-cc4a7.firebasestorage.app",
+        messagingSenderId: "31910615607",
+        appId: "1:31910615607:web:bee5bd81c8118a16d1bdb2",
+        measurementId: "G-6E55FCSXDP"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      document.getElementById("sidebarToggle")?.addEventListener("click", () => {
+          document.getElementById("navDrawer")?.classList.toggle("active");
+      });
+
+      const keysGrid = document.getElementById("keysGrid");
+      const searchInput = document.getElementById("searchInput");
+      let allKeyPosts = [];
+
+      function renderKeys(items) {
+        if(!keysGrid) return;
+        if(items.length === 0) {
+            keysGrid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--text-muted); font-weight: 600;">Koi Answer Key Post Uplabdh Nahi Hai.</div>`;
+            return;
+        }
+
+        keysGrid.innerHTML = items.map(item => {
+            const cardTitle = item.keyTitle || item.title || "Answer Key Released";
+            const targetId = item.id ? `answerkey-details.html?id=${item.id}` : "answerkey-details.html";
+            return `
+                <div class="card">
+                    <div>
+                        <div class="card-header">
+                            <span class="status-badge">Out Now</span>
+                            <span class="card-date"><i class="far fa-calendar-alt"></i> ${item.releaseDate || '2026'}</span>
+                        </div>
+                        <h2 class="card-title">${cardTitle}</h2>
+                        <p class="card-org"><i class="fas fa-building" style="color: #D97706;"></i> Official Authority</p>
+                        <div class="card-meta">
+                            <span><i class="fas fa-clock" style="color: #D97706;"></i> Status: Active</span>
+                            <span><i class="fas fa-file-alt" style="color: #D97706;"></i> All Papers</span>
+                        </div>
+                    </div>
+                    <a href="${targetId}" class="btn-check"><i class="fas fa-file-invoice"></i> Check Answer Key</a>
+                </div>
+            `;
+        }).join('');
+      }
+
+      function loadData() {
+        const localUpdates = JSON.parse(localStorage.getItem("learnify_admin_updates")) || [];
+
+        try {
+            const q = query(collection(db, "updates"), orderBy("createdAt", "desc"));
+            onSnapshot(q, (snapshot) => {
+                let fbData = [];
+                snapshot.forEach(docSnap => {
+                    const item = docSnap.data();
+                    const cat = (item.category || "").toLowerCase();
+
+                    if (cat.includes("answer") || cat.includes("key") || cat.includes("response")) {
+                        fbData.push({ id: docSnap.id, ...item });
+                    }
+                });
+
+                allKeyPosts = fbData.length > 0 ? fbData : localUpdates;
+                if(allKeyPosts.length > 0) {
+                    renderKeys(allKeyPosts);
+                }
+            }, err => {
+                if(localUpdates.length > 0) renderKeys(localUpdates);
+            });
+        } catch(e) {
+            if(localUpdates.length > 0) renderKeys(localUpdates);
+        }
+      }
+
+      if(searchInput) {
+        searchInput.addEventListener("input", (e) => {
+            const val = e.target.value.toLowerCase();
+            const filtered = allKeyPosts.filter(i => (i.keyTitle || i.title || "").toLowerCase().includes(val));
+            renderKeys(filtered);
+        });
+      }
+
+      loadData();
+    </script>
+</body>
+</html>
