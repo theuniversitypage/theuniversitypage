@@ -366,7 +366,7 @@
                         <span class="status-badge">Released</span>
                         <span class="card-date"><i class="far fa-calendar-alt"></i> ${item.releaseDate || '2026'}</span>
                     </div>
-                    <h2 class="card-title">${item.examTitle || item.title}</h2>
+                    <h2 class="card-title">${item.admitTitle || item.examTitle || item.title}</h2>
                     <p class="card-org"><i class="fas fa-building" style="color: #059669;"></i> Official Authority</p>
                     <div class="card-meta">
                         <span><i class="fas fa-clock" style="color: #10B981;"></i> Status: Live</span>
@@ -388,7 +388,8 @@
             let fbData = [];
             snapshot.forEach(doc => {
                 const data = doc.data();
-                if(data.category === "admitcard" || data.category === "admit") {
+                const cat = (data.category || "").toLowerCase();
+                if(cat.includes("admit")) {
                     fbData.push({ id: doc.id, ...data });
                 }
             });
@@ -404,7 +405,7 @@
       if(searchInput) {
         searchInput.addEventListener("input", (e) => {
             const val = e.target.value.toLowerCase();
-            const filtered = allPosts.filter(i => (i.examTitle || i.title).toLowerCase().includes(val));
+            const filtered = allPosts.filter(i => (i.admitTitle || i.examTitle || i.title || "").toLowerCase().includes(val));
             render(filtered);
         });
       }
