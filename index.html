@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhinandan Updates - Premier Educational Portal</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- === HEADER === -->
+    <header class="header-wrapper">
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <div class="logo-badge"><i class="fas fa-graduation-cap"></i></div>
+                <span>Abhinandan Updates</span>
+            </a>
+            
+            <div class="header-right">
+                <div class="search-box">
+                    <input type="text" placeholder="Search updates...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </div>
+                
+                <button class="menu-toggle-btn" id="sidebarToggle">
+                    <i class="fa-solid fa-bars-staggered"></i>
+                </button>
+            </div>
+        </nav>
+
+        <div class="nav-drawer" id="navDrawer">
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="latest-jobs.html">Latest Job</a></li>
+                <li><a href="admitcard.html">Admit Card</a></li>
+                <li><a href="result.html">Result</a></li>
+                <li><a href="cutoff.html">Cutoff</a></li>
+                <li><a href="admission.html">Admission</a></li>
+                <li><a href="syllabus.html">Syllabus</a></li>
+                <li><a href="answer-key.html">Answer Key</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- === MAIN CONTAINER === -->
+    <div class="main-container">
+        
+        <!-- TOOLS CARDS -->
+        <section class="tools-section">
+            <div class="tools-grid">
+                <a href="#" class="tool-card">
+                    <div class="tool-icon"><i class="fas fa-robot"></i></div>
+                    <div class="tool-info">
+                        <h3>AI Master Class</h3>
+                        <p>Accelerated learning</p>
+                    </div>
+                </a>
+
+                <a href="#" class="tool-card">
+                    <div class="tool-icon"><i class="fas fa-laptop-code"></i></div>
+                    <div class="tool-info">
+                        <h3>Mock Tests</h3>
+                        <p>Learnify Classes prep</p>
+                    </div>
+                </a>
+
+                <a href="#" class="tool-card">
+                    <div class="tool-icon"><i class="fas fa-file-pdf"></i></div>
+                    <div class="tool-info">
+                        <h3>Notes & PDFs</h3>
+                        <p>High-yield study guides</p>
+                    </div>
+                </a>
+
+                <a href="#" class="tool-card">
+                    <div class="tool-icon"><i class="fas fa-book-open"></i></div>
+                    <div class="tool-info">
+                        <h3>Free Booklet</h3>
+                        <p>Proven exam tactics</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- CATEGORIES GRID -->
+        <section class="list-grid">
+            <!-- Result Box -->
+            <div class="samarth-box emerald">
+                <h2><i class="fas fa-trophy"></i> Result</h2>
+                <ul class="samarth-list">
+                    <li><a href="cuet-ug-final-scorecard-2026.html"><i class="fas fa-chevron-right"></i> <span>CUET UG Final Scorecard 2026 Released</span></a></li>
+                    <li><a href="allahabad-university-entrance-result.html"><i class="fas fa-chevron-right"></i> <span>Allahabad University Entrance Result Declared</span></a></li>
+                    <li><a href="up-board-12th-result.html"><i class="fas fa-chevron-right"></i> <span>UP Board Class 12th Examination Results</span></a></li>
+                    <li><a href="ssc-chsl-tier1-result.html"><i class="fas fa-chevron-right"></i> <span>SSC CHSL Tier 1 Result and Cutoff</span></a></li>
+                    <li><a href="up-police-constable-merit.html"><i class="fas fa-chevron-right"></i> <span>UP Police Constable Final Merit List</span></a></li>
+                </ul>
+                <a href="result.html" class="show-more-link">Show more <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <!-- Latest Job Box -->
+            <div class="samarth-box amber">
+                <h2><i class="fas fa-briefcase"></i> Latest Job</h2>
+                <ul class="samarth-list">
+                    <li><a href="ssc-cgl-online-form.html"><i class="fas fa-chevron-right"></i> <span>SSC CGL Online Application Form 2026</span></a></li>
+                    <li><a href="rrb-ntpc-recruitment.html"><i class="fas fa-chevron-right"></i> <span>RRB NTPC Recruitment Online Apply Link</span></a></li>
+                    <li><a href="uppsc-ro-aro-notification.html"><i class="fas fa-chevron-right"></i> <span>UPPSC RO/ARO Final Notification PDF</span></a></li>
+                    <li><a href="ibps-po-recruitment.html"><i class="fas fa-chevron-right"></i> <span>IBPS PO Bank Probationary Officer Jobs</span></a></li>
+                    <li><a href="navy-agniveer-ssr.html"><i class="fas fa-chevron-right"></i> <span>Indian Navy Agniveer SSR Application Form</span></a></li>
+                </ul>
+                <a href="latest-jobs.html" class="show-more-link">Show more <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <!-- Admit Card Box (Default Links + Dynamic Multi-line Sync) -->
+            <div class="samarth-box rose">
+                <h2><i class="fas fa-id-card"></i> Admit Card</h2>
+                <ul class="samarth-list" id="admitCardList">
+                    <li><a href="cuet-ug-admit-card.html"><i class="fas fa-chevron-right"></i> <span>CUET UG Entrance Exam Hall Ticket</span></a></li>
+                    <li><a href="au-pgat-admit-card.html"><i class="fas fa-chevron-right"></i> <span>Allahabad University PGAT Admit Card</span></a></li>
+                    <li><a href="ssc-cgl-admit-card.html"><i class="fas fa-chevron-right"></i> <span>SSC CGL Tier 1 Hall Ticket Download</span></a></li>
+                    <li><a href="up-police-admit-card.html"><i class="fas fa-chevron-right"></i> <span>UP Police Constable Exam City & Admit Card</span></a></li>
+                    <li><a href="ctet-admit-card.html"><i class="fas fa-chevron-right"></i> <span>CTET Exam Admit Card Direct Link</span></a></li>
+                </ul>
+                <a href="admitcard.html" class="show-more-link">Show more <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <!-- Cutoff Box (Default Links + Dynamic Multi-line Sync) -->
+            <div class="samarth-box">
+                <h2><i class="fas fa-chart-line"></i> Cutoff</h2>
+                <ul class="samarth-list" id="cutoffList">
+                    <li><a href="cuet-ug-cutoff-marks.html"><i class="fas fa-chevron-right"></i> <span>CUET UG University Wise Cutoff Marks</span></a></li>
+                    <li><a href="au-entrance-cutoff.html"><i class="fas fa-chevron-right"></i> <span>Allahabad Univ Main Campus Category Cutoff</span></a></li>
+                    <li><a href="ssc-chsl-cutoff.html"><i class="fas fa-chevron-right"></i> <span>SSC CHSL Category Wise Qualifying Marks</span></a></li>
+                    <li><a href="bhu-admission-cutoff.html"><i class="fas fa-chevron-right"></i> <span>BHU Course Wise Round 1 Cutoff Rank</span></a></li>
+                    <li><a href="neet-ug-cutoff.html"><i class="fas fa-chevron-right"></i> <span>NEET UG Expected Qualifying Cutoff</span></a></li>
+                </ul>
+                <a href="cutoff.html" class="show-more-link">Show more <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <!-- Answer Key Box -->
+            <div class="samarth-box">
+                <h2><i class="fas fa-key"></i> Answer Key</h2>
+                <ul class="samarth-list">
+                    <li><a href="cuet-ug-answer-key.html"><i class="fas fa-chevron-right"></i> <span>CUET UG Official Provisional Answer Key</span></a></li>
+                    <li><a href="au-pgat-answer-key.html"><i class="fas fa-chevron-right"></i> <span>Allahabad Univ PGAT Final Answer Key PDF</span></a></li>
+                    <li><a href="ctet-answer-key.html"><i class="fas fa-chevron-right"></i> <span>CTET 2026 Final Answer Key Paper I & II</span></a></li>
+                    <li><a href="ssc-gd-answer-key.html"><i class="fas fa-chevron-right"></i> <span>SSC GD Constable Final Answer Key Link</span></a></li>
+                    <li><a href="up-bed-answer-key.html"><i class="fas fa-chevron-right"></i> <span>UP B.Ed JEE Entrance Exam Answer Key</span></a></li>
+                </ul>
+                <a href="answer-key.html" class="show-more-link">Show more <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <!-- Admission Box -->
+            <div class="samarth-box">
+                <h2><i class="fas fa-university"></i> Admission</h2>
+                <ul class="samarth-list">
+                    <li><a href="au-counseling.html"><i class="fas fa-chevron-right"></i> <span>AU UG/PG Counseling Registration Process</span></a></li>
+                    <li><a href="du-csas-portal.html"><i class="fas fa-chevron-right"></i> <span>Delhi University CSAS Portal Registration</span></a></li>
+                    <li><a href="bhu-ug-admission.html"><i class="fas fa-chevron-right"></i> <span>BHU UG Admission Online Form Filling</span></a></li>
+                    <li><a href="up-deled-registration.html"><i class="fas fa-chevron-right"></i> <span>UP DElEd / BTC Registration & Choice Filling</span></a></li>
+                    <li><a href="iti-up-form.html"><i class="fas fa-chevron-right"></i> <span>ITI UP Online Form Apply Date Extended</span></a></li>
+                </ul>
+                <a href="admission.html" class="show-more-link">Show more <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <!-- Document Box -->
+            <div class="samarth-box">
+                <h2><i class="fas fa-file-alt"></i> Document</h2>
+                <ul class="samarth-list">
+                    <li><a href="up-scholarship.html"><i class="fas fa-chevron-right"></i> <span>UP Scholarship Online Form 2026 Guidelines</span></a></li>
+                    <li><a href="pan-card-apply.html"><i class="fas fa-chevron-right"></i> <span>PAN Card Apply & Download E-PAN Online</span></a></li>
+                    <li><a href="aadhar-update.html"><i class="fas fa-chevron-right"></i> <span>Aadhar Card Mobile Link & Update Status</span></a></li>
+                    <li><a href="ews-certificate.html"><i class="fas fa-chevron-right"></i> <span>EWS Certificate Registration Requirements</span></a></li>
+                    <li><a href="voter-id-apply.html"><i class="fas fa-chevron-right"></i> <span>Voter ID Card Apply Online New Process</span></a></li>
+                </ul>
+                <a href="document.html" class="show-more-link">Show more <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </section>
+    </div>
+
+    <!-- === FOOTER === -->
+    <footer>
+        <div class="footer-links">
+            <a href="contact-us.html">Contact Us</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="disclaimer.html">Disclaimer</a>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 Abhinandan Updates. All rights reserved.</p>
+            <p style="margin-top: 4px;">Designed by <span class="developer">Ajmal Mansoori</span></p>
+        </div>
+    </footer>
+
+    <!-- REALTIME SCRIPT: DYNAMIC NEW POSTS UPAR PREPEND HONGE -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyD837pmW5N21lMgeVlpgWPx0FaMisSnxwU",
+            authDomain: "theuniversitypage-cc4a7.firebaseapp.com",
+            projectId: "theuniversitypage-cc4a7",
+            storageBucket: "theuniversitypage-cc4a7.firebasestorage.app",
+            messagingSenderId: "31910615607",
+            appId: "1:31910615607:web:bee5bd81c8118a16d1bdb2",
+            measurementId: "G-6E55FCSXDP"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        document.getElementById("sidebarToggle")?.addEventListener("click", () => {
+            document.getElementById("navDrawer")?.classList.toggle("active");
+        });
+
+        function createListItemHTML(url, title) {
+            const li = document.createElement("li");
+            li.innerHTML = `
+                <a href="${url}">
+                    <i class="fas fa-chevron-right"></i>
+                    <span>${title}</span>
+                </a>
+            `;
+            return li;
+        }
+
+        try {
+            const q = query(collection(db, "updates"), orderBy("createdAt", "desc"));
+            onSnapshot(q, (snapshot) => {
+                const admitBox = document.getElementById("admitCardList");
+                const cutoffBox = document.getElementById("cutoffList");
+
+                snapshot.forEach((docSnap) => {
+                    const item = docSnap.data();
+                    const docId = docSnap.id;
+                    const cat = (item.category || "").toLowerCase();
+
+                    if (cat.includes("admit") && admitBox) {
+                        const newLi = createListItemHTML(`admitcard-details.html?id=${docId}`, item.examTitle || item.title);
+                        admitBox.insertBefore(newLi, admitBox.firstChild);
+                    }
+
+                    if (cat.includes("cutoff") && cutoffBox) {
+                        const newLi = createListItemHTML(`cutoff-details.html?id=${docId}`, item.cutoffTitle || item.title);
+                        cutoffBox.insertBefore(newLi, cutoffBox.firstChild);
+                    }
+                });
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    </script>
+</body>
+</html>
