@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="style.css">
     
     <style>
-        /* Strict Global Box Sizing & Anti-Overflow Rules */
+        /* Strict Anti-Overflow & Zero-Cutoff Rules */
         *, *::before, *::after {
             box-sizing: border-box !important;
             max-width: 100%;
@@ -32,7 +32,7 @@
             -webkit-text-size-adjust: 100%;
         }
 
-        /* Container Layout */
+        /* Responsive Main Container */
         .post-container {
             flex: 1;
             width: 100% !important;
@@ -58,7 +58,7 @@
             text-decoration: none;
         }
 
-        /* Ultra Premium Card */
+        /* Ultra-Premium Glassmorphic Card */
         .post-box {
             background: var(--surface, #FFFFFF);
             border-radius: var(--radius-lg, 20px);
@@ -66,6 +66,7 @@
             box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
             border: 1px solid var(--border, #E2E8F0);
             width: 100% !important;
+            box-sizing: border-box;
         }
 
         .post-title {
@@ -326,18 +327,20 @@
         .footer-links a:hover { color: var(--primary, #4F46E5); }
         .copyright { color: var(--text-muted, #64748B); font-size: 0.78rem; }
 
-        /* RESPONSIVE BREAKPOINTS */
+        /* Mobile Breakpoint Fits */
         @media (max-width: 768px) {
-            .post-container { padding: 12px 10px 30px; }
-            .post-box { padding: 22px 16px; border-radius: 16px; }
-            .post-title { font-size: 1.35rem; }
-            .promo-banner { flex-direction: column; text-align: center; padding: 20px 16px; gap: 14px; }
+            .post-container { padding: 8px 8px 24px !important; }
+            .post-box { padding: 18px 12px; border-radius: 16px; }
+            .post-title { font-size: 1.25rem; }
+            .post-text { font-size: 0.88rem; }
+            .important-links { padding: 16px 12px; }
+            .promo-banner { flex-direction: column; text-align: center; padding: 18px 12px; gap: 12px; }
             .promo-sq-btn { width: 100%; justify-content: center; }
             .squircle-btn-grid { grid-template-columns: 1fr !important; }
 
-            footer { padding: 18px 8px 14px; }
+            footer { padding: 16px 6px 12px; }
             .footer-links { gap: 10px !important; }
-            .footer-links a { font-size: 0.76rem !important; }
+            .footer-links a { font-size: 0.75rem !important; }
             .copyright { font-size: 0.72rem; }
         }
 
@@ -395,7 +398,7 @@
 
             <p class="post-text" id="detailDesc">National Testing Agency (NTA) has officially released the final scorecard and results for CUET UG 2026. Candidates who appeared for the examination can check their normalized scores and percentiles through the direct link provided below.</p>
 
-            <h3 style="margin-bottom: 12px; color: #0F172A; font-weight: 800; font-size: 1.1rem;">Exam Details Overview</h3>
+            <h3 style="margin-bottom: 12px; color: #0F172A; font-weight: 800; font-size: 1.05rem;">Exam Details Overview</h3>
             <div class="table-responsive">
                 <table class="info-table">
                     <tr>
