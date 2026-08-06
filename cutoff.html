@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latest Cutoff Marks & Counseling Schedule - Abhinandan Updates</title>
+    
+    <!-- Google Fonts & Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .cutoff-main-container {
+            max-width: 1280px;
+            margin: 36px auto 70px;
+            padding: 0 24px;
+            flex: 1;
+            width: 100%;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, var(--primary), #818CF8);
+            color: white;
+            border-radius: var(--radius-lg);
+            padding: 36px 32px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .page-header p {
+            font-size: 0.95rem;
+            opacity: 0.92;
+            font-weight: 500;
+        }
+
+        .filter-bar {
+            background: var(--surface);
+            padding: 16px 20px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 30px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .search-box-filter {
+            display: flex;
+            align-items: center;
+            background: #F8FAFC;
+            border: 1px solid var(--border);
+            padding: 10px 18px;
+            border-radius: 30px;
+            flex: 1;
+            transition: var(--transition);
+        }
+
+        .search-box-filter:focus-within {
+            background: var(--surface);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px var(--primary-glow);
+        }
+
+        .search-box-filter input {
+            border: none;
+            background: transparent;
+            outline: none;
+            padding-left: 10px;
+            width: 100%;
+            font-size: 0.92rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .search-box-filter i {
+            color: var(--primary);
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 24px;
+        }
+        
+        .card {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            padding: 26px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(79, 70, 229, 0.3);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .status-badge {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            background: var(--accent-emerald-light);
+            color: var(--accent-emerald);
+        }
+
+        .card-date {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+        }
+
+        .card-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            line-height: 1.4;
+            letter-spacing: -0.3px;
+        }
+
+        .card-org {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+        }
+
+        .card-meta {
+            border-top: 1px dashed var(--border);
+            padding-top: 14px;
+            margin-bottom: 18px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--text-body);
+            font-weight: 600;
+        }
+
+        .btn-check {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: var(--primary);
+            color: white;
+            padding: 12px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.92rem;
+            transition: var(--transition);
+            text-align: center;
+            width: 100%;
+            box-shadow: 0 6px 16px -3px rgba(79, 70, 229, 0.35);
+        }
+
+        .btn-check:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 10px 22px -4px rgba(79, 70, 229, 0.45);
+        }
+
+        /* 1-Line Clean Footer */
+        footer {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            padding: 40px 16px 24px;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: nowrap;
+            margin-bottom: 18px;
+        }
+
+        .footer-links a {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-body);
+            white-space: nowrap;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover { color: var(--primary); }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .cutoff-main-container { padding: 0 16px; margin-top: 24px; }
+            .page-header { padding: 28px 20px; }
+            .page-header h1 { font-size: 1.55rem; }
+            .grid-container { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 480px) {
+            .footer-links { gap: 12px; }
+            .footer-links a { font-size: 0.78rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- === HEADER === -->
+    <header class="header-wrapper">
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <div class="logo-badge"><i class="fas fa-graduation-cap"></i></div>
+                <span>Abhinandan Updates</span>
+            </a>
+            
+            <div class="header-right">
+                <button class="menu-toggle-btn" id="sidebarToggle">
+                    <i class="fa-solid fa-bars-staggered"></i>
+                </button>
+            </div>
+        </nav>
+
+        <div class="nav-drawer" id="navDrawer">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="latest-jobs.html">Latest Job</a></li>
+                <li><a href="admitcard.html">Admit Card</a></li>
+                <li><a href="result.html">Result</a></li>
+                <li><a href="cutoff.html" class="active">Cutoff</a></li>
+                <li><a href="admission.html">Admission</a></li>
+                <li><a href="syllabus.html">Syllabus</a></li>
+                <li><a href="answer-key.html">Answer Key</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- === MAIN CONTAINER === -->
+    <main class="cutoff-main-container">
+        <div class="page-header">
+            <h1><i class="fas fa-chart-line"></i> Latest Cutoff Marks 2026</h1>
+            <p>Check Category-Wise Cutoff Marks, Counseling Schedules & Merit Lists</p>
+        </div>
+
+        <div class="filter-bar">
+            <div class="search-box-filter">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search Cutoff (e.g. Allahabad University, CUET, UPSSSC)...">
+            </div>
+        </div>
+
+        <div class="grid-container" id="cardsGrid"></div>
+    </main>
+
+    <!-- === FOOTER === -->
+    <footer>
+        <div class="footer-links">
+            <a href="contact-us.html">Contact Us</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="disclaimer.html">Disclaimer</a>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 Abhinandan Updates. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- REALTIME FIREBASE SCRIPT -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+      import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyD837pmW5N21lMgeVlpgWPx0FaMisSnxwU",
+        authDomain: "theuniversitypage-cc4a7.firebaseapp.com",
+        projectId: "theuniversitypage-cc4a7",
+        storageBucket: "theuniversitypage-cc4a7.firebasestorage.app",
+        messagingSenderId: "31910615607",
+        appId: "1:31910615607:web:bee5bd81c8118a16d1bdb2",
+        measurementId: "G-6E55FCSXDP"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      document.getElementById("sidebarToggle")?.addEventListener("click", () => {
+          document.getElementById("navDrawer")?.classList.toggle("active");
+      });
+
+      const cardsGrid = document.getElementById("cardsGrid");
+      const searchInput = document.getElementById("searchInput");
+      let allPosts = [];
+
+      function render(items) {
+        if(!cardsGrid) return;
+        if(items.length === 0) {
+            cardsGrid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--text-muted); font-weight: 600;">Koi Cutoff Post Uplabdh Nahi Hai.</div>`;
+            return;
+        }
+        cardsGrid.innerHTML = items.map(item => `
+            <div class="card">
+                <div>
+                    <div class="card-header">
+                        <span class="status-badge">Declared</span>
+                        <span class="card-date"><i class="far fa-calendar-alt"></i> ${item.releaseDate || '2026'}</span>
+                    </div>
+                    <h2 class="card-title">${item.cutoffTitle || item.examTitle || item.title}</h2>
+                    <p class="card-org"><i class="fas fa-building" style="color: var(--primary);"></i> Official Authority</p>
+                    <div class="card-meta">
+                        <span><i class="fas fa-clock" style="color: var(--accent-emerald);"></i> Status: Active</span>
+                        <span><i class="fas fa-users" style="color: var(--primary);"></i> All Categories</span>
+                    </div>
+                </div>
+                <a href="cutoff-details.html?id=${item.id}" class="btn-check">
+                    <i class="fas fa-chart-line"></i> Check Cutoff & Schedule
+                </a>
+            </div>
+        `).join('');
+      }
+
+      function loadData() {
+        const local = JSON.parse(localStorage.getItem("learnify_admin_cutoffs")) || [];
+        const q = query(collection(db, "updates"), orderBy("createdAt", "desc"));
+
+        onSnapshot(q, (snapshot) => {
+            let fbData = [];
+            snapshot.forEach(doc => {
+                const data = doc.data();
+                if(data.category === "cutoff") {
+                    fbData.push({ id: doc.id, ...data });
+                }
+            });
+
+            allPosts = fbData.length > 0 ? fbData : local;
+            render(allPosts);
+        }, err => {
+            allPosts = local;
+            render(allPosts);
+        });
+      }
+
+      if(searchInput) {
+        searchInput.addEventListener("input", (e) => {
+            const val = e.target.value.toLowerCase();
+            const filtered = allPosts.filter(i => (i.cutoffTitle || i.examTitle || i.title).toLowerCase().includes(val));
+            render(filtered);
+        });
+      }
+
+      loadData();
+    </script>
+</body>
+</html>
