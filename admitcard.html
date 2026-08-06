@@ -218,6 +218,7 @@
             transform: translateY(-1px);
         }
 
+        /* STRICT 1-LINE FOOTER */
         footer {
             background: var(--surface, #FFFFFF);
             border-top: 1px solid var(--border, #E2E8F0);
@@ -326,7 +327,7 @@
         </div>
     </footer>
 
-    <!-- REALTIME FIREBASE SCRIPT -->
+    <!-- REALTIME FIREBASE SCRIPT WITH UNIVERSAL FALLBACK -->
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
       import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
@@ -394,12 +395,26 @@
             snapshot.forEach(doc => {
                 const data = doc.data();
                 const cat = (data.category || "").toLowerCase();
-                if(cat.includes("admit") || cat.includes("card") || cat.includes("hall") || cat === "admitcard") {
+                
+                // Matches all variations from Admin Panel
+                if (
+                    cat === "admitcard" || 
+                    cat === "admit" || 
+                    cat.includes("admit") || 
+                    cat.includes("card") || 
+                    cat.includes("hall")
+                ) {
                     fbData.push({ id: doc.id, ...data });
                 }
             });
 
-            allPosts = fbData.length > 0 ? fbData : local;
+            // If Firebase filter has data use it, else fallback to all updates that contain admit/card info
+            if (fbData.length > 0) {
+                allPosts = fbData;
+            } else {
+                allPosts = local.length > 0 ? local : [];
+            }
+            
             render(allPosts);
         }, err => {
             allPosts = local;
