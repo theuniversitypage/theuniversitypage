@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Exam Results 2026 - The University Page</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        :root {
+            --primary: #4F46E5;
+            --primary-dark: #4338CA;
+            --bg-body: #F4F6F9;
+            --surface: #FFFFFF;
+            --text-dark: #1E293B;
+            --text-muted: #64748B;
+            --border: #E2E8F0;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --transition: all 0.3s ease;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', 'Poppins', sans-serif; }
+        body { background-color: var(--bg-body); color: var(--text-dark); display: flex; flex-direction: column; min-height: 100vh; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        .page-header { max-width: 1100px; margin: 30px auto 20px; padding: 0 20px; }
+        .page-title { font-size: 2rem; font-weight: 800; color: var(--text-dark); margin-bottom: 8px; }
+        .page-desc { color: var(--text-muted); font-size: 0.95rem; }
+
+        .results-container { max-width: 1100px; margin: 0 auto 60px; padding: 0 20px; flex: 1; }
+        .result-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+
+        .result-card {
+            background: var(--surface); border-radius: var(--radius-lg); padding: 20px;
+            border: 1px solid var(--border); box-shadow: var(--shadow-sm); transition: var(--transition);
+            display: flex; flex-direction: column; justify-content: space-between;
+        }
+        .result-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--primary); }
+
+        .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+        
+        .status-badge { font-size: 0.75rem; font-weight: 600; padding: 4px 10px; border-radius: 12px; }
+        .status-new { background: #D1FAE5; color: var(--success); }
+
+        .date { font-size: 0.82rem; color: var(--text-muted); display: flex; align-items: center; gap: 5px; }
+
+        .exam-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; line-height: 1.4; color: var(--text-dark); }
+        .exam-org { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 18px; }
+
+        .btn-check {
+            display: block; text-align: center; background: var(--primary-dark); color: white;
+            padding: 10px; border-radius: var(--radius-md); font-weight: 600; transition: var(--transition);
+            font-size: 0.9rem;
+        }
+        .btn-check:hover { background: var(--primary); }
+
+        footer { background: var(--surface); border-top: 1px solid var(--border); padding: 24px 12px 18px; text-align: center; margin-top: auto; }
+        .footer-links { display: flex; justify-content: center; gap: 20px; margin-bottom: 10px; font-weight: 600; }
+        .footer-links a { font-size: 0.85rem; color: #334155; text-decoration: none; }
+        .copyright { color: var(--text-muted); font-size: 0.78rem; }
+        
+        @media (max-width: 768px) {
+            .page-title { font-size: 1.5rem; }
+            .result-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header-wrapper">
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <div class="logo-badge"><i class="fas fa-graduation-cap"></i></div>
+                <span>The University Page</span>
+            </a>
+            
+            <div class="header-right">
+                <button class="menu-toggle-btn" id="sidebarToggle">
+                    <i class="fa-solid fa-bars-staggered"></i>
+                </button>
+            </div>
+        </nav>
+
+        <div class="nav-drawer" id="navDrawer">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="latest-jobs.html">Latest Job</a></li>
+                <li><a href="admitcard.html">Admit Card</a></li>
+                <li><a href="result.html" class="active">Result</a></li>
+                <li><a href="cutoff.html">Cutoff</a></li>
+                <li><a href="admission.html">Admission</a></li>
+                <li><a href="syllabus.html">Syllabus</a></li>
+                <li><a href="answer-key.html">Answer Key</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1 class="page-title"><i class="fas fa-trophy"></i> Latest Exam Results 2026</h1>
+        <p class="page-desc">Check your exam scores, merit lists, and cut-offs for all major examinations.</p>
+    </section>
+
+    <!-- Results Grid -->
+    <main class="results-container">
+        <div class="result-grid" id="resultsGrid">
+            
+            <!-- Default Static Card 1 Connected to scor.html -->
+            <div class="result-card">
+                <div>
+                    <div class="card-header">
+                        <span class="status-badge status-new">Declared Today</span>
+                        <span class="date"><i class="far fa-calendar-alt"></i> Aug 2026</span>
+                    </div>
+                    <h2 class="exam-title">CUET UG 2026 Final Scorecard & Rank List</h2>
+                    <p class="exam-org"><i class="fas fa-university"></i> National Testing Agency (NTA)</p>
+                </div>
+                <a href="scor.html" class="btn-check"><i class="fas fa-external-link-alt"></i> Check Result</a>
+            </div>
+
+            <!-- Default Static Card 2 Connected to scor.html -->
+            <div class="result-card">
+                <div>
+                    <div class="card-header">
+                        <span class="status-badge status-new">New Merit List</span>
+                        <span class="date"><i class="far fa-calendar-alt"></i> Aug 2026</span>
+                    </div>
+                    <h2 class="exam-title">Allahabad University Entrance PGAT Main Campus Cutoff</h2>
+                    <p class="exam-org"><i class="fas fa-university"></i> University of Allahabad</p>
+                </div>
+                <a href="scor.html" class="btn-check"><i class="fas fa-external-link-alt"></i> Check Cutoff</a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="contact-us.html">Contact Us</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="disclaimer.html">Disclaimer</a>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 The University Page. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- REALTIME SCRIPT FOR RESULT GRID -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+      import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyD837pmW5N21lMgeVlpgWPx0FaMisSnxwU",
+        authDomain: "theuniversitypage-cc4a7.firebaseapp.com",
+        projectId: "theuniversitypage-cc4a7",
+        storageBucket: "theuniversitypage-cc4a7.firebasestorage.app",
+        messagingSenderId: "31910615607",
+        appId: "1:31910615607:web:bee5bd81c8118a16d1bdb2",
+        measurementId: "G-6E55FCSXDP"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      document.getElementById("sidebarToggle")?.addEventListener("click", () => {
+          document.getElementById("navDrawer")?.classList.toggle("active");
+      });
+
+      const resultsGrid = document.getElementById("resultsGrid");
+
+      try {
+        const q = query(collection(db, "updates"), orderBy("createdAt", "desc"));
+        onSnapshot(q, (snapshot) => {
+            snapshot.forEach(docSnap => {
+                const item = docSnap.data();
+                const docId = docSnap.id;
+                const cat = (item.category || "").toLowerCase();
+
+                if (cat.includes("result") || cat.includes("score")) {
+                    const cardDiv = document.createElement("div");
+                    cardDiv.className = "result-card";
+                    cardDiv.innerHTML = `
+                        <div>
+                            <div class="card-header">
+                                <span class="status-badge status-new">Live Now</span>
+                                <span class="date"><i class="far fa-calendar-alt"></i> ${item.releaseDate || '2026'}</span>
+                            </div>
+                            <h2 class="exam-title">${item.title || item.resultTitle}</h2>
+                            <p class="exam-org"><i class="fas fa-university"></i> Official Authority</p>
+                        </div>
+                        <a href="scor.html?id=${docId}" class="btn-check"><i class="fas fa-external-link-alt"></i> Check Scorecard</a>
+                    `;
+                    resultsGrid.insertBefore(cardDiv, resultsGrid.firstChild);
+                }
+            });
+        });
+      } catch(e) {}
+    </script>
+</body>
+</html>
