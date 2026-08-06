@@ -327,7 +327,7 @@
         </div>
     </footer>
 
-    <!-- REALTIME FIREBASE SCRIPT (CONNECTED & SYNCHRONIZED) -->
+    <!-- REALTIME FIREBASE SCRIPT -->
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
       import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
@@ -384,7 +384,10 @@
       }
 
       function loadData() {
-        const local = JSON.parse(localStorage.getItem("learnify_admin_admits")) || JSON.parse(localStorage.getItem("learnify_admin_updates")) || [];
+        const localAdmits = JSON.parse(localStorage.getItem("learnify_admin_admits")) || [];
+        const localUpdates = JSON.parse(localStorage.getItem("learnify_admin_updates")) || [];
+        const local = [...localAdmits, ...localUpdates];
+
         const q = query(collection(db, "updates"), orderBy("createdAt", "desc"));
 
         onSnapshot(q, (snapshot) => {
@@ -392,7 +395,8 @@
             snapshot.forEach(doc => {
                 const data = doc.data();
                 const cat = (data.category || "").toLowerCase();
-                // Broader category check to ensure all Admit Card posts are captured
+                
+                // Matches all possible variations from admin dashboard
                 if(cat.includes("admit") || cat.includes("card") || cat.includes("hall") || cat === "admitcard") {
                     fbData.push({ id: doc.id, ...data });
                 }
