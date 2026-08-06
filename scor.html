@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="style.css">
     
     <style>
-        /* Strict Anti-Overflow & Mobile Scale Lock */
+        /* Strict Global Box Sizing & Anti-Overflow Rules */
         *, *::before, *::after {
             box-sizing: border-box !important;
             max-width: 100%;
@@ -32,18 +32,19 @@
             -webkit-text-size-adjust: 100%;
         }
 
+        /* Container Layout */
         .post-container {
             flex: 1;
             width: 100% !important;
             max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px 14px 40px;
+            margin: 16px auto 40px;
+            padding: 0 12px;
             box-sizing: border-box;
         }
 
         .breadcrumb {
-            font-size: 0.85rem;
-            color: #64748B;
+            font-size: 0.82rem;
+            color: var(--text-muted, #64748B);
             margin-bottom: 16px;
             font-weight: 600;
             display: flex;
@@ -53,56 +54,60 @@
         }
 
         .breadcrumb a {
-            color: #4F46E5;
+            color: var(--primary, #4F46E5);
             text-decoration: none;
         }
 
+        /* Ultra Premium Card */
         .post-box {
-            background: #FFFFFF;
+            background: var(--surface, #FFFFFF);
             border-radius: var(--radius-lg, 20px);
             padding: 32px 24px;
             box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
-            border: 1px solid #E2E8F0;
+            border: 1px solid var(--border, #E2E8F0);
             width: 100% !important;
         }
 
         .post-title {
             font-size: 1.75rem;
             font-weight: 800;
-            color: #0F172A;
+            color: var(--text-dark, #0F172A);
             margin-bottom: 12px;
             line-height: 1.35;
             letter-spacing: -0.4px;
             word-break: break-word;
+            overflow-wrap: anywhere;
         }
 
         .post-meta {
             font-size: 0.85rem;
-            color: #64748B;
+            color: var(--text-muted, #64748B);
             margin-bottom: 20px;
             display: flex;
             gap: 16px;
-            border-bottom: 1px solid #F1F5F9;
+            border-bottom: 1px solid var(--border-subtle, #F1F5F9);
             padding-bottom: 16px;
             font-weight: 600;
             flex-wrap: wrap;
         }
 
         .post-text {
-            color: #334155;
+            color: var(--text-body, #334155);
             margin-bottom: 24px;
             font-size: 0.95rem;
             line-height: 1.7;
             word-break: break-word;
         }
 
+        /* Table Responsive Wrapper */
         .table-responsive {
             width: 100% !important;
-            overflow-x: auto;
+            overflow-x: auto !important;
             -webkit-overflow-scrolling: touch;
             border-radius: 12px;
-            border: 1px solid #E2E8F0;
+            border: 1px solid var(--border, #E2E8F0);
             margin-bottom: 28px;
+            display: block;
         }
 
         .info-table {
@@ -113,7 +118,7 @@
 
         .info-table th, .info-table td {
             padding: 12px 16px;
-            border-bottom: 1px solid #F1F5F9;
+            border-bottom: 1px solid var(--border-subtle, #F1F5F9);
             text-align: left;
             font-size: 0.88rem;
         }
@@ -124,14 +129,16 @@
 
         .info-table th {
             background: #F8FAFC;
-            color: #0F172A;
+            color: var(--text-dark, #0F172A);
             width: 38%;
             font-weight: 700;
+            white-space: nowrap;
         }
 
         .info-table td {
-            color: #334155;
+            color: var(--text-body, #334155);
             font-weight: 600;
+            word-break: break-word;
         }
 
         /* PREMIUM SQUIRCLE DOWNLOAD LINKS */
@@ -158,7 +165,7 @@
         }
 
         .important-links h3 {
-            color: #0F172A;
+            color: var(--text-dark, #0F172A);
             margin-bottom: 18px;
             font-size: 1.2rem;
             font-weight: 800;
@@ -179,7 +186,7 @@
             gap: 14px;
             padding: 14px 16px;
             border-radius: 14px;
-            border: 1px solid #E2E8F0;
+            border: 1px solid var(--border, #E2E8F0);
             box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
             transition: var(--transition);
             text-decoration: none;
@@ -217,7 +224,7 @@
         .sq-text h4 {
             font-size: 0.92rem;
             font-weight: 800;
-            color: #0F172A;
+            color: var(--text-dark, #0F172A);
             margin-bottom: 2px;
             white-space: nowrap;
             overflow: hidden;
@@ -226,7 +233,7 @@
 
         .sq-text p {
             font-size: 0.78rem;
-            color: #64748B;
+            color: var(--text-muted, #64748B);
             font-weight: 600;
             margin: 0;
         }
@@ -250,6 +257,7 @@
         .promo-telegram { background: linear-gradient(135deg, #0088cc 0%, #005580 100%); border: 1px solid #005580; }
 
         .promo-text { position: relative; z-index: 2; flex: 1; min-width: 0; }
+        
         .promo-badge {
             display: inline-block;
             background: rgba(255, 255, 255, 0.12);
@@ -286,10 +294,10 @@
         .promo-sq-btn:hover { transform: translateY(-2px); }
         .promo-sq-icon { width: 38px; height: 38px; min-width: 38px; border-radius: 10px; display: flex; justify-content: center; align-items: center; font-size: 1.1rem; }
 
-        /* STRICT 1-LINE FOOTER */
+        /* STRICT 1-LINE CLEAN FOOTER */
         footer {
-            background: #FFFFFF;
-            border-top: 1px solid #E2E8F0;
+            background: var(--surface, #FFFFFF);
+            border-top: 1px solid var(--border, #E2E8F0);
             padding: 24px 12px 18px;
             text-align: center;
             width: 100% !important;
@@ -309,14 +317,16 @@
         .footer-links a {
             font-size: 0.85rem;
             font-weight: 600;
-            color: #334155;
+            color: var(--text-body, #334155);
             white-space: nowrap !important;
             text-decoration: none;
+            transition: var(--transition);
         }
 
-        .footer-links a:hover { color: #4F46E5; }
-        .copyright { color: #64748B; font-size: 0.78rem; }
+        .footer-links a:hover { color: var(--primary, #4F46E5); }
+        .copyright { color: var(--text-muted, #64748B); font-size: 0.78rem; }
 
+        /* RESPONSIVE BREAKPOINTS */
         @media (max-width: 768px) {
             .post-container { padding: 12px 10px 30px; }
             .post-box { padding: 22px 16px; border-radius: 16px; }
@@ -409,7 +419,7 @@
 
             <!-- SQUIRCLE DOWNLOAD LINKS -->
             <div class="important-links">
-                <h3><i class="fas fa-link" style="color: #4F46E5;"></i> Important Direct Links</h3>
+                <h3><i class="fas fa-link" style="color: var(--primary, #4F46E5);"></i> Important Direct Links</h3>
                 
                 <div class="squircle-btn-grid">
                     <a href="#" id="downloadBtn1" target="_blank" class="squircle-btn">
@@ -484,7 +494,7 @@
         </div>
     </footer>
 
-    <!-- REALTIME FIREBASE DYNAMIC FETCH SCRIPT -->
+    <!-- REALTIME FIREBASE DYNAMIC SCRIPT -->
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
       import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
