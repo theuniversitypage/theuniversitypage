@@ -539,7 +539,9 @@
             }
         } catch(e) {}
 
-        const local = JSON.parse(localStorage.getItem("learnify_admin_admits")) || [];
+        const localAdmits = JSON.parse(localStorage.getItem("learnify_admin_admits")) || [];
+        const localUpdates = JSON.parse(localStorage.getItem("learnify_admin_updates")) || [];
+        const local = [...localAdmits, ...localUpdates];
         const match = local.find(i => i.id == postId) || local[0];
         updateUI(match);
       }
