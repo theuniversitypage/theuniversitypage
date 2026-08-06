@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Latest Admit Cards 2026 - The University Page</title>
+    
+    <!-- Google Fonts & Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box !important;
+            max-width: 100%;
+        }
+
+        html, body {
+            width: 100% !important;
+            max-width: 100% !important;
+            overflow-x: hidden !important;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-main, #FDFBF7);
+            color: var(--text-dark, #0F172A);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .admit-main-container {
+            flex: 1;
+            width: 100% !important;
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 20px 16px 40px;
+            box-sizing: border-box;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #059669, #10B981);
+            color: white;
+            border-radius: var(--radius-lg, 20px);
+            padding: 28px 20px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 20px;
+            text-align: center;
+            width: 100% !important;
+        }
+
+        .page-header h1 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+            word-break: break-word;
+        }
+
+        .page-header p {
+            font-size: 0.9rem;
+            opacity: 0.92;
+            font-weight: 500;
+        }
+
+        .filter-bar {
+            background: var(--surface, #FFFFFF);
+            padding: 14px 16px;
+            border-radius: var(--radius-md, 14px);
+            border: 1px solid var(--border, #E2E8F0);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 20px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            justify-content: space-between;
+            width: 100% !important;
+        }
+
+        .search-box-filter {
+            display: flex;
+            align-items: center;
+            background: #F8FAFC;
+            border: 1px solid var(--border, #E2E8F0);
+            padding: 10px 16px;
+            border-radius: 30px;
+            flex: 1;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .search-box-filter:focus-within {
+            background: #FFFFFF;
+            border-color: #059669;
+            box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.15);
+        }
+
+        .search-box-filter input {
+            border: none;
+            background: transparent;
+            outline: none;
+            padding-left: 10px;
+            width: 100%;
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--text-dark, #0F172A);
+        }
+
+        .search-box-filter i {
+            color: #059669;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 18px;
+            width: 100% !important;
+        }
+        
+        .card {
+            background: var(--surface, #FFFFFF);
+            border-radius: var(--radius-lg, 20px);
+            border: 1px solid var(--border, #E2E8F0);
+            padding: 22px 18px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 100% !important;
+            min-width: 0;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(5, 150, 105, 0.3);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .status-badge {
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            background: #ECFDF5;
+            color: #059669;
+        }
+
+        .card-date {
+            font-size: 0.8rem;
+            color: var(--text-muted, #64748B);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+        }
+
+        .card-title {
+            font-size: 1.08rem;
+            font-weight: 800;
+            color: var(--text-dark, #0F172A);
+            margin-bottom: 8px;
+            line-height: 1.4;
+            letter-spacing: -0.3px;
+            word-break: break-word;
+        }
+
+        .card-org {
+            font-size: 0.85rem;
+            color: var(--text-muted, #64748B);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+        }
+
+        .card-meta {
+            border-top: 1px dashed var(--border, #E2E8F0);
+            padding-top: 12px;
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.82rem;
+            color: var(--text-body, #334155);
+            font-weight: 600;
+        }
+
+        .btn-check {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: #059669;
+            color: white;
+            padding: 11px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.88rem;
+            transition: var(--transition);
+            text-align: center;
+            width: 100%;
+            box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25);
+            text-decoration: none;
+        }
+
+        .btn-check:hover {
+            background: #047857;
+            transform: translateY(-1px);
+        }
+
+        /* STRICT 1-LINE FOOTER */
+        footer {
+            background: var(--surface, #FFFFFF);
+            border-top: 1px solid var(--border, #E2E8F0);
+            padding: 24px 12px 18px;
+            text-align: center;
+            width: 100% !important;
+            margin-top: auto;
+        }
+
+        .footer-links {
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            gap: 20px !important;
+            flex-wrap: nowrap !important;
+            margin-bottom: 10px !important;
+            width: 100% !important;
+        }
+
+        .footer-links a {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-body, #334155);
+            white-space: nowrap !important;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover { color: #059669; }
+        .copyright { color: var(--text-muted, #64748B); font-size: 0.78rem; }
+
+        @media (max-width: 768px) {
+            .admit-main-container { padding: 12px 10px 30px; }
+            .page-header { padding: 20px 16px; border-radius: 14px; }
+            .page-header h1 { font-size: 1.35rem; }
+            .grid-container { grid-template-columns: 1fr !important; }
+            
+            footer { padding: 18px 8px 14px; }
+            .footer-links { gap: 10px !important; }
+            .footer-links a { font-size: 0.76rem !important; }
+            .copyright { font-size: 0.72rem; }
+        }
+
+        @media (max-width: 400px) {
+            .footer-links { gap: 8px !important; }
+            .footer-links a { font-size: 0.72rem !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- === HEADER === -->
+    <header class="header-wrapper">
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <div class="logo-badge"><i class="fas fa-graduation-cap"></i></div>
+                <span>The University Page</span>
+            </a>
+            
+            <div class="header-right">
+                <button class="menu-toggle-btn" id="sidebarToggle">
+                    <i class="fa-solid fa-bars-staggered"></i>
+                </button>
+            </div>
+        </nav>
+
+        <div class="nav-drawer" id="navDrawer">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="latest-jobs.html">Latest Job</a></li>
+                <li><a href="admitcard.html" class="active">Admit Card</a></li>
+                <li><a href="result.html">Result</a></li>
+                <li><a href="cutoff.html">Cutoff</a></li>
+                <li><a href="admission.html">Admission</a></li>
+                <li><a href="syllabus.html">Syllabus</a></li>
+                <li><a href="answer-key.html">Answer Key</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- === MAIN CONTAINER === -->
+    <main class="admit-main-container">
+        <div class="page-header">
+            <h1><i class="fas fa-id-card"></i> Latest Admit Cards 2026</h1>
+            <p>Download Hall Tickets, Exam City Intimation Slips & Exam Schedules</p>
+        </div>
+
+        <div class="filter-bar">
+            <div class="search-box-filter">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search Admit Card (e.g. SSC, Railway, UP Police)...">
+            </div>
+        </div>
+
+        <div class="grid-container" id="cardsGrid"></div>
+    </main>
+
+    <!-- === FOOTER === -->
+    <footer>
+        <div class="footer-links">
+            <a href="contact-us.html">Contact Us</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="disclaimer.html">Disclaimer</a>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 The University Page. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- REALTIME FIREBASE SCRIPT WITH UNIVERSAL FALLBACK -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+      import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyD837pmW5N21lMgeVlpgWPx0FaMisSnxwU",
+        authDomain: "theuniversitypage-cc4a7.firebaseapp.com",
+        projectId: "theuniversitypage-cc4a7",
+        storageBucket: "theuniversitypage-cc4a7.firebasestorage.app",
+        messagingSenderId: "31910615607",
+        appId: "1:31910615607:web:bee5bd81c8118a16d1bdb2",
+        measurementId: "G-6E55FCSXDP"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      document.getElementById("sidebarToggle")?.addEventListener("click", () => {
+          document.getElementById("navDrawer")?.classList.toggle("active");
+      });
+
+      const cardsGrid = document.getElementById("cardsGrid");
+      const searchInput = document.getElementById("searchInput");
+      let allPosts = [];
+
+      function render(items) {
+        if(!cardsGrid) return;
+        if(items.length === 0) {
+            cardsGrid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--text-muted); font-weight: 600;">Koi Admit Card Post Uplabdh Nahi Hai.</div>`;
+            return;
+        }
+        cardsGrid.innerHTML = items.map(item => {
+            const cardTitle = item.admitTitle || item.examTitle || item.title || "Admit Card Released";
+            return `
+                <div class="card">
+                    <div>
+                        <div class="card-header">
+                            <span class="status-badge">Released</span>
+                            <span class="card-date"><i class="far fa-calendar-alt"></i> ${item.releaseDate || '2026'}</span>
+                        </div>
+                        <h2 class="card-title">${cardTitle}</h2>
+                        <p class="card-org"><i class="fas fa-building" style="color: #059669;"></i> Official Authority</p>
+                        <div class="card-meta">
+                            <span><i class="fas fa-clock" style="color: #10B981;"></i> Status: Live</span>
+                            <span><i class="fas fa-globe" style="color: #059669;"></i> All India</span>
+                        </div>
+                    </div>
+                    <a href="admitcard-details.html?id=${item.id}" class="btn-check">
+                        <i class="fas fa-download"></i> Download Admit Card
+                    </a>
+                </div>
+            `;
+        }).join('');
+      }
+
+      function loadData() {
+        const localAdmits = JSON.parse(localStorage.getItem("learnify_admin_admits")) || [];
+        const localUpdates = JSON.parse(localStorage.getItem("learnify_admin_updates")) || [];
+        const local = [...localAdmits, ...localUpdates];
+
+        const q = query(collection(db, "updates"), orderBy("createdAt", "desc"));
+
+        onSnapshot(q, (snapshot) => {
+            let fbData = [];
+            snapshot.forEach(doc => {
+                const data = doc.data();
+                const cat = (data.category || "").toLowerCase();
+                
+                // Matches all variations from Admin Panel
+                if (
+                    cat === "admitcard" || 
+                    cat === "admit" || 
+                    cat.includes("admit") || 
+                    cat.includes("card") || 
+                    cat.includes("hall")
+                ) {
+                    fbData.push({ id: doc.id, ...data });
+                }
+            });
+
+            // If Firebase filter has data use it, else fallback to all updates that contain admit/card info
+            if (fbData.length > 0) {
+                allPosts = fbData;
+            } else {
+                allPosts = local.length > 0 ? local : [];
+            }
+            
+            render(allPosts);
+        }, err => {
+            allPosts = local;
+            render(allPosts);
+        });
+      }
+
+      if(searchInput) {
+        searchInput.addEventListener("input", (e) => {
+            const val = e.target.value.toLowerCase();
+            const filtered = allPosts.filter(i => (i.admitTitle || i.examTitle || i.title || "").toLowerCase().includes(val));
+            render(filtered);
+        });
+      }
+
+      loadData();
+    </script>
+</body>
+</html>
