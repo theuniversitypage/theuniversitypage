@@ -2,43 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The University Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>The University Page - Premier Educational Updates</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 
     <style>
-        /* 1-Line Clean Footer for All Screen Sizes */
         footer {
-            padding: 40px 16px 24px;
+            padding: 24px 12px 18px;
             text-align: center;
+            background: var(--surface, #FFFFFF);
+            border-top: 1px solid var(--border, #E2E8F0);
         }
 
         .footer-links {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 20px;
-            flex-wrap: nowrap; /* Single line me lock karne ke liye */
-            margin-bottom: 20px;
+            gap: 16px;
+            flex-wrap: nowrap;
+            margin-bottom: 12px;
         }
 
         .footer-links a {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 600;
-            white-space: nowrap; /* Text line-break nahi hoga */
-            transition: var(--transition);
+            color: var(--text-body, #334155);
+            white-space: nowrap;
+            text-decoration: none;
         }
 
+        .copyright { color: var(--text-muted, #64748B); font-size: 0.78rem; }
+
         @media (max-width: 480px) {
-            .footer-links {
-                gap: 12px;
-            }
-            .footer-links a {
-                font-size: 0.78rem; /* Mobile me fit rehne ke liye scaling */
-            }
+            .footer-links { gap: 10px; }
+            .footer-links a { font-size: 0.75rem; }
         }
     </style>
 </head>
@@ -49,7 +49,7 @@
         <nav class="navbar">
             <a href="index.html" class="logo">
                 <div class="logo-badge"><i class="fas fa-graduation-cap"></i></div>
-                <span>University Page</span>
+                <span>The University Page</span>
             </a>
             
             <div class="header-right">
@@ -84,7 +84,7 @@
         <!-- TOOLS CARDS -->
         <section class="tools-section">
             <div class="tools-grid">
-                <a href="https://learnifyclasses.akamai.net.in/new-courses" class="tool-card">
+                <a href="https://learnifyclasses.akamai.net.in/new-courses" target="_blank" class="tool-card">
                     <div class="tool-icon"><i class="fas fa-robot"></i></div>
                     <div class="tool-info">
                         <h3>AI Master Class</h3>
@@ -92,7 +92,7 @@
                     </div>
                 </a>
 
-                <a href="https://learnifyclasses.akamai.net.in/test-series" class="tool-card">
+                <a href="https://learnifyclasses.akamai.net.in/test-series" target="_blank" class="tool-card">
                     <div class="tool-icon"><i class="fas fa-laptop-code"></i></div>
                     <div class="tool-info">
                         <h3>Mock Tests</h3>
@@ -100,7 +100,7 @@
                     </div>
                 </a>
 
-                <a href="https://learnifyclasses.akamai.net.in/ebooks" class="tool-card">
+                <a href="https://learnifyclasses.akamai.net.in/ebooks" target="_blank" class="tool-card">
                     <div class="tool-icon"><i class="fas fa-file-pdf"></i></div>
                     <div class="tool-info">
                         <h3>Notes & PDFs</h3>
@@ -108,7 +108,7 @@
                     </div>
                 </a>
 
-                <a href="https://learnifyclasses.akamai.net.in/ebooks" class="tool-card">
+                <a href="https://learnifyclasses.akamai.net.in/ebooks" target="_blank" class="tool-card">
                     <div class="tool-icon"><i class="fas fa-book-open"></i></div>
                     <div class="tool-info">
                         <h3>Free Booklet</h3>
@@ -221,11 +221,11 @@
             <a href="disclaimer.html">Disclaimer</a>
         </div>
         <div class="copyright">
-            <p>&copy; The University Page. All rights reserved.</p>
+            <p>&copy; 2026 The University Page. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- REALTIME SCRIPT -->
+    <!-- REALTIME FIREBASE SCRIPT -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
@@ -269,12 +269,12 @@
                     const docId = docSnap.id;
                     const cat = (item.category || "").toLowerCase();
 
-                    if (cat.includes("admit") && admitBox) {
+                    if ((cat.includes("admit")) && admitBox) {
                         const newLi = createListItemHTML(`admitcard-details.html?id=${docId}`, item.examTitle || item.title);
                         admitBox.insertBefore(newLi, admitBox.firstChild);
                     }
 
-                    if (cat.includes("cutoff") && cutoffBox) {
+                    if ((cat.includes("cutoff")) && cutoffBox) {
                         const newLi = createListItemHTML(`cutoff-details.html?id=${docId}`, item.cutoffTitle || item.title);
                         cutoffBox.insertBefore(newLi, cutoffBox.firstChild);
                     }
