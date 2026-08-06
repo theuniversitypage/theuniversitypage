@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Document Format & Guidelines 2026 - The University Page</title>
+    
+    <!-- Google Fonts & Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box !important;
+            max-width: 100%;
+        }
+
+        html, body {
+            width: 100% !important;
+            max-width: 100% !important;
+            overflow-x: hidden !important;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-main, #FDFBF7);
+            color: var(--text-dark, #0F172A);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        .doc-container { 
+            width: 100% !important;
+            max-width: 1200px; 
+            margin: 16px auto 40px; 
+            padding: 0 12px; 
+            box-sizing: border-box;
+            flex: 1;
+        }
+
+        .doc-header-card {
+            background: linear-gradient(135deg, #0D9488, #115E59);
+            color: #FFFFFF; 
+            border-radius: 16px; 
+            padding: 20px 16px;
+            box-shadow: 0 10px 25px -5px rgba(13, 148, 136, 0.25); 
+            margin-bottom: 16px; 
+            width: 100% !important;
+        }
+
+        .doc-header-card h1 { 
+            font-size: 1.35rem; 
+            font-weight: 800; 
+            margin-bottom: 10px; 
+            line-height: 1.35; 
+            letter-spacing: -0.3px;
+            word-break: break-word;
+            overflow-wrap: anywhere;
+        }
+
+        .doc-header-meta { 
+            display: flex; 
+            gap: 10px; 
+            font-size: 0.82rem; 
+            opacity: 0.95; 
+            flex-wrap: wrap; 
+        }
+
+        .doc-header-meta span { 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 6px; 
+        }
+
+        .status-pill {
+            display: inline-flex; 
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.22); 
+            color: #FFFFFF;
+            padding: 4px 10px; 
+            border-radius: 20px; 
+            font-weight: 700; 
+            font-size: 0.75rem; 
+            margin-bottom: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .stats-grid { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 10px; 
+            margin-bottom: 16px; 
+            width: 100% !important;
+        }
+
+        .stat-card {
+            background: #FFFFFF; 
+            padding: 12px; 
+            border-radius: 12px;
+            border: 1px solid #E2E8F0; 
+            box-shadow: 0 2px 4px rgba(15, 23, 42, 0.03); 
+            display: flex; 
+            align-items: center; 
+            gap: 10px;
+            width: 100% !important;
+            min-width: 0;
+        }
+
+        .stat-icon {
+            width: 36px; 
+            height: 36px; 
+            background: #CCFBF1; 
+            color: #0D9488;
+            border-radius: 8px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .stat-info {
+            min-width: 0;
+            flex: 1;
+        }
+
+        .stat-info h4 { 
+            font-size: 0.65rem; 
+            color: #64748B; 
+            text-transform: uppercase; 
+            font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .stat-info p { 
+            font-size: 0.85rem; 
+            font-weight: 800; 
+            color: #0F172A; 
+            margin-top: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .details-grid { 
+            display: grid; 
+            grid-template-columns: 2fr 1fr; 
+            gap: 16px; 
+            align-items: start;
+            width: 100% !important;
+        }
+
+        .left-column, .right-column {
+            width: 100% !important;
+            min-width: 0;
+        }
+
+        .main-card {
+            background: #FFFFFF; 
+            border-radius: 16px; 
+            padding: 18px 14px;
+            border: 1px solid #E2E8F0; 
+            box-shadow: 0 2px 4px rgba(15, 23, 42, 0.03); 
+            margin-bottom: 16px;
+            width: 100% !important;
+            min-width: 0;
+        }
+
+        .section-heading {
+            font-size: 1rem; 
+            font-weight: 800; 
+            color: #0F172A; 
+            margin-bottom: 12px;
+            padding-bottom: 8px; 
+            border-bottom: 1px solid #F1F5F9; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px;
+            word-break: break-word;
+        }
+
+        .section-heading i { 
+            color: #0D9488; 
+            background: #CCFBF1;
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+
+        .checklist { list-style: none; padding-left: 0; }
+        .checklist-item {
+            display: flex; 
+            align-items: flex-start; 
+            gap: 8px; 
+            padding: 8px 10px;
+            border-radius: 8px; 
+            background: #F8FAFC; 
+            margin-bottom: 6px; 
+            border: 1px solid #E2E8F0;
+        }
+
+        .checklist-item i { color: #0D9488; margin-top: 2px; font-size: 0.85rem; }
+        .checklist-text { font-size: 0.78rem; font-weight: 600; color: #0F172A; }
+
+        .step-list { list-style: none; padding-left: 0; }
+        .step-item { position: relative; padding-left: 22px; margin-bottom: 14px; }
+
+        .step-item::before {
+            content: ''; 
+            position: absolute; 
+            left: 0; 
+            top: 4px; 
+            width: 10px; 
+            height: 10px;
+            border-radius: 50%; 
+            background: #0D9488; 
+            border: 2px solid #CCFBF1;
+        }
+
+        .step-item::after {
+            content: ''; 
+            position: absolute; 
+            left: 4px; 
+            top: 14px; 
+            width: 2px; 
+            height: calc(100% - 2px); 
+            background: #E2E8F0;
+        }
+
+        .step-item:last-child::after { display: none; }
+
+        .step-title { font-weight: 700; color: #0F172A; font-size: 0.85rem; }
+        .step-desc { font-size: 0.78rem; color: #64748B; margin-top: 2px; }
+
+        .action-card {
+            background: #FFFFFF; 
+            border-radius: 16px; 
+            padding: 16px 12px;
+            border: 1px solid #E2E8F0; 
+            box-shadow: 0 2px 4px rgba(15, 23, 42, 0.03); 
+            width: 100% !important;
+            min-width: 0;
+        }
+
+        .action-btn {
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 6px;
+            width: 100% !important; 
+            padding: 10px 8px; 
+            margin-bottom: 8px; 
+            border-radius: 25px;
+            font-weight: 700; 
+            font-size: 0.8rem; 
+            text-align: center;
+            text-decoration: none;
+            word-break: break-word;
+        }
+
+        .btn-download { background: #0D9488; color: #FFFFFF; }
+        .btn-secondary { background: #0F172A; color: #FFFFFF; }
+
+        .alert-box {
+            background: #CCFBF1; 
+            border-left: 4px solid #0D9488; 
+            padding: 10px 12px;
+            border-radius: 0 8px 8px 0; 
+            margin-bottom: 14px; 
+            font-size: 0.8rem; 
+            color: #0F766E;
+            font-weight: 500;
+            line-height: 1.4;
+            width: 100% !important;
+        }
+
+        footer { 
+            background: #FFFFFF; 
+            border-top: 1px solid #E2E8F0; 
+            padding: 20px 10px 14px; 
+            text-align: center; 
+            width: 100% !important;
+            margin-top: auto;
+        }
+
+        .footer-links { 
+            display: flex !important; 
+            justify-content: center !important; 
+            align-items: center !important;
+            gap: 12px !important; 
+            flex-wrap: nowrap !important;
+            margin-bottom: 10px !important; 
+            width: 100% !important;
+        }
+
+        .footer-links a { 
+            font-size: 0.75rem; 
+            font-weight: 600; 
+            color: #334155;
+            white-space: nowrap !important;
+            text-decoration: none;
+        }
+
+        .copyright { color: #64748B; font-size: 0.72rem; }
+
+        @media (max-width: 850px) {
+            .details-grid { grid-template-columns: 1fr !important; gap: 14px; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 8px; }
+        }
+
+        @media (max-width: 480px) {
+            .doc-container { padding: 0 8px !important; }
+            .doc-header-card h1 { font-size: 1.1rem; }
+            .doc-header-meta { font-size: 0.75rem; flex-direction: column; gap: 4px; }
+            .action-btn { font-size: 0.76rem; padding: 9px 6px; }
+            .footer-links { gap: 8px !important; }
+            .footer-links a { font-size: 0.72rem !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- === HEADER === -->
+    <header class="header-wrapper">
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <div class="logo-badge"><i class="fas fa-graduation-cap"></i></div>
+                <span>The University Page</span>
+            </a>
+            
+            <div class="header-right">
+                <button class="menu-toggle-btn" id="sidebarToggle">
+                    <i class="fa-solid fa-bars-staggered"></i>
+                </button>
+            </div>
+        </nav>
+
+        <div class="nav-drawer" id="navDrawer">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="latest-jobs.html">Latest Job</a></li>
+                <li><a href="admitcard.html">Admit Card</a></li>
+                <li><a href="result.html">Result</a></li>
+                <li><a href="cutoff.html">Cutoff</a></li>
+                <li><a href="admission.html">Admission</a></li>
+                <li><a href="syllabus.html">Syllabus</a></li>
+                <li><a href="answer-key.html">Answer Key</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- === MAIN CONTAINER === -->
+    <main class="doc-container">
+
+        <div class="doc-header-card">
+            <span class="status-pill"><i class="fas fa-file-pdf"></i> Official Format 2026-27</span>
+            <h1 id="detailTitle">Loading Document Format Details...</h1>
+            <div class="doc-header-meta">
+                <span><i class="fas fa-building"></i> <strong id="authorityName">DoPT / Ministry of Social Justice</strong></span>
+                <span><i class="fas fa-check-circle"></i> Central & State Admissions / Jobs</span>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-hourglass-half"></i></div>
+                <div class="stat-info">
+                    <h4>Validity</h4>
+                    <p>1 Financial Year</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-user-shield"></i></div>
+                <div class="stat-info">
+                    <h4>Issuing Level</h4>
+                    <p>Tehsildar / SDM</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-rupee-sign"></i></div>
+                <div class="stat-info">
+                    <h4>Income Limit</h4>
+                    <p>Below ₹ 8 Lakh/Yr</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-file-invoice"></i></div>
+                <div class="stat-info">
+                    <h4>Annexure</h4>
+                    <p>Standard Sample</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="details-grid">
+            <div class="left-column">
+
+                <div class="alert-box">
+                    <i class="fas fa-info-circle"></i> <b>Important Note:</b> For Central Govt Services (SSC, UPSC, Banking, CUET, Admission in IITs/NITs), the certificate must be issued on or after <b>April 1, 2026</b> for Financial Year 2026-27.
+                </div>
+
+                <div class="main-card">
+                    <h2 class="section-heading"><i class="fas fa-list-check"></i> Required Documents Checklist</h2>
+                    <ul class="checklist">
+                        <li class="checklist-item">
+                            <i class="fas fa-check-square"></i>
+                            <span class="checklist-text">Identity Proof (Govt Photo ID Card)</span>
+                        </li>
+                        <li class="checklist-item">
+                            <i class="fas fa-check-square"></i>
+                            <span class="checklist-text">Address Proof (Ration Card, Electricity Bill, or Domicile)</span>
+                        </li>
+                        <li class="checklist-item">
+                            <i class="fas fa-check-square"></i>
+                            <span class="checklist-text">Income Proof / Income Certificate of Parents</span>
+                        </li>
+                        <li class="checklist-item">
+                            <i class="fas fa-check-square"></i>
+                            <span class="checklist-text">Property / Land Records Copy (If applicable)</span>
+                        </li>
+                        <li class="checklist-item">
+                            <i class="fas fa-check-square"></i>
+                            <span class="checklist-text">Self-Declaration Affidavit on Stamp Paper</span>
+                        </li>
+                        <li class="checklist-item">
+                            <i class="fas fa-check-square"></i>
+                            <span class="checklist-text">Two Recent Passport Size Photographs</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="main-card">
+                    <h2 class="section-heading"><i class="fas fa-route"></i> Step-by-Step Issuance Process</h2>
+                    <ul class="step-list">
+                        <li class="step-item">
+                            <div class="step-title">Step 1: Download Standard Format</div>
+                            <div class="step-desc">Download official Annexure PDF using the sidebar link.</div>
+                        </li>
+                        <li class="step-item">
+                            <div class="step-title">Step 2: Fill Application Details</div>
+                            <div class="step-desc">Fill in candidate name, parent details, and gross annual family income accurately.</div>
+                        </li>
+                        <li class="step-item">
+                            <div class="step-title">Step 3: Revenue Verification</div>
+                            <div class="step-desc">Submit documents to local Revenue Officer / Lekhpal for income verification.</div>
+                        </li>
+                        <li class="step-item">
+                            <div class="step-title">Step 4: Final Tehsil Signature</div>
+                            <div class="step-desc">Get official stamp & seal from Tehsildar / SDM office or download via e-District portal.</div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="right-column">
+                <div class="action-card">
+                    <h3 style="font-size: 0.95rem; font-weight: 800; margin-bottom: 10px; text-align: center; color: #0F172A;">
+                        <i class="fas fa-download"></i> Download Center
+                    </h3>
+
+                    <a href="#" id="downloadPdfBtn" target="_blank" class="action-btn btn-download">
+                        <i class="fas fa-file-pdf"></i> Download PDF Format
+                    </a>
+
+                    <a href="#" id="sampleDocBtn" target="_blank" class="action-btn btn-secondary">
+                        <i class="fas fa-file-word"></i> Self-Declaration Sample
+                    </a>
+
+                    <hr style="border: none; border-top: 1px solid #E2E8F0; margin: 10px 0;">
+
+                    <div style="font-size: 0.75rem; color: #64748B; text-align: center; font-weight: 500;">
+                        <p><i class="fas fa-shield-alt" style="color: #0D9488;"></i> Verified Official Template</p>
+                        <p style="margin-top: 2px;" id="sidebarUpdateDate">Updated Date</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- === FOOTER === -->
+    <footer>
+        <div class="footer-links">
+            <a href="contact-us.html">Contact Us</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="disclaimer.html">Disclaimer</a>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 The University Page. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- REALTIME FIREBASE SCRIPT -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+      import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyD837pmW5N21lMgeVlpgWPx0FaMisSnxwU",
+        authDomain: "theuniversitypage-cc4a7.firebaseapp.com",
+        projectId: "theuniversitypage-cc4a7",
+        storageBucket: "theuniversitypage-cc4a7.firebasestorage.app",
+        messagingSenderId: "31910615607",
+        appId: "1:31910615607:web:bee5bd81c8118a16d1bdb2",
+        measurementId: "G-6E55FCSXDP"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      document.getElementById("sidebarToggle")?.addEventListener("click", () => {
+          document.getElementById("navDrawer")?.classList.toggle("active");
+      });
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const postId = urlParams.get("id");
+
+      function updateUI(data) {
+        if (!data) return;
+        const title = data.docTitle || data.title || "Document Certificate Format";
+        const date = data.releaseDate || "2026";
+        const url = data.pdfUrl || data.docUrl || data.link || "#";
+
+        document.getElementById("detailTitle").textContent = title;
+        document.getElementById("sidebarUpdateDate").textContent = "Updated: " + date;
+
+        const finalUrl = url.startsWith("http") ? url : "https://" + url;
+        document.getElementById("downloadPdfBtn").href = finalUrl;
+        document.getElementById("sampleDocBtn").href = finalUrl;
+      }
+
+      async function loadPost() {
+        if(!postId) return;
+
+        try {
+            const docRef = doc(db, "updates", postId);
+            const docSnap = await getDoc(docRef);
+            if (docSnap.exists()) {
+                updateUI(docSnap.data());
+                return;
+            }
+        } catch(e) {}
+
+        const localUpdates = JSON.parse(localStorage.getItem("learnify_admin_updates")) || [];
+        const match = localUpdates.find(i => i.id == postId) || localUpdates[0];
+        updateUI(match);
+      }
+
+      loadPost();
+    </script>
+</body>
+</html>
