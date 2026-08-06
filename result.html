@@ -2,82 +2,270 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>All Exam Results 2026 - The University Page</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Google Fonts & Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     
     <style>
-        :root {
-            --primary: #4F46E5;
-            --primary-dark: #4338CA;
-            --bg-body: #F4F6F9;
-            --surface: #FFFFFF;
-            --text-dark: #1E293B;
-            --text-muted: #64748B;
-            --border: #E2E8F0;
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
-            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
-            --radius-md: 8px;
-            --radius-lg: 12px;
-            --transition: all 0.3s ease;
-            --success: #10B981;
-            --warning: #F59E0B;
-            --danger: #EF4444;
+        /* Strict Anti-Overflow & Smooth Layout Rules */
+        *, *::before, *::after {
+            box-sizing: border-box !important;
+            max-width: 100%;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', 'Poppins', sans-serif; }
-        body { background-color: var(--bg-body); color: var(--text-dark); display: flex; flex-direction: column; min-height: 100vh; }
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
+        html, body {
+            width: 100% !important;
+            max-width: 100% !important;
+            overflow-x: hidden !important;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-main, #FDFBF7);
+            color: var(--text-dark, #0F172A);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            -webkit-text-size-adjust: 100%;
+        }
 
-        .page-header { max-width: 1100px; margin: 30px auto 20px; padding: 0 20px; }
-        .page-title { font-size: 2rem; font-weight: 800; color: var(--text-dark); margin-bottom: 8px; }
-        .page-desc { color: var(--text-muted); font-size: 0.95rem; }
+        .results-container {
+            flex: 1;
+            width: 100% !important;
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 20px 16px 40px;
+            box-sizing: border-box;
+        }
 
-        .results-container { max-width: 1100px; margin: 0 auto 60px; padding: 0 20px; flex: 1; }
-        .result-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+        .page-header {
+            background: linear-gradient(135deg, #4F46E5, #818CF8);
+            color: white;
+            border-radius: var(--radius-lg, 20px);
+            padding: 28px 20px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 20px;
+            text-align: center;
+            width: 100% !important;
+        }
+
+        .page-header h1 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+            word-break: break-word;
+        }
+
+        .page-header p {
+            font-size: 0.9rem;
+            opacity: 0.92;
+            font-weight: 500;
+        }
+
+        .filter-bar {
+            background: var(--surface, #FFFFFF);
+            padding: 14px 16px;
+            border-radius: var(--radius-md, 14px);
+            border: 1px solid var(--border, #E2E8F0);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 20px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            justify-content: space-between;
+            width: 100% !important;
+        }
+
+        .search-box-filter {
+            display: flex;
+            align-items: center;
+            background: #F8FAFC;
+            border: 1px solid var(--border, #E2E8F0);
+            padding: 10px 16px;
+            border-radius: 30px;
+            flex: 1;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .search-box-filter:focus-within {
+            background: #FFFFFF;
+            border-color: #4F46E5;
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.15);
+        }
+
+        .search-box-filter input {
+            border: none;
+            background: transparent;
+            outline: none;
+            padding-left: 10px;
+            width: 100%;
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--text-dark, #0F172A);
+        }
+
+        .search-box-filter i {
+            color: #4F46E5;
+        }
+
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 18px;
+            width: 100% !important;
+        }
 
         .result-card {
-            background: var(--surface); border-radius: var(--radius-lg); padding: 20px;
-            border: 1px solid var(--border); box-shadow: var(--shadow-sm); transition: var(--transition);
-            display: flex; flex-direction: column; justify-content: space-between;
+            background: var(--surface, #FFFFFF);
+            border-radius: var(--radius-lg, 20px);
+            border: 1px solid var(--border, #E2E8F0);
+            padding: 22px 18px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 100% !important;
+            min-width: 0;
         }
-        .result-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--primary); }
 
-        .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
-        
-        .status-badge { font-size: 0.75rem; font-weight: 600; padding: 4px 10px; border-radius: 12px; }
-        .status-new { background: #D1FAE5; color: var(--success); }
+        .result-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(79, 70, 229, 0.3);
+        }
 
-        .date { font-size: 0.82rem; color: var(--text-muted); display: flex; align-items: center; gap: 5px; }
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
 
-        .exam-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; line-height: 1.4; color: var(--text-dark); }
-        .exam-org { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 18px; }
+        .status-badge {
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        .status-new {
+            background: #ECFDF5;
+            color: #059669;
+        }
+
+        .date {
+            font-size: 0.8rem;
+            color: var(--text-muted, #64748B);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+        }
+
+        .exam-title {
+            font-size: 1.08rem;
+            font-weight: 800;
+            color: var(--text-dark, #0F172A);
+            margin-bottom: 8px;
+            line-height: 1.4;
+            letter-spacing: -0.3px;
+            word-break: break-word;
+        }
+
+        .exam-org {
+            font-size: 0.85rem;
+            color: var(--text-muted, #64748B);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+        }
 
         .btn-check {
-            display: block; text-align: center; background: var(--primary-dark); color: white;
-            padding: 10px; border-radius: var(--radius-md); font-weight: 600; transition: var(--transition);
-            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: #4F46E5;
+            color: white;
+            padding: 11px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.88rem;
+            transition: var(--transition);
+            text-align: center;
+            width: 100%;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+            text-decoration: none;
         }
-        .btn-check:hover { background: var(--primary); }
 
-        footer { background: var(--surface); border-top: 1px solid var(--border); padding: 24px 12px 18px; text-align: center; margin-top: auto; }
-        .footer-links { display: flex; justify-content: center; gap: 20px; margin-bottom: 10px; font-weight: 600; }
-        .footer-links a { font-size: 0.85rem; color: #334155; text-decoration: none; }
-        .copyright { color: var(--text-muted); font-size: 0.78rem; }
-        
+        .btn-check:hover {
+            background: #4338CA;
+            transform: translateY(-1px);
+        }
+
+        /* STRICT 1-LINE CLEAN FOOTER */
+        footer {
+            background: var(--surface, #FFFFFF);
+            border-top: 1px solid var(--border, #E2E8F0);
+            padding: 24px 12px 18px;
+            text-align: center;
+            width: 100% !important;
+            margin-top: auto;
+        }
+
+        .footer-links {
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            gap: 20px !important;
+            flex-wrap: nowrap !important;
+            margin-bottom: 10px !important;
+            width: 100% !important;
+        }
+
+        .footer-links a {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-body, #334155);
+            white-space: nowrap !important;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover { color: #4F46E5; }
+        .copyright { color: var(--text-muted, #64748B); font-size: 0.78rem; }
+
+        /* Mobile Adjustments */
         @media (max-width: 768px) {
-            .page-title { font-size: 1.5rem; }
-            .result-grid { grid-template-columns: 1fr; }
+            .results-container { padding: 12px 10px 30px; }
+            .page-header { padding: 20px 16px; border-radius: 14px; }
+            .page-header h1 { font-size: 1.35rem; }
+            .result-grid { grid-template-columns: 1fr !important; }
+
+            footer { padding: 18px 8px 14px; }
+            .footer-links { gap: 10px !important; }
+            .footer-links a { font-size: 0.76rem !important; }
+            .copyright { font-size: 0.72rem; }
+        }
+
+        @media (max-width: 400px) {
+            .footer-links { gap: 8px !important; }
+            .footer-links a { font-size: 0.72rem !important; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
+    <!-- === HEADER === -->
     <header class="header-wrapper">
         <nav class="navbar">
             <a href="index.html" class="logo">
@@ -106,17 +294,23 @@
         </div>
     </header>
 
-    <!-- Page Header -->
-    <section class="page-header">
-        <h1 class="page-title"><i class="fas fa-trophy"></i> Latest Exam Results 2026</h1>
-        <p class="page-desc">Check your exam scores, merit lists, and cut-offs for all major examinations.</p>
-    </section>
-
-    <!-- Results Grid -->
+    <!-- === MAIN CONTAINER === -->
     <main class="results-container">
+        <div class="page-header">
+            <h1><i class="fas fa-trophy"></i> Latest Exam Results 2026</h1>
+            <p>Check your exam scores, merit lists, and cut-offs for all major examinations.</p>
+        </div>
+
+        <div class="filter-bar">
+            <div class="search-box-filter">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search Result (e.g. CUET UG, UP Board, SSC)...">
+            </div>
+        </div>
+
         <div class="result-grid" id="resultsGrid">
             
-            <!-- Default Static Card 1 Connected to scor.html -->
+            <!-- Default Card 1 -->
             <div class="result-card">
                 <div>
                     <div class="card-header">
@@ -124,12 +318,12 @@
                         <span class="date"><i class="far fa-calendar-alt"></i> Aug 2026</span>
                     </div>
                     <h2 class="exam-title">CUET UG 2026 Final Scorecard & Rank List</h2>
-                    <p class="exam-org"><i class="fas fa-university"></i> National Testing Agency (NTA)</p>
+                    <p class="exam-org"><i class="fas fa-university" style="color: #4F46E5;"></i> National Testing Agency (NTA)</p>
                 </div>
                 <a href="scor.html" class="btn-check"><i class="fas fa-external-link-alt"></i> Check Result</a>
             </div>
 
-            <!-- Default Static Card 2 Connected to scor.html -->
+            <!-- Default Card 2 -->
             <div class="result-card">
                 <div>
                     <div class="card-header">
@@ -137,7 +331,7 @@
                         <span class="date"><i class="far fa-calendar-alt"></i> Aug 2026</span>
                     </div>
                     <h2 class="exam-title">Allahabad University Entrance PGAT Main Campus Cutoff</h2>
-                    <p class="exam-org"><i class="fas fa-university"></i> University of Allahabad</p>
+                    <p class="exam-org"><i class="fas fa-university" style="color: #4F46E5;"></i> University of Allahabad</p>
                 </div>
                 <a href="scor.html" class="btn-check"><i class="fas fa-external-link-alt"></i> Check Cutoff</a>
             </div>
@@ -145,7 +339,7 @@
         </div>
     </main>
 
-    <!-- Footer -->
+    <!-- === FOOTER === -->
     <footer>
         <div class="footer-links">
             <a href="contact-us.html">Contact Us</a>
@@ -157,7 +351,7 @@
         </div>
     </footer>
 
-    <!-- REALTIME SCRIPT FOR RESULT GRID -->
+    <!-- REALTIME FIREBASE SCRIPT FOR RESULT GRID -->
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
       import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
@@ -180,34 +374,72 @@
       });
 
       const resultsGrid = document.getElementById("resultsGrid");
+      const searchInput = document.getElementById("searchInput");
+      let allResultPosts = [];
 
-      try {
-        const q = query(collection(db, "updates"), orderBy("createdAt", "desc"));
-        onSnapshot(q, (snapshot) => {
-            snapshot.forEach(docSnap => {
-                const item = docSnap.data();
-                const docId = docSnap.id;
-                const cat = (item.category || "").toLowerCase();
+      function renderResults(items) {
+        if(!resultsGrid) return;
+        if(items.length === 0) {
+            resultsGrid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--text-muted); font-weight: 600;">Koi Result Post Uplabdh Nahi Hai.</div>`;
+            return;
+        }
 
-                if (cat.includes("result") || cat.includes("score")) {
-                    const cardDiv = document.createElement("div");
-                    cardDiv.className = "result-card";
-                    cardDiv.innerHTML = `
-                        <div>
-                            <div class="card-header">
-                                <span class="status-badge status-new">Live Now</span>
-                                <span class="date"><i class="far fa-calendar-alt"></i> ${item.releaseDate || '2026'}</span>
-                            </div>
-                            <h2 class="exam-title">${item.title || item.resultTitle}</h2>
-                            <p class="exam-org"><i class="fas fa-university"></i> Official Authority</p>
+        resultsGrid.innerHTML = items.map(item => {
+            const cardTitle = item.title || item.resultTitle || "Exam Result Released";
+            const targetId = item.id ? `scor.html?id=${item.id}` : "scor.html";
+            return `
+                <div class="result-card">
+                    <div>
+                        <div class="card-header">
+                            <span class="status-badge status-new">Live Now</span>
+                            <span class="date"><i class="far fa-calendar-alt"></i> ${item.releaseDate || '2026'}</span>
                         </div>
-                        <a href="scor.html?id=${docId}" class="btn-check"><i class="fas fa-external-link-alt"></i> Check Scorecard</a>
-                    `;
-                    resultsGrid.insertBefore(cardDiv, resultsGrid.firstChild);
+                        <h2 class="exam-title">${cardTitle}</h2>
+                        <p class="exam-org"><i class="fas fa-university" style="color: #4F46E5;"></i> Official Authority</p>
+                    </div>
+                    <a href="${targetId}" class="btn-check"><i class="fas fa-external-link-alt"></i> Check Scorecard</a>
+                </div>
+            `;
+        }).join('');
+      }
+
+      function loadData() {
+        const localUpdates = JSON.parse(localStorage.getItem("learnify_admin_updates")) || [];
+
+        try {
+            const q = query(collection(db, "updates"), orderBy("createdAt", "desc"));
+            onSnapshot(q, (snapshot) => {
+                let fbData = [];
+                snapshot.forEach(docSnap => {
+                    const item = docSnap.data();
+                    const cat = (item.category || "").toLowerCase();
+
+                    if (cat.includes("result") || cat.includes("score")) {
+                        fbData.push({ id: docSnap.id, ...item });
+                    }
+                });
+
+                allResultPosts = fbData.length > 0 ? fbData : localUpdates;
+                if(allResultPosts.length > 0) {
+                    renderResults(allResultPosts);
                 }
+            }, err => {
+                if(localUpdates.length > 0) renderResults(localUpdates);
             });
+        } catch(e) {
+            if(localUpdates.length > 0) renderResults(localUpdates);
+        }
+      }
+
+      if(searchInput) {
+        searchInput.addEventListener("input", (e) => {
+            const val = e.target.value.toLowerCase();
+            const filtered = allResultPosts.filter(i => (i.title || i.resultTitle || "").toLowerCase().includes(val));
+            renderResults(filtered);
         });
-      } catch(e) {}
+      }
+
+      loadData();
     </script>
 </body>
 </html>
