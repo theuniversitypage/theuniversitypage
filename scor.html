@@ -2,119 +2,344 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>CUET UG 2026 Final Scorecard Released - The University Page</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Google Fonts & Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     
     <style>
-        :root {
-            --primary: #4F46E5;
-            --primary-dark: #3730A3;
-            --bg-body: #F8FAFC;
-            --surface: #FFFFFF;
-            --text-dark: #0F172A;
-            --text-muted: #475569;
-            --border: #E2E8F0;
-            --radius-md: 12px;
-            --radius-lg: 20px;
-            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        /* Strict Anti-Overflow & Mobile Scale Lock */
+        *, *::before, *::after {
+            box-sizing: border-box !important;
+            max-width: 100%;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', 'Poppins', sans-serif; }
-        body { background-color: var(--bg-body); color: var(--text-dark); display: flex; flex-direction: column; min-height: 100vh; line-height: 1.6; }
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
+        html, body {
+            width: 100% !important;
+            max-width: 100% !important;
+            overflow-x: hidden !important;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-main, #FDFBF7);
+            color: var(--text-dark, #0F172A);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            -webkit-text-size-adjust: 100%;
+        }
 
-        .post-container { max-width: 900px; margin: 30px auto 60px; padding: 0 20px; flex: 1; }
-        
-        .breadcrumb { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 20px; font-weight: 500; }
-        .breadcrumb a { color: var(--primary); }
+        .post-container {
+            flex: 1;
+            width: 100% !important;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px 14px 40px;
+            box-sizing: border-box;
+        }
 
-        .post-box { background: var(--surface); border-radius: var(--radius-lg); padding: 40px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); border: 1px solid var(--border); }
-        .post-title { font-size: 2rem; font-weight: 800; color: var(--text-dark); margin-bottom: 15px; line-height: 1.3; }
-        .post-meta { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 25px; display: flex; gap: 20px; border-bottom: 1px solid var(--border); padding-bottom: 20px; font-weight: 500; }
-        
-        .post-text { color: var(--text-muted); margin-bottom: 25px; font-size: 1.05rem; }
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: #64748B;
+            margin-bottom: 16px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
 
-        .info-table { width: 100%; border-collapse: separate; border-spacing: 0; margin-bottom: 35px; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border); }
-        .info-table th, .info-table td { padding: 15px 20px; border-bottom: 1px solid var(--border); text-align: left; }
-        .info-table tr:last-child th, .info-table tr:last-child td { border-bottom: none; }
-        .info-table th { background: #F1F5F9; color: var(--text-dark); width: 40%; font-weight: 700; }
-        .info-table td { color: var(--text-muted); font-weight: 500; }
+        .breadcrumb a {
+            color: #4F46E5;
+            text-decoration: none;
+        }
 
+        .post-box {
+            background: #FFFFFF;
+            border-radius: var(--radius-lg, 20px);
+            padding: 32px 24px;
+            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+            border: 1px solid #E2E8F0;
+            width: 100% !important;
+        }
+
+        .post-title {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: #0F172A;
+            margin-bottom: 12px;
+            line-height: 1.35;
+            letter-spacing: -0.4px;
+            word-break: break-word;
+        }
+
+        .post-meta {
+            font-size: 0.85rem;
+            color: #64748B;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 16px;
+            border-bottom: 1px solid #F1F5F9;
+            padding-bottom: 16px;
+            font-weight: 600;
+            flex-wrap: wrap;
+        }
+
+        .post-text {
+            color: #334155;
+            margin-bottom: 24px;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            word-break: break-word;
+        }
+
+        .table-responsive {
+            width: 100% !important;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            border-radius: 12px;
+            border: 1px solid #E2E8F0;
+            margin-bottom: 28px;
+        }
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 320px;
+        }
+
+        .info-table th, .info-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #F1F5F9;
+            text-align: left;
+            font-size: 0.88rem;
+        }
+
+        .info-table tr:last-child th, .info-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .info-table th {
+            background: #F8FAFC;
+            color: #0F172A;
+            width: 38%;
+            font-weight: 700;
+        }
+
+        .info-table td {
+            color: #334155;
+            font-weight: 600;
+        }
+
+        /* PREMIUM SQUIRCLE DOWNLOAD LINKS */
         .important-links {
-            background: #FFFFFF; border-radius: var(--radius-lg); padding: 35px 25px; margin: 35px 0;
-            box-shadow: 0 20px 40px -10px rgba(79, 70, 229, 0.15); border: 2px solid #EEF2FF; position: relative; overflow: hidden;
+            background: #FFFFFF;
+            border-radius: 16px;
+            padding: 24px 18px;
+            margin: 28px 0;
+            box-shadow: 0 10px 30px -5px rgba(79, 70, 229, 0.12);
+            border: 2px solid #EEF2FF;
+            position: relative;
+            overflow: hidden;
+            width: 100% !important;
         }
-        
+
         .important-links::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px;
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
             background: linear-gradient(90deg, #4F46E5, #10B981, #F59E0B);
         }
 
-        .important-links h3 { color: var(--text-dark); margin-bottom: 25px; font-size: 1.4rem; font-weight: 800; text-align: center; }
-        
-        .squircle-btn-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+        .important-links h3 {
+            color: #0F172A;
+            margin-bottom: 18px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            text-align: center;
+        }
+
+        .squircle-btn-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 14px;
+            width: 100% !important;
+        }
 
         .squircle-btn {
-            background: #FFFFFF; display: flex; align-items: center; gap: 16px; padding: 16px 20px;
-            border-radius: 16px; border: 1px solid #E2E8F0; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            transition: var(--transition); text-decoration: none; cursor: pointer;
+            background: #FFFFFF;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 16px;
+            border-radius: 14px;
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+            transition: var(--transition);
+            text-decoration: none;
+            cursor: pointer;
+            width: 100% !important;
+            min-width: 0;
         }
 
-        .squircle-btn:hover { transform: translateY(-4px); box-shadow: 0 12px 20px -8px rgba(79, 70, 229, 0.3); border-color: #E0E7FF; }
+        .squircle-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px -5px rgba(79, 70, 229, 0.2);
+            border-color: #C7D2FE;
+        }
 
-        .sq-icon { width: 50px; height: 50px; min-width: 50px; border-radius: 14px; display: flex; justify-content: center; align-items: center; font-size: 1.3rem; }
+        .sq-icon {
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
 
-        .sq-text { display: flex; flex-direction: column; justify-content: center; text-align: left; }
-        .sq-text h4 { font-size: 1rem; font-weight: 700; color: var(--text-dark); margin-bottom: 2px; }
-        .sq-text p { font-size: 0.82rem; color: var(--text-muted); font-weight: 600; margin: 0; }
+        .sq-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: left;
+            min-width: 0;
+        }
 
+        .sq-text h4 {
+            font-size: 0.92rem;
+            font-weight: 800;
+            color: #0F172A;
+            margin-bottom: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .sq-text p {
+            font-size: 0.78rem;
+            color: #64748B;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        /* PROMO BANNERS */
         .promo-banner {
-            display: flex; align-items: center; justify-content: space-between; padding: 25px 30px;
-            border-radius: var(--radius-lg); margin-top: 20px; position: relative; overflow: hidden; box-shadow: 0 15px 35px -10px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 22px 20px;
+            border-radius: 16px;
+            margin-top: 18px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.12);
+            width: 100% !important;
+            gap: 16px;
         }
-        
+
         .promo-app { background: linear-gradient(135deg, #0F172A 0%, #1E1B4B 100%); border: 1px solid #312E81; }
         .promo-telegram { background: linear-gradient(135deg, #0088cc 0%, #005580 100%); border: 1px solid #005580; }
 
-        .promo-text { position: relative; z-index: 2; max-width: 65%; }
-        .promo-badge { display: inline-block; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; margin-bottom: 10px; }
+        .promo-text { position: relative; z-index: 2; flex: 1; min-width: 0; }
+        .promo-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
         .badge-yellow { color: #FBBF24; }
         .badge-white { color: #E0F2FE; }
 
-        .promo-text h4 { font-size: 1.4rem; margin-bottom: 6px; color: #FFFFFF; font-weight: 800; }
-        .promo-text p { font-size: 0.92rem; color: #94A3B8; margin: 0; }
+        .promo-text h4 { font-size: 1.2rem; margin-bottom: 4px; color: #FFFFFF; font-weight: 800; line-height: 1.25; }
+        .promo-text p { font-size: 0.85rem; color: #94A3B8; margin: 0; font-weight: 500; }
         .promo-telegram .promo-text p { color: #BAE6FD; }
 
         .promo-sq-btn {
-            background: #FFFFFF; display: inline-flex; align-items: center; gap: 10px; padding: 8px 20px 8px 10px;
-            border-radius: 16px; position: relative; z-index: 2; box-shadow: 0 8px 20px rgba(0,0,0,0.3); transition: var(--transition); text-decoration: none;
+            background: #FFFFFF;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 16px;
+            border-radius: 14px;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+            transition: var(--transition);
+            text-decoration: none;
+            flex-shrink: 0;
         }
-        
-        .promo-sq-btn:hover { transform: translateY(-3px); }
-        .promo-sq-icon { width: 42px; height: 42px; min-width: 42px; border-radius: 12px; display: flex; justify-content: center; align-items: center; font-size: 1.2rem; }
 
-        footer { background: var(--surface); border-top: 1px solid var(--border); padding: 25px 20px; text-align: center; margin-top: auto; }
-        .footer-links { display: flex; justify-content: center; gap: 20px; margin-bottom: 12px; font-weight: 600; }
-        .copyright { color: var(--text-muted); font-size: 0.85rem; }
+        .promo-sq-btn:hover { transform: translateY(-2px); }
+        .promo-sq-icon { width: 38px; height: 38px; min-width: 38px; border-radius: 10px; display: flex; justify-content: center; align-items: center; font-size: 1.1rem; }
+
+        /* STRICT 1-LINE FOOTER */
+        footer {
+            background: #FFFFFF;
+            border-top: 1px solid #E2E8F0;
+            padding: 24px 12px 18px;
+            text-align: center;
+            width: 100% !important;
+            margin-top: auto;
+        }
+
+        .footer-links {
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            gap: 20px !important;
+            flex-wrap: nowrap !important;
+            margin-bottom: 10px !important;
+            width: 100% !important;
+        }
+
+        .footer-links a {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #334155;
+            white-space: nowrap !important;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover { color: #4F46E5; }
+        .copyright { color: #64748B; font-size: 0.78rem; }
 
         @media (max-width: 768px) {
-            .post-box { padding: 22px 16px; }
-            .post-title { font-size: 1.4rem; }
-            .promo-banner { flex-direction: column; text-align: center; padding: 20px; gap: 16px; }
-            .promo-text { max-width: 100%; }
-            .squircle-btn-grid { grid-template-columns: 1fr; }
+            .post-container { padding: 12px 10px 30px; }
+            .post-box { padding: 22px 16px; border-radius: 16px; }
+            .post-title { font-size: 1.35rem; }
+            .promo-banner { flex-direction: column; text-align: center; padding: 20px 16px; gap: 14px; }
+            .promo-sq-btn { width: 100%; justify-content: center; }
+            .squircle-btn-grid { grid-template-columns: 1fr !important; }
+
+            footer { padding: 18px 8px 14px; }
+            .footer-links { gap: 10px !important; }
+            .footer-links a { font-size: 0.76rem !important; }
+            .copyright { font-size: 0.72rem; }
+        }
+
+        @media (max-width: 400px) {
+            .footer-links { gap: 8px !important; }
+            .footer-links a { font-size: 0.72rem !important; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
+    <!-- === HEADER === -->
     <header class="header-wrapper">
         <nav class="navbar">
             <a href="index.html" class="logo">
@@ -143,7 +368,7 @@
         </div>
     </header>
 
-    <!-- Main Content -->
+    <!-- === MAIN CONTAINER === -->
     <main class="post-container">
         
         <div class="breadcrumb">
@@ -158,35 +383,37 @@
                 <span><i class="fas fa-folder-open"></i> Category: Result</span>
             </div>
 
-            <p class="post-text">National Testing Agency (NTA) has officially released the final scorecard and results for CUET UG 2026. Candidates who appeared for the examination can check their normalized scores and percentiles through the direct link provided below.</p>
+            <p class="post-text" id="detailDesc">National Testing Agency (NTA) has officially released the final scorecard and results for CUET UG 2026. Candidates who appeared for the examination can check their normalized scores and percentiles through the direct link provided below.</p>
 
-            <h3 style="margin-bottom: 15px; color: var(--text-dark); font-weight: 800;">Exam Details Overview</h3>
-            <table class="info-table">
-                <tr>
-                    <th>Exam Conducting Body</th>
-                    <td id="authorityName">National Testing Agency (NTA)</td>
-                </tr>
-                <tr>
-                    <th>Examination Name</th>
-                    <td>CUET UG - 2026</td>
-                </tr>
-                <tr>
-                    <th>Result Status</th>
-                    <td><span style="background: #D1FAE5; color: #059669; padding: 4px 12px; border-radius: 20px; font-weight: 700; font-size: 0.85rem;">Declared & Available</span></td>
-                </tr>
-                <tr>
-                    <th>Required Details</th>
-                    <td>Application Number & Date of Birth</td>
-                </tr>
-            </table>
+            <h3 style="margin-bottom: 12px; color: #0F172A; font-weight: 800; font-size: 1.1rem;">Exam Details Overview</h3>
+            <div class="table-responsive">
+                <table class="info-table">
+                    <tr>
+                        <th>Exam Conducting Body</th>
+                        <td id="authorityName">National Testing Agency (NTA)</td>
+                    </tr>
+                    <tr>
+                        <th>Examination Name</th>
+                        <td>CUET UG - 2026</td>
+                    </tr>
+                    <tr>
+                        <th>Result Status</th>
+                        <td><span style="background: #D1FAE5; color: #059669; padding: 4px 12px; border-radius: 20px; font-weight: 700; font-size: 0.8rem;">Declared & Available</span></td>
+                    </tr>
+                    <tr>
+                        <th>Required Details</th>
+                        <td>Application Number & Date of Birth</td>
+                    </tr>
+                </table>
+            </div>
 
             <!-- SQUIRCLE DOWNLOAD LINKS -->
             <div class="important-links">
-                <h3><i class="fas fa-link" style="color: var(--primary);"></i> Important Direct Links</h3>
+                <h3><i class="fas fa-link" style="color: #4F46E5;"></i> Important Direct Links</h3>
                 
                 <div class="squircle-btn-grid">
                     <a href="#" id="downloadBtn1" target="_blank" class="squircle-btn">
-                        <div class="sq-icon" style="background: #E0E7FF; color: #4F46E5;">
+                        <div class="sq-icon" style="background: #EEF2FF; color: #4F46E5;">
                             <i class="fas fa-cloud-download-alt"></i>
                         </div>
                         <div class="sq-text">
@@ -196,7 +423,7 @@
                     </a>
 
                     <a href="#" id="officialBtn" target="_blank" class="squircle-btn">
-                        <div class="sq-icon" style="background: #D1FAE5; color: #059669;">
+                        <div class="sq-icon" style="background: #ECFDF5; color: #059669;">
                             <i class="fas fa-globe"></i>
                         </div>
                         <div class="sq-text">
@@ -215,12 +442,12 @@
                     <p>Get counseling guidance, e-books, and cut-off updates directly on Learnify Classes App.</p>
                 </div>
                 <a href="https://learnifyclasses.akamai.net.in/new-courses" target="_blank" class="promo-sq-btn">
-                    <div class="promo-sq-icon" style="background: #E0E7FF; color: #4F46E5;">
+                    <div class="promo-sq-icon" style="background: #EEF2FF; color: #4F46E5;">
                         <i class="fab fa-google-play"></i>
                     </div>
                     <div class="sq-text">
-                        <span style="font-size: 0.7rem;">GET IT ON</span>
-                        <h4 style="color: #0F172A; font-size: 1rem;">Google Play</h4>
+                        <span style="font-size: 0.68rem; color: #64748B; font-weight: 700;">GET IT ON</span>
+                        <h4 style="color: #0F172A; font-size: 0.95rem;">Google Play</h4>
                     </div>
                 </a>
             </div>
@@ -236,8 +463,8 @@
                         <i class="fab fa-telegram-plane"></i>
                     </div>
                     <div class="sq-text">
-                        <span style="font-size: 0.7rem;">JOIN NOW ON</span>
-                        <h4 style="color: #0F172A; font-size: 1rem;">Telegram</h4>
+                        <span style="font-size: 0.68rem; color: #64748B; font-weight: 700;">JOIN NOW ON</span>
+                        <h4 style="color: #0F172A; font-size: 0.95rem;">Telegram</h4>
                     </div>
                 </a>
             </div>
@@ -245,7 +472,7 @@
         </article>
     </main>
 
-    <!-- Footer -->
+    <!-- === FOOTER === -->
     <footer>
         <div class="footer-links">
             <a href="contact-us.html">Contact Us</a>
@@ -257,7 +484,7 @@
         </div>
     </footer>
 
-    <!-- REALTIME SCRIPT -->
+    <!-- REALTIME FIREBASE DYNAMIC FETCH SCRIPT -->
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
       import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
@@ -284,12 +511,12 @@
 
       function updateUI(data) {
         if (!data) return;
-        const title = data.title || data.resultTitle || "Scorecard Declared";
+        const title = data.title || data.resultTitle || data.examTitle || "Scorecard Declared";
         const date = data.releaseDate || "2026";
-        const url = data.resultUrl || data.link || "#";
+        const url = data.resultUrl || data.link || data.examUrl || "#";
 
         document.getElementById("detailTitle").textContent = title;
-        document.getElementById("breadcrumbTitle").textContent = title.substring(0, 25) + "...";
+        document.getElementById("breadcrumbTitle").textContent = title.length > 25 ? title.substring(0, 25) + "..." : title;
         document.getElementById("detailReleaseDate").textContent = date;
 
         const finalUrl = url.startsWith("http") ? url : "https://" + url;
@@ -308,6 +535,10 @@
                 return;
             }
         } catch(e) {}
+
+        const localUpdates = JSON.parse(localStorage.getItem("learnify_admin_updates")) || [];
+        const match = localUpdates.find(i => i.id == postId) || localUpdates[0];
+        updateUI(match);
       }
 
       loadPost();
