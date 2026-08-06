@@ -513,9 +513,9 @@
 
       function updateUI(data) {
         if (!data) return;
-        const title = data.examTitle || data.title || "Admit Card Released";
+        const title = data.admitTitle || data.examTitle || data.title || "Admit Card Released";
         const date = data.releaseDate || "2026";
-        const url = data.admitUrl || data.link || "#";
+        const url = data.admitUrl || data.examUrl || data.link || "#";
 
         document.getElementById("detailTitle").textContent = title;
         document.getElementById("detailReleaseDate").textContent = date;
