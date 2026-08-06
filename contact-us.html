@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Abhinandan Updates</title>
+    
+    <!-- Fonts & Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 40px;
+            margin-top: 20px;
+        }
+
+        .contact-info-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 40px 32px;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .contact-info-header h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+        }
+
+        .contact-info-header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .info-items-list {
+            margin: 36px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
+            background: var(--primary-light);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .info-details h4 {
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+
+        .info-details p {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-top: 2px;
+        }
+
+        .contact-form-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .form-group label {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            background: #F8FAFC;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 140px;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            background: var(--surface);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px var(--primary-glow);
+        }
+
+        .btn-send {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: var(--transition);
+            box-shadow: 0 6px 18px -3px rgba(79, 70, 229, 0.35);
+            margin-top: 10px;
+        }
+
+        .btn-send:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px -4px rgba(79, 70, 229, 0.45);
+        }
+
+        .success-alert {
+            background: #ECFDF5;
+            border: 1px solid #A7F3D0;
+            color: #047857;
+            padding: 14px 18px;
+            border-radius: var(--radius-md);
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        @media (max-width: 900px) {
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+            .contact-form-card {
+                padding: 28px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- === HEADER === -->
+    <header class="header-wrapper">
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <div class="logo-badge"><i class="fas fa-graduation-cap"></i></div>
+                <span>Abhinandan Updates</span>
+            </a>
+            
+            <div class="header-right">
+                <button class="menu-toggle-btn" id="sidebarToggle">
+                    <i class="fa-solid fa-bars-staggered"></i>
+                </button>
+            </div>
+        </nav>
+
+        <div class="nav-drawer" id="navDrawer">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="latest-jobs.html">Latest Job</a></li>
+                <li><a href="admitcard.html">Admit Card</a></li>
+                <li><a href="result.html">Result</a></li>
+                <li><a href="cutoff.html">Cutoff</a></li>
+                <li><a href="admission.html">Admission</a></li>
+                <li><a href="syllabus.html">Syllabus</a></li>
+                <li><a href="answer-key.html">Answer Key</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- === MAIN CONTAINER === -->
+    <div class="main-container">
+        
+        <div class="contact-wrapper">
+            
+            <!-- Left Info Panel -->
+            <div class="contact-info-card">
+                <div>
+                    <div class="contact-info-header">
+                        <h1>Get in Touch</h1>
+                        <p>Have questions regarding exam notifications, admit cards, or study resources? Drop us a message!</p>
+                    </div>
+
+                    <div class="info-items-list">
+                        <div class="info-item">
+                            <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
+                            <div class="info-details">
+                                <h4>Email Support</h4>
+                                <p>support@abhinandanupdates.com</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon"><i class="fa-brands fa-telegram"></i></div>
+                            <div class="info-details">
+                                <h4>Telegram Community</h4>
+                                <p>@AbhinandanUpdatesOfficial</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+                            <div class="info-details">
+                                <h4>Location</h4>
+                                <p>Prayagraj, Uttar Pradesh, India</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="border-top: 1px solid var(--border); padding-top: 20px; font-size: 0.85rem; color: var(--text-muted);">
+                    Response time is usually within 24 business hours.
+                </div>
+            </div>
+
+            <!-- Right Form Panel -->
+            <div class="contact-form-card">
+                <div id="successBox" class="success-alert">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>Thank you! Your message has been submitted successfully.</span>
+                </div>
+
+                <form id="contactForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="fullName">Your Name</label>
+                            <input type="text" id="fullName" placeholder="Ajmal Mansoori" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="emailAddr">Email Address</label>
+                            <input type="email" id="emailAddr" placeholder="name@example.com" required>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="subjectLine">Subject</label>
+                            <input type="text" id="subjectLine" placeholder="Admit Card Issue / General Query" required>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="msgBody">Your Message</label>
+                            <textarea id="msgBody" placeholder="Type your detailed message here..." required></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-send">
+                        <span>Send Message</span>
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- === FOOTER === -->
+    <footer>
+        <div class="footer-links">
+            <a href="contact-us.html" style="color: var(--primary);">Contact Us</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="disclaimer.html">Disclaimer</a>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 Abhinandan Updates. All rights reserved.</p>
+            <p style="margin-top: 4px;">Designed by <span class="developer">Ajmal Mansoori</span></p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("sidebarToggle")?.addEventListener("click", () => {
+            document.getElementById("navDrawer")?.classList.toggle("active");
+        });
+
+        document.getElementById("contactForm")?.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const successBox = document.getElementById("successBox");
+            if (successBox) {
+                successBox.style.display = "flex";
+                document.getElementById("contactForm").reset();
+            }
+        });
+    </script>
+</body>
+</html>
