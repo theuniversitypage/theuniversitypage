@@ -82,6 +82,7 @@
             font-weight: 700;
             color: var(--text-dark);
             margin-top: 2px;
+            word-break: break-word;
         }
 
         .contact-form-card {
@@ -151,6 +152,7 @@
             cursor: pointer;
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 12px;
             transition: var(--transition);
             box-shadow: 0 6px 18px -3px rgba(79, 70, 229, 0.35);
@@ -177,9 +179,11 @@
             margin-bottom: 24px;
         }
 
+        /* Fully Responsive for Tablets & Mobile Devices */
         @media (max-width: 900px) {
             .contact-wrapper {
                 grid-template-columns: 1fr;
+                gap: 24px;
             }
             .form-grid {
                 grid-template-columns: 1fr;
@@ -187,8 +191,32 @@
             .form-group.full-width {
                 grid-column: span 1;
             }
+            .contact-info-card,
             .contact-form-card {
                 padding: 28px 20px;
+            }
+            .contact-info-header h1 {
+                font-size: 1.75rem;
+            }
+            .info-items-list {
+                margin: 24px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .btn-send {
+                width: 100%;
+            }
+            .info-item {
+                gap: 14px;
+            }
+            .info-icon {
+                width: 44px;
+                height: 44px;
+                font-size: 1.1rem;
+            }
+            .info-details p {
+                font-size: 0.92rem;
             }
         }
     </style>
@@ -319,7 +347,6 @@
         </div>
         <div class="copyright">
             <p>&copy; 2026 Abhinandan Updates. All rights reserved.</p>
-            <p style="margin-top: 4px;">Designed by <span class="developer">Ajmal Mansoori</span></p>
         </div>
     </footer>
 
