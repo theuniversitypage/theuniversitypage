@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Admit Card - Admin Dashboard | Ajmal Mansoori</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="admin.css">
+    
+    <style>
+        .admin-container { max-width: 1100px; margin: 0 auto; }
+        .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .form-grid.full-width { grid-template-columns: 1fr; }
+        @media (max-width: 768px) { .form-grid { grid-template-columns: 1fr; } }
+        
+        .section-box {
+            background: var(--bg-card, #ffffff);
+            border-radius: var(--radius-lg, 12px);
+            border: 1px solid var(--border-color, #e2e8f0);
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.1));
+        }
+        
+        .action-buttons { display: flex; gap: 12px; margin-top: 20px; }
+        .table-responsive { width: 100%; overflow-x: auto; margin-top: 15px; }
+        .admin-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem; }
+        .admin-table th, .admin-table td { padding: 12px 16px; border-bottom: 1px solid var(--border-color, #e2e8f0); }
+        .admin-table th { background-color: var(--bg-main, #f8fafc); color: var(--text-muted, #64748b); font-weight: 600; }
+        .admin-table tr:hover { background-color: #fafbfc; }
+        
+        .btn-icon { background: none; border: 1px solid var(--border-color, #e2e8f0); padding: 6px 10px; border-radius: 8px; cursor: pointer; }
+        .btn-icon.delete:hover { background: #fee2e2; color: #ef4444; border-color: #ef4444; }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar-overlay" id="overlay"></div>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-icon-box"><i class="fa-solid fa-graduation-cap"></i></div>
+            <span class="brand-title">Ajmal Mansoori</span>
+        </div>
+        <ul class="menu-list">
+            <li class="menu-item"><a href="admin.html"><i class="fa-solid fa-chart-pie left-icon"></i> <span class="item-label">Dashboard</span></a></li>
+            <li class="menu-item"><a href="admin-updates.html"><i class="fa-solid fa-newspaper left-icon"></i> <span class="item-label">Updates</span></a></li>
+            <li class="menu-item active"><a href="admin-admit-card.html"><i class="fa-solid fa-id-card left-icon"></i> <span class="item-label">Admit Card</span></a></li>
+            <li class="menu-item"><a href="admin-result.html"><i class="fa-solid fa-square-poll-vertical left-icon"></i> <span class="item-label">Result</span></a></li>
+            <li class="menu-item"><a href="admin-cutoff.html"><i class="fa-solid fa-chart-line left-icon"></i> <span class="item-label">Cutoff</span></a></li>
+            <li class="menu-item"><a href="admin-admission.html"><i class="fa-solid fa-school-flag left-icon"></i> <span class="item-label">Admission</span></a></li>
+        </ul>
+    </aside>
+
+    <div class="wrapper">
+        <header class="top-header">
+            <button class="toggle-btn" id="sidebarToggleBtn"><i class="fa-solid fa-bars-staggered"></i></button>
+            <div class="header-right" style="margin-left: auto;">
+                <div class="user-profile">
+                    <div class="avatar">AM</div>
+                    <span class="profile-name">Ajmal Mansoori</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="admin-container">
+                <div class="dash-top-bar">
+                    <h1 class="page-head"><i class="fa-solid fa-id-card" style="color: var(--primary);"></i> Manage Admit Card Post</h1>
+                </div>
+
+                <form id="admitCardForm">
+                    <div class="section-box">
+                        <h3 class="section-title-divider"><i class="fa-solid fa-heading"></i> 1. Admit Card Meta Info</h3>
+                        <div class="input-group full-width" style="margin-bottom: 16px;">
+                            <label for="examTitle">Exam / Post Title *</label>
+                            <input type="text" id="examTitle" placeholder="e.g. NTA CUET UG Phase 2 Admit Card Released" required>
+                        </div>
+                        <div class="form-grid">
+                            <div class="input-group">
+                                <label for="releaseDate">Release Date *</label>
+                                <input type="text" id="releaseDate" placeholder="e.g. 06 August 2026" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="admitUrl">Download Link URL *</label>
+                                <input type="url" id="admitUrl" placeholder="https://..." required>
+                            </div>
+                        </div>
+                        <div class="action-buttons">
+                            <button type="submit" class="btn-action-primary"><i class="fa-solid fa-upload"></i> Publish Admit Card</button>
+                            <button type="reset" class="btn-secondary-reset">Clear Form</button>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="section-box">
+                    <h3 class="section-title-divider"><i class="fa-solid fa-list"></i> Published Admit Cards</h3>
+                    <div class="table-responsive">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Exam Title</th>
+                                    <th>Release Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admitCardTable"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Firebase Firestore Script -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, serverTimestamp, getDocs, deleteDoc, doc, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyD837pmW5N21lMgeVlpgWPx0FaMisSnxwU",
+            authDomain: "theuniversitypage-cc4a7.firebaseapp.com",
+            projectId: "theuniversitypage-cc4a7",
+            storageBucket: "theuniversitypage-cc4a7.firebasestorage.app",
+            messagingSenderId: "31910615607",
+            appId: "1:31910615607:web:bee5bd81c8118a16d1bdb2",
+            measurementId: "G-6E55FCSXDP"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const STORAGE_KEY = "learnify_admin_admits";
+
+        let localAdmits = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+
+        const form = document.getElementById("admitCardForm");
+
+        if (form) {
+            form.addEventListener("submit", async (e) => {
+                e.preventDefault();
+
+                const newAdmit = {
+                    id: Date.now(),
+                    category: "admitcard",
+                    title: document.getElementById("examTitle").value.trim(),
+                    examTitle: document.getElementById("examTitle").value.trim(),
+                    releaseDate: document.getElementById("releaseDate").value.trim(),
+                    link: document.getElementById("admitUrl").value.trim(),
+                    admitUrl: document.getElementById("admitUrl").value.trim(),
+                    createdAt: serverTimestamp()
+                };
+
+                try {
+                    // Firebase Direct Upload
+                    await addDoc(collection(db, "updates"), newAdmit);
+                } catch(err) {
+                    console.log("Firebase fallback to LocalStorage");
+                }
+
+                localAdmits.unshift(newAdmit);
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(localAdmits));
+
+                alert("🎉 Admit Card post successfully publish ho gaya!");
+                form.reset();
+                renderTable();
+            });
+        }
+
+        async function renderTable() {
+            const tbody = document.getElementById("admitCardTable");
+            if (!tbody) return;
+
+            let dataToShow = localAdmits;
+
+            try {
+                const q = query(collection(db, "updates"), orderBy("createdAt", "desc"));
+                const querySnapshot = await getDocs(q);
+                let fbData = [];
+                querySnapshot.forEach((docSnap) => {
+                    const item = docSnap.data();
+                    if(item.category === "admitcard" || item.category === "admit") {
+                        fbData.push({ fbId: docSnap.id, ...item });
+                    }
+                });
+                if(fbData.length > 0) dataToShow = fbData;
+            } catch(e) {}
+
+            if (dataToShow.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="3" style="text-align: center; color: var(--text-muted); padding: 20px;">Koi Admit Card Uplabdh Nahi Hai.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = dataToShow.map(item => `
+                <tr>
+                    <td style="font-weight: 600;">${item.examTitle || item.title}</td>
+                    <td style="color: var(--text-muted);">${item.releaseDate}</td>
+                    <td>
+                        <button class="btn-icon delete" onclick="deleteAdmit('${item.fbId || item.id}')"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        window.deleteAdmit = async function(id) {
+            if (confirm("Kya aap is Admit Card post ko delete karna chahte hain?")) {
+                try {
+                    await deleteDoc(doc(db, "updates", id));
+                } catch(e) {}
+
+                localAdmits = localAdmits.filter(item => item.id != id && item.fbId != id);
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(localAdmits));
+                renderTable();
+            }
+        };
+
+        renderTable();
+    </script>
+</body>
+</html>
