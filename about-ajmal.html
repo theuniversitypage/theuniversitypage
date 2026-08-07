@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>About Ajmal Mansoori - Founder & Educational Innovator | The University Page</title>
+    
+    <!-- Google Fonts & Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box !important;
+            max-width: 100%;
+        }
+
+        html, body {
+            width: 100% !important;
+            max-width: 100% !important;
+            overflow-x: hidden !important;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-main, #FDFBF7);
+            color: var(--text-dark, #0F172A);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        .container {
+            flex: 1;
+            width: 100% !important;
+            max-width: 1100px;
+            margin: 16px auto 40px;
+            padding: 0 12px;
+            box-sizing: border-box;
+        }
+
+        .breadcrumb {
+            font-size: 0.82rem;
+            color: var(--text-muted, #64748B);
+            margin-bottom: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .breadcrumb a {
+            color: var(--primary, #4F46E5);
+            text-decoration: none;
+        }
+
+        /* HERO BANNER CARD */
+        .profile-hero-card {
+            background: linear-gradient(135deg, #1E1B4B, #4F46E5);
+            color: #FFFFFF;
+            border-radius: 20px;
+            padding: 28px 20px;
+            box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.25);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            width: 100% !important;
+        }
+
+        .hero-avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: #EEF2FF;
+            color: #4F46E5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            flex-shrink: 0;
+        }
+
+        .hero-info h1 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 4px;
+            letter-spacing: -0.4px;
+        }
+
+        .hero-info p {
+            font-size: 0.88rem;
+            opacity: 0.92;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .hero-badges {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .hero-badge-item {
+            background: rgba(255, 255, 255, 0.18);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.74rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* GRID SECTION LAYOUT */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 16px;
+            align-items: start;
+            width: 100% !important;
+        }
+
+        .section-card {
+            background: #FFFFFF;
+            border-radius: 18px;
+            padding: 20px 16px;
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
+            margin-bottom: 16px;
+            width: 100% !important;
+        }
+
+        .card-title {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: #0F172A;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #F1F5F9;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-title i {
+            color: #4F46E5;
+            background: #EEF2FF;
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.88rem;
+            flex-shrink: 0;
+        }
+
+        .bio-text {
+            font-size: 0.88rem;
+            color: #334155;
+            line-height: 1.6;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        /* INITIATIVES LIST */
+        .initiative-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .initiative-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 10px 12px;
+            background: #F8FAFC;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            border: 1px solid #E2E8F0;
+        }
+
+        .initiative-item i {
+            color: #4F46E5;
+            font-size: 1rem;
+            margin-top: 2px;
+        }
+
+        .initiative-item h4 {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: #0F172A;
+            margin-bottom: 2px;
+        }
+
+        .initiative-item p {
+            font-size: 0.78rem;
+            color: #64748B;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        /* SOCIAL & QUICK ACTION BUTTONS */
+        .social-link-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 14px;
+            background: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #0F172A;
+            text-decoration: none;
+            margin-bottom: 8px;
+            transition: var(--transition);
+        }
+
+        .social-link-btn:hover {
+            border-color: #4F46E5;
+            color: #4F46E5;
+            background: #EEF2FF;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #FFFFFF;
+            border-top: 1px solid #E2E8F0;
+            padding: 20px 10px 14px;
+            text-align: center;
+            width: 100% !important;
+            margin-top: auto;
+        }
+
+        .footer-links {
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            gap: 16px !important;
+            flex-wrap: nowrap !important;
+            margin-bottom: 8px !important;
+            width: 100% !important;
+        }
+
+        .footer-links a {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: #334155;
+            white-space: nowrap !important;
+            text-decoration: none;
+        }
+
+        .copyright { color: #64748B; font-size: 0.72rem; }
+
+        @media (max-width: 850px) {
+            .info-grid { grid-template-columns: 1fr !important; gap: 14px; }
+            .profile-hero-card { text-align: center; justify-content: center; }
+            .hero-badges { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- === HEADER === -->
+    <header class="header-wrapper">
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <div class="logo-badge"><i class="fas fa-graduation-cap"></i></div>
+                <span>The University Page</span>
+            </a>
+            
+            <div class="header-right">
+                <button class="menu-toggle-btn" id="sidebarToggle">
+                    <i class="fa-solid fa-bars-staggered"></i>
+                </button>
+            </div>
+        </nav>
+
+        <div class="nav-drawer" id="navDrawer">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="latest-jobs.html">Latest Job</a></li>
+                <li><a href="admitcard.html">Admit Card</a></li>
+                <li><a href="result.html">Result</a></li>
+                <li><a href="cutoff.html">Cutoff</a></li>
+                <li><a href="admission.html">Admission</a></li>
+                <li><a href="syllabus.html">Syllabus</a></li>
+                <li><a href="answerkey.html">Answer Key</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- === MAIN CONTAINER === -->
+    <main class="container">
+
+        <div class="breadcrumb">
+            <a href="index.html">Home</a> <i class="fas fa-angle-right"></i> <span>About Ajmal Mansoori</span>
+        </div>
+
+        <!-- PROFILE HERO BANNER -->
+        <div class="profile-hero-card">
+            <div class="hero-avatar">
+                <i class="fas fa-user-graduate"></i>
+            </div>
+            <div class="hero-info">
+                <h1>Ajmal Mansoori (Aju)</h1>
+                <p>Founder & Chief Educator — Learnify Classes & CUET Learnify</p>
+                <div class="hero-badges">
+                    <span class="hero-badge-item"><i class="fas fa-crown"></i> Platform Founder</span>
+                    <span class="hero-badge-item"><i class="fas fa-code"></i> Mobile App Developer</span>
+                    <span class="hero-badge-item"><i class="fas fa-bullhorn"></i> Student Rights Advocate</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-grid">
+            
+            <!-- LEFT MAIN CONTENT COLUMN -->
+            <div class="left-column">
+
+                <div class="section-card">
+                    <h2 class="card-title"><i class="fas fa-user-circle"></i> Biography & Vision</h2>
+                    <p class="bio-text">
+                        <b>Ajmal Mansoori</b> ek visionary educational entrepreneur, content creator, aur mobile app developer hain. Wo central aur state universities (jaise Allahabad University, Banaras Hindu University, aur Delhi University) me padhne wale lakho students ko digital study tools, live counseling updates, aur structured preparation material provide karne me active hain.
+                    </p>
+                    <p class="bio-text">
+                        Unka primary mission higher education system, CUET Entrance, UG/PG Admissions, aur competitive exam updates ko har ek student ke liye accessible, free, aur transparent banana hai.
+                    </p>
+                </div>
+
+                <div class="section-card">
+                    <h2 class="card-title"><i class="fas fa-rocket"></i> Key Educational Platforms & Leadership</h2>
+                    <ul class="initiative-list">
+                        <li class="initiative-item">
+                            <i class="fas fa-mobile-alt"></i>
+                            <div>
+                                <h4>Learnify Classes App</h4>
+                                <p>Founder & Managing Director (Co-founded with Manjeet Sir). High-yield mock test series, premium e-books, and test modules developer.</p>
+                            </div>
+                        </li>
+                        <li class="initiative-item">
+                            <i class="fas fa-users"></i>
+                            <div>
+                                <h4>CUET Warriors 2026 Forum</h4>
+                                <p>Founder and community leader for CUET aspirants providing free syllabus summaries, PDF booklets, and test prep guidelines.</p>
+                            </div>
+                        </li>
+                        <li class="initiative-item">
+                            <i class="fas fa-globe"></i>
+                            <div>
+                                <h4>The University Page Portal</h4>
+                                <p>Lead architect of real-time university result, cutoff, admit card, and student interactive utility suite tools.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="section-card">
+                    <h2 class="card-title"><i class="fas fa-shield-alt"></i> Core Academic & Tech Focus</h2>
+                    <p class="bio-text">
+                        Ajmal Mansoori actively university level MCQ test series, Hindi literature structural analysis, competitive exam tracking (CUET UG/PG, UP Board, NIELIT O Level), aur student community guidance projects handle karte hain.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- RIGHT SIDEBAR COLUMN -->
+            <div class="right-column">
+                <div class="section-card">
+                    <h2 class="card-title"><i class="fas fa-link"></i> Leadership Executive</h2>
+                    <div style="font-size: 0.82rem; color: #64748B; margin-bottom: 12px; font-weight: 600;">
+                        <p style="margin-bottom: 6px;"><b style="color: #0F172A;">Founder:</b> Ajmal Mansoori</p>
+                        <p style="margin: 0;"><b style="color: #0F172A;">Co-Founder:</b> Manjeet Sir</p>
+                    </div>
+                </div>
+
+                <div class="section-card">
+                    <h2 class="card-title"><i class="fas fa-paper-plane"></i> Connect & Forums</h2>
+                    <a href="https://learnifyclasses.akamai.net.in" target="_blank" class="social-link-btn">
+                        <span><i class="fas fa-graduation-cap"></i> Learnify Classes Portal</span>
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                    <a href="https://t.me/cuetwarriors2026" target="_blank" class="social-link-btn">
+                        <span><i class="fab fa-telegram"></i> CUET Warriors Group</span>
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                    <a href="index.html" class="social-link-btn">
+                        <span><i class="fas fa-home"></i> Back to Main Portal</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- === FOOTER === -->
+    <footer>
+        <div class="footer-links">
+            <a href="contact-us.html">Contact Us</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="disclaimer.html">Disclaimer</a>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 The University Page. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("sidebarToggle")?.addEventListener("click", () => {
+            document.getElementById("navDrawer")?.classList.toggle("active");
+        });
+    </script>
+</body>
+</html>
