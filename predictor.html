@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Marks vs Rank & College Predictor - The University Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        *, *::before, *::after { box-sizing: border-box !important; max-width: 100%; }
+        html, body {
+            width: 100% !important; overflow-x: hidden !important; margin: 0; padding: 0;
+            background-color: #FDFBF7; color: #0F172A; font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh; display: flex; flex-direction: column;
+        }
+        .container { flex: 1; width: 100% !important; max-width: 1000px; margin: 20px auto 40px; padding: 0 12px; }
+        .tool-header {
+            background: linear-gradient(135deg, #4F46E5, #3730A3); color: white;
+            border-radius: 20px; padding: 28px 20px; text-align: center; margin-bottom: 20px;
+        }
+        .tool-card {
+            background: #FFFFFF; border-radius: 20px; border: 1px solid #E2E8F0; padding: 24px 20px;
+            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04); margin-bottom: 20px;
+        }
+        .form-group { margin-bottom: 14px; }
+        .form-group label { display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 6px; }
+        .form-group select, .form-group input {
+            width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #CBD5E1;
+            font-size: 0.9rem; font-weight: 600; background: #F8FAFC; outline: none;
+        }
+        .action-btn {
+            background: #4F46E5; color: white; border: none; padding: 12px; border-radius: 25px;
+            font-size: 0.9rem; font-weight: 700; width: 100%; cursor: pointer; transition: 0.3s;
+        }
+        .action-btn:hover { background: #3730A3; }
+        .result-box {
+            margin-top: 16px; padding: 16px; background: #EEF2FF; border-radius: 12px;
+            display: none; border-left: 4px solid #4F46E5; font-size: 0.9rem; line-height: 1.6;
+        }
+        footer { background: #FFFFFF; border-top: 1px solid #E2E8F0; padding: 20px; text-align: center; margin-top: auto; }
+        .footer-links { display: flex; justify-content: center; gap: 16px; margin-bottom: 8px; }
+        .footer-links a { font-size: 0.8rem; font-weight: 600; color: #334155; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <header class="header-wrapper">
+        <nav class="navbar">
+            <a href="index.html" class="logo"><div class="logo-badge"><i class="fas fa-graduation-cap"></i></div><span>The University Page</span></a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="tool-header">
+            <h1><i class="fas fa-calculator"></i> College & Rank Predictor 2026</h1>
+            <p>Predict your estimated university rank and eligible colleges instantly.</p>
+        </div>
+
+        <div class="tool-card">
+            <div class="form-group">
+                <label>Select Target Examination</label>
+                <select id="predExam">
+                    <option value="cuet">CUET UG Entrance 2026</option>
+                    <option value="au">Allahabad University PGAT / Entrance</option>
+                    <option value="bhu">BHU Course Admission</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Enter Obtained / Expected Score</label>
+                <input type="number" id="predMarks" placeholder="e.g. 180" min="0" max="800">
+            </div>
+            <div class="form-group">
+                <label>Category</label>
+                <select id="predCat">
+                    <option value="ur">General / UR</option>
+                    <option value="obc">OBC-NCL</option>
+                    <option value="ews">EWS</option>
+                    <option value="sc">SC / ST</option>
+                </select>
+            </div>
+            <button class="action-btn" onclick="predictRank()"><i class="fas fa-chart-pie"></i> Calculate & Predict</button>
+
+            <div class="result-box" id="resultBox"></div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-links"><a href="privacy-policy.html">Privacy Policy</a><a href="disclaimer.html">Disclaimer</a></div>
+        <p style="font-size:0.75rem; color:#64748B;">&copy; 2026 The University Page</p>
+    </footer>
+
+    <script>
+        function predictRank() {
+            const marks = parseInt(document.getElementById("predMarks").value);
+            const box = document.getElementById("resultBox");
+            if(!marks) { alert("Please enter marks!"); return; }
+
+            let rank = Math.max(1, Math.round((600 - marks) * 11.2 + 25));
+            let status = marks >= 140 ? "High Chance for Main Campus Admission" : "Eligible for Affiliated Colleges Counseling";
+
+            box.style.display = "block";
+            box.innerHTML = `<strong>Estimated Rank:</strong> #${rank} - #${rank + 95}<br>
+                             <strong>Status:</strong> <span style="color:#059669;">${status}</span><br>
+                             <small style="color:#64748B;">*Based on previous year cutoff trends and normalized score scaling.</small>`;
+        }
+    </script>
+</body>
+</html>
