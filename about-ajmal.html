@@ -3,7 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Ajmal Mansoori | Biography</title>
+    <title>Ajmal Mansoori - Biography, Founder of Learnify Classes & The University Page</title>
+
+    <!-- Google Structured Data Person Schema for Front Page Google Ranking -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Ajmal Mansoori",
+      "alternateName": ["Ajumal", "Aju"],
+      "birthDate": "2007-09-10",
+      "birthPlace": {
+        "@type": "Place",
+        "name": "Azamgarh, Uttar Pradesh, India"
+      },
+      "homeLocation": {
+        "@type": "Place",
+        "name": "Rajesultanpur, Ambedkar Nagar, Uttar Pradesh"
+      },
+      "alumniOf": [
+        {
+          "@type": "EducationalOrganization",
+          "name": "University of Allahabad"
+        },
+        {
+          "@type": "EducationalOrganization",
+          "name": "Raj Inter College Mallupur"
+        },
+        {
+          "@type": "EducationalOrganization",
+          "name": "Rastriya Inter College Tenduai Kalan"
+        }
+      ],
+      "jobTitle": "Founder, Developer & Educator",
+      "worksFor": [
+        {
+          "@type": "Organization",
+          "name": "Learnify Classes"
+        },
+        {
+          "@type": "Organization",
+          "name": "The University Page"
+        }
+      ],
+      "knowsAbout": ["Web Development", "Firebase", "Digital Marketing", "CUET Entrance Preparation", "Medieval & Modern History"]
+    }
+    </script>
     
     <!-- Google Fonts & Font Awesome -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
@@ -34,7 +79,7 @@
         .container {
             flex: 1;
             width: 100% !important;
-            max-width: 1100px;
+            max-width: 1120px;
             margin: 16px auto 40px;
             padding: 0 12px;
             box-sizing: border-box;
@@ -58,11 +103,11 @@
 
         /* HERO HEADER PROFILE CARD */
         .bio-hero-card {
-            background: linear-gradient(135deg, #1E1B4B, #4F46E5);
+            background: linear-gradient(135deg, #0F172A, #312E81, #4F46E5);
             color: #FFFFFF;
             border-radius: 20px;
             padding: 28px 20px;
-            box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.25);
+            box-shadow: 0 12px 30px -5px rgba(15, 23, 42, 0.25);
             margin-bottom: 20px;
             display: flex;
             align-items: center;
@@ -72,8 +117,8 @@
         }
 
         .hero-avatar {
-            width: 100px;
-            height: 100px;
+            width: 96px;
+            height: 96px;
             border-radius: 50%;
             background: #EEF2FF;
             color: #4F46E5;
@@ -106,7 +151,7 @@
         }
 
         .hero-badge-item {
-            background: rgba(255, 255, 255, 0.18);
+            background: rgba(255, 255, 255, 0.16);
             border: 1px solid rgba(255, 255, 255, 0.25);
             padding: 4px 12px;
             border-radius: 20px;
@@ -161,16 +206,19 @@
             flex-shrink: 0;
         }
 
-        /* QUICK DATA TABLE (JEEVAN PARICHAY OVERVIEW) */
+        /* DATA TABLE STYLE */
         .info-table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 8px;
+            margin-bottom: 4px;
+        }
+
+        .info-table tr {
+            border-bottom: 1px solid #F1F5F9;
         }
 
         .info-table td {
-            padding: 10px 8px;
-            border-bottom: 1px solid #F1F5F9;
+            padding: 10px 6px;
             font-size: 0.85rem;
         }
 
@@ -201,7 +249,7 @@
             margin-bottom: 12px;
         }
 
-        /* TIMELINE / ACHIEVEMENTS LIST */
+        /* TIMELINE ITEM */
         .timeline-list {
             list-style: none;
             padding: 0;
@@ -210,7 +258,7 @@
 
         .timeline-item {
             position: relative;
-            padding-left: 24px;
+            padding-left: 22px;
             margin-bottom: 14px;
         }
 
@@ -250,6 +298,17 @@
             color: #64748B;
             font-weight: 500;
             line-height: 1.4;
+        }
+
+        .pill-badge {
+            display: inline-block;
+            background: #EEF2FF;
+            color: #4F46E5;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin: 2px;
         }
 
         .social-link-btn {
@@ -346,7 +405,7 @@
     <main class="container">
 
         <div class="breadcrumb">
-            <a href="index.html">Home</a> <i class="fas fa-angle-right"></i> <span>Ajmal Mansoori | Biography</span>
+            <a href="index.html">Home</a> <i class="fas fa-angle-right"></i> <span>Jeevan Parichay — Ajmal Mansoori</span>
         </div>
 
         <!-- HERO PROFILE CARD -->
@@ -355,12 +414,12 @@
                 <i class="fas fa-user-graduate"></i>
             </div>
             <div class="hero-info">
-                <h1>Ajmal Mansoori</h1>
-                <p>Founder & Educational Innovator | Learnify Classes & CUET Learnify</p>
+                <h1>Ajmal Mansoori (Ajumal / Aju)</h1>
+                <p>Founder & Educational Tech Lead — Learnify Classes & The University Page</p>
                 <div class="hero-badges">
                     <span class="hero-badge-item"><i class="fas fa-crown"></i> Platform Founder</span>
-                    <span class="hero-badge-item"><i class="fas fa-code"></i> App Developer</span>
-                    <span class="hero-badge-item"><i class="fas fa-video"></i> Content Creator</span>
+                    <span class="hero-badge-item"><i class="fas fa-laptop-code"></i> Web Developer</span>
+                    <span class="hero-badge-item"><i class="fas fa-university"></i> Allahabad University Scholar</span>
                 </div>
             </div>
         </div>
@@ -370,111 +429,123 @@
             <!-- LEFT COLUMN: DETAILED BIOGRAPHY -->
             <div class="left-column">
 
-                <!-- Biography OVERVIEW TABLE -->
+                <!-- JEEVAN PARICHAY OVERVIEW TABLE -->
                 <div class="section-card">
-                    <h2 class="card-title"><i class="fas fa-id-card"></i> Ek Nazar Me (At A Glance)</h2>
+                    <h2 class="card-title"><i class="fas fa-id-card"></i> Personal Overview (Jeevan Parichay)</h2>
                     <table class="info-table">
                         <tr>
-                            <td><i class="fas fa-user"></i>Full Name</td>
-                            <td>Ajmal Mansoori</td>
+                            <td><i class="fas fa-user"></i> Full Name</td>
+                            <td>Ajmal Mansoori (Spelled as Ajumal)</td>
                         </tr>
                         <tr>
-                            <td><i class="fas fa-graduation-cap"></i> Profession</td>
-                            <td>College Student, Developer & Educational Creator</td>
+                            <td><i class="fas fa-calendar-alt"></i> Date of Birth</td>
+                            <td>10 September 2007</td>
                         </tr>
                         <tr>
-                            <td><i class="fas fa-building"></i> Educational Venture</td>
-                            <td>Learnify Classes & CUET Learnify (Founder)</td>
+                            <td><i class="fas fa-map-marker-alt"></i> Birth Place</td>
+                            <td>Azamgarh, Uttar Pradesh - 276124</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-home"></i> Native Address</td>
+                            <td>Rajesultanpur, Ambedkar Nagar, UP - 224176</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-users"></i> Parents</td>
+                            <td>Munauvar Ali (Father) & Afsana Khatoon (Mother)</td>
                         </tr>
                         <tr>
                             <td><i class="fas fa-handshake"></i> Co-Founder</td>
-                            <td>Ashutosh Sharma</td>
-                        </tr>
-                        <tr>
-                            <td><i class="fas fa-mobile-alt"></i> Mobile Application</td>
-                            <td>Learnify Classes (Google Play Store)</td>
-                        </tr>
-                        <tr>
-                            <td><i class="fas fa-users"></i> Community Forum</td>
-                            <td>The University Page Forum</td>
-                        </tr>
-                        <tr>
-                            <td><i class="fas fa-book"></i> Specialization</td>
-                            <td>CUET, AU, BHU, UP Board & Exam Tracking</td>
+                            <td>Manjeet Sir (Learnify Classes)</td>
                         </tr>
                     </table>
                 </div>
 
-                <!-- Biography (DETAILED STORY) -->
+                <!-- EDUCATIONAL QUALIFICATIONS -->
                 <div class="section-card">
-                    <h2 class="card-title"><i class="fas fa-book-open"></i> Jeevan Parichay & Journey</h2>
-                    <p class="para-text">
-                        <b>Ajmal Mansoori</b> ek energetic student leader, mobile application developer, aur educational innovator hain. Unhone university-level entrance exams aur counseling processes ki jatilta (complexity) ko dekhte hue digital education sector me apna kadam rakha.
-                    </p>
-                    <p class="para-text">
-                        Unhone apne colleague <b>Manjeet Sir</b> ke sath milkar <b>Learnify Classes</b> aur <b>CUET Learnify</b> ki neev rakhi. Unka uddeshya Prayagraj (Allahabad University), BHU, DU, aur central universities me admission lene wale chhatro ko authentic aur accurate updates bina kisi late fee ya confusion ke pradan karna hai.
-                    </p>
-                </div>
-
-                <!-- KEY INITIATIVES & TIMELINE -->
-                <div class="section-card">
-                    <h2 class="card-title"><i class="fas fa-trophy"></i> Key Initiatives & Projects</h2>
+                    <h2 class="card-title"><i class="fas fa-graduation-cap"></i> Academic Qualifications</h2>
                     <ul class="timeline-list">
                         <li class="timeline-item">
-                            <div class="timeline-title">Learnify Classes Mobile App</div>
-                            <div class="timeline-desc">Google Play Store par mock test series, e-books, aur live chat support modules ka management aur optimization.</div>
+                            <div class="timeline-title">Master of Arts (M.A.) — Medieval & Modern History</div>
+                            <div class="timeline-desc">University of Allahabad (Present Academic Program)</div>
                         </li>
                         <li class="timeline-item">
-                            <div class="timeline-title">CUET Warriors 2026 Student Forum</div>
-                            <div class="timeline-desc">Thousands of CUET aspirants ke liye daily timetable, PDF booklets, aur syllabus breakdown distribution network.</div>
+                            <div class="timeline-title">Bachelor of Arts (B.A.) — Med & Mod History (2026 Graduated)</div>
+                            <div class="timeline-desc">University of Allahabad Main Campus</div>
                         </li>
                         <li class="timeline-item">
-                            <div class="timeline-title">The University Page Web Portal</div>
-                            <div class="timeline-desc">Students ke liye 1-click Result, Cutoff, Admit Card, Resizer, aur College Predictor Suite tools ka development.</div>
+                            <div class="timeline-title">Class 12th (Intermediate) — UP Board (2023 Qualified)</div>
+                            <div class="timeline-desc">Rastriya Inter College Tenduai Kalan</div>
                         </li>
                         <li class="timeline-item">
-                            <div class="timeline-title">Hindi Literature & Entrance Testing Strategy</div>
-                            <div class="timeline-desc">Modern and medieval Hindi literature textual analysis and high-yield MCQ databases for central test series.</div>
+                            <div class="timeline-title">Class 10th (High School) — UP Board (2021 Qualified)</div>
+                            <div class="timeline-desc">Raj Inter College Mallupur</div>
                         </li>
                     </ul>
                 </div>
 
+                <!-- ENTREPRENEURIAL VENTURES & MILESTONES -->
+                <div class="section-card">
+                    <h2 class="card-title"><i class="fas fa-rocket"></i> Entrepreneurial Journey & Achievements</h2>
+                    <ul class="timeline-list">
+                        <li class="timeline-item">
+                            <div class="timeline-title">Learnify Classes (Founded January 2022)</div>
+                            <div class="timeline-desc">All-in-one entrance preparation platform offering premium mock test series, e-books, and test modules for CUET UG, CUET PG, PGAT, BHU Entrance, CHS, and AMU Entrance.</div>
+                        </li>
+                        <li class="timeline-item">
+                            <div class="timeline-title">The University Page (Founded July 2026)</div>
+                            <div class="timeline-desc">Centralized real-time portal for 10,000+ students providing admission alerts, cutoff analysis, admit card downloads, result tracking, and student utilities.</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- HOBBIES & FUTURE VISION -->
+                <div class="section-card">
+                    <h2 class="card-title"><i class="fas fa-bullseye"></i> Hobbies & Future Vision</h2>
+                    <p class="para-text">
+                        <b>Passions:</b> Computer Science, Modern History padhna aur padhana, aur students ko authentic, unbiased guidance dena.
+                    </p>
+                    <p class="para-text">
+                        <b>Mission & Vision:</b> Ajmal Mansoori ka main target hai ki jo difficulties aur lack of guidance unhe apni student life me face karni padi, wo kisi aur student ko na ho. "The University Page" aur "Learnify Classes" ke zariye wo har ek university ki exact cutoff, premium mock tests, aur guidance ek hi jagah bina kisi cost barrier ke accessible bana rahe hain.
+                    </p>
+                </div>
+
             </div>
 
-            <!-- RIGHT COLUMN: QUICK METRICS & SOCIAL LINKS -->
+            <!-- RIGHT COLUMN: SKILLS & QUICK LINKS -->
             <div class="right-column">
                 
                 <div class="section-card">
-                    <h2 class="card-title"><i class="fas fa-sitemap"></i> Organization Structure</h2>
-                    <div style="font-size: 0.85rem; color: #334155; line-weight: 1.5;">
-                        <p style="margin-bottom: 8px;"><b>Founder:</b> Ajmal Mansoori</p>
-                        <p style="margin-bottom: 8px;"><b>Co-Founder:</b> Manjeet Sir</p>
-                        <p style="margin-bottom: 0;"><b>Platform:</b> Learnify Classes</p>
-                    </div>
+                    <h2 class="card-title"><i class="fas fa-code"></i> Programming & Tech</h2>
+                    <span class="pill-badge">HTML5 & CSS3</span>
+                    <span class="pill-badge">JavaScript</span>
+                    <span class="pill-badge">Firebase Firestore</span>
+                    <span class="pill-badge">Web Development</span>
+                    <span class="pill-badge">API Integration</span>
                 </div>
 
                 <div class="section-card">
-                    <h2 class="card-title"><i class="fas fa-laptop-code"></i> Tech & Content Expertise</h2>
-                    <div style="display: flex; gap: 6px; flex-wrap: wrap;">
-                        <span style="background: #EEF2FF; color: #4F46E5; padding: 4px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 700;">YouTube SEO</span>
-                        <span style="background: #FEF3C7; color: #D97706; padding: 4px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 700;">App Publishing</span>
-                        <span style="background: #ECFDF5; color: #059669; padding: 4px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 700;">CUET Strategy</span>
-                        <span style="background: #E0F2FE; color: #0284C7; padding: 4px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 700;">Web Utility Tools</span>
-                    </div>
+                    <h2 class="card-title"><i class="fas fa-chart-line"></i> Digital & Content Skills</h2>
+                    <span class="pill-badge">MS Office Suite</span>
+                    <span class="pill-badge">LibreOffice & OnlyOffice</span>
+                    <span class="pill-badge">Graphic Designing</span>
+                    <span class="pill-badge">Content Writing</span>
+                    <span class="pill-badge">Digital Marketing</span>
+                    <span class="pill-badge">Strategic Planning</span>
+                    <span class="pill-badge">Leadership</span>
                 </div>
 
                 <div class="section-card">
-                    <h2 class="card-title"><i class="fas fa-paper-plane"></i> Official Platforms</h2>
+                    <h2 class="card-title"><i class="fas fa-paper-plane"></i> Official Portals</h2>
                     <a href="https://learnifyclasses.akamai.net.in" target="_blank" class="social-link-btn">
                         <span><i class="fas fa-graduation-cap" style="color: #4F46E5;"></i> Learnify Classes Portal</span>
                         <i class="fas fa-external-link-alt"></i>
                     </a>
                     <a href="https://t.me/cuetwarriors2026" target="_blank" class="social-link-btn">
-                        <span><i class="fab fa-telegram" style="color: #0284C7;"></i> CUET Warriors Group</span>
+                        <span><i class="fab fa-telegram" style="color: #0284C7;"></i> CUET Warriors Forum</span>
                         <i class="fas fa-external-link-alt"></i>
                     </a>
                     <a href="index.html" class="social-link-btn">
-                        <span><i class="fas fa-home"></i> Back to Main Portal</span>
+                        <span><i class="fas fa-home"></i> Back to Home Portal</span>
                         <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
