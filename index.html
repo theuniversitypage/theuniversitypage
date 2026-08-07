@@ -37,15 +37,91 @@
             width: 100% !important;
             max-width: 1240px;
             margin: 0 auto;
-            padding: 16px 12px 30px;
+            padding: 12px 12px 30px;
             box-sizing: border-box;
+        }
+
+        /* =========================================
+           ✨ ULTRA-PRO LIVE RUNNING TICKER BANNER
+        ========================================= */
+        .ticker-wrapper {
+            background: #0F172A;
+            color: #FFFFFF;
+            border-radius: 12px;
+            padding: 6px 10px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
+            border: 1px solid #1E293B;
+            overflow: hidden;
+            width: 100% !important;
+        }
+
+        .ticker-badge {
+            background: #EF4444;
+            color: #FFFFFF;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .ticker-badge i {
+            animation: pulse-dot 1.2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+
+        .ticker-content {
+            flex: 1;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+        }
+
+        .ticker-marquee {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 22s linear infinite;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #E2E8F0;
+        }
+
+        .ticker-marquee a {
+            color: #FBBF24;
+            text-decoration: none;
+            margin-right: 30px;
+            transition: var(--transition);
+        }
+
+        .ticker-marquee a:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
         }
 
         .section-title-main {
             font-size: 1.2rem;
             font-weight: 800;
             color: #0F172A;
-            margin: 24px 0 14px;
+            margin: 20px 0 14px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -89,7 +165,7 @@
         /* WIDGETS GRID IN INDEX */
         .widgets-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 14px;
             margin-bottom: 24px;
             width: 100% !important;
@@ -184,24 +260,6 @@
         }
 
         .widget-btn:hover { background: #4338CA; }
-
-        .see-more-tool-card {
-            background: #EEF2FF;
-            border: 1px dashed #C7D2FE;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 20px;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        .see-more-tool-card:hover {
-            background: #E0E7FF;
-            border-color: #4F46E5;
-        }
 
         /* HORIZONTAL SLIDER FOR CATEGORIES */
         .slider-section {
@@ -344,7 +402,22 @@
     <!-- === MAIN CONTAINER === -->
     <div class="main-container">
         
-        <!-- SECTION 1: TOP ACCELERATOR TOOLS -->
+        <!-- 🔥 1. LIVE SCROLLING TICKER BANNER FOR LATEST POSTS -->
+        <div class="ticker-wrapper">
+            <div class="ticker-badge">
+                <i class="fas fa-circle"></i> Live Updates
+            </div>
+            <div class="ticker-content">
+                <div class="ticker-marquee" id="liveTickerMarquee">
+                    <a href="scor.html">CUET UG Final Scorecard 2026 Declared</a>
+                    <a href="job-details.html">SSC CGL 2026 Online Application Form Active</a>
+                    <a href="admitcard-details.html">Allahabad University PGAT Admit Card Released</a>
+                    <a href="admission-details.html">AU & DU CSAS Counseling Registration Phase-1</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: TOP ACCELERATOR TOOLS -->
         <section class="tools-section">
             <div class="tools-grid">
                 <a href="https://learnifyclasses.akamai.net.in/new-courses" target="_blank" class="tool-card">
@@ -383,12 +456,12 @@
 
 
         <!-- =========================================
-             🔥 SECTION 2: INTERACTIVE UTILITY SUITE + SEE MORE LINK
+             🔥 SECTION 3: INTERACTIVE UTILITY SUITE + SEE MORE LINK
         ========================================= -->
         <div class="section-title-main">
             <div class="title-left">
                 <i class="fas fa-sliders"></i>
-                <span>More Featured</span>
+                <span>Interactive Student Utility Suite</span>
             </div>
             <a href="predictor.html" class="see-more-btn">See More Tools <i class="fas fa-arrow-right"></i></a>
         </div>
@@ -448,20 +521,11 @@
                 </div>
             </div>
 
-            <!-- WIDGET 3: SEE MORE ALL TOOLS BOX -->
-            <a href="predictor.html" class="widget-card see-more-tool-card">
-                <div class="widget-icon" style="background: #4F46E5; color: white; margin-bottom: 8px;">
-                    <i class="fas fa-th-large"></i>
-                </div>
-                <h3 style="font-size: 0.95rem; font-weight: 800; color: #4F46E5; margin-bottom: 4px;">Explore All 8+ Tools</h3>
-                <p style="font-size: 0.75rem; color: #64748B; font-weight: 600; margin: 0;">Age Calculator, Subject Combo, AI Writer & More</p>
-            </a>
-
         </section>
 
 
         <!-- =========================================
-             🔥 SECTION 3: FEATURED CATEGORY SLIDER
+             🔥 SECTION 4: FEATURED CATEGORY SLIDER
         ========================================= -->
         <div class="section-title-main">
             <div class="title-left">
@@ -659,27 +723,38 @@
                 const resultBox = document.getElementById("resultList");
                 const admitBox = document.getElementById("admitCardList");
                 const cutoffBox = document.getElementById("cutoffList");
+                const tickerMarquee = document.getElementById("liveTickerMarquee");
+
+                let tickerHTML = "";
 
                 snapshot.forEach((docSnap) => {
                     const item = docSnap.data();
                     const docId = docSnap.id;
                     const cat = (item.category || "").toLowerCase();
+                    const itemTitle = item.title || item.resultTitle || item.admitTitle || item.cutoffTitle || "Latest Update";
+
+                    // Build Live Ticker Marquee Links
+                    tickerHTML += `<a href="scor.html?id=${docId}">${itemTitle}</a>`;
 
                     if ((cat.includes("result") || cat.includes("score")) && resultBox) {
-                        const newLi = createListItemHTML(`scor.html?id=${docId}`, item.title || item.resultTitle);
+                        const newLi = createListItemHTML(`scor.html?id=${docId}`, itemTitle);
                         resultBox.insertBefore(newLi, resultBox.firstChild);
                     }
 
                     if ((cat.includes("admit") || cat.includes("card")) && admitBox) {
-                        const newLi = createListItemHTML(`admitcard-details.html?id=${docId}`, item.admitTitle || item.examTitle || item.title);
+                        const newLi = createListItemHTML(`admitcard-details.html?id=${docId}`, itemTitle);
                         admitBox.insertBefore(newLi, admitBox.firstChild);
                     }
 
                     if ((cat.includes("cutoff")) && cutoffBox) {
-                        const newLi = createListItemHTML(`cutoff-details.html?id=${docId}`, item.cutoffTitle || item.title);
+                        const newLi = createListItemHTML(`cutoff-details.html?id=${docId}`, itemTitle);
                         cutoffBox.insertBefore(newLi, cutoffBox.firstChild);
                     }
                 });
+
+                if (tickerHTML && tickerMarquee) {
+                    tickerMarquee.innerHTML = tickerHTML;
+                }
             });
         } catch (e) {
             console.log(e);
