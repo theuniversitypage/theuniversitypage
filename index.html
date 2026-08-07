@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>The University Page - Premier Educational Updates & Student Tools</title>
+    <title>The University Page - Educational Updates & Utility Suite</title>
     
     <!-- Google Fonts & Font Awesome -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
-        /* Strict Anti-Overflow & Zero Horizontal Scroll Rules */
+        /* Strict Anti-Overflow & Mobile Scale Lock */
         *, *::before, *::after {
             box-sizing: border-box !important;
             max-width: 100%;
@@ -37,51 +37,70 @@
             width: 100% !important;
             max-width: 1240px;
             margin: 0 auto;
-            padding: 20px 16px 40px;
+            padding: 16px 12px 30px;
             box-sizing: border-box;
         }
 
-        /* SECTION HEADING STYLE */
         .section-title-main {
-            font-size: 1.35rem;
+            font-size: 1.2rem;
             font-weight: 800;
             color: #0F172A;
-            margin: 28px 0 16px;
+            margin: 24px 0 14px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            justify-content: space-between;
             letter-spacing: -0.3px;
         }
 
-        .section-title-main i {
+        .title-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .title-left i {
             color: #4F46E5;
             background: #EEF2FF;
-            width: 34px;
-            height: 34px;
-            border-radius: 10px;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            flex-shrink: 0;
         }
 
-        /* =========================================
-           ✨ 2ND SECTION: INTERACTIVE UTILITY WIDGETS
-        ========================================= */
+        .see-more-btn {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #4F46E5;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: var(--transition);
+        }
+
+        .see-more-btn:hover {
+            color: #3730A3;
+        }
+
+        /* WIDGETS GRID IN INDEX */
         .widgets-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 18px;
-            margin-bottom: 32px;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 14px;
+            margin-bottom: 24px;
             width: 100% !important;
         }
 
         .widget-card {
             background: #FFFFFF;
-            border-radius: var(--radius-lg, 20px);
+            border-radius: var(--radius-lg, 18px);
             border: 1px solid #E2E8F0;
-            padding: 20px 18px;
-            box-shadow: 0 4px 18px rgba(15, 23, 42, 0.04);
+            padding: 16px 14px;
+            box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -89,225 +108,200 @@
             width: 100% !important;
             min-width: 0;
             position: relative;
-            overflow: hidden;
         }
 
         .widget-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px -5px rgba(79, 70, 229, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(79, 70, 229, 0.12);
             border-color: #C7D2FE;
         }
 
         .widget-card-header {
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 14px;
+            gap: 10px;
+            margin-bottom: 12px;
         }
 
         .widget-icon {
-            width: 44px;
-            height: 44px;
-            min-width: 44px;
-            border-radius: 14px;
+            width: 38px;
+            height: 38px;
+            min-width: 38px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             flex-shrink: 0;
         }
 
         .widget-title-group h3 {
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 800;
             color: #0F172A;
             margin-bottom: 2px;
-            line-height: 1.25;
+            line-height: 1.2;
         }
 
         .widget-title-group p {
-            font-size: 0.78rem;
+            font-size: 0.75rem;
             color: #64748B;
             font-weight: 600;
             margin: 0;
         }
 
-        /* WIDGET 1: COLLEGE PREDICTOR FORM */
-        .predictor-form {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-bottom: 12px;
-        }
-
-        .predictor-form select, .predictor-form input {
-            width: 100%;
-            padding: 9px 12px;
-            border-radius: 10px;
+        .form-control-custom {
+            width: 100% !important;
+            padding: 8px 10px;
+            border-radius: 8px;
             border: 1px solid #CBD5E1;
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             font-weight: 600;
             background: #F8FAFC;
             color: #0F172A;
             outline: none;
-        }
-
-        .predictor-form select:focus, .predictor-form input:focus {
-            border-color: #4F46E5;
-            background: #FFFFFF;
+            margin-bottom: 8px;
         }
 
         .widget-btn {
             background: #4F46E5;
             color: #FFFFFF;
             border: none;
-            padding: 10px 14px;
-            border-radius: 25px;
+            padding: 9px 12px;
+            border-radius: 20px;
             font-weight: 700;
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
             transition: var(--transition);
             width: 100%;
             text-decoration: none;
+            box-sizing: border-box;
+            margin-top: 4px;
         }
 
-        .widget-btn:hover {
-            background: #4338CA;
-            transform: translateY(-1px);
-        }
+        .widget-btn:hover { background: #4338CA; }
 
-        .prediction-result {
-            margin-top: 10px;
-            padding: 8px 10px;
+        .see-more-tool-card {
             background: #EEF2FF;
-            border-radius: 8px;
-            font-size: 0.78rem;
-            color: #3730A3;
-            font-weight: 700;
-            display: none;
-            text-align: center;
-        }
-
-        /* WIDGET 2: NOTIFICATION BELL & WHATSAPP */
-        .notify-badge {
-            background: #ECFDF5;
-            color: #059669;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.72rem;
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin-bottom: 12px;
-        }
-
-        .notify-btn-whatsapp {
-            background: #25D366;
-            color: white;
-            margin-bottom: 8px;
-        }
-        .notify-btn-whatsapp:hover { background: #1EBE5D; }
-
-        .notify-btn-bell {
-            background: #0F172A;
-            color: white;
-        }
-
-        /* WIDGET 3: RESIZER TOOL */
-        .resizer-box {
-            border: 2px dashed #CBD5E1;
-            padding: 12px;
-            border-radius: 12px;
-            text-align: center;
-            background: #F8FAFC;
-            margin-bottom: 10px;
-            cursor: pointer;
-        }
-
-        .resizer-box input[type="file"] {
-            display: none;
-        }
-
-        .resizer-box label {
-            cursor: pointer;
-            font-size: 0.78rem;
-            font-weight: 700;
-            color: #4F46E5;
+            border: 1px dashed #C7D2FE;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 4px;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            cursor: pointer;
+            text-decoration: none;
         }
 
-        /* WIDGET 4: SCHOLARSHIP WIDGET */
-        .scholarship-links {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-bottom: 12px;
+        .see-more-tool-card:hover {
+            background: #E0E7FF;
+            border-color: #4F46E5;
         }
 
-        .scholar-btn-item {
+        /* HORIZONTAL SLIDER FOR CATEGORIES */
+        .slider-section {
+            margin-bottom: 24px;
+            width: 100% !important;
+        }
+
+        .slider-wrapper {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 8px 12px;
-            background: #F8FAFC;
+            gap: 12px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 10px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .slider-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+
+        .slider-card {
+            flex: 0 0 240px;
+            scroll-snap-align: start;
+            background: #FFFFFF;
+            border-radius: 16px;
+            padding: 16px;
             border: 1px solid #E2E8F0;
-            border-radius: 10px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: #0F172A;
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
             text-decoration: none;
             transition: var(--transition);
         }
 
-        .scholar-btn-item:hover {
-            background: #F1F5F9;
-            border-color: #0D9488;
-            color: #0D9488;
+        .slider-card:hover {
+            border-color: #4F46E5;
+            transform: translateY(-2px);
+        }
+
+        .slider-card h4 {
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: #0F172A;
+            margin-bottom: 4px;
+        }
+
+        .slider-card p {
+            font-size: 0.75rem;
+            color: #64748B;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        .output-box-inline {
+            margin-top: 8px;
+            padding: 8px;
+            background: #EEF2FF;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            color: #3730A3;
+            font-weight: 700;
+            display: none;
         }
 
         /* FOOTER */
         footer {
-            padding: 24px 12px 18px;
+            padding: 20px 10px 14px;
             text-align: center;
             background: var(--surface, #FFFFFF);
             border-top: 1px solid var(--border, #E2E8F0);
             margin-top: auto;
+            width: 100% !important;
         }
 
         .footer-links {
             display: flex !important;
             justify-content: center !important;
             align-items: center !important;
-            gap: 16px !important;
+            gap: 12px !important;
             flex-wrap: nowrap !important;
-            margin-bottom: 12px !important;
+            margin-bottom: 8px !important;
             width: 100% !important;
         }
 
         .footer-links a {
-            font-size: 0.85rem;
+            font-size: 0.78rem;
             font-weight: 600;
-            color: var(--text-body, #334155);
+            color: #334155;
             white-space: nowrap !important;
             text-decoration: none;
         }
 
-        .copyright { color: var(--text-muted, #64748B); font-size: 0.78rem; }
+        .copyright { color: #64748B; font-size: 0.72rem; }
 
         @media (max-width: 768px) {
-            .main-container { padding: 12px 10px 30px; }
-            .widgets-grid { grid-template-columns: 1fr !important; }
-            footer { padding: 18px 8px 14px; }
-            .footer-links { gap: 10px !important; }
-            .footer-links a { font-size: 0.75rem !important; }
+            .main-container { padding: 8px 8px 24px; }
+            .widgets-grid { grid-template-columns: 1fr !important; gap: 10px; }
+            .slider-card { flex: 0 0 200px; }
+            footer { padding: 16px 6px 12px; }
+            .footer-links { gap: 8px !important; }
+            .footer-links a { font-size: 0.72rem !important; }
         }
     </style>
 </head>
@@ -342,7 +336,7 @@
                 <li><a href="cutoff.html">Cutoff</a></li>
                 <li><a href="admission.html">Admission</a></li>
                 <li><a href="syllabus.html">Syllabus</a></li>
-                <li><a href="answer-key.html">Answer Key</a></li>
+                <li><a href="answerkey.html">Answer Key</a></li>
             </ul>
         </div>
     </header>
@@ -350,7 +344,7 @@
     <!-- === MAIN CONTAINER === -->
     <div class="main-container">
         
-        <!-- SECTION 1: TOP QUICK TOOLS -->
+        <!-- SECTION 1: TOP ACCELERATOR TOOLS -->
         <section class="tools-section">
             <div class="tools-grid">
                 <a href="https://learnifyclasses.akamai.net.in/new-courses" target="_blank" class="tool-card">
@@ -389,13 +383,19 @@
 
 
         <!-- =========================================
-             ✨ SECTION 2: INTERACTIVE STUDENT TOOLS & WIDGETS
+             🔥 SECTION 2: INTERACTIVE UTILITY SUITE + SEE MORE LINK
         ========================================= -->
-        <h2 class="section-title-main"><i class="fas fa-sliders"></i> Interactive Student Utility Suite</h2>
+        <div class="section-title-main">
+            <div class="title-left">
+                <i class="fas fa-sliders"></i>
+                <span>Interactive Student Utility Suite</span>
+            </div>
+            <a href="predictor.html" class="see-more-btn">See More Tools <i class="fas fa-arrow-right"></i></a>
+        </div>
 
         <section class="widgets-grid">
 
-            <!-- WIDGET 1: MARKS VS RANK & COLLEGE PREDICTOR -->
+            <!-- WIDGET 1: COLLEGE PREDICTOR -->
             <div class="widget-card">
                 <div>
                     <div class="widget-card-header">
@@ -408,30 +408,23 @@
                         </div>
                     </div>
 
-                    <div class="predictor-form">
-                        <select id="predExam">
-                            <option value="cuet">CUET UG Entrance 2026</option>
-                            <option value="au">Allahabad University PGAT</option>
-                            <option value="bhu">BHU Course Admission</option>
-                        </select>
-                        <input type="number" id="predMarks" placeholder="Enter Expected Marks (e.g. 185)" min="0" max="800">
-                        <select id="predCat">
-                            <option value="ur">General / Unreserved</option>
-                            <option value="obc">OBC Category</option>
-                            <option value="ews">EWS Category</option>
-                            <option value="sc">SC / ST Category</option>
-                        </select>
-                    </div>
+                    <select id="predExam" class="form-control-custom">
+                        <option value="cuet">CUET UG Entrance 2026</option>
+                        <option value="au">Allahabad University Entrance</option>
+                        <option value="bhu">BHU Course Admission</option>
+                    </select>
+                    <input type="number" id="predMarks" class="form-control-custom" placeholder="Expected Marks (e.g. 185)">
                 </div>
 
-                <button class="widget-btn" onclick="calculatePrediction()">
-                    <i class="fas fa-chart-pie"></i> Predict Rank & College
-                </button>
-                <div class="prediction-result" id="predictionResult"></div>
+                <div>
+                    <button class="widget-btn" onclick="calculatePrediction()">
+                        <i class="fas fa-chart-pie"></i> Predict Rank
+                    </button>
+                    <div class="output-box-inline" id="predictionResult"></div>
+                </div>
             </div>
 
-
-            <!-- WIDGET 2: INSTANT NOTIFICATION BELL & WHATSAPP ALERTS -->
+            <!-- WIDGET 2: INSTANT ALERTS BELL -->
             <div class="widget-card">
                 <div>
                     <div class="widget-card-header">
@@ -443,92 +436,59 @@
                             <p>Direct Exam Updates</p>
                         </div>
                     </div>
-
-                    <div class="notify-badge">
-                        <i class="fas fa-bolt"></i> Live 2026 Update Stream Active
-                    </div>
-                    <p style="font-size: 0.8rem; color: #64748B; font-weight: 500; margin-bottom: 14px; line-height: 1.4;">
-                        Never miss an Admit Card release, Result declaration, or Counseling Cutoff deadline.
+                    <p style="font-size: 0.78rem; color: #64748B; font-weight: 500; margin-bottom: 8px;">
+                        Direct notification alerts for Admit Card & Results.
                     </p>
                 </div>
 
                 <div>
-                    <a href="https://t.me/cuetwarriors2026" target="_blank" class="widget-btn notify-btn-whatsapp">
-                        <i class="fab fa-whatsapp"></i> Join WhatsApp Group
+                    <a href="https://t.me/cuetwarriors2026" target="_blank" class="widget-btn" style="background: #25D366; margin-bottom: 6px;">
+                        <i class="fab fa-whatsapp"></i> Join Group
                     </a>
-                    <button class="widget-btn notify-btn-bell" id="pushBellBtn" onclick="toggleNotificationBell()">
-                        <i class="fas fa-bell"></i> Enable Push Alerts
-                    </button>
                 </div>
             </div>
 
-
-            <!-- WIDGET 3: ONLINE PHOTO & SIGNATURE RESIZER -->
-            <div class="widget-card">
-                <div>
-                    <div class="widget-card-header">
-                        <div class="widget-icon" style="background: #FEF3C7; color: #D97706;">
-                            <i class="fas fa-crop-alt"></i>
-                        </div>
-                        <div class="widget-title-group">
-                            <h3>Photo & Sign Resizer</h3>
-                            <p>Fast Form Compression</p>
-                        </div>
-                    </div>
-
-                    <div class="resizer-box">
-                        <input type="file" id="resizerInput" accept="image/*" onchange="processImageResize(event)">
-                        <label for="resizerInput">
-                            <i class="fas fa-cloud-upload-alt" style="font-size: 1.2rem;"></i>
-                            <span>Upload Photo or Signature</span>
-                        </label>
-                    </div>
-
-                    <div class="predictor-form">
-                        <select id="resizePreset">
-                            <option value="photo">Passport Photo (20 KB - 50 KB)</option>
-                            <option value="sign">Signature (10 KB - 20 KB)</option>
-                        </select>
-                    </div>
+            <!-- WIDGET 3: SEE MORE ALL TOOLS BOX -->
+            <a href="predictor.html" class="widget-card see-more-tool-card">
+                <div class="widget-icon" style="background: #4F46E5; color: white; margin-bottom: 8px;">
+                    <i class="fas fa-th-large"></i>
                 </div>
+                <h3 style="font-size: 0.95rem; font-weight: 800; color: #4F46E5; margin-bottom: 4px;">Explore All 8+ Tools</h3>
+                <p style="font-size: 0.75rem; color: #64748B; font-weight: 600; margin: 0;">Age Calculator, Subject Combo, AI Writer & More</p>
+            </a>
 
-                <a href="#" id="downloadResizedBtn" class="widget-btn" style="background: #D97706; display: none;" download="resized-image.jpg">
-                    <i class="fas fa-download"></i> Download Compressed Image
+        </section>
+
+
+        <!-- =========================================
+             🔥 SECTION 3: FEATURED CATEGORY SLIDER
+        ========================================= -->
+        <div class="section-title-main">
+            <div class="title-left">
+                <i class="fas fa-layer-group"></i>
+                <span>Quick Category Highlights</span>
+            </div>
+        </div>
+
+        <section class="slider-section">
+            <div class="slider-wrapper">
+                <a href="result.html" class="slider-card">
+                    <h4><i class="fas fa-trophy" style="color: #10B981;"></i> Entrance Results</h4>
+                    <p>CUET, AU, UP Board Scorecards</p>
+                </a>
+                <a href="latest-jobs.html" class="slider-card">
+                    <h4><i class="fas fa-briefcase" style="color: #D97706;"></i> Latest Jobs</h4>
+                    <p>SSC, Railway, Banking Forms</p>
+                </a>
+                <a href="admitcard.html" class="slider-card">
+                    <h4><i class="fas fa-id-card" style="color: #F43F5E;"></i> Hall Tickets</h4>
+                    <p>Admit Cards & Exam Dates</p>
+                </a>
+                <a href="admission.html" class="slider-card">
+                    <h4><i class="fas fa-university" style="color: #8B5CF6;"></i> Admissions</h4>
+                    <p>University Counseling Guides</p>
                 </a>
             </div>
-
-
-            <!-- WIDGET 4: UP SCHOLARSHIP DIRECT PORTAL -->
-            <div class="widget-card">
-                <div>
-                    <div class="widget-card-header">
-                        <div class="widget-icon" style="background: #CCFBF1; color: #0D9488;">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <div class="widget-title-group">
-                            <h3>UP Scholarship Portal</h3>
-                            <p>Dashmottar & Post-Matric</p>
-                        </div>
-                    </div>
-
-                    <div class="scholarship-links">
-                        <a href="https://scholarship.up.gov.in" target="_blank" class="scholar-btn-item">
-                            <span>Fresh Student Login</span> <i class="fas fa-chevron-right"></i>
-                        </a>
-                        <a href="https://scholarship.up.gov.in" target="_blank" class="scholar-btn-item">
-                            <span>Renewal Student Login</span> <i class="fas fa-chevron-right"></i>
-                        </a>
-                        <a href="https://scholarship.up.gov.in" target="_blank" class="scholar-btn-item">
-                            <span>Track Application Status</span> <i class="fas fa-chevron-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <a href="document-details.html" class="widget-btn" style="background: #0D9488;">
-                    <i class="fas fa-file-check"></i> Aadhaar NPCI Mapping Guide
-                </a>
-            </div>
-
         </section>
 
 
@@ -596,7 +556,7 @@
                     <li><a href="answerkey-details.html"><i class="fas fa-chevron-right"></i> <span>SSC GD Constable Final Answer Key Link</span></a></li>
                     <li><a href="answerkey-details.html"><i class="fas fa-chevron-right"></i> <span>UP B.Ed JEE Entrance Exam Answer Key</span></a></li>
                 </ul>
-                <a href="answer-key.html" class="show-more-link">Show more <i class="fas fa-arrow-right"></i></a>
+                <a href="answerkey.html" class="show-more-link">Show more <i class="fas fa-arrow-right"></i></a>
             </div>
 
             <!-- Admission Box -->
@@ -639,9 +599,8 @@
         </div>
     </footer>
 
-    <!-- INTERACTIVE JAVASCRIPT FOR WIDGETS -->
+    <!-- INTERACTIVE JAVASCRIPT -->
     <script>
-        // 1. COLLEGE PREDICTOR LOGIC
         function calculatePrediction() {
             const marks = parseInt(document.getElementById("predMarks").value);
             const resultBox = document.getElementById("predictionResult");
@@ -649,75 +608,15 @@
                 resultBox.style.display = "block";
                 resultBox.style.background = "#FEE2E2";
                 resultBox.style.color = "#991B1B";
-                resultBox.innerHTML = "Kripya apne Sahi Expected Marks Enter Karein!";
+                resultBox.innerHTML = "Enter Expected Score!";
                 return;
             }
 
-            let rank = Math.max(1, Math.round((600 - marks) * 12.5 + 45));
-            let status = marks >= 140 ? "High Chance for Main Campus Seat!" : "Eligible for Affiliated Colleges";
-            
+            let rank = Math.max(1, Math.round((600 - marks) * 11.2 + 30));
             resultBox.style.display = "block";
             resultBox.style.background = "#EEF2FF";
             resultBox.style.color = "#3730A3";
-            resultBox.innerHTML = `Estimated Rank Range: <b>#${rank} - #${rank + 120}</b><br><span style="color:#059669;">${status}</span>`;
-        }
-
-        // 2. PUSH BELL TOGGLE LOGIC
-        function toggleNotificationBell() {
-            const btn = document.getElementById("pushBellBtn");
-            if (Notification.permission === "granted") {
-                btn.innerHTML = `<i class="fas fa-check-circle"></i> Push Alerts Enabled`;
-                btn.style.background = "#059669";
-            } else if (Notification.permission !== "denied") {
-                Notification.requestPermission().then(permission => {
-                    if (permission === "granted") {
-                        btn.innerHTML = `<i class="fas fa-check-circle"></i> Push Alerts Enabled`;
-                        btn.style.background = "#059669";
-                    }
-                });
-            } else {
-                alert("Push Notifications Aapke Browser me Blocked Hain!");
-            }
-        }
-
-        // 3. CANVAS CLIENT-SIDE IMAGE RESIZER LOGIC
-        function processImageResize(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-
-            const preset = document.getElementById("resizePreset").value;
-            const downloadBtn = document.getElementById("downloadResizedBtn");
-            const reader = new FileReader();
-
-            reader.onload = function(e) {
-                const img = new Image();
-                img.onload = function() {
-                    const canvas = document.createElement("canvas");
-                    const ctx = canvas.getContext("2d");
-
-                    let width = img.width;
-                    let height = img.height;
-                    
-                    // Resize Dimensions for Preset
-                    if (preset === "photo") {
-                        width = 350;
-                        height = 450;
-                    } else {
-                        width = 300;
-                        height = 120;
-                    }
-
-                    canvas.width = width;
-                    canvas.height = height;
-                    ctx.drawImage(img, 0, 0, width, height);
-
-                    const resizedDataUrl = canvas.toDataURL("image/jpeg", 0.7);
-                    downloadBtn.href = resizedDataUrl;
-                    downloadBtn.style.display = "flex";
-                }
-                img.src = e.target.result;
-            }
-            reader.readAsDataURL(file);
+            resultBox.innerHTML = `Est. Rank: <b>#${rank}</b>`;
         }
     </script>
 
