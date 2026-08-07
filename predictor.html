@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>College & Rank Predictor 2026 - The University Page</title>
+    <title>Interactive Student Utility Suite & Predictor - The University Page</title>
     
     <!-- Google Fonts & Font Awesome -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
-        /* Strict Anti-Overflow & Mobile Scale Lock */
+        /* Strict Anti-Overflow & Ultra-Responsive Mobile Rules */
         *, *::before, *::after {
             box-sizing: border-box !important;
             max-width: 100%;
@@ -35,7 +35,7 @@
         .container {
             flex: 1;
             width: 100% !important;
-            max-width: 1000px;
+            max-width: 1240px;
             margin: 16px auto 40px;
             padding: 0 12px;
             box-sizing: border-box;
@@ -57,94 +57,95 @@
             text-decoration: none;
         }
 
-        /* Banner Card */
-        .tool-header-card {
-            background: linear-gradient(135deg, #4F46E5, #312E81);
-            color: #FFFFFF;
-            border-radius: 18px;
-            padding: 24px 18px;
-            box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.25);
-            margin-bottom: 18px;
-            text-align: center;
-            width: 100% !important;
-        }
-
-        .tool-header-card h1 {
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin-bottom: 6px;
-            letter-spacing: -0.4px;
-            line-height: 1.3;
-        }
-
-        .tool-header-card p {
-            font-size: 0.88rem;
-            opacity: 0.92;
-            font-weight: 500;
-            margin: 0;
-        }
-
-        /* Main Predictor Box Layout */
-        .predictor-grid {
-            display: grid;
-            grid-template-columns: 3fr 2fr;
-            gap: 16px;
-            align-items: start;
-            width: 100% !important;
-        }
-
-        .main-card {
-            background: #FFFFFF;
-            border-radius: 18px;
-            padding: 22px 18px;
-            border: 1px solid #E2E8F0;
-            box-shadow: 0 4px 18px rgba(15, 23, 42, 0.03);
-            width: 100% !important;
-            min-width: 0;
-        }
-
-        .card-heading {
-            font-size: 1.05rem;
+        /* SECTION HEADING EXACT AS SCREENSHOT */
+        .suite-title {
+            font-size: 1.25rem;
             font-weight: 800;
             color: #0F172A;
-            margin-bottom: 14px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid #F1F5F9;
+            margin: 10px 0 20px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            letter-spacing: -0.3px;
         }
 
-        .card-heading i {
+        .suite-title i {
             color: #4F46E5;
             background: #EEF2FF;
-            width: 30px;
-            height: 30px;
-            border-radius: 8px;
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.88rem;
+            font-size: 0.95rem;
+            flex-shrink: 0;
         }
 
-        .form-row {
+        /* =========================================
+           🔥 WIDGETS GRID MATCHING SCREENSHOT EXACTLY
+        ========================================= */
+        .widgets-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 12px;
-            margin-bottom: 12px;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 16px;
+            margin-bottom: 30px;
+            width: 100% !important;
         }
 
-        .form-group {
+        .widget-card {
+            background: #FFFFFF;
+            border-radius: 20px;
+            border: 1px solid #E2E8F0;
+            padding: 20px 16px;
+            box-shadow: 0 4px 18px rgba(15, 23, 42, 0.03);
             display: flex;
             flex-direction: column;
-            gap: 5px;
-            margin-bottom: 12px;
+            justify-content: space-between;
+            transition: var(--transition);
+            width: 100% !important;
+            min-width: 0;
+            position: relative;
         }
 
-        .form-group label {
-            font-size: 0.8rem;
-            font-weight: 700;
+        .widget-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px -5px rgba(79, 70, 229, 0.12);
+            border-color: #C7D2FE;
+        }
+
+        .widget-card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .widget-icon {
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            flex-shrink: 0;
+        }
+
+        .widget-title-group h3 {
+            font-size: 0.98rem;
+            font-weight: 800;
             color: #0F172A;
+            margin-bottom: 2px;
+            line-height: 1.2;
+        }
+
+        .widget-title-group p {
+            font-size: 0.76rem;
+            color: #64748B;
+            font-weight: 600;
+            margin: 0;
         }
 
         .form-control-custom {
@@ -152,113 +153,131 @@
             padding: 10px 12px;
             border-radius: 10px;
             border: 1px solid #CBD5E1;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             font-weight: 600;
             background: #F8FAFC;
             color: #0F172A;
             outline: none;
-            transition: var(--transition);
+            margin-bottom: 10px;
         }
 
         .form-control-custom:focus {
             border-color: #4F46E5;
             background: #FFFFFF;
-            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
         }
 
-        .submit-btn {
+        .widget-btn {
             background: #4F46E5;
             color: #FFFFFF;
             border: none;
-            padding: 12px;
-            border-radius: 30px;
-            font-weight: 800;
-            font-size: 0.88rem;
+            padding: 11px 14px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.83rem;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            width: 100%;
             transition: var(--transition);
-            box-shadow: 0 4px 14px rgba(79, 70, 229, 0.25);
+            width: 100%;
+            text-decoration: none;
+            box-sizing: border-box;
+            margin-top: 6px;
         }
 
-        .submit-btn:hover {
+        .widget-btn:hover {
             background: #4338CA;
             transform: translateY(-1px);
         }
 
-        /* Result Panel Styling */
-        .result-panel {
-            background: #EEF2FF;
-            border: 1px solid #C7D2FE;
-            border-radius: 14px;
-            padding: 16px;
-            margin-top: 16px;
-            display: none;
+        /* SCREENSHOT BADGE & BUTTON COLORS */
+        .live-badge {
+            background: #ECFDF5;
+            color: #059669;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.74rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 12px;
         }
 
-        .result-header {
-            font-size: 0.92rem;
-            font-weight: 800;
-            color: #3730A3;
+        .btn-whatsapp {
+            background: #25D366 !important;
+            color: white !important;
+            margin-bottom: 8px;
+        }
+        .btn-whatsapp:hover { background: #1EBE5D !important; }
+
+        .btn-dark {
+            background: #0F172A !important;
+            color: white !important;
+        }
+
+        .resizer-box {
+            border: 2px dashed #CBD5E1;
+            padding: 14px 10px;
+            border-radius: 12px;
+            text-align: center;
+            background: #F8FAFC;
             margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .resizer-box input[type="file"] { display: none; }
+        .resizer-box label {
+            cursor: pointer;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #4F46E5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .scholarship-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .scholar-btn-item {
             display: flex;
             align-items: center;
             justify-content: space-between;
-        }
-
-        .result-badge {
-            padding: 3px 10px;
-            border-radius: 20px;
-            font-size: 0.72rem;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        .badge-safe { background: #D1FAE5; color: #059669; }
-        .badge-mod { background: #FEF3C7; color: #D97706; }
-        .badge-low { background: #FEE2E2; color: #DC2626; }
-
-        .result-stat-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
-            margin-top: 8px;
-        }
-
-        .result-stat-card {
-            background: #FFFFFF;
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px solid #E0E7FF;
-        }
-
-        .result-stat-card h5 {
-            font-size: 0.68rem;
-            color: #64748B;
-            text-transform: uppercase;
-            font-weight: 700;
-            margin-bottom: 2px;
-        }
-
-        .result-stat-card p {
-            font-size: 0.88rem;
-            font-weight: 800;
-            color: #0F172A;
-            margin: 0;
-        }
-
-        /* Quick Tools Side Column */
-        .quick-calc-card {
-            background: #FFFFFF;
-            border-radius: 18px;
-            padding: 18px 14px;
+            padding: 9px 12px;
+            background: #F8FAFC;
             border: 1px solid #E2E8F0;
-            box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
-            margin-bottom: 14px;
-            width: 100% !important;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #0F172A;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .scholar-btn-item:hover {
+            background: #F1F5F9;
+            border-color: #0D9488;
+            color: #0D9488;
+        }
+
+        .output-box-inline {
+            margin-top: 10px;
+            padding: 10px;
+            background: #EEF2FF;
+            border-radius: 8px;
+            font-size: 0.78rem;
+            color: #3730A3;
+            font-weight: 700;
+            display: none;
+            word-break: break-word;
+            line-height: 1.4;
         }
 
         /* STRICT 1-LINE CLEAN FOOTER */
@@ -291,9 +310,10 @@
 
         .copyright { color: #64748B; font-size: 0.72rem; }
 
-        @media (max-width: 850px) {
-            .predictor-grid { grid-template-columns: 1fr !important; gap: 14px; }
+        @media (max-width: 768px) {
             .container { padding: 8px 8px 30px; }
+            .widgets-grid { grid-template-columns: 1fr !important; gap: 12px; }
+            .widget-card { padding: 16px 12px; }
             footer { padding: 16px 6px 12px; }
             .footer-links { gap: 10px !important; }
             .footer-links a { font-size: 0.72rem !important; }
@@ -335,124 +355,206 @@
     <main class="container">
 
         <div class="breadcrumb">
-            <a href="index.html">Home</a> <i class="fas fa-angle-right"></i> <span>College & Rank Predictor</span>
+            <a href="index.html">Home</a> <i class="fas fa-angle-right"></i> <span>Student Utility Suite</span>
         </div>
 
-        <div class="tool-header-card">
-            <h1><i class="fas fa-calculator"></i> College & Rank Predictor 2026</h1>
-            <p>Predict your estimated university rank, cutoff probability, and campus allotment instantly.</p>
-        </div>
+        <h2 class="suite-title"><i class="fas fa-sliders-h"></i> Interactive Student Utility Suite</h2>
 
-        <div class="predictor-grid">
-            
-            <!-- LEFT MAIN PREDICTOR FORM -->
-            <div class="main-card">
-                <h2 class="card-heading"><i class="fas fa-sliders-h"></i> Marks & Preference Selection</h2>
+        <section class="widgets-grid">
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="targetExam">Target Examination</label>
-                        <select id="targetExam" class="form-control-custom" onchange="adjustMaxMarks()">
-                            <option value="cuet">CUET UG Entrance 2026</option>
-                            <option value="au">Allahabad University Entrance (AU PGAT/UG)</option>
-                            <option value="bhu">BHU Course Admission</option>
-                            <option value="du">Delhi University CSAS Portal</option>
-                        </select>
+            <!-- WIDGET 1: COLLEGE PREDICTOR -->
+            <div class="widget-card">
+                <div>
+                    <div class="widget-card-header">
+                        <div class="widget-icon" style="background: #EEF2FF; color: #4F46E5;">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <div class="widget-title-group">
+                            <h3>College Predictor</h3>
+                            <p>Marks vs Rank Calculator</p>
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="targetCourse">Target Program / Stream</label>
-                        <select id="targetCourse" class="form-control-custom">
-                            <option value="ba">B.A. (Bachelor of Arts)</option>
-                            <option value="bsc">B.Sc. (Maths / Bio Group)</option>
-                            <option value="bcom">B.Com. (Commerce)</option>
-                            <option value="llb">BALLB / LLB Professional</option>
-                            <option value="ma">M.A. / M.Sc. Postgraduate</option>
-                        </select>
-                    </div>
+                    <select id="predExam" class="form-control-custom">
+                        <option value="cuet">CUET UG Entrance 2026</option>
+                        <option value="au">Allahabad University Entrance</option>
+                        <option value="bhu">BHU Course Admission</option>
+                    </select>
+
+                    <input type="number" id="predMarks" class="form-control-custom" placeholder="Enter Expected Marks (e.g. 185)">
+
+                    <select id="predCat" class="form-control-custom">
+                        <option value="ur">General / Unreserved</option>
+                        <option value="obc">OBC Category</option>
+                        <option value="ews">EWS Category</option>
+                        <option value="sc">SC / ST Category</option>
+                    </select>
                 </div>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="userCategory">Category</label>
-                        <select id="userCategory" class="form-control-custom">
-                            <option value="ur">General / Unreserved (UR)</option>
-                            <option value="obc">OBC-NCL</option>
-                            <option value="ews">EWS Category</option>
-                            <option value="sc">SC Category</option>
-                            <option value="st">ST Category</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="maxMarks">Total Maximum Marks</label>
-                        <input type="number" id="maxMarks" class="form-control-custom" value="800" readonly>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="obtainedScore">Your Obtained / Expected Score</label>
-                    <input type="number" id="obtainedScore" class="form-control-custom" placeholder="e.g. 520" min="0" max="800">
-                </div>
-
-                <button class="submit-btn" onclick="runComprehensivePrediction()">
-                    <i class="fas fa-chart-pie"></i> Calculate Rank & Campus Probability
-                </button>
-
-                <!-- DYNAMIC PREDICTION OUTPUT PANEL -->
-                <div class="result-panel" id="resultPanel">
-                    <div class="result-header">
-                        <span><i class="fas fa-graduation-cap"></i> Prediction Report</span>
-                        <span class="result-badge" id="probBadge">High Probability</span>
-                    </div>
-
-                    <div class="result-stat-grid">
-                        <div class="result-stat-card">
-                            <h5>Estimated Rank Range</h5>
-                            <p id="resRank">#120 - #240</p>
-                        </div>
-                        <div class="result-stat-card">
-                            <h5>Score Percentage</h5>
-                            <p id="resPct">65.0%</p>
-                        </div>
-                        <div class="result-stat-card">
-                            <h5>Expected Allotment</h5>
-                            <p id="resCampus" style="color: #059669;">Main Campus</p>
-                        </div>
-                        <div class="result-stat-card">
-                            <h5>Counseling Chance</h5>
-                            <p id="resCutoff">1st - 2nd Round</p>
-                        </div>
-                    </div>
+                <div>
+                    <button class="widget-btn" onclick="calculatePrediction()">
+                        <i class="fas fa-chart-pie"></i> Predict Rank & College
+                    </button>
+                    <div class="output-box-inline" id="predictionResult"></div>
                 </div>
             </div>
 
-            <!-- RIGHT SIDEBAR: CGPA CONVERTER & SCORE STATS -->
-            <div class="right-column">
-                <div class="quick-calc-card">
-                    <h3 style="font-size: 0.92rem; font-weight: 800; color: #0F172A; margin-bottom: 10px; display: flex; align-items: center; gap: 6px;">
-                        <i class="fas fa-calculator" style="color: #4F46E5;"></i> CGPA to % Converter
-                    </h3>
-                    <div class="form-group">
-                        <input type="number" id="cgpaVal" class="form-control-custom" step="0.01" placeholder="Enter CGPA (e.g. 8.2)">
-                    </div>
-                    <button class="submit-btn" style="background: #0F172A; padding: 8px;" onclick="convertCgpaQuick()">
-                        Convert to Percentage
-                    </button>
-                    <div id="cgpaResBox" style="margin-top: 8px; font-size: 0.78rem; font-weight: 700; color: #059669; display: none;"></div>
-                </div>
 
-                <div class="quick-calc-card">
-                    <h3 style="font-size: 0.92rem; font-weight: 800; color: #0F172A; margin-bottom: 8px;">
-                        <i class="fas fa-shield-alt" style="color: #4F46E5;"></i> Safe Score Insights
-                    </h3>
-                    <p style="font-size: 0.76rem; color: #64748B; margin: 0; line-height: 1.4; font-weight: 500;">
-                        Predictions are calculated using past 3 years' normalized cutoff trends for Allahabad University, BHU, and DU CSAS rounds.
+            <!-- WIDGET 2: INSTANT ALERTS BELL -->
+            <div class="widget-card">
+                <div>
+                    <div class="widget-card-header">
+                        <div class="widget-icon" style="background: #ECFDF5; color: #059669;">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        <div class="widget-title-group">
+                            <h3>Instant Alerts Bell</h3>
+                            <p>Direct Exam Updates</p>
+                        </div>
+                    </div>
+
+                    <div class="live-badge">
+                        <i class="fas fa-bolt"></i> Live 2026 Update Stream Active
+                    </div>
+
+                    <p style="font-size: 0.78rem; color: #64748B; font-weight: 500; margin-bottom: 12px; line-height: 1.35;">
+                        Never miss an Admit Card release, Result declaration, or Counseling Cutoff deadline.
                     </p>
                 </div>
+
+                <div>
+                    <a href="https://t.me/cuetwarriors2026" target="_blank" class="widget-btn btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i> Join WhatsApp Group
+                    </a>
+                    <button class="widget-btn btn-dark" id="pushBellBtn" onclick="toggleNotificationBell()">
+                        <i class="fas fa-bell"></i> Enable Push Alerts
+                    </button>
+                </div>
             </div>
 
-        </div>
+
+            <!-- WIDGET 3: PHOTO & SIGN RESIZER -->
+            <div class="widget-card">
+                <div>
+                    <div class="widget-card-header">
+                        <div class="widget-icon" style="background: #FEF3C7; color: #D97706;">
+                            <i class="fas fa-crop-alt"></i>
+                        </div>
+                        <div class="widget-title-group">
+                            <h3>Photo & Sign Resizer</h3>
+                            <p>Fast Form Compression</p>
+                        </div>
+                    </div>
+
+                    <div class="resizer-box">
+                        <input type="file" id="resizerInput" accept="image/*" onchange="processImageResize(event)">
+                        <label for="resizerInput">
+                            <i class="fas fa-cloud-upload-alt" style="font-size: 1.2rem; color: #4F46E5;"></i>
+                            <span>Upload Photo or Signature</span>
+                        </label>
+                    </div>
+
+                    <select id="resizePreset" class="form-control-custom">
+                        <option value="photo">Passport Photo (20 KB - 50 KB)</option>
+                        <option value="sign">Signature (10 KB - 20 KB)</option>
+                    </select>
+                </div>
+
+                <a href="#" id="downloadResizedBtn" class="widget-btn" style="background: #D97706; display: none;" download="resized-image.jpg">
+                    <i class="fas fa-download"></i> Download Image
+                </a>
+            </div>
+
+
+            <!-- WIDGET 4: UP SCHOLARSHIP PORTAL -->
+            <div class="widget-card">
+                <div>
+                    <div class="widget-card-header">
+                        <div class="widget-icon" style="background: #CCFBF1; color: #0D9488;">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="widget-title-group">
+                            <h3>UP Scholarship Portal</h3>
+                            <p>Dashmottar & Post-Matric</p>
+                        </div>
+                    </div>
+
+                    <div class="scholarship-links">
+                        <a href="https://scholarship.up.gov.in" target="_blank" class="scholar-btn-item">
+                            <span>Fresh Student Login</span> <i class="fas fa-chevron-right"></i>
+                        </a>
+                        <a href="https://scholarship.up.gov.in" target="_blank" class="scholar-btn-item">
+                            <span>Renewal Student Login</span> <i class="fas fa-chevron-right"></i>
+                        </a>
+                        <a href="https://scholarship.up.gov.in" target="_blank" class="scholar-btn-item">
+                            <span>Track Application Status</span> <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <a href="document-details.html" class="widget-btn" style="background: #0D9488;">
+                    Aadhaar NPCI Mapping Guide
+                </a>
+            </div>
+
+
+            <!-- WIDGET 5: AI APPLICATION WRITER -->
+            <div class="widget-card">
+                <div>
+                    <div class="widget-card-header">
+                        <div class="widget-icon" style="background: #E0F2FE; color: #0284C7;">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="widget-title-group">
+                            <h3>AI Student Draft Writer</h3>
+                            <p>Application & Letter Generator</p>
+                        </div>
+                    </div>
+
+                    <select id="aiDraftType" class="form-control-custom">
+                        <option value="leave">Sick / Leave Application</option>
+                        <option value="fee">Fee Submission Extension</option>
+                        <option value="tc">TC / Migration Certificate</option>
+                    </select>
+
+                    <input type="text" id="aiStudentName" class="form-control-custom" placeholder="Your Name & Roll No.">
+                </div>
+
+                <div>
+                    <button class="widget-btn" style="background: #0284C7;" onclick="generateAIDraft()">
+                        <i class="fas fa-magic"></i> Draft Letter
+                    </button>
+                    <div class="output-box-inline" id="aiDraftOutput"></div>
+                </div>
+            </div>
+
+
+            <!-- WIDGET 6: CGPA TO PERCENTAGE CONVERTER -->
+            <div class="widget-card">
+                <div>
+                    <div class="widget-card-header">
+                        <div class="widget-icon" style="background: #F1F5F9; color: #0F172A;">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <div class="widget-title-group">
+                            <h3>CGPA Converter</h3>
+                            <p>Percentage Calculation</p>
+                        </div>
+                    </div>
+
+                    <input type="number" id="cgpaVal" class="form-control-custom" step="0.01" placeholder="Enter CGPA (e.g. 8.4)">
+                    <p style="font-size: 0.72rem; color: #64748B; font-weight: 500; margin-bottom: 8px;">Standard Formula: CGPA x 9.5</p>
+                </div>
+
+                <div>
+                    <button class="widget-btn btn-dark" onclick="calculateCGPA()">
+                        <i class="fas fa-equals"></i> Calculate %
+                    </button>
+                    <div class="output-box-inline" id="cgpaOutput"></div>
+                </div>
+            </div>
+
+        </section>
 
     </main>
 
@@ -474,68 +576,88 @@
             document.getElementById("navDrawer")?.classList.toggle("active");
         });
 
-        function adjustMaxMarks() {
-            const exam = document.getElementById("targetExam").value;
-            const maxInput = document.getElementById("maxMarks");
-            const scoreInput = document.getElementById("obtainedScore");
-
-            if (exam === "cuet" || exam === "du") {
-                maxInput.value = 800;
-                scoreInput.max = 800;
-            } else if (exam === "au") {
-                maxInput.value = 300;
-                scoreInput.max = 300;
-            } else if (exam === "bhu") {
-                maxInput.value = 600;
-                scoreInput.max = 600;
-            }
-        }
-
-        function runComprehensivePrediction() {
-            const score = parseFloat(document.getElementById("obtainedScore").value);
-            const maxMarks = parseFloat(document.getElementById("maxMarks").value);
-            const category = document.getElementById("userCategory").value;
-            const panel = document.getElementById("resultPanel");
-            const badge = document.getElementById("probBadge");
-
-            if (isNaN(score) || score <= 0 || score > maxMarks) {
-                alert("Please enter a valid score within 0 to " + maxMarks);
+        // 1. PREDICTOR LOGIC
+        function calculatePrediction() {
+            const marks = parseInt(document.getElementById("predMarks").value);
+            const resultBox = document.getElementById("predictionResult");
+            if (!marks || marks <= 0) {
+                resultBox.style.display = "block";
+                resultBox.style.background = "#FEE2E2";
+                resultBox.style.color = "#991B1B";
+                resultBox.innerHTML = "Please Enter Valid Expected Marks!";
                 return;
             }
 
-            const pct = ((score / maxMarks) * 100).toFixed(1);
-            let rank = Math.max(1, Math.round((maxMarks - score) * 8.5 + (category === "ur" ? 20 : 5)));
+            let rank = Math.max(1, Math.round((600 - marks) * 11.2 + 30));
+            let status = marks >= 140 ? "High Chance for Main Campus" : "Eligible for Affiliated Colleges";
             
-            document.getElementById("resRank").textContent = `#${rank} - #${rank + 85}`;
-            document.getElementById("resPct").textContent = `${pct}%`;
-
-            if (pct >= 65) {
-                badge.className = "result-badge badge-safe";
-                badge.textContent = "High Probability";
-                document.getElementById("resCampus").textContent = "Main Campus";
-                document.getElementById("resCampus").style.color = "#059669";
-                document.getElementById("resCutoff").textContent = "1st Round";
-            } else if (pct >= 45) {
-                badge.className = "result-badge badge-mod";
-                badge.textContent = "Moderate Chance";
-                document.getElementById("resCampus").textContent = "Affiliated College / Main";
-                document.getElementById("resCampus").style.color = "#D97706";
-                document.getElementById("resCutoff").textContent = "2nd - 3rd Round";
-            } else {
-                badge.className = "result-badge badge-low";
-                badge.textContent = "Low Probability";
-                document.getElementById("resCampus").textContent = "Affiliated Evening";
-                document.getElementById("resCampus").style.color = "#DC2626";
-                document.getElementById("resCutoff").textContent = "Mop-Up Round";
-            }
-
-            panel.style.display = "block";
+            resultBox.style.display = "block";
+            resultBox.style.background = "#EEF2FF";
+            resultBox.style.color = "#3730A3";
+            resultBox.innerHTML = `Est. Rank: <b>#${rank} - #${rank + 100}</b><br><span style="color:#059669;">${status}</span>`;
         }
 
-        function convertCgpaQuick() {
+        // 2. PUSH BELL TOGGLE LOGIC
+        function toggleNotificationBell() {
+            const btn = document.getElementById("pushBellBtn");
+            if (Notification.permission === "granted") {
+                btn.innerHTML = `<i class="fas fa-check-circle"></i> Push Alerts Enabled`;
+                btn.style.background = "#059669";
+            } else if (Notification.permission !== "denied") {
+                Notification.requestPermission().then(permission => {
+                    if (permission === "granted") {
+                        btn.innerHTML = `<i class="fas fa-check-circle"></i> Push Alerts Enabled`;
+                        btn.style.background = "#059669";
+                    }
+                });
+            } else {
+                alert("Push Notifications are currently blocked in your browser settings.");
+            }
+        }
+
+        // 3. CANVAS RESIZER LOGIC
+        function processImageResize(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const preset = document.getElementById("resizePreset").value;
+            const downloadBtn = document.getElementById("downloadResizedBtn");
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement("canvas");
+                    const ctx = canvas.getContext("2d");
+
+                    let width = preset === "photo" ? 350 : 300;
+                    let height = preset === "photo" ? 450 : 120;
+
+                    canvas.width = width;
+                    canvas.height = height;
+                    ctx.drawImage(img, 0, 0, width, height);
+
+                    downloadBtn.href = canvas.toDataURL("image/jpeg", 0.75);
+                    downloadBtn.style.display = "flex";
+                }
+                img.src = e.target.result;
+            }
+            reader.readAsDataURL(file);
+        }
+
+        // 4. AI APPLICATION WRITER DRAFT
+        function generateAIDraft() {
+            const name = document.getElementById("aiStudentName").value || "[Your Name]";
+            const box = document.getElementById("aiDraftOutput");
+            box.style.display = "block";
+            box.innerHTML = `To, The Dean/Head,\nRespected Sir/Madam,\nI am ${name}. Kindly accept my formal request for processing.\nThanking You,\n${name}`;
+        }
+
+        // 5. CGPA TO PERCENTAGE CONVERTER
+        function calculateCGPA() {
             const cgpa = parseFloat(document.getElementById("cgpaVal").value);
-            const box = document.getElementById("cgpaResBox");
-            if (!cgpa || cgpa <= 0) return;
+            const box = document.getElementById("cgpaOutput");
+            if (!cgpa) return;
             box.style.display = "block";
             box.innerHTML = `Percentage: <b>${(cgpa * 9.5).toFixed(2)}%</b>`;
         }
