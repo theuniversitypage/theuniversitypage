@@ -42,32 +42,34 @@
         }
 
         /* =========================================
-           ✨ ULTRA-PRO LIVE RUNNING TICKER BANNER
+           ✨ ULTRA-PREMIUM GLASSMORPHIC LIVE TICKER
         ========================================= */
         .ticker-wrapper {
-            background: #0F172A;
-            color: #FFFFFF;
-            border-radius: 12px;
-            padding: 6px 10px;
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            border-radius: 14px;
+            padding: 7px 12px;
             margin-bottom: 16px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
-            border: 1px solid #1E293B;
+            gap: 12px;
+            box-shadow: 0 8px 20px -4px rgba(15, 23, 42, 0.05);
             overflow: hidden;
             width: 100% !important;
         }
 
         .ticker-badge {
-            background: #EF4444;
-            color: #FFFFFF;
+            background: rgba(239, 68, 68, 0.12);
+            color: #DC2626;
+            border: 1px solid rgba(239, 68, 68, 0.25);
             padding: 4px 10px;
-            border-radius: 8px;
+            border-radius: 20px;
             font-size: 0.72rem;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.4px;
             display: flex;
             align-items: center;
             gap: 6px;
@@ -77,12 +79,13 @@
 
         .ticker-badge i {
             animation: pulse-dot 1.2s infinite;
+            color: #EF4444;
         }
 
         @keyframes pulse-dot {
-            0% { opacity: 1; }
-            50% { opacity: 0.3; }
-            100% { opacity: 1; }
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.85); }
+            100% { opacity: 1; transform: scale(1); }
         }
 
         .ticker-content {
@@ -97,19 +100,19 @@
             white-space: nowrap;
             animation: marquee 22s linear infinite;
             font-size: 0.82rem;
-            font-weight: 600;
-            color: #E2E8F0;
+            font-weight: 700;
+            color: #334155;
         }
 
         .ticker-marquee a {
-            color: #FBBF24;
+            color: #1E1B4B;
             text-decoration: none;
-            margin-right: 30px;
+            margin-right: 32px;
             transition: var(--transition);
         }
 
         .ticker-marquee a:hover {
-            text-decoration: underline;
+            color: #4F46E5;
         }
 
         @keyframes marquee {
@@ -402,7 +405,7 @@
     <!-- === MAIN CONTAINER === -->
     <div class="main-container">
         
-        <!-- 🔥 1. LIVE SCROLLING TICKER BANNER FOR LATEST POSTS -->
+        <!-- 🔥 1. GLASSMORPHIC LIVE TICKER BANNER FOR LATEST POSTS -->
         <div class="ticker-wrapper">
             <div class="ticker-badge">
                 <i class="fas fa-circle"></i> Live Updates
@@ -733,7 +736,6 @@
                     const cat = (item.category || "").toLowerCase();
                     const itemTitle = item.title || item.resultTitle || item.admitTitle || item.cutoffTitle || "Latest Update";
 
-                    // Build Live Ticker Marquee Links
                     tickerHTML += `<a href="scor.html?id=${docId}">${itemTitle}</a>`;
 
                     if ((cat.includes("result") || cat.includes("score")) && resultBox) {
