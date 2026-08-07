@@ -57,7 +57,6 @@
             text-decoration: none;
         }
 
-        /* SECTION HEADING EXACT AS SCREENSHOT */
         .suite-title {
             font-size: 1.25rem;
             font-weight: 800;
@@ -82,9 +81,7 @@
             flex-shrink: 0;
         }
 
-        /* =========================================
-           🔥 WIDGETS GRID MATCHING SCREENSHOT EXACTLY
-        ========================================= */
+        /* WIDGETS GRID */
         .widgets-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
@@ -191,7 +188,6 @@
             transform: translateY(-1px);
         }
 
-        /* SCREENSHOT BADGE & BUTTON COLORS */
         .live-badge {
             background: #ECFDF5;
             color: #059669;
@@ -280,7 +276,6 @@
             line-height: 1.4;
         }
 
-        /* STRICT 1-LINE CLEAN FOOTER */
         footer {
             background: #FFFFFF;
             border-top: 1px solid #E2E8F0;
@@ -498,7 +493,69 @@
             </div>
 
 
-            <!-- WIDGET 5: AI APPLICATION WRITER -->
+            <!-- NEW WIDGET 5: CUET SUBJECT COMBINATION CHECKER -->
+            <div class="widget-card">
+                <div>
+                    <div class="widget-card-header">
+                        <div class="widget-icon" style="background: #F3E8FF; color: #8B5CF6;">
+                            <i class="fas fa-book-reader"></i>
+                        </div>
+                        <div class="widget-title-group">
+                            <h3>Subject Combo Mapping</h3>
+                            <p>CUET Exam Subject Selector</p>
+                        </div>
+                    </div>
+
+                    <select id="comboCourse" class="form-control-custom">
+                        <option value="ba">B.A. Arts & Social Science</option>
+                        <option value="bsc">B.Sc. PCM / PCB Stream</option>
+                        <option value="bcom">B.Com. Commerce</option>
+                        <option value="ballb">BA LLB 5-Year Law</option>
+                    </select>
+
+                    <select id="comboUniv" class="form-control-custom">
+                        <option value="au">Allahabad University (AU)</option>
+                        <option value="bhu">Banaras Hindu Univ (BHU)</option>
+                        <option value="du">Delhi University (DU)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <button class="widget-btn" style="background: #8B5CF6;" onclick="checkSubjectCombo()">
+                        <i class="fas fa-layer-group"></i> Check Required Subjects
+                    </button>
+                    <div class="output-box-inline" id="comboOutput"></div>
+                </div>
+            </div>
+
+
+            <!-- NEW WIDGET 6: AGE & ELIGIBILITY CALCULATOR -->
+            <div class="widget-card">
+                <div>
+                    <div class="widget-card-header">
+                        <div class="widget-icon" style="background: #FFE4E6; color: #E11D48;">
+                            <i class="fas fa-user-clock"></i>
+                        </div>
+                        <div class="widget-title-group">
+                            <h3>Age & Eligibility Tool</h3>
+                            <p>Exam Cutoff Age Calculator</p>
+                        </div>
+                    </div>
+
+                    <input type="date" id="birthDate" class="form-control-custom" title="Date of Birth">
+                    <input type="date" id="cutoffDate" class="form-control-custom" value="2026-08-01" title="Cutoff Date">
+                </div>
+
+                <div>
+                    <button class="widget-btn" style="background: #E11D48;" onclick="calculateAge()">
+                        <i class="fas fa-history"></i> Calculate Exact Age
+                    </button>
+                    <div class="output-box-inline" id="ageOutput"></div>
+                </div>
+            </div>
+
+
+            <!-- WIDGET 7: AI STUDENT DRAFT WRITER -->
             <div class="widget-card">
                 <div>
                     <div class="widget-card-header">
@@ -529,7 +586,7 @@
             </div>
 
 
-            <!-- WIDGET 6: CGPA TO PERCENTAGE CONVERTER -->
+            <!-- WIDGET 8: CGPA TO PERCENTAGE CONVERTER -->
             <div class="widget-card">
                 <div>
                     <div class="widget-card-header">
@@ -645,7 +702,61 @@
             reader.readAsDataURL(file);
         }
 
-        // 4. AI APPLICATION WRITER DRAFT
+        // 4. SUBJECT COMBO CHECKER LOGIC
+        function checkSubjectCombo() {
+            const course = document.getElementById("comboCourse").value;
+            const univ = document.getElementById("comboUniv").value;
+            const box = document.getElementById("comboOutput");
+
+            let text = "";
+            if (univ === "au") {
+                text = "AU Rule: Hindi/English + General Test + Any 2 Domain Subjects.";
+            } else if (univ === "bhu") {
+                text = "BHU Rule: Section I (Language) + Section III (General Test).";
+            } else {
+                text = "DU Rule: 1 Language + Any 3 Domain Subjects as studied in Class 12th.";
+            }
+
+            box.style.display = "block";
+            box.style.background = "#F3E8FF";
+            box.style.color = "#6B21A8";
+            box.innerHTML = `<b>Combo Required:</b> ${text}`;
+        }
+
+        // 5. AGE CALCULATOR LOGIC
+        function calculateAge() {
+            const dobVal = document.getElementById("birthDate").value;
+            const cutVal = document.getElementById("cutoffDate").value;
+            const box = document.getElementById("ageOutput");
+
+            if (!dobVal) {
+                alert("Please select your Date of Birth!");
+                return;
+            }
+
+            const dob = new Date(dobVal);
+            const cutoff = new Date(cutVal);
+
+            let years = cutoff.getFullYear() - dob.getFullYear();
+            let months = cutoff.getMonth() - dob.getMonth();
+            let days = cutoff.getDate() - dob.getDate();
+
+            if (days < 0) {
+                months--;
+                days += 30;
+            }
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+
+            box.style.display = "block";
+            box.style.background = "#FFE4E6";
+            box.style.color = "#9F1239";
+            box.innerHTML = `Age on Cutoff Date: <b>${years} Y, ${months} M, ${days} D</b>`;
+        }
+
+        // 6. AI APPLICATION WRITER DRAFT
         function generateAIDraft() {
             const name = document.getElementById("aiStudentName").value || "[Your Name]";
             const box = document.getElementById("aiDraftOutput");
@@ -653,7 +764,7 @@
             box.innerHTML = `To, The Dean/Head,\nRespected Sir/Madam,\nI am ${name}. Kindly accept my formal request for processing.\nThanking You,\n${name}`;
         }
 
-        // 5. CGPA TO PERCENTAGE CONVERTER
+        // 7. CGPA TO PERCENTAGE CONVERTER
         function calculateCGPA() {
             const cgpa = parseFloat(document.getElementById("cgpaVal").value);
             const box = document.getElementById("cgpaOutput");
