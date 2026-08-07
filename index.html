@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
-        /* Strict Anti-Overflow & Mobile Scale Lock */
         *, *::before, *::after {
             box-sizing: border-box !important;
             max-width: 100%;
@@ -75,10 +74,7 @@
             flex-shrink: 0;
         }
 
-        .ticker-badge i {
-            animation: pulse-dot 1.2s infinite;
-            color: #EF4444;
-        }
+        .ticker-badge i { animation: pulse-dot 1.2s infinite; color: #EF4444; }
 
         @keyframes pulse-dot {
             0% { opacity: 1; transform: scale(1); }
@@ -86,32 +82,10 @@
             100% { opacity: 1; transform: scale(1); }
         }
 
-        .ticker-content {
-            flex: 1;
-            overflow: hidden;
-            white-space: nowrap;
-            position: relative;
-        }
-
-        .ticker-marquee {
-            display: inline-block;
-            white-space: nowrap;
-            animation: marquee 22s linear infinite;
-            font-size: 0.82rem;
-            font-weight: 700;
-            color: #334155;
-        }
-
-        .ticker-marquee a {
-            color: #1E1B4B;
-            text-decoration: none;
-            margin-right: 32px;
-            transition: var(--transition);
-        }
-
-        .ticker-marquee a:hover {
-            color: #4F46E5;
-        }
+        .ticker-content { flex: 1; overflow: hidden; white-space: nowrap; position: relative; }
+        .ticker-marquee { display: inline-block; white-space: nowrap; animation: marquee 22s linear infinite; font-size: 0.82rem; font-weight: 700; color: #334155; }
+        .ticker-marquee a { color: #1E1B4B; text-decoration: none; margin-right: 32px; transition: var(--transition); }
+        .ticker-marquee a:hover { color: #4F46E5; }
 
         @keyframes marquee {
             0% { transform: translateX(100%); }
@@ -122,206 +96,305 @@
             font-size: 1.2rem;
             font-weight: 800;
             color: #0F172A;
-            margin: 20px 0 14px;
+            margin: 24px 0 14px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             letter-spacing: -0.3px;
         }
 
-        .title-left {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .title-left i {
-            color: #4F46E5;
-            background: #EEF2FF;
-            width: 32px;
-            height: 32px;
-            border-radius: 8px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
-            flex-shrink: 0;
-        }
-
-        .see-more-btn {
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: #4F46E5;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            transition: var(--transition);
-        }
-
-        .see-more-btn:hover {
-            color: #3730A3;
-        }
+        .title-left { display: flex; align-items: center; gap: 10px; }
+        .title-left i { color: #4F46E5; background: #EEF2FF; width: 32px; height: 32px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; }
+        .see-more-btn { font-size: 0.8rem; font-weight: 700; color: #4F46E5; text-decoration: none; display: flex; align-items: center; gap: 4px; transition: var(--transition); }
+        .see-more-btn:hover { color: #3730A3; }
 
         /* WIDGETS GRID IN INDEX */
-        .widgets-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 14px;
-            margin-bottom: 24px;
-            width: 100% !important;
-        }
-
-        .widget-card {
-            background: #FFFFFF;
-            border-radius: var(--radius-lg, 18px);
-            border: 1px solid #E2E8F0;
-            padding: 16px 14px;
-            box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: var(--transition);
-            width: 100% !important;
-            min-width: 0;
-            position: relative;
-        }
-
-        .widget-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px -5px rgba(79, 70, 229, 0.12);
-            border-color: #C7D2FE;
-        }
-
-        .widget-card-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 12px;
-        }
-
-        .widget-icon {
-            width: 38px;
-            height: 38px;
-            min-width: 38px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            flex-shrink: 0;
-        }
-
-        .widget-title-group h3 {
-            font-size: 0.95rem;
-            font-weight: 800;
-            color: #0F172A;
-            margin-bottom: 2px;
-            line-height: 1.2;
-        }
-
-        .widget-title-group p {
-            font-size: 0.75rem;
-            color: #64748B;
-            font-weight: 600;
-            margin: 0;
-        }
-
-        .form-control-custom {
-            width: 100% !important;
-            padding: 8px 10px;
-            border-radius: 8px;
-            border: 1px solid #CBD5E1;
-            font-size: 0.8rem;
-            font-weight: 600;
-            background: #F8FAFC;
-            color: #0F172A;
-            outline: none;
-            margin-bottom: 8px;
-        }
-
-        .widget-btn {
-            background: #4F46E5;
-            color: #FFFFFF;
-            border: none;
-            padding: 9px 12px;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 0.8rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            transition: var(--transition);
-            width: 100%;
-            text-decoration: none;
-            box-sizing: border-box;
-            margin-top: 4px;
-        }
-
+        .widgets-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-bottom: 24px; width: 100% !important; }
+        .widget-card { background: #FFFFFF; border-radius: var(--radius-lg, 18px); border: 1px solid #E2E8F0; padding: 16px 14px; box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03); display: flex; flex-direction: column; justify-content: space-between; transition: var(--transition); width: 100% !important; min-width: 0; position: relative; }
+        .widget-card:hover { transform: translateY(-2px); box-shadow: 0 10px 20px -5px rgba(79, 70, 229, 0.12); border-color: #C7D2FE; }
+        .widget-card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+        .widget-icon { width: 38px; height: 38px; min-width: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+        .widget-title-group h3 { font-size: 0.95rem; font-weight: 800; color: #0F172A; margin-bottom: 2px; line-height: 1.2; }
+        .widget-title-group p { font-size: 0.75rem; color: #64748B; font-weight: 600; margin: 0; }
+        .form-control-custom { width: 100% !important; padding: 8px 10px; border-radius: 8px; border: 1px solid #CBD5E1; font-size: 0.8rem; font-weight: 600; background: #F8FAFC; color: #0F172A; outline: none; margin-bottom: 8px; }
+        .widget-btn { background: #4F46E5; color: #FFFFFF; border: none; padding: 9px 12px; border-radius: 20px; font-weight: 700; font-size: 0.8rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; transition: var(--transition); width: 100%; text-decoration: none; box-sizing: border-box; margin-top: 4px; }
         .widget-btn:hover { background: #4338CA; }
 
         /* HORIZONTAL SLIDER FOR CATEGORIES */
-        .slider-section {
-            margin-bottom: 24px;
+        .slider-section { margin-bottom: 24px; width: 100% !important; }
+        .slider-wrapper { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 10px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+        .slider-wrapper::-webkit-scrollbar { display: none; }
+        .slider-card { flex: 0 0 240px; scroll-snap-align: start; background: #FFFFFF; border-radius: 16px; padding: 16px; border: 1px solid #E2E8F0; box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03); text-decoration: none; transition: var(--transition); }
+        .slider-card:hover { border-color: #4F46E5; transform: translateY(-2px); }
+        .slider-card h4 { font-size: 0.9rem; font-weight: 800; color: #0F172A; margin-bottom: 4px; }
+        .slider-card p { font-size: 0.75rem; color: #64748B; font-weight: 500; margin: 0; }
+        .output-box-inline { margin-top: 8px; padding: 8px; background: #EEF2FF; border-radius: 6px; font-size: 0.75rem; color: #3730A3; font-weight: 700; display: none; }
+
+        /* =========================================
+           🔥 NEW SECTION 1: VIDEO CARDS GRID
+        ========================================= */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+            margin-bottom: 30px;
             width: 100% !important;
         }
 
-        .slider-wrapper {
+        .video-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 18px;
+            border: 1px solid rgba(226, 232, 240, 0.9);
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04);
             display: flex;
-            gap: 12px;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            padding-bottom: 10px;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-        }
-
-        .slider-wrapper::-webkit-scrollbar {
-            display: none;
-        }
-
-        .slider-card {
-            flex: 0 0 240px;
-            scroll-snap-align: start;
-            background: #FFFFFF;
-            border-radius: 16px;
-            padding: 16px;
-            border: 1px solid #E2E8F0;
-            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
-            text-decoration: none;
+            flex-direction: column;
             transition: var(--transition);
         }
 
-        .slider-card:hover {
-            border-color: #4F46E5;
-            transform: translateY(-2px);
+        .video-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(79, 70, 229, 0.12);
+            border-color: #C7D2FE;
         }
 
-        .slider-card h4 {
-            font-size: 0.9rem;
+        .video-thumb {
+            position: relative;
+            width: 100%;
+            height: 155px;
+            background: #1E293B;
+            overflow: hidden;
+        }
+
+        .video-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .play-overlay-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 48px;
+            height: 48px;
+            background: rgba(225, 29, 72, 0.9);
+            color: #FFFFFF;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 0 20px rgba(225, 29, 72, 0.5);
+            transition: var(--transition);
+        }
+
+        .video-card:hover .play-overlay-btn {
+            transform: translate(-50%, -50%) scale(1.12);
+            background: #E11D48;
+        }
+
+        .video-duration {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background: rgba(15, 23, 42, 0.85);
+            color: #FFFFFF;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .video-body {
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            justify-content: space-between;
+        }
+
+        .video-body h4 {
+            font-size: 0.88rem;
             font-weight: 800;
             color: #0F172A;
-            margin-bottom: 4px;
+            line-height: 1.35;
+            margin-bottom: 6px;
         }
 
-        .slider-card p {
-            font-size: 0.75rem;
+        .video-body p {
+            font-size: 0.76rem;
             color: #64748B;
+            line-height: 1.4;
             font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .video-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.74rem;
+            color: #64748B;
+            font-weight: 600;
+            border-top: 1px solid #F1F5F9;
+            padding-top: 10px;
+        }
+
+        .video-footer a {
+            color: #E11D48;
+            text-decoration: none;
+            font-weight: 800;
+        }
+
+        /* =========================================
+           🔥 NEW SECTION 2: TESTIMONIALS SLIDER
+        ========================================= */
+        .testimonial-slider-wrapper {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 14px;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .testimonial-slider-wrapper::-webkit-scrollbar { display: none; }
+
+        .testimonial-card {
+            flex: 0 0 310px;
+            scroll-snap-align: start;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            border: 1px solid rgba(226, 232, 240, 0.9);
+            padding: 20px;
+            box-shadow: 0 6px 20px rgba(15, 23, 42, 0.03);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            justify-content: space-between;
+        }
+
+        .rating-stars {
+            color: #F59E0B;
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+            display: flex;
+            gap: 4px;
+        }
+
+        .testimonial-text {
+            font-size: 0.8rem;
+            color: #334155;
+            font-weight: 500;
+            line-height: 1.55;
+            font-style: italic;
+            margin-bottom: 16px;
+        }
+
+        .student-avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #4F46E5;
+            margin-bottom: 8px;
+        }
+
+        .student-name {
+            font-size: 0.88rem;
+            font-weight: 800;
+            color: #0F172A;
+            letter-spacing: 0.3px;
+        }
+
+        /* =========================================
+           🔥 NEW SECTION 3: FAQ ACCORDION GRID
+        ========================================= */
+        .faq-title-center {
+            text-align: center;
+            margin: 32px 0 20px;
+        }
+
+        .faq-title-center h2 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #0F172A;
+        }
+
+        .faq-title-center h2 span { color: #0284C7; }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 14px;
+            margin-bottom: 30px;
+            width: 100% !important;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 14px;
+            border: 1px solid rgba(226, 232, 240, 0.9);
+            padding: 14px 16px;
+            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.02);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .faq-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .faq-header h4 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #0F172A;
+            line-height: 1.35;
             margin: 0;
         }
 
-        .output-box-inline {
-            margin-top: 8px;
-            padding: 8px;
-            background: #EEF2FF;
-            border-radius: 6px;
+        .faq-icon-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #F1F5F9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 0.75rem;
-            color: #3730A3;
-            font-weight: 700;
+            color: #64748B;
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+
+        .faq-body {
+            font-size: 0.78rem;
+            color: #64748B;
+            font-weight: 500;
+            line-height: 1.5;
+            margin-top: 10px;
+            padding-top: 8px;
+            border-top: 1px solid #F1F5F9;
             display: none;
+        }
+
+        .faq-item.active .faq-icon-btn {
+            background: #4F46E5;
+            color: #FFFFFF;
+            transform: rotate(180deg);
         }
 
         /* FOOTER */
@@ -334,30 +407,15 @@
             width: 100% !important;
         }
 
-        .footer-links {
-            display: flex !important;
-            justify-content: center !important;
-            align-items: center !important;
-            gap: 12px !important;
-            flex-wrap: nowrap !important;
-            margin-bottom: 8px !important;
-            width: 100% !important;
-        }
-
-        .footer-links a {
-            font-size: 0.78rem;
-            font-weight: 600;
-            color: #334155;
-            white-space: nowrap !important;
-            text-decoration: none;
-        }
-
+        .footer-links { display: flex !important; justify-content: center !important; align-items: center !important; gap: 12px !important; flex-wrap: nowrap !important; margin-bottom: 8px !important; width: 100% !important; }
+        .footer-links a { font-size: 0.78rem; font-weight: 600; color: #334155; white-space: nowrap !important; text-decoration: none; }
         .copyright { color: #64748B; font-size: 0.72rem; }
 
         @media (max-width: 768px) {
             .main-container { padding: 8px 8px 24px; }
             .widgets-grid { grid-template-columns: 1fr !important; gap: 10px; }
-            .slider-card { flex: 0 0 200px; }
+            .testimonial-card { flex: 0 0 260px; }
+            .faq-grid { grid-template-columns: 1fr !important; }
             footer { padding: 16px 6px 12px; }
             .footer-links { gap: 8px !important; }
             .footer-links a { font-size: 0.72rem !important; }
@@ -395,9 +453,7 @@
                 <li><a href="cutoff.html">Cutoff</a></li>
                 <li><a href="admission.html">Admission</a></li>
                 <li><a href="syllabus.html">Syllabus</a></li>
-                <li><a href="predictor.html">Predictor</a></li>
-                <li><a href="about-ajmal.html">Ajmal Mansoori</a></li>
-                <li><a href="answer-key.html">Answer Key</a></li>
+                <li><a href="answerkey.html">Answer Key</a></li>
             </ul>
         </div>
     </header>
@@ -405,7 +461,7 @@
     <!-- === MAIN CONTAINER === -->
     <div class="main-container">
         
-        <!-- 🔥 GLASSMORPHIC LIVE TICKER BANNER FOR LATEST POSTS -->
+        <!-- GLASSMORPHIC LIVE TICKER BANNER -->
         <div class="ticker-wrapper">
             <div class="ticker-badge">
                 <i class="fas fa-circle"></i> Live Updates
@@ -458,9 +514,7 @@
         </section>
 
 
-        <!-- =========================================
-             🔥 SECTION 3: INTERACTIVE UTILITY SUITE + SEE MORE LINK
-        ========================================= -->
+        <!-- INTERACTIVE UTILITY SUITE -->
         <div class="section-title-main">
             <div class="title-left">
                 <i class="fas fa-sliders"></i>
@@ -470,8 +524,6 @@
         </div>
 
         <section class="widgets-grid">
-
-            <!-- WIDGET 1: COLLEGE PREDICTOR -->
             <div class="widget-card">
                 <div>
                     <div class="widget-card-header">
@@ -483,7 +535,6 @@
                             <p>Marks vs Rank Calculator</p>
                         </div>
                     </div>
-
                     <select id="predExam" class="form-control-custom">
                         <option value="cuet">CUET UG Entrance 2026</option>
                         <option value="au">Allahabad University Entrance</option>
@@ -500,7 +551,6 @@
                 </div>
             </div>
 
-            <!-- WIDGET 2: INSTANT ALERTS BELL -->
             <div class="widget-card">
                 <div>
                     <div class="widget-card-header">
@@ -523,13 +573,70 @@
                     </a>
                 </div>
             </div>
-
         </section>
 
 
-        <!-- =========================================
-             🔥 SECTION 4: FEATURED CATEGORY SLIDER (EXACT PREDICTOR PAGE SLIDER STRUCTURE)
-        ========================================= -->
+        <!-- 🔥 NEW SECTION 1: VIDEO GUIDES GRID -->
+        <div class="section-title-main">
+            <div class="title-left">
+                <i class="fab fa-youtube" style="color: #E11D48;"></i>
+                <span>Video Guidance & Counseling</span>
+            </div>
+            <a href="https://youtube.com/@ajmalalimansoori" target="_blank" class="see-more-btn">Watch All <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <section class="video-grid">
+            <div class="video-card">
+                <div class="video-thumb">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=500" alt="Video Thumbnail">
+                    <div class="play-overlay-btn"><i class="fas fa-play"></i></div>
+                    <span class="video-duration">06:41</span>
+                </div>
+                <div class="video-body">
+                    <h4>CUET UG Complete Admission & Counseling Strategy 2026</h4>
+                    <p>Learn step-by-step cutoff analysis, main campus seat distribution, and document requirements.</p>
+                    <div class="video-footer">
+                        <span><i class="fas fa-eye"></i> 20.0K Views</span>
+                        <a href="https://youtube.com/@ajmalalimansoori" target="_blank">Watch <i class="fas fa-play"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-thumb">
+                    <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=500" alt="Video Thumbnail">
+                    <div class="play-overlay-btn"><i class="fas fa-play"></i></div>
+                    <span class="video-duration">08:15</span>
+                </div>
+                <div class="video-body">
+                    <h4>Allahabad University Cutoff & Seat Matrix Full Guide</h4>
+                    <p>Detailed guide on BA, BSc, BCom main campus cutoffs and subject combinations.</p>
+                    <div class="video-footer">
+                        <span><i class="fas fa-eye"></i> 35.2K Views</span>
+                        <a href="https://youtube.com/@ajmalalimansoori" target="_blank">Watch <i class="fas fa-play"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-thumb">
+                    <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=500" alt="Video Thumbnail">
+                    <div class="play-overlay-btn"><i class="fas fa-play"></i></div>
+                    <span class="video-duration">09:19</span>
+                </div>
+                <div class="video-body">
+                    <h4>Top 5 Central Universities Counseling & Admission Rules</h4>
+                    <p>Important dates, document verification checklist, and fee refund policies explained.</p>
+                    <div class="video-footer">
+                        <span><i class="fas fa-eye"></i> 100.0K Views</span>
+                        <a href="https://youtube.com/@ajmalalimansoori" target="_blank">Watch <i class="fas fa-play"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- CATEGORIES SLIDER -->
         <div class="section-title-main">
             <div class="title-left">
                 <i class="fas fa-layer-group"></i>
@@ -555,111 +662,133 @@
                     <h4><i class="fas fa-university" style="color: #8B5CF6;"></i> Admissions</h4>
                     <p>University Counseling Guides</p>
                 </a>
-                <a href="answerkey.html" class="slider-card">
-                    <h4><i class="fas fa-key" style="color: #D97706;"></i> Answer Keys</h4>
-                    <p>Official Question Papers & Sheets</p>
-                </a>
-                <a href="document.html" class="slider-card">
-                    <h4><i class="fas fa-folder-open" style="color: #0D9488;"></i> Documents</h4>
-                    <p>Formats, Certificates & Affidavits</p>
-                </a>
             </div>
         </section>
 
 
         <!-- CATEGORIES GRID -->
         <section class="list-grid">
-            <!-- Result Box -->
             <div class="samarth-box emerald">
                 <h2><i class="fas fa-trophy"></i> Result</h2>
                 <ul class="samarth-list" id="resultList">
                     <li><a href="scor.html"><i class="fas fa-chevron-right"></i> <span>CUET UG Final Scorecard 2026 Released</span></a></li>
                     <li><a href="scor.html"><i class="fas fa-chevron-right"></i> <span>Allahabad University Entrance Result Declared</span></a></li>
-                    <li><a href="scor.html"><i class="fas fa-chevron-right"></i> <span>UP Board Class 12th Examination Results</span></a></li>
-                    <li><a href="scor.html"><i class="fas fa-chevron-right"></i> <span>SSC CHSL Tier 1 Result and Cutoff</span></a></li>
-                    <li><a href="scor.html"><i class="fas fa-chevron-right"></i> <span>UP Police Constable Final Merit List</span></a></li>
                 </ul>
                 <a href="result.html" class="show-more-link">Show more <i class="fas fa-arrow-right"></i></a>
             </div>
 
-            <!-- Latest Job Box -->
             <div class="samarth-box amber">
                 <h2><i class="fas fa-briefcase"></i> Latest Job</h2>
                 <ul class="samarth-list">
                     <li><a href="job-details.html"><i class="fas fa-chevron-right"></i> <span>SSC CGL Online Application Form 2026</span></a></li>
                     <li><a href="job-details.html"><i class="fas fa-chevron-right"></i> <span>RRB NTPC Recruitment Online Apply Link</span></a></li>
-                    <li><a href="job-details.html"><i class="fas fa-chevron-right"></i> <span>UPPSC RO/ARO Final Notification PDF</span></a></li>
-                    <li><a href="job-details.html"><i class="fas fa-chevron-right"></i> <span>IBPS PO Bank Probationary Officer Jobs</span></a></li>
-                    <li><a href="job-details.html"><i class="fas fa-chevron-right"></i> <span>Indian Navy Agniveer SSR Application Form</span></a></li>
                 </ul>
                 <a href="latest-jobs.html" class="show-more-link">Show more <i class="fas fa-arrow-right"></i></a>
             </div>
 
-            <!-- Admit Card Box -->
             <div class="samarth-box rose">
                 <h2><i class="fas fa-id-card"></i> Admit Card</h2>
                 <ul class="samarth-list" id="admitCardList">
                     <li><a href="admitcard-details.html"><i class="fas fa-chevron-right"></i> <span>CUET UG Entrance Exam Hall Ticket</span></a></li>
                     <li><a href="admitcard-details.html"><i class="fas fa-chevron-right"></i> <span>Allahabad University PGAT Admit Card</span></a></li>
-                    <li><a href="admitcard-details.html"><i class="fas fa-chevron-right"></i> <span>SSC CGL Tier 1 Hall Ticket Download</span></a></li>
-                    <li><a href="admitcard-details.html"><i class="fas fa-chevron-right"></i> <span>UP Police Constable Exam City & Admit Card</span></a></li>
-                    <li><a href="admitcard-details.html"><i class="fas fa-chevron-right"></i> <span>CTET Exam Admit Card Direct Link</span></a></li>
                 </ul>
                 <a href="admitcard.html" class="show-more-link">Show more <i class="fas fa-arrow-right"></i></a>
             </div>
+        </section>
 
-            <!-- Cutoff Box -->
-            <div class="samarth-box">
-                <h2><i class="fas fa-chart-line"></i> Cutoff</h2>
-                <ul class="samarth-list" id="cutoffList">
-                    <li><a href="cutoff-details.html"><i class="fas fa-chevron-right"></i> <span>CUET UG University Wise Cutoff Marks</span></a></li>
-                    <li><a href="cutoff-details.html"><i class="fas fa-chevron-right"></i> <span>Allahabad Univ Main Campus Category Cutoff</span></a></li>
-                    <li><a href="cutoff-details.html"><i class="fas fa-chevron-right"></i> <span>SSC CHSL Category Wise Qualifying Marks</span></a></li>
-                    <li><a href="cutoff-details.html"><i class="fas fa-chevron-right"></i> <span>BHU Course Wise Round 1 Cutoff Rank</span></a></li>
-                    <li><a href="cutoff-details.html"><i class="fas fa-chevron-right"></i> <span>NEET UG Expected Qualifying Cutoff</span></a></li>
-                </ul>
-                <a href="cutoff.html" class="show-more-link">Show more <i class="fas fa-arrow-right"></i></a>
+
+        <!-- 🔥 NEW SECTION 2: STUDENT TESTIMONIALS SLIDER -->
+        <div class="section-title-main">
+            <div class="title-left">
+                <i class="fas fa-comment-dots" style="color: #10B981;"></i>
+                <span>Student Success Stories</span>
+            </div>
+        </div>
+
+        <section class="testimonial-slider-wrapper">
+            <div class="testimonial-card">
+                <div class="rating-stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">"I can't thank the Learnify team enough for helping me track my CUET score and Allahabad University cutoffs accurately!"</p>
+                <div>
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100" alt="Student" class="student-avatar">
+                    <div class="student-name">KIRAN BALOCH</div>
+                </div>
             </div>
 
-            <!-- Answer Key Box -->
-            <div class="samarth-box">
-                <h2><i class="fas fa-key"></i> Answer Key</h2>
-                <ul class="samarth-list">
-                    <li><a href="answerkey-details.html"><i class="fas fa-chevron-right"></i> <span>CUET UG Official Provisional Answer Key</span></a></li>
-                    <li><a href="answerkey-details.html"><i class="fas fa-chevron-right"></i> <span>Allahabad Univ PGAT Final Answer Key PDF</span></a></li>
-                    <li><a href="answerkey-details.html"><i class="fas fa-chevron-right"></i> <span>CTET 2026 Final Answer Key Paper I & II</span></a></li>
-                    <li><a href="answerkey-details.html"><i class="fas fa-chevron-right"></i> <span>SSC GD Constable Final Answer Key Link</span></a></li>
-                    <li><a href="answerkey-details.html"><i class="fas fa-chevron-right"></i> <span>UP B.Ed JEE Entrance Exam Answer Key</span></a></li>
-                </ul>
-                <a href="answerkey.html" class="show-more-link">Show more <i class="fas fa-arrow-right"></i></a>
+            <div class="testimonial-card">
+                <div class="rating-stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">"The University Page made admission counseling so smooth. I got exact cutoff updates and secured my seat in AU Main Campus!"</p>
+                <div>
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100" alt="Student" class="student-avatar">
+                    <div class="student-name">FAHAD ALI</div>
+                </div>
             </div>
 
-            <!-- Admission Box -->
-            <div class="samarth-box">
-                <h2><i class="fas fa-university"></i> Admission</h2>
-                <ul class="samarth-list">
-                    <li><a href="admission-details.html"><i class="fas fa-chevron-right"></i> <span>AU UG/PG Counseling Registration Process</span></a></li>
-                    <li><a href="admission-details.html"><i class="fas fa-chevron-right"></i> <span>Delhi University CSAS Portal Registration</span></a></li>
-                    <li><a href="admission-details.html"><i class="fas fa-chevron-right"></i> <span>BHU UG Admission Online Form Filling</span></a></li>
-                    <li><a href="admission-details.html"><i class="fas fa-chevron-right"></i> <span>UP DElEd / BTC Registration & Choice Filling</span></a></li>
-                    <li><a href="admission-details.html"><i class="fas fa-chevron-right"></i> <span>ITI UP Online Form Apply Date Extended</span></a></li>
-                </ul>
-                <a href="admission.html" class="show-more-link">Show more <i class="fas fa-arrow-right"></i></a>
-            </div>
-
-            <!-- Document Box -->
-            <div class="samarth-box">
-                <h2><i class="fas fa-file-alt"></i> Document</h2>
-                <ul class="samarth-list">
-                    <li><a href="document-details.html"><i class="fas fa-chevron-right"></i> <span>UP Scholarship Online Form 2026 Guidelines</span></a></li>
-                    <li><a href="document-details.html"><i class="fas fa-chevron-right"></i> <span>PAN Card Apply & Download E-PAN Online</span></a></li>
-                    <li><a href="document-details.html"><i class="fas fa-chevron-right"></i> <span>Aadhar Card Mobile Link & Update Status</span></a></li>
-                    <li><a href="document-details.html"><i class="fas fa-chevron-right"></i> <span>EWS Certificate Registration Requirements</span></a></li>
-                    <li><a href="document-details.html"><i class="fas fa-chevron-right"></i> <span>Voter ID Card Apply Online New Process</span></a></li>
-                </ul>
-                <a href="document.html" class="show-more-link">Show more <i class="fas fa-arrow-right"></i></a>
+            <div class="testimonial-card">
+                <div class="rating-stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">"The College Predictor and Photo Resizer tools are lifesavers! Saved me hours during my online form filling."</p>
+                <div>
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100" alt="Student" class="student-avatar">
+                    <div class="student-name">AYESHA TARIQ</div>
+                </div>
             </div>
         </section>
+
+
+        <!-- 🔥 NEW SECTION 3: FAQ ACCORDION -->
+        <div class="faq-title-center">
+            <h2>Frequently Asked <span>Questions</span></h2>
+            <p style="font-size: 0.8rem; color: #64748B; font-weight: 500; margin-top: 4px;">Find quick answers about university admissions, results, and student tools</p>
+        </div>
+
+        <section class="faq-grid">
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-header">
+                    <h4>What services does The University Page provide?</h4>
+                    <div class="faq-icon-btn"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-body">
+                    We offer real-time updates on University Results, Cutoff releases, Admit Cards, Application Forms, and interactive tools like College Predictor & Image Resizer.
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-header">
+                    <h4>How accurate is the College & Rank Predictor?</h4>
+                    <div class="faq-icon-btn"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-body">
+                    Our predictor uses official historical cutoff data and score algorithms to provide highly estimated rank ranges for CUET, AU, and BHU.
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-header">
+                    <h4>How do I join the official WhatsApp & Telegram groups?</h4>
+                    <div class="faq-icon-btn"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-body">
+                    You can click the 'Instant Alerts Bell' widget on the homepage or visit the 'CUET Warriors 2026' group link to get instant notification alerts on your phone.
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-header">
+                    <h4>How can I resize my passport photo & signature for form filling?</h4>
+                    <div class="faq-icon-btn"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-body">
+                    Go to the 'Interactive Student Utility Suite' or Predictor page, upload your image in the Resizer tool, and click download to get standard 20KB-50KB images.
+                </div>
+            </div>
+        </section>
+
     </div>
 
     <!-- === FOOTER === -->
@@ -693,81 +822,21 @@
             resultBox.style.color = "#3730A3";
             resultBox.innerHTML = `Est. Rank: <b>#${rank}</b>`;
         }
-    </script>
 
-    <!-- REALTIME FIREBASE SCRIPT FOR INDEX -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        // ACCORDION TOGGLE FUNCTION
+        function toggleFaq(element) {
+            const body = element.querySelector('.faq-body');
+            const isActive = element.classList.contains('active');
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyD837pmW5N21lMgeVlpgWPx0FaMisSnxwU",
-            authDomain: "theuniversitypage-cc4a7.firebaseapp.com",
-            projectId: "theuniversitypage-cc4a7",
-            storageBucket: "theuniversitypage-cc4a7.firebasestorage.app",
-            messagingSenderId: "31910615607",
-            appId: "1:31910615607:web:bee5bd81c8118a16d1bdb2",
-            measurementId: "G-6E55FCSXDP"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        document.getElementById("sidebarToggle")?.addEventListener("click", () => {
-            document.getElementById("navDrawer")?.classList.toggle("active");
-        });
-
-        function createListItemHTML(url, title) {
-            const li = document.createElement("li");
-            li.innerHTML = `
-                <a href="${url}">
-                    <i class="fas fa-chevron-right"></i>
-                    <span>${title}</span>
-                </a>
-            `;
-            return li;
-        }
-
-        try {
-            const q = query(collection(db, "updates"), orderBy("createdAt", "desc"));
-            onSnapshot(q, (snapshot) => {
-                const resultBox = document.getElementById("resultList");
-                const admitBox = document.getElementById("admitCardList");
-                const cutoffBox = document.getElementById("cutoffList");
-                const tickerMarquee = document.getElementById("liveTickerMarquee");
-
-                let tickerHTML = "";
-
-                snapshot.forEach((docSnap) => {
-                    const item = docSnap.data();
-                    const docId = docSnap.id;
-                    const cat = (item.category || "").toLowerCase();
-                    const itemTitle = item.title || item.resultTitle || item.admitTitle || item.cutoffTitle || "Latest Update";
-
-                    tickerHTML += `<a href="scor.html?id=${docId}">${itemTitle}</a>`;
-
-                    if ((cat.includes("result") || cat.includes("score")) && resultBox) {
-                        const newLi = createListItemHTML(`scor.html?id=${docId}`, itemTitle);
-                        resultBox.insertBefore(newLi, resultBox.firstChild);
-                    }
-
-                    if ((cat.includes("admit") || cat.includes("card")) && admitBox) {
-                        const newLi = createListItemHTML(`admitcard-details.html?id=${docId}`, itemTitle);
-                        admitBox.insertBefore(newLi, admitBox.firstChild);
-                    }
-
-                    if ((cat.includes("cutoff")) && cutoffBox) {
-                        const newLi = createListItemHTML(`cutoff-details.html?id=${docId}`, itemTitle);
-                        cutoffBox.insertBefore(newLi, cutoffBox.firstChild);
-                    }
-                });
-
-                if (tickerHTML && tickerMarquee) {
-                    tickerMarquee.innerHTML = tickerHTML;
-                }
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+                item.querySelector('.faq-body').style.display = 'none';
             });
-        } catch (e) {
-            console.log(e);
+
+            if (!isActive) {
+                element.classList.add('active');
+                body.style.display = 'block';
+            }
         }
     </script>
 </body>
