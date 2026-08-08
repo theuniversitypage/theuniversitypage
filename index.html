@@ -193,7 +193,7 @@
         .see-more-btn { font-size: 0.82rem; font-weight: 800; color: #4F46E5; text-decoration: none; display: flex; align-items: center; gap: 4px; transition: var(--transition); }
         .see-more-btn:hover { color: #3730A3; transform: translateX(3px); }
 
-        /* GLASSMORPHIC LIVE 1-LINE UPDATES */
+        /* 🔥 LATEST UPDATE SECTION (NO BADGES, ONLY TEXT & DATE) 🔥 */
         .updates-wrapper {
             display: flex;
             flex-direction: column;
@@ -212,7 +212,7 @@
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(226, 232, 240, 0.9);
             border-radius: 16px;
-            padding: 12px 16px;
+            padding: 12px 18px;
             box-shadow: 0 4px 18px rgba(15, 23, 42, 0.03);
             display: flex;
             align-items: center;
@@ -239,11 +239,9 @@
         }
 
         .card-left { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
-        .badge-latest { background: #FEF2F2; color: #DC2626; border: 1px solid #FCA5A5; font-size: 0.68rem; font-weight: 800; padding: 3px 8px; border-radius: 20px; white-space: nowrap; flex-shrink: 0; display: flex; align-items: center; gap: 4px; }
-        .update-tag { background: #EEF2FF; color: #4F46E5; font-size: 0.76rem; font-weight: 800; padding: 3px 10px; border-radius: 20px; white-space: nowrap; flex-shrink: 0; border: 1px solid #C7D2FE; }
-        .one-line-text { font-size: 0.86rem; font-weight: 700; color: #1E293B; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin: 0; }
+        .one-line-text { font-size: 0.88rem; font-weight: 700; color: #1E293B; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin: 0; }
         .card-right-group { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-        .update-date { font-size: 0.74rem; font-weight: 700; color: #64748B; background: #F8FAFC; padding: 4px 8px; border-radius: 8px; border: 1px solid #E2E8F0; display: flex; align-items: center; gap: 5px; white-space: nowrap; }
+        .update-date { font-size: 0.74rem; font-weight: 700; color: #64748B; background: #F8FAFC; padding: 4px 10px; border-radius: 8px; border: 1px solid #E2E8F0; display: flex; align-items: center; gap: 5px; white-space: nowrap; }
         .card-arrow { width: 30px; height: 30px; border-radius: 50%; background: #F8FAFC; border: 1px solid #E2E8F0; display: flex; align-items: center; justify-content: center; color: #4F46E5; font-size: 0.78rem; transition: all 0.2s ease; }
         .glass-update-card:hover .card-arrow { background: #4F46E5; color: #FFFFFF; border-color: #4F46E5; transform: translateX(3px); }
 
@@ -255,8 +253,8 @@
             .update-date { font-size: 0.7rem; padding: 2px 6px; }
         }
 
-        /* WIDGETS GRID */
-        .widgets-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-bottom: 24px; width: 100% !important; }
+        /* 🔥 FEATURE SECTION (WIDGETS GRID) 🔥 */
+        .widgets-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-bottom: 28px; width: 100% !important; }
         .widget-card { background: #FFFFFF; border-radius: var(--radius-lg, 18px); border: 1px solid #E2E8F0; padding: 16px 14px; box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03); display: flex; flex-direction: column; justify-content: space-between; transition: var(--transition); width: 100% !important; min-width: 0; position: relative; }
         .widget-card:hover { transform: translateY(-2px); box-shadow: 0 10px 20px -5px rgba(79, 70, 229, 0.12); border-color: #C7D2FE; }
         .widget-card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
@@ -267,7 +265,24 @@
         .widget-btn { background: #4F46E5; color: #FFFFFF; border: none; padding: 9px 12px; border-radius: 20px; font-weight: 700; font-size: 0.8rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; transition: var(--transition); width: 100%; text-decoration: none; box-sizing: border-box; margin-top: 4px; }
         .widget-btn:hover { background: #4338CA; }
 
-        .slider-section { margin-bottom: 24px; width: 100% !important; }
+        /* 🔥 LATEST VIDEOS SECTION WITH HIGH-RES THUMBNAILS 🔥 */
+        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin-bottom: 30px; width: 100% !important; }
+        .video-card { background: #FFFFFF; border-radius: 18px; border: 1px solid #E2E8F0; overflow: hidden; box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04); display: flex; flex-direction: column; transition: var(--transition); }
+        .video-card:hover { transform: translateY(-4px); box-shadow: 0 14px 28px rgba(79, 70, 229, 0.12); border-color: #C7D2FE; }
+        .video-thumb { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #0F172A; overflow: hidden; }
+        .video-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+        .video-card:hover .video-thumb img { transform: scale(1.05); }
+        .play-overlay-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 50px; height: 50px; background: rgba(225, 29, 72, 0.92); color: #FFFFFF; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; box-shadow: 0 0 20px rgba(225, 29, 72, 0.5); transition: var(--transition); }
+        .video-card:hover .play-overlay-btn { transform: translate(-50%, -50%) scale(1.12); background: #E11D48; }
+        .video-duration { position: absolute; bottom: 10px; right: 10px; background: rgba(15, 23, 42, 0.85); color: #FFFFFF; font-size: 0.72rem; font-weight: 800; padding: 3px 8px; border-radius: 6px; }
+        .video-body { padding: 16px; display: flex; flex-direction: column; flex: 1; justify-content: space-between; }
+        .video-body h4 { font-size: 0.92rem; font-weight: 800; color: #0F172A; line-height: 1.4; margin-bottom: 6px; }
+        .video-body p { font-size: 0.78rem; color: #64748B; line-height: 1.45; font-weight: 500; margin-bottom: 12px; }
+        .video-footer { display: flex; align-items: center; justify-content: space-between; font-size: 0.76rem; color: #64748B; font-weight: 600; border-top: 1px solid #F1F5F9; padding-top: 10px; }
+        .video-footer a { color: #E11D48; text-decoration: none; font-weight: 800; }
+
+        /* 🔥 QUICK LINK SLIDER 🔥 */
+        .slider-section { margin-bottom: 28px; width: 100% !important; }
         .slider-wrapper { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 10px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
         .slider-wrapper::-webkit-scrollbar { display: none; }
         .slider-card { flex: 0 0 220px; scroll-snap-align: start; background: #FFFFFF; border-radius: 16px; padding: 14px; border: 1px solid #E2E8F0; box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03); text-decoration: none; transition: var(--transition); }
@@ -276,41 +291,16 @@
         .slider-card p { font-size: 0.74rem; color: #64748B; font-weight: 500; margin: 0; }
         .output-box-inline { margin-top: 8px; padding: 8px; background: #EEF2FF; border-radius: 6px; font-size: 0.75rem; color: #3730A3; font-weight: 700; display: none; }
 
-        /* VIDEO GUIDANCE GRID */
-        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-bottom: 30px; width: 100% !important; }
-        .video-card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-radius: 18px; border: 1px solid rgba(226, 232, 240, 0.9); overflow: hidden; box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04); display: flex; flex-direction: column; transition: var(--transition); }
-        .video-card:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(79, 70, 229, 0.12); border-color: #C7D2FE; }
-        .video-thumb { position: relative; width: 100%; height: 155px; background: #0F172A; overflow: hidden; }
-        .video-thumb img { width: 100%; height: 100%; object-fit: cover; }
-        .play-overlay-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 48px; height: 48px; background: rgba(225, 29, 72, 0.9); color: #FFFFFF; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; box-shadow: 0 0 20px rgba(225, 29, 72, 0.5); transition: var(--transition); }
-        .video-card:hover .play-overlay-btn { transform: translate(-50%, -50%) scale(1.12); background: #E11D48; }
-        .video-duration { position: absolute; bottom: 8px; right: 8px; background: rgba(15, 23, 42, 0.85); color: #FFFFFF; font-size: 0.7rem; font-weight: 700; padding: 2px 6px; border-radius: 4px; }
-        .video-body { padding: 14px; display: flex; flex-direction: column; flex: 1; justify-content: space-between; }
-        .video-body h4 { font-size: 0.88rem; font-weight: 800; color: #0F172A; line-height: 1.35; margin-bottom: 6px; }
-        .video-body p { font-size: 0.76rem; color: #64748B; line-height: 1.4; font-weight: 500; margin-bottom: 12px; }
-        .video-footer { display: flex; align-items: center; justify-content: space-between; font-size: 0.74rem; color: #64748B; font-weight: 600; border-top: 1px solid #F1F5F9; padding-top: 10px; }
-        .video-footer a { color: #E11D48; text-decoration: none; font-weight: 800; }
-
-        /* STUDENT SUCCESS STORIES */
-        .testimonial-slider-wrapper { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 14px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
-        .testimonial-slider-wrapper::-webkit-scrollbar { display: none; }
-        .testimonial-card { flex: 0 0 310px; scroll-snap-align: start; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-radius: 20px; border: 1px solid rgba(226, 232, 240, 0.9); padding: 20px; box-shadow: 0 6px 20px rgba(15, 23, 42, 0.03); display: flex; flex-direction: column; align-items: center; text-align: center; justify-content: space-between; }
-        .rating-stars { color: #F59E0B; font-size: 0.85rem; margin-bottom: 12px; display: flex; gap: 4px; }
-        .testimonial-text { font-size: 0.8rem; color: #334155; font-weight: 500; line-height: 1.55; font-style: italic; margin-bottom: 16px; }
-        .student-avatar { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; border: 2px solid #4F46E5; margin-bottom: 8px; }
-        .student-name { font-size: 0.88rem; font-weight: 800; color: #0F172A; letter-spacing: 0.3px; }
-        .student-dept { font-size: 0.72rem; color: #64748B; font-weight: 600; }
-
-        /* FAQ ACCORDION */
-        .faq-title-center { text-align: center; margin: 32px 0 20px; }
-        .faq-title-center h2 { font-size: 1.4rem; font-weight: 800; color: #0F172A; }
+        /* 🔥 FREQUENTLY ASKED QUESTIONS (FAQ) ACCORDION 🔥 */
+        .faq-title-center { text-align: center; margin: 36px 0 20px; }
+        .faq-title-center h2 { font-size: 1.45rem; font-weight: 800; color: #0F172A; }
         .faq-title-center h2 span { color: #0284C7; }
         .faq-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px; margin-bottom: 30px; width: 100% !important; }
-        .faq-item { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 14px; border: 1px solid rgba(226, 232, 240, 0.9); padding: 14px 16px; box-shadow: 0 4px 14px rgba(15, 23, 42, 0.02); cursor: pointer; transition: var(--transition); }
+        .faq-item { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 16px; border: 1px solid rgba(226, 232, 240, 0.9); padding: 16px 18px; box-shadow: 0 4px 14px rgba(15, 23, 42, 0.02); cursor: pointer; transition: var(--transition); }
         .faq-header { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-        .faq-header h4 { font-size: 0.85rem; font-weight: 700; color: #0F172A; line-height: 1.35; margin: 0; }
-        .faq-icon-btn { width: 28px; height: 28px; border-radius: 50%; background: #F1F5F9; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; color: #64748B; flex-shrink: 0; transition: var(--transition); }
-        .faq-body { font-size: 0.78rem; color: #64748B; font-weight: 500; line-height: 1.5; margin-top: 10px; padding-top: 8px; border-top: 1px solid #F1F5F9; display: none; }
+        .faq-header h4 { font-size: 0.88rem; font-weight: 800; color: #0F172A; line-height: 1.35; margin: 0; }
+        .faq-icon-btn { width: 30px; height: 30px; border-radius: 50%; background: #F1F5F9; display: flex; align-items: center; justify-content: center; font-size: 0.78rem; color: #64748B; flex-shrink: 0; transition: var(--transition); }
+        .faq-body { font-size: 0.8rem; color: #64748B; font-weight: 500; line-height: 1.55; margin-top: 10px; padding-top: 10px; border-top: 1px solid #F1F5F9; display: none; }
         .faq-item.active .faq-icon-btn { background: #4F46E5; color: #FFFFFF; transform: rotate(180deg); }
 
         /* FOOTER */
@@ -330,7 +320,7 @@
 </head>
 <body>
 
-    <!-- === HEADER NAVBAR === -->
+    <!-- === HEADER NAVBAR: ONLY LOGO & BLUE BUTTON === -->
     <header class="header-wrapper">
         <nav class="navbar">
             <a href="index.html" class="logo">
@@ -423,11 +413,11 @@
         </section>
 
 
-        <!-- 🔥 2ND SECTION: INSTANT LIVE UPDATES 🔥 -->
+        <!-- 🔥 2ND SECTION: LATEST UPDATE (CLEAN TEXT & DATE, NO BADGES) 🔥 -->
         <div class="section-title-main">
             <div class="title-left">
                 <i class="fas fa-bolt" style="color: #DC2626;"></i>
-                <span>Instant Live Updates & Notifications</span>
+                <span>Latest Update</span>
             </div>
             <a href="latest-updates.html" class="see-more-btn">
                 More Updates <i class="fas fa-arrow-right"></i>
@@ -435,11 +425,8 @@
         </div>
 
         <div class="updates-wrapper">
-            <!-- Top 1 -->
             <a href="scor.html" class="glass-update-card">
                 <div class="card-left">
-                    <span class="badge-latest"><i class="fas fa-fire"></i> LATEST</span>
-                    <span class="update-tag">Result</span>
                     <p class="one-line-text">CUET UG 2026 Final Scorecards Declared - Direct Download Link Active</p>
                 </div>
                 <div class="card-right-group">
@@ -448,11 +435,8 @@
                 </div>
             </a>
 
-            <!-- Top 2 -->
             <a href="admission-details.html" class="glass-update-card">
                 <div class="card-left">
-                    <span class="badge-latest"><i class="fas fa-fire"></i> LATEST</span>
-                    <span class="update-tag">Counseling</span>
                     <p class="one-line-text">Allahabad University UG Main Campus CSAS Phase-1 Registration Open</p>
                 </div>
                 <div class="card-right-group">
@@ -461,11 +445,8 @@
                 </div>
             </a>
 
-            <!-- Top 3 -->
             <a href="job-details.html" class="glass-update-card">
                 <div class="card-left">
-                    <span class="badge-latest"><i class="fas fa-fire"></i> LATEST</span>
-                    <span class="update-tag">Job</span>
                     <p class="one-line-text">SSC CGL 2026 Online Application Form Released - Apply Online Now</p>
                 </div>
                 <div class="card-right-group">
@@ -474,10 +455,8 @@
                 </div>
             </a>
 
-            <!-- Update 4 -->
             <a href="admitcard-details.html" class="glass-update-card">
                 <div class="card-left">
-                    <span class="update-tag">Admit Card</span>
                     <p class="one-line-text">Allahabad University PGAT Entrance Exam Hall Ticket Download Link Live</p>
                 </div>
                 <div class="card-right-group">
@@ -486,10 +465,8 @@
                 </div>
             </a>
 
-            <!-- Update 5 -->
             <a href="document-details.html" class="glass-update-card">
                 <div class="card-left">
-                    <span class="update-tag">Scholarship</span>
                     <p class="one-line-text">UP Scholarship 2026 Dashmottar Online Renewal & Fresh Form Active</p>
                 </div>
                 <div class="card-right-group">
@@ -500,11 +477,11 @@
         </div>
 
 
-        <!-- SECTION 3: INTERACTIVE UTILITY SUITE -->
+        <!-- 🔥 3RD SECTION: FEATURE 🔥 -->
         <div class="section-title-main">
             <div class="title-left">
                 <i class="fas fa-sliders"></i>
-                <span>Interactive Student Utility Suite</span>
+                <span>Feature</span>
             </div>
             <a href="predictor.html" class="see-more-btn">See More Tools <i class="fas fa-arrow-right"></i></a>
         </div>
@@ -562,47 +539,17 @@
         </section>
 
 
-        <!-- 🔥 SECTION 4: RESTORED SAMARTH CATEGORY GRID BOXES 🔥 -->
-        <section class="list-grid">
-            <div class="samarth-box emerald">
-                <h2><i class="fas fa-trophy"></i> Result</h2>
-                <ul class="samarth-list" id="resultList">
-                    <li><a href="scor.html"><i class="fas fa-chevron-right"></i> <span>CUET UG Final Scorecard Released</span></a></li>
-                    <li><a href="scor.html"><i class="fas fa-chevron-right"></i> <span>Allahabad University Entrance Result Declared</span></a></li>
-                </ul>
-                <a href="result.html" class="show-more-link">Show more <i class="fas fa-arrow-right"></i></a>
-            </div>
-
-            <div class="samarth-box amber">
-                <h2><i class="fas fa-briefcase"></i> Latest Job</h2>
-                <ul class="samarth-list">
-                    <li><a href="job-details.html"><i class="fas fa-chevron-right"></i> <span>SSC CGL Online Application Form</span></a></li>
-                    <li><a href="job-details.html"><i class="fas fa-chevron-right"></i> <span>RRB NTPC Recruitment Online Apply Link</span></a></li>
-                </ul>
-                <a href="latest-jobs.html" class="show-more-link">Show more <i class="fas fa-arrow-right"></i></a>
-            </div>
-
-            <div class="samarth-box rose">
-                <h2><i class="fas fa-id-card"></i> Admit Card</h2>
-                <ul class="samarth-list" id="admitCardList">
-                    <li><a href="admitcard-details.html"><i class="fas fa-chevron-right"></i> <span>CUET UG Entrance Exam Hall Ticket</span></a></li>
-                    <li><a href="admitcard-details.html"><i class="fas fa-chevron-right"></i> <span>Allahabad University PGAT Admit Card</span></a></li>
-                </ul>
-                <a href="admitcard.html" class="show-more-link">Show more <i class="fas fa-arrow-right"></i></a>
-            </div>
-        </section>
-
-
-        <!-- SECTION 5: VIDEO GUIDANCE & COUNSELING -->
+        <!-- 🔥 4TH SECTION: LATEST VIDEOS (HIGH RES THUMBNAILS) 🔥 -->
         <div class="section-title-main">
             <div class="title-left">
                 <i class="fab fa-youtube" style="color: #E11D48;"></i>
-                <span>Ajmal Mansoori - Video Guidance & Counseling</span>
+                <span>Latest Videos</span>
             </div>
             <a href="https://youtube.com/@ajmalalimansoori" target="_blank" class="see-more-btn">Visit Channel <i class="fas fa-arrow-right"></i></a>
         </div>
 
         <section class="video-grid">
+            <!-- Video 1 -->
             <div class="video-card">
                 <div class="video-thumb">
                     <img src="https://img.youtube.com/vi/E04N5LaxQVo/hqdefault.jpg" alt="Allahabad University NEP 2026 Guide">
@@ -619,6 +566,7 @@
                 </div>
             </div>
 
+            <!-- Video 2 -->
             <div class="video-card">
                 <div class="video-thumb">
                     <img src="https://img.youtube.com/vi/nF_5YrYp0as/hqdefault.jpg" alt="BHU Admission Process 2026">
@@ -635,6 +583,7 @@
                 </div>
             </div>
 
+            <!-- Video 3 -->
             <div class="video-card">
                 <div class="video-thumb">
                     <img src="https://img.youtube.com/vi/pvTmI9T46pk/hqdefault.jpg" alt="Allahabad University Hostel Tour">
@@ -652,11 +601,12 @@
             </div>
         </section>
 
-        <!-- SECTION 6: CATEGORY SLIDER -->
+
+        <!-- 🔥 5TH SECTION: QUICK LINK 🔥 -->
         <div class="section-title-main">
             <div class="title-left">
                 <i class="fas fa-layer-group"></i>
-                <span>Quick Category Highlights</span>
+                <span>Quick Link</span>
             </div>
         </div>
 
@@ -678,33 +628,90 @@
                     <h4><i class="fas fa-university" style="color: #8B5CF6;"></i> Admissions</h4>
                     <p>University Counseling Guides</p>
                 </a>
+                <a href="cutoff.html" class="slider-card">
+                    <h4><i class="fas fa-chart-line" style="color: #0284C7;"></i> Cutoffs & Ranks</h4>
+                    <p>Category-Wise Cutoff Lists</p>
+                </a>
+                <a href="answerkey.html" class="slider-card">
+                    <h4><i class="fas fa-key" style="color: #E11D48;"></i> Answer Keys</h4>
+                    <p>Official Answer Sheets & Keys</p>
+                </a>
+                <a href="syllabus.html" class="slider-card">
+                    <h4><i class="fas fa-book-open" style="color: #10B981;"></i> Exam Syllabus</h4>
+                    <p>Syllabus PDFs & Exam Pattern</p>
+                </a>
+                <a href="document-details.html" class="slider-card">
+                    <h4><i class="fas fa-award" style="color: #0D9488;"></i> Scholarships</h4>
+                    <p>UP & National Scholarship Links</p>
+                </a>
             </div>
         </section>
 
-        <!-- SECTION 7: FAQ ACCORDION -->
+
+        <!-- 🔥 6TH SECTION: ENHANCED FREQUENTLY ASKED QUESTIONS (FAQ) 🔥 -->
         <div class="faq-title-center">
             <h2>Frequently Asked <span>Questions</span></h2>
-            <p style="font-size: 0.8rem; color: #64748B; font-weight: 500; margin-top: 4px;">Find quick answers about university admissions, results, and student tools</p>
+            <p style="font-size: 0.8rem; color: #64748B; font-weight: 500; margin-top: 4px;">Find quick answers regarding admissions, cutoffs, credit system, and counseling</p>
         </div>
 
         <section class="faq-grid">
             <div class="faq-item" onclick="toggleFaq(this)">
                 <div class="faq-header">
-                    <h4>What services does The University Page provide?</h4>
+                    <h4>What is the Allahabad University NEP 2026 Credit System?</h4>
                     <div class="faq-icon-btn"><i class="fas fa-chevron-down"></i></div>
                 </div>
                 <div class="faq-body">
-                    We offer real-time updates on University Results, Cutoff releases, Admit Cards, Application Forms, and interactive tools like College Predictor & Image Resizer.
+                    Under NEP 2020/2026, students earn 44 credits/year (184 total credits across 4 years) to receive an Honours with Research degree. Watch Ajmal Mansoori's detailed video guide above for semester-wise breakdown.
                 </div>
             </div>
 
             <div class="faq-item" onclick="toggleFaq(this)">
                 <div class="faq-header">
-                    <h4>How accurate is the College & Rank Predictor?</h4>
+                    <h4>How do I apply for BHU CUET UG Admission 2026?</h4>
                     <div class="faq-icon-btn"><i class="fas fa-chevron-down"></i></div>
                 </div>
                 <div class="faq-body">
-                    Our predictor uses official historical cutoff data and score algorithms to provide highly estimated rank ranges for CUET, AU, and BHU.
+                    After CUET results are announced, BHU launches its CSAS portal. Candidates select domain combinations (General Test + Language for BA, PCM/PCB for BSc) to get shortlisted for FMC and MMV seats.
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-header">
+                    <h4>How accurate is the College Predictor tool?</h4>
+                    <div class="faq-icon-btn"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-body">
+                    Our predictor processes past seat cutoffs and rank trends for Central Universities (AU, BHU, DU) to give an accurate estimation of your admission chances.
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-header">
+                    <h4>Where can I access free mock tests and e-books?</h4>
+                    <div class="faq-icon-btn"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-body">
+                    You can access free mock tests and booklets directly via the Learnify Classes portal link in the Accelerator Tools section at the top of the page.
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-header">
+                    <h4>How do I track UP Scholarship form updates?</h4>
+                    <div class="faq-icon-btn"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-body">
+                    Click 'Scholarships' in the Quick Link slider or sidebar drawer to get direct links for Dashmottar renewal, status check, and fresh registrations.
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-header">
+                    <h4>How can I stay updated on instant counseling notifications?</h4>
+                    <div class="faq-icon-btn"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-body">
+                    Join our official 'CUET Warriors 2026' group via the Instant Alerts Bell card in the Feature section to receive immediate notification alerts on your phone.
                 </div>
             </div>
         </section>
