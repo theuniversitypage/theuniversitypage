@@ -31,19 +31,19 @@
             -webkit-text-size-adjust: 100%;
         }
 
-        /* HEADER & NAVIGATION */
+        /* HEADER & NAVIGATION STYLING */
         .header-wrapper {
             position: relative;
             z-index: 99999 !important;
             background: #FFFFFF;
             border-bottom: 1px solid #E2E8F0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
         }
 
         .navbar {
             max-width: 1240px;
             margin: 0 auto;
-            padding: 12px 16px;
+            padding: 14px 16px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -52,7 +52,7 @@
         .main-nav-menu {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 16px;
             list-style: none;
             margin: 0;
             padding: 0;
@@ -61,12 +61,12 @@
         .nav-item { position: relative; }
 
         .nav-click-btn {
-            font-size: 0.88rem;
+            font-size: 0.9rem;
             font-weight: 700;
             color: #0F172A;
             background: transparent;
             border: none;
-            padding: 8px 12px;
+            padding: 8px 14px;
             border-radius: 10px;
             display: flex;
             align-items: center;
@@ -82,7 +82,7 @@
         }
 
         .nav-click-btn i.fa-chevron-down {
-            font-size: 0.68rem;
+            font-size: 0.7rem;
             transition: transform 0.2s ease;
         }
 
@@ -136,14 +136,14 @@
         .mega-links-list a { font-size: 0.82rem; font-weight: 600; color: #334155; text-decoration: none; display: flex; align-items: center; gap: 6px; transition: var(--transition); }
         .mega-links-list a:hover { color: #4F46E5; transform: translateX(3px); }
 
-        /* BLUE TOGGLE BUTTON MATCHING YOUR SCREENSHOT */
+        /* BLUE TOGGLE BUTTON (MATCHING SCREENSHOT EXACTLY) */
         .sidebar-toggle-btn {
             background: #FFFFFF;
             border: 2px solid #2563EB;
             color: #2563EB;
             width: 44px;
             height: 44px;
-            border-radius: 12px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -158,19 +158,17 @@
             border-color: #1D4ED8;
         }
 
-        /* 🔥 SIDEBAR DRAWER WITH ALL CATEGORY LINKS */
+        /* EXACT FLOATING RIGHT DRAWER FOR SIDEBAR ICON */
         .resources-drawer {
             display: none;
             position: absolute;
             top: calc(100% + 8px);
             right: 16px;
-            width: 260px;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            width: 240px;
+            background: #FFFFFF;
             border: 1px solid #E2E8F0;
-            border-radius: 18px;
-            box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.15);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.12);
             padding: 12px;
             z-index: 999999 !important;
             animation: fadeIn 0.2s ease-out;
@@ -179,14 +177,14 @@
         .resources-drawer.active { display: block !important; }
 
         .drawer-links-list { list-style: none; padding: 0; margin: 0; }
-        .drawer-links-list li { margin-bottom: 2px; }
+        .drawer-links-list li { margin-bottom: 4px; }
         .drawer-links-list a {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             padding: 10px 14px;
             border-radius: 12px;
-            font-size: 0.85rem;
+            font-size: 0.86rem;
             font-weight: 700;
             color: #334155;
             text-decoration: none;
@@ -357,7 +355,7 @@
 </head>
 <body>
 
-    <!-- === HEADER NAVBAR WITH BLUE TOGGLE BUTTON === -->
+    <!-- === HEADER NAVBAR MATCHING EXACT SCREENSHOT LAYOUT === -->
     <header class="header-wrapper">
         <nav class="navbar">
             <a href="index.html" class="logo">
@@ -365,7 +363,7 @@
                 <span>The University Page</span>
             </a>
             
-            <!-- TOP MEGA MENU -->
+            <!-- TOP MAIN NAVBAR ITEMS -->
             <ul class="main-nav-menu">
                 <li class="nav-item">
                     <a href="index.html" class="nav-click-btn"><i class="fas fa-home"></i> Home</a>
@@ -501,7 +499,7 @@
                 </li>
             </ul>
 
-            <!-- 🔥 BLUE TOGGLE BUTTON (MATCHING YOUR SCREENSHOT ICON) -->
+            <!-- BLUE TOGGLE BUTTON -->
             <div class="header-right">
                 <button class="sidebar-toggle-btn" id="sidebarToggleBtn" onclick="toggleResourcesDrawer()">
                     <i class="fa-solid fa-bars-staggered"></i>
@@ -509,7 +507,7 @@
             </div>
         </nav>
 
-        <!-- 🔥 ALL MAIN NAVIGATION LINKS INSIDE BLUE TOGGLE DRAWER -->
+        <!-- EXACT FLOATING DRAWER MATCHING SCREENSHOT LINKS & ICONS -->
         <div class="resources-drawer" id="resourcesDrawer">
             <ul class="drawer-links-list">
                 <li><a href="index.html"><i class="fas fa-home" style="color: #4F46E5;"></i> Home</a></li>
@@ -820,7 +818,6 @@
             }
         }
 
-        // TOGGLE SIDEBAR DRAWER
         function toggleResourcesDrawer() {
             const drawer = document.getElementById("resourcesDrawer");
             if (drawer) {
@@ -828,7 +825,6 @@
             }
         }
 
-        // CLOSE ALL OPEN DROPDOWNS ON OUTSIDE CLICK
         document.addEventListener("click", function(event) {
             if (!event.target.closest(".main-nav-menu") && !event.target.closest(".sidebar-toggle-btn") && !event.target.closest("#resourcesDrawer")) {
                 document.querySelectorAll(".nav-item").forEach(item => {
