@@ -31,7 +31,7 @@
             -webkit-text-size-adjust: 100%;
         }
 
-        /* MINIMALIST HEADER STYLING */
+        /* HEADER NAVBAR */
         .header-wrapper {
             position: relative;
             z-index: 99999 !important;
@@ -49,7 +49,7 @@
             justify-content: space-between;
         }
 
-        /* BLUE TOGGLE BUTTON MATCHING SCREENSHOT */
+        /* BLUE TOGGLE BUTTON */
         .sidebar-toggle-btn {
             background: #FFFFFF;
             border: 2px solid #2563EB;
@@ -71,7 +71,7 @@
             border-color: #1D4ED8;
         }
 
-        /* ALL OPTIONS INSIDE FLOATING RIGHT DRAWER */
+        /* SIDEBAR DRAWER WITH ALL LINKS */
         .resources-drawer {
             display: none;
             position: absolute;
@@ -193,6 +193,26 @@
         .see-more-btn { font-size: 0.8rem; font-weight: 700; color: #4F46E5; text-decoration: none; display: flex; align-items: center; gap: 4px; transition: var(--transition); }
         .see-more-btn:hover { color: #3730A3; }
 
+        .add-review-btn {
+            background: #EEF2FF;
+            color: #4F46E5;
+            border: 1px solid #C7D2FE;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .add-review-btn:hover {
+            background: #4F46E5;
+            color: #FFFFFF;
+        }
+
         .widgets-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-bottom: 24px; width: 100% !important; }
         .widget-card { background: #FFFFFF; border-radius: var(--radius-lg, 18px); border: 1px solid #E2E8F0; padding: 16px 14px; box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03); display: flex; flex-direction: column; justify-content: space-between; transition: var(--transition); width: 100% !important; min-width: 0; position: relative; }
         .widget-card:hover { transform: translateY(-2px); box-shadow: 0 10px 20px -5px rgba(79, 70, 229, 0.12); border-color: #C7D2FE; }
@@ -237,6 +257,31 @@
         .student-avatar { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; border: 2px solid #4F46E5; margin-bottom: 8px; }
         .student-name { font-size: 0.88rem; font-weight: 800; color: #0F172A; letter-spacing: 0.3px; }
         .student-dept { font-size: 0.72rem; color: #64748B; font-weight: 600; }
+
+        /* REVIEW MODAL POPUP */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(6px);
+            z-index: 9999999;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+
+        .modal-card {
+            background: #FFFFFF;
+            border-radius: 20px;
+            padding: 20px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .modal-card h3 { font-size: 1rem; font-weight: 800; color: #0F172A; margin-bottom: 12px; }
 
         /* FAQ ACCORDION */
         .faq-title-center { text-align: center; margin: 32px 0 20px; }
@@ -283,7 +328,7 @@
             </div>
         </nav>
 
-        <!-- 🔥 ALL NAVIGATION OPTIONS INSIDE TOGGLE DRAWER 🔥 -->
+        <!-- FLOATING TOGGLE DRAWER -->
         <div class="resources-drawer" id="resourcesDrawer">
             <ul class="drawer-links-list">
                 <li><a href="index.html"><i class="fas fa-home" style="color: #4F46E5;"></i> Home</a></li>
@@ -298,7 +343,7 @@
                 <li><a href="admission.html"><i class="fas fa-university" style="color: #8B5CF6;"></i> Admission</a></li>
                 <li><a href="syllabus.html"><i class="fas fa-book-open" style="color: #10B981;"></i> Syllabus</a></li>
                 <li><a href="answerkey.html"><i class="fas fa-key" style="color: #E11D48;"></i> Answer Key</a></li>
-                <li><a href="about-ajmal.html"><i class="fas fa-user-graduate" style="color: #4F46E5;"></i> About Founder</a></li>
+                <li><a href="about-ajmal-mansoori.html"><i class="fas fa-user-graduate" style="color: #4F46E5;"></i> About Founder</a></li>
             </ul>
         </div>
     </header>
@@ -419,66 +464,69 @@
             </div>
         </section>
 
-        <!-- VIDEO GUIDANCE & COUNSELING -->
+        <!-- 🔥 AJMAL MANSOORI OFFICIAL YOUTUBE VIDEOS 🔥 -->
         <div class="section-title-main">
             <div class="title-left">
                 <i class="fab fa-youtube" style="color: #E11D48;"></i>
                 <span>Ajmal Mansoori - Video Guidance & Counseling</span>
             </div>
-            <a href="https://youtube.com/@ajmalalimansoori" target="_blank" class="see-more-btn">Visit YouTube Channel <i class="fas fa-arrow-right"></i></a>
+            <a href="https://youtube.com/@ajmalalimansoori" target="_blank" class="see-more-btn">Visit Channel <i class="fas fa-arrow-right"></i></a>
         </div>
 
         <section class="video-grid">
+            <!-- Video 1: AU NEP 2026 Full Guide -->
             <div class="video-card">
                 <div class="video-thumb">
-                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=500" alt="Video Thumbnail">
-                    <div class="play-overlay-btn"><i class="fas fa-play"></i></div>
-                    <span class="video-duration">06:41</span>
+                    <img src="https://img.youtube.com/vi/E04N5LaxQVo/hqdefault.jpg" alt="Allahabad University NEP 2026 Guide">
+                    <a href="https://youtu.be/E04N5LaxQVo" target="_blank" class="play-overlay-btn"><i class="fas fa-play"></i></a>
+                    <span class="video-duration">23:56</span>
                 </div>
                 <div class="video-body">
-                    <h4>CUET UG Complete Admission & Counseling Strategy</h4>
-                    <p>By Ajmal Mansoori: Step-by-step cutoff analysis, AU & BHU seat matrix, and document checklist.</p>
+                    <h4>Allahabad University NEP 2026 Full Guide 🔥 | Credit System & Honours</h4>
+                    <p>By Ajmal Mansoori: Complete explanation of Major-Minor credits, semester exam pattern, and honours degree criteria.</p>
                     <div class="video-footer">
-                        <span><i class="fas fa-eye"></i> 20.0K Views</span>
-                        <a href="https://youtube.com/@ajmalalimansoori" target="_blank">Watch Video <i class="fas fa-play"></i></a>
+                        <span><i class="fas fa-eye"></i> 209+ Views</span>
+                        <a href="https://youtu.be/E04N5LaxQVo" target="_blank">Watch Video <i class="fas fa-play"></i></a>
                     </div>
                 </div>
             </div>
 
+            <!-- Video 2: BHU Admission Guide -->
             <div class="video-card">
                 <div class="video-thumb">
-                    <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=500" alt="Allahabad University Guide">
-                    <div class="play-overlay-btn"><i class="fas fa-play"></i></div>
-                    <span class="video-duration">08:15</span>
+                    <img src="https://img.youtube.com/vi/nF_5YrYp0as/hqdefault.jpg" alt="BHU Admission Process 2026">
+                    <a href="https://youtu.be/nF_5YrYp0as" target="_blank" class="play-overlay-btn"><i class="fas fa-play"></i></a>
+                    <span class="video-duration">11:25</span>
                 </div>
                 <div class="video-body">
-                    <h4>Allahabad University Main Campus Cutoff Analysis</h4>
-                    <p>Detailed breakdown for BA, BSc, BCom main campus cutoffs and subject combination mapping.</p>
+                    <h4>BHU Admission 2026 Process, Eligibility & Cutoff Guide</h4>
+                    <p>By Ajmal Mansoori: CUET UG score calculation for BA, BSc, BCom, FMC vs MMV seats, and cutoff benchmarks.</p>
                     <div class="video-footer">
-                        <span><i class="fas fa-eye"></i> 35.2K Views</span>
-                        <a href="https://youtube.com/@ajmalalimansoori" target="_blank">Watch Video <i class="fas fa-play"></i></a>
+                        <span><i class="fas fa-eye"></i> 100+ Views</span>
+                        <a href="https://youtu.be/nF_5YrYp0as" target="_blank">Watch Video <i class="fas fa-play"></i></a>
                     </div>
                 </div>
             </div>
 
+            <!-- Video 3: Dr. Bhimrao Ambedkar Hostel Tour -->
             <div class="video-card">
                 <div class="video-thumb">
-                    <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=500" alt="Learnify Classes Prep">
-                    <div class="play-overlay-btn"><i class="fas fa-play"></i></div>
-                    <span class="video-duration">09:19</span>
+                    <img src="https://img.youtube.com/vi/pvTmI9T46pk/hqdefault.jpg" alt="Allahabad University Hostel Tour">
+                    <a href="https://youtu.be/pvTmI9T46pk" target="_blank" class="play-overlay-btn"><i class="fas fa-play"></i></a>
+                    <span class="video-duration">02:25</span>
                 </div>
                 <div class="video-body">
-                    <h4>Learnify Classes Premium Mock Test & Free Booklets Guide</h4>
-                    <p>How to access free study materials, test series, and e-books on Learnify Classes app.</p>
+                    <h4>Allahabad University: Dr. Bhimrao Ambedkar Hostel Tour 🏢🔥</h4>
+                    <p>Exclusive hostel tour showing rooms, study environment, and campus infrastructure for AU scholars.</p>
                     <div class="video-footer">
-                        <span><i class="fas fa-eye"></i> 100.0K Views</span>
-                        <a href="https://youtube.com/@ajmalalimansoori" target="_blank">Watch Video <i class="fas fa-play"></i></a>
+                        <span><i class="fas fa-eye"></i> 204+ Views</span>
+                        <a href="https://youtu.be/pvTmI9T46pk" target="_blank">Watch Video <i class="fas fa-play"></i></a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- CATEGORY SLIDER -->
+        <!-- 🔥 ALL QUICK CATEGORY HIGHLIGHTS 🔥 -->
         <div class="section-title-main">
             <div class="title-left">
                 <i class="fas fa-layer-group"></i>
@@ -504,18 +552,37 @@
                     <h4><i class="fas fa-university" style="color: #8B5CF6;"></i> Admissions</h4>
                     <p>University Counseling Guides</p>
                 </a>
+                <a href="cutoff.html" class="slider-card">
+                    <h4><i class="fas fa-chart-line" style="color: #0284C7;"></i> Cutoffs & Ranks</h4>
+                    <p>Category-Wise Cutoff Lists</p>
+                </a>
+                <a href="answerkey.html" class="slider-card">
+                    <h4><i class="fas fa-key" style="color: #E11D48;"></i> Answer Keys</h4>
+                    <p>Official Answer Sheets & Keys</p>
+                </a>
+                <a href="syllabus.html" class="slider-card">
+                    <h4><i class="fas fa-book-open" style="color: #10B981;"></i> Exam Syllabus</h4>
+                    <p>Syllabus PDFs & Exam Pattern</p>
+                </a>
+                <a href="document-details.html" class="slider-card">
+                    <h4><i class="fas fa-award" style="color: #0D9488;"></i> Scholarships</h4>
+                    <p>UP & National Scholarship Links</p>
+                </a>
             </div>
         </section>
 
-        <!-- STUDENT SUCCESS STORIES -->
+        <!-- 🔥 STUDENT SUCCESS STORIES WITH + BUTTON FOR NEW REVIEWS 🔥 -->
         <div class="section-title-main">
             <div class="title-left">
                 <i class="fas fa-comment-dots" style="color: #10B981;"></i>
                 <span>Student Success Stories & Reviews</span>
             </div>
+            <button class="add-review-btn" onclick="openReviewModal()">
+                <i class="fas fa-plus"></i> Submit Review
+            </button>
         </div>
 
-        <section class="testimonial-slider-wrapper">
+        <section class="testimonial-slider-wrapper" id="reviewsContainer">
             <div class="testimonial-card">
                 <div class="rating-stars">
                     <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -541,34 +608,89 @@
             </div>
         </section>
 
-        <!-- FAQ ACCORDION -->
+        <!-- 🔥 ENHANCED FREQUENTLY ASKED QUESTIONS (FAQ) 🔥 -->
         <div class="faq-title-center">
             <h2>Frequently Asked <span>Questions</span></h2>
-            <p style="font-size: 0.8rem; color: #64748B; font-weight: 500; margin-top: 4px;">Find quick answers about university admissions, results, and student tools</p>
+            <p style="font-size: 0.8rem; color: #64748B; font-weight: 500; margin-top: 4px;">Find answers regarding entrance exams, cutoffs, credit system, and counseling</p>
         </div>
 
         <section class="faq-grid">
             <div class="faq-item" onclick="toggleFaq(this)">
                 <div class="faq-header">
-                    <h4>What services does The University Page provide?</h4>
+                    <h4>What is the Allahabad University NEP 2026 Credit System?</h4>
                     <div class="faq-icon-btn"><i class="fas fa-chevron-down"></i></div>
                 </div>
                 <div class="faq-body">
-                    We offer real-time updates on University Results, Cutoff releases, Admit Cards, Application Forms, and interactive tools like College Predictor & Image Resizer.
+                    Under NEP 2020/2026, students need 44 credits/year (184 total credits in 4 years) for an Honours with Research degree. Check Ajmal Mansoori's detailed video guide above for semester-wise credit calculation.
                 </div>
             </div>
 
             <div class="faq-item" onclick="toggleFaq(this)">
                 <div class="faq-header">
-                    <h4>How accurate is the College & Rank Predictor?</h4>
+                    <h4>How can I apply for BHU CUET UG 2026 Admissions?</h4>
                     <div class="faq-icon-btn"><i class="fas fa-chevron-down"></i></div>
                 </div>
                 <div class="faq-body">
-                    Our predictor uses official historical cutoff data and score algorithms to provide highly estimated rank ranges for CUET, AU, and BHU.
+                    After CUET results are declared, BHU opens its CSAS registration portal. Candidates must select domain subjects (e.g. GT + Language for BA, PCM/PCB for BSc) to qualify for FMC and MMV seats.
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-header">
+                    <h4>How does the College & Rank Predictor work?</h4>
+                    <div class="faq-icon-btn"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-body">
+                    Our AI predictor processes your raw test score against past cutoffs of Allahabad University, BHU, and DU to give an estimated rank and university match.
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-header">
+                    <h4>Where can I find free Mock Tests & E-Book booklets?</h4>
+                    <div class="faq-icon-btn"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-body">
+                    You can access free mock tests and PDF booklets via the Learnify Classes portal link provided in the top utility tools section or join the CUET Warriors 2026 group.
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-header">
+                    <h4>How do I track UP Scholarship & NSP Portal Applications?</h4>
+                    <div class="faq-icon-btn"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-body">
+                    Go to 'Scholarships' in the sidebar or quick highlights to view direct links for Dashmottar renewal, post-matric status verification, and NSP registration.
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-header">
+                    <h4>How can students submit reviews and feedback?</h4>
+                    <div class="faq-icon-btn"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-body">
+                    Click the '+ Submit Review' button in the Student Success Stories section, enter your name, course, and feedback to display your review on the portal!
                 </div>
             </div>
         </section>
 
+    </div>
+
+    <!-- === SUBMIT REVIEW POPUP MODAL === -->
+    <div class="modal-overlay" id="reviewModal">
+        <div class="modal-card">
+            <h3><i class="fas fa-star" style="color: #F59E0B;"></i> Submit Student Review</h3>
+            <input type="text" id="revName" class="form-control-custom" placeholder="Your Full Name">
+            <input type="text" id="revCourse" class="form-control-custom" placeholder="Course / College (e.g. B.A. AU Main Campus)">
+            <textarea id="revText" class="form-control-custom" rows="3" placeholder="Share your experience with Learnify Classes & The University Page..."></textarea>
+            
+            <div style="display: flex; gap: 8px; margin-top: 10px;">
+                <button class="widget-btn" onclick="submitCustomReview()">Submit Review</button>
+                <button class="widget-btn" style="background: #64748B;" onclick="closeReviewModal()">Cancel</button>
+            </div>
+        </div>
     </div>
 
     <!-- === FOOTER === -->
@@ -630,6 +752,45 @@
                 element.classList.add('active');
                 body.style.display = 'block';
             }
+        }
+
+        // SUBMIT CUSTOM STUDENT REVIEW
+        function openReviewModal() {
+            document.getElementById("reviewModal").style.display = "flex";
+        }
+
+        function closeReviewModal() {
+            document.getElementById("reviewModal").style.display = "none";
+        }
+
+        function submitCustomReview() {
+            const name = document.getElementById("revName").value.trim();
+            const course = document.getElementById("revCourse").value.trim();
+            const text = document.getElementById("revText").value.trim();
+
+            if (!name || !course || !text) {
+                alert("Please fill in all fields!");
+                return;
+            }
+
+            const container = document.getElementById("reviewsContainer");
+            const newCard = document.createElement("div");
+            newCard.className = "testimonial-card";
+            newCard.innerHTML = `
+                <div class="rating-stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">"${text}"</p>
+                <div>
+                    <img src="https://via.placeholder.com/100?text=${name.charAt(0)}" alt="Student Review" class="student-avatar">
+                    <div class="student-name">${name.toUpperCase()}</div>
+                    <div class="student-dept">${course}</div>
+                </div>
+            `;
+
+            container.prepend(newCard);
+            closeReviewModal();
+            alert("Thank you! Your review has been published.");
         }
     </script>
 </body>
