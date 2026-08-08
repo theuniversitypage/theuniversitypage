@@ -31,12 +31,13 @@
             -webkit-text-size-adjust: 100%;
         }
 
-        /* FIXED HEADER Z-INDEX & MEGA MENU NAVIGATION */
+        /* HEADER & CLICK DROPDOWN STYLING */
         .header-wrapper {
             position: relative;
-            z-index: 9999 !important;
+            z-index: 99999 !important;
             background: #FFFFFF;
             border-bottom: 1px solid #E2E8F0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
         }
 
         .navbar {
@@ -51,7 +52,7 @@
         .main-nav-menu {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 12px;
             list-style: none;
             margin: 0;
             padding: 0;
@@ -61,57 +62,65 @@
             position: relative;
         }
 
-        .nav-item > a {
+        .nav-click-btn {
             font-size: 0.88rem;
             font-weight: 700;
             color: #0F172A;
-            text-decoration: none;
+            background: transparent;
+            border: none;
             padding: 8px 12px;
-            border-radius: 8px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             gap: 6px;
-            transition: var(--transition);
+            cursor: pointer;
+            transition: all 0.2s ease;
         }
 
-        .nav-item > a:hover, .nav-item.active > a {
+        .nav-click-btn:hover, .nav-item.active .nav-click-btn {
             color: #4F46E5;
             background: #EEF2FF;
         }
 
-        /* MEGA DROPDOWN BOX STYLING */
+        .nav-click-btn i.fa-chevron-down {
+            font-size: 0.7rem;
+            transition: transform 0.2s ease;
+        }
+
+        .nav-item.active .nav-click-btn i.fa-chevron-down {
+            transform: rotate(180deg);
+        }
+
+        /* MEGA DROPDOWN BOX (CLICK DISPLAY ONLY) */
         .mega-dropdown {
             display: none;
             position: absolute;
-            top: 100%;
+            top: calc(100% + 8px);
             left: 0;
             background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid #E2E8F0;
-            border-radius: 16px;
-            box-shadow: 0 16px 35px -5px rgba(15, 23, 42, 0.12);
+            border-radius: 18px;
+            box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.15);
             padding: 20px;
-            z-index: 99999 !important;
+            z-index: 999999 !important;
+            animation: fadeIn 0.2s ease-out;
         }
 
-        .mega-dropdown.wide-3col {
-            width: 780px;
-            left: -100px;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-6px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .mega-dropdown.wide-2col {
-            width: 580px;
-            left: -50px;
-        }
-
-        .mega-dropdown.standard-drop {
-            width: 240px;
-        }
-
-        .nav-item:hover .mega-dropdown {
+        /* TOGGLED ACTIVE STATE VIA JS CLICK */
+        .nav-item.active .mega-dropdown {
             display: block !important;
         }
+
+        .mega-dropdown.wide-3col { width: 760px; left: -120px; }
+        .mega-dropdown.wide-2col { width: 560px; left: -60px; }
+        .mega-dropdown.standard-drop { width: 260px; }
 
         .dropdown-top-header {
             display: flex;
@@ -123,7 +132,7 @@
         }
 
         .dropdown-top-header h3 {
-            font-size: 1rem;
+            font-size: 0.98rem;
             font-weight: 800;
             color: #0F172A;
             margin: 0;
@@ -139,20 +148,11 @@
             text-decoration: none;
         }
 
-        .mega-grid-3 {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 16px;
-        }
-
-        .mega-grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
+        .mega-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .mega-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
 
         .mega-col-title {
-            font-size: 0.75rem;
+            font-size: 0.74rem;
             font-weight: 800;
             color: #64748B;
             text-transform: uppercase;
@@ -160,16 +160,8 @@
             margin-bottom: 10px;
         }
 
-        .mega-links-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .mega-links-list li {
-            margin-bottom: 8px;
-        }
-
+        .mega-links-list { list-style: none; padding: 0; margin: 0; }
+        .mega-links-list li { margin-bottom: 8px; }
         .mega-links-list a {
             font-size: 0.82rem;
             font-weight: 600;
@@ -299,7 +291,7 @@
         .footer-links a { font-size: 0.78rem; font-weight: 600; color: #334155; white-space: nowrap !important; text-decoration: none; }
         .copyright { color: #64748B; font-size: 0.72rem; }
 
-        @media (max-width: 900px) {
+        @media (max-width: 920px) {
             .main-nav-menu { display: none; }
             .mega-dropdown { position: static !important; width: 100% !important; box-shadow: none; }
             .mega-grid-3, .mega-grid-2 { grid-template-columns: 1fr !important; }
@@ -308,7 +300,7 @@
 </head>
 <body>
 
-    <!-- === HEADER WITH UPDATED MEGA MENU === -->
+    <!-- === HEADER WITH ON CLICK MEGA MENU === -->
     <header class="header-wrapper">
         <nav class="navbar">
             <a href="index.html" class="logo">
@@ -316,22 +308,23 @@
                 <span>The University Page</span>
             </a>
             
-            <!-- DESKTOP MEGA MENU NAVIGATION -->
+            <!-- DESKTOP MEGA MENU NAVIGATION (CLICKABLE) -->
             <ul class="main-nav-menu">
-                <li class="nav-item active">
-                    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <li class="nav-item">
+                    <a href="index.html" class="nav-click-btn"><i class="fas fa-home"></i> Home</a>
                 </li>
 
-                <!-- MENU 1: PROGRAMS (3 COLUMNS) -->
+                <!-- MENU 1: PROGRAMS -->
                 <li class="nav-item">
-                    <a href="#"><i class="fas fa-book-open"></i> Programs <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a>
+                    <button class="nav-click-btn" onclick="toggleMenuDropdown(this)">
+                        <i class="fas fa-book-open"></i> Programs <i class="fas fa-chevron-down"></i>
+                    </button>
                     <div class="mega-dropdown wide-3col">
                         <div class="dropdown-top-header">
                             <h3><i class="fas fa-graduation-cap" style="color: #4F46E5;"></i> Programs</h3>
                             <a href="admission.html" class="view-all-link">View All <i class="fas fa-arrow-right"></i></a>
                         </div>
                         <div class="mega-grid-3">
-                            <!-- Column 1: Academic Levels -->
                             <div>
                                 <div class="mega-col-title">Degree Levels</div>
                                 <ul class="mega-links-list">
@@ -344,7 +337,6 @@
                                     <li><a href="#">Foundation Programs</a></li>
                                 </ul>
                             </div>
-                            <!-- Column 2: Bachelor Specializations -->
                             <div>
                                 <div class="mega-col-title">Bachelor Programs</div>
                                 <ul class="mega-links-list">
@@ -359,7 +351,6 @@
                                     <li><a href="#">MBBS Degree</a></li>
                                 </ul>
                             </div>
-                            <!-- Column 3: Top Master Programs -->
                             <div>
                                 <div class="mega-col-title">Top Master Programs</div>
                                 <ul class="mega-links-list">
@@ -376,16 +367,17 @@
                     </div>
                 </li>
 
-                <!-- MENU 2: UNIVERSITIES (2 COLUMNS: CENTRAL & STATE) -->
+                <!-- MENU 2: UNIVERSITIES -->
                 <li class="nav-item">
-                    <a href="#"><i class="fas fa-university"></i> Universities <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a>
+                    <button class="nav-click-btn" onclick="toggleMenuDropdown(this)">
+                        <i class="fas fa-university"></i> Universities <i class="fas fa-chevron-down"></i>
+                    </button>
                     <div class="mega-dropdown wide-2col">
                         <div class="dropdown-top-header">
                             <h3><i class="fas fa-university" style="color: #4F46E5;"></i> Universities</h3>
                             <a href="admission.html" class="view-all-link">View All <i class="fas fa-arrow-right"></i></a>
                         </div>
                         <div class="mega-grid-2">
-                            <!-- Left Column: Central Universities -->
                             <div>
                                 <div class="mega-col-title">Central Universities (India)</div>
                                 <ul class="mega-links-list">
@@ -398,7 +390,6 @@
                                     <li><a href="#">Babasaheb Bhimrao Ambedkar Univ</a></li>
                                 </ul>
                             </div>
-                            <!-- Right Column: State Universities -->
                             <div>
                                 <div class="mega-col-title">Top State Universities</div>
                                 <ul class="mega-links-list">
@@ -416,7 +407,9 @@
 
                 <!-- MENU 3: SCHOLARSHIPS -->
                 <li class="nav-item">
-                    <a href="#"><i class="fas fa-award"></i> Scholarships <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a>
+                    <button class="nav-click-btn" onclick="toggleMenuDropdown(this)">
+                        <i class="fas fa-award"></i> Scholarships <i class="fas fa-chevron-down"></i>
+                    </button>
                     <div class="mega-dropdown standard-drop">
                         <div class="dropdown-top-header">
                             <h3><i class="fas fa-award" style="color: #0D9488;"></i> Scholarships</h3>
@@ -433,7 +426,9 @@
 
                 <!-- MENU 4: CAMPUS LOCATIONS -->
                 <li class="nav-item">
-                    <a href="#"><i class="fas fa-map-marker-alt"></i> Campus Locations <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a>
+                    <button class="nav-click-btn" onclick="toggleMenuDropdown(this)">
+                        <i class="fas fa-map-marker-alt"></i> Campus Locations <i class="fas fa-chevron-down"></i>
+                    </button>
                     <div class="mega-dropdown standard-drop">
                         <div class="dropdown-top-header">
                             <h3><i class="fas fa-map-marked-alt" style="color: #E11D48;"></i> Locations</h3>
@@ -448,9 +443,11 @@
                     </div>
                 </li>
 
-                <!-- MENU 5: RESOURCES (OLD MENU DATA) -->
+                <!-- MENU 5: RESOURCES -->
                 <li class="nav-item">
-                    <a href="#"><i class="fas fa-folder-open"></i> Resources <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a>
+                    <button class="nav-click-btn" onclick="toggleMenuDropdown(this)">
+                        <i class="fas fa-folder-open"></i> Resources <i class="fas fa-chevron-down"></i>
+                    </button>
                     <div class="mega-dropdown standard-drop">
                         <div class="dropdown-top-header">
                             <h3><i class="fas fa-folder-open" style="color: #8B5CF6;"></i> Resources</h3>
@@ -476,7 +473,7 @@
             </div>
         </nav>
 
-        <!-- MOBILE DRAWER NAV -->
+        <!-- MOBILE DRAWER -->
         <div class="nav-drawer" id="navDrawer">
             <ul class="nav-links">
                 <li><a href="index.html" class="active">Home</a></li>
@@ -622,7 +619,33 @@
         </div>
     </footer>
 
+    <!-- INTERACTIVE JAVASCRIPT FOR CLICK DROPDOWNS -->
     <script>
+        // ON CLICK TOGGLE FUNCTION FOR MENU DROPDOWNS
+        function toggleMenuDropdown(btnElement) {
+            const currentItem = btnElement.parentElement;
+            const isAlreadyActive = currentItem.classList.contains("active");
+
+            // Close all open dropdowns first
+            document.querySelectorAll(".nav-item").forEach(item => {
+                item.classList.remove("active");
+            });
+
+            // If not active, open clicked one
+            if (!isAlreadyActive) {
+                currentItem.classList.add("active");
+            }
+        }
+
+        // CLOSE DROPDOWN WHEN CLICKING OUTSIDE
+        document.addEventListener("click", function(event) {
+            if (!event.target.closest(".main-nav-menu")) {
+                document.querySelectorAll(".nav-item").forEach(item => {
+                    item.classList.remove("active");
+                });
+            }
+        });
+
         function toggleNavDrawer() {
             const drawer = document.getElementById("navDrawer");
             if (drawer) {
