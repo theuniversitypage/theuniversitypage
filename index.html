@@ -31,7 +31,7 @@
             -webkit-text-size-adjust: 100%;
         }
 
-        /* HEADER & NAVIGATION */
+        /* HEADER & NAVIGATION MATCHING SCREENSHOT EXACTLY */
         .header-wrapper {
             position: relative;
             z-index: 99999 !important;
@@ -52,7 +52,7 @@
         .main-nav-menu {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
             list-style: none;
             margin: 0;
             padding: 0;
@@ -61,7 +61,7 @@
         .nav-item { position: relative; }
 
         .nav-click-btn {
-            font-size: 0.86rem;
+            font-size: 0.88rem;
             font-weight: 700;
             color: #0F172A;
             background: transparent;
@@ -70,7 +70,7 @@
             border-radius: 10px;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             cursor: pointer;
             transition: all 0.2s ease;
             text-decoration: none;
@@ -82,7 +82,7 @@
         }
 
         .nav-click-btn i.fa-chevron-down {
-            font-size: 0.65rem;
+            font-size: 0.68rem;
             transition: transform 0.2s ease;
         }
 
@@ -111,8 +111,8 @@
         }
 
         .nav-item.active .mega-dropdown { display: block !important; }
-        .mega-dropdown.wide-3col { width: 760px; left: -120px; }
-        .mega-dropdown.wide-2col { width: 560px; left: -60px; }
+        .mega-dropdown.wide-3col { width: 760px; left: -100px; }
+        .mega-dropdown.wide-2col { width: 560px; left: -50px; }
         .mega-dropdown.standard-drop { width: 260px; }
 
         .dropdown-top-header {
@@ -136,15 +136,13 @@
         .mega-links-list a { font-size: 0.82rem; font-weight: 600; color: #334155; text-decoration: none; display: flex; align-items: center; gap: 6px; transition: var(--transition); }
         .mega-links-list a:hover { color: #4F46E5; transform: translateX(3px); }
 
-        /* =========================================
-           🔥 SIDEBAR TOGGLE BUTTON & RESOURCES DRAWER
-        ========================================= */
+        /* BLUE TOGGLE BUTTON MATCHING SCREENSHOT */
         .sidebar-toggle-btn {
             background: #FFFFFF;
             border: 2px solid #2563EB;
             color: #0F172A;
-            width: 44px;
-            height: 44px;
+            width: 42px;
+            height: 42px;
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -159,6 +157,7 @@
             color: #2563EB;
         }
 
+        /* RESOURCES SIDEBAR DRAWER */
         .resources-drawer {
             display: none;
             position: absolute;
@@ -176,9 +175,7 @@
             animation: fadeIn 0.2s ease-out;
         }
 
-        .resources-drawer.active {
-            display: block !important;
-        }
+        .resources-drawer.active { display: block !important; }
 
         .drawer-header {
             font-size: 0.9rem;
@@ -192,16 +189,8 @@
             gap: 8px;
         }
 
-        .drawer-links-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .drawer-links-list li {
-            margin-bottom: 4px;
-        }
-
+        .drawer-links-list { list-style: none; padding: 0; margin: 0; }
+        .drawer-links-list li { margin-bottom: 4px; }
         .drawer-links-list a {
             display: flex;
             align-items: center;
@@ -379,7 +368,7 @@
 </head>
 <body>
 
-    <!-- === HEADER WITH TOGGLE BUTTON === -->
+    <!-- === HEADER MATCHING EXACT SCREENSHOT NAVIGATION === -->
     <header class="header-wrapper">
         <nav class="navbar">
             <a href="index.html" class="logo">
@@ -387,7 +376,7 @@
                 <span>The University Page</span>
             </a>
             
-            <!-- DESKTOP NAVIGATION -->
+            <!-- DESKTOP TOP MAIN NAVBAR -->
             <ul class="main-nav-menu">
                 <li class="nav-item">
                     <a href="index.html" class="nav-click-btn"><i class="fas fa-home"></i> Home</a>
