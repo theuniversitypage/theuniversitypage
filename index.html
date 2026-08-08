@@ -31,28 +31,159 @@
             -webkit-text-size-adjust: 100%;
         }
 
-        /* FIXED HEADER Z-INDEX & NAV DRAWER */
+        /* FIXED HEADER Z-INDEX & MEGA MENU NAVIGATION */
         .header-wrapper {
             position: relative;
             z-index: 9999 !important;
+            background: #FFFFFF;
+            border-bottom: 1px solid #E2E8F0;
         }
 
-        .nav-drawer {
+        .navbar {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .main-nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item > a {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: #0F172A;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition);
+        }
+
+        .nav-item > a:hover, .nav-item.active > a {
+            color: #4F46E5;
+            background: #EEF2FF;
+        }
+
+        /* MEGA DROPDOWN BOX STYLING */
+        .mega-dropdown {
             display: none;
             position: absolute;
             top: 100%;
             left: 0;
-            width: 100%;
             background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid #E2E8F0;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            box-shadow: 0 16px 35px -5px rgba(15, 23, 42, 0.12);
+            padding: 20px;
             z-index: 99999 !important;
         }
 
-        .nav-drawer.active {
+        .mega-dropdown.wide-3col {
+            width: 780px;
+            left: -100px;
+        }
+
+        .mega-dropdown.wide-2col {
+            width: 580px;
+            left: -50px;
+        }
+
+        .mega-dropdown.standard-drop {
+            width: 240px;
+        }
+
+        .nav-item:hover .mega-dropdown {
             display: block !important;
+        }
+
+        .dropdown-top-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 12px;
+            margin-bottom: 14px;
+            border-bottom: 1px solid #F1F5F9;
+        }
+
+        .dropdown-top-header h3 {
+            font-size: 1rem;
+            font-weight: 800;
+            color: #0F172A;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .view-all-link {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #4F46E5;
+            text-decoration: none;
+        }
+
+        .mega-grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+        }
+
+        .mega-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .mega-col-title {
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: #64748B;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+        }
+
+        .mega-links-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .mega-links-list li {
+            margin-bottom: 8px;
+        }
+
+        .mega-links-list a {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #334155;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition);
+        }
+
+        .mega-links-list a:hover {
+            color: #4F46E5;
+            transform: translateX(3px);
         }
 
         .main-container {
@@ -134,7 +265,6 @@
         .see-more-btn { font-size: 0.8rem; font-weight: 700; color: #4F46E5; text-decoration: none; display: flex; align-items: center; gap: 4px; transition: var(--transition); }
         .see-more-btn:hover { color: #3730A3; }
 
-        /* WIDGETS GRID IN INDEX */
         .widgets-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-bottom: 24px; width: 100% !important; }
         .widget-card { background: #FFFFFF; border-radius: var(--radius-lg, 18px); border: 1px solid #E2E8F0; padding: 16px 14px; box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03); display: flex; flex-direction: column; justify-content: space-between; transition: var(--transition); width: 100% !important; min-width: 0; position: relative; }
         .widget-card:hover { transform: translateY(-2px); box-shadow: 0 10px 20px -5px rgba(79, 70, 229, 0.12); border-color: #C7D2FE; }
@@ -146,7 +276,6 @@
         .widget-btn { background: #4F46E5; color: #FFFFFF; border: none; padding: 9px 12px; border-radius: 20px; font-weight: 700; font-size: 0.8rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; transition: var(--transition); width: 100%; text-decoration: none; box-sizing: border-box; margin-top: 4px; }
         .widget-btn:hover { background: #4338CA; }
 
-        /* HORIZONTAL SLIDER FOR CATEGORIES (EXPANDED OPTIONS) */
         .slider-section { margin-bottom: 24px; width: 100% !important; }
         .slider-wrapper { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 10px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
         .slider-wrapper::-webkit-scrollbar { display: none; }
@@ -155,262 +284,6 @@
         .slider-card h4 { font-size: 0.88rem; font-weight: 800; color: #0F172A; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
         .slider-card p { font-size: 0.74rem; color: #64748B; font-weight: 500; margin: 0; }
         .output-box-inline { margin-top: 8px; padding: 8px; background: #EEF2FF; border-radius: 6px; font-size: 0.75rem; color: #3730A3; font-weight: 700; display: none; }
-
-        /* VIDEO GUIDANCE GRID (AJMAL MANSOORI OFFICIAL CHANNEL) */
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 16px;
-            margin-bottom: 30px;
-            width: 100% !important;
-        }
-
-        .video-card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 18px;
-            border: 1px solid rgba(226, 232, 240, 0.9);
-            overflow: hidden;
-            box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04);
-            display: flex;
-            flex-direction: column;
-            transition: var(--transition);
-        }
-
-        .video-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(79, 70, 229, 0.12);
-            border-color: #C7D2FE;
-        }
-
-        .video-thumb {
-            position: relative;
-            width: 100%;
-            height: 155px;
-            background: #0F172A;
-            overflow: hidden;
-        }
-
-        .video-thumb img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .play-overlay-btn {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 48px;
-            height: 48px;
-            background: rgba(225, 29, 72, 0.9);
-            color: #FFFFFF;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            box-shadow: 0 0 20px rgba(225, 29, 72, 0.5);
-            transition: var(--transition);
-        }
-
-        .video-card:hover .play-overlay-btn {
-            transform: translate(-50%, -50%) scale(1.12);
-            background: #E11D48;
-        }
-
-        .video-duration {
-            position: absolute;
-            bottom: 8px;
-            right: 8px;
-            background: rgba(15, 23, 42, 0.85);
-            color: #FFFFFF;
-            font-size: 0.7rem;
-            font-weight: 700;
-            padding: 2px 6px;
-            border-radius: 4px;
-        }
-
-        .video-body {
-            padding: 14px;
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-            justify-content: space-between;
-        }
-
-        .video-body h4 {
-            font-size: 0.88rem;
-            font-weight: 800;
-            color: #0F172A;
-            line-height: 1.35;
-            margin-bottom: 6px;
-        }
-
-        .video-body p {
-            font-size: 0.76rem;
-            color: #64748B;
-            line-height: 1.4;
-            font-weight: 500;
-            margin-bottom: 12px;
-        }
-
-        .video-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            font-size: 0.74rem;
-            color: #64748B;
-            font-weight: 600;
-            border-top: 1px solid #F1F5F9;
-            padding-top: 10px;
-        }
-
-        .video-footer a {
-            color: #E11D48;
-            text-decoration: none;
-            font-weight: 800;
-        }
-
-        /* CUSTOM REAL STUDENT SUCCESS STORIES SLIDER */
-        .testimonial-slider-wrapper {
-            display: flex;
-            gap: 16px;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            padding-bottom: 14px;
-            scrollbar-width: none;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .testimonial-slider-wrapper::-webkit-scrollbar { display: none; }
-
-        .testimonial-card {
-            flex: 0 0 310px;
-            scroll-snap-align: start;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 20px;
-            border: 1px solid rgba(226, 232, 240, 0.9);
-            padding: 20px;
-            box-shadow: 0 6px 20px rgba(15, 23, 42, 0.03);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            justify-content: space-between;
-        }
-
-        .rating-stars {
-            color: #F59E0B;
-            font-size: 0.85rem;
-            margin-bottom: 12px;
-            display: flex;
-            gap: 4px;
-        }
-
-        .testimonial-text {
-            font-size: 0.8rem;
-            color: #334155;
-            font-weight: 500;
-            line-height: 1.55;
-            font-style: italic;
-            margin-bottom: 16px;
-        }
-
-        .student-avatar {
-            width: 52px;
-            height: 52px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #4F46E5;
-            margin-bottom: 8px;
-        }
-
-        .student-name {
-            font-size: 0.88rem;
-            font-weight: 800;
-            color: #0F172A;
-            letter-spacing: 0.3px;
-        }
-
-        .student-dept {
-            font-size: 0.72rem;
-            color: #64748B;
-            font-weight: 600;
-        }
-
-        /* FAQ ACCORDION GRID */
-        .faq-title-center {
-            text-align: center;
-            margin: 32px 0 20px;
-        }
-
-        .faq-title-center h2 { font-size: 1.4rem; font-weight: 800; color: #0F172A; }
-        .faq-title-center h2 span { color: #0284C7; }
-
-        .faq-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 14px;
-            margin-bottom: 30px;
-            width: 100% !important;
-        }
-
-        .faq-item {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 14px;
-            border: 1px solid rgba(226, 232, 240, 0.9);
-            padding: 14px 16px;
-            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.02);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .faq-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-        }
-
-        .faq-header h4 { font-size: 0.85rem; font-weight: 700; color: #0F172A; line-height: 1.35; margin: 0; }
-
-        .faq-icon-btn {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            background: #F1F5F9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
-            color: #64748B;
-            flex-shrink: 0;
-            transition: var(--transition);
-        }
-
-        .faq-body {
-            font-size: 0.78rem;
-            color: #64748B;
-            font-weight: 500;
-            line-height: 1.5;
-            margin-top: 10px;
-            padding-top: 8px;
-            border-top: 1px solid #F1F5F9;
-            display: none;
-        }
-
-        .faq-item.active .faq-icon-btn {
-            background: #4F46E5;
-            color: #FFFFFF;
-            transform: rotate(180deg);
-        }
 
         /* FOOTER */
         footer {
@@ -426,20 +299,16 @@
         .footer-links a { font-size: 0.78rem; font-weight: 600; color: #334155; white-space: nowrap !important; text-decoration: none; }
         .copyright { color: #64748B; font-size: 0.72rem; }
 
-        @media (max-width: 768px) {
-            .main-container { padding: 8px 8px 24px; }
-            .widgets-grid { grid-template-columns: 1fr !important; gap: 10px; }
-            .testimonial-card { flex: 0 0 260px; }
-            .faq-grid { grid-template-columns: 1fr !important; }
-            footer { padding: 16px 6px 12px; }
-            .footer-links { gap: 8px !important; }
-            .footer-links a { font-size: 0.72rem !important; }
+        @media (max-width: 900px) {
+            .main-nav-menu { display: none; }
+            .mega-dropdown { position: static !important; width: 100% !important; box-shadow: none; }
+            .mega-grid-3, .mega-grid-2 { grid-template-columns: 1fr !important; }
         }
     </style>
 </head>
 <body>
 
-    <!-- === HEADER WITH WORKING MENUBAR === -->
+    <!-- === HEADER WITH UPDATED MEGA MENU === -->
     <header class="header-wrapper">
         <nav class="navbar">
             <a href="index.html" class="logo">
@@ -447,18 +316,167 @@
                 <span>The University Page</span>
             </a>
             
+            <!-- DESKTOP MEGA MENU NAVIGATION -->
+            <ul class="main-nav-menu">
+                <li class="nav-item active">
+                    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                </li>
+
+                <!-- MENU 1: PROGRAMS (3 COLUMNS) -->
+                <li class="nav-item">
+                    <a href="#"><i class="fas fa-book-open"></i> Programs <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a>
+                    <div class="mega-dropdown wide-3col">
+                        <div class="dropdown-top-header">
+                            <h3><i class="fas fa-graduation-cap" style="color: #4F46E5;"></i> Programs</h3>
+                            <a href="admission.html" class="view-all-link">View All <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                        <div class="mega-grid-3">
+                            <!-- Column 1: Academic Levels -->
+                            <div>
+                                <div class="mega-col-title">Degree Levels</div>
+                                <ul class="mega-links-list">
+                                    <li><a href="#">Bachelor</a></li>
+                                    <li><a href="#">Master</a></li>
+                                    <li><a href="#">PhD (Doctorate)</a></li>
+                                    <li><a href="#">Non-Degree Program</a></li>
+                                    <li><a href="#">Diploma / Certification</a></li>
+                                    <li><a href="#">Associate Degree</a></li>
+                                    <li><a href="#">Foundation Programs</a></li>
+                                </ul>
+                            </div>
+                            <!-- Column 2: Bachelor Specializations -->
+                            <div>
+                                <div class="mega-col-title">Bachelor Programs</div>
+                                <ul class="mega-links-list">
+                                    <li><a href="#">Bachelor's Degree in AI</a></li>
+                                    <li><a href="#">Bachelor's in Dental Hygiene</a></li>
+                                    <li><a href="#">Bachelor's in Computer Engineering</a></li>
+                                    <li><a href="#">Biotechnology</a></li>
+                                    <li><a href="#">Civil & Environmental Eng.</a></li>
+                                    <li><a href="#">Economics & Business</a></li>
+                                    <li><a href="#">Industrial Eng. Technology</a></li>
+                                    <li><a href="#">Management & Business Analytics</a></li>
+                                    <li><a href="#">MBBS Degree</a></li>
+                                </ul>
+                            </div>
+                            <!-- Column 3: Top Master Programs -->
+                            <div>
+                                <div class="mega-col-title">Top Master Programs</div>
+                                <ul class="mega-links-list">
+                                    <li><a href="#">M.Tech Data Science & AI</a></li>
+                                    <li><a href="#">Master of Business Admin (MBA)</a></li>
+                                    <li><a href="#">M.Sc. Biotechnology & Genetics</a></li>
+                                    <li><a href="#">M.A. Modern & Medieval History</a></li>
+                                    <li><a href="#">Master in Cyber Security</a></li>
+                                    <li><a href="#">M.Com Finance & Fintech</a></li>
+                                    <li><a href="#">LL.M. International Law</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- MENU 2: UNIVERSITIES (2 COLUMNS: CENTRAL & STATE) -->
+                <li class="nav-item">
+                    <a href="#"><i class="fas fa-university"></i> Universities <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a>
+                    <div class="mega-dropdown wide-2col">
+                        <div class="dropdown-top-header">
+                            <h3><i class="fas fa-university" style="color: #4F46E5;"></i> Universities</h3>
+                            <a href="admission.html" class="view-all-link">View All <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                        <div class="mega-grid-2">
+                            <!-- Left Column: Central Universities -->
+                            <div>
+                                <div class="mega-col-title">Central Universities (India)</div>
+                                <ul class="mega-links-list">
+                                    <li><a href="#">University of Allahabad (AU)</a></li>
+                                    <li><a href="#">Banaras Hindu University (BHU)</a></li>
+                                    <li><a href="#">University of Delhi (DU)</a></li>
+                                    <li><a href="#">Jawaharlal Nehru University (JNU)</a></li>
+                                    <li><a href="#">Aligarh Muslim University (AMU)</a></li>
+                                    <li><a href="#">Jamia Millia Islamia (JMI)</a></li>
+                                    <li><a href="#">Babasaheb Bhimrao Ambedkar Univ</a></li>
+                                </ul>
+                            </div>
+                            <!-- Right Column: State Universities -->
+                            <div>
+                                <div class="mega-col-title">Top State Universities</div>
+                                <ul class="mega-links-list">
+                                    <li><a href="#">Lucknow University (LU)</a></li>
+                                    <li><a href="#">Dr. APJ Abdul Kalam Tech Univ (AKTU)</a></li>
+                                    <li><a href="#">CSJM University Kanpur</a></li>
+                                    <li><a href="#">CCS University Meerut</a></li>
+                                    <li><a href="#">MGKVP Varanasi</a></li>
+                                    <li><a href="#">DDU Gorakhpur University</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- MENU 3: SCHOLARSHIPS -->
+                <li class="nav-item">
+                    <a href="#"><i class="fas fa-award"></i> Scholarships <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a>
+                    <div class="mega-dropdown standard-drop">
+                        <div class="dropdown-top-header">
+                            <h3><i class="fas fa-award" style="color: #0D9488;"></i> Scholarships</h3>
+                        </div>
+                        <ul class="mega-links-list">
+                            <li><a href="document-details.html">UP Scholarship Dashmottar</a></li>
+                            <li><a href="#">NSP National Scholarship Portal</a></li>
+                            <li><a href="#">Central Sector Scholarship (CSSS)</a></li>
+                            <li><a href="#">Post Matric Merit Scholarship</a></li>
+                            <li><a href="#">PM Yasasvi Scholarship Scheme</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <!-- MENU 4: CAMPUS LOCATIONS -->
+                <li class="nav-item">
+                    <a href="#"><i class="fas fa-map-marker-alt"></i> Campus Locations <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a>
+                    <div class="mega-dropdown standard-drop">
+                        <div class="dropdown-top-header">
+                            <h3><i class="fas fa-map-marked-alt" style="color: #E11D48;"></i> Locations</h3>
+                        </div>
+                        <ul class="mega-links-list">
+                            <li><a href="#">Prayagraj (AU Main Campus & Colleges)</a></li>
+                            <li><a href="#">Varanasi (BHU Main & South Campus)</a></li>
+                            <li><a href="#">New Delhi (DU North & South Campus)</a></li>
+                            <li><a href="#">Lucknow Campuses</a></li>
+                            <li><a href="#">Aligarh Campus</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <!-- MENU 5: RESOURCES (OLD MENU DATA) -->
+                <li class="nav-item">
+                    <a href="#"><i class="fas fa-folder-open"></i> Resources <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a>
+                    <div class="mega-dropdown standard-drop">
+                        <div class="dropdown-top-header">
+                            <h3><i class="fas fa-folder-open" style="color: #8B5CF6;"></i> Resources</h3>
+                        </div>
+                        <ul class="mega-links-list">
+                            <li><a href="latest-jobs.html"><i class="fas fa-briefcase"></i> Latest Job</a></li>
+                            <li><a href="admitcard.html"><i class="fas fa-id-card"></i> Admit Card</a></li>
+                            <li><a href="result.html"><i class="fas fa-trophy"></i> Result</a></li>
+                            <li><a href="cutoff.html"><i class="fas fa-chart-line"></i> Cutoff</a></li>
+                            <li><a href="admission.html"><i class="fas fa-university"></i> Admission</a></li>
+                            <li><a href="syllabus.html"><i class="fas fa-book-open"></i> Syllabus</a></li>
+                            <li><a href="answerkey.html"><i class="fas fa-key"></i> Answer Key</a></li>
+                            <li><a href="about-ajmal-mansoori.html"><i class="fas fa-user-graduate"></i> About Founder</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+
             <div class="header-right">
-                <div class="search-box">
-                    <input type="text" placeholder="Search updates...">
-                    <button type="submit"><i class="fas fa-search"></i></button>
-                </div>
-                
                 <button class="menu-toggle-btn" id="sidebarToggle" onclick="toggleNavDrawer()">
                     <i class="fa-solid fa-bars-staggered"></i>
                 </button>
             </div>
         </nav>
 
+        <!-- MOBILE DRAWER NAV -->
         <div class="nav-drawer" id="navDrawer">
             <ul class="nav-links">
                 <li><a href="index.html" class="active">Home</a></li>
@@ -529,7 +547,6 @@
             </div>
         </section>
 
-
         <!-- INTERACTIVE UTILITY SUITE -->
         <div class="section-title-main">
             <div class="title-left">
@@ -591,239 +608,6 @@
             </div>
         </section>
 
-
-        <!-- 🔥 AJMAL MANSOORI OFFICIAL VIDEO GUIDANCE & COUNSELING -->
-        <div class="section-title-main">
-            <div class="title-left">
-                <i class="fab fa-youtube" style="color: #E11D48;"></i>
-                <span>Ajmal Mansoori - Video Guidance & Counseling</span>
-            </div>
-            <a href="https://youtube.com/@ajmalalimansoori" target="_blank" class="see-more-btn">Visit YouTube Channel <i class="fas fa-arrow-right"></i></a>
-        </div>
-
-        <section class="video-grid">
-            <div class="video-card">
-                <div class="video-thumb">
-                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=500" alt="Ajmal Mansoori Video">
-                    <div class="play-overlay-btn"><i class="fas fa-play"></i></div>
-                    <span class="video-duration">06:41</span>
-                </div>
-                <div class="video-body">
-                    <h4>CUET UG Complete Admission & Counseling Strategy</h4>
-                    <p>By Ajmal Mansoori: Step-by-step cutoff analysis, AU & BHU seat matrix, and document checklist.</p>
-                    <div class="video-footer">
-                        <span><i class="fas fa-eye"></i> 20.0K Views</span>
-                        <a href="https://youtube.com/@ajmalalimansoori" target="_blank">Watch Video <i class="fas fa-play"></i></a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="video-card">
-                <div class="video-thumb">
-                    <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=500" alt="Allahabad University Guide">
-                    <div class="play-overlay-btn"><i class="fas fa-play"></i></div>
-                    <span class="video-duration">08:15</span>
-                </div>
-                <div class="video-body">
-                    <h4>Allahabad University Main Campus Cutoff Analysis</h4>
-                    <p>Detailed breakdown for BA, BSc, BCom main campus cutoffs and subject combination mapping.</p>
-                    <div class="video-footer">
-                        <span><i class="fas fa-eye"></i> 35.2K Views</span>
-                        <a href="https://youtube.com/@ajmalalimansoori" target="_blank">Watch Video <i class="fas fa-play"></i></a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="video-card">
-                <div class="video-thumb">
-                    <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=500" alt="Learnify Classes Prep">
-                    <div class="play-overlay-btn"><i class="fas fa-play"></i></div>
-                    <span class="video-duration">09:19</span>
-                </div>
-                <div class="video-body">
-                    <h4>Learnify Classes Premium Mock Test & Free Booklets Guide</h4>
-                    <p>How to access free study materials, test series, and e-books on Learnify Classes app.</p>
-                    <div class="video-footer">
-                        <span><i class="fas fa-eye"></i> 100.0K Views</span>
-                        <a href="https://youtube.com/@ajmalalimansoori" target="_blank">Watch Video <i class="fas fa-play"></i></a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- 🔥 QUICK CATEGORY HIGHLIGHTS (EXPANDED 8 OPTIONS) -->
-        <div class="section-title-main">
-            <div class="title-left">
-                <i class="fas fa-layer-group"></i>
-                <span>Quick Category Highlights</span>
-            </div>
-        </div>
-
-        <section class="slider-section">
-            <div class="slider-wrapper">
-                <a href="result.html" class="slider-card">
-                    <h4><i class="fas fa-trophy" style="color: #10B981;"></i> Entrance Results</h4>
-                    <p>CUET, AU, UP Board Scorecards</p>
-                </a>
-                <a href="latest-jobs.html" class="slider-card">
-                    <h4><i class="fas fa-briefcase" style="color: #D97706;"></i> Latest Jobs</h4>
-                    <p>SSC, Railway, Banking Forms</p>
-                </a>
-                <a href="admitcard.html" class="slider-card">
-                    <h4><i class="fas fa-id-card" style="color: #F43F5E;"></i> Hall Tickets</h4>
-                    <p>Admit Cards & Exam Dates</p>
-                </a>
-                <a href="admission.html" class="slider-card">
-                    <h4><i class="fas fa-university" style="color: #8B5CF6;"></i> Admissions</h4>
-                    <p>University Counseling Guides</p>
-                </a>
-                <a href="cutoff.html" class="slider-card">
-                    <h4><i class="fas fa-chart-line" style="color: #0284C7;"></i> Cutoffs & Ranks</h4>
-                    <p>Category-Wise Cutoff Lists</p>
-                </a>
-                <a href="answerkey.html" class="slider-card">
-                    <h4><i class="fas fa-key" style="color: #E11D48;"></i> Answer Keys</h4>
-                    <p>Official Question Papers & Keys</p>
-                </a>
-                <a href="syllabus.html" class="slider-card">
-                    <h4><i class="fas fa-book-open" style="color: #10B981;"></i> Exam Syllabus</h4>
-                    <p>Latest Pattern & PDF Downloads</p>
-                </a>
-                <a href="document.html" class="slider-card">
-                    <h4><i class="fas fa-file-alt" style="color: #0D9488;"></i> Documents</h4>
-                    <p>Scholarship & Form Formats</p>
-                </a>
-            </div>
-        </section>
-
-
-        <!-- CATEGORIES GRID FROM FIREBASE -->
-        <section class="list-grid">
-            <div class="samarth-box emerald">
-                <h2><i class="fas fa-trophy"></i> Result</h2>
-                <ul class="samarth-list" id="resultList">
-                    <li><a href="scor.html"><i class="fas fa-chevron-right"></i> <span>CUET UG Final Scorecard Released</span></a></li>
-                    <li><a href="scor.html"><i class="fas fa-chevron-right"></i> <span>Allahabad University Entrance Result Declared</span></a></li>
-                </ul>
-                <a href="result.html" class="show-more-link">Show more <i class="fas fa-arrow-right"></i></a>
-            </div>
-
-            <div class="samarth-box amber">
-                <h2><i class="fas fa-briefcase"></i> Latest Job</h2>
-                <ul class="samarth-list">
-                    <li><a href="job-details.html"><i class="fas fa-chevron-right"></i> <span>SSC CGL Online Application Form</span></a></li>
-                    <li><a href="job-details.html"><i class="fas fa-chevron-right"></i> <span>RRB NTPC Recruitment Online Apply Link</span></a></li>
-                </ul>
-                <a href="latest-jobs.html" class="show-more-link">Show more <i class="fas fa-arrow-right"></i></a>
-            </div>
-
-            <div class="samarth-box rose">
-                <h2><i class="fas fa-id-card"></i> Admit Card</h2>
-                <ul class="samarth-list" id="admitCardList">
-                    <li><a href="admitcard-details.html"><i class="fas fa-chevron-right"></i> <span>CUET UG Entrance Exam Hall Ticket</span></a></li>
-                    <li><a href="admitcard-details.html"><i class="fas fa-chevron-right"></i> <span>Allahabad University PGAT Admit Card</span></a></li>
-                </ul>
-                <a href="admitcard.html" class="show-more-link">Show more <i class="fas fa-arrow-right"></i></a>
-            </div>
-        </section>
-
-
-        <!-- 🔥 CUSTOM LEARNIFY CLASSES REAL STUDENT SUCCESS STORIES -->
-        <div class="section-title-main">
-            <div class="title-left">
-                <i class="fas fa-comment-dots" style="color: #10B981;"></i>
-                <span>Student Success Stories & Reviews</span>
-            </div>
-        </div>
-
-        <section class="testimonial-slider-wrapper">
-            <div class="testimonial-card">
-                <div class="rating-stars">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                </div>
-                <p class="testimonial-text">"Ajmal Sir aur Learnify Classes ke mock tests se mujhe CUET me bohot help mili. Aaj Allahabad University Main Campus me BA me admission ho gaya!"</p>
-                <div>
-                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100" alt="Student Review" class="student-avatar">
-                    <div class="student-name">PRIYA SHARMA</div>
-                    <div class="student-dept">B.A. Main Campus, Allahabad University</div>
-                </div>
-            </div>
-
-            <div class="testimonial-card">
-                <div class="rating-stars">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                </div>
-                <p class="testimonial-text">"The University Page portal par sabhi cutoff aur document guidelines bohot fast update hoti hain. College Predictor tool bhi ekdam accurate tha!"</p>
-                <div>
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100" alt="Student Review" class="student-avatar">
-                    <div class="student-name">VIKAS YADAV</div>
-                    <div class="student-dept">B.Sc. BHU Main Campus</div>
-                </div>
-            </div>
-
-            <div class="testimonial-card">
-                <div class="rating-stars">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                </div>
-                <p class="testimonial-text">"CUET Warriors 2026 group aur Ajmal Mansoori sir ki guidance se admission process bohot easy ho gaya. Best educational platform!"</p>
-                <div>
-                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100" alt="Student Review" class="student-avatar">
-                    <div class="student-name">ANANLYA SINGH</div>
-                    <div class="student-dept">BALLB Scholar, University of Allahabad</div>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- FAQ ACCORDION -->
-        <div class="faq-title-center">
-            <h2>Frequently Asked <span>Questions</span></h2>
-            <p style="font-size: 0.8rem; color: #64748B; font-weight: 500; margin-top: 4px;">Find quick answers about university admissions, results, and student tools</p>
-        </div>
-
-        <section class="faq-grid">
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="faq-header">
-                    <h4>What services does The University Page provide?</h4>
-                    <div class="faq-icon-btn"><i class="fas fa-chevron-down"></i></div>
-                </div>
-                <div class="faq-body">
-                    We offer real-time updates on University Results, Cutoff releases, Admit Cards, Application Forms, and interactive tools like College Predictor & Image Resizer.
-                </div>
-            </div>
-
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="faq-header">
-                    <h4>How accurate is the College & Rank Predictor?</h4>
-                    <div class="faq-icon-btn"><i class="fas fa-chevron-down"></i></div>
-                </div>
-                <div class="faq-body">
-                    Our predictor uses official historical cutoff data and score algorithms to provide highly estimated rank ranges for CUET, AU, and BHU.
-                </div>
-            </div>
-
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="faq-header">
-                    <h4>How do I join the official WhatsApp & Telegram groups?</h4>
-                    <div class="faq-icon-btn"><i class="fas fa-chevron-down"></i></div>
-                </div>
-                <div class="faq-body">
-                    You can click the 'Instant Alerts Bell' widget on the homepage or visit the 'CUET Warriors 2026' group link to get instant notification alerts on your phone.
-                </div>
-            </div>
-
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="faq-header">
-                    <h4>How can I resize my passport photo & signature for form filling?</h4>
-                    <div class="faq-icon-btn"><i class="fas fa-chevron-down"></i></div>
-                </div>
-                <div class="faq-body">
-                    Go to the 'Interactive Student Utility Suite' or Predictor page, upload your image in the Resizer tool, and click download to get standard 20KB-50KB images.
-                </div>
-            </div>
-        </section>
-
     </div>
 
     <!-- === FOOTER === -->
@@ -838,9 +622,7 @@
         </div>
     </footer>
 
-    <!-- INTERACTIVE JAVASCRIPT -->
     <script>
-        // FIXED TOGGLE NAV DRAWER FUNCTION
         function toggleNavDrawer() {
             const drawer = document.getElementById("navDrawer");
             if (drawer) {
@@ -864,21 +646,6 @@
             resultBox.style.background = "#EEF2FF";
             resultBox.style.color = "#3730A3";
             resultBox.innerHTML = `Est. Rank: <b>#${rank}</b>`;
-        }
-
-        function toggleFaq(element) {
-            const body = element.querySelector('.faq-body');
-            const isActive = element.classList.contains('active');
-
-            document.querySelectorAll('.faq-item').forEach(item => {
-                item.classList.remove('active');
-                item.querySelector('.faq-body').style.display = 'none';
-            });
-
-            if (!isActive) {
-                element.classList.add('active');
-                body.style.display = 'block';
-            }
         }
     </script>
 </body>
