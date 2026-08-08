@@ -31,7 +31,7 @@
             -webkit-text-size-adjust: 100%;
         }
 
-        /* FIXED HEADER & MEGA MENU STYLING */
+        /* HEADER & NAVIGATION */
         .header-wrapper {
             position: relative;
             z-index: 99999 !important;
@@ -88,7 +88,7 @@
 
         .nav-item.active .nav-click-btn i.fa-chevron-down { transform: rotate(180deg); }
 
-        /* MEGA DROPDOWN BOX */
+        /* MEGA DROPDOWNS FOR TOP NAVBAR */
         .mega-dropdown {
             display: none;
             position: absolute;
@@ -137,48 +137,87 @@
         .mega-links-list a:hover { color: #4F46E5; transform: translateX(3px); }
 
         /* =========================================
-           🔥 RESTORED SUB-NAVBAR PILL TABS
+           🔥 SIDEBAR TOGGLE BUTTON & RESOURCES DRAWER
         ========================================= */
-        .sub-navbar-wrapper {
+        .sidebar-toggle-btn {
             background: #FFFFFF;
-            border-bottom: 1px solid #E2E8F0;
-            padding: 8px 0;
-            overflow-x: auto;
-            scrollbar-width: none;
-            -webkit-overflow-scrolling: touch;
+            border: 2px solid #2563EB;
+            color: #0F172A;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
         }
 
-        .sub-navbar-wrapper::-webkit-scrollbar { display: none; }
+        .sidebar-toggle-btn:hover {
+            background: #EEF2FF;
+            color: #2563EB;
+        }
 
-        .sub-navbar-container {
-            max-width: 1240px;
-            margin: 0 auto;
-            padding: 0 16px;
+        .resources-drawer {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 16px;
+            width: 280px;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid #E2E8F0;
+            border-radius: 18px;
+            box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.15);
+            padding: 16px;
+            z-index: 999999 !important;
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        .resources-drawer.active {
+            display: block !important;
+        }
+
+        .drawer-header {
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: #0F172A;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #F1F5F9;
             display: flex;
             align-items: center;
             gap: 8px;
-            white-space: nowrap;
         }
 
-        .sub-nav-pill {
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.82rem;
+        .drawer-links-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .drawer-links-list li {
+            margin-bottom: 4px;
+        }
+
+        .drawer-links-list a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px 12px;
+            border-radius: 10px;
+            font-size: 0.85rem;
             font-weight: 700;
             color: #334155;
             text-decoration: none;
             transition: all 0.2s ease;
-            background: transparent;
         }
 
-        .sub-nav-pill.active {
+        .drawer-links-list a:hover {
             background: #EEF2FF;
             color: #4F46E5;
-        }
-
-        .sub-nav-pill:hover {
-            background: #F1F5F9;
-            color: #0F172A;
         }
 
         .main-container {
@@ -340,7 +379,7 @@
 </head>
 <body>
 
-    <!-- === HEADER WITH ON-CLICK MEGA MENU === -->
+    <!-- === HEADER WITH TOGGLE BUTTON === -->
     <header class="header-wrapper">
         <nav class="navbar">
             <a href="index.html" class="logo">
@@ -348,7 +387,7 @@
                 <span>The University Page</span>
             </a>
             
-            <!-- DESKTOP MEGA MENU NAVIGATION -->
+            <!-- DESKTOP NAVIGATION -->
             <ul class="main-nav-menu">
                 <li class="nav-item">
                     <a href="index.html" class="nav-click-btn"><i class="fas fa-home"></i> Home</a>
@@ -482,69 +521,34 @@
                         </ul>
                     </div>
                 </li>
-
-                <!-- MENU 5: RESOURCES -->
-                <li class="nav-item">
-                    <button class="nav-click-btn" onclick="toggleMenuDropdown(this)">
-                        <i class="fas fa-folder-open"></i> Resources <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="mega-dropdown standard-drop">
-                        <div class="dropdown-top-header">
-                            <h3><i class="fas fa-folder-open" style="color: #8B5CF6;"></i> Resources</h3>
-                        </div>
-                        <ul class="mega-links-list">
-                            <li><a href="latest-jobs.html"><i class="fas fa-briefcase"></i> Latest Job</a></li>
-                            <li><a href="admitcard.html"><i class="fas fa-id-card"></i> Admit Card</a></li>
-                            <li><a href="result.html"><i class="fas fa-trophy"></i> Result</a></li>
-                            <li><a href="cutoff.html"><i class="fas fa-chart-line"></i> Cutoff</a></li>
-                            <li><a href="admission.html"><i class="fas fa-university"></i> Admission</a></li>
-                            <li><a href="syllabus.html"><i class="fas fa-book-open"></i> Syllabus</a></li>
-                            <li><a href="answerkey.html"><i class="fas fa-key"></i> Answer Key</a></li>
-                            <li><a href="about-ajmal-mansoori.html"><i class="fas fa-user-graduate"></i> About Founder</a></li>
-                        </ul>
-                    </div>
-                </li>
             </ul>
 
+            <!-- 🔥 SIDEBAR TOGGLE BUTTON (BLUE ICON MATCHING SCREENSHOT) -->
             <div class="header-right">
-                <button class="menu-toggle-btn" id="sidebarToggle" onclick="toggleNavDrawer()">
+                <button class="sidebar-toggle-btn" id="sidebarToggleBtn" onclick="toggleResourcesDrawer()">
                     <i class="fa-solid fa-bars-staggered"></i>
                 </button>
             </div>
         </nav>
 
-        <!-- MOBILE DRAWER -->
-        <div class="nav-drawer" id="navDrawer">
-            <ul class="nav-links">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="latest-jobs.html">Latest Job</a></li>
-                <li><a href="admitcard.html">Admit Card</a></li>
-                <li><a href="result.html">Result</a></li>
-                <li><a href="cutoff.html">Cutoff</a></li>
-                <li><a href="admission.html">Admission</a></li>
-                <li><a href="syllabus.html">Syllabus</a></li>
-                <li><a href="answerkey.html">Answer Key</a></li>
-                <li><a href="about-ajmal-mansoori.html">About Founder</a></li>
+        <!-- 🔥 ALL RESOURCES MENU ITEMS INSIDE SIDEBAR ICON DRAWER -->
+        <div class="resources-drawer" id="resourcesDrawer">
+            <div class="drawer-header">
+                <i class="fas fa-folder-open" style="color: #4F46E5;"></i> Resources & Categories
+            </div>
+            <ul class="drawer-links-list">
+                <li><a href="index.html"><i class="fas fa-home" style="color: #4F46E5;"></i> Home</a></li>
+                <li><a href="latest-jobs.html"><i class="fas fa-briefcase" style="color: #D97706;"></i> Latest Job</a></li>
+                <li><a href="admitcard.html"><i class="fas fa-id-card" style="color: #F43F5E;"></i> Admit Card</a></li>
+                <li><a href="result.html"><i class="fas fa-trophy" style="color: #10B981;"></i> Result</a></li>
+                <li><a href="cutoff.html"><i class="fas fa-chart-line" style="color: #0284C7;"></i> Cutoff</a></li>
+                <li><a href="admission.html"><i class="fas fa-university" style="color: #8B5CF6;"></i> Admission</a></li>
+                <li><a href="syllabus.html"><i class="fas fa-book-open" style="color: #10B981;"></i> Syllabus</a></li>
+                <li><a href="answerkey.html"><i class="fas fa-key" style="color: #E11D48;"></i> Answer Key</a></li>
+                <li><a href="about-ajmal-mansoori.html"><i class="fas fa-user-graduate" style="color: #4F46E5;"></i> About Founder</a></li>
             </ul>
         </div>
     </header>
-
-    <!-- =========================================
-         🔥 RESTORED CATEGORY SUB-NAVBAR TABS
-    ========================================= -->
-    <div class="sub-navbar-wrapper">
-        <div class="sub-navbar-container">
-            <a href="index.html" class="sub-nav-pill active">Home</a>
-            <a href="latest-jobs.html" class="sub-nav-pill">Latest Job</a>
-            <a href="admitcard.html" class="sub-nav-pill">Admit Card</a>
-            <a href="result.html" class="sub-nav-pill">Result</a>
-            <a href="cutoff.html" class="sub-nav-pill">Cutoff</a>
-            <a href="admission.html" class="sub-nav-pill">Admission</a>
-            <a href="syllabus.html" class="sub-nav-pill">Syllabus</a>
-            <a href="answerkey.html" class="sub-nav-pill">Answer Key</a>
-            <a href="about-ajmal-mansoori.html" class="sub-nav-pill">About Founder</a>
-        </div>
-    </div>
 
     <!-- === MAIN CONTAINER === -->
     <div class="main-container">
@@ -662,7 +666,7 @@
             </div>
         </section>
 
-        <!-- 🔥 VIDEO GUIDANCE & COUNSELING -->
+        <!-- VIDEO GUIDANCE & COUNSELING -->
         <div class="section-title-main">
             <div class="title-left">
                 <i class="fab fa-youtube" style="color: #E11D48;"></i>
@@ -721,7 +725,7 @@
             </div>
         </section>
 
-        <!-- 🔥 CATEGORY SLIDER -->
+        <!-- CATEGORY SLIDER -->
         <div class="section-title-main">
             <div class="title-left">
                 <i class="fas fa-layer-group"></i>
@@ -747,18 +751,10 @@
                     <h4><i class="fas fa-university" style="color: #8B5CF6;"></i> Admissions</h4>
                     <p>University Counseling Guides</p>
                 </a>
-                <a href="cutoff.html" class="slider-card">
-                    <h4><i class="fas fa-chart-line" style="color: #0284C7;"></i> Cutoffs & Ranks</h4>
-                    <p>Category-Wise Cutoff Lists</p>
-                </a>
-                <a href="answerkey.html" class="slider-card">
-                    <h4><i class="fas fa-key" style="color: #E11D48;"></i> Answer Keys</h4>
-                    <p>Official Question Papers & Keys</p>
-                </a>
             </div>
         </section>
 
-        <!-- 🔥 STUDENT SUCCESS STORIES -->
+        <!-- STUDENT SUCCESS STORIES -->
         <div class="section-title-main">
             <div class="title-left">
                 <i class="fas fa-comment-dots" style="color: #10B981;"></i>
@@ -849,20 +845,24 @@
             }
         }
 
-        document.addEventListener("click", function(event) {
-            if (!event.target.closest(".main-nav-menu")) {
-                document.querySelectorAll(".nav-item").forEach(item => {
-                    item.classList.remove("active");
-                });
-            }
-        });
-
-        function toggleNavDrawer() {
-            const drawer = document.getElementById("navDrawer");
+        // TOGGLE SIDEBAR ICON RESOURCES DRAWER
+        function toggleResourcesDrawer() {
+            const drawer = document.getElementById("resourcesDrawer");
             if (drawer) {
                 drawer.classList.toggle("active");
             }
         }
+
+        // CLOSE ALL OPEN DROPDOWNS ON OUTSIDE CLICK
+        document.addEventListener("click", function(event) {
+            if (!event.target.closest(".main-nav-menu") && !event.target.closest(".sidebar-toggle-btn") && !event.target.closest("#resourcesDrawer")) {
+                document.querySelectorAll(".nav-item").forEach(item => {
+                    item.classList.remove("active");
+                });
+                const drawer = document.getElementById("resourcesDrawer");
+                if (drawer) drawer.classList.remove("active");
+            }
+        });
 
         function calculatePrediction() {
             const marks = parseInt(document.getElementById("predMarks").value);
