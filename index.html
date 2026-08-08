@@ -31,7 +31,7 @@
             -webkit-text-size-adjust: 100%;
         }
 
-        /* HEADER & CLICK DROPDOWN STYLING */
+        /* FIXED HEADER & MEGA MENU STYLING */
         .header-wrapper {
             position: relative;
             z-index: 99999 !important;
@@ -52,18 +52,16 @@
         .main-nav-menu {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
             list-style: none;
             margin: 0;
             padding: 0;
         }
 
-        .nav-item {
-            position: relative;
-        }
+        .nav-item { position: relative; }
 
         .nav-click-btn {
-            font-size: 0.88rem;
+            font-size: 0.86rem;
             font-weight: 700;
             color: #0F172A;
             background: transparent;
@@ -75,6 +73,7 @@
             gap: 6px;
             cursor: pointer;
             transition: all 0.2s ease;
+            text-decoration: none;
         }
 
         .nav-click-btn:hover, .nav-item.active .nav-click-btn {
@@ -83,15 +82,13 @@
         }
 
         .nav-click-btn i.fa-chevron-down {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             transition: transform 0.2s ease;
         }
 
-        .nav-item.active .nav-click-btn i.fa-chevron-down {
-            transform: rotate(180deg);
-        }
+        .nav-item.active .nav-click-btn i.fa-chevron-down { transform: rotate(180deg); }
 
-        /* MEGA DROPDOWN BOX (CLICK DISPLAY ONLY) */
+        /* MEGA DROPDOWN BOX */
         .mega-dropdown {
             display: none;
             position: absolute;
@@ -113,11 +110,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* TOGGLED ACTIVE STATE VIA JS CLICK */
-        .nav-item.active .mega-dropdown {
-            display: block !important;
-        }
-
+        .nav-item.active .mega-dropdown { display: block !important; }
         .mega-dropdown.wide-3col { width: 760px; left: -120px; }
         .mega-dropdown.wide-2col { width: 560px; left: -60px; }
         .mega-dropdown.standard-drop { width: 260px; }
@@ -131,51 +124,61 @@
             border-bottom: 1px solid #F1F5F9;
         }
 
-        .dropdown-top-header h3 {
-            font-size: 0.98rem;
-            font-weight: 800;
-            color: #0F172A;
-            margin: 0;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .view-all-link {
-            font-size: 0.78rem;
-            font-weight: 700;
-            color: #4F46E5;
-            text-decoration: none;
-        }
+        .dropdown-top-header h3 { font-size: 0.98rem; font-weight: 800; color: #0F172A; margin: 0; display: flex; align-items: center; gap: 8px; }
+        .view-all-link { font-size: 0.78rem; font-weight: 700; color: #4F46E5; text-decoration: none; }
 
         .mega-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
         .mega-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-
-        .mega-col-title {
-            font-size: 0.74rem;
-            font-weight: 800;
-            color: #64748B;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 10px;
-        }
+        .mega-col-title { font-size: 0.74rem; font-weight: 800; color: #64748B; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
 
         .mega-links-list { list-style: none; padding: 0; margin: 0; }
         .mega-links-list li { margin-bottom: 8px; }
-        .mega-links-list a {
-            font-size: 0.82rem;
-            font-weight: 600;
-            color: #334155;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            transition: var(--transition);
+        .mega-links-list a { font-size: 0.82rem; font-weight: 600; color: #334155; text-decoration: none; display: flex; align-items: center; gap: 6px; transition: var(--transition); }
+        .mega-links-list a:hover { color: #4F46E5; transform: translateX(3px); }
+
+        /* =========================================
+           🔥 RESTORED SUB-NAVBAR PILL TABS
+        ========================================= */
+        .sub-navbar-wrapper {
+            background: #FFFFFF;
+            border-bottom: 1px solid #E2E8F0;
+            padding: 8px 0;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
         }
 
-        .mega-links-list a:hover {
+        .sub-navbar-wrapper::-webkit-scrollbar { display: none; }
+
+        .sub-navbar-container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        .sub-nav-pill {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #334155;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            background: transparent;
+        }
+
+        .sub-nav-pill.active {
+            background: #EEF2FF;
             color: #4F46E5;
-            transform: translateX(3px);
+        }
+
+        .sub-nav-pill:hover {
+            background: #F1F5F9;
+            color: #0F172A;
         }
 
         .main-container {
@@ -183,7 +186,7 @@
             width: 100% !important;
             max-width: 1240px;
             margin: 0 auto;
-            padding: 12px 12px 30px;
+            padding: 16px 12px 30px;
             box-sizing: border-box;
             position: relative;
             z-index: 1;
@@ -277,6 +280,43 @@
         .slider-card p { font-size: 0.74rem; color: #64748B; font-weight: 500; margin: 0; }
         .output-box-inline { margin-top: 8px; padding: 8px; background: #EEF2FF; border-radius: 6px; font-size: 0.75rem; color: #3730A3; font-weight: 700; display: none; }
 
+        /* VIDEO GUIDANCE GRID */
+        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-bottom: 30px; width: 100% !important; }
+        .video-card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-radius: 18px; border: 1px solid rgba(226, 232, 240, 0.9); overflow: hidden; box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04); display: flex; flex-direction: column; transition: var(--transition); }
+        .video-card:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(79, 70, 229, 0.12); border-color: #C7D2FE; }
+        .video-thumb { position: relative; width: 100%; height: 155px; background: #0F172A; overflow: hidden; }
+        .video-thumb img { width: 100%; height: 100%; object-fit: cover; }
+        .play-overlay-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 48px; height: 48px; background: rgba(225, 29, 72, 0.9); color: #FFFFFF; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; box-shadow: 0 0 20px rgba(225, 29, 72, 0.5); transition: var(--transition); }
+        .video-card:hover .play-overlay-btn { transform: translate(-50%, -50%) scale(1.12); background: #E11D48; }
+        .video-duration { position: absolute; bottom: 8px; right: 8px; background: rgba(15, 23, 42, 0.85); color: #FFFFFF; font-size: 0.7rem; font-weight: 700; padding: 2px 6px; border-radius: 4px; }
+        .video-body { padding: 14px; display: flex; flex-direction: column; flex: 1; justify-content: space-between; }
+        .video-body h4 { font-size: 0.88rem; font-weight: 800; color: #0F172A; line-height: 1.35; margin-bottom: 6px; }
+        .video-body p { font-size: 0.76rem; color: #64748B; line-height: 1.4; font-weight: 500; margin-bottom: 12px; }
+        .video-footer { display: flex; align-items: center; justify-content: space-between; font-size: 0.74rem; color: #64748B; font-weight: 600; border-top: 1px solid #F1F5F9; padding-top: 10px; }
+        .video-footer a { color: #E11D48; text-decoration: none; font-weight: 800; }
+
+        /* STUDENT SUCCESS STORIES */
+        .testimonial-slider-wrapper { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 14px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+        .testimonial-slider-wrapper::-webkit-scrollbar { display: none; }
+        .testimonial-card { flex: 0 0 310px; scroll-snap-align: start; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-radius: 20px; border: 1px solid rgba(226, 232, 240, 0.9); padding: 20px; box-shadow: 0 6px 20px rgba(15, 23, 42, 0.03); display: flex; flex-direction: column; align-items: center; text-align: center; justify-content: space-between; }
+        .rating-stars { color: #F59E0B; font-size: 0.85rem; margin-bottom: 12px; display: flex; gap: 4px; }
+        .testimonial-text { font-size: 0.8rem; color: #334155; font-weight: 500; line-height: 1.55; font-style: italic; margin-bottom: 16px; }
+        .student-avatar { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; border: 2px solid #4F46E5; margin-bottom: 8px; }
+        .student-name { font-size: 0.88rem; font-weight: 800; color: #0F172A; letter-spacing: 0.3px; }
+        .student-dept { font-size: 0.72rem; color: #64748B; font-weight: 600; }
+
+        /* FAQ ACCORDION */
+        .faq-title-center { text-align: center; margin: 32px 0 20px; }
+        .faq-title-center h2 { font-size: 1.4rem; font-weight: 800; color: #0F172A; }
+        .faq-title-center h2 span { color: #0284C7; }
+        .faq-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px; margin-bottom: 30px; width: 100% !important; }
+        .faq-item { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 14px; border: 1px solid rgba(226, 232, 240, 0.9); padding: 14px 16px; box-shadow: 0 4px 14px rgba(15, 23, 42, 0.02); cursor: pointer; transition: var(--transition); }
+        .faq-header { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+        .faq-header h4 { font-size: 0.85rem; font-weight: 700; color: #0F172A; line-height: 1.35; margin: 0; }
+        .faq-icon-btn { width: 28px; height: 28px; border-radius: 50%; background: #F1F5F9; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; color: #64748B; flex-shrink: 0; transition: var(--transition); }
+        .faq-body { font-size: 0.78rem; color: #64748B; font-weight: 500; line-height: 1.5; margin-top: 10px; padding-top: 8px; border-top: 1px solid #F1F5F9; display: none; }
+        .faq-item.active .faq-icon-btn { background: #4F46E5; color: #FFFFFF; transform: rotate(180deg); }
+
         /* FOOTER */
         footer {
             padding: 20px 10px 14px;
@@ -300,7 +340,7 @@
 </head>
 <body>
 
-    <!-- === HEADER WITH ON CLICK MEGA MENU === -->
+    <!-- === HEADER WITH ON-CLICK MEGA MENU === -->
     <header class="header-wrapper">
         <nav class="navbar">
             <a href="index.html" class="logo">
@@ -308,7 +348,7 @@
                 <span>The University Page</span>
             </a>
             
-            <!-- DESKTOP MEGA MENU NAVIGATION (CLICKABLE) -->
+            <!-- DESKTOP MEGA MENU NAVIGATION -->
             <ul class="main-nav-menu">
                 <li class="nav-item">
                     <a href="index.html" class="nav-click-btn"><i class="fas fa-home"></i> Home</a>
@@ -489,6 +529,23 @@
         </div>
     </header>
 
+    <!-- =========================================
+         🔥 RESTORED CATEGORY SUB-NAVBAR TABS
+    ========================================= -->
+    <div class="sub-navbar-wrapper">
+        <div class="sub-navbar-container">
+            <a href="index.html" class="sub-nav-pill active">Home</a>
+            <a href="latest-jobs.html" class="sub-nav-pill">Latest Job</a>
+            <a href="admitcard.html" class="sub-nav-pill">Admit Card</a>
+            <a href="result.html" class="sub-nav-pill">Result</a>
+            <a href="cutoff.html" class="sub-nav-pill">Cutoff</a>
+            <a href="admission.html" class="sub-nav-pill">Admission</a>
+            <a href="syllabus.html" class="sub-nav-pill">Syllabus</a>
+            <a href="answerkey.html" class="sub-nav-pill">Answer Key</a>
+            <a href="about-ajmal-mansoori.html" class="sub-nav-pill">About Founder</a>
+        </div>
+    </div>
+
     <!-- === MAIN CONTAINER === -->
     <div class="main-container">
         
@@ -605,6 +662,164 @@
             </div>
         </section>
 
+        <!-- 🔥 VIDEO GUIDANCE & COUNSELING -->
+        <div class="section-title-main">
+            <div class="title-left">
+                <i class="fab fa-youtube" style="color: #E11D48;"></i>
+                <span>Ajmal Mansoori - Video Guidance & Counseling</span>
+            </div>
+            <a href="https://youtube.com/@ajmalalimansoori" target="_blank" class="see-more-btn">Visit YouTube Channel <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <section class="video-grid">
+            <div class="video-card">
+                <div class="video-thumb">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=500" alt="Video Thumbnail">
+                    <div class="play-overlay-btn"><i class="fas fa-play"></i></div>
+                    <span class="video-duration">06:41</span>
+                </div>
+                <div class="video-body">
+                    <h4>CUET UG Complete Admission & Counseling Strategy</h4>
+                    <p>By Ajmal Mansoori: Step-by-step cutoff analysis, AU & BHU seat matrix, and document checklist.</p>
+                    <div class="video-footer">
+                        <span><i class="fas fa-eye"></i> 20.0K Views</span>
+                        <a href="https://youtube.com/@ajmalalimansoori" target="_blank">Watch Video <i class="fas fa-play"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-thumb">
+                    <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=500" alt="Allahabad University Guide">
+                    <div class="play-overlay-btn"><i class="fas fa-play"></i></div>
+                    <span class="video-duration">08:15</span>
+                </div>
+                <div class="video-body">
+                    <h4>Allahabad University Main Campus Cutoff Analysis</h4>
+                    <p>Detailed breakdown for BA, BSc, BCom main campus cutoffs and subject combination mapping.</p>
+                    <div class="video-footer">
+                        <span><i class="fas fa-eye"></i> 35.2K Views</span>
+                        <a href="https://youtube.com/@ajmalalimansoori" target="_blank">Watch Video <i class="fas fa-play"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-thumb">
+                    <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=500" alt="Learnify Classes Prep">
+                    <div class="play-overlay-btn"><i class="fas fa-play"></i></div>
+                    <span class="video-duration">09:19</span>
+                </div>
+                <div class="video-body">
+                    <h4>Learnify Classes Premium Mock Test & Free Booklets Guide</h4>
+                    <p>How to access free study materials, test series, and e-books on Learnify Classes app.</p>
+                    <div class="video-footer">
+                        <span><i class="fas fa-eye"></i> 100.0K Views</span>
+                        <a href="https://youtube.com/@ajmalalimansoori" target="_blank">Watch Video <i class="fas fa-play"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 🔥 CATEGORY SLIDER -->
+        <div class="section-title-main">
+            <div class="title-left">
+                <i class="fas fa-layer-group"></i>
+                <span>Quick Category Highlights</span>
+            </div>
+        </div>
+
+        <section class="slider-section">
+            <div class="slider-wrapper">
+                <a href="result.html" class="slider-card">
+                    <h4><i class="fas fa-trophy" style="color: #10B981;"></i> Entrance Results</h4>
+                    <p>CUET, AU, UP Board Scorecards</p>
+                </a>
+                <a href="latest-jobs.html" class="slider-card">
+                    <h4><i class="fas fa-briefcase" style="color: #D97706;"></i> Latest Jobs</h4>
+                    <p>SSC, Railway, Banking Forms</p>
+                </a>
+                <a href="admitcard.html" class="slider-card">
+                    <h4><i class="fas fa-id-card" style="color: #F43F5E;"></i> Hall Tickets</h4>
+                    <p>Admit Cards & Exam Dates</p>
+                </a>
+                <a href="admission.html" class="slider-card">
+                    <h4><i class="fas fa-university" style="color: #8B5CF6;"></i> Admissions</h4>
+                    <p>University Counseling Guides</p>
+                </a>
+                <a href="cutoff.html" class="slider-card">
+                    <h4><i class="fas fa-chart-line" style="color: #0284C7;"></i> Cutoffs & Ranks</h4>
+                    <p>Category-Wise Cutoff Lists</p>
+                </a>
+                <a href="answerkey.html" class="slider-card">
+                    <h4><i class="fas fa-key" style="color: #E11D48;"></i> Answer Keys</h4>
+                    <p>Official Question Papers & Keys</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- 🔥 STUDENT SUCCESS STORIES -->
+        <div class="section-title-main">
+            <div class="title-left">
+                <i class="fas fa-comment-dots" style="color: #10B981;"></i>
+                <span>Student Success Stories & Reviews</span>
+            </div>
+        </div>
+
+        <section class="testimonial-slider-wrapper">
+            <div class="testimonial-card">
+                <div class="rating-stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">"Ajmal Sir aur Learnify Classes ke mock tests se mujhe CUET me bohot help mili. Aaj Allahabad University Main Campus me BA me admission ho gaya!"</p>
+                <div>
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100" alt="Student Review" class="student-avatar">
+                    <div class="student-name">PRIYA SHARMA</div>
+                    <div class="student-dept">B.A. Main Campus, Allahabad University</div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="rating-stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">"The University Page portal par sabhi cutoff aur document guidelines bohot fast update hoti hain. College Predictor tool bhi ekdam accurate tha!"</p>
+                <div>
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100" alt="Student Review" class="student-avatar">
+                    <div class="student-name">VIKAS YADAV</div>
+                    <div class="student-dept">B.Sc. BHU Main Campus</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ ACCORDION -->
+        <div class="faq-title-center">
+            <h2>Frequently Asked <span>Questions</span></h2>
+            <p style="font-size: 0.8rem; color: #64748B; font-weight: 500; margin-top: 4px;">Find quick answers about university admissions, results, and student tools</p>
+        </div>
+
+        <section class="faq-grid">
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-header">
+                    <h4>What services does The University Page provide?</h4>
+                    <div class="faq-icon-btn"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-body">
+                    We offer real-time updates on University Results, Cutoff releases, Admit Cards, Application Forms, and interactive tools like College Predictor & Image Resizer.
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-header">
+                    <h4>How accurate is the College & Rank Predictor?</h4>
+                    <div class="faq-icon-btn"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-body">
+                    Our predictor uses official historical cutoff data and score algorithms to provide highly estimated rank ranges for CUET, AU, and BHU.
+                </div>
+            </div>
+        </section>
+
     </div>
 
     <!-- === FOOTER === -->
@@ -619,25 +834,21 @@
         </div>
     </footer>
 
-    <!-- INTERACTIVE JAVASCRIPT FOR CLICK DROPDOWNS -->
+    <!-- INTERACTIVE JAVASCRIPT -->
     <script>
-        // ON CLICK TOGGLE FUNCTION FOR MENU DROPDOWNS
         function toggleMenuDropdown(btnElement) {
             const currentItem = btnElement.parentElement;
             const isAlreadyActive = currentItem.classList.contains("active");
 
-            // Close all open dropdowns first
             document.querySelectorAll(".nav-item").forEach(item => {
                 item.classList.remove("active");
             });
 
-            // If not active, open clicked one
             if (!isAlreadyActive) {
                 currentItem.classList.add("active");
             }
         }
 
-        // CLOSE DROPDOWN WHEN CLICKING OUTSIDE
         document.addEventListener("click", function(event) {
             if (!event.target.closest(".main-nav-menu")) {
                 document.querySelectorAll(".nav-item").forEach(item => {
@@ -669,6 +880,21 @@
             resultBox.style.background = "#EEF2FF";
             resultBox.style.color = "#3730A3";
             resultBox.innerHTML = `Est. Rank: <b>#${rank}</b>`;
+        }
+
+        function toggleFaq(element) {
+            const body = element.querySelector('.faq-body');
+            const isActive = element.classList.contains('active');
+
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+                item.querySelector('.faq-body').style.display = 'none';
+            });
+
+            if (!isActive) {
+                element.classList.add('active');
+                body.style.display = 'block';
+            }
         }
     </script>
 </body>
