@@ -31,6 +31,30 @@
             -webkit-text-size-adjust: 100%;
         }
 
+        /* FIXED HEADER Z-INDEX & NAV DRAWER */
+        .header-wrapper {
+            position: relative;
+            z-index: 9999 !important;
+        }
+
+        .nav-drawer {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid #E2E8F0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            z-index: 99999 !important;
+        }
+
+        .nav-drawer.active {
+            display: block !important;
+        }
+
         .main-container {
             flex: 1;
             width: 100% !important;
@@ -38,21 +62,23 @@
             margin: 0 auto;
             padding: 12px 12px 30px;
             box-sizing: border-box;
+            position: relative;
+            z-index: 1;
         }
 
         /* GLASSMORPHIC LIVE TICKER */
         .ticker-wrapper {
-            background: rgba(255, 255, 255, 0.65);
+            background: rgba(255, 255, 255, 0.75);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(226, 232, 240, 0.8);
+            border: 1px solid rgba(226, 232, 240, 0.9);
             border-radius: 14px;
             padding: 7px 12px;
             margin-bottom: 16px;
             display: flex;
             align-items: center;
             gap: 12px;
-            box-shadow: 0 8px 20px -4px rgba(15, 23, 42, 0.05);
+            box-shadow: 0 8px 20px -4px rgba(15, 23, 42, 0.04);
             overflow: hidden;
             width: 100% !important;
         }
@@ -120,19 +146,17 @@
         .widget-btn { background: #4F46E5; color: #FFFFFF; border: none; padding: 9px 12px; border-radius: 20px; font-weight: 700; font-size: 0.8rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; transition: var(--transition); width: 100%; text-decoration: none; box-sizing: border-box; margin-top: 4px; }
         .widget-btn:hover { background: #4338CA; }
 
-        /* HORIZONTAL SLIDER FOR CATEGORIES */
+        /* HORIZONTAL SLIDER FOR CATEGORIES (EXPANDED OPTIONS) */
         .slider-section { margin-bottom: 24px; width: 100% !important; }
         .slider-wrapper { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 10px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
         .slider-wrapper::-webkit-scrollbar { display: none; }
-        .slider-card { flex: 0 0 240px; scroll-snap-align: start; background: #FFFFFF; border-radius: 16px; padding: 16px; border: 1px solid #E2E8F0; box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03); text-decoration: none; transition: var(--transition); }
+        .slider-card { flex: 0 0 220px; scroll-snap-align: start; background: #FFFFFF; border-radius: 16px; padding: 14px; border: 1px solid #E2E8F0; box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03); text-decoration: none; transition: var(--transition); }
         .slider-card:hover { border-color: #4F46E5; transform: translateY(-2px); }
-        .slider-card h4 { font-size: 0.9rem; font-weight: 800; color: #0F172A; margin-bottom: 4px; }
-        .slider-card p { font-size: 0.75rem; color: #64748B; font-weight: 500; margin: 0; }
+        .slider-card h4 { font-size: 0.88rem; font-weight: 800; color: #0F172A; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+        .slider-card p { font-size: 0.74rem; color: #64748B; font-weight: 500; margin: 0; }
         .output-box-inline { margin-top: 8px; padding: 8px; background: #EEF2FF; border-radius: 6px; font-size: 0.75rem; color: #3730A3; font-weight: 700; display: none; }
 
-        /* =========================================
-           🔥 NEW SECTION 1: VIDEO CARDS GRID
-        ========================================= */
+        /* VIDEO GUIDANCE GRID (AJMAL MANSOORI OFFICIAL CHANNEL) */
         .video-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -142,7 +166,7 @@
         }
 
         .video-card {
-            background: rgba(255, 255, 255, 0.75);
+            background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-radius: 18px;
@@ -164,7 +188,7 @@
             position: relative;
             width: 100%;
             height: 155px;
-            background: #1E293B;
+            background: #0F172A;
             overflow: hidden;
         }
 
@@ -250,9 +274,7 @@
             font-weight: 800;
         }
 
-        /* =========================================
-           🔥 NEW SECTION 2: TESTIMONIALS SLIDER
-        ========================================= */
+        /* CUSTOM REAL STUDENT SUCCESS STORIES SLIDER */
         .testimonial-slider-wrapper {
             display: flex;
             gap: 16px;
@@ -268,7 +290,7 @@
         .testimonial-card {
             flex: 0 0 310px;
             scroll-snap-align: start;
-            background: rgba(255, 255, 255, 0.75);
+            background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-radius: 20px;
@@ -315,20 +337,19 @@
             letter-spacing: 0.3px;
         }
 
-        /* =========================================
-           🔥 NEW SECTION 3: FAQ ACCORDION GRID
-        ========================================= */
+        .student-dept {
+            font-size: 0.72rem;
+            color: #64748B;
+            font-weight: 600;
+        }
+
+        /* FAQ ACCORDION GRID */
         .faq-title-center {
             text-align: center;
             margin: 32px 0 20px;
         }
 
-        .faq-title-center h2 {
-            font-size: 1.4rem;
-            font-weight: 800;
-            color: #0F172A;
-        }
-
+        .faq-title-center h2 { font-size: 1.4rem; font-weight: 800; color: #0F172A; }
         .faq-title-center h2 span { color: #0284C7; }
 
         .faq-grid {
@@ -340,7 +361,7 @@
         }
 
         .faq-item {
-            background: rgba(255, 255, 255, 0.75);
+            background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border-radius: 14px;
@@ -358,13 +379,7 @@
             gap: 10px;
         }
 
-        .faq-header h4 {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: #0F172A;
-            line-height: 1.35;
-            margin: 0;
-        }
+        .faq-header h4 { font-size: 0.85rem; font-weight: 700; color: #0F172A; line-height: 1.35; margin: 0; }
 
         .faq-icon-btn {
             width: 28px;
@@ -424,7 +439,7 @@
 </head>
 <body>
 
-    <!-- === HEADER === -->
+    <!-- === HEADER WITH WORKING MENUBAR === -->
     <header class="header-wrapper">
         <nav class="navbar">
             <a href="index.html" class="logo">
@@ -438,7 +453,7 @@
                     <button type="submit"><i class="fas fa-search"></i></button>
                 </div>
                 
-                <button class="menu-toggle-btn" id="sidebarToggle">
+                <button class="menu-toggle-btn" id="sidebarToggle" onclick="toggleNavDrawer()">
                     <i class="fa-solid fa-bars-staggered"></i>
                 </button>
             </div>
@@ -454,6 +469,7 @@
                 <li><a href="admission.html">Admission</a></li>
                 <li><a href="syllabus.html">Syllabus</a></li>
                 <li><a href="answerkey.html">Answer Key</a></li>
+                <li><a href="about-ajmal-mansoori.html">About Founder</a></li>
             </ul>
         </div>
     </header>
@@ -468,15 +484,15 @@
             </div>
             <div class="ticker-content">
                 <div class="ticker-marquee" id="liveTickerMarquee">
-                    <a href="scor.html">CUET UG Final Scorecard 2026 Declared</a>
-                    <a href="job-details.html">SSC CGL 2026 Online Application Form Active</a>
+                    <a href="scor.html">CUET UG Final Scorecard Declared</a>
+                    <a href="job-details.html">SSC CGL Online Application Form Active</a>
                     <a href="admitcard-details.html">Allahabad University PGAT Admit Card Released</a>
                     <a href="admission-details.html">AU & DU CSAS Counseling Registration Phase-1</a>
                 </div>
             </div>
         </div>
 
-        <!-- SECTION 2: TOP ACCELERATOR TOOLS -->
+        <!-- ACCELERATOR TOOLS -->
         <section class="tools-section">
             <div class="tools-grid">
                 <a href="https://learnifyclasses.akamai.net.in/new-courses" target="_blank" class="tool-card">
@@ -536,7 +552,7 @@
                         </div>
                     </div>
                     <select id="predExam" class="form-control-custom">
-                        <option value="cuet">CUET UG Entrance 2026</option>
+                        <option value="cuet">CUET UG Entrance</option>
                         <option value="au">Allahabad University Entrance</option>
                         <option value="bhu">BHU Course Admission</option>
                     </select>
@@ -576,67 +592,67 @@
         </section>
 
 
-        <!-- 🔥 NEW SECTION 1: VIDEO GUIDES GRID -->
+        <!-- 🔥 AJMAL MANSOORI OFFICIAL VIDEO GUIDANCE & COUNSELING -->
         <div class="section-title-main">
             <div class="title-left">
                 <i class="fab fa-youtube" style="color: #E11D48;"></i>
-                <span>Video Guidance & Counseling</span>
+                <span>Ajmal Mansoori - Video Guidance & Counseling</span>
             </div>
-            <a href="https://youtube.com/@ajmalalimansoori" target="_blank" class="see-more-btn">Watch All <i class="fas fa-arrow-right"></i></a>
+            <a href="https://youtube.com/@ajmalalimansoori" target="_blank" class="see-more-btn">Visit YouTube Channel <i class="fas fa-arrow-right"></i></a>
         </div>
 
         <section class="video-grid">
             <div class="video-card">
                 <div class="video-thumb">
-                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=500" alt="Video Thumbnail">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=500" alt="Ajmal Mansoori Video">
                     <div class="play-overlay-btn"><i class="fas fa-play"></i></div>
                     <span class="video-duration">06:41</span>
                 </div>
                 <div class="video-body">
-                    <h4>CUET UG Complete Admission & Counseling Strategy 2026</h4>
-                    <p>Learn step-by-step cutoff analysis, main campus seat distribution, and document requirements.</p>
+                    <h4>CUET UG Complete Admission & Counseling Strategy</h4>
+                    <p>By Ajmal Mansoori: Step-by-step cutoff analysis, AU & BHU seat matrix, and document checklist.</p>
                     <div class="video-footer">
                         <span><i class="fas fa-eye"></i> 20.0K Views</span>
-                        <a href="https://youtube.com/@ajmalalimansoori" target="_blank">Watch <i class="fas fa-play"></i></a>
+                        <a href="https://youtube.com/@ajmalalimansoori" target="_blank">Watch Video <i class="fas fa-play"></i></a>
                     </div>
                 </div>
             </div>
 
             <div class="video-card">
                 <div class="video-thumb">
-                    <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=500" alt="Video Thumbnail">
+                    <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=500" alt="Allahabad University Guide">
                     <div class="play-overlay-btn"><i class="fas fa-play"></i></div>
                     <span class="video-duration">08:15</span>
                 </div>
                 <div class="video-body">
-                    <h4>Allahabad University Cutoff & Seat Matrix Full Guide</h4>
-                    <p>Detailed guide on BA, BSc, BCom main campus cutoffs and subject combinations.</p>
+                    <h4>Allahabad University Main Campus Cutoff Analysis</h4>
+                    <p>Detailed breakdown for BA, BSc, BCom main campus cutoffs and subject combination mapping.</p>
                     <div class="video-footer">
                         <span><i class="fas fa-eye"></i> 35.2K Views</span>
-                        <a href="https://youtube.com/@ajmalalimansoori" target="_blank">Watch <i class="fas fa-play"></i></a>
+                        <a href="https://youtube.com/@ajmalalimansoori" target="_blank">Watch Video <i class="fas fa-play"></i></a>
                     </div>
                 </div>
             </div>
 
             <div class="video-card">
                 <div class="video-thumb">
-                    <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=500" alt="Video Thumbnail">
+                    <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=500" alt="Learnify Classes Prep">
                     <div class="play-overlay-btn"><i class="fas fa-play"></i></div>
                     <span class="video-duration">09:19</span>
                 </div>
                 <div class="video-body">
-                    <h4>Top 5 Central Universities Counseling & Admission Rules</h4>
-                    <p>Important dates, document verification checklist, and fee refund policies explained.</p>
+                    <h4>Learnify Classes Premium Mock Test & Free Booklets Guide</h4>
+                    <p>How to access free study materials, test series, and e-books on Learnify Classes app.</p>
                     <div class="video-footer">
                         <span><i class="fas fa-eye"></i> 100.0K Views</span>
-                        <a href="https://youtube.com/@ajmalalimansoori" target="_blank">Watch <i class="fas fa-play"></i></a>
+                        <a href="https://youtube.com/@ajmalalimansoori" target="_blank">Watch Video <i class="fas fa-play"></i></a>
                     </div>
                 </div>
             </div>
         </section>
 
 
-        <!-- CATEGORIES SLIDER -->
+        <!-- 🔥 QUICK CATEGORY HIGHLIGHTS (EXPANDED 8 OPTIONS) -->
         <div class="section-title-main">
             <div class="title-left">
                 <i class="fas fa-layer-group"></i>
@@ -662,16 +678,32 @@
                     <h4><i class="fas fa-university" style="color: #8B5CF6;"></i> Admissions</h4>
                     <p>University Counseling Guides</p>
                 </a>
+                <a href="cutoff.html" class="slider-card">
+                    <h4><i class="fas fa-chart-line" style="color: #0284C7;"></i> Cutoffs & Ranks</h4>
+                    <p>Category-Wise Cutoff Lists</p>
+                </a>
+                <a href="answerkey.html" class="slider-card">
+                    <h4><i class="fas fa-key" style="color: #E11D48;"></i> Answer Keys</h4>
+                    <p>Official Question Papers & Keys</p>
+                </a>
+                <a href="syllabus.html" class="slider-card">
+                    <h4><i class="fas fa-book-open" style="color: #10B981;"></i> Exam Syllabus</h4>
+                    <p>Latest Pattern & PDF Downloads</p>
+                </a>
+                <a href="document.html" class="slider-card">
+                    <h4><i class="fas fa-file-alt" style="color: #0D9488;"></i> Documents</h4>
+                    <p>Scholarship & Form Formats</p>
+                </a>
             </div>
         </section>
 
 
-        <!-- CATEGORIES GRID -->
+        <!-- CATEGORIES GRID FROM FIREBASE -->
         <section class="list-grid">
             <div class="samarth-box emerald">
                 <h2><i class="fas fa-trophy"></i> Result</h2>
                 <ul class="samarth-list" id="resultList">
-                    <li><a href="scor.html"><i class="fas fa-chevron-right"></i> <span>CUET UG Final Scorecard 2026 Released</span></a></li>
+                    <li><a href="scor.html"><i class="fas fa-chevron-right"></i> <span>CUET UG Final Scorecard Released</span></a></li>
                     <li><a href="scor.html"><i class="fas fa-chevron-right"></i> <span>Allahabad University Entrance Result Declared</span></a></li>
                 </ul>
                 <a href="result.html" class="show-more-link">Show more <i class="fas fa-arrow-right"></i></a>
@@ -680,7 +712,7 @@
             <div class="samarth-box amber">
                 <h2><i class="fas fa-briefcase"></i> Latest Job</h2>
                 <ul class="samarth-list">
-                    <li><a href="job-details.html"><i class="fas fa-chevron-right"></i> <span>SSC CGL Online Application Form 2026</span></a></li>
+                    <li><a href="job-details.html"><i class="fas fa-chevron-right"></i> <span>SSC CGL Online Application Form</span></a></li>
                     <li><a href="job-details.html"><i class="fas fa-chevron-right"></i> <span>RRB NTPC Recruitment Online Apply Link</span></a></li>
                 </ul>
                 <a href="latest-jobs.html" class="show-more-link">Show more <i class="fas fa-arrow-right"></i></a>
@@ -697,11 +729,11 @@
         </section>
 
 
-        <!-- 🔥 NEW SECTION 2: STUDENT TESTIMONIALS SLIDER -->
+        <!-- 🔥 CUSTOM LEARNIFY CLASSES REAL STUDENT SUCCESS STORIES -->
         <div class="section-title-main">
             <div class="title-left">
                 <i class="fas fa-comment-dots" style="color: #10B981;"></i>
-                <span>Student Success Stories</span>
+                <span>Student Success Stories & Reviews</span>
             </div>
         </div>
 
@@ -710,10 +742,11 @@
                 <div class="rating-stars">
                     <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                 </div>
-                <p class="testimonial-text">"I can't thank the Learnify team enough for helping me track my CUET score and Allahabad University cutoffs accurately!"</p>
+                <p class="testimonial-text">"Ajmal Sir aur Learnify Classes ke mock tests se mujhe CUET me bohot help mili. Aaj Allahabad University Main Campus me BA me admission ho gaya!"</p>
                 <div>
-                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100" alt="Student" class="student-avatar">
-                    <div class="student-name">KIRAN</div>
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100" alt="Student Review" class="student-avatar">
+                    <div class="student-name">PRIYA SHARMA</div>
+                    <div class="student-dept">B.A. Main Campus, Allahabad University</div>
                 </div>
             </div>
 
@@ -721,10 +754,11 @@
                 <div class="rating-stars">
                     <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                 </div>
-                <p class="testimonial-text">"The University Page made admission counseling so smooth. I got exact cutoff updates and secured my seat in AU Main Campus!"</p>
+                <p class="testimonial-text">"The University Page portal par sabhi cutoff aur document guidelines bohot fast update hoti hain. College Predictor tool bhi ekdam accurate tha!"</p>
                 <div>
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100" alt="Student" class="student-avatar">
-                    <div class="student-name">FAHAD ALI</div>
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100" alt="Student Review" class="student-avatar">
+                    <div class="student-name">VIKAS YADAV</div>
+                    <div class="student-dept">B.Sc. BHU Main Campus</div>
                 </div>
             </div>
 
@@ -732,16 +766,17 @@
                 <div class="rating-stars">
                     <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                 </div>
-                <p class="testimonial-text">"The College Predictor and Photo Resizer tools are lifesavers! Saved me hours during my online form filling."</p>
+                <p class="testimonial-text">"CUET Warriors 2026 group aur Ajmal Mansoori sir ki guidance se admission process bohot easy ho gaya. Best educational platform!"</p>
                 <div>
-                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100" alt="Student" class="student-avatar">
-                    <div class="student-name">AYESHA TARIQ</div>
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100" alt="Student Review" class="student-avatar">
+                    <div class="student-name">ANANLYA SINGH</div>
+                    <div class="student-dept">BALLB Scholar, University of Allahabad</div>
                 </div>
             </div>
         </section>
 
 
-        <!-- 🔥 NEW SECTION 3: FAQ ACCORDION -->
+        <!-- FAQ ACCORDION -->
         <div class="faq-title-center">
             <h2>Frequently Asked <span>Questions</span></h2>
             <p style="font-size: 0.8rem; color: #64748B; font-weight: 500; margin-top: 4px;">Find quick answers about university admissions, results, and student tools</p>
@@ -805,6 +840,14 @@
 
     <!-- INTERACTIVE JAVASCRIPT -->
     <script>
+        // FIXED TOGGLE NAV DRAWER FUNCTION
+        function toggleNavDrawer() {
+            const drawer = document.getElementById("navDrawer");
+            if (drawer) {
+                drawer.classList.toggle("active");
+            }
+        }
+
         function calculatePrediction() {
             const marks = parseInt(document.getElementById("predMarks").value);
             const resultBox = document.getElementById("predictionResult");
@@ -823,7 +866,6 @@
             resultBox.innerHTML = `Est. Rank: <b>#${rank}</b>`;
         }
 
-        // ACCORDION TOGGLE FUNCTION
         function toggleFaq(element) {
             const body = element.querySelector('.faq-body');
             const isActive = element.classList.contains('active');
