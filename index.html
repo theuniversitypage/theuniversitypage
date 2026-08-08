@@ -31,7 +31,7 @@
             -webkit-text-size-adjust: 100%;
         }
 
-        /* HEADER & NAVIGATION STYLING */
+        /* MINIMALIST HEADER STYLING */
         .header-wrapper {
             position: relative;
             z-index: 99999 !important;
@@ -49,94 +49,7 @@
             justify-content: space-between;
         }
 
-        .main-nav-menu {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .nav-item { position: relative; }
-
-        .nav-click-btn {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: #0F172A;
-            background: transparent;
-            border: none;
-            padding: 8px 14px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            text-decoration: none;
-        }
-
-        .nav-click-btn:hover, .nav-item.active .nav-click-btn {
-            color: #4F46E5;
-            background: #EEF2FF;
-        }
-
-        .nav-click-btn i.fa-chevron-down {
-            font-size: 0.7rem;
-            transition: transform 0.2s ease;
-        }
-
-        .nav-item.active .nav-click-btn i.fa-chevron-down { transform: rotate(180deg); }
-
-        /* MEGA DROPDOWNS FOR TOP NAVBAR */
-        .mega-dropdown {
-            display: none;
-            position: absolute;
-            top: calc(100% + 8px);
-            left: 0;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid #E2E8F0;
-            border-radius: 18px;
-            box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.15);
-            padding: 20px;
-            z-index: 999999 !important;
-            animation: fadeIn 0.2s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-6px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .nav-item.active .mega-dropdown { display: block !important; }
-        .mega-dropdown.wide-3col { width: 760px; left: -100px; }
-        .mega-dropdown.wide-2col { width: 560px; left: -50px; }
-        .mega-dropdown.standard-drop { width: 260px; }
-
-        .dropdown-top-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding-bottom: 12px;
-            margin-bottom: 14px;
-            border-bottom: 1px solid #F1F5F9;
-        }
-
-        .dropdown-top-header h3 { font-size: 0.98rem; font-weight: 800; color: #0F172A; margin: 0; display: flex; align-items: center; gap: 8px; }
-        .view-all-link { font-size: 0.78rem; font-weight: 700; color: #4F46E5; text-decoration: none; }
-
-        .mega-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-        .mega-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-        .mega-col-title { font-size: 0.74rem; font-weight: 800; color: #64748B; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
-
-        .mega-links-list { list-style: none; padding: 0; margin: 0; }
-        .mega-links-list li { margin-bottom: 8px; }
-        .mega-links-list a { font-size: 0.82rem; font-weight: 600; color: #334155; text-decoration: none; display: flex; align-items: center; gap: 6px; transition: var(--transition); }
-        .mega-links-list a:hover { color: #4F46E5; transform: translateX(3px); }
-
-        /* BLUE TOGGLE BUTTON (MATCHING SCREENSHOT EXACTLY) */
+        /* BLUE TOGGLE BUTTON MATCHING SCREENSHOT */
         .sidebar-toggle-btn {
             background: #FFFFFF;
             border: 2px solid #2563EB;
@@ -158,20 +71,25 @@
             border-color: #1D4ED8;
         }
 
-        /* EXACT FLOATING RIGHT DRAWER FOR SIDEBAR ICON */
+        /* ALL OPTIONS INSIDE FLOATING RIGHT DRAWER */
         .resources-drawer {
             display: none;
             position: absolute;
             top: calc(100% + 8px);
             right: 16px;
-            width: 240px;
+            width: 260px;
             background: #FFFFFF;
             border: 1px solid #E2E8F0;
             border-radius: 20px;
-            box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.12);
+            box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.15);
             padding: 12px;
             z-index: 999999 !important;
             animation: fadeIn 0.2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-6px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .resources-drawer.active { display: block !important; }
@@ -184,7 +102,7 @@
             gap: 12px;
             padding: 10px 14px;
             border-radius: 12px;
-            font-size: 0.86rem;
+            font-size: 0.88rem;
             font-weight: 700;
             color: #334155;
             text-decoration: none;
@@ -345,159 +263,17 @@
         .footer-links { display: flex !important; justify-content: center !important; align-items: center !important; gap: 12px !important; flex-wrap: nowrap !important; margin-bottom: 8px !important; width: 100% !important; }
         .footer-links a { font-size: 0.78rem; font-weight: 600; color: #334155; white-space: nowrap !important; text-decoration: none; }
         .copyright { color: #64748B; font-size: 0.72rem; }
-
-        @media (max-width: 920px) {
-            .main-nav-menu { display: none; }
-            .mega-dropdown { position: static !important; width: 100% !important; box-shadow: none; }
-            .mega-grid-3, .mega-grid-2 { grid-template-columns: 1fr !important; }
-        }
     </style>
 </head>
 <body>
 
-    <!-- === HEADER NAVBAR MATCHING EXACT SCREENSHOT LAYOUT === -->
+    <!-- === HEADER NAVBAR: ONLY LOGO & BLUE BUTTON === -->
     <header class="header-wrapper">
         <nav class="navbar">
             <a href="index.html" class="logo">
                 <div class="logo-badge"><i class="fas fa-graduation-cap"></i></div>
                 <span>The University Page</span>
             </a>
-            
-            <!-- TOP MAIN NAVBAR ITEMS -->
-            <ul class="main-nav-menu">
-                <li class="nav-item">
-                    <a href="index.html" class="nav-click-btn"><i class="fas fa-home"></i> Home</a>
-                </li>
-
-                <!-- MENU 1: PROGRAMS -->
-                <li class="nav-item">
-                    <button class="nav-click-btn" onclick="toggleMenuDropdown(this)">
-                        <i class="fas fa-book-open"></i> Programs <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="mega-dropdown wide-3col">
-                        <div class="dropdown-top-header">
-                            <h3><i class="fas fa-graduation-cap" style="color: #4F46E5;"></i> Programs</h3>
-                            <a href="admission.html" class="view-all-link">View All <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                        <div class="mega-grid-3">
-                            <div>
-                                <div class="mega-col-title">Degree Levels</div>
-                                <ul class="mega-links-list">
-                                    <li><a href="#">Bachelor</a></li>
-                                    <li><a href="#">Master</a></li>
-                                    <li><a href="#">PhD (Doctorate)</a></li>
-                                    <li><a href="#">Non-Degree Program</a></li>
-                                    <li><a href="#">Diploma / Certification</a></li>
-                                    <li><a href="#">Associate Degree</a></li>
-                                    <li><a href="#">Foundation Programs</a></li>
-                                </ul>
-                            </div>
-                            <div>
-                                <div class="mega-col-title">Bachelor Programs</div>
-                                <ul class="mega-links-list">
-                                    <li><a href="#">Bachelor's Degree in AI</a></li>
-                                    <li><a href="#">Bachelor's in Dental Hygiene</a></li>
-                                    <li><a href="#">Bachelor's in Computer Engineering</a></li>
-                                    <li><a href="#">Biotechnology</a></li>
-                                    <li><a href="#">Civil & Environmental Eng.</a></li>
-                                    <li><a href="#">Economics & Business</a></li>
-                                    <li><a href="#">Industrial Eng. Technology</a></li>
-                                    <li><a href="#">Management & Business Analytics</a></li>
-                                    <li><a href="#">MBBS Degree</a></li>
-                                </ul>
-                            </div>
-                            <div>
-                                <div class="mega-col-title">Top Master Programs</div>
-                                <ul class="mega-links-list">
-                                    <li><a href="#">M.Tech Data Science & AI</a></li>
-                                    <li><a href="#">Master of Business Admin (MBA)</a></li>
-                                    <li><a href="#">M.Sc. Biotechnology & Genetics</a></li>
-                                    <li><a href="#">M.A. Modern & Medieval History</a></li>
-                                    <li><a href="#">Master in Cyber Security</a></li>
-                                    <li><a href="#">M.Com Finance & Fintech</a></li>
-                                    <li><a href="#">LL.M. International Law</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-
-                <!-- MENU 2: UNIVERSITIES -->
-                <li class="nav-item">
-                    <button class="nav-click-btn" onclick="toggleMenuDropdown(this)">
-                        <i class="fas fa-university"></i> Universities <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="mega-dropdown wide-2col">
-                        <div class="dropdown-top-header">
-                            <h3><i class="fas fa-university" style="color: #4F46E5;"></i> Universities</h3>
-                            <a href="admission.html" class="view-all-link">View All <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                        <div class="mega-grid-2">
-                            <div>
-                                <div class="mega-col-title">Central Universities (India)</div>
-                                <ul class="mega-links-list">
-                                    <li><a href="#">University of Allahabad (AU)</a></li>
-                                    <li><a href="#">Banaras Hindu University (BHU)</a></li>
-                                    <li><a href="#">University of Delhi (DU)</a></li>
-                                    <li><a href="#">Jawaharlal Nehru University (JNU)</a></li>
-                                    <li><a href="#">Aligarh Muslim University (AMU)</a></li>
-                                    <li><a href="#">Jamia Millia Islamia (JMI)</a></li>
-                                    <li><a href="#">Babasaheb Bhimrao Ambedkar Univ</a></li>
-                                </ul>
-                            </div>
-                            <div>
-                                <div class="mega-col-title">Top State Universities</div>
-                                <ul class="mega-links-list">
-                                    <li><a href="#">Lucknow University (LU)</a></li>
-                                    <li><a href="#">Dr. APJ Abdul Kalam Tech Univ (AKTU)</a></li>
-                                    <li><a href="#">CSJM University Kanpur</a></li>
-                                    <li><a href="#">CCS University Meerut</a></li>
-                                    <li><a href="#">MGKVP Varanasi</a></li>
-                                    <li><a href="#">DDU Gorakhpur University</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-
-                <!-- MENU 3: SCHOLARSHIPS -->
-                <li class="nav-item">
-                    <button class="nav-click-btn" onclick="toggleMenuDropdown(this)">
-                        <i class="fas fa-award"></i> Scholarships <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="mega-dropdown standard-drop">
-                        <div class="dropdown-top-header">
-                            <h3><i class="fas fa-award" style="color: #0D9488;"></i> Scholarships</h3>
-                        </div>
-                        <ul class="mega-links-list">
-                            <li><a href="document-details.html">UP Scholarship Dashmottar</a></li>
-                            <li><a href="#">NSP National Scholarship Portal</a></li>
-                            <li><a href="#">Central Sector Scholarship (CSSS)</a></li>
-                            <li><a href="#">Post Matric Merit Scholarship</a></li>
-                            <li><a href="#">PM Yasasvi Scholarship Scheme</a></li>
-                        </ul>
-                    </div>
-                </li>
-
-                <!-- MENU 4: CAMPUS LOCATIONS -->
-                <li class="nav-item">
-                    <button class="nav-click-btn" onclick="toggleMenuDropdown(this)">
-                        <i class="fas fa-map-marker-alt"></i> Campus Locations <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="mega-dropdown standard-drop">
-                        <div class="dropdown-top-header">
-                            <h3><i class="fas fa-map-marked-alt" style="color: #E11D48;"></i> Locations</h3>
-                        </div>
-                        <ul class="mega-links-list">
-                            <li><a href="#">Prayagraj (AU Main Campus & Colleges)</a></li>
-                            <li><a href="#">Varanasi (BHU Main & South Campus)</a></li>
-                            <li><a href="#">New Delhi (DU North & South Campus)</a></li>
-                            <li><a href="#">Lucknow Campuses</a></li>
-                            <li><a href="#">Aligarh Campus</a></li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
 
             <!-- BLUE TOGGLE BUTTON -->
             <div class="header-right">
@@ -507,10 +283,14 @@
             </div>
         </nav>
 
-        <!-- EXACT FLOATING DRAWER MATCHING SCREENSHOT LINKS & ICONS -->
+        <!-- 🔥 ALL NAVIGATION OPTIONS INSIDE TOGGLE DRAWER 🔥 -->
         <div class="resources-drawer" id="resourcesDrawer">
             <ul class="drawer-links-list">
                 <li><a href="index.html"><i class="fas fa-home" style="color: #4F46E5;"></i> Home</a></li>
+                <li><a href="admission.html"><i class="fas fa-book-open" style="color: #4F46E5;"></i> Programs</a></li>
+                <li><a href="admission.html"><i class="fas fa-university" style="color: #4F46E5;"></i> Universities</a></li>
+                <li><a href="document-details.html"><i class="fas fa-award" style="color: #0D9488;"></i> Scholarships</a></li>
+                <li><a href="admission.html"><i class="fas fa-map-marker-alt" style="color: #E11D48;"></i> Campus Locations</a></li>
                 <li><a href="latest-jobs.html"><i class="fas fa-briefcase" style="color: #D97706;"></i> Latest Job</a></li>
                 <li><a href="admitcard.html"><i class="fas fa-id-card" style="color: #F43F5E;"></i> Admit Card</a></li>
                 <li><a href="result.html"><i class="fas fa-trophy" style="color: #10B981;"></i> Result</a></li>
@@ -805,19 +585,6 @@
 
     <!-- INTERACTIVE JAVASCRIPT -->
     <script>
-        function toggleMenuDropdown(btnElement) {
-            const currentItem = btnElement.parentElement;
-            const isAlreadyActive = currentItem.classList.contains("active");
-
-            document.querySelectorAll(".nav-item").forEach(item => {
-                item.classList.remove("active");
-            });
-
-            if (!isAlreadyActive) {
-                currentItem.classList.add("active");
-            }
-        }
-
         function toggleResourcesDrawer() {
             const drawer = document.getElementById("resourcesDrawer");
             if (drawer) {
@@ -826,10 +593,7 @@
         }
 
         document.addEventListener("click", function(event) {
-            if (!event.target.closest(".main-nav-menu") && !event.target.closest(".sidebar-toggle-btn") && !event.target.closest("#resourcesDrawer")) {
-                document.querySelectorAll(".nav-item").forEach(item => {
-                    item.classList.remove("active");
-                });
+            if (!event.target.closest(".sidebar-toggle-btn") && !event.target.closest("#resourcesDrawer")) {
                 const drawer = document.getElementById("resourcesDrawer");
                 if (drawer) drawer.classList.remove("active");
             }
