@@ -176,7 +176,7 @@
             100% { transform: translateX(-100%); }
         }
 
-        /* SECTION TITLE */
+        /* SECTION TITLE WITH RIGHT-SIDE MORE LINK */
         .section-title-main {
             font-size: 1.2rem;
             font-weight: 800;
@@ -190,23 +190,23 @@
 
         .title-left { display: flex; align-items: center; gap: 10px; }
         .title-left i { color: #4F46E5; background: #EEF2FF; width: 32px; height: 32px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; }
-        .see-more-btn { font-size: 0.8rem; font-weight: 700; color: #4F46E5; text-decoration: none; display: flex; align-items: center; gap: 4px; transition: var(--transition); }
-        .see-more-btn:hover { color: #3730A3; }
+        .see-more-btn { font-size: 0.82rem; font-weight: 800; color: #4F46E5; text-decoration: none; display: flex; align-items: center; gap: 4px; transition: var(--transition); }
+        .see-more-btn:hover { color: #3730A3; transform: translateX(3px); }
 
         /* =========================================
-           🔥 2ND SECTION: GLASSMORPHIC LIVE UPDATES 🔥
+           🔥 GLASSMORPHIC LIVE UPDATES SECTION
         ========================================= */
         .updates-wrapper {
             display: flex;
             flex-direction: column;
             gap: 12px;
-            margin-bottom: 24px;
+            margin-bottom: 28px;
         }
 
         @keyframes slideUpFade {
             0% {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(28px);
             }
             100% {
                 opacity: 1;
@@ -215,17 +215,17 @@
         }
 
         .glass-update-card {
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(226, 232, 240, 0.9);
             border-radius: 16px;
-            padding: 12px 16px;
-            box-shadow: 0 6px 20px rgba(15, 23, 42, 0.03);
+            padding: 12px 18px;
+            box-shadow: 0 4px 18px rgba(15, 23, 42, 0.03);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 12px;
+            gap: 14px;
             text-decoration: none;
             color: #0F172A;
             transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -241,7 +241,7 @@
 
         .glass-update-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(79, 70, 229, 0.12);
+            box-shadow: 0 12px 28px rgba(79, 70, 229, 0.12);
             border-color: #C7D2FE;
             background: #FFFFFF;
         }
@@ -272,7 +272,7 @@
         .update-tag {
             background: #EEF2FF;
             color: #4F46E5;
-            font-size: 0.78rem;
+            font-size: 0.76rem;
             font-weight: 800;
             padding: 3px 10px;
             border-radius: 20px;
@@ -291,6 +291,27 @@
             margin: 0;
         }
 
+        .card-right-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .update-date {
+            font-size: 0.74rem;
+            font-weight: 700;
+            color: #64748B;
+            background: #F8FAFC;
+            padding: 4px 8px;
+            border-radius: 8px;
+            border: 1px solid #E2E8F0;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            white-space: nowrap;
+        }
+
         .card-arrow {
             width: 30px;
             height: 30px;
@@ -302,7 +323,6 @@
             justify-content: center;
             color: #4F46E5;
             font-size: 0.78rem;
-            flex-shrink: 0;
             transition: all 0.2s ease;
         }
 
@@ -384,6 +404,10 @@
         .footer-links { display: flex !important; justify-content: center !important; align-items: center !important; gap: 12px !important; flex-wrap: nowrap !important; margin-bottom: 8px !important; width: 100% !important; }
         .footer-links a { font-size: 0.78rem; font-weight: 600; color: #334155; white-space: nowrap !important; text-decoration: none; }
         .copyright { color: #64748B; font-size: 0.72rem; }
+
+        @media (max-width: 640px) {
+            .update-date { display: none; }
+        }
     </style>
 </head>
 <body>
@@ -408,6 +432,7 @@
         <div class="resources-drawer" id="resourcesDrawer">
             <ul class="drawer-links-list">
                 <li><a href="index.html"><i class="fas fa-home" style="color: #4F46E5;"></i> Home</a></li>
+                <li><a href="latest-updates.html"><i class="fas fa-bolt" style="color: #DC2626;"></i> Live Updates</a></li>
                 <li><a href="admission.html"><i class="fas fa-book-open" style="color: #4F46E5;"></i> Programs</a></li>
                 <li><a href="admission.html"><i class="fas fa-university" style="color: #4F46E5;"></i> Universities</a></li>
                 <li><a href="document-details.html"><i class="fas fa-award" style="color: #0D9488;"></i> Scholarships</a></li>
@@ -480,60 +505,80 @@
         </section>
 
 
-        <!-- 🔥 2ND SECTION: GLASSMORPHIC LIVE 1-LINE UPDATES WITH LATEST BADGE 🔥 -->
+        <!-- 🔥 2ND SECTION: INSTANT LIVE UPDATES (WITH MORE LINK & REAL DATES) 🔥 -->
         <div class="section-title-main">
             <div class="title-left">
                 <i class="fas fa-bolt" style="color: #DC2626;"></i>
                 <span>Instant Live Updates & Notifications</span>
             </div>
+            <!-- RIGHT SIDE MORE UPDATES LINK -->
+            <a href="latest-updates.html" class="see-more-btn">
+                More Updates <i class="fas fa-arrow-right"></i>
+            </a>
         </div>
 
         <div class="updates-wrapper">
-            <!-- Top 1 with Latest Badge -->
+            <!-- Top 1 with Latest Badge & Date -->
             <a href="scor.html" class="glass-update-card">
                 <div class="card-left">
                     <span class="badge-latest"><i class="fas fa-fire"></i> LATEST</span>
                     <span class="update-tag">Result</span>
                     <p class="one-line-text">CUET UG 2026 Final Scorecards Declared - Direct Download Link Active</p>
                 </div>
-                <div class="card-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="card-right-group">
+                    <span class="update-date"><i class="far fa-calendar-alt"></i> 08 Aug 2026</span>
+                    <div class="card-arrow"><i class="fas fa-arrow-right"></i></div>
+                </div>
             </a>
 
-            <!-- Top 2 with Latest Badge -->
+            <!-- Top 2 with Latest Badge & Date -->
             <a href="admission-details.html" class="glass-update-card">
                 <div class="card-left">
                     <span class="badge-latest"><i class="fas fa-fire"></i> LATEST</span>
                     <span class="update-tag">Counseling</span>
                     <p class="one-line-text">Allahabad University UG Main Campus CSAS Phase-1 Registration Open</p>
                 </div>
-                <div class="card-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="card-right-group">
+                    <span class="update-date"><i class="far fa-calendar-alt"></i> 08 Aug 2026</span>
+                    <div class="card-arrow"><i class="fas fa-arrow-right"></i></div>
+                </div>
             </a>
 
-            <!-- Top 3 with Latest Badge -->
+            <!-- Top 3 with Latest Badge & Date -->
             <a href="job-details.html" class="glass-update-card">
                 <div class="card-left">
                     <span class="badge-latest"><i class="fas fa-fire"></i> LATEST</span>
                     <span class="update-tag">Job</span>
                     <p class="one-line-text">SSC CGL 2026 Online Application Form Released - Apply Online Now</p>
                 </div>
-                <div class="card-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="card-right-group">
+                    <span class="update-date"><i class="far fa-calendar-alt"></i> 07 Aug 2026</span>
+                    <div class="card-arrow"><i class="fas fa-arrow-right"></i></div>
+                </div>
             </a>
 
-            <!-- Regular Updates -->
+            <!-- Regular Update 4 -->
             <a href="admitcard-details.html" class="glass-update-card">
                 <div class="card-left">
                     <span class="update-tag">Admit Card</span>
                     <p class="one-line-text">Allahabad University PGAT Entrance Exam Hall Ticket Download Link Live</p>
                 </div>
-                <div class="card-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="card-right-group">
+                    <span class="update-date"><i class="far fa-calendar-alt"></i> 06 Aug 2026</span>
+                    <div class="card-arrow"><i class="fas fa-arrow-right"></i></div>
+                </div>
             </a>
 
+            <!-- Regular Update 5 -->
             <a href="document-details.html" class="glass-update-card">
                 <div class="card-left">
                     <span class="update-tag">Scholarship</span>
                     <p class="one-line-text">UP Scholarship 2026 Dashmottar Online Renewal & Fresh Form Active</p>
                 </div>
-                <div class="card-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="card-right-group">
+                    <span class="update-date"><i class="far fa-calendar-alt"></i> 05 Aug 2026</span>
+                    <div class="card-arrow"><i class="fas fa-arrow-right"></i></div>
+                </div>
             </a>
         </div>
 
