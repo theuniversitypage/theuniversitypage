@@ -31,7 +31,7 @@
             -webkit-text-size-adjust: 100%;
         }
 
-        /* HEADER NAVBAR */
+        /* HEADER NAVBAR STYLING */
         .header-wrapper {
             position: relative;
             z-index: 99999 !important;
@@ -49,7 +49,6 @@
             justify-content: space-between;
         }
 
-        /* BLUE TOGGLE BUTTON */
         .sidebar-toggle-btn {
             background: #FFFFFF;
             border: 2px solid #2563EB;
@@ -71,7 +70,7 @@
             border-color: #1D4ED8;
         }
 
-        /* SIDEBAR DRAWER WITH ALL LINKS */
+        /* FLOATING SIDEBAR DRAWER */
         .resources-drawer {
             display: none;
             position: absolute;
@@ -177,6 +176,7 @@
             100% { transform: translateX(-100%); }
         }
 
+        /* SECTION TITLE */
         .section-title-main {
             font-size: 1.2rem;
             font-weight: 800;
@@ -193,26 +193,127 @@
         .see-more-btn { font-size: 0.8rem; font-weight: 700; color: #4F46E5; text-decoration: none; display: flex; align-items: center; gap: 4px; transition: var(--transition); }
         .see-more-btn:hover { color: #3730A3; }
 
-        .add-review-btn {
-            background: #EEF2FF;
-            color: #4F46E5;
-            border: 1px solid #C7D2FE;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.78rem;
-            font-weight: 800;
-            cursor: pointer;
+        /* =========================================
+           🔥 2ND SECTION: GLASSMORPHIC LIVE UPDATES 🔥
+        ========================================= */
+        .updates-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        @keyframes slideUpFade {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .glass-update-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.9);
+            border-radius: 16px;
+            padding: 12px 16px;
+            box-shadow: 0 6px 20px rgba(15, 23, 42, 0.03);
             display: flex;
             align-items: center;
-            gap: 6px;
+            justify-content: space-between;
+            gap: 12px;
+            text-decoration: none;
+            color: #0F172A;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+        }
+
+        .glass-update-card:nth-child(1) { animation-delay: 0.05s; }
+        .glass-update-card:nth-child(2) { animation-delay: 0.12s; }
+        .glass-update-card:nth-child(3) { animation-delay: 0.19s; }
+        .glass-update-card:nth-child(4) { animation-delay: 0.26s; }
+        .glass-update-card:nth-child(5) { animation-delay: 0.33s; }
+
+        .glass-update-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(79, 70, 229, 0.12);
+            border-color: #C7D2FE;
+            background: #FFFFFF;
+        }
+
+        .card-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .badge-latest {
+            background: #FEF2F2;
+            color: #DC2626;
+            border: 1px solid #FCA5A5;
+            font-size: 0.68rem;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 20px;
+            white-space: nowrap;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .update-tag {
+            background: #EEF2FF;
+            color: #4F46E5;
+            font-size: 0.78rem;
+            font-weight: 800;
+            padding: 3px 10px;
+            border-radius: 20px;
+            white-space: nowrap;
+            flex-shrink: 0;
+            border: 1px solid #C7D2FE;
+        }
+
+        .one-line-text {
+            font-size: 0.86rem;
+            font-weight: 700;
+            color: #1E293B;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin: 0;
+        }
+
+        .card-arrow {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4F46E5;
+            font-size: 0.78rem;
+            flex-shrink: 0;
             transition: all 0.2s ease;
         }
 
-        .add-review-btn:hover {
+        .glass-update-card:hover .card-arrow {
             background: #4F46E5;
             color: #FFFFFF;
+            border-color: #4F46E5;
+            transform: translateX(3px);
         }
 
+        /* WIDGETS GRID */
         .widgets-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-bottom: 24px; width: 100% !important; }
         .widget-card { background: #FFFFFF; border-radius: var(--radius-lg, 18px); border: 1px solid #E2E8F0; padding: 16px 14px; box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03); display: flex; flex-direction: column; justify-content: space-between; transition: var(--transition); width: 100% !important; min-width: 0; position: relative; }
         .widget-card:hover { transform: translateY(-2px); box-shadow: 0 10px 20px -5px rgba(79, 70, 229, 0.12); border-color: #C7D2FE; }
@@ -257,31 +358,6 @@
         .student-avatar { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; border: 2px solid #4F46E5; margin-bottom: 8px; }
         .student-name { font-size: 0.88rem; font-weight: 800; color: #0F172A; letter-spacing: 0.3px; }
         .student-dept { font-size: 0.72rem; color: #64748B; font-weight: 600; }
-
-        /* REVIEW MODAL POPUP */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(6px);
-            z-index: 9999999;
-            align-items: center;
-            justify-content: center;
-            padding: 16px;
-        }
-
-        .modal-card {
-            background: #FFFFFF;
-            border-radius: 20px;
-            padding: 20px;
-            width: 100%;
-            max-width: 420px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-            position: relative;
-        }
-
-        .modal-card h3 { font-size: 1rem; font-weight: 800; color: #0F172A; margin-bottom: 12px; }
 
         /* FAQ ACCORDION */
         .faq-title-center { text-align: center; margin: 32px 0 20px; }
@@ -351,7 +427,7 @@
     <!-- === MAIN CONTAINER === -->
     <div class="main-container">
         
-        <!-- GLASSMORPHIC LIVE TICKER BANNER -->
+        <!-- SECTION 1: GLASSMORPHIC LIVE TICKER BANNER -->
         <div class="ticker-wrapper">
             <div class="ticker-badge">
                 <i class="fas fa-circle"></i> Live Updates
@@ -403,7 +479,66 @@
             </div>
         </section>
 
-        <!-- INTERACTIVE UTILITY SUITE -->
+
+        <!-- 🔥 2ND SECTION: GLASSMORPHIC LIVE 1-LINE UPDATES WITH LATEST BADGE 🔥 -->
+        <div class="section-title-main">
+            <div class="title-left">
+                <i class="fas fa-bolt" style="color: #DC2626;"></i>
+                <span>Instant Live Updates & Notifications</span>
+            </div>
+        </div>
+
+        <div class="updates-wrapper">
+            <!-- Top 1 with Latest Badge -->
+            <a href="scor.html" class="glass-update-card">
+                <div class="card-left">
+                    <span class="badge-latest"><i class="fas fa-fire"></i> LATEST</span>
+                    <span class="update-tag">Result</span>
+                    <p class="one-line-text">CUET UG 2026 Final Scorecards Declared - Direct Download Link Active</p>
+                </div>
+                <div class="card-arrow"><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- Top 2 with Latest Badge -->
+            <a href="admission-details.html" class="glass-update-card">
+                <div class="card-left">
+                    <span class="badge-latest"><i class="fas fa-fire"></i> LATEST</span>
+                    <span class="update-tag">Counseling</span>
+                    <p class="one-line-text">Allahabad University UG Main Campus CSAS Phase-1 Registration Open</p>
+                </div>
+                <div class="card-arrow"><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- Top 3 with Latest Badge -->
+            <a href="job-details.html" class="glass-update-card">
+                <div class="card-left">
+                    <span class="badge-latest"><i class="fas fa-fire"></i> LATEST</span>
+                    <span class="update-tag">Job</span>
+                    <p class="one-line-text">SSC CGL 2026 Online Application Form Released - Apply Online Now</p>
+                </div>
+                <div class="card-arrow"><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- Regular Updates -->
+            <a href="admitcard-details.html" class="glass-update-card">
+                <div class="card-left">
+                    <span class="update-tag">Admit Card</span>
+                    <p class="one-line-text">Allahabad University PGAT Entrance Exam Hall Ticket Download Link Live</p>
+                </div>
+                <div class="card-arrow"><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <a href="document-details.html" class="glass-update-card">
+                <div class="card-left">
+                    <span class="update-tag">Scholarship</span>
+                    <p class="one-line-text">UP Scholarship 2026 Dashmottar Online Renewal & Fresh Form Active</p>
+                </div>
+                <div class="card-arrow"><i class="fas fa-arrow-right"></i></div>
+            </a>
+        </div>
+
+
+        <!-- SECTION 3: INTERACTIVE UTILITY SUITE -->
         <div class="section-title-main">
             <div class="title-left">
                 <i class="fas fa-sliders"></i>
@@ -464,7 +599,7 @@
             </div>
         </section>
 
-        <!-- 🔥 AJMAL MANSOORI OFFICIAL YOUTUBE VIDEOS 🔥 -->
+        <!-- SECTION 4: VIDEO GUIDANCE & COUNSELING -->
         <div class="section-title-main">
             <div class="title-left">
                 <i class="fab fa-youtube" style="color: #E11D48;"></i>
@@ -474,7 +609,6 @@
         </div>
 
         <section class="video-grid">
-            <!-- Video 1: AU NEP 2026 Full Guide -->
             <div class="video-card">
                 <div class="video-thumb">
                     <img src="https://img.youtube.com/vi/E04N5LaxQVo/hqdefault.jpg" alt="Allahabad University NEP 2026 Guide">
@@ -491,7 +625,6 @@
                 </div>
             </div>
 
-            <!-- Video 2: BHU Admission Guide -->
             <div class="video-card">
                 <div class="video-thumb">
                     <img src="https://img.youtube.com/vi/nF_5YrYp0as/hqdefault.jpg" alt="BHU Admission Process 2026">
@@ -508,7 +641,6 @@
                 </div>
             </div>
 
-            <!-- Video 3: Dr. Bhimrao Ambedkar Hostel Tour -->
             <div class="video-card">
                 <div class="video-thumb">
                     <img src="https://img.youtube.com/vi/pvTmI9T46pk/hqdefault.jpg" alt="Allahabad University Hostel Tour">
@@ -526,7 +658,7 @@
             </div>
         </section>
 
-        <!-- 🔥 ALL QUICK CATEGORY HIGHLIGHTS 🔥 -->
+        <!-- SECTION 5: CATEGORY SLIDER -->
         <div class="section-title-main">
             <div class="title-left">
                 <i class="fas fa-layer-group"></i>
@@ -552,145 +684,37 @@
                     <h4><i class="fas fa-university" style="color: #8B5CF6;"></i> Admissions</h4>
                     <p>University Counseling Guides</p>
                 </a>
-                <a href="cutoff.html" class="slider-card">
-                    <h4><i class="fas fa-chart-line" style="color: #0284C7;"></i> Cutoffs & Ranks</h4>
-                    <p>Category-Wise Cutoff Lists</p>
-                </a>
-                <a href="answerkey.html" class="slider-card">
-                    <h4><i class="fas fa-key" style="color: #E11D48;"></i> Answer Keys</h4>
-                    <p>Official Answer Sheets & Keys</p>
-                </a>
-                <a href="syllabus.html" class="slider-card">
-                    <h4><i class="fas fa-book-open" style="color: #10B981;"></i> Exam Syllabus</h4>
-                    <p>Syllabus PDFs & Exam Pattern</p>
-                </a>
-                <a href="document-details.html" class="slider-card">
-                    <h4><i class="fas fa-award" style="color: #0D9488;"></i> Scholarships</h4>
-                    <p>UP & National Scholarship Links</p>
-                </a>
             </div>
         </section>
 
-        <!-- 🔥 STUDENT SUCCESS STORIES WITH + BUTTON FOR NEW REVIEWS 🔥 -->
-        <div class="section-title-main">
-            <div class="title-left">
-                <i class="fas fa-comment-dots" style="color: #10B981;"></i>
-                <span>Student Success Stories & Reviews</span>
-            </div>
-            <button class="add-review-btn" onclick="openReviewModal()">
-                <i class="fas fa-plus"></i> Submit Review
-            </button>
-        </div>
-
-        <section class="testimonial-slider-wrapper" id="reviewsContainer">
-            <div class="testimonial-card">
-                <div class="rating-stars">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                </div>
-                <p class="testimonial-text">"Ajmal Sir aur Learnify Classes ke mock tests se mujhe CUET me bohot help mili. Aaj Allahabad University Main Campus me BA me admission ho gaya!"</p>
-                <div>
-                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100" alt="Student Review" class="student-avatar">
-                    <div class="student-name">PRIYA SHARMA</div>
-                    <div class="student-dept">B.A. Main Campus, Allahabad University</div>
-                </div>
-            </div>
-
-            <div class="testimonial-card">
-                <div class="rating-stars">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                </div>
-                <p class="testimonial-text">"The University Page portal par sabhi cutoff aur document guidelines bohot fast update hoti hain. College Predictor tool bhi ekdam accurate tha!"</p>
-                <div>
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100" alt="Student Review" class="student-avatar">
-                    <div class="student-name">VIKAS YADAV</div>
-                    <div class="student-dept">B.Sc. BHU Main Campus</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 🔥 ENHANCED FREQUENTLY ASKED QUESTIONS (FAQ) 🔥 -->
+        <!-- SECTION 6: FAQ ACCORDION -->
         <div class="faq-title-center">
             <h2>Frequently Asked <span>Questions</span></h2>
-            <p style="font-size: 0.8rem; color: #64748B; font-weight: 500; margin-top: 4px;">Find answers regarding entrance exams, cutoffs, credit system, and counseling</p>
+            <p style="font-size: 0.8rem; color: #64748B; font-weight: 500; margin-top: 4px;">Find quick answers about university admissions, results, and student tools</p>
         </div>
 
         <section class="faq-grid">
             <div class="faq-item" onclick="toggleFaq(this)">
                 <div class="faq-header">
-                    <h4>What is the Allahabad University NEP 2026 Credit System?</h4>
+                    <h4>What services does The University Page provide?</h4>
                     <div class="faq-icon-btn"><i class="fas fa-chevron-down"></i></div>
                 </div>
                 <div class="faq-body">
-                    Under NEP 2020/2026, students need 44 credits/year (184 total credits in 4 years) for an Honours with Research degree. Check Ajmal Mansoori's detailed video guide above for semester-wise credit calculation.
+                    We offer real-time updates on University Results, Cutoff releases, Admit Cards, Application Forms, and interactive tools like College Predictor & Image Resizer.
                 </div>
             </div>
 
             <div class="faq-item" onclick="toggleFaq(this)">
                 <div class="faq-header">
-                    <h4>How can I apply for BHU CUET UG 2026 Admissions?</h4>
+                    <h4>How accurate is the College & Rank Predictor?</h4>
                     <div class="faq-icon-btn"><i class="fas fa-chevron-down"></i></div>
                 </div>
                 <div class="faq-body">
-                    After CUET results are declared, BHU opens its CSAS registration portal. Candidates must select domain subjects (e.g. GT + Language for BA, PCM/PCB for BSc) to qualify for FMC and MMV seats.
-                </div>
-            </div>
-
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="faq-header">
-                    <h4>How does the College & Rank Predictor work?</h4>
-                    <div class="faq-icon-btn"><i class="fas fa-chevron-down"></i></div>
-                </div>
-                <div class="faq-body">
-                    Our AI predictor processes your raw test score against past cutoffs of Allahabad University, BHU, and DU to give an estimated rank and university match.
-                </div>
-            </div>
-
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="faq-header">
-                    <h4>Where can I find free Mock Tests & E-Book booklets?</h4>
-                    <div class="faq-icon-btn"><i class="fas fa-chevron-down"></i></div>
-                </div>
-                <div class="faq-body">
-                    You can access free mock tests and PDF booklets via the Learnify Classes portal link provided in the top utility tools section or join the CUET Warriors 2026 group.
-                </div>
-            </div>
-
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="faq-header">
-                    <h4>How do I track UP Scholarship & NSP Portal Applications?</h4>
-                    <div class="faq-icon-btn"><i class="fas fa-chevron-down"></i></div>
-                </div>
-                <div class="faq-body">
-                    Go to 'Scholarships' in the sidebar or quick highlights to view direct links for Dashmottar renewal, post-matric status verification, and NSP registration.
-                </div>
-            </div>
-
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="faq-header">
-                    <h4>How can students submit reviews and feedback?</h4>
-                    <div class="faq-icon-btn"><i class="fas fa-chevron-down"></i></div>
-                </div>
-                <div class="faq-body">
-                    Click the '+ Submit Review' button in the Student Success Stories section, enter your name, course, and feedback to display your review on the portal!
+                    Our predictor uses official historical cutoff data and score algorithms to provide highly estimated rank ranges for CUET, AU, and BHU.
                 </div>
             </div>
         </section>
 
-    </div>
-
-    <!-- === SUBMIT REVIEW POPUP MODAL === -->
-    <div class="modal-overlay" id="reviewModal">
-        <div class="modal-card">
-            <h3><i class="fas fa-star" style="color: #F59E0B;"></i> Submit Student Review</h3>
-            <input type="text" id="revName" class="form-control-custom" placeholder="Your Full Name">
-            <input type="text" id="revCourse" class="form-control-custom" placeholder="Course / College (e.g. B.A. AU Main Campus)">
-            <textarea id="revText" class="form-control-custom" rows="3" placeholder="Share your experience with Learnify Classes & The University Page..."></textarea>
-            
-            <div style="display: flex; gap: 8px; margin-top: 10px;">
-                <button class="widget-btn" onclick="submitCustomReview()">Submit Review</button>
-                <button class="widget-btn" style="background: #64748B;" onclick="closeReviewModal()">Cancel</button>
-            </div>
-        </div>
     </div>
 
     <!-- === FOOTER === -->
@@ -752,45 +776,6 @@
                 element.classList.add('active');
                 body.style.display = 'block';
             }
-        }
-
-        // SUBMIT CUSTOM STUDENT REVIEW
-        function openReviewModal() {
-            document.getElementById("reviewModal").style.display = "flex";
-        }
-
-        function closeReviewModal() {
-            document.getElementById("reviewModal").style.display = "none";
-        }
-
-        function submitCustomReview() {
-            const name = document.getElementById("revName").value.trim();
-            const course = document.getElementById("revCourse").value.trim();
-            const text = document.getElementById("revText").value.trim();
-
-            if (!name || !course || !text) {
-                alert("Please fill in all fields!");
-                return;
-            }
-
-            const container = document.getElementById("reviewsContainer");
-            const newCard = document.createElement("div");
-            newCard.className = "testimonial-card";
-            newCard.innerHTML = `
-                <div class="rating-stars">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                </div>
-                <p class="testimonial-text">"${text}"</p>
-                <div>
-                    <img src="https://via.placeholder.com/100?text=${name.charAt(0)}" alt="Student Review" class="student-avatar">
-                    <div class="student-name">${name.toUpperCase()}</div>
-                    <div class="student-dept">${course}</div>
-                </div>
-            `;
-
-            container.prepend(newCard);
-            closeReviewModal();
-            alert("Thank you! Your review has been published.");
         }
     </script>
 </body>
