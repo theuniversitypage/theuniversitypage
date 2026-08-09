@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="google-site-verification" content="L8MTwwklD18hw-rbjRWfTjzMJD20u5BLAlTN1Zobp_U">
     <title>Interactive Student Utility Suite & Predictor - The University Page</title>
     
     <!-- Google Fonts & Font Awesome -->
@@ -11,7 +12,7 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
-        /* Strict Anti-Overflow & Ultra-Responsive Mobile Rules */
+        /* Anti-Overflow & Ultra-Responsive Mobile Rules */
         *, *::before, *::after {
             box-sizing: border-box !important;
             max-width: 100%;
@@ -30,6 +31,88 @@
             display: flex;
             flex-direction: column;
             -webkit-text-size-adjust: 100%;
+        }
+
+        /* HEADER NAVBAR */
+        .header-wrapper {
+            position: relative;
+            z-index: 99999 !important;
+            background: #FFFFFF;
+            border-bottom: 1px solid #E2E8F0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+        }
+
+        .navbar {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .sidebar-toggle-btn {
+            background: #FFFFFF;
+            border: 2px solid #2563EB;
+            color: #2563EB;
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar-toggle-btn:hover {
+            background: #EEF2FF;
+            color: #1D4ED8;
+            border-color: #1D4ED8;
+        }
+
+        /* FLOATING SIDEBAR DRAWER */
+        .resources-drawer {
+            display: none;
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 16px;
+            width: 260px;
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.15);
+            padding: 12px;
+            z-index: 999999 !important;
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .resources-drawer.active { display: block !important; }
+
+        .drawer-links-list { list-style: none; padding: 0; margin: 0; }
+        .drawer-links-list li { margin-bottom: 4px; }
+        .drawer-links-list a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: #334155;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .drawer-links-list a:hover {
+            background: #EEF2FF;
+            color: #4F46E5;
         }
 
         .container {
@@ -58,7 +141,7 @@
         }
 
         .suite-title {
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             font-weight: 800;
             color: #0F172A;
             margin: 10px 0 20px;
@@ -71,20 +154,20 @@
         .suite-title i {
             color: #4F46E5;
             background: #EEF2FF;
-            width: 34px;
-            height: 34px;
+            width: 36px;
+            height: 36px;
             border-radius: 10px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.95rem;
+            font-size: 1rem;
             flex-shrink: 0;
         }
 
         /* WIDGETS GRID */
         .widgets-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 16px;
             margin-bottom: 30px;
             width: 100% !important;
@@ -99,7 +182,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: var(--transition);
+            transition: all 0.25s ease;
             width: 100% !important;
             min-width: 0;
             position: relative;
@@ -176,7 +259,7 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            transition: var(--transition);
+            transition: all 0.2s ease;
             width: 100%;
             text-decoration: none;
             box-sizing: border-box;
@@ -254,7 +337,7 @@
             font-weight: 700;
             color: #0F172A;
             text-decoration: none;
-            transition: var(--transition);
+            transition: all 0.2s ease;
         }
 
         .scholar-btn-item:hover {
@@ -263,61 +346,122 @@
             color: #0D9488;
         }
 
+        .checklist-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+
+        .chk-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: #334155;
+            cursor: pointer;
+        }
+
+        .chk-item input {
+            accent-color: #4F46E5;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
         .output-box-inline {
             margin-top: 10px;
-            padding: 10px;
+            padding: 10px 12px;
             background: #EEF2FF;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 0.78rem;
             color: #3730A3;
             font-weight: 700;
             display: none;
             word-break: break-word;
-            line-height: 1.4;
+            line-height: 1.45;
         }
 
-        footer {
-            background: #FFFFFF;
+        /* FOOTER */
+        .glass-footer {
+            background: rgba(248, 250, 252, 0.95);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border-top: 1px solid #E2E8F0;
-            padding: 20px 10px 14px;
-            text-align: center;
-            width: 100% !important;
+            padding: 36px 16px 20px;
             margin-top: auto;
-        }
-
-        .footer-links {
-            display: flex !important;
-            justify-content: center !important;
-            align-items: center !important;
-            gap: 16px !important;
-            flex-wrap: nowrap !important;
-            margin-bottom: 8px !important;
             width: 100% !important;
+            color: #0F172A;
+            text-align: left !important;
         }
 
-        .footer-links a {
-            font-size: 0.78rem;
-            font-weight: 600;
-            color: #334155;
-            white-space: nowrap !important;
-            text-decoration: none;
+        .footer-container {
+            max-width: 1240px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 28px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #E2E8F0;
         }
 
-        .copyright { color: #64748B; font-size: 0.72rem; }
+        .footer-brand h3 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin: 0 0 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-        @media (max-width: 768px) {
+        .footer-brand p { font-size: 0.8rem; color: #64748B; font-weight: 600; margin-bottom: 14px; }
+        .app-store-btns { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .store-badge-btn { background: #0F172A; color: #FFFFFF; padding: 7px 12px; border-radius: 10px; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        .store-badge-btn i { font-size: 1.1rem; }
+        .store-badge-text { display: flex; flex-direction: column; text-align: left; line-height: 1.1; }
+        .store-badge-text span { font-size: 0.6rem; text-transform: uppercase; opacity: 0.8; }
+        .store-badge-text strong { font-size: 0.78rem; font-weight: 800; }
+
+        .footer-column h4 { font-size: 0.88rem; font-weight: 800; margin: 0 0 12px; }
+        .footer-links-list { list-style: none; padding: 0; margin: 0; }
+        .footer-links-list li { margin-bottom: 7px; }
+        .footer-links-list a { font-size: 0.8rem; font-weight: 600; color: #64748B; text-decoration: none; transition: all 0.2s; }
+        .footer-links-list a:hover { color: #4F46E5; }
+
+        .sub-footer-bottom {
+            max-width: 1240px;
+            margin: 18px auto 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .sub-footer-links { display: flex; align-items: center; gap: 12px; font-size: 0.76rem; font-weight: 600; color: #64748B; }
+        .sub-footer-links a { color: #64748B; text-decoration: none; }
+        .social-glass-icons { display: flex; align-items: center; gap: 8px; }
+        .social-glass-btn { width: 32px; height: 32px; border-radius: 50%; background: #FFFFFF; border: 1px solid #CBD5E1; display: flex; align-items: center; justify-content: center; color: #0F172A; font-size: 0.85rem; text-decoration: none; }
+        .social-glass-btn:hover { background: #0F172A; color: #FFFFFF; }
+        .copyright { color: #64748B; font-size: 0.75rem; }
+
+        @media (max-width: 850px) {
+            .footer-container { grid-template-columns: 1fr 1fr !important; gap: 24px; }
+        }
+
+        @media (max-width: 600px) {
             .container { padding: 8px 8px 30px; }
             .widgets-grid { grid-template-columns: 1fr !important; gap: 12px; }
             .widget-card { padding: 16px 12px; }
-            footer { padding: 16px 6px 12px; }
-            .footer-links { gap: 10px !important; }
-            .footer-links a { font-size: 0.72rem !important; }
+            .footer-container { grid-template-columns: 1fr !important; }
+            .sub-footer-bottom { flex-direction: column; align-items: flex-start; }
         }
     </style>
 </head>
 <body>
 
-    <!-- === HEADER === -->
+    <!-- === HEADER NAVBAR === -->
     <header class="header-wrapper">
         <nav class="navbar">
             <a href="index.html" class="logo">
@@ -326,22 +470,29 @@
             </a>
             
             <div class="header-right">
-                <button class="menu-toggle-btn" id="sidebarToggle">
+                <button class="sidebar-toggle-btn" id="sidebarToggleBtn" onclick="toggleResourcesDrawer()">
                     <i class="fa-solid fa-bars-staggered"></i>
                 </button>
             </div>
         </nav>
 
-        <div class="nav-drawer" id="navDrawer">
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="latest-jobs.html">Latest Job</a></li>
-                <li><a href="admitcard.html">Admit Card</a></li>
-                <li><a href="result.html">Result</a></li>
-                <li><a href="cutoff.html">Cutoff</a></li>
-                <li><a href="admission.html">Admission</a></li>
-                <li><a href="syllabus.html">Syllabus</a></li>
-                <li><a href="answerkey.html">Answer Key</a></li>
+        <!-- FLOATING SIDEBAR DRAWER -->
+        <div class="resources-drawer" id="resourcesDrawer">
+            <ul class="drawer-links-list">
+                <li><a href="index.html"><i class="fas fa-home" style="color: #4F46E5;"></i> Home</a></li>
+                <li><a href="latest-updates.html"><i class="fas fa-bolt" style="color: #DC2626;"></i> Live Updates</a></li>
+                <li><a href="admission.html"><i class="fas fa-book-open" style="color: #4F46E5;"></i> Programs</a></li>
+                <li><a href="admission.html"><i class="fas fa-university" style="color: #4F46E5;"></i> Universities</a></li>
+                <li><a href="document-details.html"><i class="fas fa-award" style="color: #0D9488;"></i> Scholarships</a></li>
+                <li><a href="admission.html"><i class="fas fa-map-marker-alt" style="color: #E11D48;"></i> Campus Locations</a></li>
+                <li><a href="latest-jobs.html"><i class="fas fa-briefcase" style="color: #D97706;"></i> Latest Job</a></li>
+                <li><a href="admitcard.html"><i class="fas fa-id-card" style="color: #F43F5E;"></i> Admit Card</a></li>
+                <li><a href="result.html"><i class="fas fa-trophy" style="color: #10B981;"></i> Result</a></li>
+                <li><a href="cutoff.html"><i class="fas fa-chart-line" style="color: #0284C7;"></i> Cutoff</a></li>
+                <li><a href="admission.html"><i class="fas fa-university" style="color: #8B5CF6;"></i> Admission</a></li>
+                <li><a href="syllabus.html"><i class="fas fa-book-open" style="color: #10B981;"></i> Syllabus</a></li>
+                <li><a href="answerkey.html"><i class="fas fa-key" style="color: #E11D48;"></i> Answer Key</a></li>
+                <li><a href="about-ajmal-mansoori.html"><i class="fas fa-user-graduate" style="color: #4F46E5;"></i> About Founder</a></li>
             </ul>
         </div>
     </header>
@@ -353,7 +504,7 @@
             <a href="index.html">Home</a> <i class="fas fa-angle-right"></i> <span>Student Utility Suite</span>
         </div>
 
-        <h2 class="suite-title"><i class="fas fa-sliders-h"></i> Interactive Student Utility Suite</h2>
+        <h2 class="suite-title"><i class="fas fa-sliders-h"></i> Interactive Student Utility Suite & Predictor</h2>
 
         <section class="widgets-grid">
 
@@ -493,7 +644,7 @@
             </div>
 
 
-            <!-- NEW WIDGET 5: CUET SUBJECT COMBINATION CHECKER -->
+            <!-- WIDGET 5: CUET SUBJECT COMBINATION CHECKER -->
             <div class="widget-card">
                 <div>
                     <div class="widget-card-header">
@@ -529,7 +680,7 @@
             </div>
 
 
-            <!-- NEW WIDGET 6: AGE & ELIGIBILITY CALCULATOR -->
+            <!-- WIDGET 6: AGE & ELIGIBILITY CALCULATOR -->
             <div class="widget-card">
                 <div>
                     <div class="widget-card-header">
@@ -611,26 +762,335 @@
                 </div>
             </div>
 
+
+            <!-- NEW WIDGET 9: CUET NORMALIZATION ESTIMATOR -->
+            <div class="widget-card">
+                <div>
+                    <div class="widget-card-header">
+                        <div class="widget-icon" style="background: #ECFDF5; color: #059669;">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="widget-title-group">
+                            <h3>Normalised Score Helper</h3>
+                            <p>Raw Marks vs NTA Percentile</p>
+                        </div>
+                    </div>
+
+                    <input type="number" id="rawMarks" class="form-control-custom" placeholder="Enter Total Raw Score (e.g. 175)">
+                    
+                    <select id="shiftDiff" class="form-control-custom">
+                        <option value="easy">Exam Shift Level: Moderate / Easy</option>
+                        <option value="hard">Exam Shift Level: Hard / Difficult</option>
+                    </select>
+                </div>
+
+                <div>
+                    <button class="widget-btn" style="background: #059669;" onclick="estimateNormalisation()">
+                        <i class="fas fa-percentage"></i> Estimate Percentile
+                    </button>
+                    <div class="output-box-inline" id="normOutput"></div>
+                </div>
+            </div>
+
+
+            <!-- NEW WIDGET 10: SUBJECT PREFERENCE ORDER GENERATOR -->
+            <div class="widget-card">
+                <div>
+                    <div class="widget-card-header">
+                        <div class="widget-icon" style="background: #FEE2E2; color: #DC2626;">
+                            <i class="fas fa-list-ol"></i>
+                        </div>
+                        <div class="widget-title-group">
+                            <h3>Choice Order Generator</h3>
+                            <p>Counseling Preference List</p>
+                        </div>
+                    </div>
+
+                    <select id="prefCourse" class="form-control-custom">
+                        <option value="ba_au">AU BA Arts Combinations</option>
+                        <option value="ba_bhu">BHU BA Social Science</option>
+                        <option value="bsc_au">AU B.Sc Science Group</option>
+                    </select>
+
+                    <select id="prefCareer" class="form-control-custom">
+                        <option value="upsc">Target: Civil Services / Govt Exams</option>
+                        <option value="academic">Target: Research & Teaching</option>
+                        <option value="general">Target: General Honors Degree</option>
+                    </select>
+                </div>
+
+                <div>
+                    <button class="widget-btn" style="background: #DC2626;" onclick="generatePreferenceList()">
+                        <i class="fas fa-sort-amount-down"></i> Generate Top Choices
+                    </button>
+                    <div class="output-box-inline" id="prefOutput"></div>
+                </div>
+            </div>
+
+
+            <!-- NEW WIDGET 11: MAIN CAMPUS VS AFFILIATED CUTOFF MATRIX -->
+            <div class="widget-card">
+                <div>
+                    <div class="widget-card-header">
+                        <div class="widget-icon" style="background: #E0E7FF; color: #3730A3;">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <div class="widget-title-group">
+                            <h3>Campus vs College Matrix</h3>
+                            <p>Cutoff Benchmark Guide</p>
+                        </div>
+                    </div>
+
+                    <select id="matrixUniv" class="form-control-custom">
+                        <option value="au_main">AU Main Campus (FMC)</option>
+                        <option value="au_cmp">CMP Degree College</option>
+                        <option value="au_ecc">Ewing Christian College (ECC)</option>
+                        <option value="bhu_fmc">BHU Main Campus FMC</option>
+                        <option value="bhu_dav">BHU DAV PG College</option>
+                    </select>
+
+                    <select id="matrixStream" class="form-control-custom">
+                        <option value="ba">B.A. Cutoff Trend</option>
+                        <option value="bsc">B.Sc. Cutoff Trend</option>
+                        <option value="bcom">B.Com Cutoff Trend</option>
+                    </select>
+                </div>
+
+                <div>
+                    <button class="widget-btn" style="background: #3730A3;" onclick="checkCollegeMatrix()">
+                        <i class="fas fa-table"></i> Check Safe Score
+                    </button>
+                    <div class="output-box-inline" id="matrixOutput"></div>
+                </div>
+            </div>
+
+
+            <!-- NEW WIDGET 12: COUNSELING DOCUMENT CHECKLIST -->
+            <div class="widget-card">
+                <div>
+                    <div class="widget-card-header">
+                        <div class="widget-icon" style="background: #FEF3C7; color: #B45309;">
+                            <i class="fas fa-clipboard-check"></i>
+                        </div>
+                        <div class="widget-title-group">
+                            <h3>Document Verifier</h3>
+                            <p>Counseling Readiness Checklist</p>
+                        </div>
+                    </div>
+
+                    <div class="checklist-group">
+                        <label class="chk-item"><input type="checkbox" id="chkTC"> Transfer / Migration Certificate</label>
+                        <label class="chk-item"><input type="checkbox" id="chkCaste"> Category Caste Certificate</label>
+                        <label class="chk-item"><input type="checkbox" id="chkIncome"> Recent Income Certificate</label>
+                        <label class="chk-item"><input type="checkbox" id="chkGap"> Gap Year Affidavit (if applicable)</label>
+                    </div>
+                </div>
+
+                <div>
+                    <button class="widget-btn" style="background: #B45309;" onclick="verifyDocuments()">
+                        <i class="fas fa-check-double"></i> Verify Readiness
+                    </button>
+                    <div class="output-box-inline" id="chkOutput"></div>
+                </div>
+            </div>
+
+
+            <!-- NEW WIDGET 13: GAP YEAR AFFIDAVIT GENERATOR -->
+            <div class="widget-card">
+                <div>
+                    <div class="widget-card-header">
+                        <div class="widget-icon" style="background: #CCFBF1; color: #0F766E;">
+                            <i class="fas fa-file-contract"></i>
+                        </div>
+                        <div class="widget-title-group">
+                            <h3>Gap Year Affidavit Draft</h3>
+                            <p>Instant Legal Draft Writer</p>
+                        </div>
+                    </div>
+
+                    <input type="text" id="gapName" class="form-control-custom" placeholder="Full Student Name">
+                    <input type="number" id="gapYears" class="form-control-custom" placeholder="Gap Duration (e.g. 1 Year)">
+                </div>
+
+                <div>
+                    <button class="widget-btn" style="background: #0F766E;" onclick="generateGapDraft()">
+                        <i class="fas fa-file-alt"></i> Create Gap Draft
+                    </button>
+                    <div class="output-box-inline" id="gapOutput"></div>
+                </div>
+            </div>
+
+
+            <!-- NEW WIDGET 14: MARKS TO PERCENTILE CALCULATOR -->
+            <div class="widget-card">
+                <div>
+                    <div class="widget-card-header">
+                        <div class="widget-icon" style="background: #F1F5F9; color: #334155;">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <div class="widget-title-group">
+                            <h3>Marks to Percentile</h3>
+                            <p>Quick Score Conversion</p>
+                        </div>
+                    </div>
+
+                    <input type="number" id="percMarks" class="form-control-custom" placeholder="Score Obtained (e.g. 165)">
+                    <input type="number" id="percTotal" class="form-control-custom" value="200" placeholder="Total Marks (Default 200)">
+                </div>
+
+                <div>
+                    <button class="widget-btn btn-dark" onclick="calculatePercentileQuick()">
+                        <i class="fas fa-percent"></i> Calculate Ratio %
+                    </button>
+                    <div class="output-box-inline" id="percOutput"></div>
+                </div>
+            </div>
+
+
+            <!-- NEW WIDGET 15: FEE EXEMPTION & SCHOLARSHIP CHECKER -->
+            <div class="widget-card">
+                <div>
+                    <div class="widget-card-header">
+                        <div class="widget-icon" style="background: #DCFCE7; color: #16A34A;">
+                            <i class="fas fa-hand-holding-usd"></i>
+                        </div>
+                        <div class="widget-title-group">
+                            <h3>Fee Exemption Helper</h3>
+                            <p>Scholarship Eligibility Check</p>
+                        </div>
+                    </div>
+
+                    <select id="feeCategory" class="form-control-custom">
+                        <option value="gen">General Category</option>
+                        <option value="obc">OBC Non-Creamy Layer</option>
+                        <option value="scst">SC / ST Category</option>
+                    </select>
+
+                    <input type="number" id="incomeVal" class="form-control-custom" placeholder="Annual Family Income (e.g. 180000)">
+                </div>
+
+                <div>
+                    <button class="widget-btn" style="background: #16A34A;" onclick="checkScholarshipEligibility()">
+                        <i class="fas fa-coins"></i> Check Concession
+                    </button>
+                    <div class="output-box-inline" id="feeOutput"></div>
+                </div>
+            </div>
+
+
+            <!-- NEW WIDGET 16: DIRECT FOUNDER DOUBT HELPER -->
+            <div class="widget-card">
+                <div>
+                    <div class="widget-card-header">
+                        <div class="widget-icon" style="background: #EEF2FF; color: #4F46E5;">
+                            <i class="fas fa-comment-medical"></i>
+                        </div>
+                        <div class="widget-title-group">
+                            <h3>Ask Ajmal Sir Direct</h3>
+                            <p>Counseling Support Portal</p>
+                        </div>
+                    </div>
+
+                    <input type="text" id="askName" class="form-control-custom" placeholder="Your Name">
+                    <input type="text" id="askQuery" class="form-control-custom" placeholder="Type Query (e.g. 150 Marks AU BA)">
+                </div>
+
+                <div>
+                    <button class="widget-btn" onclick="sendDirectQuery()">
+                        <i class="fab fa-telegram-plane"></i> Send Direct Question
+                    </button>
+                    <div class="output-box-inline" id="askOutput"></div>
+                </div>
+            </div>
+
         </section>
 
     </main>
 
     <!-- === FOOTER === -->
-    <footer>
-        <div class="footer-links">
-            <a href="contact-us.html">Contact Us</a>
-            <a href="privacy-policy.html">Privacy Policy</a>
-            <a href="disclaimer.html">Disclaimer</a>
+    <footer class="glass-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3><i class="fas fa-graduation-cap" style="color: #4F46E5;"></i> The University Page</h3>
+                <p>Learn Practically with Central University Guides & Utility Tools</p>
+                <div class="app-store-btns">
+                    <a href="https://play.google.com/store/apps/details?id=co.akamai.learnify" target="_blank" class="store-badge-btn">
+                        <i class="fab fa-google-play"></i>
+                        <div class="store-badge-text">
+                            <span>Get it on</span>
+                            <strong>Google Play</strong>
+                        </div>
+                    </a>
+                    <a href="https://learnifyclasses.akamai.net.in" target="_blank" class="store-badge-btn">
+                        <i class="fab fa-apple"></i>
+                        <div class="store-badge-text">
+                            <span>Download on the</span>
+                            <strong>App Store</strong>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul class="footer-links-list">
+                    <li><a href="admission.html">Courses & Admissions</a></li>
+                    <li><a href="https://learnifyclasses.akamai.net.in/ebooks" target="_blank">Books & E-Notes</a></li>
+                    <li><a href="latest-updates.html">Free Videos & Updates</a></li>
+                    <li><a href="about-ajmal-mansoori.html">About Founder</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Social Media</h4>
+                <ul class="footer-links-list">
+                    <li><a href="https://instagram.com/ajmalcreator" target="_blank">Instagram (@ajmalcreator)</a></li>
+                    <li><a href="https://youtube.com/@ajmalalimansoori" target="_blank">YouTube Channel</a></li>
+                    <li><a href="https://t.me/ajmalmansoori" target="_blank">Telegram Group</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Company & Legal</h4>
+                <ul class="footer-links-list">
+                    <li><a href="privacy-policy.html">Terms & Conditions</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="disclaimer.html">Disclaimer & Refunds</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="copyright">
-            <p>&copy; 2026 The University Page. All rights reserved.</p>
+
+        <div class="sub-footer-bottom">
+            <div class="sub-footer-links">
+                <a href="privacy-policy.html">Terms</a> <span>|</span>
+                <a href="privacy-policy.html">Privacy</a> <span>|</span>
+                <a href="disclaimer.html">Cookies</a>
+            </div>
+
+            <div class="social-glass-icons">
+                <a href="https://instagram.com/ajmalcreator" target="_blank" class="social-glass-btn"><i class="fab fa-instagram"></i></a>
+                <a href="https://youtube.com/@ajmalalimansoori" target="_blank" class="social-glass-btn"><i class="fab fa-youtube"></i></a>
+                <a href="https://t.me/ajmalmansoori" target="_blank" class="social-glass-btn"><i class="fab fa-telegram-plane"></i></a>
+            </div>
+
+            <div class="copyright">
+                &copy; 2026 The University Page. All rights reserved.
+            </div>
         </div>
     </footer>
 
     <!-- INTERACTIVE JAVASCRIPT -->
     <script>
-        document.getElementById("sidebarToggle")?.addEventListener("click", () => {
-            document.getElementById("navDrawer")?.classList.toggle("active");
+        function toggleResourcesDrawer() {
+            const drawer = document.getElementById("resourcesDrawer");
+            if (drawer) drawer.classList.toggle("active");
+        }
+
+        document.addEventListener("click", function(event) {
+            if (!event.target.closest(".sidebar-toggle-btn") && !event.target.closest("#resourcesDrawer")) {
+                const drawer = document.getElementById("resourcesDrawer");
+                if (drawer) drawer.classList.remove("active");
+            }
         });
 
         // 1. PREDICTOR LOGIC
@@ -646,15 +1106,15 @@
             }
 
             let rank = Math.max(1, Math.round((600 - marks) * 11.2 + 30));
-            let status = marks >= 140 ? "High Chance for Main Campus" : "Eligible for Affiliated Colleges";
+            let status = marks >= 140 ? "High Chance for Main Campus" : "Eligible for Affiliated Colleges (CMP, ECC)";
             
             resultBox.style.display = "block";
             resultBox.style.background = "#EEF2FF";
             resultBox.style.color = "#3730A3";
-            resultBox.innerHTML = `Est. Rank: <b>#${rank} - #${rank + 100}</b><br><span style="color:#059669;">${status}</span>`;
+            resultBox.innerHTML = `Est. Rank: <b>#${rank} - #${rank + 95}</b><br><span style="color:#059669;">${status}</span>`;
         }
 
-        // 2. PUSH BELL TOGGLE LOGIC
+        // 2. PUSH BELL
         function toggleNotificationBell() {
             const btn = document.getElementById("pushBellBtn");
             if (Notification.permission === "granted") {
@@ -672,7 +1132,7 @@
             }
         }
 
-        // 3. CANVAS RESIZER LOGIC
+        // 3. CANVAS RESIZER
         function processImageResize(event) {
             const file = event.target.files[0];
             if (!file) return;
@@ -702,7 +1162,7 @@
             reader.readAsDataURL(file);
         }
 
-        // 4. SUBJECT COMBO CHECKER LOGIC
+        // 5. SUBJECT COMBO
         function checkSubjectCombo() {
             const course = document.getElementById("comboCourse").value;
             const univ = document.getElementById("comboUniv").value;
@@ -710,11 +1170,11 @@
 
             let text = "";
             if (univ === "au") {
-                text = "AU Rule: Hindi/English + General Test + Any 2 Domain Subjects.";
+                text = "AU Rule: Hindi/English + General Test + Any 2 Domain Subjects studied in 12th.";
             } else if (univ === "bhu") {
-                text = "BHU Rule: Section I (Language) + Section III (General Test).";
+                text = "BHU Rule: Section I (Language) + Section III (General Test) compulsory.";
             } else {
-                text = "DU Rule: 1 Language + Any 3 Domain Subjects as studied in Class 12th.";
+                text = "DU Rule: 1 Language + Any 3 Domain Subjects studied in Class 12th.";
             }
 
             box.style.display = "block";
@@ -723,7 +1183,7 @@
             box.innerHTML = `<b>Combo Required:</b> ${text}`;
         }
 
-        // 5. AGE CALCULATOR LOGIC
+        // 6. AGE CALCULATOR
         function calculateAge() {
             const dobVal = document.getElementById("birthDate").value;
             const cutVal = document.getElementById("cutoffDate").value;
@@ -741,14 +1201,8 @@
             let months = cutoff.getMonth() - dob.getMonth();
             let days = cutoff.getDate() - dob.getDate();
 
-            if (days < 0) {
-                months--;
-                days += 30;
-            }
-            if (months < 0) {
-                years--;
-                months += 12;
-            }
+            if (days < 0) { months--; days += 30; }
+            if (months < 0) { years--; months += 12; }
 
             box.style.display = "block";
             box.style.background = "#FFE4E6";
@@ -756,21 +1210,145 @@
             box.innerHTML = `Age on Cutoff Date: <b>${years} Y, ${months} M, ${days} D</b>`;
         }
 
-        // 6. AI APPLICATION WRITER DRAFT
+        // 7. AI DRAFT
         function generateAIDraft() {
             const name = document.getElementById("aiStudentName").value || "[Your Name]";
+            const type = document.getElementById("aiDraftType").value;
             const box = document.getElementById("aiDraftOutput");
+            
+            let subject = type === "leave" ? "Application for Leave of Absence" : "Request for Certificate Processing";
             box.style.display = "block";
-            box.innerHTML = `To, The Dean/Head,\nRespected Sir/Madam,\nI am ${name}. Kindly accept my formal request for processing.\nThanking You,\n${name}`;
+            box.style.background = "#E0F2FE";
+            box.style.color = "#0369A1";
+            box.innerHTML = `<b>To, The Head/Dean</b><br>Subject: ${subject}<br>Respected Sir, I am ${name}. Kindly grant approval for my request.<br>Thanking You,<br><b>${name}</b>`;
         }
 
-        // 7. CGPA TO PERCENTAGE CONVERTER
+        // 8. CGPA
         function calculateCGPA() {
             const cgpa = parseFloat(document.getElementById("cgpaVal").value);
             const box = document.getElementById("cgpaOutput");
             if (!cgpa) return;
             box.style.display = "block";
             box.innerHTML = `Percentage: <b>${(cgpa * 9.5).toFixed(2)}%</b>`;
+        }
+
+        // 9. NORMALISATION
+        function estimateNormalisation() {
+            const raw = parseInt(document.getElementById("rawMarks").value);
+            const shift = document.getElementById("shiftDiff").value;
+            const box = document.getElementById("normOutput");
+
+            if (!raw || raw <= 0) return;
+            let percent = shift === "hard" ? Math.min(99.9, ((raw + 15) / 200) * 100) : Math.min(99.9, (raw / 200) * 98);
+
+            box.style.display = "block";
+            box.style.background = "#ECFDF5";
+            box.style.color = "#065F46";
+            box.innerHTML = `Est. Normalised Percentile: <b>${percent.toFixed(2)} Percentile</b>`;
+        }
+
+        // 10. PREFERENCE LIST
+        function generatePreferenceList() {
+            const course = document.getElementById("prefCourse").value;
+            const box = document.getElementById("prefOutput");
+            box.style.display = "block";
+            box.style.background = "#FEE2E2";
+            box.style.color = "#991B1B";
+
+            if (course === "ba_au") {
+                box.innerHTML = "<b>Top Choice Order:</b><br>1. Ancient History + Pol Sci + Hindi<br>2. Geography + Economics + Eng<br>3. History + Sociology + GT";
+            } else {
+                box.innerHTML = "<b>Top Choice Order:</b><br>1. FMC History + Economics<br>2. FMC Geography + Political Sci<br>3. DAV Social Science Group";
+            }
+        }
+
+        // 11. MATRIX
+        function checkCollegeMatrix() {
+            const univ = document.getElementById("matrixUniv").value;
+            const box = document.getElementById("matrixOutput");
+            box.style.display = "block";
+            box.style.background = "#E0E7FF";
+            box.style.color = "#3730A3";
+
+            if (univ === "au_main") {
+                box.innerHTML = "<b>AU Main Campus (FMC):</b><br>Safe Score BA: <b>150+ Marks</b> | B.Sc: <b>155+ Marks</b> | B.Com: <b>160+ Marks</b>";
+            } else {
+                box.innerHTML = "<b>Affiliated College (CMP/ECC):</b><br>Safe Score BA: <b>105+ Marks</b> | B.Sc: <b>115+ Marks</b>";
+            }
+        }
+
+        // 12. CHECKLIST
+        function verifyDocuments() {
+            const tc = document.getElementById("chkTC").checked;
+            const caste = document.getElementById("chkCaste").checked;
+            const inc = document.getElementById("chkIncome").checked;
+            const gap = document.getElementById("chkGap").checked;
+            const box = document.getElementById("chkOutput");
+
+            let count = (tc?1:0) + (caste?1:0) + (inc?1:0) + (gap?1:0);
+            box.style.display = "block";
+            box.style.background = "#FEF3C7";
+            box.style.color = "#92400E";
+            box.innerHTML = `Readiness Score: <b>${count} / 4 Documents Ready</b> ${count===4 ? '🟢 Ready for Admission!' : '🟡 Complete remaining documents'}`;
+        }
+
+        // 13. GAP DRAFT
+        function generateGapDraft() {
+            const name = document.getElementById("gapName").value || "[Student Name]";
+            const years = document.getElementById("gapYears").value || "1 Year";
+            const box = document.getElementById("gapOutput");
+
+            box.style.display = "block";
+            box.style.background = "#CCFBF1";
+            box.style.color = "#115E59";
+            box.innerHTML = `<b>AFFIDAVIT DRAFT:</b><br>I, ${name}, state that I took a gap of ${years} for competitive exam preparation. I was not engaged in any unlawful activity.`;
+        }
+
+        // 14. RATIO PERCENTILE
+        function calculatePercentileQuick() {
+            const marks = parseFloat(document.getElementById("percMarks").value);
+            const total = parseFloat(document.getElementById("percTotal").value) || 200;
+            const box = document.getElementById("percOutput");
+
+            if (!marks) return;
+            let ratio = ((marks / total) * 100).toFixed(2);
+            box.style.display = "block";
+            box.innerHTML = `Score Ratio: <b>${ratio}%</b> of total marks`;
+        }
+
+        // 15. SCHOLARSHIP
+        function checkScholarshipEligibility() {
+            const cat = document.getElementById("feeCategory").value;
+            const income = parseInt(document.getElementById("incomeVal").value);
+            const box = document.getElementById("feeOutput");
+
+            if (!income) return;
+            box.style.display = "block";
+            box.style.background = "#DCFCE7";
+            box.style.color = "#166534";
+
+            if (income <= 250000) {
+                box.innerHTML = "<b>🟢 Eligible for UP Scholarship:</b> 100% Tuition Fee Reimbursement + Monthly Maintenance Allowance";
+            } else {
+                box.innerHTML = "<b>🟡 General Category Guidelines:</b> Merit-cum-means scholarship criteria apply.";
+            }
+        }
+
+        // 16. DIRECT QUERY
+        function sendDirectQuery() {
+            const name = document.getElementById("askName").value || "Student";
+            const query = document.getElementById("askQuery").value;
+            const box = document.getElementById("askOutput");
+
+            if (!query) {
+                alert("Please enter your query!");
+                return;
+            }
+
+            box.style.display = "block";
+            box.style.background = "#EEF2FF";
+            box.style.color = "#3730A3";
+            box.innerHTML = `<b>Query Received!</b> Hello ${name}, your question has been logged for Telegram support. Click Telegram button below to join.`;
         }
     </script>
 </body>
