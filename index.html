@@ -281,6 +281,98 @@
         .slider-card p { font-size: 0.74rem; color: #64748B; font-weight: 500; margin: 0; }
         .output-box-inline { margin-top: 8px; padding: 8px; background: #EEF2FF; border-radius: 6px; font-size: 0.75rem; color: #3730A3; font-weight: 700; display: none; }
 
+        /* 🔥 NAYA SECTION 1: COUNSELING ROADMAP TRACKER 🔥 */
+        .roadmap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+            margin-bottom: 30px;
+        }
+
+        .roadmap-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-radius: 18px;
+            border: 1px solid #E2E8F0;
+            padding: 16px;
+            position: relative;
+            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.02);
+            transition: all 0.2s ease;
+        }
+
+        .roadmap-card:hover { transform: translateY(-2px); border-color: #C7D2FE; }
+
+        .step-badge {
+            background: #EEF2FF;
+            color: #4F46E5;
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .roadmap-card h4 { font-size: 0.9rem; font-weight: 800; color: #0F172A; margin: 0 0 4px; }
+        .roadmap-card p { font-size: 0.75rem; color: #64748B; font-weight: 500; margin: 0; line-height: 1.4; }
+
+        /* 🔥 NAYA SECTION 2: CAMPUS LIFE SHOWCASE 🔥 */
+        .campus-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-bottom: 35px;
+        }
+
+        .campus-card {
+            background: #FFFFFF;
+            border-radius: 18px;
+            border: 1px solid #E2E8F0;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
+            transition: all 0.25s ease;
+        }
+
+        .campus-card:hover { transform: translateY(-3px); border-color: #C7D2FE; box-shadow: 0 10px 24px rgba(79, 70, 229, 0.1); }
+
+        .campus-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            background: #0F172A;
+        }
+
+        .campus-body { padding: 14px; }
+        .campus-body h4 { font-size: 0.9rem; font-weight: 800; color: #0F172A; margin: 0 0 4px; }
+        .campus-body p { font-size: 0.75rem; color: #64748B; font-weight: 500; margin: 0; line-height: 1.4; }
+
+        /* 🔥 NAYA SECTION 3: DIRECT HELPDESK 🔥 */
+        .helpdesk-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 14px;
+            margin-bottom: 35px;
+        }
+
+        .help-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border-radius: 16px;
+            border: 1px solid #E2E8F0;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #0F172A;
+            transition: all 0.2s ease;
+        }
+
+        .help-card:hover { transform: translateY(-2px); border-color: #4F46E5; background: #FFFFFF; }
+        .help-icon { width: 40px; height: 40px; border-radius: 12px; background: #EEF2FF; color: #4F46E5; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+        .help-info h4 { font-size: 0.88rem; font-weight: 800; margin: 0 0 2px; }
+        .help-info p { font-size: 0.73rem; color: #64748B; font-weight: 600; margin: 0; }
+
         /* FAQ ACCORDION */
         .faq-title-center { text-align: center; margin: 36px 0 20px; }
         .faq-title-center h2 { font-size: 1.45rem; font-weight: 800; color: #0F172A; }
@@ -685,7 +777,6 @@
             gap: 8px;
         }
 
-        /* 🔥 UPDATED DARK BLACK SOCIAL ICONS STYLING 🔥 */
         .social-glass-btn {
             width: 34px;
             height: 34px;
@@ -695,15 +786,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #0F172A; /* Charcoal Black */
+            color: #0F172A;
             font-size: 0.88rem;
             text-decoration: none;
             transition: all 0.2s ease;
         }
 
         .social-glass-btn:hover {
-            background: #0F172A; /* Dark Background on Hover */
-            color: #FFFFFF; /* White Icon on Hover */
+            background: #0F172A;
+            color: #FFFFFF;
             border-color: #0F172A;
             transform: translateY(-2px);
         }
@@ -1045,6 +1136,110 @@
                     <p>UP & National Scholarship Links</p>
                 </a>
             </div>
+        </section>
+
+
+        <!-- 🔥 QUICK LINK KE THEEK NICHE NAYE GROUND-LEVEL SECTIONS 🔥 -->
+
+        <!-- 1. COUNSELING ROADMAP TRACKER -->
+        <div class="section-title-main">
+            <div class="title-left">
+                <i class="fas fa-route" style="color: #8B5CF6;"></i>
+                <span>Admission & Counseling Roadmap 2026</span>
+            </div>
+        </div>
+
+        <section class="roadmap-grid">
+            <div class="roadmap-card">
+                <span class="step-badge">Step 01</span>
+                <h4>Scorecard & Rank Check</h4>
+                <p>Verify CUET / AU PGAT normalized NTA percentile scorecards.</p>
+            </div>
+            <div class="roadmap-card">
+                <span class="step-badge">Step 02</span>
+                <h4>CSAS Portal Registration</h4>
+                <p>Register on Central University CSAS portals & select subject choices.</p>
+            </div>
+            <div class="roadmap-card">
+                <span class="step-badge">Step 03</span>
+                <h4>Cutoff & Seat Allotment</h4>
+                <p>Check category-wise Round 1 to Mop-Up round merit lists.</p>
+            </div>
+            <div class="roadmap-card">
+                <span class="step-badge">Step 04</span>
+                <h4>Verification & Fee Payment</h4>
+                <p>Upload TC, Migration & Category certificates to confirm seat.</p>
+            </div>
+        </section>
+
+
+        <!-- 2. VISUAL CAMPUS SHOWCASE -->
+        <div class="section-title-main">
+            <div class="title-left">
+                <i class="fas fa-landmark" style="color: #059669;"></i>
+                <span>Central Universities Campus Showcase</span>
+            </div>
+        </div>
+
+        <section class="campus-grid">
+            <div class="campus-card">
+                <img src="https://img.youtube.com/vi/pvTmI9T46pk/hqdefault.jpg" alt="Allahabad University Campus" class="campus-img">
+                <div class="campus-body">
+                    <h4>Allahabad University (AU Main Campus)</h4>
+                    <p>Oxbridge of the East: Arts, Science & Commerce Faculties at Prayagraj.</p>
+                </div>
+            </div>
+
+            <div class="campus-card">
+                <img src="https://img.youtube.com/vi/nF_5YrYp0as/hqdefault.jpg" alt="Banaras Hindu University Campus" class="campus-img">
+                <div class="campus-body">
+                    <h4>Banaras Hindu University (BHU Varanasi)</h4>
+                    <p>Asia's largest residential campus: FMC, MMV & Faculty of Arts.</p>
+                </div>
+            </div>
+
+            <div class="campus-card">
+                <img src="https://img.youtube.com/vi/E04N5LaxQVo/hqdefault.jpg" alt="University Campus Guidance" class="campus-img">
+                <div class="campus-body">
+                    <h4>Central Universities Mentorship</h4>
+                    <p>Direct guidance for DU CSAS & AU Affiliated Colleges admission.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 3. DIRECT HELPDESK & SUPPORT CARDS -->
+        <div class="section-title-main">
+            <div class="title-left">
+                <i class="fas fa-headset" style="color: #0284C7;"></i>
+                <span>Direct Admission Support & Portals</span>
+            </div>
+        </div>
+
+        <section class="helpdesk-grid">
+            <a href="https://allduniv.ac.in" target="_blank" class="help-card">
+                <div class="help-icon"><i class="fas fa-university"></i></div>
+                <div class="help-info">
+                    <h4>AU Pravesh Bhawan</h4>
+                    <p>Official Admission Portal</p>
+                </div>
+            </a>
+
+            <a href="https://cuet.nta.nic.in" target="_blank" class="help-card">
+                <div class="help-icon"><i class="fas fa-globe"></i></div>
+                <div class="help-info">
+                    <h4>CUET NTA Official</h4>
+                    <p>Scorecard Download</p>
+                </div>
+            </a>
+
+            <a href="https://t.me/cuetwarriors2026" target="_blank" class="help-card">
+                <div class="help-icon"><i class="fab fa-telegram-plane"></i></div>
+                <div class="help-info">
+                    <h4>CUET Warriors Group</h4>
+                    <p>Instant Student Doubt Chat</p>
+                </div>
+            </a>
         </section>
 
 
