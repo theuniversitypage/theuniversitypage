@@ -281,51 +281,67 @@
         .slider-card p { font-size: 0.74rem; color: #64748B; font-weight: 500; margin: 0; }
         .output-box-inline { margin-top: 8px; padding: 8px; background: #EEF2FF; border-radius: 6px; font-size: 0.75rem; color: #3730A3; font-weight: 700; display: none; }
 
-        /* 🏆 NAYA FEATURE 1: CUTOFF BENCHMARK TABLE */
-        .cutoff-table-wrapper {
-            background: rgba(255, 255, 255, 0.85);
+        /* 🟢 NAYA SECTION 1: DAILY MCQ & QUIZ CHALLENGE STYLING */
+        .mcq-quiz-card {
+            background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(12px);
             border-radius: 18px;
             border: 1px solid #E2E8F0;
-            overflow: hidden;
+            padding: 18px;
             margin-bottom: 30px;
             box-shadow: 0 4px 16px rgba(15, 23, 42, 0.02);
         }
 
-        .cutoff-table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: left;
-            font-size: 0.8rem;
-        }
+        .mcq-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+        .mcq-badge { background: #EEF2FF; color: #4F46E5; font-size: 0.72rem; font-weight: 800; padding: 4px 10px; border-radius: 20px; }
+        .mcq-question { font-size: 0.92rem; font-weight: 800; color: #0F172A; margin-bottom: 12px; line-height: 1.4; }
 
-        .cutoff-table th {
+        .mcq-options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .mcq-opt-btn {
             background: #F8FAFC;
-            color: #0F172A;
-            font-weight: 800;
-            padding: 12px 16px;
-            border-bottom: 1px solid #E2E8F0;
-        }
-
-        .cutoff-table td {
-            padding: 12px 16px;
-            border-bottom: 1px solid #F1F5F9;
+            border: 1px solid #CBD5E1;
+            border-radius: 10px;
+            padding: 10px 12px;
+            font-size: 0.8rem;
+            font-weight: 700;
             color: #334155;
-            font-weight: 600;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s;
         }
 
-        .cutoff-table tr:last-child td { border-bottom: none; }
-        
-        .score-badge {
-            background: #DCFCE7;
-            color: #15803D;
-            padding: 3px 8px;
+        .mcq-opt-btn:hover { background: #EEF2FF; border-color: #818CF8; color: #4F46E5; }
+        .mcq-result-msg { margin-top: 10px; font-size: 0.78rem; font-weight: 700; padding: 8px 10px; border-radius: 8px; display: none; }
+
+        /* 🔵 NAYA SECTION 2: COUNSELING DOCUMENT CHECKLIST STYLING */
+        .doc-checklist-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border-radius: 18px;
+            border: 1px solid #E2E8F0;
+            padding: 18px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 16px rgba(15, 23, 42, 0.02);
+        }
+
+        .doc-chk-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; margin-top: 12px; }
+        .doc-chk-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            padding: 10px 12px;
             border-radius: 12px;
-            font-weight: 800;
-            font-size: 0.74rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #334155;
+            cursor: pointer;
         }
 
-        /* ⚡ NAYA FEATURE 2: FAST SYLLABUS & PYQ BADGES */
+        .doc-chk-item input[type="checkbox"] { accent-color: #4F46E5; width: 16px; height: 16px; cursor: pointer; }
+
+        /* ⚡ FAST SYLLABUS & PYQ BADGES */
         .pyq-badge-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -357,7 +373,7 @@
         .pyq-info h4 { font-size: 0.85rem; font-weight: 800; margin: 0 0 2px; }
         .pyq-info p { font-size: 0.72rem; color: #64748B; margin: 0; font-weight: 600; }
 
-        /* 📅 NAYA FEATURE 3: LIVE EVENT TICKER CARDS */
+        /* 📅 LIVE EVENT TICKER CARDS */
         .events-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -921,6 +937,7 @@
         @media (max-width: 550px) {
             .footer-container { grid-template-columns: 1fr !important; }
             .sub-footer-bottom { flex-direction: column; text-align: left !important; justify-content: flex-start !important; align-items: flex-start !important; }
+            .mcq-options-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -1251,49 +1268,57 @@
         </section>
 
 
-        <!-- 🏆 FEATURE 1: CUTOFF & SEAT BENCHMARK TABLE -->
+        <!-- 🟢 NAYA SECTION 1: DAILY MCQ & PYQ QUIZ CHALLENGE -->
         <div class="section-title-main">
             <div class="title-left">
-                <i class="fas fa-chart-bar" style="color: #4F46E5;"></i>
-                <span>Central Universities Cutoff & Seat Benchmarks</span>
+                <i class="fas fa-question-circle" style="color: #4F46E5;"></i>
+                <span>Daily Entrance Exam MCQ Challenge</span>
             </div>
         </div>
 
-        <div class="cutoff-table-wrapper">
-            <table class="cutoff-table">
-                <thead>
-                    <tr>
-                        <th>University & Campus</th>
-                        <th>Target Course</th>
-                        <th>General (UR)</th>
-                        <th>OBC / EWS</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Allahabad University (AU Main)</td>
-                        <td>B.A. / B.Sc. / B.Com</td>
-                        <td><span class="score-badge">150+ Marks</span></td>
-                        <td><span class="score-badge" style="background:#FEF3C7; color:#B45309;">135+ Marks</span></td>
-                    </tr>
-                    <tr>
-                        <td>Banaras Hindu Univ (BHU FMC)</td>
-                        <td>B.A. Arts & Social Sci</td>
-                        <td><span class="score-badge">240+ Score</span></td>
-                        <td><span class="score-badge" style="background:#FEF3C7; color:#B45309;">220+ Score</span></td>
-                    </tr>
-                    <tr>
-                        <td>Delhi University (DU North)</td>
-                        <td>B.A. Hons / B.Com Hons</td>
-                        <td><span class="score-badge">98+ Percentile</span></td>
-                        <td><span class="score-badge" style="background:#FEF3C7; color:#B45309;">95+ Percentile</span></td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="mcq-quiz-card">
+            <div class="mcq-header">
+                <span class="mcq-badge">CUET / AU General Test Practice</span>
+                <span style="font-size:0.75rem; font-weight:700; color:#059669;">🔥 Live Daily Practice</span>
+            </div>
+            <div class="mcq-question">
+                Q. Which Central University is famously known as the 'Oxbridge of the East'?
+            </div>
+            <div class="mcq-options-grid">
+                <button class="mcq-opt-btn" onclick="checkMcq(this, false)">A) Banaras Hindu University</button>
+                <button class="mcq-opt-btn" onclick="checkMcq(this, true)">B) Allahabad University</button>
+                <button class="mcq-opt-btn" onclick="checkMcq(this, false)">C) Delhi University</button>
+                <button class="mcq-opt-btn" onclick="checkMcq(this, false)">D) Jawaharlal Nehru Univ</button>
+            </div>
+            <div class="mcq-result-msg" id="mcqFeedback"></div>
         </div>
 
 
-        <!-- ⚡ FEATURE 2: DIRECT SYLLABUS & PYQ FAST BADGES -->
+        <!-- 🔵 NAYA SECTION 2: COUNSELING DOCUMENT CHECKLIST -->
+        <div class="section-title-main">
+            <div class="title-left">
+                <i class="fas fa-tasks" style="color: #059669;"></i>
+                <span>Counseling Document Readiness Verifier</span>
+            </div>
+        </div>
+
+        <div class="doc-checklist-card">
+            <p style="font-size: 0.8rem; font-weight:700; color:#334155; margin:0 0 10px;">
+                Tick the documents you have ready for Allahabad University & BHU Counseling:
+            </p>
+            <div class="doc-chk-list">
+                <label class="doc-chk-item"><input type="checkbox" onchange="updateDocProgress()"> 10th & 12th Certificate</label>
+                <label class="doc-chk-item"><input type="checkbox" onchange="updateDocProgress()"> CUET / Entrance Scorecard</label>
+                <label class="doc-chk-item"><input type="checkbox" onchange="updateDocProgress()"> TC & Migration Certificate</label>
+                <label class="doc-chk-item"><input type="checkbox" onchange="updateDocProgress()"> Caste / Category Certificate</label>
+            </div>
+            <p id="docStatusMsg" style="font-size: 0.78rem; font-weight: 800; color: #4F46E5; margin-top: 12px; margin-bottom:0;">
+                Readiness Progress: 0 / 4 Documents Selected
+            </p>
+        </div>
+
+
+        <!-- ⚡ FAST SYLLABUS & PYQ BADGES -->
         <div class="section-title-main">
             <div class="title-left">
                 <i class="fas fa-file-download" style="color: #059669;"></i>
@@ -1337,7 +1362,7 @@
         </div>
 
 
-        <!-- 📅 FEATURE 3: LIVE ADMISSION EVENTS & DEADLINE TRACKER -->
+        <!-- 📅 LIVE ADMISSION EVENTS & DEADLINE TRACKER -->
         <div class="section-title-main">
             <div class="title-left">
                 <i class="fas fa-calendar-alt" style="color: #D97706;"></i>
@@ -1849,6 +1874,44 @@
                 element.classList.add('active');
                 body.style.display = 'block';
             }
+        }
+
+        // MCQ Quiz Logic
+        function checkMcq(btn, isCorrect) {
+            const feedback = document.getElementById("mcqFeedback");
+            const allBtns = document.querySelectorAll(".mcq-opt-btn");
+            
+            allBtns.forEach(b => {
+                b.disabled = true;
+                b.style.opacity = "0.7";
+            });
+
+            feedback.style.display = "block";
+            if (isCorrect) {
+                btn.style.background = "#DCFCE7";
+                btn.style.borderColor = "#16A34A";
+                btn.style.color = "#15803D";
+                feedback.style.background = "#DCFCE7";
+                feedback.style.color = "#15803D";
+                feedback.innerHTML = "🎉 Correct Answer! Allahabad University is widely known as the 'Oxbridge of the East'.";
+            } else {
+                btn.style.background = "#FEE2E2";
+                btn.style.borderColor = "#DC2626";
+                btn.style.color = "#991B1B";
+                feedback.style.background = "#FEE2E2";
+                feedback.style.color = "#991B1B";
+                feedback.innerHTML = "❌ Incorrect Option! The correct answer is <b>B) Allahabad University</b>.";
+            }
+        }
+
+        // Document Progress Check
+        function updateDocProgress() {
+            const checkboxes = document.querySelectorAll(".doc-chk-item input[type='checkbox']");
+            let checkedCount = 0;
+            checkboxes.forEach(cb => { if(cb.checked) checkedCount++; });
+
+            const msg = document.getElementById("docStatusMsg");
+            msg.innerHTML = `Readiness Progress: <b>${checkedCount} / ${checkboxes.length} Documents Selected</b> ${checkedCount === checkboxes.length ? '🟢 Ready for Admission!' : ''}`;
         }
     </script>
 </body>
