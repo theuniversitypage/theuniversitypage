@@ -524,9 +524,7 @@
 
         .cta-outline-btn:hover { background: rgba(255, 255, 255, 0.25); }
 
-        /* =======================================================
-           🔥 ULTRA-GLASS ENHANCED FOOTER (SCREENSHOT MATCHING) 🔥
-        ======================================================= */
+        /* 🔥 LEFT ALIGNED ULTRA-GLASS FOOTER STYLING 🔥 */
         .glass-footer {
             background: rgba(248, 250, 252, 0.95);
             backdrop-filter: blur(16px);
@@ -536,6 +534,7 @@
             margin-top: auto;
             width: 100% !important;
             color: #0F172A;
+            text-align: left !important;
         }
 
         .footer-container {
@@ -546,6 +545,14 @@
             gap: 32px;
             padding-bottom: 30px;
             border-bottom: 1px solid #E2E8F0;
+            text-align: left !important;
+        }
+
+        .footer-brand {
+            text-align: left !important;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start !important;
         }
 
         .footer-brand h3 {
@@ -556,6 +563,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            text-align: left !important;
         }
 
         .footer-brand p {
@@ -563,6 +571,7 @@
             color: #64748B;
             font-weight: 600;
             margin-bottom: 16px;
+            text-align: left !important;
         }
 
         .app-store-btns {
@@ -570,6 +579,7 @@
             align-items: center;
             gap: 10px;
             flex-wrap: wrap;
+            justify-content: flex-start !important;
         }
 
         .store-badge-btn {
@@ -594,28 +604,35 @@
         .store-badge-text {
             display: flex;
             flex-direction: column;
-            text-align: left;
+            text-align: left !important;
             line-height: 1.1;
         }
 
         .store-badge-text span { font-size: 0.62rem; text-transform: uppercase; opacity: 0.8; }
         .store-badge-text strong { font-size: 0.8rem; font-weight: 800; }
 
+        .footer-column {
+            text-align: left !important;
+        }
+
         .footer-column h4 {
             font-size: 0.88rem;
             font-weight: 800;
             color: #0F172A;
             margin: 0 0 14px;
+            text-align: left !important;
         }
 
         .footer-links-list {
             list-style: none;
             padding: 0;
             margin: 0;
+            text-align: left !important;
         }
 
         .footer-links-list li {
             margin-bottom: 8px;
+            text-align: left !important;
         }
 
         .footer-links-list a {
@@ -624,6 +641,7 @@
             color: #64748B;
             text-decoration: none;
             transition: all 0.2s ease;
+            display: inline-block;
         }
 
         .footer-links-list a:hover {
@@ -639,6 +657,7 @@
             justify-content: space-between;
             flex-wrap: wrap;
             gap: 16px;
+            text-align: left !important;
         }
 
         .sub-footer-links {
@@ -694,7 +713,7 @@
 
         @media (max-width: 550px) {
             .footer-container { grid-template-columns: 1fr !important; }
-            .sub-footer-bottom { flex-direction: column; text-align: center; justify-content: center; }
+            .sub-footer-bottom { flex-direction: column; text-align: left !important; justify-content: flex-start !important; align-items: flex-start !important; }
         }
     </style>
 </head>
@@ -1283,7 +1302,7 @@
     </div>
 
     <!-- =======================================================
-         🔥 ULTRA-GLASS ENHANCED FOOTER (SCREENSHOT MATCHING) 🔥
+         🔥 LEFT-ALIGNED ULTRA-GLASS FOOTER 🔥
     ======================================================= -->
     <footer class="glass-footer">
         <div class="footer-container">
