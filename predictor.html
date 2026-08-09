@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
-        /* Strict Anti-Overflow & Ultra-Responsive Mobile Rules */
+        /* Anti-Overflow & Ultra-Responsive Mobile Rules */
         *, *::before, *::after {
             box-sizing: border-box !important;
             max-width: 100%;
@@ -383,199 +383,47 @@
             line-height: 1.45;
         }
 
-        /* LEFT ALIGNED ULTRA-GLASS FOOTER STYLING */
-        .glass-footer {
-            background: rgba(248, 250, 252, 0.95);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+        /* SINGLE LINE MINIMAL FOOTER */
+        footer {
+            background: #FFFFFF;
             border-top: 1px solid #E2E8F0;
-            padding: 40px 16px 20px;
-            margin-top: auto;
+            padding: 20px 10px 18px;
+            text-align: center;
             width: 100% !important;
-            color: #0F172A;
-            text-align: left !important;
+            margin-top: auto;
         }
 
-        .footer-container {
-            max-width: 1240px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1.5fr 1fr 1fr 1fr;
-            gap: 32px;
-            padding-bottom: 30px;
-            border-bottom: 1px solid #E2E8F0;
-            text-align: left !important;
+        .footer-links {
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            gap: 16px !important;
+            flex-wrap: nowrap !important;
+            margin-bottom: 8px !important;
+            width: 100% !important;
         }
 
-        .footer-brand {
-            text-align: left !important;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start !important;
-        }
-
-        .footer-brand h3 {
-            font-size: 1.15rem;
-            font-weight: 800;
-            color: #0F172A;
-            margin: 0 0 6px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            text-align: left !important;
-        }
-
-        .footer-brand p {
-            font-size: 0.82rem;
-            color: #64748B;
-            font-weight: 600;
-            margin-bottom: 16px;
-            text-align: left !important;
-        }
-
-        .app-store-btns {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: flex-start !important;
-        }
-
-        .store-badge-btn {
-            background: #0F172A;
-            color: #FFFFFF;
-            padding: 8px 14px;
-            border-radius: 10px;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.2s ease;
-        }
-
-        .store-badge-btn:hover {
-            background: #1E293B;
-            transform: translateY(-2px);
-        }
-
-        .store-badge-btn i { font-size: 1.2rem; }
-
-        .store-badge-text {
-            display: flex;
-            flex-direction: column;
-            text-align: left !important;
-            line-height: 1.1;
-        }
-
-        .store-badge-text span { font-size: 0.62rem; text-transform: uppercase; opacity: 0.8; }
-        .store-badge-text strong { font-size: 0.8rem; font-weight: 800; }
-
-        .footer-column {
-            text-align: left !important;
-        }
-
-        .footer-column h4 {
-            font-size: 0.88rem;
-            font-weight: 800;
-            color: #0F172A;
-            margin: 0 0 14px;
-            text-align: left !important;
-        }
-
-        .footer-links-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            text-align: left !important;
-        }
-
-        .footer-links-list li {
-            margin-bottom: 8px;
-            text-align: left !important;
-        }
-
-        .footer-links-list a {
-            font-size: 0.82rem;
-            font-weight: 600;
-            color: #64748B;
-            text-decoration: none;
-            transition: all 0.2s ease;
-            display: inline-block;
-        }
-
-        .footer-links-list a:hover {
-            color: #4F46E5;
-            padding-left: 3px;
-        }
-
-        .sub-footer-bottom {
-            max-width: 1240px;
-            margin: 20px auto 0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 16px;
-            text-align: left !important;
-        }
-
-        .sub-footer-links {
-            display: flex;
-            align-items: center;
-            gap: 16px;
+        .footer-links a {
             font-size: 0.78rem;
             font-weight: 600;
-            color: #64748B;
-        }
-
-        .sub-footer-links a {
-            color: #64748B;
+            color: #334155;
+            white-space: nowrap !important;
             text-decoration: none;
-            transition: color 0.2s;
         }
 
-        .sub-footer-links a:hover { color: #4F46E5; }
-
-        .social-glass-icons {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .social-glass-btn {
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            background: #FFFFFF;
-            border: 1px solid #CBD5E1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #0F172A; /* Charcoal Black */
-            font-size: 0.88rem;
-            text-decoration: none;
-            transition: all 0.2s ease;
-        }
-
-        .social-glass-btn:hover {
-            background: #0F172A;
-            color: #FFFFFF;
-            border-color: #0F172A;
-            transform: translateY(-2px);
-        }
-
-        .copyright { color: #64748B; font-size: 0.76rem; font-weight: 500; }
-
-        @media (max-width: 850px) {
-            .footer-container { grid-template-columns: 1fr 1fr !important; gap: 24px; }
+        .copyright {
+            color: #64748B;
+            font-size: 0.78rem;
+            font-weight: 500;
         }
 
         @media (max-width: 600px) {
             .container { padding: 8px 8px 30px; }
             .widgets-grid { grid-template-columns: 1fr !important; gap: 12px; }
             .widget-card { padding: 16px 12px; }
-            .footer-container { grid-template-columns: 1fr !important; }
-            .sub-footer-bottom { flex-direction: column; text-align: left !important; justify-content: flex-start !important; align-items: flex-start !important; }
+            footer { padding: 16px 6px 12px; }
+            .footer-links { gap: 10px !important; }
+            .footer-links a { font-size: 0.72rem !important; }
         }
     </style>
 </head>
@@ -1127,87 +975,15 @@
 
     </main>
 
-    <!-- === LEFT-ALIGNED ULTRA-GLASS FOOTER === -->
-    <footer class="glass-footer">
-        <div class="footer-container">
-            <!-- Column 1: Brand & App Badges -->
-            <div class="footer-brand">
-                <h3><i class="fas fa-graduation-cap" style="color: #4F46E5;"></i> The University Page</h3>
-                <p>Learn Practically with Central University Guides & Mock Tests</p>
-                <div class="app-store-btns">
-                    <a href="https://play.google.com/store/apps/details?id=co.akamai.learnify" target="_blank" class="store-badge-btn">
-                        <i class="fab fa-google-play"></i>
-                        <div class="store-badge-text">
-                            <span>Get it on</span>
-                            <strong>Google Play</strong>
-                        </div>
-                    </a>
-                    <a href="https://learnifyclasses.akamai.net.in" target="_blank" class="store-badge-btn">
-                        <i class="fab fa-apple"></i>
-                        <div class="store-badge-text">
-                            <span>Download on the</span>
-                            <strong>App Store</strong>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Column 2: Quick Links -->
-            <div class="footer-column">
-                <h4>Quick Links</h4>
-                <ul class="footer-links-list">
-                    <li><a href="admission.html">Courses & Admissions</a></li>
-                    <li><a href="https://learnifyclasses.akamai.net.in/ebooks" target="_blank">Books & E-Notes</a></li>
-                    <li><a href="latest-updates.html">Free Videos & Updates</a></li>
-                    <li><a href="about-ajmal-mansoori.html">About Founder</a></li>
-                </ul>
-            </div>
-
-            <!-- Column 3: Social Links -->
-            <div class="footer-column">
-                <h4>Social Media</h4>
-                <ul class="footer-links-list">
-                    <li><a href="https://instagram.com/ajmalcreator" target="_blank">Instagram (@ajmalcreator)</a></li>
-                    <li><a href="https://youtube.com/@ajmalalimansoori" target="_blank">YouTube Channel</a></li>
-                    <li><a href="https://t.me/ajmalmansoori" target="_blank">Telegram Group</a></li>
-                    <li><a href="https://linkedin.com/in/ajmalmansoori" target="_blank">LinkedIn Profile</a></li>
-                </ul>
-            </div>
-
-            <!-- Column 4: Company Policies -->
-            <div class="footer-column">
-                <h4>Company & Legal</h4>
-                <ul class="footer-links-list">
-                    <li><a href="privacy-policy.html">Terms & Conditions</a></li>
-                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                    <li><a href="disclaimer.html">Disclaimer & Refunds</a></li>
-                    <li><a href="contact-us.html">Contact Support</a></li>
-                </ul>
-            </div>
+    <!-- === SINGLE LINE MINIMAL FOOTER (SCREENSHOT MATCHING) === -->
+    <footer>
+        <div class="footer-links">
+            <a href="contact-us.html">Contact Us</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="disclaimer.html">Disclaimer</a>
         </div>
-
-        <!-- Sub-Footer Bottom Bar -->
-        <div class="sub-footer-bottom">
-            <div class="sub-footer-links">
-                <a href="privacy-policy.html">Terms</a>
-                <span>|</span>
-                <a href="privacy-policy.html">Privacy</a>
-                <span>|</span>
-                <a href="disclaimer.html">Cookies & Disclaimer</a>
-            </div>
-
-            <!-- DARK BLACK SOCIAL ICONS -->
-            <div class="social-glass-icons">
-                <a href="https://instagram.com/ajmalcreator" target="_blank" class="social-glass-btn"><i class="fab fa-instagram"></i></a>
-                <a href="https://youtube.com/@ajmalalimansoori" target="_blank" class="social-glass-btn"><i class="fab fa-youtube"></i></a>
-                <a href="https://facebook.com" target="_blank" class="social-glass-btn"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://t.me/ajmalmansoori" target="_blank" class="social-glass-btn"><i class="fab fa-telegram-plane"></i></a>
-                <a href="https://linkedin.com/in/ajmalmansoori" target="_blank" class="social-glass-btn"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-
-            <div class="copyright">
-                &copy; 2026 The University Page. All rights reserved.
-            </div>
+        <div class="copyright">
+            &copy; 2026 The University Page. All rights reserved.
         </div>
     </footer>
 
