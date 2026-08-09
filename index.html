@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-   <meta name="google-site-verification" content="L8MTwwklD18hw-rbjRWfTjzMJD20u5BLAlTN1Zobp_U">
+    <meta name="google-site-verification" content="L8MTwwklD18hw-rbjRWfTjzMJD20u5BLAlTN1Zobp_U">
     <title>The University Page - Educational Updates & Utility Suite</title>
     
     <!-- Google Fonts & Font Awesome -->
@@ -524,22 +524,177 @@
 
         .cta-outline-btn:hover { background: rgba(255, 255, 255, 0.25); }
 
-        /* FOOTER */
-        footer {
-            padding: 20px 10px 14px;
-            text-align: center;
-            background: var(--surface, #FFFFFF);
-            border-top: 1px solid var(--border, #E2E8F0);
+        /* =======================================================
+           🔥 ULTRA-GLASS ENHANCED FOOTER (SCREENSHOT MATCHING) 🔥
+        ======================================================= */
+        .glass-footer {
+            background: rgba(248, 250, 252, 0.95);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-top: 1px solid #E2E8F0;
+            padding: 40px 16px 20px;
             margin-top: auto;
             width: 100% !important;
+            color: #0F172A;
         }
 
-        .footer-links { display: flex !important; justify-content: center !important; align-items: center !important; gap: 12px !important; flex-wrap: nowrap !important; margin-bottom: 8px !important; width: 100% !important; }
-        .footer-links a { font-size: 0.78rem; font-weight: 600; color: #334155; white-space: nowrap !important; text-decoration: none; }
-        .copyright { color: #64748B; font-size: 0.72rem; }
+        .footer-container {
+            max-width: 1240px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 32px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #E2E8F0;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #0F172A;
+            margin: 0 0 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-brand p {
+            font-size: 0.82rem;
+            color: #64748B;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .app-store-btns {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .store-badge-btn {
+            background: #0F172A;
+            color: #FFFFFF;
+            padding: 8px 14px;
+            border-radius: 10px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .store-badge-btn:hover {
+            background: #1E293B;
+            transform: translateY(-2px);
+        }
+
+        .store-badge-btn i { font-size: 1.2rem; }
+
+        .store-badge-text {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            line-height: 1.1;
+        }
+
+        .store-badge-text span { font-size: 0.62rem; text-transform: uppercase; opacity: 0.8; }
+        .store-badge-text strong { font-size: 0.8rem; font-weight: 800; }
+
+        .footer-column h4 {
+            font-size: 0.88rem;
+            font-weight: 800;
+            color: #0F172A;
+            margin: 0 0 14px;
+        }
+
+        .footer-links-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links-list li {
+            margin-bottom: 8px;
+        }
+
+        .footer-links-list a {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #64748B;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .footer-links-list a:hover {
+            color: #4F46E5;
+            padding-left: 3px;
+        }
+
+        .sub-footer-bottom {
+            max-width: 1240px;
+            margin: 20px auto 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .sub-footer-links {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: #64748B;
+        }
+
+        .sub-footer-links a {
+            color: #64748B;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .sub-footer-links a:hover { color: #4F46E5; }
+
+        .social-glass-icons {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .social-glass-btn {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4F46E5;
+            font-size: 0.88rem;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .social-glass-btn:hover {
+            background: #EEF2FF;
+            color: #3730A3;
+            transform: translateY(-2px);
+        }
+
+        .copyright { color: #64748B; font-size: 0.76rem; font-weight: 500; }
 
         @media (max-width: 850px) {
+            .footer-container { grid-template-columns: 1fr 1fr !important; gap: 24px; }
             .channel-hub-grid, .map-reviews-grid { grid-template-columns: 1fr !important; }
+        }
+
+        @media (max-width: 550px) {
+            .footer-container { grid-template-columns: 1fr !important; }
+            .sub-footer-bottom { flex-direction: column; text-align: center; justify-content: center; }
         }
     </style>
 </head>
@@ -1127,15 +1282,89 @@
 
     </div>
 
-    <!-- === FOOTER === -->
-    <footer>
-        <div class="footer-links">
-            <a href="contact-us.html">Contact Us</a>
-            <a href="privacy-policy.html">Privacy Policy</a>
-            <a href="disclaimer.html">Disclaimer</a>
+    <!-- =======================================================
+         🔥 ULTRA-GLASS ENHANCED FOOTER (SCREENSHOT MATCHING) 🔥
+    ======================================================= -->
+    <footer class="glass-footer">
+        <div class="footer-container">
+            <!-- Column 1: Brand & App Badges -->
+            <div class="footer-brand">
+                <h3><i class="fas fa-graduation-cap" style="color: #4F46E5;"></i> The University Page</h3>
+                <p>Learn Practically with Central University Guides & Mock Tests</p>
+                <div class="app-store-btns">
+                    <a href="https://play.google.com/store/apps/details?id=co.akamai.learnify" target="_blank" class="store-badge-btn">
+                        <i class="fab fa-google-play"></i>
+                        <div class="store-badge-text">
+                            <span>Get it on</span>
+                            <strong>Google Play</strong>
+                        </div>
+                    </a>
+                    <a href="https://learnifyclasses.akamai.net.in" target="_blank" class="store-badge-btn">
+                        <i class="fab fa-apple"></i>
+                        <div class="store-badge-text">
+                            <span>Download on the</span>
+                            <strong>App Store</strong>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Column 2: Quick Links -->
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul class="footer-links-list">
+                    <li><a href="admission.html">Courses & Admissions</a></li>
+                    <li><a href="https://learnifyclasses.akamai.net.in/ebooks" target="_blank">Books & E-Notes</a></li>
+                    <li><a href="latest-updates.html">Free Videos & Updates</a></li>
+                    <li><a href="latest-updates.html">Resources</a></li>
+                    <li><a href="about-ajmal-mansoori.html">About Founder</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 3: Social Links -->
+            <div class="footer-column">
+                <h4>Social Media</h4>
+                <ul class="footer-links-list">
+                    <li><a href="https://instagram.com/ajmalcreator" target="_blank">Instagram (@ajmalcreator)</a></li>
+                    <li><a href="https://youtube.com/@ajmalalimansoori" target="_blank">YouTube Channel</a></li>
+                    <li><a href="https://t.me/ajmalmansoori" target="_blank">Telegram Group</a></li>
+                    <li><a href="https://linkedin.com/in/ajmalmansoori" target="_blank">LinkedIn Profile</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 4: Company Policies -->
+            <div class="footer-column">
+                <h4>Company & Legal</h4>
+                <ul class="footer-links-list">
+                    <li><a href="privacy-policy.html">Terms & Conditions</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="disclaimer.html">Disclaimer & Refunds</a></li>
+                    <li><a href="contact-us.html">Contact Support</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="copyright">
-            <p>&copy; 2026 The University Page. All rights reserved.</p>
+
+        <!-- Sub-Footer Bottom Bar -->
+        <div class="sub-footer-bottom">
+            <div class="sub-footer-links">
+                <a href="privacy-policy.html">Terms</a>
+                <span>|</span>
+                <a href="privacy-policy.html">Privacy</a>
+                <span>|</span>
+                <a href="disclaimer.html">Cookies & Disclaimer</a>
+            </div>
+
+            <div class="social-glass-icons">
+                <a href="https://instagram.com/ajmalcreator" target="_blank" class="social-glass-btn"><i class="fab fa-instagram"></i></a>
+                <a href="https://youtube.com/@ajmalalimansoori" target="_blank" class="social-glass-btn"><i class="fab fa-youtube"></i></a>
+                <a href="https://facebook.com" target="_blank" class="social-glass-btn"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://t.me/ajmalmansoori" target="_blank" class="social-glass-btn"><i class="fab fa-telegram-plane"></i></a>
+                <a href="https://linkedin.com/in/ajmalmansoori" target="_blank" class="social-glass-btn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+
+            <div class="copyright">
+                &copy; 2026 The University Page. All rights reserved.
+            </div>
         </div>
     </footer>
 
