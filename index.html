@@ -32,6 +32,7 @@
             --accent-cyan: #06B6D4;
             --accent-green: #10B981;
             --gradient-primary: linear-gradient(135deg, #6366F1 0%, #A855F7 50%, #EC4899 100%);
+            --gradient-yt: linear-gradient(135deg, #FF0000 0%, #E11D48 100%);
             --shadow-glow: 0 0 50px -10px rgba(99, 102, 241, 0.25);
             --radius-sm: 8px;
             --radius-md: 14px;
@@ -447,8 +448,13 @@
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 6px;
             white-space: nowrap;
+            transition: transform 0.2s ease;
+        }
+
+        .view-all-link:hover {
+            transform: translateX(4px);
         }
 
         /* 🔥 BULLETINS FEED */
@@ -719,7 +725,7 @@
             color: #FFF;
         }
 
-        /* 📺 1. CHANNELS HUB */
+        /* 📺 1. ULTRA-PREMIUM CHANNELS HUB */
         .channels-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -731,22 +737,38 @@
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: var(--radius-lg);
-            padding: 20px;
+            padding: 18px 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             text-decoration: none;
             color: var(--text-primary);
             backdrop-filter: var(--blur);
-            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .channel-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--gradient-yt);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .channel-card:hover {
-            transform: translateY(-3px);
-            border-color: #E11D48;
+            transform: translateY(-4px);
+            border-color: rgba(225, 29, 72, 0.4);
             background: var(--bg-surface-hover);
-            box-shadow: 0 10px 25px -5px rgba(225, 29, 72, 0.2);
+            box-shadow: 0 12px 30px -8px rgba(225, 29, 72, 0.25);
         }
+
+        .channel-card:hover::before { opacity: 1; }
 
         .channel-left {
             display: flex;
@@ -759,45 +781,64 @@
             width: 48px;
             height: 48px;
             min-width: 48px;
-            border-radius: var(--radius-md);
-            background: rgba(225, 29, 72, 0.12);
-            color: #E11D48;
+            border-radius: 14px;
+            background: rgba(225, 29, 72, 0.1);
+            color: #FF0000;
             border: 1px solid rgba(225, 29, 72, 0.25);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem;
+            font-size: 1.35rem;
+            transition: transform 0.3s ease;
+        }
+
+        .channel-card:hover .channel-icon {
+            transform: scale(1.08) rotate(3deg);
+            background: var(--gradient-yt);
+            color: #FFF;
         }
 
         .channel-meta h4 {
             font-size: 0.98rem;
             font-weight: 800;
             margin-bottom: 3px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .channel-meta h4 i.fa-circle-check {
+            font-size: 0.8rem;
+            color: #38BDF8;
         }
 
         .channel-meta p {
-            font-size: 0.75rem;
+            font-size: 0.74rem;
             color: var(--text-muted);
             font-weight: 600;
             margin: 0;
         }
 
         .yt-badge-btn {
-            background: #E11D48;
+            background: var(--gradient-yt);
             color: #FFF;
-            padding: 7px 14px;
+            padding: 8px 16px;
             border-radius: 9999px;
-            font-size: 0.74rem;
+            font-size: 0.75rem;
             font-weight: 800;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 6px;
             white-space: nowrap;
             flex-shrink: 0;
-            transition: opacity 0.2s;
+            box-shadow: 0 4px 14px rgba(225, 29, 72, 0.35);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .channel-card:hover .yt-badge-btn { opacity: 0.9; }
+        .channel-card:hover .yt-badge-btn {
+            transform: scale(1.04);
+            box-shadow: 0 6px 18px rgba(225, 29, 72, 0.5);
+        }
 
         /* ❓ 2. FAQ ACCORDION */
         .faq-container {
@@ -1417,61 +1458,61 @@
             </a>
         </section>
 
-        <!-- 📺 1. OFFICIAL CHANNELS HUB -->
+        <!-- 📺 1. OFFICIAL CHANNELS & MENTORSHIP NETWORK -->
         <div class="section-header">
             <div class="section-title">
-                <div class="title-icon" style="background: linear-gradient(135deg, #E11D48, #F43F5E);"><i class="fab fa-youtube"></i></div>
+                <div class="title-icon" style="background: var(--gradient-yt);"><i class="fab fa-youtube"></i></div>
                 <span>Official Channels & Mentorship Network</span>
             </div>
         </div>
 
         <section class="channels-grid">
-            <!-- Channel 1 -->
+            <!-- Channel 1: Ajmal Mansoori -->
             <a href="https://youtube.com/@ajmalalimansoori" target="_blank" class="channel-card">
                 <div class="channel-left">
                     <div class="channel-icon"><i class="fas fa-user-graduate"></i></div>
                     <div class="channel-meta">
-                        <h4>Ajmal Mansoori</h4>
-                        <p>Exam Strategy & Live Mentorship</p>
+                        <h4>Ajmal Mansoori <i class="fas fa-circle-check"></i></h4>
+                        <p>Exam Strategy & Direct Mentorship</p>
                     </div>
                 </div>
-                <span class="yt-badge-btn"><i class="fab fa-youtube"></i> Visit</span>
+                <span class="yt-badge-btn"><i class="fab fa-youtube"></i> Subscribe</span>
             </a>
 
-            <!-- Channel 2 -->
+            <!-- Channel 2: The University Page -->
             <a href="https://youtube.com/@theuniversitypage" target="_blank" class="channel-card">
                 <div class="channel-left">
                     <div class="channel-icon"><i class="fas fa-graduation-cap"></i></div>
                     <div class="channel-meta">
-                        <h4>The University Page</h4>
+                        <h4>The University Page <i class="fas fa-circle-check"></i></h4>
                         <p>Central Uni Updates & Cutoffs</p>
                     </div>
                 </div>
-                <span class="yt-badge-btn"><i class="fab fa-youtube"></i> Visit</span>
+                <span class="yt-badge-btn"><i class="fab fa-youtube"></i> Subscribe</span>
             </a>
 
-            <!-- Channel 3 -->
+            <!-- Channel 3: Allahabad University Page -->
             <a href="https://youtube.com/@allahabaduniversitypage" target="_blank" class="channel-card">
                 <div class="channel-left">
                     <div class="channel-icon"><i class="fas fa-landmark"></i></div>
                     <div class="channel-meta">
-                        <h4>Allahabad University Page</h4>
-                        <p>AU Campus News, NEP & Forms</p>
+                        <h4>Allahabad University Page <i class="fas fa-circle-check"></i></h4>
+                        <p>AU Campus Updates, NEP & Forms</p>
                     </div>
                 </div>
-                <span class="yt-badge-btn"><i class="fab fa-youtube"></i> Visit</span>
+                <span class="yt-badge-btn"><i class="fab fa-youtube"></i> Subscribe</span>
             </a>
 
-            <!-- Channel 4 -->
+            <!-- Channel 4: Learnify Classes -->
             <a href="https://youtube.com/@learnifyclasses" target="_blank" class="channel-card">
                 <div class="channel-left">
                     <div class="channel-icon"><i class="fas fa-laptop-code"></i></div>
                     <div class="channel-meta">
-                        <h4>Learnify Classes Main Channel</h4>
-                        <p>Complete Exam Preparation</p>
+                        <h4>Learnify Classes Main Channel <i class="fas fa-circle-check"></i></h4>
+                        <p>Complete Exam Preparation & Live Sessions</p>
                     </div>
                 </div>
-                <span class="yt-badge-btn"><i class="fab fa-youtube"></i> Visit</span>
+                <span class="yt-badge-btn"><i class="fab fa-youtube"></i> Subscribe</span>
             </a>
         </section>
 
@@ -1572,12 +1613,14 @@
             </div>
         </section>
 
-        <!-- 🏛️ 4. EXPLORE UNIVERSITIES -->
+        <!-- 🏛️ 4. EXPLORE UNIVERSITIES (With "More" Link in Header) -->
         <div class="section-header">
             <div class="section-title">
                 <div class="title-icon" style="background: linear-gradient(135deg, #0284C7, #38BDF8);"><i class="fas fa-university"></i></div>
                 <span>Explore Top Central & State Universities</span>
             </div>
+            <!-- More Universities Link directly in the Section Header -->
+            <a href="universities.html" class="view-all-link">More Universities <i class="fas fa-arrow-right"></i></a>
         </div>
 
         <section class="uni-explore-grid">
