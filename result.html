@@ -1,143 +1,403 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>All Exam Results 2026 - The University Page</title>
+    <title>All Exam Results & Merit Scorecards 2026 | The University Page</title>
     
-    <!-- Google Fonts & Font Awesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    
+    <!-- Fonts & Modern Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
     <style>
-        /* Strict Anti-Overflow & Smooth Layout Rules */
-        *, *::before, *::after {
-            box-sizing: border-box !important;
-            max-width: 100%;
+        :root {
+            /* 🌌 DARK THEME */
+            --bg-base: #060913;
+            --bg-surface: rgba(13, 19, 36, 0.85);
+            --bg-surface-hover: rgba(22, 31, 56, 0.95);
+            --bg-card: rgba(16, 24, 48, 0.7);
+            --bg-chip: rgba(255, 255, 255, 0.06);
+            --text-primary: #F8FAFC;
+            --text-secondary: #CBD5E1;
+            --text-muted: #94A3B8;
+            --border: rgba(255, 255, 255, 0.1);
+            --border-hover: rgba(16, 185, 129, 0.5);
+            
+            --primary: #10B981;
+            --primary-glow: rgba(16, 185, 129, 0.35);
+            --accent-blue: #6366F1;
+            --gradient-primary: linear-gradient(135deg, #10B981 0%, #059669 50%, #06B6D4 100%);
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --radius-xl: 26px;
+            --blur: blur(20px);
         }
 
-        html, body {
-            width: 100% !important;
-            max-width: 100% !important;
-            overflow-x: hidden !important;
+        [data-theme="light"] {
+            /* ☀️ LIGHT THEME */
+            --bg-base: #F4F6FC;
+            --bg-surface: rgba(255, 255, 255, 0.92);
+            --bg-surface-hover: rgba(255, 255, 255, 1);
+            --bg-card: rgba(255, 255, 255, 0.88);
+            --bg-chip: rgba(15, 23, 42, 0.05);
+            --text-primary: #0F172A;
+            --text-secondary: #334155;
+            --text-muted: #64748B;
+            --border: rgba(15, 23, 42, 0.08);
+            --border-hover: rgba(16, 185, 129, 0.5);
+            --primary: #059669;
+            --primary-glow: rgba(5, 150, 105, 0.2);
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            background-color: var(--bg-main, #FDFBF7);
-            color: var(--text-dark, #0F172A);
+        }
+
+        body {
             font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-primary);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            -webkit-text-size-adjust: 100%;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            position: relative;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .results-container {
-            flex: 1;
-            width: 100% !important;
-            max-width: 1240px;
+        .ambient-glow {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 900px;
+            height: 450px;
+            background: radial-gradient(circle, var(--primary-glow) 0%, rgba(6, 182, 212, 0.06) 50%, transparent 80%);
+            pointer-events: none;
+            z-index: 0;
+            filter: blur(80px);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Cabinet Grotesk', 'Plus Jakarta Sans', sans-serif;
+            letter-spacing: -0.02em;
+        }
+
+        /* NAVBAR */
+        .header-wrapper {
+            position: sticky;
+            top: 0;
+            z-index: 90;
+            background: var(--bg-surface);
+            backdrop-filter: var(--blur);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .navbar {
+            max-width: 1280px;
             margin: 0 auto;
-            padding: 20px 16px 40px;
-            box-sizing: border-box;
-        }
-
-        .page-header {
-            background: linear-gradient(135deg, #4F46E5, #818CF8);
-            color: white;
-            border-radius: var(--radius-lg, 20px);
-            padding: 28px 20px;
-            box-shadow: var(--shadow-md);
-            margin-bottom: 20px;
-            text-align: center;
-            width: 100% !important;
-        }
-
-        .page-header h1 {
-            font-size: 1.75rem;
-            font-weight: 800;
-            margin-bottom: 8px;
-            letter-spacing: -0.5px;
-            word-break: break-word;
-        }
-
-        .page-header p {
-            font-size: 0.9rem;
-            opacity: 0.92;
-            font-weight: 500;
-        }
-
-        .filter-bar {
-            background: var(--surface, #FFFFFF);
-            padding: 14px 16px;
-            border-radius: var(--radius-md, 14px);
-            border: 1px solid var(--border, #E2E8F0);
-            box-shadow: var(--shadow-sm);
-            margin-bottom: 20px;
+            padding: 12px 18px;
             display: flex;
-            gap: 12px;
             align-items: center;
             justify-content: space-between;
-            width: 100% !important;
         }
 
-        .search-box-filter {
+        .logo {
             display: flex;
             align-items: center;
-            background: #F8FAFC;
-            border: 1px solid var(--border, #E2E8F0);
-            padding: 10px 16px;
-            border-radius: 30px;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-badge {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-md);
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFF;
+            font-size: 1.15rem;
+            box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4);
+        }
+
+        .logo-text h2 {
+            font-size: 1.05rem;
+            font-weight: 900;
+            line-height: 1.15;
+        }
+
+        .logo-text span {
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .control-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        .control-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* DRAWER */
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .drawer-overlay.active { opacity: 1; visibility: visible; }
+
+        .sidebar-drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 300px;
+            max-width: 85vw;
+            background: var(--bg-surface);
+            backdrop-filter: blur(25px);
+            border-left: 1px solid var(--border);
+            z-index: 999;
+            transform: translateX(100%);
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .sidebar-drawer.active { transform: translateX(0); }
+
+        .drawer-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 16px;
+        }
+
+        .drawer-close-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: var(--bg-chip);
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .drawer-links { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+        .drawer-links a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 14px;
+            border-radius: var(--radius-md);
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .drawer-links a:hover, .drawer-links a.active {
+            background: var(--bg-chip);
+            color: var(--primary);
+        }
+
+        /* CONTAINER */
+        .main-container {
             flex: 1;
-            transition: var(--transition);
+            max-width: 1280px;
             width: 100%;
+            margin: 0 auto;
+            padding: 24px 16px 50px;
+            position: relative;
+            z-index: 1;
         }
 
-        .search-box-filter:focus-within {
-            background: #FFFFFF;
-            border-color: #4F46E5;
-            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.15);
+        /* HERO */
+        .page-hero {
+            text-align: center;
+            padding: 16px 10px 28px;
+            max-width: 820px;
+            margin: 0 auto;
         }
 
-        .search-box-filter input {
-            border: none;
-            background: transparent;
-            outline: none;
-            padding-left: 10px;
-            width: 100%;
+        .hero-badge {
+            background: rgba(16, 185, 129, 0.15);
+            color: #34D399;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            padding: 5px 14px;
+            border-radius: 9999px;
+            font-size: 0.74rem;
+            font-weight: 800;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+
+        .pulse-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #10B981;
+            box-shadow: 0 0 8px #10B981;
+            animation: livePulse 1.4s infinite;
+        }
+
+        @keyframes livePulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.4); opacity: 0.4; }
+        }
+
+        .page-hero h1 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--text-primary) 30%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .page-hero p {
             font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.55;
             font-weight: 500;
-            color: var(--text-dark, #0F172A);
         }
 
-        .search-box-filter i {
-            color: #4F46E5;
+        /* SEARCH & CONTROLS */
+        .filter-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 30px;
         }
 
+        .search-bar-wrap {
+            position: relative;
+            width: 100%;
+            max-width: 620px;
+            margin: 0 auto;
+        }
+
+        .search-bar-wrap input {
+            width: 100%;
+            padding: 14px 18px 14px 44px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            outline: none;
+            backdrop-filter: var(--blur);
+            transition: all 0.2s ease;
+        }
+
+        .search-bar-wrap input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 16px var(--primary-glow);
+        }
+
+        .search-bar-wrap i {
+            position: absolute;
+            top: 50%;
+            left: 16px;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .stats-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            font-size: 0.84rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+        }
+
+        .stats-bar span b {
+            color: var(--primary);
+        }
+
+        /* RESULTS GRID */
         .result-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 18px;
-            width: 100% !important;
+            width: 100%;
         }
 
         .result-card {
-            background: var(--surface, #FFFFFF);
-            border-radius: var(--radius-lg, 20px);
-            border: 1px solid var(--border, #E2E8F0);
-            padding: 22px 18px;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            padding: 22px 20px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            width: 100% !important;
-            min-width: 0;
+            backdrop-filter: var(--blur);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
         }
 
         .result-card:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-hover);
-            border-color: rgba(79, 70, 229, 0.3);
+            transform: translateY(-4px);
+            border-color: var(--primary);
+            background: var(--bg-surface-hover);
+            box-shadow: 0 12px 30px -6px var(--primary-glow);
         }
 
         .card-header {
@@ -149,44 +409,44 @@
 
         .status-badge {
             font-size: 0.72rem;
-            font-weight: 700;
+            font-weight: 800;
             padding: 4px 10px;
-            border-radius: 20px;
+            border-radius: 9999px;
             text-transform: uppercase;
+            letter-spacing: 0.4px;
         }
 
         .status-new {
-            background: #ECFDF5;
-            color: #059669;
+            background: rgba(16, 185, 129, 0.15);
+            color: #34D399;
+            border: 1px solid rgba(16, 185, 129, 0.3);
         }
 
         .date {
-            font-size: 0.8rem;
-            color: var(--text-muted, #64748B);
+            font-size: 0.78rem;
+            color: var(--text-muted);
             display: flex;
             align-items: center;
-            gap: 6px;
-            font-weight: 500;
+            gap: 5px;
+            font-weight: 600;
         }
 
         .exam-title {
-            font-size: 1.08rem;
+            font-size: 1.05rem;
             font-weight: 800;
-            color: var(--text-dark, #0F172A);
+            color: var(--text-primary);
             margin-bottom: 8px;
             line-height: 1.4;
-            letter-spacing: -0.3px;
-            word-break: break-word;
         }
 
         .exam-org {
-            font-size: 0.85rem;
-            color: var(--text-muted, #64748B);
-            margin-bottom: 16px;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-bottom: 18px;
             display: flex;
             align-items: center;
             gap: 6px;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .btn-check {
@@ -194,133 +454,202 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            background: #4F46E5;
-            color: white;
-            padding: 11px;
-            border-radius: 30px;
-            font-weight: 700;
+            background: var(--gradient-primary);
+            color: #FFFFFF;
+            padding: 12px 18px;
+            border-radius: var(--radius-md);
+            font-weight: 800;
             font-size: 0.88rem;
-            transition: var(--transition);
-            text-align: center;
-            width: 100%;
-            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
             text-decoration: none;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
         }
 
         .btn-check:hover {
-            background: #4338CA;
-            transform: translateY(-1px);
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
         }
 
-        /* STRICT 1-LINE CLEAN FOOTER */
-        footer {
-            background: var(--surface, #FFFFFF);
-            border-top: 1px solid var(--border, #E2E8F0);
-            padding: 24px 12px 18px;
-            text-align: center;
-            width: 100% !important;
+        /* 🛡️ ULTRA-CLEAN FULL MODERN FOOTER */
+        .modern-footer {
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border);
+            padding: 48px 20px 24px;
             margin-top: auto;
+            backdrop-filter: var(--blur);
         }
 
-        .footer-links {
-            display: flex !important;
-            justify-content: center !important;
-            align-items: center !important;
-            gap: 20px !important;
-            flex-wrap: nowrap !important;
-            margin-bottom: 10px !important;
-            width: 100% !important;
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr repeat(3, 1fr);
+            gap: 32px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border);
         }
 
-        .footer-links a {
-            font-size: 0.85rem;
+        .footer-brand-p {
+            font-size: 0.84rem;
+            color: var(--text-muted);
+            margin: 10px 0 16px;
+            line-height: 1.55;
+        }
+
+        .footer-column h4 {
+            font-size: 0.95rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .footer-links-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-links-list a {
+            font-size: 0.84rem;
             font-weight: 600;
-            color: var(--text-body, #334155);
-            white-space: nowrap !important;
+            color: var(--text-secondary);
             text-decoration: none;
-            transition: var(--transition);
+            transition: color 0.2s ease, transform 0.2s ease;
+            display: inline-block;
         }
 
-        .footer-links a:hover { color: #4F46E5; }
-        .copyright { color: var(--text-muted, #64748B); font-size: 0.78rem; }
-
-        /* Mobile Adjustments */
-        @media (max-width: 768px) {
-            .results-container { padding: 12px 10px 30px; }
-            .page-header { padding: 20px 16px; border-radius: 14px; }
-            .page-header h1 { font-size: 1.35rem; }
-            .result-grid { grid-template-columns: 1fr !important; }
-
-            footer { padding: 18px 8px 14px; }
-            .footer-links { gap: 10px !important; }
-            .footer-links a { font-size: 0.76rem !important; }
-            .copyright { font-size: 0.72rem; }
+        .footer-links-list a:hover {
+            color: var(--primary);
+            transform: translateX(4px);
         }
 
-        @media (max-width: 400px) {
-            .footer-links { gap: 8px !important; }
-            .footer-links a { font-size: 0.72rem !important; }
+        .sub-footer-bottom {
+            max-width: 1280px;
+            margin: 24px auto 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+
+        .social-pill-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        .social-pill {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: var(--bg-chip);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .social-pill:hover {
+            background: var(--primary);
+            color: #FFF;
+            transform: translateY(-2px);
+        }
+
+        /* 📱 RESPONSIVENESS */
+        @media (max-width: 850px) {
+            .footer-container { grid-template-columns: 1fr 1fr; }
+            .result-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 520px) {
+            .navbar { padding: 10px 14px; }
+            .page-hero h1 { font-size: 1.7rem; }
+            .footer-container { grid-template-columns: 1fr; gap: 24px; }
+            .sub-footer-bottom { flex-direction: column; align-items: flex-start; }
         }
     </style>
 </head>
 <body>
 
-    <!-- === HEADER === -->
+    <div class="ambient-glow"></div>
+
+    <!-- 📲 SLIDE-IN SIDEBAR OVERLAY & DRAWER -->
+    <div class="drawer-overlay" id="drawerOverlay" onclick="closeNavDrawer()"></div>
+    <aside class="sidebar-drawer" id="sidebarDrawer">
+        <div class="drawer-header">
+            <h3>Quick Navigation</h3>
+            <button class="drawer-close-btn" onclick="closeNavDrawer()"><i class="fas fa-times"></i></button>
+        </div>
+        <ul class="drawer-links">
+            <li><a href="index.html"><i class="fas fa-home" style="color: #6366F1;"></i> Home Workspace</a></li>
+            <li><a href="latest-updates.html"><i class="fas fa-bolt" style="color: #EC4899;"></i> Real-Time Alerts</a></li>
+            <li><a href="result.html" class="active"><i class="fas fa-trophy" style="color: #10B981;"></i> All Results</a></li>
+            <li><a href="central-universities.html"><i class="fas fa-monument" style="color: #8B5CF6;"></i> Central Universities (49)</a></li>
+            <li><a href="state-universities.html"><i class="fas fa-city" style="color: #0284C7;"></i> State Universities</a></li>
+            <li><a href="cutoff.html"><i class="fas fa-chart-line" style="color: #F59E0B;"></i> Cutoff Analytics</a></li>
+            <li><a href="about-ajmal-mansoori.html"><i class="fas fa-user-shield" style="color: #6366F1;"></i> Founder Profile</a></li>
+        </ul>
+    </aside>
+
+    <!-- HEADER -->
     <header class="header-wrapper">
         <nav class="navbar">
             <a href="index.html" class="logo">
                 <div class="logo-badge"><i class="fas fa-graduation-cap"></i></div>
-                <span>The University Page</span>
+                <div class="logo-text">
+                    <h2>The University Page</h2>
+                    <span>Results & Scorecards</span>
+                </div>
             </a>
-            
-            <div class="header-right">
-                <button class="menu-toggle-btn" id="sidebarToggle">
-                    <i class="fa-solid fa-bars-staggered"></i>
-                </button>
+            <div class="nav-actions">
+                <button class="control-btn" id="themeToggleBtn" onclick="toggleAppTheme()"><i class="fas fa-sun" id="themeIcon"></i></button>
+                <button class="control-btn" onclick="openNavDrawer()"><i class="fa-solid fa-bars-staggered"></i></button>
             </div>
         </nav>
-
-        <div class="nav-drawer" id="navDrawer">
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="latest-jobs.html">Latest Job</a></li>
-                <li><a href="admitcard.html">Admit Card</a></li>
-                <li><a href="result.html" class="active">Result</a></li>
-                <li><a href="cutoff.html">Cutoff</a></li>
-                <li><a href="admission.html">Admission</a></li>
-                <li><a href="syllabus.html">Syllabus</a></li>
-                <li><a href="answer-key.html">Answer Key</a></li>
-            </ul>
-        </div>
     </header>
 
-    <!-- === MAIN CONTAINER === -->
-    <main class="results-container">
-        <div class="page-header">
-            <h1><i class="fas fa-trophy"></i> Latest Exam Results 2026</h1>
-            <p>Check your exam scores, merit lists, and cut-offs for all major examinations.</p>
-        </div>
+    <!-- MAIN CONTAINER -->
+    <main class="main-container">
 
-        <div class="filter-bar">
-            <div class="search-box-filter">
+        <section class="page-hero">
+            <div class="hero-badge"><span class="pulse-dot"></span> Live Scorecard & Merit Engine 2026</div>
+            <h1>All Exam Results 2026</h1>
+            <p>Access direct verified result links, normalized NTA scorecards, university rank lists, and counseling merit cutoffs.</p>
+        </section>
+
+        <!-- FILTERS & SEARCH -->
+        <section class="filter-controls">
+            <div class="search-bar-wrap">
                 <i class="fas fa-search"></i>
-                <input type="text" id="searchInput" placeholder="Search Result (e.g. CUET UG, UP Board, SSC)...">
+                <input type="text" id="searchInput" placeholder="Search Result (e.g. CUET UG, Allahabad University, UP Board, SSC)...">
             </div>
-        </div>
 
-        <div class="result-grid" id="resultsGrid">
+            <div class="stats-bar">
+                <span>Showing: <b id="visibleCount">2</b> Verified Scorecards</span>
+                <span><i class="fas fa-check-circle" style="color: #10B981;"></i> NTA & University Verified</span>
+            </div>
+        </section>
+
+        <!-- REAL-TIME RESULTS GRID -->
+        <section class="result-grid" id="resultsGrid">
             
             <!-- Default Card 1 -->
             <div class="result-card">
                 <div>
                     <div class="card-header">
                         <span class="status-badge status-new">Declared Today</span>
-                        <span class="date"><i class="far fa-calendar-alt"></i> Aug 2026</span>
+                        <span class="date"><i class="far fa-calendar-alt"></i> August 2026</span>
                     </div>
-                    <h2 class="exam-title">CUET UG 2026 Final Scorecard & Rank List</h2>
-                    <p class="exam-org"><i class="fas fa-university" style="color: #4F46E5;"></i> National Testing Agency (NTA)</p>
+                    <h2 class="exam-title">CUET UG 2026 Final Normalized Scorecard & Rank List</h2>
+                    <p class="exam-org"><i class="fas fa-university" style="color: var(--primary);"></i> National Testing Agency (NTA)</p>
                 </div>
-                <a href="scor.html" class="btn-check"><i class="fas fa-external-link-alt"></i> Check Result</a>
+                <a href="scor.html" class="btn-check"><i class="fas fa-arrow-up-right-from-square"></i> Check Scorecard</a>
             </div>
 
             <!-- Default Card 2 -->
@@ -328,118 +657,207 @@
                 <div>
                     <div class="card-header">
                         <span class="status-badge status-new">New Merit List</span>
-                        <span class="date"><i class="far fa-calendar-alt"></i> Aug 2026</span>
+                        <span class="date"><i class="far fa-calendar-alt"></i> August 2026</span>
                     </div>
                     <h2 class="exam-title">Allahabad University Entrance PGAT Main Campus Cutoff</h2>
-                    <p class="exam-org"><i class="fas fa-university" style="color: #4F46E5;"></i> University of Allahabad</p>
+                    <p class="exam-org"><i class="fas fa-university" style="color: var(--primary);"></i> University of Allahabad</p>
                 </div>
-                <a href="scor.html" class="btn-check"><i class="fas fa-external-link-alt"></i> Check Cutoff</a>
+                <a href="scor.html" class="btn-check"><i class="fas fa-arrow-up-right-from-square"></i> Check Cutoff</a>
             </div>
 
-        </div>
+        </section>
+
     </main>
 
-    <!-- === FOOTER === -->
-    <footer>
-        <div class="footer-links">
-            <a href="contact-us.html">Contact Us</a>
-            <a href="privacy-policy.html">Privacy Policy</a>
-            <a href="disclaimer.html">Disclaimer</a>
+    <!-- FULL ULTRA-GLASS FOOTER -->
+    <footer class="modern-footer">
+        <div class="footer-container">
+            <div>
+                <div class="logo">
+                    <div class="logo-badge"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="logo-text">
+                        <h2>The University Page</h2>
+                        <span>Educational Suite</span>
+                    </div>
+                </div>
+                <p class="footer-brand-p">
+                    Empowering students nationwide with accurate admission roadmaps, cutoff predictions, and exam strategies by Ajmal Mansoori.
+                </p>
+            </div>
+
+            <div class="footer-column">
+                <h4>Admissions</h4>
+                <ul class="footer-links-list">
+                    <li><a href="admission.html">CUET UG Admissions</a></li>
+                    <li><a href="central-universities.html">Central Universities (49)</a></li>
+                    <li><a href="state-universities.html">State Universities</a></li>
+                    <li><a href="cutoff.html">Cutoff Archives</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Ecosystem</h4>
+                <ul class="footer-links-list">
+                    <li><a href="https://learnifyclasses.akamai.net.in" target="_blank">Learnify Classes App</a></li>
+                    <li><a href="https://t.me/cuetwarriors2026" target="_blank">CUET Warriors Hub</a></li>
+                    <li><a href="https://youtube.com/@ajmalalimansoori" target="_blank">Ajmal Mansoori YouTube</a></li>
+                    <li><a href="about-ajmal-mansoori.html">Founder Desk</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Legal & Policies</h4>
+                <ul class="footer-links-list">
+                    <li><a href="privacy-policy.html">Privacy Charter</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="disclaimer.html">Disclaimer</a></li>
+                    <li><a href="contact-us.html">Contact Helpdesk</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="copyright">
-            <p>&copy; 2026 The University Page. All rights reserved.</p>
+
+        <div class="sub-footer-bottom">
+            <div>&copy; 2026 The University Page. Founded by Ajmal Mansoori. All rights reserved. 🇮🇳</div>
+            <div class="social-pill-group">
+                <a href="https://youtube.com/@ajmalalimansoori" target="_blank" class="social-pill"><i class="fab fa-youtube"></i></a>
+                <a href="https://instagram.com/ajmalcreator" target="_blank" class="social-pill"><i class="fab fa-instagram"></i></a>
+                <a href="https://t.me/cuetwarriors2026" target="_blank" class="social-pill"><i class="fab fa-telegram-plane"></i></a>
+            </div>
         </div>
     </footer>
 
-    <!-- REALTIME FIREBASE SCRIPT FOR RESULT GRID -->
+    <!-- REALTIME FIREBASE SCRIPT & THEME LOGIC -->
     <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-      import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-      const firebaseConfig = {
-        apiKey: "AIzaSyD837pmW5N21lMgeVlpgWPx0FaMisSnxwU",
-        authDomain: "theuniversitypage-cc4a7.firebaseapp.com",
-        projectId: "theuniversitypage-cc4a7",
-        storageBucket: "theuniversitypage-cc4a7.firebasestorage.app",
-        messagingSenderId: "31910615607",
-        appId: "1:31910615607:web:bee5bd81c8118a16d1bdb2",
-        measurementId: "G-6E55FCSXDP"
-      };
+        const firebaseConfig = {
+            apiKey: "AIzaSyD837pmW5N21lMgeVlpgWPx0FaMisSnxwU",
+            authDomain: "theuniversitypage-cc4a7.firebaseapp.com",
+            projectId: "theuniversitypage-cc4a7",
+            storageBucket: "theuniversitypage-cc4a7.firebasestorage.app",
+            messagingSenderId: "31910615607",
+            appId: "1:31910615607:web:bee5bd81c8118a16d1bdb2",
+            measurementId: "G-6E55FCSXDP"
+        };
 
-      const app = initializeApp(firebaseConfig);
-      const db = getFirestore(app);
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
 
-      document.getElementById("sidebarToggle")?.addEventListener("click", () => {
-          document.getElementById("navDrawer")?.classList.toggle("active");
-      });
+        const resultsGrid = document.getElementById("resultsGrid");
+        const searchInput = document.getElementById("searchInput");
+        const countDisplay = document.getElementById("visibleCount");
+        let allResultPosts = [];
 
-      const resultsGrid = document.getElementById("resultsGrid");
-      const searchInput = document.getElementById("searchInput");
-      let allResultPosts = [];
+        function renderResults(items) {
+            if (!resultsGrid) return;
+            if (items.length === 0) {
+                resultsGrid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 50px 20px; color: var(--text-muted); font-weight: 700;">No examination results matching your query found.</div>`;
+                if(countDisplay) countDisplay.innerText = "0";
+                return;
+            }
 
-      function renderResults(items) {
-        if(!resultsGrid) return;
-        if(items.length === 0) {
-            resultsGrid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--text-muted); font-weight: 600;">Koi Result Post Uplabdh Nahi Hai.</div>`;
-            return;
-        }
+            if(countDisplay) countDisplay.innerText = items.length;
 
-        resultsGrid.innerHTML = items.map(item => {
-            const cardTitle = item.title || item.resultTitle || "Exam Result Released";
-            const targetId = item.id ? `scor.html?id=${item.id}` : "scor.html";
-            return `
-                <div class="result-card">
-                    <div>
-                        <div class="card-header">
-                            <span class="status-badge status-new">Live Now</span>
-                            <span class="date"><i class="far fa-calendar-alt"></i> ${item.releaseDate || '2026'}</span>
+            resultsGrid.innerHTML = items.map(item => {
+                const cardTitle = item.title || item.resultTitle || "Exam Result Released";
+                const targetUrl = item.id ? `scor.html?id=${item.id}` : (item.link || "scor.html");
+                const releaseDate = item.releaseDate || item.date || "August 2026";
+                const authority = item.authority || item.org || "Official Exam Authority";
+
+                return `
+                    <div class="result-card">
+                        <div>
+                            <div class="card-header">
+                                <span class="status-badge status-new">Live Now</span>
+                                <span class="date"><i class="far fa-calendar-alt"></i> ${releaseDate}</span>
+                            </div>
+                            <h2 class="exam-title">${cardTitle}</h2>
+                            <p class="exam-org"><i class="fas fa-university" style="color: var(--primary);"></i> ${authority}</p>
                         </div>
-                        <h2 class="exam-title">${cardTitle}</h2>
-                        <p class="exam-org"><i class="fas fa-university" style="color: #4F46E5;"></i> Official Authority</p>
+                        <a href="${targetUrl}" class="btn-check"><i class="fas fa-arrow-up-right-from-square"></i> Check Scorecard</a>
                     </div>
-                    <a href="${targetId}" class="btn-check"><i class="fas fa-external-link-alt"></i> Check Scorecard</a>
-                </div>
-            `;
-        }).join('');
-      }
-
-      function loadData() {
-        const localUpdates = JSON.parse(localStorage.getItem("learnify_admin_updates")) || [];
-
-        try {
-            const q = query(collection(db, "updates"), orderBy("createdAt", "desc"));
-            onSnapshot(q, (snapshot) => {
-                let fbData = [];
-                snapshot.forEach(docSnap => {
-                    const item = docSnap.data();
-                    const cat = (item.category || "").toLowerCase();
-
-                    if (cat.includes("result") || cat.includes("score")) {
-                        fbData.push({ id: docSnap.id, ...item });
-                    }
-                });
-
-                allResultPosts = fbData.length > 0 ? fbData : localUpdates;
-                if(allResultPosts.length > 0) {
-                    renderResults(allResultPosts);
-                }
-            }, err => {
-                if(localUpdates.length > 0) renderResults(localUpdates);
-            });
-        } catch(e) {
-            if(localUpdates.length > 0) renderResults(localUpdates);
+                `;
+            }).join('');
         }
-      }
 
-      if(searchInput) {
-        searchInput.addEventListener("input", (e) => {
-            const val = e.target.value.toLowerCase();
-            const filtered = allResultPosts.filter(i => (i.title || i.resultTitle || "").toLowerCase().includes(val));
-            renderResults(filtered);
-        });
-      }
+        function loadData() {
+            const localUpdates = JSON.parse(localStorage.getItem("learnify_admin_updates")) || [];
 
-      loadData();
+            try {
+                const q = query(collection(db, "updates"), orderBy("createdAt", "desc"));
+                onSnapshot(q, (snapshot) => {
+                    let fbData = [];
+                    snapshot.forEach(docSnap => {
+                        const item = docSnap.data();
+                        const cat = (item.category || "").toLowerCase();
+
+                        if (cat.includes("result") || cat.includes("score")) {
+                            fbData.push({ id: docSnap.id, ...item });
+                        }
+                    });
+
+                    allResultPosts = fbData.length > 0 ? fbData : (localUpdates.length > 0 ? localUpdates : [
+                        { title: "CUET UG 2026 Final Normalized Scorecard & Rank List", authority: "National Testing Agency (NTA)", releaseDate: "August 2026" },
+                        { title: "Allahabad University Entrance PGAT Main Campus Cutoff", authority: "University of Allahabad", releaseDate: "August 2026" }
+                    ]);
+
+                    renderResults(allResultPosts);
+                }, () => {
+                    if (localUpdates.length > 0) renderResults(localUpdates);
+                });
+            } catch(e) {
+                if (localUpdates.length > 0) renderResults(localUpdates);
+            }
+        }
+
+        if (searchInput) {
+            searchInput.addEventListener("input", (e) => {
+                const val = e.target.value.toLowerCase();
+                const filtered = allResultPosts.filter(i => (i.title || i.resultTitle || "").toLowerCase().includes(val));
+                renderResults(filtered);
+            });
+        }
+
+        loadData();
+    </script>
+
+    <!-- THEME & DRAWER SCRIPT -->
+    <script>
+        function initAppTheme() {
+            const current = localStorage.getItem('theme-mode') || 'dark';
+            document.documentElement.setAttribute('data-theme', current);
+            renderThemeIcon(current);
+        }
+
+        function toggleAppTheme() {
+            const active = document.documentElement.getAttribute('data-theme');
+            const target = active === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', target);
+            localStorage.setItem('theme-mode', target);
+            renderThemeIcon(target);
+        }
+
+        function renderThemeIcon(theme) {
+            const icon = document.getElementById('themeIcon');
+            if (icon) {
+                icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+                icon.style.color = theme === 'dark' ? '#F59E0B' : 'inherit';
+            }
+        }
+        initAppTheme();
+
+        window.openNavDrawer = function() {
+            document.getElementById('sidebarDrawer').classList.add('active');
+            document.getElementById('drawerOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
+
+        window.closeNavDrawer = function() {
+            document.getElementById('sidebarDrawer').classList.remove('active');
+            document.getElementById('drawerOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        };
     </script>
 </body>
 </html>
