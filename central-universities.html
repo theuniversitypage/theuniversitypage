@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>All 49+ Central Universities | CUET UG/PG Directory</title>
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-base: #060913;
+            --bg-surface: rgba(13, 19, 36, 0.85);
+            --bg-surface-hover: rgba(22, 31, 56, 0.95);
+            --bg-card: rgba(16, 24, 48, 0.7);
+            --bg-chip: rgba(255, 255, 255, 0.06);
+            --text-primary: #F8FAFC;
+            --text-secondary: #CBD5E1;
+            --text-muted: #94A3B8;
+            --border: rgba(255, 255, 255, 0.1);
+            --border-hover: rgba(99, 102, 241, 0.5);
+            --primary: #6366F1;
+            --primary-glow: rgba(99, 102, 241, 0.35);
+            --gradient-primary: linear-gradient(135deg, #6366F1 0%, #A855F7 50%, #EC4899 100%);
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --radius-xl: 26px;
+            --blur: blur(20px);
+        }
+
+        [data-theme="light"] {
+            --bg-base: #F4F6FC;
+            --bg-surface: rgba(255, 255, 255, 0.92);
+            --bg-surface-hover: rgba(255, 255, 255, 1);
+            --bg-card: rgba(255, 255, 255, 0.88);
+            --bg-chip: rgba(15, 23, 42, 0.05);
+            --text-primary: #0F172A;
+            --text-secondary: #334155;
+            --text-muted: #64748B;
+            --border: rgba(15, 23, 42, 0.08);
+            --border-hover: rgba(99, 102, 241, 0.5);
+            --primary: #4F46E5;
+            --primary-glow: rgba(79, 70, 229, 0.2);
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            position: relative;
+        }
+
+        .ambient-glow {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 900px;
+            height: 450px;
+            background: radial-gradient(circle, var(--primary-glow) 0%, rgba(236, 72, 153, 0.06) 50%, transparent 80%);
+            pointer-events: none;
+            z-index: 0;
+            filter: blur(80px);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Cabinet Grotesk', 'Plus Jakarta Sans', sans-serif;
+            letter-spacing: -0.02em;
+        }
+
+        /* NAVBAR */
+        .header-wrapper {
+            position: sticky;
+            top: 0;
+            z-index: 90;
+            background: var(--bg-surface);
+            backdrop-filter: var(--blur);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .navbar {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-badge {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-md);
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFF;
+            font-size: 1.15rem;
+            box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4);
+        }
+
+        .logo-text h2 {
+            font-size: 1.05rem;
+            font-weight: 900;
+            line-height: 1.15;
+        }
+
+        .logo-text span {
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .control-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        .control-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* DRAWER */
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .drawer-overlay.active { opacity: 1; visibility: visible; }
+
+        .sidebar-drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 300px;
+            max-width: 85vw;
+            background: var(--bg-surface);
+            backdrop-filter: blur(25px);
+            border-left: 1px solid var(--border);
+            z-index: 999;
+            transform: translateX(100%);
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .sidebar-drawer.active { transform: translateX(0); }
+
+        .drawer-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 16px;
+        }
+
+        .drawer-close-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: var(--bg-chip);
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .drawer-links { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+        .drawer-links a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 14px;
+            border-radius: var(--radius-md);
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .drawer-links a:hover, .drawer-links a.active {
+            background: var(--bg-chip);
+            color: var(--primary);
+        }
+
+        /* CONTAINER */
+        .main-container {
+            flex: 1;
+            max-width: 1280px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 24px 16px 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* HERO */
+        .page-hero {
+            text-align: center;
+            padding: 16px 10px 28px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            background: rgba(99, 102, 241, 0.15);
+            color: #818CF8;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            padding: 5px 14px;
+            border-radius: 9999px;
+            font-size: 0.74rem;
+            font-weight: 800;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+
+        .page-hero h1 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--text-primary) 30%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .page-hero p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.55;
+            font-weight: 500;
+        }
+
+        /* CONTROLS & SEARCH */
+        .filter-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .search-bar-wrap {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-bar-wrap input {
+            width: 100%;
+            padding: 14px 18px 14px 44px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            outline: none;
+            backdrop-filter: var(--blur);
+            transition: all 0.2s ease;
+        }
+
+        .search-bar-wrap input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 16px var(--primary-glow);
+        }
+
+        .search-bar-wrap i {
+            position: absolute;
+            top: 50%;
+            left: 16px;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .stats-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            font-size: 0.84rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .stats-bar span b {
+            color: var(--primary);
+        }
+
+        /* UNIVERSITY GRID */
+        .uni-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 16px;
+        }
+
+        .uni-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-decoration: none;
+            color: var(--text-primary);
+            backdrop-filter: var(--blur);
+            transition: all 0.25s ease;
+            position: relative;
+        }
+
+        .uni-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary);
+            background: var(--bg-surface-hover);
+            box-shadow: 0 10px 24px -6px var(--primary-glow);
+        }
+
+        .uni-top {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .uni-index-badge {
+            width: 38px;
+            height: 38px;
+            min-width: 38px;
+            border-radius: 10px;
+            background: var(--bg-chip);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .uni-info h3 {
+            font-size: 0.95rem;
+            font-weight: 800;
+            line-height: 1.3;
+            margin-bottom: 3px;
+        }
+
+        .uni-location {
+            font-size: 0.74rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .uni-tags-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 14px;
+        }
+
+        .mini-tag {
+            font-size: 0.68rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 5px;
+            background: var(--bg-chip);
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+
+        .uni-footer-action {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid var(--border);
+            padding-top: 10px;
+            font-size: 0.78rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        /* FOOTER */
+        .modern-footer {
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border);
+            padding: 40px 16px 24px;
+            margin-top: auto;
+        }
+
+        .footer-grid {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr repeat(3, 1fr);
+            gap: 28px;
+            padding-bottom: 28px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .footer-brand-p { font-size: 0.82rem; color: var(--text-muted); margin: 10px 0 16px; line-height: 1.5; }
+        .footer-col h4 { font-size: 0.9rem; font-weight: 800; margin-bottom: 14px; }
+        .footer-nav { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+        .footer-nav a { font-size: 0.82rem; font-weight: 600; color: var(--text-secondary); text-decoration: none; }
+        .footer-nav a:hover { color: var(--primary); }
+
+        .footer-bottom {
+            max-width: 1280px;
+            margin: 20px auto 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 14px;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .social-pill-group { display: flex; gap: 8px; }
+        .social-pill {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: var(--bg-chip);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .social-pill:hover { background: var(--primary); color: #FFF; }
+
+        @media (max-width: 768px) {
+            .page-hero h1 { font-size: 1.7rem; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 480px) {
+            .navbar { padding: 10px 14px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 20px; }
+            .footer-bottom { flex-direction: column; align-items: flex-start; }
+            .uni-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-glow"></div>
+
+    <!-- DRAWER -->
+    <div class="drawer-overlay" id="drawerOverlay" onclick="closeNavDrawer()"></div>
+    <aside class="sidebar-drawer" id="sidebarDrawer">
+        <div class="drawer-header">
+            <h3>Quick Navigation</h3>
+            <button class="drawer-close-btn" onclick="closeNavDrawer()"><i class="fas fa-times"></i></button>
+        </div>
+        <ul class="drawer-links">
+            <li><a href="index.html"><i class="fas fa-home" style="color: #6366F1;"></i> Home Workspace</a></li>
+            <li><a href="latest-updates.html"><i class="fas fa-bolt" style="color: #EC4899;"></i> Real-Time Alerts</a></li>
+            <li><a href="central-universities.html" class="active"><i class="fas fa-monument" style="color: #8B5CF6;"></i> Central Universities (49)</a></li>
+            <li><a href="universities.html"><i class="fas fa-landmark" style="color: #06B6D4;"></i> All Universities</a></li>
+            <li><a href="syllabus.html"><i class="fas fa-book-open" style="color: #10B981;"></i> Syllabus & PYQs</a></li>
+            <li><a href="cutoff.html"><i class="fas fa-chart-line" style="color: #F59E0B;"></i> Cutoff Analytics</a></li>
+            <li><a href="about-ajmal-mansoori.html"><i class="fas fa-user-shield" style="color: #6366F1;"></i> Founder Profile</a></li>
+        </ul>
+    </aside>
+
+    <!-- HEADER -->
+    <header class="header-wrapper">
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <div class="logo-badge"><i class="fas fa-graduation-cap"></i></div>
+                <div class="logo-text">
+                    <h2>The University Page</h2>
+                    <span>Central University Suite</span>
+                </div>
+            </a>
+            <div class="nav-actions">
+                <button class="control-btn" id="themeToggleBtn" onclick="toggleAppTheme()"><i class="fas fa-sun" id="themeIcon"></i></button>
+                <button class="control-btn" onclick="openNavDrawer()"><i class="fa-solid fa-bars-staggered"></i></button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="main-container">
+
+        <section class="page-hero">
+            <div class="hero-badge"><i class="fas fa-landmark"></i> Official NTA CUET Pool</div>
+            <h1>All 49 Central Universities</h1>
+            <p>Comprehensive verified directory of every Central University participating under the CUET admission and CSAS counseling framework.</p>
+        </section>
+
+        <!-- FILTERS -->
+        <section class="filter-controls">
+            <div class="search-bar-wrap">
+                <i class="fas fa-search"></i>
+                <input type="text" id="uniSearchInput" onkeyup="filterUniversities()" placeholder="Search from 49 Central Universities by name or state...">
+            </div>
+
+            <div class="stats-bar">
+                <span>Showing: <b id="visibleCount">49</b> / 49 Central Universities</span>
+                <span><i class="fas fa-check-circle" style="color: #10B981;"></i> CUET UG/PG Verified</span>
+            </div>
+        </section>
+
+        <!-- 49 CENTRAL UNIVERSITIES GRID -->
+        <section class="uni-grid" id="centralUniContainer">
+
+            <!-- 1 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">01</div>
+                    <div class="uni-info">
+                        <h3>University of Allahabad</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Prayagraj, Uttar Pradesh</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">Oxbridge of East</span><span class="mini-tag">AU CSAS Portal</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 2 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">02</div>
+                    <div class="uni-info">
+                        <h3>Banaras Hindu University (BHU)</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Varanasi, Uttar Pradesh</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">FMC & MMV</span><span class="mini-tag">BHU CSAS</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 3 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">03</div>
+                    <div class="uni-info">
+                        <h3>University of Delhi (DU)</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> New Delhi</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">North & South Campus</span><span class="mini-tag">DU CSAS</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 4 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">04</div>
+                    <div class="uni-info">
+                        <h3>Jawaharlal Nehru University (JNU)</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> New Delhi</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">BA Lang & UG</span><span class="mini-tag">NIRF Top Rank</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 5 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">05</div>
+                    <div class="uni-info">
+                        <h3>Babasaheb Bhimrao Ambedkar University</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Lucknow, Uttar Pradesh</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">BBAU Portal</span><span class="mini-tag">CUET Counseling</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 6 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">06</div>
+                    <div class="uni-info">
+                        <h3>Aligarh Muslim University (AMU)</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Aligarh, Uttar Pradesh</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">CUET Courses</span><span class="mini-tag">AMU Controller</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 7 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">07</div>
+                    <div class="uni-info">
+                        <h3>Jamia Millia Islamia (JMI)</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> New Delhi</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">CUET UG</span><span class="mini-tag">JMI Portal</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 8 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">08</div>
+                    <div class="uni-info">
+                        <h3>University of Hyderabad (UoH)</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Hyderabad, Telangana</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">Integrated Master's</span><span class="mini-tag">HCU Portal</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 9 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">09</div>
+                    <div class="uni-info">
+                        <h3>Visva-Bharati University</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Santiniketan, West Bengal</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">Arts & Heritage</span><span class="mini-tag">Central Uni</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 10 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">10</div>
+                    <div class="uni-info">
+                        <h3>Hemvati Nandan Bahuguna Garhwal University</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Srinagar, Uttarakhand</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">HNBGU Portal</span><span class="mini-tag">Uttarakhand Central</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 11 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">11</div>
+                    <div class="uni-info">
+                        <h3>Central University of Haryana</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Mahendragarh, Haryana</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">CUHAR</span><span class="mini-tag">Samarth Portal</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 12 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">12</div>
+                    <div class="uni-info">
+                        <h3>Central University of Rajasthan</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Ajmer, Rajasthan</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">CURAJ</span><span class="mini-tag">Integrated M.Sc</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 13 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">13</div>
+                    <div class="uni-info">
+                        <h3>Central University of Punjab</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Bathinda, Punjab</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">CUPB</span><span class="mini-tag">Research & PG</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 14 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">14</div>
+                    <div class="uni-info">
+                        <h3>Central University of South Bihar</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Gaya, Bihar</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">CUSB</span><span class="mini-tag">NAAC A++</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 15 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">15</div>
+                    <div class="uni-info">
+                        <h3>Central University of Gujarat</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Gandhinagar, Gujarat</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">CUG</span><span class="mini-tag">Samarth Portal</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 16 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">16</div>
+                    <div class="uni-info">
+                        <h3>Central University of Kerala</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Kasaragod, Kerala</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">CUK</span><span class="mini-tag">CUET Merit</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 17 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">17</div>
+                    <div class="uni-info">
+                        <h3>Central University of Karnataka</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Kalaburagi, Karnataka</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">CUK Kalaburagi</span><span class="mini-tag">UG/PG</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 18 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">18</div>
+                    <div class="uni-info">
+                        <h3>Central University of Tamil Nadu</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Thiruvarur, Tamil Nadu</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">CUTN</span><span class="mini-tag">Integrated Courses</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 19 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">19</div>
+                    <div class="uni-info">
+                        <h3>Central University of Odisha</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Koraput, Odisha</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">CUO Koraput</span><span class="mini-tag">Samarth Portal</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 20 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">20</div>
+                    <div class="uni-info">
+                        <h3>Central University of Himachal Pradesh</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Dharamshala, HP</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">CUHP</span><span class="mini-tag">Sciences & Humanities</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 21 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">21</div>
+                    <div class="uni-info">
+                        <h3>Central University of Jammu</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Samba, Jammu & Kashmir</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">CUJ</span><span class="mini-tag">CUET Merit</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 22 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">22</div>
+                    <div class="uni-info">
+                        <h3>Central University of Kashmir</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Ganderbal, Jammu & Kashmir</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">CUKashmir</span><span class="mini-tag">Samarth Portal</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 23 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">23</div>
+                    <div class="uni-info">
+                        <h3>Central University of Jharkhand</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Ranchi, Jharkhand</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">CUJ Ranchi</span><span class="mini-tag">Integrated Programs</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 24 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">24</div>
+                    <div class="uni-info">
+                        <h3>Central University of Andhra Pradesh</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Anantapur, Andhra Pradesh</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">CUAP</span><span class="mini-tag">Vocational & Degree</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 25 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">25</div>
+                    <div class="uni-info">
+                        <h3>Central Tribal University of Andhra Pradesh</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Vizianagaram, AP</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">CTUAP</span><span class="mini-tag">Tribal Studies & Tech</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 26 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">26</div>
+                    <div class="uni-info">
+                        <h3>Indira Gandhi National Tribal University (IGNTU)</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Amarkantak, Madhya Pradesh</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">IGNTU</span><span class="mini-tag">Central Tribal Uni</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 27 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">27</div>
+                    <div class="uni-info">
+                        <h3>Doctor Harisingh Gour Vishwavidyalaya</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Sagar, Madhya Pradesh</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">DHSGSU Sagar</span><span class="mini-tag">Central University</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 28 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">28</div>
+                    <div class="uni-info">
+                        <h3>Guru Ghasidas Vishwavidyalaya (GGU)</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Bilaspur, Chhattisgarh</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">GGU Bilaspur</span><span class="mini-tag">B.Tech / Pharmacy / UG</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 29 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">29</div>
+                    <div class="uni-info">
+                        <h3>Mahatma Gandhi Antarrashtriya Hindi Vishwavidyalaya</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Wardha, Maharashtra</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">MGAHV Wardha</span><span class="mini-tag">Hindi & Languages</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 30 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">30</div>
+                    <div class="uni-info">
+                        <h3>Mahatma Gandhi Central University (MGCUB)</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Motihari, Bihar</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">MGCUB</span><span class="mini-tag">Central University</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 31 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">31</div>
+                    <div class="uni-info">
+                        <h3>Pondicherry University</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Puducherry</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">Integrated PG</span><span class="mini-tag">Pondi Uni</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 32 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">32</div>
+                    <div class="uni-info">
+                        <h3>English and Foreign Languages University (EFLU)</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Hyderabad, Telangana</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">EFLU</span><span class="mini-tag">Foreign Language Pool</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 33 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">33</div>
+                    <div class="uni-info">
+                        <h3>Maulana Azad National Urdu University (MANUU)</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Hyderabad, Telangana</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">MANUU</span><span class="mini-tag">Urdu Medium Courses</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 34 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">34</div>
+                    <div class="uni-info">
+                        <h3>Tezpur University</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Tezpur, Assam</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">Assam Central Uni</span><span class="mini-tag">Integrated M.Sc / Tech</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 35 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">35</div>
+                    <div class="uni-info">
+                        <h3>Assam University</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Silchar, Assam</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">Silchar & Diphu</span><span class="mini-tag">Central University</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 36 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">36</div>
+                    <div class="uni-info">
+                        <h3>North-Eastern Hill University (NEHU)</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Shillong, Meghalaya</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">NEHU</span><span class="mini-tag">Meghalaya Central</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 37 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">37</div>
+                    <div class="uni-info">
+                        <h3>Mizoram University</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Aizawl, Mizoram</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">MZU</span><span class="mini-tag">NAAC 'A' Grade</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 38 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">38</div>
+                    <div class="uni-info">
+                        <h3>Nagaland University</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Lumami, Nagaland</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">NU</span><span class="mini-tag">Nagaland Central</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 39 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">39</div>
+                    <div class="uni-info">
+                        <h3>Manipur University</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Imphal, Manipur</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">MU Imphal</span><span class="mini-tag">Central University</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 40 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">40</div>
+                    <div class="uni-info">
+                        <h3>Tripura University</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Suryamaninagar, Tripura</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">Tripura Uni</span><span class="mini-tag">Samarth Portal</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 41 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">41</div>
+                    <div class="uni-info">
+                        <h3>Sikkim University</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Gangtok, Sikkim</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">SU Gangtok</span><span class="mini-tag">Central University</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 42 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">42</div>
+                    <div class="uni-info">
+                        <h3>Rajiv Gandhi University (RGU)</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Itanagar, Arunachal Pradesh</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">RGU</span><span class="mini-tag">Arunachal Central</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 43 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">43</div>
+                    <div class="uni-info">
+                        <h3>Central Sanskrit University</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> New Delhi</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">Sanskrit Central</span><span class="mini-tag">National Campuses</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 44 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">44</div>
+                    <div class="uni-info">
+                        <h3>National Sanskrit University</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Tirupati, Andhra Pradesh</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">NSU Tirupati</span><span class="mini-tag">Vedic Studies</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 45 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">45</div>
+                    <div class="uni-info">
+                        <h3>Shri Lal Bahadur Shastri National Sanskrit University</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> New Delhi</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">SLBSNSU</span><span class="mini-tag">Central Sanskrit</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 46 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">46</div>
+                    <div class="uni-info">
+                        <h3>Central Agricultural University (CAU)</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Imphal, Manipur</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">Agriculture & Allied</span><span class="mini-tag">North-East</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 47 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">47</div>
+                    <div class="uni-info">
+                        <h3>Rani Lakshmi Bai Central Agricultural University</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Jhansi, Uttar Pradesh</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">RLBCAU Jhansi</span><span class="mini-tag">Agriculture Central</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 48 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">48</div>
+                    <div class="uni-info">
+                        <h3>Dr. Rajendra Prasad Central Agricultural University</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Pusa, Samastipur, Bihar</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">RPCAU Pusa</span><span class="mini-tag">Agri Sciences</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 49 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">49</div>
+                    <div class="uni-info">
+                        <h3>Sammakkka Sarakka Central Tribal University</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Mulugu, Telangana</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">Central Tribal Uni</span><span class="mini-tag">Newest Central Unit</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="modern-footer">
+        <div class="footer-grid">
+            <div>
+                <div class="logo">
+                    <div class="logo-badge"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="logo-text">
+                        <h2>The University Page</h2>
+                        <span>Central University Hub</span>
+                    </div>
+                </div>
+                <p class="footer-brand-p">Verified counseling guidelines, cutoff matrix, and entrance patterns for all 49 Central Universities in India.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul class="footer-nav">
+                    <li><a href="index.html">Home Overview</a></li>
+                    <li><a href="central-universities.html">49 Central Universities</a></li>
+                    <li><a href="universities.html">All Institutions</a></li>
+                    <li><a href="cutoff.html">Cutoffs & Merits</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ecosystem</h4>
+                <ul class="footer-nav">
+                    <li><a href="https://learnifyclasses.akamai.net.in" target="_blank">Learnify Classes App</a></li>
+                    <li><a href="https://t.me/cuetwarriors2026" target="_blank">CUET Warriors Forum</a></li>
+                    <li><a href="https://youtube.com/@ajmalalimansoori" target="_blank">Ajmal Mansoori YT</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Compliance</h4>
+                <ul class="footer-nav">
+                    <li><a href="privacy-policy.html">Privacy Charter</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="disclaimer.html">Disclaimer</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div>&copy; 2026 The University Page. All 49 Central Universities Directory 🇮🇳</div>
+            <div class="social-pill-group">
+                <a href="https://youtube.com/@ajmalalimansoori" target="_blank" class="social-pill"><i class="fab fa-youtube"></i></a>
+                <a href="https://instagram.com/ajmalcreator" target="_blank" class="social-pill"><i class="fab fa-instagram"></i></a>
+                <a href="https://t.me/cuetwarriors2026" target="_blank" class="social-pill"><i class="fab fa-telegram-plane"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- REAL-TIME SEARCH & THEME LOGIC -->
+    <script>
+        function initAppTheme() {
+            const current = localStorage.getItem('theme-mode') || 'dark';
+            document.documentElement.setAttribute('data-theme', current);
+            renderThemeIcon(current);
+        }
+
+        function toggleAppTheme() {
+            const active = document.documentElement.getAttribute('data-theme');
+            const target = active === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', target);
+            localStorage.setItem('theme-mode', target);
+            renderThemeIcon(target);
+        }
+
+        function renderThemeIcon(theme) {
+            const icon = document.getElementById('themeIcon');
+            if (icon) {
+                icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+                icon.style.color = theme === 'dark' ? '#F59E0B' : 'inherit';
+            }
+        }
+        initAppTheme();
+
+        function openNavDrawer() {
+            document.getElementById('sidebarDrawer').classList.add('active');
+            document.getElementById('drawerOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeNavDrawer() {
+            document.getElementById('sidebarDrawer').classList.remove('active');
+            document.getElementById('drawerOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // REAL-TIME SEARCH & LIVE COUNTER
+        function filterUniversities() {
+            const input = document.getElementById('uniSearchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.uni-card');
+            let visibleCount = 0;
+            
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                if (text.includes(input)) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            document.getElementById('visibleCount').innerText = visibleCount;
+        }
+    </script>
+</body>
+</html>
