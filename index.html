@@ -539,6 +539,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 16px;
+            margin-bottom: 35px;
         }
 
         .suite-card {
@@ -634,6 +635,99 @@
             text-align: center;
         }
 
+        /* ⚡ QUICK NAVIGATION VAULT (QUICK LINKS SECTION) */
+        .quicklinks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 14px;
+            margin-bottom: 35px;
+        }
+
+        .quicklink-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 16px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            color: var(--text-primary);
+            backdrop-filter: var(--blur);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quicklink-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--border-hover);
+            background: var(--bg-surface-hover);
+            box-shadow: 0 10px 24px -6px var(--primary-glow);
+        }
+
+        .quicklink-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            min-width: 0;
+        }
+
+        .quicklink-icon-wrap {
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+            border-radius: var(--radius-md);
+            background: var(--bg-chip);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            transition: transform 0.2s ease;
+        }
+
+        .quicklink-card:hover .quicklink-icon-wrap {
+            transform: scale(1.08);
+        }
+
+        .quicklink-info h4 {
+            font-size: 0.95rem;
+            font-weight: 800;
+            margin-bottom: 2px;
+            line-height: 1.2;
+        }
+
+        .quicklink-info p {
+            font-size: 0.74rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .quicklink-arrow {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--bg-chip);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+        }
+
+        .quicklink-card:hover .quicklink-arrow {
+            background: var(--primary);
+            color: #FFF;
+            transform: translateX(3px);
+        }
+
         /* 🛡️ ULTRA-CLEAN MODERN FOOTER */
         .modern-footer {
             background: var(--bg-surface);
@@ -727,6 +821,9 @@
                 justify-content: space-between;
                 border-top: 1px solid var(--border);
                 padding-top: 6px;
+            }
+            .quicklinks-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -937,6 +1034,120 @@
                     <i class="fab fa-telegram-plane"></i> Join Telegram Forum
                 </a>
             </div>
+        </section>
+
+        <!-- ⚡ QUICK NAVIGATION VAULT (QUICK LINKS SECTION) -->
+        <div class="section-header">
+            <div class="section-title">
+                <div class="title-icon" style="background: linear-gradient(135deg, #EC4899, #F43F5E);"><i class="fas fa-layer-group"></i></div>
+                <span>Quick Access Portal</span>
+            </div>
+        </div>
+
+        <section class="quicklinks-grid">
+            <a href="result.html" class="quicklink-card">
+                <div class="quicklink-left">
+                    <div class="quicklink-icon-wrap" style="color: #10B981;">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="quicklink-info">
+                        <h4>Entrance Results</h4>
+                        <p>Scorecards & Merit Lists</p>
+                    </div>
+                </div>
+                <div class="quicklink-arrow"><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <a href="latest-jobs.html" class="quicklink-card">
+                <div class="quicklink-left">
+                    <div class="quicklink-icon-wrap" style="color: #F59E0B;">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div class="quicklink-info">
+                        <h4>Latest Jobs</h4>
+                        <p>Govt, SSC & Banking Forms</p>
+                    </div>
+                </div>
+                <div class="quicklink-arrow"><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <a href="admitcard.html" class="quicklink-card">
+                <div class="quicklink-left">
+                    <div class="quicklink-icon-wrap" style="color: #F43F5E;">
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <div class="quicklink-info">
+                        <h4>Hall Tickets</h4>
+                        <p>Admit Cards & City Slips</p>
+                    </div>
+                </div>
+                <div class="quicklink-arrow"><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <a href="admission.html" class="quicklink-card">
+                <div class="quicklink-left">
+                    <div class="quicklink-icon-wrap" style="color: #8B5CF6;">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div class="quicklink-info">
+                        <h4>Admissions</h4>
+                        <p>Central Uni CSAS Portals</p>
+                    </div>
+                </div>
+                <div class="quicklink-arrow"><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <a href="cutoff.html" class="quicklink-card">
+                <div class="quicklink-left">
+                    <div class="quicklink-icon-wrap" style="color: #06B6D4;">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="quicklink-info">
+                        <h4>Cutoffs & Ranks</h4>
+                        <p>Category-Wise Merit Marks</p>
+                    </div>
+                </div>
+                <div class="quicklink-arrow"><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <a href="answerkey.html" class="quicklink-card">
+                <div class="quicklink-left">
+                    <div class="quicklink-icon-wrap" style="color: #EC4899;">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <div class="quicklink-info">
+                        <h4>Answer Keys</h4>
+                        <p>Official Question Papers</p>
+                    </div>
+                </div>
+                <div class="quicklink-arrow"><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <a href="syllabus.html" class="quicklink-card">
+                <div class="quicklink-left">
+                    <div class="quicklink-icon-wrap" style="color: #10B981;">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="quicklink-info">
+                        <h4>Exam Syllabus</h4>
+                        <p>PDF Blueprints & Patterns</p>
+                    </div>
+                </div>
+                <div class="quicklink-arrow"><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <a href="document-details.html" class="quicklink-card">
+                <div class="quicklink-left">
+                    <div class="quicklink-icon-wrap" style="color: #0D9488;">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="quicklink-info">
+                        <h4>Scholarships</h4>
+                        <p>UP & National Schemes</p>
+                    </div>
+                </div>
+                <div class="quicklink-arrow"><i class="fas fa-arrow-right"></i></div>
+            </a>
         </section>
 
     </main>
