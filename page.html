@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Join The University Page Community | Ajmal Mansoori</title>
+    <title>Connect With The University Page | Student Registration</title>
     
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +13,7 @@
 
     <style>
         :root {
-            /* 🌌 DARK THEME */
+            /* DARK THEME */
             --bg-base: #060913;
             --bg-surface: #0e1526;
             --bg-card: #121b33;
@@ -33,7 +33,7 @@
         }
 
         [data-theme="light"] {
-            /* ☀️ LIGHT THEME */
+            /* LIGHT THEME */
             --bg-base: #F8FAFC;
             --bg-surface: #FFFFFF;
             --bg-card: #FFFFFF;
@@ -224,7 +224,7 @@
         .form-container {
             flex: 1;
             width: 100%;
-            max-width: 860px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 24px 16px 50px;
         }
@@ -270,7 +270,7 @@
             font-size: 0.9rem;
             color: var(--text-muted);
             line-height: 1.6;
-            max-width: 620px;
+            max-width: 680px;
             margin: 0 auto;
         }
 
@@ -367,7 +367,7 @@
             transform: none;
         }
 
-        /* SUCCESS / ERROR ALERTS */
+        /* ALERTS */
         .status-alert {
             display: none;
             padding: 16px;
@@ -494,7 +494,7 @@
 </head>
 <body>
 
-    <!-- 📲 SLIDE-IN SIDEBAR OVERLAY & DRAWER -->
+    <!-- SIDEBAR OVERLAY & DRAWER -->
     <div class="drawer-overlay" id="drawerOverlay" onclick="closeNavDrawer()"></div>
     <aside class="sidebar-drawer" id="sidebarDrawer">
         <div class="drawer-header">
@@ -506,7 +506,7 @@
             <li><a href="latest-updates.html"><i class="fas fa-bolt" style="color: #EC4899;"></i> Real-Time Alerts</a></li>
             <li><a href="central-universities.html"><i class="fas fa-monument" style="color: #8B5CF6;"></i> Central Universities (49)</a></li>
             <li><a href="state-universities.html"><i class="fas fa-city" style="color: #0284C7;"></i> State Universities</a></li>
-            <li><a href="join.html" class="active"><i class="fas fa-user-plus" style="color: #10B981;"></i> Join Community</a></li>
+            <li><a href="join.html" class="active"><i class="fas fa-user-plus" style="color: #10B981;"></i> Student Registration</a></li>
             <li><a href="cutoff.html"><i class="fas fa-chart-line" style="color: #F59E0B;"></i> Cutoff Analytics</a></li>
             <li><a href="about-ajmal-mansoori.html"><i class="fas fa-user-shield" style="color: #6366F1;"></i> Founder Profile</a></li>
         </ul>
@@ -519,7 +519,7 @@
                 <div class="logo-badge"><i class="fas fa-graduation-cap"></i></div>
                 <div class="logo-text">
                     <h2>The University Page</h2>
-                    <span>Student Network</span>
+                    <span>Student Registration</span>
                 </div>
             </a>
             <div class="nav-actions">
@@ -533,9 +533,9 @@
     <main class="form-container">
 
         <section class="form-hero-card">
-            <div class="hero-badge"><i class="fas fa-users"></i> Direct Student Network</div>
-            <h1>Connect With The University Page</h1>
-            <p>Join Ajmal Mansoori's exclusive student counseling circle for cutoff alerts, study groups, campus updates, and direct doubt resolution.</p>
+            <div class="hero-badge"><i class="fas fa-users"></i> Official Student Portal</div>
+            <h1>Connect With The University Page | Student Registration</h1>
+            <p>University admission, cutoff alerts, counselling, hostel, scholarship, campus updates aur student community se judne ke liye apni sahi jankari bharen.</p>
         </section>
 
         <!-- SUBMISSION ALERT -->
@@ -555,19 +555,19 @@
                     <div class="form-group">
                         <label class="input-label" for="whatsappNumber">WhatsApp Number <span>*</span></label>
                         <input type="tel" id="whatsappNumber" class="input-control" placeholder="10-digit WhatsApp number" pattern="[0-9]{10}" required>
-                        <p class="help-hint">For counseling updates & group invitations.</p>
+                        <p class="help-hint">For counselling updates and official alerts.</p>
                     </div>
 
-                    <!-- 3. University / College Category -->
+                    <!-- 3. University / College Type -->
                     <div class="form-group">
                         <label class="input-label" for="categorySelect">University / College Type <span>*</span></label>
                         <select id="categorySelect" class="input-control" onchange="handleCategoryChange()" required>
-                            <option value="" disabled selected>-- Select Institution Type --</option>
-                            <option value="central">1. Central University</option>
-                            <option value="state">2. State University</option>
-                            <option value="deemed">3. Deemed University</option>
-                            <option value="private">4. Private University</option>
-                            <option value="govt_inst">5. Other Govt. Institute</option>
+                            <option value="" disabled selected>-- Select Type --</option>
+                            <option value="central">Central University</option>
+                            <option value="state">State University</option>
+                            <option value="private">Private University</option>
+                            <option value="deemed">Deemed University</option>
+                            <option value="other">Other</option>
                         </select>
                     </div>
 
@@ -575,19 +575,32 @@
                     <div class="form-group">
                         <label class="input-label" for="universitySelect">University Name <span>*</span></label>
                         <select id="universitySelect" class="input-control" onchange="handleUniversityChange()" disabled required>
-                            <option value="" disabled selected>-- First select Institution Type --</option>
+                            <option value="" disabled selected>Select/Search University</option>
                         </select>
                     </div>
 
-                    <!-- 5. Affiliated College / Main Campus -->
+                    <!-- 5. Campus / Affiliated College -->
                     <div class="form-group">
                         <label class="input-label" for="collegeSelect">Campus / Affiliated College <span>*</span></label>
                         <select id="collegeSelect" class="input-control" disabled required>
-                            <option value="" disabled selected>-- First select University Name --</option>
+                            <option value="" disabled selected>Select College/Campus</option>
                         </select>
                     </div>
 
-                    <!-- 6. Course / Programmes -->
+                    <!-- 6. Course / Programme Level -->
+                    <div class="form-group">
+                        <label class="input-label" for="progLevelSelect">Course / Programme <span>*</span></label>
+                        <select id="progLevelSelect" class="input-control" required>
+                            <option value="" disabled selected>-- Select Level --</option>
+                            <option value="UG">UG (Undergraduate)</option>
+                            <option value="PG">PG (Postgraduate)</option>
+                            <option value="PhD">PhD</option>
+                            <option value="Diploma/Certificate">Diploma / Certificate</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <!-- 7. Target Course / Programme -->
                     <div class="form-group">
                         <label class="input-label" for="courseSelect">Target Course / Programme <span>*</span></label>
                         <select id="courseSelect" class="input-control" disabled required>
@@ -595,7 +608,74 @@
                         </select>
                     </div>
 
-                    <!-- Optional Query / Doubt -->
+                    <!-- 8. Admission Status -->
+                    <div class="form-group">
+                        <label class="input-label" for="admissionStatus">Admission Status <span>*</span></label>
+                        <select id="admissionStatus" class="input-control" required>
+                            <option value="" disabled selected>-- Select Status --</option>
+                            <option value="Admission Confirmed">Admission Confirmed</option>
+                            <option value="Provisional Admission">Provisional Admission</option>
+                            <option value="Admission Process Ongoing">Admission Process Ongoing</option>
+                            <option value="Not Admitted Yet">Not Admitted Yet</option>
+                        </select>
+                    </div>
+
+                    <!-- 9. Admission Through -->
+                    <div class="form-group">
+                        <label class="input-label" for="admissionThrough">Admission Through <span>*</span></label>
+                        <select id="admissionThrough" class="input-control" required>
+                            <option value="" disabled selected>-- Select Entrance/Mode --</option>
+                            <option value="CUET-UG">CUET-UG</option>
+                            <option value="CUET-PG">CUET-PG</option>
+                            <option value="University Entrance Exam">University Entrance Exam</option>
+                            <option value="Merit Based">Merit Based</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <!-- 10. Admission Year -->
+                    <div class="form-group">
+                        <label class="input-label" for="admissionYear">Admission Year <span>*</span></label>
+                        <select id="admissionYear" class="input-control" required>
+                            <option value="" disabled selected>-- Select Session --</option>
+                            <option value="2026-27" selected>2026-27</option>
+                            <option value="2025-26">2025-26</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <!-- 11. What Help Do You Need? -->
+                    <div class="form-group">
+                        <label class="input-label" for="helpRequired">What Help Do You Need? <span>*</span></label>
+                        <select id="helpRequired" class="input-control" required>
+                            <option value="" disabled selected>-- Select Support Area --</option>
+                            <option value="Admission/Counselling">Admission / Counselling</option>
+                            <option value="Cut-off Updates">Cut-off Updates</option>
+                            <option value="Hostel">Hostel Guidance</option>
+                            <option value="Scholarship">Scholarship Assistance</option>
+                            <option value="Course/Subject Guidance">Course / Subject Guidance</option>
+                            <option value="Study Material">Study Material</option>
+                            <option value="Campus Information">Campus Information</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <!-- 12. How did you hear about The University Page? -->
+                    <div class="form-group">
+                        <label class="input-label" for="referralSource">How did you hear about us? <span>*</span></label>
+                        <select id="referralSource" class="input-control" required>
+                            <option value="" disabled selected>-- Select Source --</option>
+                            <option value="YouTube">YouTube</option>
+                            <option value="Telegram">Telegram</option>
+                            <option value="Instagram">Instagram</option>
+                            <option value="WhatsApp">WhatsApp</option>
+                            <option value="Google">Google Search</option>
+                            <option value="Friend/Student">Friend / Fellow Student</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <!-- 13. Optional Query -->
                     <div class="form-group form-group-full">
                         <label class="input-label" for="userQuery">Any Admission Question / Target Year (Optional)</label>
                         <input type="text" id="userQuery" class="input-control" placeholder="e.g. Seeking cutoff guidance for AU BA 2026">
@@ -659,7 +739,7 @@
         </div>
 
         <div class="sub-footer-bottom">
-            <div>&copy; 2026 The University Page. Founded by Ajmal Mansoori. All rights reserved. 🇮🇳</div>
+            <div>&copy; 2026 The University Page. Founded by Ajmal Mansoori. All rights reserved.</div>
             <div class="social-pill-group">
                 <a href="https://youtube.com/@ajmalalimansoori" target="_blank" class="social-pill"><i class="fab fa-youtube"></i></a>
                 <a href="https://instagram.com/ajmalcreator" target="_blank" class="social-pill"><i class="fab fa-instagram"></i></a>
@@ -686,7 +766,7 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // 🏛️ COMPLETE UNIVERSITY & AFFILIATED COLLEGE DATABASE
+        // COMPREHENSIVE UNIVERSITY & COLLEGE DATABASE
         const universityDirectory = {
             central: {
                 "au": {
@@ -805,8 +885,8 @@
                 },
                 "aktu": {
                     name: "Dr. A.P.J. Abdul Kalam Technical University (AKTU)",
-                    colleges: ["IET Lucknow", "BIET Jhansi", "KNIT Sultanpur", "AKTU Affiliated Private & Govt Colleges"],
-                    courses: ["B.Tech (Lateral Entry / First Year via CUET)", "B.Pharm", "BBA / BCA / MBA / MCA"]
+                    colleges: ["IET Lucknow", "BIET Jhansi", "KNIT Sultanpur", "AKTU Affiliated Colleges"],
+                    courses: ["B.Tech (Lateral Entry / First Year)", "B.Pharm", "BBA / BCA / MBA / MCA"]
                 },
                 "mmmut": {
                     name: "Madan Mohan Malaviya University of Tech (MMMUT)",
@@ -839,33 +919,6 @@
                     courses: ["B.A. / B.Sc. / B.Com", "B.Tech / B.Pharm", "LLB / LLM"]
                 }
             },
-            deemed: {
-                "tiss": {
-                    name: "Tata Institute of Social Sciences (TISS)",
-                    colleges: ["TISS Mumbai", "TISS Tuljapur", "TISS Guwahati", "TISS Hyderabad"],
-                    courses: ["B.S. in Analytics & Sustainability Studies", "B.A. in Social Science / Social Work"]
-                },
-                "hamdard": {
-                    name: "Jamia Hamdard (New Delhi)",
-                    colleges: ["School of Pharmaceutical Education & Research", "School of Engineering & Tech"],
-                    courses: ["B.Pharm / D.Pharm", "B.Sc. Paramedical Sciences", "BCA / B.Tech"]
-                },
-                "jiit": {
-                    name: "Jaypee Institute of Information Tech (JIIT)",
-                    colleges: ["Sector 62 Campus Noida", "Sector 128 Campus Noida"],
-                    courses: ["B.Tech Computer Science / IT / Biotech", "Integrated B.Tech-M.Tech", "BBA / BCA"]
-                },
-                "dei": {
-                    name: "Dayalbagh Educational Institute (DEI)",
-                    colleges: ["DEI Agra Main Campus"],
-                    courses: ["B.Tech Footwear / Electrical", "B.Com (Hons)", "B.Voc", "B.A. / B.Sc."]
-                },
-                "other_deemed": {
-                    name: "Other Deemed Universities (TERI / Graphic Era / GITAM / NGBU)",
-                    colleges: ["Deemed University Main Campuses"],
-                    courses: ["B.Tech Engineering", "BBA / B.Com", "B.Sc. Applied Sciences", "Law Courses"]
-                }
-            },
             private: {
                 "amity": {
                     name: "Amity University (Noida, Lucknow, Jaipur, Gurugram)",
@@ -893,7 +946,34 @@
                     courses: ["B.Tech / BCA", "BBA / MBA Integrated", "B.Com / B.A.", "B.Pharma / Allied Health"]
                 }
             },
-            govt_inst: {
+            deemed: {
+                "tiss": {
+                    name: "Tata Institute of Social Sciences (TISS)",
+                    colleges: ["TISS Mumbai", "TISS Tuljapur", "TISS Guwahati", "TISS Hyderabad"],
+                    courses: ["B.S. in Analytics & Sustainability Studies", "B.A. in Social Science / Social Work"]
+                },
+                "hamdard": {
+                    name: "Jamia Hamdard (New Delhi)",
+                    colleges: ["School of Pharmaceutical Education & Research", "School of Engineering & Tech"],
+                    courses: ["B.Pharm / D.Pharm", "B.Sc. Paramedical Sciences", "BCA / B.Tech"]
+                },
+                "jiit": {
+                    name: "Jaypee Institute of Information Tech (JIIT)",
+                    colleges: ["Sector 62 Campus Noida", "Sector 128 Campus Noida"],
+                    courses: ["B.Tech Computer Science / IT / Biotech", "Integrated B.Tech-M.Tech", "BBA / BCA"]
+                },
+                "dei": {
+                    name: "Dayalbagh Educational Institute (DEI)",
+                    colleges: ["DEI Agra Main Campus"],
+                    courses: ["B.Tech Footwear / Electrical", "B.Com (Hons)", "B.Voc", "B.A. / B.Sc."]
+                },
+                "other_deemed": {
+                    name: "Other Deemed Universities (TERI / Graphic Era / GITAM / NGBU)",
+                    colleges: ["Deemed University Main Campuses"],
+                    courses: ["B.Tech Engineering", "BBA / B.Com", "B.Sc. Applied Sciences", "Law Courses"]
+                }
+            },
+            other: {
                 "nfsu": {
                     name: "National Forensic Sciences University (NFSU)",
                     colleges: ["NFSU Gandhinagar Campus", "NFSU Delhi Campus", "NFSU Goa / Tripura Campus"],
@@ -909,10 +989,10 @@
                     colleges: ["NIFTEM Kundli (Haryana)", "NIFTEM Thanjavur (Tamil Nadu)"],
                     courses: ["B.Tech Food Technology and Management", "M.Tech / MBA (Food & Agri Business)"]
                 },
-                "other_govt": {
-                    name: "Other Central Institutes (IIM Sambalpur / LNIPE / IICT / CIPET / FDDI)",
-                    colleges: ["Central Autonomous Institute Campuses"],
-                    courses: ["Executive Management", "B.P.Ed Physical Education", "B.Des Footwear Design", "B.Tech Polymer Technology"]
+                "other_inst": {
+                    name: "Other Autonomous Colleges / Institutes",
+                    colleges: ["Autonomous Institute Main Campuses"],
+                    courses: ["B.A. / B.Sc. / B.Com", "B.Tech / BBA", "Diploma / Certificate"]
                 }
             }
         };
@@ -924,8 +1004,8 @@
             const collegeSelect = document.getElementById("collegeSelect");
             const courseSelect = document.getElementById("courseSelect");
 
-            uniSelect.innerHTML = '<option value="" disabled selected>-- Select University Name --</option>';
-            collegeSelect.innerHTML = '<option value="" disabled selected>-- First select University Name --</option>';
+            uniSelect.innerHTML = '<option value="" disabled selected>Select/Search University</option>';
+            collegeSelect.innerHTML = '<option value="" disabled selected>Select College/Campus</option>';
             courseSelect.innerHTML = '<option value="" disabled selected>-- First select University Name --</option>';
             
             collegeSelect.disabled = true;
@@ -953,7 +1033,7 @@
             const collegeSelect = document.getElementById("collegeSelect");
             const courseSelect = document.getElementById("courseSelect");
 
-            collegeSelect.innerHTML = '<option value="" disabled selected>-- Select Campus / Affiliated College --</option>';
+            collegeSelect.innerHTML = '<option value="" disabled selected>Select College/Campus</option>';
             courseSelect.innerHTML = '<option value="" disabled selected>-- Select Target Course --</option>';
 
             if (!cat || !uniKey || !universityDirectory[cat][uniKey]) {
@@ -995,13 +1075,19 @@
             const category = document.getElementById("categorySelect").value;
             const uniKey = document.getElementById("universitySelect").value;
             const college = document.getElementById("collegeSelect").value;
+            const progLevel = document.getElementById("progLevelSelect").value;
             const course = document.getElementById("courseSelect").value;
+            const admissionStatus = document.getElementById("admissionStatus").value;
+            const admissionThrough = document.getElementById("admissionThrough").value;
+            const admissionYear = document.getElementById("admissionYear").value;
+            const helpRequired = document.getElementById("helpRequired").value;
+            const referralSource = document.getElementById("referralSource").value;
             const query = document.getElementById("userQuery").value.trim();
 
             const universityName = universityDirectory[category]?.[uniKey]?.name || uniKey;
 
             btn.disabled = true;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting to Community...';
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
             alertBox.style.display = "none";
 
             try {
@@ -1012,14 +1098,20 @@
                     category,
                     universityName,
                     collegeCampus: college,
+                    programmeLevel: progLevel,
                     targetCourse: course,
+                    admissionStatus,
+                    admissionThrough,
+                    admissionYear,
+                    helpRequired,
+                    referralSource,
                     userQuery: query || "None",
                     createdAt: serverTimestamp(),
                     source: "The University Page Web Form"
                 });
 
                 alertBox.className = "status-alert status-success";
-                alertBox.innerHTML = `🎉 <b>Congratulations ${fullName}!</b> You have successfully connected with The University Page. Check your WhatsApp for counseling updates!`;
+                alertBox.innerHTML = `Registration Successful! Thank you ${fullName}, your details have been recorded. You will receive official updates on WhatsApp.`;
                 alertBox.style.display = "block";
 
                 document.getElementById("communityForm").reset();
@@ -1030,7 +1122,7 @@
             } catch (err) {
                 console.error("Firestore submission error:", err);
                 alertBox.className = "status-alert status-error";
-                alertBox.innerHTML = `⚠️ <b>Error:</b> Unable to connect to database. Please verify your internet or try again. (${err.message})`;
+                alertBox.innerHTML = `Error: Unable to submit. Please check your internet connection and try again. (${err.message})`;
                 alertBox.style.display = "block";
             } finally {
                 btn.disabled = false;
