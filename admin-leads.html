@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Admin Dashboard — Community Leads | The University Page</title>
+    <title>Admin Leads Portal | The University Page</title>
     
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,9 +11,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
+    <!-- PDF Generation Libraries (jsPDF + autoTable) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+
     <style>
         :root {
-            /* 🌌 DARK THEME */
+            /* 🌌 DARK THEME (Default) */
             --bg-base: #060913;
             --bg-surface: #0e1526;
             --bg-card: #121b33;
@@ -28,6 +32,7 @@
             --primary-glow: rgba(99, 102, 241, 0.35);
             --accent-green: #10B981;
             --accent-amber: #F59E0B;
+            --accent-red: #EF4444;
             --gradient-primary: linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #EC4899 100%);
             --radius-md: 12px;
             --radius-lg: 18px;
@@ -91,12 +96,12 @@
             justify-content: center; color: #FFF; font-size: 1.15rem;
         }
 
-        .nav-actions { display: flex; align-items: center; gap: 10px; }
+        .nav-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 
         .btn-action {
-            padding: 8px 16px;
+            padding: 8px 14px;
             border-radius: var(--radius-md);
-            font-size: 0.84rem;
+            font-size: 0.82rem;
             font-weight: 700;
             cursor: pointer;
             border: 1px solid var(--border);
@@ -202,12 +207,12 @@
         .stat-data h4 { font-size: 0.76rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; margin-bottom: 2px; }
         .stat-data p { font-size: 1.35rem; font-weight: 900; color: var(--text-primary); }
 
-        /* CONTROLS BAR */
+        /* CONTROLS & EXPORT TOOLBAR */
         .controls-bar {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 14px;
+            gap: 12px;
             margin-bottom: 16px;
             flex-wrap: wrap;
         }
@@ -237,6 +242,12 @@
             transform: translateY(-50%);
             color: var(--text-muted);
             font-size: 0.9rem;
+        }
+
+        .export-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
         }
 
         /* LEADS TABLE */
@@ -338,7 +349,7 @@
         <div class="auth-card">
             <div class="auth-icon"><i class="fas fa-shield-alt"></i></div>
             <h2>Admin Master Panel</h2>
-            <p style="font-size:0.84rem; color:var(--text-muted); margin-top:4px;">The University Page Community Hub</p>
+            <p style="font-size:0.84rem; color:var(--text-muted); margin-top:4px;">The University Page Leads Hub</p>
             
             <form onsubmit="verifyAdminPass(event)">
                 <input type="password" id="adminPassInput" class="auth-input" placeholder="ENTER MASTER PIN" required autofocus>
@@ -361,7 +372,7 @@
                 </div>
             </a>
             <div class="nav-actions">
-                <button class="btn-action" onclick="exportToCSV()"><i class="fas fa-file-excel" style="color:#10B981;"></i> Export CSV</button>
+                <button class="btn-action" id="themeToggleBtn" onclick="toggleAppTheme()"><i class="fas fa-sun" id="themeIcon"></i></button>
                 <button class="btn-action" onclick="logoutAdmin()"><i class="fas fa-sign-out-alt"></i> Lock</button>
             </div>
         </nav>
@@ -375,10 +386,10 @@
                 <h1>Real-Time Student Leads</h1>
                 <p style="font-size:0.86rem; color:var(--text-muted);">Direct incoming student registrations from <code>join.html</code> portal.</p>
             </div>
-            <a href="join.html" target="_blank" class="btn-action"><i class="fas fa-external-link-alt"></i> Open Live Form</a>
+            <a href="page.html" target="_blank" class="btn-action"><i class="fas fa-external-link-alt"></i> Open Live Form</a>
         </div>
 
-        <!-- STATS -->
+        <!-- STATS CARDS -->
         <div class="stats-cards-grid">
             <div class="stat-card">
                 <div class="stat-icon" style="background:rgba(99,102,241,0.15); color:var(--primary);"><i class="fas fa-users"></i></div>
@@ -403,11 +414,17 @@
             </div>
         </div>
 
-        <!-- CONTROLS -->
+        <!-- CONTROLS & EXPORTS -->
         <div class="controls-bar">
             <div class="search-box">
                 <i class="fas fa-search"></i>
                 <input type="text" id="leadsSearchInput" onkeyup="filterLeadsTable()" placeholder="Search by student name, WhatsApp number, college, or course...">
+            </div>
+
+            <div class="export-group">
+                <button class="btn-action" onclick="exportToPDF()"><i class="fas fa-file-pdf" style="color:#EF4444;"></i> Download PDF</button>
+                <button class="btn-action" onclick="exportToCSV()"><i class="fas fa-file-excel" style="color:#10B981;"></i> Download Excel/CSV</button>
+                <button class="btn-action" onclick="copyTableData()"><i class="fas fa-copy" style="color:var(--primary);"></i> Copy All</button>
             </div>
         </div>
 
@@ -435,7 +452,7 @@
 
     </main>
 
-    <!-- FIREBASE REALTIME SYNC SCRIPT -->
+    <!-- FIREBASE & THEME / EXPORT SCRIPT -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, collection, query, orderBy, onSnapshot, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
@@ -476,7 +493,6 @@
             document.getElementById("adminPassInput").value = "";
         };
 
-        // Check if already authenticated in session
         if (sessionStorage.getItem("admin_auth") === "true") {
             document.getElementById("authScreen").style.display = "none";
             startListening();
@@ -516,7 +532,7 @@
                 const formattedDate = lead.createdAt?.toDate ? lead.createdAt.toDate().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', dateStyle: 'medium', timeStyle: 'short' }) : "Just now";
                 const waNumber = lead.whatsappNumber || "";
                 const cleanPhone = waNumber.replace(/[^0-9]/g, '');
-                const waLink = `https://wa.me/91${cleanPhone}?text=${encodeURIComponent(`Hello ${lead.fullName}, Greetings from The University Page! We received your inquiry for ${lead.universityName || 'CUET Admissions'}.`)}`;
+                const waLink = `https://wa.me/91${cleanPhone}?text=${encodeURIComponent(`Hello ${lead.fullName}, Greetings from The University Page! We received your inquiry regarding ${lead.universityName || 'CUET Admissions'}.`)}`;
 
                 return `
                     <tr>
@@ -534,7 +550,7 @@
                         <td><strong style="color:var(--primary);">${lead.targetCourse || 'UG Degree'}</strong></td>
                         <td style="max-width:200px; font-size:0.8rem; color:var(--text-muted);">${lead.userQuery || 'None'}</td>
                         <td>
-                            <button class="btn-delete-row" onclick="deleteLead('${lead.id}')" title="Delete lead"><i class="fas fa-trash-alt"></i></button>
+                            <button class="btn-delete-row" onclick="deleteLead('${lead.id}')" title="Delete record"><i class="fas fa-trash-alt"></i></button>
                         </td>
                     </tr>
                 `;
@@ -565,7 +581,60 @@
             renderTable(filtered);
         };
 
-        // 6. EXPORT TO CSV (EXCEL)
+        // 6. EXPORT TO PDF
+        window.exportToPDF = function() {
+            if (allLeads.length === 0) {
+                alert("No student leads available to generate PDF!");
+                return;
+            }
+
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF('l', 'mm', 'a4'); // Landscape A4
+
+            // Header Banner
+            doc.setFillColor(79, 70, 229);
+            doc.rect(0, 0, 297, 24, 'F');
+            doc.setTextColor(255, 255, 255);
+            doc.setFontSize(16);
+            doc.setFont('helvetica', 'bold');
+            doc.text("The University Page - Student Community Leads Report", 14, 15);
+
+            doc.setFontSize(9);
+            doc.text(`Generated on: ${new Date().toLocaleString('en-IN')}`, 220, 15);
+
+            // Table Data Format
+            const tableRows = allLeads.map((l, idx) => [
+                idx + 1,
+                l.fullName || 'Anonymous',
+                l.whatsappNumber ? `+91 ${l.whatsappNumber}` : '-',
+                l.universityName || 'University',
+                l.collegeCampus || 'Main Campus',
+                l.targetCourse || 'UG Degree',
+                l.userQuery || '-'
+            ]);
+
+            doc.autoTable({
+                head: [['#', 'Student Name', 'WhatsApp No', 'University', 'Campus / College', 'Course', 'Query']],
+                body: tableRows,
+                startY: 30,
+                theme: 'striped',
+                headStyles: { fillColor: [15, 23, 42], textColor: [255, 255, 255], fontStyle: 'bold' },
+                styles: { fontSize: 8.5, cellPadding: 3 },
+                columnStyles: {
+                    0: { cellWidth: 10 },
+                    1: { cellWidth: 40, fontStyle: 'bold' },
+                    2: { cellWidth: 35 },
+                    3: { cellWidth: 50 },
+                    4: { cellWidth: 45 },
+                    5: { cellWidth: 45 },
+                    6: { cellWidth: 45 }
+                }
+            });
+
+            doc.save(`University_Page_Leads_${new Date().toISOString().slice(0,10)}.pdf`);
+        };
+
+        // 7. EXPORT TO CSV (EXCEL)
         window.exportToCSV = function() {
             if (allLeads.length === 0) {
                 alert("No student data available to export!");
@@ -597,6 +666,49 @@
             link.click();
             document.body.removeChild(link);
         };
+
+        // 8. COPY TO CLIPBOARD
+        window.copyTableData = function() {
+            if (allLeads.length === 0) {
+                alert("No data available to copy!");
+                return;
+            }
+
+            let text = "Student Leads Report - The University Page\n\n";
+            allLeads.forEach((l, i) => {
+                text += `${i+1}. ${l.fullName} | +91 ${l.whatsappNumber} | ${l.universityName} (${l.collegeCampus}) | ${l.targetCourse} | Query: ${l.userQuery || 'None'}\n`;
+            });
+
+            navigator.clipboard.writeText(text).then(() => {
+                alert("✅ All leads copied to clipboard successfully!");
+            });
+        };
+    </script>
+
+    <!-- DARK/LIGHT THEME LOGIC -->
+    <script>
+        function initAppTheme() {
+            const current = localStorage.getItem('theme-mode') || 'dark';
+            document.documentElement.setAttribute('data-theme', current);
+            renderThemeIcon(current);
+        }
+
+        function toggleAppTheme() {
+            const active = document.documentElement.getAttribute('data-theme');
+            const target = active === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', target);
+            localStorage.setItem('theme-mode', target);
+            renderThemeIcon(target);
+        }
+
+        function renderThemeIcon(theme) {
+            const icon = document.getElementById('themeIcon');
+            if (icon) {
+                icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+                icon.style.color = theme === 'dark' ? '#F59E0B' : 'inherit';
+            }
+        }
+        initAppTheme();
     </script>
 </body>
 </html>
