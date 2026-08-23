@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Admin Dashboard — Community Leads | The University Page</title>
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        :root {
+            /* 🌌 DARK THEME */
+            --bg-base: #060913;
+            --bg-surface: #0e1526;
+            --bg-card: #121b33;
+            --bg-chip: rgba(255, 255, 255, 0.08);
+            --text-primary: #FFFFFF;
+            --text-secondary: #CBD5E1;
+            --text-muted: #94A3B8;
+            --border: rgba(255, 255, 255, 0.12);
+            --border-hover: #6366F1;
+            
+            --primary: #6366F1;
+            --primary-glow: rgba(99, 102, 241, 0.35);
+            --accent-green: #10B981;
+            --accent-amber: #F59E0B;
+            --gradient-primary: linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #EC4899 100%);
+            --radius-md: 12px;
+            --radius-lg: 18px;
+            --radius-xl: 24px;
+        }
+
+        [data-theme="light"] {
+            /* ☀️ LIGHT THEME */
+            --bg-base: #F8FAFC;
+            --bg-surface: #FFFFFF;
+            --bg-card: #FFFFFF;
+            --bg-chip: #F1F5F9;
+            --text-primary: #0F172A;
+            --text-secondary: #334155;
+            --text-muted: #64748B;
+            --border: #E2E8F0;
+            --border-hover: #4F46E5;
+            --primary: #4F46E5;
+            --primary-glow: rgba(79, 70, 229, 0.2);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Cabinet Grotesk', 'Plus Jakarta Sans', sans-serif; letter-spacing: -0.02em; }
+
+        /* NAVBAR */
+        .header-wrapper {
+            position: sticky;
+            top: 0;
+            z-index: 90;
+            width: 100%;
+            background: var(--bg-surface);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .navbar {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-primary); }
+        .logo-badge {
+            width: 40px; height: 40px; min-width: 40px; border-radius: var(--radius-md);
+            background: var(--gradient-primary); display: flex; align-items: center;
+            justify-content: center; color: #FFF; font-size: 1.15rem;
+        }
+
+        .nav-actions { display: flex; align-items: center; gap: 10px; }
+
+        .btn-action {
+            padding: 8px 16px;
+            border-radius: var(--radius-md);
+            font-size: 0.84rem;
+            font-weight: 700;
+            cursor: pointer;
+            border: 1px solid var(--border);
+            background: var(--bg-chip);
+            color: var(--text-primary);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+
+        .btn-action:hover { border-color: var(--primary); color: var(--primary); }
+        .btn-primary-action { background: var(--primary); color: #FFF; border-color: var(--primary); }
+        .btn-primary-action:hover { opacity: 0.9; color: #FFF; }
+
+        /* LOGIN LOCK SCREEN */
+        .auth-overlay {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-base);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .auth-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 36px 28px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .auth-icon {
+            width: 56px; height: 56px; margin: 0 auto 16px;
+            border-radius: 16px; background: rgba(99, 102, 241, 0.15);
+            color: var(--primary); display: flex; align-items: center;
+            justify-content: center; font-size: 1.5rem;
+        }
+
+        .auth-input {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            background: var(--bg-surface);
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin: 18px 0 14px;
+            outline: none;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+
+        /* DASHBOARD CONTENT */
+        .main-container {
+            flex: 1;
+            max-width: 1320px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 24px 18px 60px;
+        }
+
+        .dash-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .stats-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .stat-icon {
+            width: 44px; height: 44px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.25rem; flex-shrink: 0;
+        }
+
+        .stat-data h4 { font-size: 0.76rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; margin-bottom: 2px; }
+        .stat-data p { font-size: 1.35rem; font-weight: 900; color: var(--text-primary); }
+
+        /* CONTROLS BAR */
+        .controls-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            position: relative;
+            flex: 1;
+            min-width: 260px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 16px 12px 42px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 0.88rem;
+            font-weight: 600;
+            outline: none;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* LEADS TABLE */
+        .table-wrap {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .leads-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .leads-table th {
+            background: var(--bg-surface);
+            padding: 14px 16px;
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        .leads-table td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .leads-table tr:last-child td { border-bottom: none; }
+        .leads-table tr:hover td { background: var(--bg-surface); }
+
+        .badge-uni {
+            background: rgba(99, 102, 241, 0.15);
+            color: #818CF8;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.74rem;
+            font-weight: 700;
+            display: inline-block;
+        }
+
+        .btn-wa-chat {
+            background: #25D366;
+            color: #FFFFFF;
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.78rem;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: opacity 0.2s ease;
+        }
+
+        .btn-wa-chat:hover { opacity: 0.9; }
+
+        .btn-delete-row {
+            background: rgba(239, 68, 68, 0.15);
+            color: #EF4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-size: 0.76rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-delete-row:hover { background: #EF4444; color: #FFF; }
+
+        .empty-state {
+            padding: 60px 20px;
+            text-align: center;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 900px) {
+            .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            .leads-table th, .leads-table td { white-space: nowrap; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 🔒 MASTER AUTH OVERLAY -->
+    <div class="auth-overlay" id="authScreen">
+        <div class="auth-card">
+            <div class="auth-icon"><i class="fas fa-shield-alt"></i></div>
+            <h2>Admin Master Panel</h2>
+            <p style="font-size:0.84rem; color:var(--text-muted); margin-top:4px;">The University Page Community Hub</p>
+            
+            <form onsubmit="verifyAdminPass(event)">
+                <input type="password" id="adminPassInput" class="auth-input" placeholder="ENTER MASTER PIN" required autofocus>
+                <button type="submit" class="btn-action btn-primary-action" style="width:100%; justify-content:center; padding:12px;">
+                    <i class="fas fa-unlock-alt"></i> Unlock Leads Dashboard
+                </button>
+            </form>
+            <p id="authError" style="color:#EF4444; font-size:0.78rem; font-weight:700; margin-top:10px; display:none;">⚠️ Invalid PIN! Access Denied.</p>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <header class="header-wrapper">
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <div class="logo-badge"><i class="fas fa-graduation-cap"></i></div>
+                <div>
+                    <h2 style="font-size:1.05rem; font-weight:900;">The University Page</h2>
+                    <span style="font-size:0.65rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Admin Leads Portal</span>
+                </div>
+            </a>
+            <div class="nav-actions">
+                <button class="btn-action" onclick="exportToCSV()"><i class="fas fa-file-excel" style="color:#10B981;"></i> Export CSV</button>
+                <button class="btn-action" onclick="logoutAdmin()"><i class="fas fa-sign-out-alt"></i> Lock</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- DASHBOARD CONTENT -->
+    <main class="main-container">
+        
+        <div class="dash-header">
+            <div>
+                <h1>Real-Time Student Leads</h1>
+                <p style="font-size:0.86rem; color:var(--text-muted);">Direct incoming student registrations from <code>join.html</code> portal.</p>
+            </div>
+            <a href="join.html" target="_blank" class="btn-action"><i class="fas fa-external-link-alt"></i> Open Live Form</a>
+        </div>
+
+        <!-- STATS -->
+        <div class="stats-cards-grid">
+            <div class="stat-card">
+                <div class="stat-icon" style="background:rgba(99,102,241,0.15); color:var(--primary);"><i class="fas fa-users"></i></div>
+                <div class="stat-data">
+                    <h4>Total Registered</h4>
+                    <p id="totalCount">0</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon" style="background:rgba(16,185,129,0.15); color:#10B981;"><i class="fab fa-whatsapp"></i></div>
+                <div class="stat-data">
+                    <h4>Verified WhatsApp</h4>
+                    <p id="waCount">0</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon" style="background:rgba(245,158,11,0.15); color:#F59E0B;"><i class="fas fa-university"></i></div>
+                <div class="stat-data">
+                    <h4>Top Target Uni</h4>
+                    <p id="topUni" style="font-size:1rem;">Allahabad Uni</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTROLS -->
+        <div class="controls-bar">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="leadsSearchInput" onkeyup="filterLeadsTable()" placeholder="Search by student name, WhatsApp number, college, or course...">
+            </div>
+        </div>
+
+        <!-- TABLE -->
+        <div class="table-wrap">
+            <table class="leads-table">
+                <thead>
+                    <tr>
+                        <th>Date & Time</th>
+                        <th>Student Name</th>
+                        <th>WhatsApp Direct</th>
+                        <th>University & Campus</th>
+                        <th>Target Course</th>
+                        <th>Student Query</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="leadsTableBody">
+                    <tr>
+                        <td colspan="7" class="empty-state"><i class="fas fa-circle-notch fa-spin"></i> Connecting to Firestore Database...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </main>
+
+    <!-- FIREBASE REALTIME SYNC SCRIPT -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, query, orderBy, onSnapshot, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyD837pmW5N21lMgeVlpgWPx0FaMisSnxwU",
+            authDomain: "theuniversitypage-cc4a7.firebaseapp.com",
+            projectId: "theuniversitypage-cc4a7",
+            storageBucket: "theuniversitypage-cc4a7.firebasestorage.app",
+            messagingSenderId: "31910615607",
+            appId: "1:31910615607:web:bee5bd81c8118a16d1bdb2",
+            measurementId: "G-6E55FCSXDP"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        let allLeads = [];
+
+        // 1. PIN AUTHENTICATION (Default PIN: 1009)
+        const MASTER_PIN = "1009"; 
+
+        window.verifyAdminPass = function(e) {
+            e.preventDefault();
+            const entered = document.getElementById("adminPassInput").value.trim();
+            if (entered === MASTER_PIN) {
+                document.getElementById("authScreen").style.display = "none";
+                sessionStorage.setItem("admin_auth", "true");
+                startListening();
+            } else {
+                document.getElementById("authError").style.display = "block";
+            }
+        };
+
+        window.logoutAdmin = function() {
+            sessionStorage.removeItem("admin_auth");
+            document.getElementById("authScreen").style.display = "flex";
+            document.getElementById("adminPassInput").value = "";
+        };
+
+        // Check if already authenticated in session
+        if (sessionStorage.getItem("admin_auth") === "true") {
+            document.getElementById("authScreen").style.display = "none";
+            startListening();
+        }
+
+        // 2. REAL-TIME FIRESTORE LISTENER
+        function startListening() {
+            try {
+                const q = query(collection(db, "community_leads"), orderBy("createdAt", "desc"));
+                onSnapshot(q, (snapshot) => {
+                    allLeads = [];
+                    snapshot.forEach((docSnap) => {
+                        allLeads.push({ id: docSnap.id, ...docSnap.data() });
+                    });
+                    renderTable(allLeads);
+                }, (err) => {
+                    console.error("Firestore Listen Error:", err);
+                    document.getElementById("leadsTableBody").innerHTML = `<tr><td colspan="7" class="empty-state" style="color:#EF4444;">⚠️ Database Error: ${err.message}</td></tr>`;
+                });
+            } catch(e) {
+                console.error(e);
+            }
+        }
+
+        // 3. RENDER TABLE
+        function renderTable(leads) {
+            const tbody = document.getElementById("leadsTableBody");
+            document.getElementById("totalCount").innerText = leads.length;
+            document.getElementById("waCount").innerText = leads.length;
+
+            if (leads.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" class="empty-state">No student leads received yet.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = leads.map((lead) => {
+                const formattedDate = lead.createdAt?.toDate ? lead.createdAt.toDate().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', dateStyle: 'medium', timeStyle: 'short' }) : "Just now";
+                const waNumber = lead.whatsappNumber || "";
+                const cleanPhone = waNumber.replace(/[^0-9]/g, '');
+                const waLink = `https://wa.me/91${cleanPhone}?text=${encodeURIComponent(`Hello ${lead.fullName}, Greetings from The University Page! We received your inquiry for ${lead.universityName || 'CUET Admissions'}.`)}`;
+
+                return `
+                    <tr>
+                        <td style="font-size:0.8rem; color:var(--text-muted);">${formattedDate}</td>
+                        <td style="font-weight:800; color:var(--text-primary);">${lead.fullName || 'Anonymous'}</td>
+                        <td>
+                            <a href="${waLink}" target="_blank" class="btn-wa-chat">
+                                <i class="fab fa-whatsapp"></i> +91 ${waNumber}
+                            </a>
+                        </td>
+                        <td>
+                            <span class="badge-uni">${lead.universityName || 'University'}</span>
+                            <div style="font-size:0.78rem; color:var(--text-muted); margin-top:3px;">${lead.collegeCampus || 'Main Campus'}</div>
+                        </td>
+                        <td><strong style="color:var(--primary);">${lead.targetCourse || 'UG Degree'}</strong></td>
+                        <td style="max-width:200px; font-size:0.8rem; color:var(--text-muted);">${lead.userQuery || 'None'}</td>
+                        <td>
+                            <button class="btn-delete-row" onclick="deleteLead('${lead.id}')" title="Delete lead"><i class="fas fa-trash-alt"></i></button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // 4. DELETE RECORD
+        window.deleteLead = async function(id) {
+            if (confirm("Are you sure you want to permanently delete this student record?")) {
+                try {
+                    await deleteDoc(doc(db, "community_leads", id));
+                } catch(e) {
+                    alert("Error deleting record: " + e.message);
+                }
+            }
+        };
+
+        // 5. LIVE SEARCH
+        window.filterLeadsTable = function() {
+            const queryVal = document.getElementById("leadsSearchInput").value.toLowerCase();
+            const filtered = allLeads.filter(l => 
+                (l.fullName || "").toLowerCase().includes(queryVal) ||
+                (l.whatsappNumber || "").toLowerCase().includes(queryVal) ||
+                (l.universityName || "").toLowerCase().includes(queryVal) ||
+                (l.collegeCampus || "").toLowerCase().includes(queryVal) ||
+                (l.targetCourse || "").toLowerCase().includes(queryVal)
+            );
+            renderTable(filtered);
+        };
+
+        // 6. EXPORT TO CSV (EXCEL)
+        window.exportToCSV = function() {
+            if (allLeads.length === 0) {
+                alert("No student data available to export!");
+                return;
+            }
+
+            let csvContent = "data:text/csv;charset=utf-8,";
+            csvContent += "Date,Full Name,WhatsApp Number,University,Campus/College,Course,Student Query\n";
+
+            allLeads.forEach(l => {
+                const date = l.createdAt?.toDate ? l.createdAt.toDate().toISOString() : "";
+                const row = [
+                    `"${date}"`,
+                    `"${l.fullName || ''}"`,
+                    `"${l.whatsappNumber || ''}"`,
+                    `"${l.universityName || ''}"`,
+                    `"${l.collegeCampus || ''}"`,
+                    `"${l.targetCourse || ''}"`,
+                    `"${(l.userQuery || '').replace(/"/g, '""')}"`
+                ];
+                csvContent += row.join(",") + "\n";
+            });
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `University_Page_Leads_${new Date().toISOString().slice(0,10)}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        };
+    </script>
+</body>
+</html>
