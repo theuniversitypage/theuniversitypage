@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Admin Leads Portal | The University Page</title>
+    <title>Connect With The University Page | Student Registration</title>
     
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,13 +11,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <!-- PDF Generation Libraries (jsPDF + autoTable) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
-
     <style>
         :root {
-            /* 🌌 DARK THEME (Default) */
+            /* DARK THEME */
             --bg-base: #060913;
             --bg-surface: #0e1526;
             --bg-card: #121b33;
@@ -30,9 +26,6 @@
             
             --primary: #6366F1;
             --primary-glow: rgba(99, 102, 241, 0.35);
-            --accent-green: #10B981;
-            --accent-amber: #F59E0B;
-            --accent-red: #EF4444;
             --gradient-primary: linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #EC4899 100%);
             --radius-md: 12px;
             --radius-lg: 18px;
@@ -40,7 +33,7 @@
         }
 
         [data-theme="light"] {
-            /* ☀️ LIGHT THEME */
+            /* LIGHT THEME */
             --bg-base: #F8FAFC;
             --bg-surface: #FFFFFF;
             --bg-card: #FFFFFF;
@@ -54,7 +47,11 @@
             --primary-glow: rgba(79, 70, 229, 0.2);
         }
 
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -68,7 +65,10 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        h1, h2, h3, h4 { font-family: 'Cabinet Grotesk', 'Plus Jakarta Sans', sans-serif; letter-spacing: -0.02em; }
+        h1, h2, h3, h4 {
+            font-family: 'Cabinet Grotesk', 'Plus Jakarta Sans', sans-serif;
+            letter-spacing: -0.02em;
+        }
 
         /* NAVBAR */
         .header-wrapper {
@@ -81,381 +81,677 @@
         }
 
         .navbar {
-            max-width: 1320px;
+            max-width: 1240px;
             margin: 0 auto;
-            padding: 12px 18px;
+            padding: 12px 16px;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
-        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-primary); }
-        .logo-badge {
-            width: 40px; height: 40px; min-width: 40px; border-radius: var(--radius-md);
-            background: var(--gradient-primary); display: flex; align-items: center;
-            justify-content: center; color: #FFF; font-size: 1.15rem;
-        }
-
-        .nav-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-
-        .btn-action {
-            padding: 8px 14px;
-            border-radius: var(--radius-md);
-            font-size: 0.82rem;
-            font-weight: 700;
-            cursor: pointer;
-            border: 1px solid var(--border);
-            background: var(--bg-chip);
-            color: var(--text-primary);
-            display: inline-flex;
+        .logo {
+            display: flex;
             align-items: center;
-            gap: 6px;
-            transition: all 0.2s ease;
+            gap: 10px;
             text-decoration: none;
+            color: var(--text-primary);
         }
 
-        .btn-action:hover { border-color: var(--primary); color: var(--primary); }
-        .btn-primary-action { background: var(--primary); color: #FFF; border-color: var(--primary); }
-        .btn-primary-action:hover { opacity: 0.9; color: #FFF; }
-
-        /* LOGIN LOCK SCREEN */
-        .auth-overlay {
-            position: fixed;
-            inset: 0;
-            background: var(--bg-base);
-            z-index: 999;
+        .logo-badge {
+            width: 40px;
+            height: 40px;
+            min-width: 40px;
+            border-radius: var(--radius-md);
+            background: var(--gradient-primary);
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            color: #FFF;
+            font-size: 1.15rem;
         }
 
-        .auth-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-xl);
-            padding: 36px 28px;
-            max-width: 400px;
-            width: 100%;
-            text-align: center;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        .logo-text h2 {
+            font-size: 1.05rem;
+            font-weight: 900;
+            line-height: 1.15;
         }
 
-        .auth-icon {
-            width: 56px; height: 56px; margin: 0 auto 16px;
-            border-radius: 16px; background: rgba(99, 102, 241, 0.15);
-            color: var(--primary); display: flex; align-items: center;
-            justify-content: center; font-size: 1.5rem;
-        }
-
-        .auth-input {
-            width: 100%;
-            padding: 14px 16px;
-            border-radius: var(--radius-md);
-            border: 1px solid var(--border);
-            background: var(--bg-surface);
-            color: var(--text-primary);
-            font-size: 0.95rem;
-            font-weight: 600;
-            margin: 18px 0 14px;
-            outline: none;
-            text-align: center;
-            letter-spacing: 2px;
-        }
-
-        /* DASHBOARD CONTENT */
-        .main-container {
-            flex: 1;
-            max-width: 1320px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 24px 18px 60px;
-        }
-
-        .dash-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-
-        .stats-cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 14px;
-            margin-bottom: 24px;
-        }
-
-        .stat-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 18px 20px;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-
-        .stat-icon {
-            width: 44px; height: 44px; border-radius: 12px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.25rem; flex-shrink: 0;
-        }
-
-        .stat-data h4 { font-size: 0.76rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; margin-bottom: 2px; }
-        .stat-data p { font-size: 1.35rem; font-weight: 900; color: var(--text-primary); }
-
-        /* CONTROLS & EXPORT TOOLBAR */
-        .controls-bar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            margin-bottom: 16px;
-            flex-wrap: wrap;
-        }
-
-        .search-box {
-            position: relative;
-            flex: 1;
-            min-width: 260px;
-        }
-
-        .search-box input {
-            width: 100%;
-            padding: 12px 16px 12px 42px;
-            border-radius: var(--radius-md);
-            border: 1px solid var(--border);
-            background: var(--bg-card);
-            color: var(--text-primary);
-            font-size: 0.88rem;
-            font-weight: 600;
-            outline: none;
-        }
-
-        .search-box i {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        .export-group {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        /* LEADS TABLE */
-        .table-wrap {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-xl);
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-        }
-
-        .leads-table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: left;
-        }
-
-        .leads-table th {
-            background: var(--bg-surface);
-            padding: 14px 16px;
-            font-size: 0.82rem;
-            font-weight: 800;
-            color: var(--text-primary);
-            border-bottom: 1px solid var(--border);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            white-space: nowrap;
-        }
-
-        .leads-table td {
-            padding: 14px 16px;
-            border-bottom: 1px solid var(--border);
-            font-size: 0.88rem;
-            color: var(--text-secondary);
-            font-weight: 600;
-        }
-
-        .leads-table tr:last-child td { border-bottom: none; }
-        .leads-table tr:hover td { background: var(--bg-surface); }
-
-        .badge-uni {
-            background: rgba(99, 102, 241, 0.15);
-            color: #818CF8;
-            border: 1px solid rgba(99, 102, 241, 0.3);
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 0.74rem;
+        .logo-text span {
+            font-size: 0.65rem;
             font-weight: 700;
-            display: inline-block;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
-        .btn-wa-chat {
-            background: #25D366;
-            color: #FFFFFF;
-            text-decoration: none;
-            padding: 6px 12px;
-            border-radius: 8px;
-            font-size: 0.78rem;
-            font-weight: 800;
-            display: inline-flex;
+        .nav-actions {
+            display: flex;
             align-items: center;
-            gap: 6px;
-            transition: opacity 0.2s ease;
+            gap: 8px;
         }
 
-        .btn-wa-chat:hover { opacity: 0.9; }
-
-        .btn-delete-row {
-            background: rgba(239, 68, 68, 0.15);
-            color: #EF4444;
-            border: 1px solid rgba(239, 68, 68, 0.3);
-            padding: 6px 10px;
-            border-radius: 8px;
-            font-size: 0.76rem;
+        .control-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
+            font-size: 1rem;
             transition: all 0.2s ease;
         }
 
-        .btn-delete-row:hover { background: #EF4444; color: #FFF; }
-
-        .empty-state {
-            padding: 60px 20px;
-            text-align: center;
-            color: var(--text-muted);
-            font-weight: 600;
-            font-size: 0.95rem;
+        /* DRAWER */
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
         }
 
-        @media (max-width: 900px) {
-            .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-            .leads-table th, .leads-table td { white-space: nowrap; }
+        .drawer-overlay.active { opacity: 1; visibility: visible; }
+
+        .sidebar-drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 300px;
+            max-width: 85vw;
+            background: var(--bg-surface);
+            border-left: 1px solid var(--border);
+            z-index: 999;
+            transform: translateX(100%);
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .sidebar-drawer.active { transform: translateX(0); }
+
+        .drawer-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 16px;
+        }
+
+        .drawer-close-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: var(--bg-chip);
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .drawer-links { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+        .drawer-links a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 14px;
+            border-radius: var(--radius-md);
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .drawer-links a:hover, .drawer-links a.active {
+            background: var(--bg-chip);
+            color: var(--primary);
+        }
+
+        /* MAIN CONTAINER */
+        .form-container {
+            flex: 1;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 24px 16px 50px;
+        }
+
+        /* HERO CARD */
+        .form-hero-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 30px 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 0 50px -10px var(--primary-glow);
+            text-align: center;
+        }
+
+        .hero-badge {
+            background: rgba(99, 102, 241, 0.15);
+            color: #818CF8;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            padding: 5px 14px;
+            border-radius: 9999px;
+            font-size: 0.76rem;
+            font-weight: 800;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+
+        .form-hero-card h1 {
+            font-size: 1.8rem;
+            font-weight: 900;
+            line-height: 1.25;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--text-primary) 30%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .form-hero-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        /* FORM STYLING */
+        .connect-form-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 32px 28px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin-bottom: 24px;
+        }
+
+        .form-group-full {
+            grid-column: 1 / -1;
+        }
+
+        .input-label {
+            display: block;
+            font-size: 0.84rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .input-label span {
+            color: #EF4444;
+        }
+
+        .input-control {
+            width: 100%;
+            padding: 13px 16px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            background: var(--bg-surface);
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .input-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 16px var(--primary-glow);
+        }
+
+        .input-control:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: var(--bg-chip);
+        }
+
+        .help-hint {
+            font-size: 0.74rem;
+            color: var(--text-muted);
+            margin-top: 5px;
+            font-weight: 500;
+        }
+
+        /* SUBMIT BUTTON */
+        .submit-btn {
+            background: var(--gradient-primary);
+            color: #FFFFFF;
+            border: none;
+            padding: 15px 28px;
+            border-radius: var(--radius-md);
+            font-weight: 800;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+            transition: all 0.25s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(99, 102, 241, 0.6);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* ALERTS */
+        .status-alert {
+            display: none;
+            padding: 16px;
+            border-radius: var(--radius-md);
+            margin-bottom: 20px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .status-success {
+            background: rgba(16, 185, 129, 0.15);
+            color: #10B981;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .status-error {
+            background: rgba(239, 68, 68, 0.15);
+            color: #EF4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        /* FOOTER */
+        .modern-footer {
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border);
+            padding: 40px 16px 20px;
+            margin-top: auto;
+            width: 100%;
+        }
+
+        .footer-container {
+            max-width: 1240px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr repeat(3, 1fr);
+            gap: 28px;
+            padding-bottom: 28px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .footer-brand-p {
+            font-size: 0.84rem;
+            color: var(--text-muted);
+            margin: 10px 0 16px;
+            line-height: 1.55;
+        }
+
+        .footer-column h4 {
+            font-size: 0.94rem;
+            font-weight: 800;
+            margin-bottom: 14px;
+            color: var(--text-primary);
+        }
+
+        .footer-links-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .footer-links-list a {
+            font-size: 0.84rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .footer-links-list a:hover {
+            color: var(--primary);
+        }
+
+        .sub-footer-bottom {
+            max-width: 1240px;
+            margin: 20px auto 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 14px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .social-pill-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        .social-pill {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: var(--bg-chip);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .social-pill:hover {
+            background: var(--primary);
+            color: #FFF;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid { grid-template-columns: 1fr; gap: 14px; }
+            .form-hero-card { padding: 22px 16px; }
+            .form-hero-card h1 { font-size: 1.4rem; }
+            .connect-form-card { padding: 22px 16px; }
+            .footer-container { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 480px) {
+            .footer-container { grid-template-columns: 1fr; }
+            .sub-footer-bottom { flex-direction: column; align-items: flex-start; }
         }
     </style>
 </head>
 <body>
 
-    <!-- 🔒 MASTER AUTH OVERLAY -->
-    <div class="auth-overlay" id="authScreen">
-        <div class="auth-card">
-            <div class="auth-icon"><i class="fas fa-shield-alt"></i></div>
-            <h2>Admin Master Panel</h2>
-            <p style="font-size:0.84rem; color:var(--text-muted); margin-top:4px;">The University Page Leads Hub</p>
-            
-            <form onsubmit="verifyAdminPass(event)">
-                <input type="password" id="adminPassInput" class="auth-input" placeholder="ENTER MASTER PIN" required autofocus>
-                <button type="submit" class="btn-action btn-primary-action" style="width:100%; justify-content:center; padding:12px;">
-                    <i class="fas fa-unlock-alt"></i> Unlock Leads Dashboard
-                </button>
-            </form>
-            <p id="authError" style="color:#EF4444; font-size:0.78rem; font-weight:700; margin-top:10px; display:none;">⚠️ Invalid PIN! Access Denied.</p>
+    <!-- SIDEBAR OVERLAY & DRAWER -->
+    <div class="drawer-overlay" id="drawerOverlay" onclick="closeNavDrawer()"></div>
+    <aside class="sidebar-drawer" id="sidebarDrawer">
+        <div class="drawer-header">
+            <h3>Quick Navigation</h3>
+            <button class="drawer-close-btn" onclick="closeNavDrawer()"><i class="fas fa-times"></i></button>
         </div>
-    </div>
+        <ul class="drawer-links">
+            <li><a href="index.html"><i class="fas fa-home" style="color: #6366F1;"></i> Home Workspace</a></li>
+            <li><a href="latest-updates.html"><i class="fas fa-bolt" style="color: #EC4899;"></i> Real-Time Alerts</a></li>
+            <li><a href="central-universities.html"><i class="fas fa-monument" style="color: #8B5CF6;"></i> Central Universities (49)</a></li>
+            <li><a href="state-universities.html"><i class="fas fa-city" style="color: #0284C7;"></i> State Universities</a></li>
+            <li><a href="join.html" class="active"><i class="fas fa-user-plus" style="color: #10B981;"></i> Student Registration</a></li>
+            <li><a href="cutoff.html"><i class="fas fa-chart-line" style="color: #F59E0B;"></i> Cutoff Analytics</a></li>
+            <li><a href="about-ajmal-mansoori.html"><i class="fas fa-user-shield" style="color: #6366F1;"></i> Founder Profile</a></li>
+        </ul>
+    </aside>
 
-    <!-- NAVBAR -->
+    <!-- HEADER -->
     <header class="header-wrapper">
         <nav class="navbar">
             <a href="index.html" class="logo">
                 <div class="logo-badge"><i class="fas fa-graduation-cap"></i></div>
-                <div>
-                    <h2 style="font-size:1.05rem; font-weight:900;">The University Page</h2>
-                    <span style="font-size:0.65rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Admin Leads Portal</span>
+                <div class="logo-text">
+                    <h2>The University Page</h2>
+                    <span>Student Registration</span>
                 </div>
             </a>
             <div class="nav-actions">
-                <button class="btn-action" id="themeToggleBtn" onclick="toggleAppTheme()"><i class="fas fa-sun" id="themeIcon"></i></button>
-                <button class="btn-action" onclick="logoutAdmin()"><i class="fas fa-sign-out-alt"></i> Lock</button>
+                <button class="control-btn" id="themeToggleBtn" onclick="toggleAppTheme()"><i class="fas fa-sun" id="themeIcon"></i></button>
+                <button class="control-btn" onclick="openNavDrawer()"><i class="fa-solid fa-bars-staggered"></i></button>
             </div>
         </nav>
     </header>
 
-    <!-- DASHBOARD CONTENT -->
-    <main class="main-container">
-        
-        <div class="dash-header">
-            <div>
-                <h1>Real-Time Student Leads</h1>
-                <p style="font-size:0.86rem; color:var(--text-muted);">Direct incoming student registrations from <code>join.html</code> portal.</p>
-            </div>
-            <a href="page.html" target="_blank" class="btn-action"><i class="fas fa-external-link-alt"></i> Open Live Form</a>
-        </div>
+    <!-- MAIN FORM CONTAINER -->
+    <main class="form-container">
 
-        <!-- STATS CARDS -->
-        <div class="stats-cards-grid">
-            <div class="stat-card">
-                <div class="stat-icon" style="background:rgba(99,102,241,0.15); color:var(--primary);"><i class="fas fa-users"></i></div>
-                <div class="stat-data">
-                    <h4>Total Registered</h4>
-                    <p id="totalCount">0</p>
+        <section class="form-hero-card">
+            <div class="hero-badge">Official Student Portal</div>
+            <h1>Connect With The University Page | Student Registration</h1>
+            <p>University admission, cutoff alerts, counselling, hostel, scholarship, campus updates aur student community se judne ke liye apni sahi jankari bharen.</p>
+        </section>
+
+        <!-- SUBMISSION ALERT -->
+        <div id="statusAlert" class="status-alert"></div>
+
+        <section class="connect-form-card">
+            <form id="communityForm" onsubmit="handleFormSubmit(event)">
+                <div class="form-grid">
+                    
+                    <!-- 1. Full Name -->
+                    <div class="form-group">
+                        <label class="input-label" for="fullName">Full Name <span>*</span></label>
+                        <input type="text" id="fullName" class="input-control" placeholder="Enter your full name" required>
+                    </div>
+
+                    <!-- 2. WhatsApp Number -->
+                    <div class="form-group">
+                        <label class="input-label" for="whatsappNumber">WhatsApp Number <span>*</span></label>
+                        <input type="tel" id="whatsappNumber" class="input-control" placeholder="10-digit WhatsApp number" pattern="[0-9]{10}" required>
+                        <p class="help-hint">For counselling updates and official alerts.</p>
+                    </div>
+
+                    <!-- 3. University / College Type -->
+                    <div class="form-group">
+                        <label class="input-label" for="categorySelect">University / College Type <span>*</span></label>
+                        <select id="categorySelect" class="input-control" onchange="handleCategoryChange()" required>
+                            <option value="" disabled selected>-- Select Type --</option>
+                            <option value="central">Central University</option>
+                            <option value="state">State University</option>
+                            <option value="private">Private University</option>
+                            <option value="deemed">Deemed University</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <!-- 4. University Name -->
+                    <div class="form-group">
+                        <label class="input-label" for="universitySelect">University Name <span>*</span></label>
+                        <select id="universitySelect" class="input-control" onchange="handleUniversityChange()" disabled required>
+                            <option value="" disabled selected>Select/Search University</option>
+                        </select>
+                    </div>
+
+                    <!-- 5. Campus / Affiliated College -->
+                    <div class="form-group">
+                        <label class="input-label" for="collegeSelect">Campus / Affiliated College <span>*</span></label>
+                        <select id="collegeSelect" class="input-control" disabled required>
+                            <option value="" disabled selected>Select College/Campus</option>
+                        </select>
+                    </div>
+
+                    <!-- 6. Course / Programmes -->
+                    <div class="form-group">
+                        <label class="input-label" for="progLevelSelect">Course / Programme <span>*</span></label>
+                        <select id="progLevelSelect" class="input-control" required>
+                            <option value="" disabled selected>-- Select Level --</option>
+                            <option value="UG">UG (Undergraduate)</option>
+                            <option value="PG">PG (Postgraduate)</option>
+                            <option value="PhD">PhD</option>
+                            <option value="Diploma/Certificate">Diploma / Certificate</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <!-- 7. Target Course / Programme -->
+                    <div class="form-group">
+                        <label class="input-label" for="courseSelect">Target Course / Programme <span>*</span></label>
+                        <select id="courseSelect" class="input-control" disabled required>
+                            <option value="" disabled selected>-- First select University Name --</option>
+                        </select>
+                    </div>
+
+                    <!-- 8. Admission Status -->
+                    <div class="form-group">
+                        <label class="input-label" for="admissionStatus">Admission Status <span>*</span></label>
+                        <select id="admissionStatus" class="input-control" required>
+                            <option value="" disabled selected>-- Select Status --</option>
+                            <option value="Admission Confirmed">Admission Confirmed</option>
+                            <option value="Provisional Admission">Provisional Admission</option>
+                            <option value="Admission Process Ongoing">Admission Process Ongoing</option>
+                            <option value="Not Admitted Yet">Not Admitted Yet</option>
+                        </select>
+                    </div>
+
+                    <!-- 9. Admission Through -->
+                    <div class="form-group">
+                        <label class="input-label" for="admissionThrough">Admission Through <span>*</span></label>
+                        <select id="admissionThrough" class="input-control" required>
+                            <option value="" disabled selected>-- Select Entrance/Mode --</option>
+                            <option value="CUET-UG">CUET-UG</option>
+                            <option value="CUET-PG">CUET-PG</option>
+                            <option value="University Entrance Exam">University Entrance Exam</option>
+                            <option value="Merit Based">Merit Based</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <!-- 10. Admission Year -->
+                    <div class="form-group">
+                        <label class="input-label" for="admissionYear">Admission Year <span>*</span></label>
+                        <select id="admissionYear" class="input-control" required>
+                            <option value="" disabled selected>-- Select Session --</option>
+                            <option value="2026-27" selected>2026-27</option>
+                            <option value="2025-26">2025-26</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <!-- 11. What Help Do You Need? -->
+                    <div class="form-group">
+                        <label class="input-label" for="helpRequired">What Help Do You Need? <span>*</span></label>
+                        <select id="helpRequired" class="input-control" required>
+                            <option value="" disabled selected>-- Select Support Area --</option>
+                            <option value="Admission/Counselling">Admission / Counselling</option>
+                            <option value="Cut-off Updates">Cut-off Updates</option>
+                            <option value="Hostel">Hostel Guidance</option>
+                            <option value="Scholarship">Scholarship Assistance</option>
+                            <option value="Course/Subject Guidance">Course / Subject Guidance</option>
+                            <option value="Study Material">Study Material</option>
+                            <option value="Campus Information">Campus Information</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <!-- 12. How did you hear about The University Page? -->
+                    <div class="form-group">
+                        <label class="input-label" for="referralSource">How did you hear about us? <span>*</span></label>
+                        <select id="referralSource" class="input-control" required>
+                            <option value="" disabled selected>-- Select Source --</option>
+                            <option value="YouTube">YouTube</option>
+                            <option value="Telegram">Telegram</option>
+                            <option value="Instagram">Instagram</option>
+                            <option value="WhatsApp">WhatsApp</option>
+                            <option value="Google">Google Search</option>
+                            <option value="Friend/Student">Friend / Fellow Student</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <!-- 13. Optional Query -->
+                    <div class="form-group form-group-full">
+                        <label class="input-label" for="userQuery">Any Admission Question / Target Year (Optional)</label>
+                        <input type="text" id="userQuery" class="input-control" placeholder="e.g. Seeking cutoff guidance for AU BA 2026">
+                    </div>
+
                 </div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon" style="background:rgba(16,185,129,0.15); color:#10B981;"><i class="fab fa-whatsapp"></i></div>
-                <div class="stat-data">
-                    <h4>Verified WhatsApp</h4>
-                    <p id="waCount">0</p>
-                </div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon" style="background:rgba(245,158,11,0.15); color:#F59E0B;"><i class="fas fa-university"></i></div>
-                <div class="stat-data">
-                    <h4>Top Target Uni</h4>
-                    <p id="topUni" style="font-size:1rem;">Allahabad Uni</p>
-                </div>
-            </div>
-        </div>
 
-        <!-- CONTROLS & EXPORTS -->
-        <div class="controls-bar">
-            <div class="search-box">
-                <i class="fas fa-search"></i>
-                <input type="text" id="leadsSearchInput" onkeyup="filterLeadsTable()" placeholder="Search by student name, WhatsApp number, college, or course...">
-            </div>
-
-            <div class="export-group">
-                <button class="btn-action" onclick="exportToPDF()"><i class="fas fa-file-pdf" style="color:#EF4444;"></i> Download PDF</button>
-                <button class="btn-action" onclick="exportToCSV()"><i class="fas fa-file-excel" style="color:#10B981;"></i> Download Excel/CSV</button>
-                <button class="btn-action" onclick="copyTableData()"><i class="fas fa-copy" style="color:var(--primary);"></i> Copy All</button>
-            </div>
-        </div>
-
-        <!-- TABLE -->
-        <div class="table-wrap">
-            <table class="leads-table">
-                <thead>
-                    <tr>
-                        <th>Date & Time</th>
-                        <th>Student Name</th>
-                        <th>WhatsApp Direct</th>
-                        <th>University & Campus</th>
-                        <th>Target Course</th>
-                        <th>Student Query</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody id="leadsTableBody">
-                    <tr>
-                        <td colspan="7" class="empty-state"><i class="fas fa-circle-notch fa-spin"></i> Connecting to Firestore Database...</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+                <button type="submit" id="submitBtn" class="submit-btn">
+                    Submit & Join Community
+                </button>
+            </form>
+        </section>
 
     </main>
 
-    <!-- FIREBASE & THEME / EXPORT SCRIPT -->
+    <!-- FULL ULTRA-GLASS FOOTER -->
+    <footer class="modern-footer">
+        <div class="footer-container">
+            <div>
+                <div class="logo">
+                    <div class="logo-badge"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="logo-text">
+                        <h2>The University Page</h2>
+                        <span>Educational Suite</span>
+                    </div>
+                </div>
+                <p class="footer-brand-p">
+                    Empowering students nationwide with verified admission roadmaps, cutoff predictions, and exam strategies by Ajmal Mansoori.
+                </p>
+            </div>
+
+            <div class="footer-column">
+                <h4>Admissions</h4>
+                <ul class="footer-links-list">
+                    <li><a href="admission.html">CUET UG Admissions</a></li>
+                    <li><a href="central-universities.html">Central Universities (49)</a></li>
+                    <li><a href="state-universities.html">State Universities</a></li>
+                    <li><a href="cutoff.html">Cutoff Archives</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Ecosystem</h4>
+                <ul class="footer-links-list">
+                    <li><a href="https://learnifyclasses.akamai.net.in" target="_blank">Learnify Classes App</a></li>
+                    <li><a href="https://t.me/cuetwarriors2026" target="_blank">CUET Warriors Hub</a></li>
+                    <li><a href="https://youtube.com/@ajmalalimansoori" target="_blank">Ajmal Mansoori YouTube</a></li>
+                    <li><a href="about-ajmal-mansoori.html">Founder Desk</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Legal & Policies</h4>
+                <ul class="footer-links-list">
+                    <li><a href="privacy-policy.html">Privacy Charter</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="disclaimer.html">Disclaimer</a></li>
+                    <li><a href="contact-us.html">Contact Helpdesk</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="sub-footer-bottom">
+            <div>&copy; 2026 The University Page. Founded by Ajmal Mansoori. All rights reserved.</div>
+            <div class="social-pill-group">
+                <a href="https://youtube.com/@ajmalalimansoori" target="_blank" class="social-pill"><i class="fab fa-youtube"></i></a>
+                <a href="https://instagram.com/ajmalcreator" target="_blank" class="social-pill"><i class="fab fa-instagram"></i></a>
+                <a href="https://t.me/cuetwarriors2026" target="_blank" class="social-pill"><i class="fab fa-telegram-plane"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- REALTIME FIREBASE SCRIPT & COMPREHENSIVE UNIVERSITY DATA -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, collection, query, orderBy, onSnapshot, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyD837pmW5N21lMgeVlpgWPx0FaMisSnxwU",
@@ -470,222 +766,372 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        let allLeads = [];
+        // COMPREHENSIVE UNIVERSITY & COLLEGE DATABASE
+        const universityDirectory = {
+            central: {
+                "au": {
+                    name: "University of Allahabad (AU)",
+                    colleges: [
+                        "AU Main Campus (FMC)",
+                        "Ewing Christian College (ECC)",
+                        "Choudhary Mahadeo Prasad Degree College (CMP)",
+                        "Allahabad Degree College (ADC)",
+                        "Iswar Saran Degree College (ISDC)",
+                        "Shyama Prasad Mukherjee Govt College (SPM)",
+                        "SS Khanna Girls Degree College (SSK)",
+                        "Jagat Taran Girls Degree College (JT)",
+                        "Arya Kanya Degree College (AKDC)",
+                        "Hamidia Girls Degree College",
+                        "KP Training College",
+                        "Rajarshi Tandon Mahila Mahavidyalaya"
+                    ],
+                    courses: [
+                        "B.A. (Honours / Research)",
+                        "B.Sc. Mathematics Group",
+                        "B.Sc. Bio Group",
+                        "B.Com (Commerce)",
+                        "B.A. LL.B. (5-Year Integrated)",
+                        "LL.B. (3-Year)",
+                        "B.Tech / BCA (Professional)",
+                        "B.Voc / Vocational Courses",
+                        "M.A. (Medieval & Modern History)",
+                        "M.A. (Political Science / Geography / Hindi / English)",
+                        "M.Sc. / M.Com / LL.M."
+                    ]
+                },
+                "bhu": {
+                    name: "Banaras Hindu University (BHU)",
+                    colleges: [
+                        "Faculty of Main Campus (FMC)",
+                        "Mahila Mahavidyalaya (MMV - Female)",
+                        "DAV Post Graduate College (DAV PGC)",
+                        "Arya Mahila PG College (AMPGC)",
+                        "Vasanta Kanya Mahavidyalaya (VKM)",
+                        "Vasant Kanya PG College (VKM Rajghat)",
+                        "Rajiv Gandhi South Campus (RGSC Barkachha)"
+                    ],
+                    courses: [
+                        "B.A. (Hons) Arts / Social Sciences",
+                        "B.Sc. (Hons) Maths Group",
+                        "B.Sc. (Hons) Bio Group",
+                        "B.Sc. (Hons) Agriculture",
+                        "B.Com (Hons) / Financial Markets",
+                        "B.A. LL.B. (Hons)",
+                        "B.Tech (Food Tech / Dairy Tech)",
+                        "M.A. / M.Sc. / M.Com"
+                    ]
+                },
+                "du": {
+                    name: "University of Delhi (DU)",
+                    colleges: [
+                        "North Campus - Hindu College",
+                        "North Campus - St. Stephen's College",
+                        "North Campus - Hansraj College",
+                        "North Campus - Miranda House",
+                        "North Campus - Kirori Mal College (KMC)",
+                        "North Campus - Ramjas College",
+                        "North Campus - Shri Ram College of Commerce (SRCC)",
+                        "South Campus - Sri Venkateswara College (Venky)",
+                        "South Campus - Lady Shri Ram College (LSR)",
+                        "South Campus - Gargi College",
+                        "South Campus - Atma Ram Sanatan Dharma (ARSD)",
+                        "Off-Campus - Shaheed Bhagat Singh College",
+                        "Off-Campus - Delhi College of Arts & Commerce (DCAC)"
+                    ],
+                    courses: [
+                        "B.A. (Hons) Political Science / History / Economics",
+                        "B.Com (Hons) / B.Com Programme",
+                        "B.Sc. (Hons) Physics / Chemistry / Maths / CS",
+                        "B.A. (Programme) Multidisciplinary",
+                        "BMS / BBA (FIA) / BBE",
+                        "B.Tech (IT & Mathematical Innovations)"
+                    ]
+                },
+                "jnu": {
+                    name: "Jawaharlal Nehru University (JNU)",
+                    colleges: ["JNU Main Campus (School of Language, Literature & Culture Studies)"],
+                    courses: [
+                        "B.A. (Hons) Foreign Languages (French / German / Russian / Spanish / Japanese / Korean / Arabic / Persian / Chinese)",
+                        "COP (Certificate of Proficiency)",
+                        "Integrated B.Sc.-M.Sc. Ayurveda Biology"
+                    ]
+                },
+                "bbau": {
+                    name: "Babasaheb Bhimrao Ambedkar University (BBAU)",
+                    colleges: ["BBAU Lucknow Main Campus", "BBAU Satellite Campus Amethi"],
+                    courses: ["B.A. (Hons) Public Admin", "B.Sc. Life Sciences", "B.Com (Hons)", "B.A. LL.B. (Integrated)", "B.Tech (CSE/ECE/Civil)", "BBA / BCA"]
+                },
+                "amu": {
+                    name: "Aligarh Muslim University (AMU)",
+                    colleges: ["AMU Main Campus Aligarh", "AMU Center Malappuram / Murshidabad / Kishanganj"],
+                    courses: ["B.A. (Hons) Selected Courses via CUET", "B.Voc (Production / Fashion / Medical Lab)", "B.Sc. (Hons) Community Science"]
+                },
+                "jmi": {
+                    name: "Jamia Millia Islamia (JMI)",
+                    colleges: ["JMI Main Campus New Delhi"],
+                    courses: ["B.A. (Hons) History / Hindi / Economics / Turkish / Sanskrit", "B.Sc. Biotechnology", "B.Voc (Solar Energy)"]
+                },
+                "other_central": {
+                    name: "Other Central Universities (CURAJ / CUHAR / CUPB / CUSB / CUAP)",
+                    colleges: ["Central University Main Campuses"],
+                    courses: ["Integrated B.Sc.-M.Sc.", "Integrated B.A.-B.Ed. / B.Sc.-B.Ed.", "B.A. / B.Sc. / B.Com", "B.Tech Engineering"]
+                }
+            },
+            state: {
+                "aud": {
+                    name: "Dr. B.R. Ambedkar University Delhi (AUD)",
+                    colleges: ["Kashmere Gate Campus", "Karampura Campus", "Lodhi Road Campus"],
+                    courses: ["B.A. (Hons) Economics / History / Psychology / Sociology", "BBA", "B.Voc Courses"]
+                },
+                "aktu": {
+                    name: "Dr. A.P.J. Abdul Kalam Technical University (AKTU)",
+                    colleges: ["IET Lucknow", "BIET Jhansi", "KNIT Sultanpur", "AKTU Affiliated Colleges"],
+                    courses: ["B.Tech (Lateral Entry / First Year)", "B.Pharm", "BBA / BCA / MBA / MCA"]
+                },
+                "mmmut": {
+                    name: "Madan Mohan Malaviya University of Tech (MMMUT)",
+                    colleges: ["MMMUT Gorakhpur Main Campus"],
+                    courses: ["B.Tech (Selected Branches)", "BBA / B.Pharma"]
+                },
+                "hbtu": {
+                    name: "Harcourt Butler Technical University (HBTU)",
+                    colleges: ["East Campus (Civil & Chem)", "West Campus Kanpur"],
+                    courses: ["B.Tech Chemical / Mechanical / CSE", "BS-MS Integrated", "BBA"]
+                },
+                "davv": {
+                    name: "Devi Ahilya Vishwavidyalaya (DAVV)",
+                    colleges: ["IET DAVV", "IMS DAVV", "IIPS DAVV Indore"],
+                    courses: ["Integrated MBA (5 Years)", "B.Com (Hons)", "B.Pharm", "BCA / MCA Integrated"]
+                },
+                "ggsipu": {
+                    name: "Guru Gobind Singh Indraprastha Uni (GGSIPU)",
+                    colleges: ["USICT Main Campus Dwarka", "MAIT", "MSIT", "BVISR", "VIPS Pitampura"],
+                    courses: ["BBA / B.Com (Hons)", "BCA", "B.A. LL.B. / BBA LL.B.", "B.A. (JMC)"]
+                },
+                "rmlau": {
+                    name: "Dr. Rammanohar Lohia Avadh University (RMLAU)",
+                    colleges: ["RMLAU Campus Ayodhya", "Affiliated Colleges (Faizabad, Sultanpur, Ambedkar Nagar)"],
+                    courses: ["B.Tech / BCA", "B.A. / B.Sc. / B.Com", "B.Pharma", "B.P.Ed"]
+                },
+                "other_state": {
+                    name: "Other State Universities (GJU / CCSU / DDU / Lucknow Uni)",
+                    colleges: ["State University Main Campus & Regional Colleges"],
+                    courses: ["B.A. / B.Sc. / B.Com", "B.Tech / B.Pharm", "LLB / LLM"]
+                }
+            },
+            private: {
+                "amity": {
+                    name: "Amity University (Noida, Lucknow, Jaipur, Gurugram)",
+                    colleges: ["Amity University Noida", "Amity University Lucknow", "Amity University Jaipur"],
+                    courses: ["B.Tech Computer Science / AI", "B.A. (Hons) Applied Psychology / Journalism", "B.Com (Hons) / BBA", "B.A. LL.B."]
+                },
+                "lpu": {
+                    name: "Lovely Professional University (LPU)",
+                    colleges: ["LPU Main Campus Phagwara, Punjab"],
+                    courses: ["B.Tech CSE / Robotics", "B.Sc. Agriculture (Hons)", "BBA / B.Com (Hons)", "Design / Fashion / Hotel Mgmt"]
+                },
+                "galgotias": {
+                    name: "Galgotias University (Greater Noida)",
+                    colleges: ["Galgotias Main Campus Greater Noida"],
+                    courses: ["B.Tech Computer Science", "BBA / BCA", "B.A. LL.B. (Hons)", "B.Sc. Nursing / Paramedical"]
+                },
+                "snu": {
+                    name: "Shiv Nadar University (Greater Noida)",
+                    colleges: ["SNU Greater Noida Campus"],
+                    courses: ["B.Tech (All Streams)", "B.Sc. (Research) Chemistry / Physics / Maths", "B.A. (Research) Economics / History", "BMS"]
+                },
+                "other_private": {
+                    name: "Other Private Universities (CU / UPES / Sharda / BML Munjal / Chitkara)",
+                    colleges: ["Private University Main Campuses"],
+                    courses: ["B.Tech / BCA", "BBA / MBA Integrated", "B.Com / B.A.", "B.Pharma / Allied Health"]
+                }
+            },
+            deemed: {
+                "tiss": {
+                    name: "Tata Institute of Social Sciences (TISS)",
+                    colleges: ["TISS Mumbai", "TISS Tuljapur", "TISS Guwahati", "TISS Hyderabad"],
+                    courses: ["B.S. in Analytics & Sustainability Studies", "B.A. in Social Science / Social Work"]
+                },
+                "hamdard": {
+                    name: "Jamia Hamdard (New Delhi)",
+                    colleges: ["School of Pharmaceutical Education & Research", "School of Engineering & Tech"],
+                    courses: ["B.Pharm / D.Pharm", "B.Sc. Paramedical Sciences", "BCA / B.Tech"]
+                },
+                "jiit": {
+                    name: "Jaypee Institute of Information Tech (JIIT)",
+                    colleges: ["Sector 62 Campus Noida", "Sector 128 Campus Noida"],
+                    courses: ["B.Tech Computer Science / IT / Biotech", "Integrated B.Tech-M.Tech", "BBA / BCA"]
+                },
+                "dei": {
+                    name: "Dayalbagh Educational Institute (DEI)",
+                    colleges: ["DEI Agra Main Campus"],
+                    courses: ["B.Tech Footwear / Electrical", "B.Com (Hons)", "B.Voc", "B.A. / B.Sc."]
+                },
+                "other_deemed": {
+                    name: "Other Deemed Universities (TERI / Graphic Era / GITAM / NGBU)",
+                    colleges: ["Deemed University Main Campuses"],
+                    courses: ["B.Tech Engineering", "BBA / B.Com", "B.Sc. Applied Sciences", "Law Courses"]
+                }
+            },
+            other: {
+                "nfsu": {
+                    name: "National Forensic Sciences University (NFSU)",
+                    colleges: ["NFSU Gandhinagar Campus", "NFSU Delhi Campus", "NFSU Goa / Tripura Campus"],
+                    courses: ["B.Sc.-M.Sc. Forensic Science (5-Year)", "B.Tech-M.Tech Computer Science (Cyber Security)", "BBA-MBA Integrated (Forensic Accounting)"]
+                },
+                "rgnau": {
+                    name: "Rajiv Gandhi National Aviation University (RGNAU)",
+                    colleges: ["RGNAU Amethi Campus (Ministry of Civil Aviation)"],
+                    courses: ["BMS in Aviation Operations", "PG Diploma in Airport Operations"]
+                },
+                "niftem": {
+                    name: "NIFTEM (Food Tech & Entrepreneurship)",
+                    colleges: ["NIFTEM Kundli (Haryana)", "NIFTEM Thanjavur (Tamil Nadu)"],
+                    courses: ["B.Tech Food Technology and Management", "M.Tech / MBA (Food & Agri Business)"]
+                },
+                "other_inst": {
+                    name: "Other Autonomous Colleges / Institutes",
+                    colleges: ["Autonomous Institute Main Campuses"],
+                    courses: ["B.A. / B.Sc. / B.Com", "B.Tech / BBA", "Diploma / Certificate"]
+                }
+            }
+        };
 
-        // 1. PIN AUTHENTICATION (Default PIN: 1009)
-        const MASTER_PIN = "1009"; 
+        // Window Handlers for Cascading
+        window.handleCategoryChange = function() {
+            const cat = document.getElementById("categorySelect").value;
+            const uniSelect = document.getElementById("universitySelect");
+            const collegeSelect = document.getElementById("collegeSelect");
+            const courseSelect = document.getElementById("courseSelect");
 
-        window.verifyAdminPass = function(e) {
+            uniSelect.innerHTML = '<option value="" disabled selected>Select/Search University</option>';
+            collegeSelect.innerHTML = '<option value="" disabled selected>Select College/Campus</option>';
+            courseSelect.innerHTML = '<option value="" disabled selected>-- First select University Name --</option>';
+            
+            collegeSelect.disabled = true;
+            courseSelect.disabled = true;
+
+            if (!cat || !universityDirectory[cat]) {
+                uniSelect.disabled = true;
+                return;
+            }
+
+            const universities = universityDirectory[cat];
+            for (const key in universities) {
+                const opt = document.createElement("option");
+                opt.value = key;
+                opt.textContent = universities[key].name;
+                uniSelect.appendChild(opt);
+            }
+
+            uniSelect.disabled = false;
+        };
+
+        window.handleUniversityChange = function() {
+            const cat = document.getElementById("categorySelect").value;
+            const uniKey = document.getElementById("universitySelect").value;
+            const collegeSelect = document.getElementById("collegeSelect");
+            const courseSelect = document.getElementById("courseSelect");
+
+            collegeSelect.innerHTML = '<option value="" disabled selected>Select College/Campus</option>';
+            courseSelect.innerHTML = '<option value="" disabled selected>-- Select Target Course --</option>';
+
+            if (!cat || !uniKey || !universityDirectory[cat][uniKey]) {
+                collegeSelect.disabled = true;
+                courseSelect.disabled = true;
+                return;
+            }
+
+            const uniData = universityDirectory[cat][uniKey];
+
+            // Populate Colleges
+            uniData.colleges.forEach(col => {
+                const opt = document.createElement("option");
+                opt.value = col;
+                opt.textContent = col;
+                collegeSelect.appendChild(opt);
+            });
+
+            // Populate Courses
+            uniData.courses.forEach(crs => {
+                const opt = document.createElement("option");
+                opt.value = crs;
+                opt.textContent = crs;
+                courseSelect.appendChild(opt);
+            });
+
+            collegeSelect.disabled = false;
+            courseSelect.disabled = false;
+        };
+
+        // SUBMIT TO FIRESTORE
+        window.handleFormSubmit = async function(e) {
             e.preventDefault();
-            const entered = document.getElementById("adminPassInput").value.trim();
-            if (entered === MASTER_PIN) {
-                document.getElementById("authScreen").style.display = "none";
-                sessionStorage.setItem("admin_auth", "true");
-                startListening();
-            } else {
-                document.getElementById("authError").style.display = "block";
-            }
-        };
+            const btn = document.getElementById("submitBtn");
+            const alertBox = document.getElementById("statusAlert");
 
-        window.logoutAdmin = function() {
-            sessionStorage.removeItem("admin_auth");
-            document.getElementById("authScreen").style.display = "flex";
-            document.getElementById("adminPassInput").value = "";
-        };
+            const fullName = document.getElementById("fullName").value.trim();
+            const whatsappNumber = document.getElementById("whatsappNumber").value.trim();
+            const category = document.getElementById("categorySelect").value;
+            const uniKey = document.getElementById("universitySelect").value;
+            const college = document.getElementById("collegeSelect").value;
+            const progLevel = document.getElementById("progLevelSelect").value;
+            const course = document.getElementById("courseSelect").value;
+            const admissionStatus = document.getElementById("admissionStatus").value;
+            const admissionThrough = document.getElementById("admissionThrough").value;
+            const admissionYear = document.getElementById("admissionYear").value;
+            const helpRequired = document.getElementById("helpRequired").value;
+            const referralSource = document.getElementById("referralSource").value;
+            const query = document.getElementById("userQuery").value.trim();
 
-        if (sessionStorage.getItem("admin_auth") === "true") {
-            document.getElementById("authScreen").style.display = "none";
-            startListening();
-        }
+            const universityName = universityDirectory[category]?.[uniKey]?.name || uniKey;
 
-        // 2. REAL-TIME FIRESTORE LISTENER
-        function startListening() {
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+            alertBox.style.display = "none";
+
             try {
-                const q = query(collection(db, "community_leads"), orderBy("createdAt", "desc"));
-                onSnapshot(q, (snapshot) => {
-                    allLeads = [];
-                    snapshot.forEach((docSnap) => {
-                        allLeads.push({ id: docSnap.id, ...docSnap.data() });
-                    });
-                    renderTable(allLeads);
-                }, (err) => {
-                    console.error("Firestore Listen Error:", err);
-                    document.getElementById("leadsTableBody").innerHTML = `<tr><td colspan="7" class="empty-state" style="color:#EF4444;">⚠️ Database Error: ${err.message}</td></tr>`;
+                // Save to Firestore Collection "community_leads"
+                await addDoc(collection(db, "community_leads"), {
+                    fullName,
+                    whatsappNumber,
+                    category,
+                    universityName,
+                    collegeCampus: college,
+                    programmeLevel: progLevel,
+                    targetCourse: course,
+                    admissionStatus,
+                    admissionThrough,
+                    admissionYear,
+                    helpRequired,
+                    referralSource,
+                    userQuery: query || "None",
+                    createdAt: serverTimestamp(),
+                    source: "The University Page Web Form"
                 });
-            } catch(e) {
-                console.error(e);
+
+                alertBox.className = "status-alert status-success";
+                alertBox.innerHTML = `Registration Successful! Thank you ${fullName}, your details have been recorded. You will receive official updates on WhatsApp.`;
+                alertBox.style.display = "block";
+
+                document.getElementById("communityForm").reset();
+                document.getElementById("universitySelect").disabled = true;
+                document.getElementById("collegeSelect").disabled = true;
+                document.getElementById("courseSelect").disabled = true;
+
+            } catch (err) {
+                console.error("Firestore submission error:", err);
+                alertBox.className = "status-alert status-error";
+                alertBox.innerHTML = `Error: Unable to submit. Please check your internet connection and try again. (${err.message})`;
+                alertBox.style.display = "block";
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = 'Submit & Join Community';
             }
-        }
-
-        // 3. RENDER TABLE
-        function renderTable(leads) {
-            const tbody = document.getElementById("leadsTableBody");
-            document.getElementById("totalCount").innerText = leads.length;
-            document.getElementById("waCount").innerText = leads.length;
-
-            if (leads.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="7" class="empty-state">No student leads received yet.</td></tr>`;
-                return;
-            }
-
-            tbody.innerHTML = leads.map((lead) => {
-                const formattedDate = lead.createdAt?.toDate ? lead.createdAt.toDate().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', dateStyle: 'medium', timeStyle: 'short' }) : "Just now";
-                const waNumber = lead.whatsappNumber || "";
-                const cleanPhone = waNumber.replace(/[^0-9]/g, '');
-                const waLink = `https://wa.me/91${cleanPhone}?text=${encodeURIComponent(`Hello ${lead.fullName}, Greetings from The University Page! We received your inquiry regarding ${lead.universityName || 'CUET Admissions'}.`)}`;
-
-                return `
-                    <tr>
-                        <td style="font-size:0.8rem; color:var(--text-muted);">${formattedDate}</td>
-                        <td style="font-weight:800; color:var(--text-primary);">${lead.fullName || 'Anonymous'}</td>
-                        <td>
-                            <a href="${waLink}" target="_blank" class="btn-wa-chat">
-                                <i class="fab fa-whatsapp"></i> +91 ${waNumber}
-                            </a>
-                        </td>
-                        <td>
-                            <span class="badge-uni">${lead.universityName || 'University'}</span>
-                            <div style="font-size:0.78rem; color:var(--text-muted); margin-top:3px;">${lead.collegeCampus || 'Main Campus'}</div>
-                        </td>
-                        <td><strong style="color:var(--primary);">${lead.targetCourse || 'UG Degree'}</strong></td>
-                        <td style="max-width:200px; font-size:0.8rem; color:var(--text-muted);">${lead.userQuery || 'None'}</td>
-                        <td>
-                            <button class="btn-delete-row" onclick="deleteLead('${lead.id}')" title="Delete record"><i class="fas fa-trash-alt"></i></button>
-                        </td>
-                    </tr>
-                `;
-            }).join('');
-        }
-
-        // 4. DELETE RECORD
-        window.deleteLead = async function(id) {
-            if (confirm("Are you sure you want to permanently delete this student record?")) {
-                try {
-                    await deleteDoc(doc(db, "community_leads", id));
-                } catch(e) {
-                    alert("Error deleting record: " + e.message);
-                }
-            }
-        };
-
-        // 5. LIVE SEARCH
-        window.filterLeadsTable = function() {
-            const queryVal = document.getElementById("leadsSearchInput").value.toLowerCase();
-            const filtered = allLeads.filter(l => 
-                (l.fullName || "").toLowerCase().includes(queryVal) ||
-                (l.whatsappNumber || "").toLowerCase().includes(queryVal) ||
-                (l.universityName || "").toLowerCase().includes(queryVal) ||
-                (l.collegeCampus || "").toLowerCase().includes(queryVal) ||
-                (l.targetCourse || "").toLowerCase().includes(queryVal)
-            );
-            renderTable(filtered);
-        };
-
-        // 6. EXPORT TO PDF
-        window.exportToPDF = function() {
-            if (allLeads.length === 0) {
-                alert("No student leads available to generate PDF!");
-                return;
-            }
-
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF('l', 'mm', 'a4'); // Landscape A4
-
-            // Header Banner
-            doc.setFillColor(79, 70, 229);
-            doc.rect(0, 0, 297, 24, 'F');
-            doc.setTextColor(255, 255, 255);
-            doc.setFontSize(16);
-            doc.setFont('helvetica', 'bold');
-            doc.text("The University Page - Student Community Leads Report", 14, 15);
-
-            doc.setFontSize(9);
-            doc.text(`Generated on: ${new Date().toLocaleString('en-IN')}`, 220, 15);
-
-            // Table Data Format
-            const tableRows = allLeads.map((l, idx) => [
-                idx + 1,
-                l.fullName || 'Anonymous',
-                l.whatsappNumber ? `+91 ${l.whatsappNumber}` : '-',
-                l.universityName || 'University',
-                l.collegeCampus || 'Main Campus',
-                l.targetCourse || 'UG Degree',
-                l.userQuery || '-'
-            ]);
-
-            doc.autoTable({
-                head: [['#', 'Student Name', 'WhatsApp No', 'University', 'Campus / College', 'Course', 'Query']],
-                body: tableRows,
-                startY: 30,
-                theme: 'striped',
-                headStyles: { fillColor: [15, 23, 42], textColor: [255, 255, 255], fontStyle: 'bold' },
-                styles: { fontSize: 8.5, cellPadding: 3 },
-                columnStyles: {
-                    0: { cellWidth: 10 },
-                    1: { cellWidth: 40, fontStyle: 'bold' },
-                    2: { cellWidth: 35 },
-                    3: { cellWidth: 50 },
-                    4: { cellWidth: 45 },
-                    5: { cellWidth: 45 },
-                    6: { cellWidth: 45 }
-                }
-            });
-
-            doc.save(`University_Page_Leads_${new Date().toISOString().slice(0,10)}.pdf`);
-        };
-
-        // 7. EXPORT TO CSV (EXCEL)
-        window.exportToCSV = function() {
-            if (allLeads.length === 0) {
-                alert("No student data available to export!");
-                return;
-            }
-
-            let csvContent = "data:text/csv;charset=utf-8,";
-            csvContent += "Date,Full Name,WhatsApp Number,University,Campus/College,Course,Student Query\n";
-
-            allLeads.forEach(l => {
-                const date = l.createdAt?.toDate ? l.createdAt.toDate().toISOString() : "";
-                const row = [
-                    `"${date}"`,
-                    `"${l.fullName || ''}"`,
-                    `"${l.whatsappNumber || ''}"`,
-                    `"${l.universityName || ''}"`,
-                    `"${l.collegeCampus || ''}"`,
-                    `"${l.targetCourse || ''}"`,
-                    `"${(l.userQuery || '').replace(/"/g, '""')}"`
-                ];
-                csvContent += row.join(",") + "\n";
-            });
-
-            const encodedUri = encodeURI(csvContent);
-            const link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
-            link.setAttribute("download", `University_Page_Leads_${new Date().toISOString().slice(0,10)}.csv`);
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        };
-
-        // 8. COPY TO CLIPBOARD
-        window.copyTableData = function() {
-            if (allLeads.length === 0) {
-                alert("No data available to copy!");
-                return;
-            }
-
-            let text = "Student Leads Report - The University Page\n\n";
-            allLeads.forEach((l, i) => {
-                text += `${i+1}. ${l.fullName} | +91 ${l.whatsappNumber} | ${l.universityName} (${l.collegeCampus}) | ${l.targetCourse} | Query: ${l.userQuery || 'None'}\n`;
-            });
-
-            navigator.clipboard.writeText(text).then(() => {
-                alert("✅ All leads copied to clipboard successfully!");
-            });
         };
     </script>
 
-    <!-- DARK/LIGHT THEME LOGIC -->
+    <!-- THEME & DRAWER LOGIC -->
     <script>
         function initAppTheme() {
             const current = localStorage.getItem('theme-mode') || 'dark';
@@ -709,6 +1155,18 @@
             }
         }
         initAppTheme();
+
+        window.openNavDrawer = function() {
+            document.getElementById('sidebarDrawer').classList.add('active');
+            document.getElementById('drawerOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
+
+        window.closeNavDrawer = function() {
+            document.getElementById('sidebarDrawer').classList.remove('active');
+            document.getElementById('drawerOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        };
     </script>
 </body>
 </html>
