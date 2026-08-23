@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Private Universities Participating in CUET | The University Page</title>
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-base: #060913;
+            --bg-surface: rgba(13, 19, 36, 0.85);
+            --bg-surface-hover: rgba(22, 31, 56, 0.95);
+            --bg-card: rgba(16, 24, 48, 0.7);
+            --bg-chip: rgba(255, 255, 255, 0.06);
+            --text-primary: #F8FAFC;
+            --text-secondary: #CBD5E1;
+            --text-muted: #94A3B8;
+            --border: rgba(255, 255, 255, 0.1);
+            --border-hover: rgba(236, 72, 153, 0.5);
+            
+            --primary: #EC4899;
+            --primary-glow: rgba(236, 72, 153, 0.35);
+            --gradient-primary: linear-gradient(135deg, #EC4899 0%, #F43F5E 50%, #A855F7 100%);
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --radius-xl: 26px;
+            --blur: blur(20px);
+        }
+
+        [data-theme="light"] {
+            --bg-base: #F4F6FC;
+            --bg-surface: rgba(255, 255, 255, 0.92);
+            --bg-surface-hover: rgba(255, 255, 255, 1);
+            --bg-card: rgba(255, 255, 255, 0.88);
+            --bg-chip: rgba(15, 23, 42, 0.05);
+            --text-primary: #0F172A;
+            --text-secondary: #334155;
+            --text-muted: #64748B;
+            --border: rgba(15, 23, 42, 0.08);
+            --border-hover: rgba(236, 72, 153, 0.5);
+            --primary: #DB2777;
+            --primary-glow: rgba(219, 39, 119, 0.2);
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            position: relative;
+        }
+
+        .ambient-glow {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 900px;
+            height: 450px;
+            background: radial-gradient(circle, var(--primary-glow) 0%, rgba(168, 85, 247, 0.06) 50%, transparent 80%);
+            pointer-events: none;
+            z-index: 0;
+            filter: blur(80px);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Cabinet Grotesk', 'Plus Jakarta Sans', sans-serif;
+            letter-spacing: -0.02em;
+        }
+
+        /* NAVBAR */
+        .header-wrapper {
+            position: sticky;
+            top: 0;
+            z-index: 90;
+            background: var(--bg-surface);
+            backdrop-filter: var(--blur);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .navbar {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-badge {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-md);
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFF;
+            font-size: 1.15rem;
+            box-shadow: 0 4px 16px rgba(236, 72, 153, 0.4);
+        }
+
+        .logo-text h2 {
+            font-size: 1.05rem;
+            font-weight: 900;
+            line-height: 1.15;
+        }
+
+        .logo-text span {
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .control-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        .control-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* DRAWER */
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .drawer-overlay.active { opacity: 1; visibility: visible; }
+
+        .sidebar-drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 300px;
+            max-width: 85vw;
+            background: var(--bg-surface);
+            backdrop-filter: blur(25px);
+            border-left: 1px solid var(--border);
+            z-index: 999;
+            transform: translateX(100%);
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .sidebar-drawer.active { transform: translateX(0); }
+
+        .drawer-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 16px;
+        }
+
+        .drawer-close-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: var(--bg-chip);
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .drawer-links { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+        .drawer-links a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 14px;
+            border-radius: var(--radius-md);
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .drawer-links a:hover, .drawer-links a.active {
+            background: var(--bg-chip);
+            color: var(--primary);
+        }
+
+        /* CONTAINER */
+        .main-container {
+            flex: 1;
+            max-width: 1280px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 24px 16px 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* HERO */
+        .page-hero {
+            text-align: center;
+            padding: 16px 10px 28px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            background: rgba(236, 72, 153, 0.15);
+            color: #F472B6;
+            border: 1px solid rgba(236, 72, 153, 0.3);
+            padding: 5px 14px;
+            border-radius: 9999px;
+            font-size: 0.74rem;
+            font-weight: 800;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+
+        .page-hero h1 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--text-primary) 30%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .page-hero p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.55;
+            font-weight: 500;
+        }
+
+        /* FILTERS & SEARCH */
+        .filter-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .search-bar-wrap {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-bar-wrap input {
+            width: 100%;
+            padding: 14px 18px 14px 44px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            outline: none;
+            backdrop-filter: var(--blur);
+            transition: all 0.2s ease;
+        }
+
+        .search-bar-wrap input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 16px var(--primary-glow);
+        }
+
+        .search-bar-wrap i {
+            position: absolute;
+            top: 50%;
+            left: 16px;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .stats-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            font-size: 0.84rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+        }
+
+        .stats-bar span b {
+            color: var(--primary);
+        }
+
+        /* UNIVERSITY GRID */
+        .uni-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 16px;
+        }
+
+        .uni-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-decoration: none;
+            color: var(--text-primary);
+            backdrop-filter: var(--blur);
+            transition: all 0.25s ease;
+        }
+
+        .uni-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary);
+            background: var(--bg-surface-hover);
+            box-shadow: 0 10px 24px -6px var(--primary-glow);
+        }
+
+        .uni-top {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .uni-index-badge {
+            width: 38px;
+            height: 38px;
+            min-width: 38px;
+            border-radius: 10px;
+            background: var(--bg-chip);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .uni-info h3 {
+            font-size: 0.95rem;
+            font-weight: 800;
+            line-height: 1.3;
+            margin-bottom: 3px;
+        }
+
+        .uni-location {
+            font-size: 0.74rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .uni-tags-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 14px;
+        }
+
+        .mini-tag {
+            font-size: 0.68rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 5px;
+            background: var(--bg-chip);
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+
+        .uni-footer-action {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid var(--border);
+            padding-top: 10px;
+            font-size: 0.78rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        /* FOOTER */
+        .modern-footer {
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border);
+            padding: 40px 16px 24px;
+            margin-top: auto;
+        }
+
+        .footer-grid {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr repeat(3, 1fr);
+            gap: 28px;
+            padding-bottom: 28px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .footer-brand-p { font-size: 0.82rem; color: var(--text-muted); margin: 10px 0 16px; line-height: 1.5; }
+        .footer-col h4 { font-size: 0.9rem; font-weight: 800; margin-bottom: 14px; }
+        .footer-nav { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+        .footer-nav a { font-size: 0.82rem; font-weight: 600; color: var(--text-secondary); text-decoration: none; }
+        .footer-nav a:hover { color: var(--primary); }
+
+        .footer-bottom {
+            max-width: 1280px;
+            margin: 20px auto 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 14px;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .social-pill-group { display: flex; gap: 8px; }
+        .social-pill {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: var(--bg-chip);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .social-pill:hover { background: var(--primary); color: #FFF; }
+
+        @media (max-width: 768px) {
+            .page-hero h1 { font-size: 1.7rem; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 480px) {
+            .navbar { padding: 10px 14px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 20px; }
+            .footer-bottom { flex-direction: column; align-items: flex-start; }
+            .uni-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-glow"></div>
+
+    <!-- DRAWER -->
+    <div class="drawer-overlay" id="drawerOverlay" onclick="closeNavDrawer()"></div>
+    <aside class="sidebar-drawer" id="sidebarDrawer">
+        <div class="drawer-header">
+            <h3>Quick Navigation</h3>
+            <button class="drawer-close-btn" onclick="closeNavDrawer()"><i class="fas fa-times"></i></button>
+        </div>
+        <ul class="drawer-links">
+            <li><a href="index.html"><i class="fas fa-home" style="color: #6366F1;"></i> Home Workspace</a></li>
+            <li><a href="latest-updates.html"><i class="fas fa-bolt" style="color: #EC4899;"></i> Real-Time Alerts</a></li>
+            <li><a href="central-universities.html"><i class="fas fa-monument" style="color: #8B5CF6;"></i> Central Universities</a></li>
+            <li><a href="state-universities.html"><i class="fas fa-city" style="color: #0284C7;"></i> State Universities</a></li>
+            <li><a href="deemed-universities.html"><i class="fas fa-award" style="color: #10B981;"></i> Deemed Universities</a></li>
+            <li><a href="private-universities.html" class="active"><i class="fas fa-building-columns" style="color: #EC4899;"></i> Private Universities</a></li>
+            <li><a href="universities.html"><i class="fas fa-landmark" style="color: #06B6D4;"></i> All Universities</a></li>
+            <li><a href="syllabus.html"><i class="fas fa-book-open" style="color: #10B981;"></i> Syllabus & PYQs</a></li>
+            <li><a href="cutoff.html"><i class="fas fa-chart-line" style="color: #F59E0B;"></i> Cutoff Analytics</a></li>
+            <li><a href="about-ajmal-mansoori.html"><i class="fas fa-user-shield" style="color: #6366F1;"></i> Founder Profile</a></li>
+        </ul>
+    </aside>
+
+    <!-- HEADER -->
+    <header class="header-wrapper">
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <div class="logo-badge"><i class="fas fa-graduation-cap"></i></div>
+                <div class="logo-text">
+                    <h2>The University Page</h2>
+                    <span>Private University Suite</span>
+                </div>
+            </a>
+            <div class="nav-actions">
+                <button class="control-btn" id="themeToggleBtn" onclick="toggleAppTheme()"><i class="fas fa-sun" id="themeIcon"></i></button>
+                <button class="control-btn" onclick="openNavDrawer()"><i class="fa-solid fa-bars-staggered"></i></button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="main-container">
+
+        <section class="page-hero">
+            <div class="hero-badge"><i class="fas fa-building-columns"></i> CUET Private University Pool</div>
+            <h1>Private Universities</h1>
+            <p>Verified index of premier Private Universities across India accepting CUET UG & PG scores along with merit-based scholarship programs.</p>
+        </section>
+
+        <!-- FILTERS -->
+        <section class="filter-controls">
+            <div class="search-bar-wrap">
+                <i class="fas fa-search"></i>
+                <input type="text" id="uniSearchInput" onkeyup="filterUniversities()" placeholder="Search Private Universities by name, course, or campus...">
+            </div>
+
+            <div class="stats-bar">
+                <span>Showing: <b id="visibleCount">32</b> Private Universities</span>
+                <span><i class="fas fa-check-circle" style="color: #EC4899;"></i> Direct & CUET Verified</span>
+            </div>
+        </section>
+
+        <!-- PRIVATE UNIVERSITIES GRID -->
+        <section class="uni-grid" id="privateUniContainer">
+
+            <!-- 1 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">01</div>
+                    <div class="uni-info">
+                        <h3>Amity University (Noida, Lucknow, Jaipur)</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Pan-India Campuses</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">CUET Accepted</span><span class="mini-tag">100% Scholarship Test</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 2 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">02</div>
+                    <div class="uni-info">
+                        <h3>Lovely Professional University (LPU)</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Phagwara, Punjab</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">LPUNEST / CUET</span><span class="mini-tag">Global Placements</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 3 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">03</div>
+                    <div class="uni-info">
+                        <h3>Galgotias University</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Greater Noida, Uttar Pradesh</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">Galgotias Portal</span><span class="mini-tag">Tech, Law & Management</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 4 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">04</div>
+                    <div class="uni-info">
+                        <h3>Shiv Nadar University</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Greater Noida, Uttar Pradesh</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">Research University</span><span class="mini-tag">SNUSAT & CUET</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 5 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">05</div>
+                    <div class="uni-info">
+                        <h3>Sharda University</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Greater Noida, Uttar Pradesh</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">Global Campus</span><span class="mini-tag">CUET Merit Pool</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 6 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">06</div>
+                    <div class="uni-info">
+                        <h3>Chandigarh University</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Mohali, Punjab</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">NAAC A+</span><span class="mini-tag">CUCET & CUET</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 7 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">07</div>
+                    <div class="uni-info">
+                        <h3>UPES Dehradun</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Dehradun, Uttarakhand</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">Energy & Tech</span><span class="mini-tag">Design & Law</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 8 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">08</div>
+                    <div class="uni-info">
+                        <h3>BML Munjal University</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Gurugram, Haryana</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">Hero Group</span><span class="mini-tag">CUET Mentorship</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 9 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">09</div>
+                    <div class="uni-info">
+                        <h3>Bennett University</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Greater Noida, Uttar Pradesh</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">Times Group</span><span class="mini-tag">Tech & Media</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 10 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">10</div>
+                    <div class="uni-info">
+                        <h3>SRM University (AP & Sonepat)</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Andhra Pradesh / Haryana</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">SRM Group</span><span class="mini-tag">B.Tech & Science</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 11 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">11</div>
+                    <div class="uni-info">
+                        <h3>Manipal University Jaipur</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Jaipur, Rajasthan</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">Manipal Group</span><span class="mini-tag">NAAC A+</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 12 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">12</div>
+                    <div class="uni-info">
+                        <h3>Chitkara University</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Rajpura, Punjab / Himachal</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">NAAC A+</span><span class="mini-tag">Tech & Pharmacy</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 13 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">13</div>
+                    <div class="uni-info">
+                        <h3>Graphic Era Hill University</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Dehradun / Bhimtal, UK</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">GEHU</span><span class="mini-tag">CUET Merit Accepted</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 14 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">14</div>
+                    <div class="uni-info">
+                        <h3>Teerthanker Mahaveer University (TMU)</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Moradabad, Uttar Pradesh</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">TMU Moradabad</span><span class="mini-tag">Medical & Tech</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 15 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">15</div>
+                    <div class="uni-info">
+                        <h3>Invertis University</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Bareilly, Uttar Pradesh</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">Invertis Bareilly</span><span class="mini-tag">CUET Integration</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 16 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">16</div>
+                    <div class="uni-info">
+                        <h3>IIMT University</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Meerut, Uttar Pradesh</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">IIMT Meerut</span><span class="mini-tag">Engineering & Law</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 17 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">17</div>
+                    <div class="uni-info">
+                        <h3>GLA University</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Mathura, Uttar Pradesh</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">NAAC A+</span><span class="mini-tag">GLA Mathura</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 18 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">18</div>
+                    <div class="uni-info">
+                        <h3>Apex University</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Jaipur, Rajasthan</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">Apex Jaipur</span><span class="mini-tag">UG/PG via CUET</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 19 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">19</div>
+                    <div class="uni-info">
+                        <h3>Jagran Lakecity University</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Bhopal, Madhya Pradesh</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">JLU Bhopal</span><span class="mini-tag">Media & Design</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 20 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">20</div>
+                    <div class="uni-info">
+                        <h3>Sanskriti University</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Mathura, Uttar Pradesh</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">Sanskriti Mathura</span><span class="mini-tag">Agriculture & Tech</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 21 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">21</div>
+                    <div class="uni-info">
+                        <h3>Alliance University</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Bengaluru, Karnataka</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">Alliance Bengaluru</span><span class="mini-tag">Business & Law</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 22 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">22</div>
+                    <div class="uni-info">
+                        <h3>Presidency University</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Bengaluru, Karnataka</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">Presidency Blr</span><span class="mini-tag">Engineering & Design</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 23 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">23</div>
+                    <div class="uni-info">
+                        <h3>K.R. Mangalam University</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Gurugram, Haryana</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">KRMU</span><span class="mini-tag">Modern Pedagogy</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 24 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">24</div>
+                    <div class="uni-info">
+                        <h3>GD Goenka University</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Gurugram, Haryana</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">GD Goenka</span><span class="mini-tag">Law & Hospitality</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 25 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">25</div>
+                    <div class="uni-info">
+                        <h3>Geeta University</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Panipat, Haryana</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">Geeta Panipat</span><span class="mini-tag">CUET Merit</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 26 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">26</div>
+                    <div class="uni-info">
+                        <h3>Quantum University</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Roorkee, Uttarakhand</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">Quantum Roorkee</span><span class="mini-tag">Interdisciplinary</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 27 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">27</div>
+                    <div class="uni-info">
+                        <h3>Mody University of Science and Technology</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Lakshmangarh, Rajasthan</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">Women's University</span><span class="mini-tag">Tech & Fashion</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 28 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">28</div>
+                    <div class="uni-info">
+                        <h3>Nirwan University</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Jaipur, Rajasthan</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">Nirwan Jaipur</span><span class="mini-tag">Agriculture & Yoga</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 29 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">29</div>
+                    <div class="uni-info">
+                        <h3>Suresh Gyan Vihar University</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Jaipur, Rajasthan</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">NAAC A</span><span class="mini-tag">SGVU Jaipur</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 30 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">30</div>
+                    <div class="uni-info">
+                        <h3>Vivekananda Global University (VGU)</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Jaipur, Rajasthan</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">NAAC A+</span><span class="mini-tag">VGU Jaipur</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 31 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">31</div>
+                    <div class="uni-info">
+                        <h3>G.H. Raisoni University</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Saikheda, MP / Maharashtra</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">Raisoni Group</span><span class="mini-tag">CUET Accepted</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 32 -->
+            <a href="admission.html" class="uni-card">
+                <div class="uni-top">
+                    <div class="uni-index-badge">32</div>
+                    <div class="uni-info">
+                        <h3>Sage University (Indore & Bhopal)</h3>
+                        <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Madhya Pradesh</span>
+                    </div>
+                </div>
+                <div class="uni-tags-row"><span class="mini-tag">Sage Group</span><span class="mini-tag">Engineering & Design</span></div>
+                <div class="uni-footer-action"><span>View Admission Matrix</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="modern-footer">
+        <div class="footer-grid">
+            <div>
+                <div class="logo">
+                    <div class="logo-badge"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="logo-text">
+                        <h2>The University Page</h2>
+                        <span>Private University Hub</span>
+                    </div>
+                </div>
+                <p class="footer-brand-p">Verified admission criteria, fee structures, and scholarship matrices for all Private Universities participating in CUET.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul class="footer-nav">
+                    <li><a href="index.html">Home Overview</a></li>
+                    <li><a href="central-universities.html">Central Universities (49)</a></li>
+                    <li><a href="state-universities.html">State Universities</a></li>
+                    <li><a href="deemed-universities.html">Deemed Universities</a></li>
+                    <li><a href="private-universities.html">Private Universities</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ecosystem</h4>
+                <ul class="footer-nav">
+                    <li><a href="https://learnifyclasses.akamai.net.in" target="_blank">Learnify Classes App</a></li>
+                    <li><a href="https://t.me/cuetwarriors2026" target="_blank">CUET Warriors Forum</a></li>
+                    <li><a href="https://youtube.com/@ajmalalimansoori" target="_blank">Ajmal Mansoori YT</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Compliance</h4>
+                <ul class="footer-nav">
+                    <li><a href="privacy-policy.html">Privacy Charter</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="disclaimer.html">Disclaimer</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div>&copy; 2026 The University Page. Private Universities Directory 🇮🇳</div>
+            <div class="social-pill-group">
+                <a href="https://youtube.com/@ajmalalimansoori" target="_blank" class="social-pill"><i class="fab fa-youtube"></i></a>
+                <a href="https://instagram.com/ajmalcreator" target="_blank" class="social-pill"><i class="fab fa-instagram"></i></a>
+                <a href="https://t.me/cuetwarriors2026" target="_blank" class="social-pill"><i class="fab fa-telegram-plane"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- REAL-TIME SEARCH & THEME LOGIC -->
+    <script>
+        function initAppTheme() {
+            const current = localStorage.getItem('theme-mode') || 'dark';
+            document.documentElement.setAttribute('data-theme', current);
+            renderThemeIcon(current);
+        }
+
+        function toggleAppTheme() {
+            const active = document.documentElement.getAttribute('data-theme');
+            const target = active === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', target);
+            localStorage.setItem('theme-mode', target);
+            renderThemeIcon(target);
+        }
+
+        function renderThemeIcon(theme) {
+            const icon = document.getElementById('themeIcon');
+            if (icon) {
+                icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+                icon.style.color = theme === 'dark' ? '#F59E0B' : 'inherit';
+            }
+        }
+        initAppTheme();
+
+        function openNavDrawer() {
+            document.getElementById('sidebarDrawer').classList.add('active');
+            document.getElementById('drawerOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeNavDrawer() {
+            document.getElementById('sidebarDrawer').classList.remove('active');
+            document.getElementById('drawerOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // REAL-TIME SEARCH & LIVE COUNTER
+        function filterUniversities() {
+            const input = document.getElementById('uniSearchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.uni-card');
+            let visibleCount = 0;
+            
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                if (text.includes(input)) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            document.getElementById('visibleCount').innerText = visibleCount;
+        }
+    </script>
+</body>
+</html>
