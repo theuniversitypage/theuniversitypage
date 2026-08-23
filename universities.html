@@ -369,13 +369,21 @@
 
         /* UNIVERSITY SECTION LAYOUT */
         .category-block { margin-bottom: 40px; }
+        
         .cat-title-header {
             display: flex;
             align-items: center;
+            justify-content: space-between;
             gap: 12px;
             margin-bottom: 16px;
             padding-bottom: 8px;
             border-bottom: 1px solid var(--border);
+        }
+
+        .cat-header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
         .cat-icon-badge {
@@ -391,15 +399,29 @@
         }
 
         .cat-title-header h2 { font-size: 1.25rem; font-weight: 900; }
-        .cat-badge-count {
-            background: var(--bg-chip);
-            color: var(--text-muted);
-            border: 1px solid var(--border);
-            font-size: 0.72rem;
+
+        .cat-more-link {
+            font-size: 0.82rem;
             font-weight: 800;
-            padding: 2px 8px;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--bg-chip);
+            border: 1px solid var(--border);
+            padding: 6px 14px;
             border-radius: 9999px;
-            margin-left: auto;
+            transition: all 0.25s ease;
+            white-space: nowrap;
+        }
+
+        .cat-more-link:hover {
+            background: var(--primary);
+            color: #FFF;
+            border-color: var(--primary);
+            transform: translateX(3px);
+            box-shadow: 0 4px 14px var(--primary-glow);
         }
 
         .uni-grid {
@@ -494,6 +516,32 @@
             color: var(--primary);
         }
 
+        /* SECTION VIEW ALL BOTTOM BUTTON */
+        .section-view-all-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--bg-card);
+            border: 1px dashed var(--border);
+            color: var(--text-secondary);
+            padding: 12px;
+            border-radius: var(--radius-md);
+            font-size: 0.86rem;
+            font-weight: 800;
+            text-decoration: none;
+            margin-top: 14px;
+            transition: all 0.25s ease;
+        }
+
+        .section-view-all-btn:hover {
+            border-color: var(--primary);
+            border-style: solid;
+            color: var(--primary);
+            background: var(--bg-surface-hover);
+            transform: translateY(-2px);
+        }
+
         /* FOOTER */
         .modern-footer {
             background: var(--bg-surface);
@@ -551,6 +599,8 @@
             .footer-grid { grid-template-columns: 1fr 1fr; }
             .category-tabs { justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 6px; }
             .tab-btn { white-space: nowrap; }
+            .cat-title-header { flex-wrap: wrap; }
+            .cat-more-link { width: 100%; justify-content: center; }
         }
 
         @media (max-width: 480px) {
@@ -574,8 +624,8 @@
         <ul class="drawer-links">
             <li><a href="index.html"><i class="fas fa-home" style="color: #6366F1;"></i> Home Workspace</a></li>
             <li><a href="latest-updates.html"><i class="fas fa-bolt" style="color: #EC4899;"></i> Real-Time Alerts</a></li>
-            <li><a href="admission.html"><i class="fas fa-university" style="color: #8B5CF6;"></i> Central Admissions</a></li>
-            <li><a href="universities.html" class="active"><i class="fas fa-landmark" style="color: #06B6D4;"></i> Explore Universities</a></li>
+            <li><a href="central-universities.html"><i class="fas fa-monument" style="color: #8B5CF6;"></i> Central Universities (49)</a></li>
+            <li><a href="universities.html" class="active"><i class="fas fa-landmark" style="color: #06B6D4;"></i> All Universities</a></li>
             <li><a href="syllabus.html"><i class="fas fa-book-open" style="color: #10B981;"></i> Syllabus & PYQs</a></li>
             <li><a href="cutoff.html"><i class="fas fa-chart-line" style="color: #F59E0B;"></i> Cutoff Analytics</a></li>
             <li><a href="about-ajmal-mansoori.html"><i class="fas fa-user-shield" style="color: #6366F1;"></i> Founder Profile</a></li>
@@ -628,9 +678,14 @@
         <!-- ================= 1. CENTRAL UNIVERSITIES ================= -->
         <section class="category-block" id="cat-central" data-category="central">
             <div class="cat-title-header">
-                <div class="cat-icon-badge" style="background: linear-gradient(135deg, #6366F1, #8B5CF6);"><i class="fas fa-monument"></i></div>
-                <h2>1. Central Universities</h2>
-                <span class="cat-badge-count">CUET Central Pool</span>
+                <div class="cat-header-left">
+                    <div class="cat-icon-badge" style="background: linear-gradient(135deg, #6366F1, #8B5CF6);"><i class="fas fa-monument"></i></div>
+                    <h2>1. Central Universities</h2>
+                </div>
+                <a href="central-universities.html" class="cat-more-link">
+                    <span>View All 49 Central Universities</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
 
             <div class="uni-grid">
@@ -681,111 +736,25 @@
                     <div class="uni-tags-row"><span class="mini-tag">BBAU Portal</span><span class="mini-tag">CUET Merit</span></div>
                     <div class="uni-footer-action"><span>View Admission</span><i class="fas fa-arrow-right"></i></div>
                 </a>
-
-                <a href="admission.html" class="uni-card">
-                    <div class="uni-top">
-                        <div class="uni-card-icon"><i class="fas fa-globe"></i></div>
-                        <div class="uni-info">
-                            <h3>Jawaharlal Nehru University (JNU)</h3>
-                            <span class="uni-location"><i class="fas fa-map-marker-alt"></i> New Delhi</span>
-                        </div>
-                    </div>
-                    <div class="uni-tags-row"><span class="mini-tag">BA Lang & UG</span><span class="mini-tag">JNU Admission</span></div>
-                    <div class="uni-footer-action"><span>View Admission</span><i class="fas fa-arrow-right"></i></div>
-                </a>
-
-                <a href="admission.html" class="uni-card">
-                    <div class="uni-top">
-                        <div class="uni-card-icon"><i class="fas fa-school"></i></div>
-                        <div class="uni-info">
-                            <h3>Aligarh Muslim University (AMU)</h3>
-                            <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Aligarh, UP</span>
-                        </div>
-                    </div>
-                    <div class="uni-tags-row"><span class="mini-tag">CUET Courses</span><span class="mini-tag">AMU Controller</span></div>
-                    <div class="uni-footer-action"><span>View Admission</span><i class="fas fa-arrow-right"></i></div>
-                </a>
-
-                <a href="admission.html" class="uni-card">
-                    <div class="uni-top">
-                        <div class="uni-card-icon"><i class="fas fa-feather"></i></div>
-                        <div class="uni-info">
-                            <h3>Jamia Millia Islamia (JMI)</h3>
-                            <span class="uni-location"><i class="fas fa-map-marker-alt"></i> New Delhi</span>
-                        </div>
-                    </div>
-                    <div class="uni-tags-row"><span class="mini-tag">JMI Portal</span><span class="mini-tag">CUET Selected Courses</span></div>
-                    <div class="uni-footer-action"><span>View Admission</span><i class="fas fa-arrow-right"></i></div>
-                </a>
-
-                <a href="admission.html" class="uni-card">
-                    <div class="uni-top">
-                        <div class="uni-card-icon"><i class="fas fa-building"></i></div>
-                        <div class="uni-info">
-                            <h3>University of Hyderabad (UoH)</h3>
-                            <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Hyderabad, Telangana</span>
-                        </div>
-                    </div>
-                    <div class="uni-tags-row"><span class="mini-tag">Integrated Master's</span><span class="mini-tag">HCU Portal</span></div>
-                    <div class="uni-footer-action"><span>View Admission</span><i class="fas fa-arrow-right"></i></div>
-                </a>
-
-                <a href="admission.html" class="uni-card">
-                    <div class="uni-top">
-                        <div class="uni-card-icon"><i class="fas fa-palette"></i></div>
-                        <div class="uni-info">
-                            <h3>Visva-Bharati University</h3>
-                            <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Santiniketan, WB</span>
-                        </div>
-                    </div>
-                    <div class="uni-tags-row"><span class="mini-tag">Arts & Science</span><span class="mini-tag">Rabindranath Tagore Heritage</span></div>
-                    <div class="uni-footer-action"><span>View Admission</span><i class="fas fa-arrow-right"></i></div>
-                </a>
-
-                <a href="admission.html" class="uni-card">
-                    <div class="uni-top">
-                        <div class="uni-card-icon"><i class="fas fa-tree"></i></div>
-                        <div class="uni-info">
-                            <h3>HNB Garhwal University</h3>
-                            <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Srinagar, Uttarakhand</span>
-                        </div>
-                    </div>
-                    <div class="uni-tags-row"><span class="mini-tag">HNBGU Portal</span><span class="mini-tag">Central Campuses</span></div>
-                    <div class="uni-footer-action"><span>View Admission</span><i class="fas fa-arrow-right"></i></div>
-                </a>
-
-                <a href="admission.html" class="uni-card">
-                    <div class="uni-top">
-                        <div class="uni-card-icon"><i class="fas fa-mountain"></i></div>
-                        <div class="uni-info">
-                            <h3>North-Eastern Hill University (NEHU)</h3>
-                            <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Shillong, Meghalaya</span>
-                        </div>
-                    </div>
-                    <div class="uni-tags-row"><span class="mini-tag">NEHU Central</span><span class="mini-tag">UG / PG Merit</span></div>
-                    <div class="uni-footer-action"><span>View Admission</span><i class="fas fa-arrow-right"></i></div>
-                </a>
-
-                <a href="admission.html" class="uni-card">
-                    <div class="uni-top">
-                        <div class="uni-card-icon"><i class="fas fa-sun"></i></div>
-                        <div class="uni-info">
-                            <h3>Central Universities of States (CU-RAJ, CU-HAR, etc.)</h3>
-                            <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Pan-India Central Units</span>
-                        </div>
-                    </div>
-                    <div class="uni-tags-row"><span class="mini-tag">CU-Punjab</span><span class="mini-tag">CU-South Bihar</span><span class="mini-tag">CU-Kerala</span><span class="mini-tag">CU-Gujarat</span></div>
-                    <div class="uni-footer-action"><span>View All Central Unis</span><i class="fas fa-arrow-right"></i></div>
-                </a>
             </div>
+
+            <a href="central-universities.html" class="section-view-all-btn">
+                <span>Explore All 49 Central Universities in Detail</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
         </section>
 
         <!-- ================= 2. STATE UNIVERSITIES ================= -->
         <section class="category-block" id="cat-state" data-category="state">
             <div class="cat-title-header">
-                <div class="cat-icon-badge" style="background: linear-gradient(135deg, #0284C7, #38BDF8);"><i class="fas fa-city"></i></div>
-                <h2>2. State Universities</h2>
-                <span class="cat-badge-count">CUET State Pool</span>
+                <div class="cat-header-left">
+                    <div class="cat-icon-badge" style="background: linear-gradient(135deg, #0284C7, #38BDF8);"><i class="fas fa-city"></i></div>
+                    <h2>2. State Universities</h2>
+                </div>
+                <a href="state-universities.html" class="cat-more-link">
+                    <span>View All State Universities</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
 
             <div class="uni-grid">
@@ -836,63 +805,25 @@
                     <div class="uni-tags-row"><span class="mini-tag">HBTU Kanpur</span><span class="mini-tag">State Tech Admissions</span></div>
                     <div class="uni-footer-action"><span>View Admission</span><i class="fas fa-arrow-right"></i></div>
                 </a>
-
-                <a href="admission.html" class="uni-card">
-                    <div class="uni-top">
-                        <div class="uni-card-icon" style="color: #8B5CF6;"><i class="fas fa-award"></i></div>
-                        <div class="uni-info">
-                            <h3>Devi Ahilya Vishwavidyalaya (DAVV)</h3>
-                            <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Indore, MP</span>
-                        </div>
-                    </div>
-                    <div class="uni-tags-row"><span class="mini-tag">DAVV Indore</span><span class="mini-tag">Management & UG</span></div>
-                    <div class="uni-footer-action"><span>View Admission</span><i class="fas fa-arrow-right"></i></div>
-                </a>
-
-                <a href="admission.html" class="uni-card">
-                    <div class="uni-top">
-                        <div class="uni-card-icon" style="color: #06B6D4;"><i class="fas fa-graduation-cap"></i></div>
-                        <div class="uni-info">
-                            <h3>Guru Gobind Singh Indraprastha Uni (GGSIPU)</h3>
-                            <span class="uni-location"><i class="fas fa-map-marker-alt"></i> New Delhi</span>
-                        </div>
-                    </div>
-                    <div class="uni-tags-row"><span class="mini-tag">IPU CET & CUET</span><span class="mini-tag">State University</span></div>
-                    <div class="uni-footer-action"><span>View Admission</span><i class="fas fa-arrow-right"></i></div>
-                </a>
-
-                <a href="admission.html" class="uni-card">
-                    <div class="uni-top">
-                        <div class="uni-card-icon" style="color: #F59E0B;"><i class="fas fa-building"></i></div>
-                        <div class="uni-info">
-                            <h3>Dr. Rammanohar Lohia Avadh University</h3>
-                            <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Ayodhya, UP</span>
-                        </div>
-                    </div>
-                    <div class="uni-tags-row"><span class="mini-tag">RMLAU Ayodhya</span><span class="mini-tag">Campus & Colleges</span></div>
-                    <div class="uni-footer-action"><span>View Admission</span><i class="fas fa-arrow-right"></i></div>
-                </a>
-
-                <a href="admission.html" class="uni-card">
-                    <div class="uni-top">
-                        <div class="uni-card-icon" style="color: #10B981;"><i class="fas fa-landmark"></i></div>
-                        <div class="uni-info">
-                            <h3>Cluster Universities (Jammu / Srinagar)</h3>
-                            <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Jammu & Kashmir</span>
-                        </div>
-                    </div>
-                    <div class="uni-tags-row"><span class="mini-tag">J&K State Unis</span><span class="mini-tag">CUET Integration</span></div>
-                    <div class="uni-footer-action"><span>View Admission</span><i class="fas fa-arrow-right"></i></div>
-                </a>
             </div>
+
+            <a href="state-universities.html" class="section-view-all-btn">
+                <span>Explore All Participating State Universities</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
         </section>
 
         <!-- ================= 3. DEEMED UNIVERSITIES ================= -->
         <section class="category-block" id="cat-deemed" data-category="deemed">
             <div class="cat-title-header">
-                <div class="cat-icon-badge" style="background: linear-gradient(135deg, #10B981, #34D399);"><i class="fas fa-award"></i></div>
-                <h2>3. Deemed Universities</h2>
-                <span class="cat-badge-count">Autonomous & Deemed</span>
+                <div class="cat-header-left">
+                    <div class="cat-icon-badge" style="background: linear-gradient(135deg, #10B981, #34D399);"><i class="fas fa-award"></i></div>
+                    <h2>3. Deemed Universities</h2>
+                </div>
+                <a href="deemed-universities.html" class="cat-more-link">
+                    <span>View All Deemed Universities</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
 
             <div class="uni-grid">
@@ -943,63 +874,25 @@
                     <div class="uni-tags-row"><span class="mini-tag">Sustainability</span><span class="mini-tag">Environmental Science</span></div>
                     <div class="uni-footer-action"><span>View Admission</span><i class="fas fa-arrow-right"></i></div>
                 </a>
-
-                <a href="admission.html" class="uni-card">
-                    <div class="uni-top">
-                        <div class="uni-card-icon" style="color: #6366F1;"><i class="fas fa-school"></i></div>
-                        <div class="uni-info">
-                            <h3>Dayalbagh Educational Institute (DEI)</h3>
-                            <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Agra, UP</span>
-                        </div>
-                    </div>
-                    <div class="uni-tags-row"><span class="mini-tag">DEI Agra</span><span class="mini-tag">Deemed Status</span></div>
-                    <div class="uni-footer-action"><span>View Admission</span><i class="fas fa-arrow-right"></i></div>
-                </a>
-
-                <a href="admission.html" class="uni-card">
-                    <div class="uni-top">
-                        <div class="uni-card-icon" style="color: #0284C7;"><i class="fas fa-city"></i></div>
-                        <div class="uni-info">
-                            <h3>Nehru Gram Bharati (NGBU)</h3>
-                            <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Prayagraj, UP</span>
-                        </div>
-                    </div>
-                    <div class="uni-tags-row"><span class="mini-tag">Prayagraj Deemed</span><span class="mini-tag">CUET Accepted</span></div>
-                    <div class="uni-footer-action"><span>View Admission</span><i class="fas fa-arrow-right"></i></div>
-                </a>
-
-                <a href="admission.html" class="uni-card">
-                    <div class="uni-top">
-                        <div class="uni-card-icon" style="color: #10B981;"><i class="fas fa-building-columns"></i></div>
-                        <div class="uni-info">
-                            <h3>GITAM (Visakhapatnam / Hyd / Blr)</h3>
-                            <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Andhra & Karnataka</span>
-                        </div>
-                    </div>
-                    <div class="uni-tags-row"><span class="mini-tag">GITAM Deemed</span><span class="mini-tag">Multi-Campus</span></div>
-                    <div class="uni-footer-action"><span>View Admission</span><i class="fas fa-arrow-right"></i></div>
-                </a>
-
-                <a href="admission.html" class="uni-card">
-                    <div class="uni-top">
-                        <div class="uni-card-icon" style="color: #EC4899;"><i class="fas fa-award"></i></div>
-                        <div class="uni-info">
-                            <h3>Graphic Era (Deemed to be University)</h3>
-                            <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Dehradun, Uttarakhand</span>
-                        </div>
-                    </div>
-                    <div class="uni-tags-row"><span class="mini-tag">NAAC A+</span><span class="mini-tag">Tech & Management</span></div>
-                    <div class="uni-footer-action"><span>View Admission</span><i class="fas fa-arrow-right"></i></div>
-                </a>
             </div>
+
+            <a href="deemed-universities.html" class="section-view-all-btn">
+                <span>Explore All Participating Deemed Universities</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
         </section>
 
         <!-- ================= 4. PRIVATE UNIVERSITIES ================= -->
         <section class="category-block" id="cat-private" data-category="private">
             <div class="cat-title-header">
-                <div class="cat-icon-badge" style="background: linear-gradient(135deg, #EC4899, #F43F5E);"><i class="fas fa-building-columns"></i></div>
-                <h2>4. Private Universities</h2>
-                <span class="cat-badge-count">CUET Private Pool</span>
+                <div class="cat-header-left">
+                    <div class="cat-icon-badge" style="background: linear-gradient(135deg, #EC4899, #F43F5E);"><i class="fas fa-building-columns"></i></div>
+                    <h2>4. Private Universities</h2>
+                </div>
+                <a href="private-universities.html" class="cat-more-link">
+                    <span>View All Private Universities</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
 
             <div class="uni-grid">
@@ -1050,63 +943,25 @@
                     <div class="uni-tags-row"><span class="mini-tag">Research University</span><span class="mini-tag">SNUSAT & CUET</span></div>
                     <div class="uni-footer-action"><span>View Admission</span><i class="fas fa-arrow-right"></i></div>
                 </a>
-
-                <a href="admission.html" class="uni-card">
-                    <div class="uni-top">
-                        <div class="uni-card-icon" style="color: #06B6D4;"><i class="fas fa-bolt"></i></div>
-                        <div class="uni-info">
-                            <h3>Sharda University</h3>
-                            <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Greater Noida, UP</span>
-                        </div>
-                    </div>
-                    <div class="uni-tags-row"><span class="mini-tag">Global Campus</span><span class="mini-tag">CUET Merit</span></div>
-                    <div class="uni-footer-action"><span>View Admission</span><i class="fas fa-arrow-right"></i></div>
-                </a>
-
-                <a href="admission.html" class="uni-card">
-                    <div class="uni-top">
-                        <div class="uni-card-icon" style="color: #EC4899;"><i class="fas fa-trophy"></i></div>
-                        <div class="uni-info">
-                            <h3>Chandigarh University</h3>
-                            <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Mohali, Punjab</span>
-                        </div>
-                    </div>
-                    <div class="uni-tags-row"><span class="mini-tag">CUCET & CUET</span><span class="mini-tag">NAAC A+</span></div>
-                    <div class="uni-footer-action"><span>View Admission</span><i class="fas fa-arrow-right"></i></div>
-                </a>
-
-                <a href="admission.html" class="uni-card">
-                    <div class="uni-top">
-                        <div class="uni-card-icon" style="color: #F59E0B;"><i class="fas fa-laptop-code"></i></div>
-                        <div class="uni-info">
-                            <h3>UPES Dehradun</h3>
-                            <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Dehradun, Uttarakhand</span>
-                        </div>
-                    </div>
-                    <div class="uni-tags-row"><span class="mini-tag">Energy & Tech</span><span class="mini-tag">Design & Law</span></div>
-                    <div class="uni-footer-action"><span>View Admission</span><i class="fas fa-arrow-right"></i></div>
-                </a>
-
-                <a href="admission.html" class="uni-card">
-                    <div class="uni-top">
-                        <div class="uni-card-icon" style="color: #10B981;"><i class="fas fa-globe"></i></div>
-                        <div class="uni-info">
-                            <h3>BML Munjal University</h3>
-                            <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Gurugram, Haryana</span>
-                        </div>
-                    </div>
-                    <div class="uni-tags-row"><span class="mini-tag">Hero Group Initiative</span><span class="mini-tag">CUET Integration</span></div>
-                    <div class="uni-footer-action"><span>View Admission</span><i class="fas fa-arrow-right"></i></div>
-                </a>
             </div>
+
+            <a href="private-universities.html" class="section-view-all-btn">
+                <span>Explore All Participating Private Universities</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
         </section>
 
         <!-- ================= 5. OTHER GOVERNMENT INSTITUTES ================= -->
         <section class="category-block" id="cat-govt-inst" data-category="govt-inst">
             <div class="cat-title-header">
-                <div class="cat-icon-badge" style="background: linear-gradient(135deg, #F59E0B, #D97706);"><i class="fas fa-microscope"></i></div>
-                <h2>5. Other Government Institutes</h2>
-                <span class="cat-badge-count">National Importance</span>
+                <div class="cat-header-left">
+                    <div class="cat-icon-badge" style="background: linear-gradient(135deg, #F59E0B, #D97706);"><i class="fas fa-microscope"></i></div>
+                    <h2>5. Other Government Institutes</h2>
+                </div>
+                <a href="govt-institutes.html" class="cat-more-link">
+                    <span>View All Govt. Institutes</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
 
             <div class="uni-grid">
@@ -1157,31 +1012,12 @@
                     <div class="uni-tags-row"><span class="mini-tag">CUET Management</span><span class="mini-tag">National Institute</span></div>
                     <div class="uni-footer-action"><span>View Portal</span><i class="fas fa-arrow-right"></i></div>
                 </a>
-
-                <a href="admission.html" class="uni-card">
-                    <div class="uni-top">
-                        <div class="uni-card-icon" style="color: #6366F1;"><i class="fas fa-om"></i></div>
-                        <div class="uni-info">
-                            <h3>Central Sanskrit University & National Sanskrit Units</h3>
-                            <span class="uni-location"><i class="fas fa-map-marker-alt"></i> New Delhi & Tirupati</span>
-                        </div>
-                    </div>
-                    <div class="uni-tags-row"><span class="mini-tag">National Sanskrit Uni</span><span class="mini-tag">CUET Language Pool</span></div>
-                    <div class="uni-footer-action"><span>View Portal</span><i class="fas fa-arrow-right"></i></div>
-                </a>
-
-                <a href="admission.html" class="uni-card">
-                    <div class="uni-top">
-                        <div class="uni-card-icon" style="color: #F59E0B;"><i class="fas fa-running"></i></div>
-                        <div class="uni-info">
-                            <h3>Lakshmibai National Institute of Physical Edu (LNIPE)</h3>
-                            <span class="uni-location"><i class="fas fa-map-marker-alt"></i> Gwalior, MP</span>
-                        </div>
-                    </div>
-                    <div class="uni-tags-row"><span class="mini-tag">Physical Education</span><span class="mini-tag">Sports Sciences</span></div>
-                    <div class="uni-footer-action"><span>View Portal</span><i class="fas fa-arrow-right"></i></div>
-                </a>
             </div>
+
+            <a href="govt-institutes.html" class="section-view-all-btn">
+                <span>Explore All Participating Govt. Institutes</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
         </section>
 
     </main>
@@ -1202,11 +1038,11 @@
             <div class="footer-col">
                 <h4>CUET Directory</h4>
                 <ul class="footer-nav">
-                    <li><a href="#cat-central">Central Universities</a></li>
-                    <li><a href="#cat-state">State Universities</a></li>
-                    <li><a href="#cat-deemed">Deemed Universities</a></li>
-                    <li><a href="#cat-private">Private Universities</a></li>
-                    <li><a href="#cat-govt-inst">Govt. Institutes</a></li>
+                    <li><a href="central-universities.html">Central Universities (49)</a></li>
+                    <li><a href="state-universities.html">State Universities</a></li>
+                    <li><a href="deemed-universities.html">Deemed Universities</a></li>
+                    <li><a href="private-universities.html">Private Universities</a></li>
+                    <li><a href="govt-institutes.html">Govt. Institutes</a></li>
                 </ul>
             </div>
             <div class="footer-col">
