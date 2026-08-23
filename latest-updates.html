@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Live Admission & Exam Updates 2026 | The University Page</title>
+    
+    <!-- Fonts & Modern Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        :root {
+            /* 🌌 DARK THEME */
+            --bg-base: #060913;
+            --bg-surface: rgba(13, 19, 36, 0.85);
+            --bg-surface-hover: rgba(22, 31, 56, 0.95);
+            --bg-card: rgba(16, 24, 48, 0.7);
+            --bg-chip: rgba(255, 255, 255, 0.06);
+            --text-primary: #F8FAFC;
+            --text-secondary: #CBD5E1;
+            --text-muted: #94A3B8;
+            --border: rgba(255, 255, 255, 0.1);
+            --border-hover: rgba(236, 72, 153, 0.5);
+            
+            --primary: #EC4899;
+            --primary-glow: rgba(236, 72, 153, 0.35);
+            --accent-blue: #6366F1;
+            --accent-green: #10B981;
+            --accent-cyan: #06B6D4;
+            --accent-amber: #F59E0B;
+            --gradient-primary: linear-gradient(135deg, #EC4899 0%, #F43F5E 50%, #A855F7 100%);
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --radius-xl: 26px;
+            --blur: blur(20px);
+        }
+
+        [data-theme="light"] {
+            /* ☀️ LIGHT THEME */
+            --bg-base: #F4F6FC;
+            --bg-surface: rgba(255, 255, 255, 0.92);
+            --bg-surface-hover: rgba(255, 255, 255, 1);
+            --bg-card: rgba(255, 255, 255, 0.88);
+            --bg-chip: rgba(15, 23, 42, 0.05);
+            --text-primary: #0F172A;
+            --text-secondary: #334155;
+            --text-muted: #64748B;
+            --border: rgba(15, 23, 42, 0.08);
+            --border-hover: rgba(236, 72, 153, 0.5);
+            --primary: #DB2777;
+            --primary-glow: rgba(219, 39, 119, 0.2);
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            position: relative;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .ambient-glow {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 900px;
+            height: 450px;
+            background: radial-gradient(circle, var(--primary-glow) 0%, rgba(99, 102, 241, 0.06) 50%, transparent 80%);
+            pointer-events: none;
+            z-index: 0;
+            filter: blur(80px);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Cabinet Grotesk', 'Plus Jakarta Sans', sans-serif;
+            letter-spacing: -0.02em;
+        }
+
+        /* NAVBAR */
+        .header-wrapper {
+            position: sticky;
+            top: 0;
+            z-index: 90;
+            background: var(--bg-surface);
+            backdrop-filter: var(--blur);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .navbar {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-badge {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-md);
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFF;
+            font-size: 1.15rem;
+            box-shadow: 0 4px 16px rgba(236, 72, 153, 0.4);
+        }
+
+        .logo-text h2 {
+            font-size: 1.05rem;
+            font-weight: 900;
+            line-height: 1.15;
+        }
+
+        .logo-text span {
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .control-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        .control-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* DRAWER */
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .drawer-overlay.active { opacity: 1; visibility: visible; }
+
+        .sidebar-drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 300px;
+            max-width: 85vw;
+            background: var(--bg-surface);
+            backdrop-filter: blur(25px);
+            border-left: 1px solid var(--border);
+            z-index: 999;
+            transform: translateX(100%);
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .sidebar-drawer.active { transform: translateX(0); }
+
+        .drawer-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 16px;
+        }
+
+        .drawer-close-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: var(--bg-chip);
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .drawer-links { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+        .drawer-links a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 14px;
+            border-radius: var(--radius-md);
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .drawer-links a:hover, .drawer-links a.active {
+            background: var(--bg-chip);
+            color: var(--primary);
+        }
+
+        /* CONTAINER */
+        .main-container {
+            flex: 1;
+            max-width: 1280px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 24px 16px 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* HERO */
+        .page-hero {
+            text-align: center;
+            padding: 16px 10px 28px;
+            max-width: 820px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            background: rgba(236, 72, 153, 0.15);
+            color: #F472B6;
+            border: 1px solid rgba(236, 72, 153, 0.3);
+            padding: 5px 14px;
+            border-radius: 9999px;
+            font-size: 0.74rem;
+            font-weight: 800;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+
+        .pulse-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #F43F5E;
+            box-shadow: 0 0 8px #F43F5E;
+            animation: livePulse 1.4s infinite;
+        }
+
+        @keyframes livePulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.4); opacity: 0.4; }
+        }
+
+        .page-hero h1 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--text-primary) 30%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .page-hero p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.55;
+            font-weight: 500;
+        }
+
+        /* SEARCH & FILTER TABS */
+        .filter-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .search-bar-wrap {
+            position: relative;
+            width: 100%;
+            max-width: 620px;
+            margin: 0 auto;
+        }
+
+        .search-bar-wrap input {
+            width: 100%;
+            padding: 14px 18px 14px 44px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            outline: none;
+            backdrop-filter: var(--blur);
+            transition: all 0.2s ease;
+        }
+
+        .search-bar-wrap input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 16px var(--primary-glow);
+        }
+
+        .search-bar-wrap i {
+            position: absolute;
+            top: 50%;
+            left: 16px;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .category-tabs {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tab-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 8px 16px;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            backdrop-filter: var(--blur);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background: var(--primary);
+            color: #FFF;
+            border-color: var(--primary);
+            box-shadow: 0 4px 14px var(--primary-glow);
+        }
+
+        .stats-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            font-size: 0.84rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+        }
+
+        .stats-bar span b {
+            color: var(--primary);
+        }
+
+        /* UPDATES FEED LIST */
+        .updates-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .update-item-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            text-decoration: none;
+            color: var(--text-primary);
+            backdrop-filter: var(--blur);
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .update-item-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .update-item-card:hover {
+            transform: translateX(4px);
+            border-color: var(--primary);
+            background: var(--bg-surface-hover);
+            box-shadow: 0 8px 24px -6px var(--primary-glow);
+        }
+
+        .update-item-card:hover::before { opacity: 1; }
+
+        .update-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .tag-pill {
+            font-size: 0.68rem;
+            font-weight: 800;
+            padding: 4px 9px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            flex-shrink: 0;
+        }
+
+        .tag-cuet { background: rgba(99, 102, 241, 0.15); color: #818CF8; border: 1px solid rgba(99, 102, 241, 0.3); }
+        .tag-au { background: rgba(236, 72, 153, 0.15); color: #F472B6; border: 1px solid rgba(236, 72, 153, 0.3); }
+        .tag-job { background: rgba(16, 185, 129, 0.15); color: #34D399; border: 1px solid rgba(16, 185, 129, 0.3); }
+        .tag-admit { background: rgba(245, 158, 11, 0.15); color: #FBBF24; border: 1px solid rgba(245, 158, 11, 0.3); }
+        .tag-bhu { background: rgba(6, 182, 212, 0.15); color: #22D3EE; border: 1px solid rgba(6, 182, 212, 0.3); }
+
+        .update-text-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            min-width: 0;
+        }
+
+        .update-title {
+            font-size: 0.94rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.4;
+        }
+
+        .update-desc-sub {
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .update-right {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-shrink: 0;
+        }
+
+        .update-date-badge {
+            font-size: 0.74rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            background: var(--bg-chip);
+            border: 1px solid var(--border);
+            padding: 4px 10px;
+            border-radius: 8px;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .action-arrow-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--bg-chip);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 0.78rem;
+            transition: all 0.2s ease;
+        }
+
+        .update-item-card:hover .action-arrow-icon {
+            background: var(--primary);
+            color: #FFF;
+            transform: translateX(3px);
+        }
+
+        /* 🛡️ ULTRA-CLEAN FULL MODERN FOOTER */
+        .modern-footer {
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border);
+            padding: 48px 20px 24px;
+            margin-top: auto;
+            backdrop-filter: var(--blur);
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr repeat(3, 1fr);
+            gap: 32px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .footer-brand-p {
+            font-size: 0.84rem;
+            color: var(--text-muted);
+            margin: 10px 0 16px;
+            line-height: 1.55;
+        }
+
+        .footer-column h4 {
+            font-size: 0.95rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .footer-links-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-links-list a {
+            font-size: 0.84rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s ease, transform 0.2s ease;
+            display: inline-block;
+        }
+
+        .footer-links-list a:hover {
+            color: var(--primary);
+            transform: translateX(4px);
+        }
+
+        .sub-footer-bottom {
+            max-width: 1280px;
+            margin: 24px auto 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+
+        .social-pill-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        .social-pill {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: var(--bg-chip);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .social-pill:hover {
+            background: var(--primary);
+            color: #FFF;
+            transform: translateY(-2px);
+        }
+
+        /* 📱 MOBILE RESPONSIVENESS */
+        @media (max-width: 850px) {
+            .footer-container { grid-template-columns: 1fr 1fr; }
+            .category-tabs { justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 6px; }
+            .tab-btn { white-space: nowrap; }
+            .update-item-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .update-left { width: 100%; flex-wrap: wrap; }
+            .update-right { width: 100%; justify-content: space-between; border-top: 1px solid var(--border); padding-top: 8px; }
+        }
+
+        @media (max-width: 520px) {
+            .navbar { padding: 10px 14px; }
+            .page-hero h1 { font-size: 1.7rem; }
+            .footer-container { grid-template-columns: 1fr; gap: 24px; }
+            .sub-footer-bottom { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-glow"></div>
+
+    <!-- 📲 SLIDE-IN SIDEBAR OVERLAY & DRAWER -->
+    <div class="drawer-overlay" id="drawerOverlay" onclick="closeNavDrawer()"></div>
+    <aside class="sidebar-drawer" id="sidebarDrawer">
+        <div class="drawer-header">
+            <h3>Quick Navigation</h3>
+            <button class="drawer-close-btn" onclick="closeNavDrawer()"><i class="fas fa-times"></i></button>
+        </div>
+        <ul class="drawer-links">
+            <li><a href="index.html"><i class="fas fa-home" style="color: #6366F1;"></i> Home Workspace</a></li>
+            <li><a href="latest-updates.html" class="active"><i class="fas fa-bolt" style="color: #EC4899;"></i> Real-Time Alerts</a></li>
+            <li><a href="central-universities.html"><i class="fas fa-monument" style="color: #8B5CF6;"></i> Central Universities (49)</a></li>
+            <li><a href="state-universities.html"><i class="fas fa-city" style="color: #0284C7;"></i> State Universities</a></li>
+            <li><a href="deemed-universities.html"><i class="fas fa-award" style="color: #10B981;"></i> Deemed Universities</a></li>
+            <li><a href="private-universities.html"><i class="fas fa-building-columns" style="color: #EC4899;"></i> Private Universities</a></li>
+            <li><a href="govt-institutes.html"><i class="fas fa-microscope" style="color: #F59E0B;"></i> Govt. Institutes</a></li>
+            <li><a href="about-ajmal-mansoori.html"><i class="fas fa-user-shield" style="color: #6366F1;"></i> Founder Profile</a></li>
+        </ul>
+    </aside>
+
+    <!-- HEADER -->
+    <header class="header-wrapper">
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <div class="logo-badge"><i class="fas fa-graduation-cap"></i></div>
+                <div class="logo-text">
+                    <h2>The University Page</h2>
+                    <span>Live Bulletins</span>
+                </div>
+            </a>
+            <div class="nav-actions">
+                <button class="control-btn" id="themeToggleBtn" onclick="toggleAppTheme()"><i class="fas fa-sun" id="themeIcon"></i></button>
+                <button class="control-btn" onclick="openNavDrawer()"><i class="fa-solid fa-bars-staggered"></i></button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="main-container">
+
+        <section class="page-hero">
+            <div class="hero-badge"><span class="pulse-dot"></span> Live Notice & Bulletin Feed 2026</div>
+            <h1>Latest Exam & Admission Updates</h1>
+            <p>Real-time notifications, official CSAS portal links, merit cutoffs, scorecard releases, and government application windows.</p>
+        </section>
+
+        <!-- SEARCH & TABS -->
+        <section class="filter-controls">
+            <div class="search-bar-wrap">
+                <i class="fas fa-search"></i>
+                <input type="text" id="updatesSearchInput" onkeyup="filterUpdates()" placeholder="Search notices by exam, university, or keyword (e.g. CUET, AU, SSC)...">
+            </div>
+
+            <div class="category-tabs">
+                <button class="tab-btn active" onclick="filterCategoryTab('all', this)"><i class="fas fa-border-all"></i> All Notices</button>
+                <button class="tab-btn" onclick="filterCategoryTab('cuet', this)"><i class="fas fa-graduation-cap"></i> CUET UG/PG</button>
+                <button class="tab-btn" onclick="filterCategoryTab('admission', this)"><i class="fas fa-university"></i> CSAS Counseling</button>
+                <button class="tab-btn" onclick="filterCategoryTab('jobs', this)"><i class="fas fa-briefcase"></i> Govt. Jobs</button>
+                <button class="tab-btn" onclick="filterCategoryTab('admitcard', this)"><i class="fas fa-id-card"></i> Admit Cards</button>
+            </div>
+
+            <div class="stats-bar">
+                <span>Showing: <b id="visibleCount">10</b> Verified Bulletins</span>
+                <span><i class="fas fa-rss" style="color: #EC4899;"></i> Real-Time Feed</span>
+            </div>
+        </section>
+
+        <!-- UPDATES FEED LIST -->
+        <section class="updates-container" id="updatesFeedList">
+
+            <!-- Item 1 -->
+            <a href="scor.html" class="update-item-card" data-category="cuet">
+                <div class="update-left">
+                    <span class="tag-pill tag-cuet">CUET UG 2026</span>
+                    <div class="update-text-wrap">
+                        <div class="update-title">CUET UG 2026 Final Normalized Scorecard & Rank Direct Download Link Live</div>
+                        <span class="update-desc-sub">National Testing Agency (NTA) official portal activated for percentile scorecards.</span>
+                    </div>
+                </div>
+                <div class="update-right">
+                    <span class="update-date-badge"><i class="far fa-calendar-alt"></i> Today</span>
+                    <div class="action-arrow-icon"><i class="fas fa-arrow-right"></i></div>
+                </div>
+            </a>
+
+            <!-- Item 2 -->
+            <a href="admission-details.html" class="update-item-card" data-category="admission">
+                <div class="update-left">
+                    <span class="tag-pill tag-au">AU CSAS Phase-1</span>
+                    <div class="update-text-wrap">
+                        <div class="update-title">Allahabad University UG CSAS Phase-1 Main Campus Registration Open</div>
+                        <span class="update-desc-sub">Candidates can register and lock subject combinations on the official Pravesh portal.</span>
+                    </div>
+                </div>
+                <div class="update-right">
+                    <span class="update-date-badge"><i class="far fa-calendar-alt"></i> Today</span>
+                    <div class="action-arrow-icon"><i class="fas fa-arrow-right"></i></div>
+                </div>
+            </a>
+
+            <!-- Item 3 -->
+            <a href="job-details.html" class="update-item-card" data-category="jobs">
+                <div class="update-left">
+                    <span class="tag-pill tag-job">SSC CGL 2026</span>
+                    <div class="update-text-wrap">
+                        <div class="update-title">SSC CGL 2026 Tier-1 National Recruitment Online Application Window Active</div>
+                        <span class="update-desc-sub">Staff Selection Commission releases Combined Graduate Level examination notification.</span>
+                    </div>
+                </div>
+                <div class="update-right">
+                    <span class="update-date-badge"><i class="far fa-calendar-alt"></i> Yesterday</span>
+                    <div class="action-arrow-icon"><i class="fas fa-arrow-right"></i></div>
+                </div>
+            </a>
+
+            <!-- Item 4 -->
+            <a href="admission-details.html" class="update-item-card" data-category="admission">
+                <div class="update-left">
+                    <span class="tag-pill tag-bhu">BHU CSAS 2026</span>
+                    <div class="update-text-wrap">
+                        <div class="update-title">Banaras Hindu University (BHU) UG Counseling Portal Preference Locking Live</div>
+                        <span class="update-desc-sub">FMC and MMV seat matrix allocation preferences open for BA, BSc, and BCom courses.</span>
+                    </div>
+                </div>
+                <div class="update-right">
+                    <span class="update-date-badge"><i class="far fa-calendar-alt"></i> Yesterday</span>
+                    <div class="action-arrow-icon"><i class="fas fa-arrow-right"></i></div>
+                </div>
+            </a>
+
+            <!-- Item 5 -->
+            <a href="admitcard-details.html" class="update-item-card" data-category="admitcard">
+                <div class="update-left">
+                    <span class="tag-pill tag-admit">Hall Ticket</span>
+                    <div class="update-text-wrap">
+                        <div class="update-title">Allahabad University PGAT 2026 Entrance Hall Ticket Download Link Active</div>
+                        <span class="update-desc-sub">Direct hall tickets and exam city intimation slips available for PG candidates.</span>
+                    </div>
+                </div>
+                <div class="update-right">
+                    <span class="update-date-badge"><i class="far fa-calendar-alt"></i> 2 Days Ago</span>
+                    <div class="action-arrow-icon"><i class="fas fa-arrow-right"></i></div>
+                </div>
+            </a>
+
+            <!-- Item 6 -->
+            <a href="document-details.html" class="update-item-card" data-category="admission">
+                <div class="update-left">
+                    <span class="tag-pill tag-cuet">UP Scholarship</span>
+                    <div class="update-text-wrap">
+                        <div class="update-title">UP Scholarship 2026-27 Dashmottar Fresh & Renewal Application Portal Active</div>
+                        <span class="update-desc-sub">Undergraduate and Post-Graduate scholars can submit online verification forms.</span>
+                    </div>
+                </div>
+                <div class="update-right">
+                    <span class="update-date-badge"><i class="far fa-calendar-alt"></i> 3 Days Ago</span>
+                    <div class="action-arrow-icon"><i class="fas fa-arrow-right"></i></div>
+                </div>
+            </a>
+
+            <!-- Item 7 -->
+            <a href="admission-details.html" class="update-item-card" data-category="admission">
+                <div class="update-left">
+                    <span class="tag-pill tag-cuet">DU CSAS</span>
+                    <div class="update-text-wrap">
+                        <div class="update-title">Delhi University (DU) CSAS Phase-2 Program & College Preference Submission</div>
+                        <span class="update-desc-sub">North and South Campus undergraduate merit choices mapping underway.</span>
+                    </div>
+                </div>
+                <div class="update-right">
+                    <span class="update-date-badge"><i class="far fa-calendar-alt"></i> 4 Days Ago</span>
+                    <div class="action-arrow-icon"><i class="fas fa-arrow-right"></i></div>
+                </div>
+            </a>
+
+            <!-- Item 8 -->
+            <a href="job-details.html" class="update-item-card" data-category="jobs">
+                <div class="update-left">
+                    <span class="tag-pill tag-job">Railway RRB</span>
+                    <div class="update-text-wrap">
+                        <div class="update-title">RRB NTPC & Technician 2026 Official Notification & Exam Schedule Out</div>
+                        <span class="update-desc-sub">Railway Recruitment Boards issue national notification for graduate posts.</span>
+                    </div>
+                </div>
+                <div class="update-right">
+                    <span class="update-date-badge"><i class="far fa-calendar-alt"></i> 5 Days Ago</span>
+                    <div class="action-arrow-icon"><i class="fas fa-arrow-right"></i></div>
+                </div>
+            </a>
+
+            <!-- Item 9 -->
+            <a href="admitcard-details.html" class="update-item-card" data-category="admitcard">
+                <div class="update-left">
+                    <span class="tag-pill tag-admit">NEET UG</span>
+                    <div class="update-text-wrap">
+                        <div class="update-title">MCC All India Quota (AIQ) MBBS/BDS Round-1 Seat Allotment Released</div>
+                        <span class="update-desc-sub">Medical Counseling Committee releases provisional Round-1 allotment results.</span>
+                    </div>
+                </div>
+                <div class="update-right">
+                    <span class="update-date-badge"><i class="far fa-calendar-alt"></i> 6 Days Ago</span>
+                    <div class="action-arrow-icon"><i class="fas fa-arrow-right"></i></div>
+                </div>
+            </a>
+
+            <!-- Item 10 -->
+            <a href="cutoff.html" class="update-item-card" data-category="cuet">
+                <div class="update-left">
+                    <span class="tag-pill tag-au">Cutoff Matrix</span>
+                    <div class="update-text-wrap">
+                        <div class="update-title">Allahabad University UG Expected Cutoff & Category-Wise Marks Released</div>
+                        <span class="update-desc-sub">Detailed BA, BSc, BCom expected merit drop analysis by Ajmal Mansoori.</span>
+                    </div>
+                </div>
+                <div class="update-right">
+                    <span class="update-date-badge"><i class="far fa-calendar-alt"></i> 1 Week Ago</span>
+                    <div class="action-arrow-icon"><i class="fas fa-arrow-right"></i></div>
+                </div>
+            </a>
+
+        </section>
+
+    </main>
+
+    <!-- FULL ULTRA-GLASS FOOTER -->
+    <footer class="modern-footer">
+        <div class="footer-container">
+            <div>
+                <div class="logo">
+                    <div class="logo-badge"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="logo-text">
+                        <h2>The University Page</h2>
+                        <span>Educational Suite</span>
+                    </div>
+                </div>
+                <p class="footer-brand-p">
+                    Empowering students nationwide with accurate admission roadmaps, cutoff predictions, and exam strategies by Ajmal Mansoori.
+                </p>
+            </div>
+
+            <div class="footer-column">
+                <h4>Admissions</h4>
+                <ul class="footer-links-list">
+                    <li><a href="admission.html">CUET UG Admissions</a></li>
+                    <li><a href="central-universities.html">Central Universities (49)</a></li>
+                    <li><a href="state-universities.html">State Universities</a></li>
+                    <li><a href="cutoff.html">Cutoff Archives</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Ecosystem</h4>
+                <ul class="footer-links-list">
+                    <li><a href="https://learnifyclasses.akamai.net.in" target="_blank">Learnify Classes App</a></li>
+                    <li><a href="https://t.me/cuetwarriors2026" target="_blank">CUET Warriors Hub</a></li>
+                    <li><a href="https://youtube.com/@ajmalalimansoori" target="_blank">Ajmal Mansoori YouTube</a></li>
+                    <li><a href="about-ajmal-mansoori.html">Founder Desk</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Legal & Policies</h4>
+                <ul class="footer-links-list">
+                    <li><a href="privacy-policy.html">Privacy Charter</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="disclaimer.html">Disclaimer</a></li>
+                    <li><a href="contact-us.html">Contact Helpdesk</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="sub-footer-bottom">
+            <div>&copy; 2026 The University Page. Founded by Ajmal Mansoori. All rights reserved. 🇮🇳</div>
+            <div class="social-pill-group">
+                <a href="https://youtube.com/@ajmalalimansoori" target="_blank" class="social-pill"><i class="fab fa-youtube"></i></a>
+                <a href="https://instagram.com/ajmalcreator" target="_blank" class="social-pill"><i class="fab fa-instagram"></i></a>
+                <a href="https://t.me/cuetwarriors2026" target="_blank" class="social-pill"><i class="fab fa-telegram-plane"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- REAL-TIME FILTER & SCRIPT -->
+    <script>
+        // THEME TOGGLE
+        function initAppTheme() {
+            const current = localStorage.getItem('theme-mode') || 'dark';
+            document.documentElement.setAttribute('data-theme', current);
+            renderThemeIcon(current);
+        }
+
+        function toggleAppTheme() {
+            const active = document.documentElement.getAttribute('data-theme');
+            const target = active === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', target);
+            localStorage.setItem('theme-mode', target);
+            renderThemeIcon(target);
+        }
+
+        function renderThemeIcon(theme) {
+            const icon = document.getElementById('themeIcon');
+            if (icon) {
+                icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+                icon.style.color = theme === 'dark' ? '#F59E0B' : 'inherit';
+            }
+        }
+        initAppTheme();
+
+        // DRAWER
+        function openNavDrawer() {
+            document.getElementById('sidebarDrawer').classList.add('active');
+            document.getElementById('drawerOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeNavDrawer() {
+            document.getElementById('sidebarDrawer').classList.remove('active');
+            document.getElementById('drawerOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // TAB FILTERING
+        function filterCategoryTab(category, btn) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const cards = document.querySelectorAll('.update-item-card');
+            let count = 0;
+
+            cards.forEach(card => {
+                const itemCat = card.getAttribute('data-category');
+                if (category === 'all' || itemCat === category) {
+                    card.style.display = 'flex';
+                    count++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            document.getElementById('visibleCount').innerText = count;
+        }
+
+        // REAL-TIME SEARCH
+        function filterUpdates() {
+            const input = document.getElementById('updatesSearchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.update-item-card');
+            let count = 0;
+
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                if (text.includes(input)) {
+                    card.style.display = 'flex';
+                    count++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            document.getElementById('visibleCount').innerText = count;
+        }
+    </script>
+</body>
+</html>
