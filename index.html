@@ -366,7 +366,7 @@
             100% { transform: translateX(-100%); }
         }
 
-        /* 🚀 ACCELERATOR PORTAL CARDS (4 ITEM GRID) */
+        /* 🚀 ACCELERATOR PORTAL CARDS */
         .portal-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -415,7 +415,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin: 32px 0 16px;
+            margin: 36px 0 16px;
             gap: 12px;
         }
 
@@ -635,7 +635,7 @@
             text-align: center;
         }
 
-        /* ⚡ QUICK NAVIGATION VAULT (QUICK LINKS SECTION) */
+        /* ⚡ QUICK NAVIGATION VAULT */
         .quicklinks-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -654,9 +654,7 @@
             text-decoration: none;
             color: var(--text-primary);
             backdrop-filter: var(--blur);
-            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
-            overflow: hidden;
+            transition: all 0.25s ease;
         }
 
         .quicklink-card:hover {
@@ -684,11 +682,6 @@
             align-items: center;
             justify-content: center;
             font-size: 1.15rem;
-            transition: transform 0.2s ease;
-        }
-
-        .quicklink-card:hover .quicklink-icon-wrap {
-            transform: scale(1.08);
         }
 
         .quicklink-info h4 {
@@ -719,13 +712,301 @@
             color: var(--text-muted);
             font-size: 0.75rem;
             flex-shrink: 0;
-            transition: all 0.2s ease;
         }
 
         .quicklink-card:hover .quicklink-arrow {
             background: var(--primary);
             color: #FFF;
-            transform: translateX(3px);
+        }
+
+        /* 📺 1. CHANNELS HUB */
+        .channels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .channel-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            color: var(--text-primary);
+            backdrop-filter: var(--blur);
+            transition: all 0.25s ease;
+        }
+
+        .channel-card:hover {
+            transform: translateY(-3px);
+            border-color: #E11D48;
+            background: var(--bg-surface-hover);
+            box-shadow: 0 10px 25px -5px rgba(225, 29, 72, 0.2);
+        }
+
+        .channel-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            min-width: 0;
+        }
+
+        .channel-icon {
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            border-radius: var(--radius-md);
+            background: rgba(225, 29, 72, 0.12);
+            color: #E11D48;
+            border: 1px solid rgba(225, 29, 72, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+
+        .channel-meta h4 {
+            font-size: 0.98rem;
+            font-weight: 800;
+            margin-bottom: 3px;
+        }
+
+        .channel-meta p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .yt-badge-btn {
+            background: #E11D48;
+            color: #FFF;
+            padding: 7px 14px;
+            border-radius: 9999px;
+            font-size: 0.74rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: opacity 0.2s;
+        }
+
+        .channel-card:hover .yt-badge-btn { opacity: 0.9; }
+
+        /* ❓ 2. FAQ ACCORDION */
+        .faq-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 18px 20px;
+            cursor: pointer;
+            backdrop-filter: var(--blur);
+            transition: border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .faq-item.active {
+            border-color: var(--primary);
+            background: var(--bg-surface-hover);
+        }
+
+        .faq-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .faq-header h4 {
+            font-size: 0.92rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.35;
+        }
+
+        .faq-chevron {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--bg-chip);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-chevron {
+            transform: rotate(180deg);
+            background: var(--primary);
+            color: #FFF;
+        }
+
+        .faq-body {
+            display: none;
+            padding-top: 12px;
+            margin-top: 12px;
+            border-top: 1px solid var(--border);
+            font-size: 0.84rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* 📞 3. CONTACT & HELPDESK */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .contact-info-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 24px;
+            backdrop-filter: var(--blur);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .contact-channels-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-channel-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px;
+            background: var(--bg-chip);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.2s;
+        }
+
+        .contact-channel-item:hover {
+            border-color: var(--primary);
+            transform: translateX(4px);
+        }
+
+        .contact-channel-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .contact-form-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 24px;
+            backdrop-filter: var(--blur);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .form-textarea {
+            width: 100%;
+            height: 100px;
+            padding: 12px 14px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            background: var(--bg-surface);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 0.86rem;
+            font-weight: 600;
+            outline: none;
+            resize: none;
+            margin-bottom: 14px;
+        }
+
+        .form-textarea:focus { border-color: var(--primary); }
+
+        /* 🏛️ 4. EXPLORE UNIVERSITIES */
+        .uni-explore-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 14px;
+            margin-bottom: 35px;
+        }
+
+        .uni-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 18px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: var(--text-primary);
+            backdrop-filter: var(--blur);
+            transition: all 0.25s ease;
+        }
+
+        .uni-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary);
+            background: var(--bg-surface-hover);
+            box-shadow: 0 10px 24px -6px var(--primary-glow);
+        }
+
+        .uni-icon {
+            width: 46px;
+            height: 46px;
+            min-width: 46px;
+            border-radius: var(--radius-md);
+            background: var(--bg-chip);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        .uni-meta h4 {
+            font-size: 0.95rem;
+            font-weight: 800;
+            margin-bottom: 2px;
+        }
+
+        .uni-meta p {
+            font-size: 0.74rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin: 0;
         }
 
         /* 🛡️ ULTRA-CLEAN MODERN FOOTER */
@@ -803,6 +1084,8 @@
         /* 📱 EXCLUSIVE MOBILE OPTIMIZATION */
         @media (max-width: 768px) {
             .footer-grid { grid-template-columns: 1fr 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
             .bulletin-item {
                 flex-direction: column;
                 align-items: flex-start;
@@ -822,7 +1105,7 @@
                 border-top: 1px solid var(--border);
                 padding-top: 6px;
             }
-            .quicklinks-grid {
+            .quicklinks-grid, .channels-grid, .uni-explore-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -1036,7 +1319,7 @@
             </div>
         </section>
 
-        <!-- ⚡ QUICK NAVIGATION VAULT (QUICK LINKS SECTION) -->
+        <!-- ⚡ QUICK NAVIGATION VAULT -->
         <div class="section-header">
             <div class="section-title">
                 <div class="title-icon" style="background: linear-gradient(135deg, #EC4899, #F43F5E);"><i class="fas fa-layer-group"></i></div>
@@ -1047,9 +1330,7 @@
         <section class="quicklinks-grid">
             <a href="result.html" class="quicklink-card">
                 <div class="quicklink-left">
-                    <div class="quicklink-icon-wrap" style="color: #10B981;">
-                        <i class="fas fa-trophy"></i>
-                    </div>
+                    <div class="quicklink-icon-wrap" style="color: #10B981;"><i class="fas fa-trophy"></i></div>
                     <div class="quicklink-info">
                         <h4>Entrance Results</h4>
                         <p>Scorecards & Merit Lists</p>
@@ -1060,9 +1341,7 @@
 
             <a href="latest-jobs.html" class="quicklink-card">
                 <div class="quicklink-left">
-                    <div class="quicklink-icon-wrap" style="color: #F59E0B;">
-                        <i class="fas fa-briefcase"></i>
-                    </div>
+                    <div class="quicklink-icon-wrap" style="color: #F59E0B;"><i class="fas fa-briefcase"></i></div>
                     <div class="quicklink-info">
                         <h4>Latest Jobs</h4>
                         <p>Govt, SSC & Banking Forms</p>
@@ -1073,9 +1352,7 @@
 
             <a href="admitcard.html" class="quicklink-card">
                 <div class="quicklink-left">
-                    <div class="quicklink-icon-wrap" style="color: #F43F5E;">
-                        <i class="fas fa-id-card"></i>
-                    </div>
+                    <div class="quicklink-icon-wrap" style="color: #F43F5E;"><i class="fas fa-id-card"></i></div>
                     <div class="quicklink-info">
                         <h4>Hall Tickets</h4>
                         <p>Admit Cards & City Slips</p>
@@ -1086,9 +1363,7 @@
 
             <a href="admission.html" class="quicklink-card">
                 <div class="quicklink-left">
-                    <div class="quicklink-icon-wrap" style="color: #8B5CF6;">
-                        <i class="fas fa-university"></i>
-                    </div>
+                    <div class="quicklink-icon-wrap" style="color: #8B5CF6;"><i class="fas fa-university"></i></div>
                     <div class="quicklink-info">
                         <h4>Admissions</h4>
                         <p>Central Uni CSAS Portals</p>
@@ -1099,9 +1374,7 @@
 
             <a href="cutoff.html" class="quicklink-card">
                 <div class="quicklink-left">
-                    <div class="quicklink-icon-wrap" style="color: #06B6D4;">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
+                    <div class="quicklink-icon-wrap" style="color: #06B6D4;"><i class="fas fa-chart-line"></i></div>
                     <div class="quicklink-info">
                         <h4>Cutoffs & Ranks</h4>
                         <p>Category-Wise Merit Marks</p>
@@ -1112,9 +1385,7 @@
 
             <a href="answerkey.html" class="quicklink-card">
                 <div class="quicklink-left">
-                    <div class="quicklink-icon-wrap" style="color: #EC4899;">
-                        <i class="fas fa-key"></i>
-                    </div>
+                    <div class="quicklink-icon-wrap" style="color: #EC4899;"><i class="fas fa-key"></i></div>
                     <div class="quicklink-info">
                         <h4>Answer Keys</h4>
                         <p>Official Question Papers</p>
@@ -1125,9 +1396,7 @@
 
             <a href="syllabus.html" class="quicklink-card">
                 <div class="quicklink-left">
-                    <div class="quicklink-icon-wrap" style="color: #10B981;">
-                        <i class="fas fa-book-open"></i>
-                    </div>
+                    <div class="quicklink-icon-wrap" style="color: #10B981;"><i class="fas fa-book-open"></i></div>
                     <div class="quicklink-info">
                         <h4>Exam Syllabus</h4>
                         <p>PDF Blueprints & Patterns</p>
@@ -1138,15 +1407,210 @@
 
             <a href="document-details.html" class="quicklink-card">
                 <div class="quicklink-left">
-                    <div class="quicklink-icon-wrap" style="color: #0D9488;">
-                        <i class="fas fa-award"></i>
-                    </div>
+                    <div class="quicklink-icon-wrap" style="color: #0D9488;"><i class="fas fa-award"></i></div>
                     <div class="quicklink-info">
                         <h4>Scholarships</h4>
                         <p>UP & National Schemes</p>
                     </div>
                 </div>
                 <div class="quicklink-arrow"><i class="fas fa-arrow-right"></i></div>
+            </a>
+        </section>
+
+        <!-- 📺 1. OFFICIAL CHANNELS HUB -->
+        <div class="section-header">
+            <div class="section-title">
+                <div class="title-icon" style="background: linear-gradient(135deg, #E11D48, #F43F5E);"><i class="fab fa-youtube"></i></div>
+                <span>Official Channels & Mentorship Network</span>
+            </div>
+        </div>
+
+        <section class="channels-grid">
+            <!-- Channel 1 -->
+            <a href="https://youtube.com/@ajmalalimansoori" target="_blank" class="channel-card">
+                <div class="channel-left">
+                    <div class="channel-icon"><i class="fas fa-user-graduate"></i></div>
+                    <div class="channel-meta">
+                        <h4>Ajmal Mansoori</h4>
+                        <p>Exam Strategy & Live Mentorship</p>
+                    </div>
+                </div>
+                <span class="yt-badge-btn"><i class="fab fa-youtube"></i> Visit</span>
+            </a>
+
+            <!-- Channel 2 -->
+            <a href="https://youtube.com/@theuniversitypage" target="_blank" class="channel-card">
+                <div class="channel-left">
+                    <div class="channel-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="channel-meta">
+                        <h4>The University Page</h4>
+                        <p>Central Uni Updates & Cutoffs</p>
+                    </div>
+                </div>
+                <span class="yt-badge-btn"><i class="fab fa-youtube"></i> Visit</span>
+            </a>
+
+            <!-- Channel 3 -->
+            <a href="https://youtube.com/@allahabaduniversitypage" target="_blank" class="channel-card">
+                <div class="channel-left">
+                    <div class="channel-icon"><i class="fas fa-landmark"></i></div>
+                    <div class="channel-meta">
+                        <h4>Allahabad University Page</h4>
+                        <p>AU Campus News, NEP & Forms</p>
+                    </div>
+                </div>
+                <span class="yt-badge-btn"><i class="fab fa-youtube"></i> Visit</span>
+            </a>
+
+            <!-- Channel 4 -->
+            <a href="https://youtube.com/@learnifyclasses" target="_blank" class="channel-card">
+                <div class="channel-left">
+                    <div class="channel-icon"><i class="fas fa-laptop-code"></i></div>
+                    <div class="channel-meta">
+                        <h4>Learnify Classes Main Channel</h4>
+                        <p>Complete Exam Preparation</p>
+                    </div>
+                </div>
+                <span class="yt-badge-btn"><i class="fab fa-youtube"></i> Visit</span>
+            </a>
+        </section>
+
+        <!-- ❓ 2. FREQUENTLY ASKED QUESTIONS -->
+        <div class="section-header">
+            <div class="section-title">
+                <div class="title-icon" style="background: linear-gradient(135deg, #6366F1, #8B5CF6);"><i class="fas fa-circle-question"></i></div>
+                <span>Frequently Asked Questions</span>
+            </div>
+        </div>
+
+        <section class="faq-container">
+            <div class="faq-item" onclick="toggleFaqAccordion(this)">
+                <div class="faq-header">
+                    <h4>What is the Allahabad University NEP Credit System?</h4>
+                    <div class="faq-chevron"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-body">
+                    Under NEP, students complete 44 credits annually (184 credits across 4 years) to receive an Honours with Research degree. Check the Syllabus section for complete semester-wise course combinations.
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaqAccordion(this)">
+                <div class="faq-header">
+                    <h4>How accurate is the Campus Rank Predictor tool?</h4>
+                    <div class="faq-chevron"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-body">
+                    The predictor models previous years' merit cutoff drops, seat matrix allocations, and reservation statistics for Central Universities (AU, BHU, DU) to provide a realistic rank estimation.
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaqAccordion(this)">
+                <div class="faq-header">
+                    <h4>Where can I download verified e-books and test series?</h4>
+                    <div class="faq-chevron"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-body">
+                    You can access curated study booklets and full-length simulated mock tests directly through the Learnify Classes application and portal modules linked in the top accelerator grid.
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaqAccordion(this)">
+                <div class="faq-header">
+                    <h4>How do I stay alerted for immediate cutoff drops?</h4>
+                    <div class="faq-chevron"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-body">
+                    Join our official <b>CUET Warriors Forum</b> on Telegram to receive instant notifications the moment university counseling portals release new category merit cutoffs.
+                </div>
+            </div>
+        </section>
+
+        <!-- 📞 3. CONTACT US -->
+        <div class="section-header">
+            <div class="section-title">
+                <div class="title-icon" style="background: linear-gradient(135deg, #059669, #10B981);"><i class="fas fa-headset"></i></div>
+                <span>Contact & Student Support</span>
+            </div>
+        </div>
+
+        <section class="contact-grid">
+            <div class="contact-info-card">
+                <div>
+                    <h3 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 6px;">Need Direct Counseling Assistance?</h3>
+                    <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px;">
+                        Reach out across our official student helpdesk channels for admission queries, portal guidance, and document verification support.
+                    </p>
+                </div>
+                <div class="contact-channels-list">
+                    <a href="https://t.me/cuetwarriors2026" target="_blank" class="contact-channel-item">
+                        <div class="contact-channel-icon" style="background: rgba(34, 158, 217, 0.15); color: #229ED9;"><i class="fab fa-telegram-plane"></i></div>
+                        <div>
+                            <h5 style="font-size: 0.88rem; font-weight: 800;">Telegram Support Community</h5>
+                            <span style="font-size: 0.74rem; color: var(--text-muted);">Instant Chat & Doubts</span>
+                        </div>
+                    </a>
+                    <a href="https://instagram.com/ajmalcreator" target="_blank" class="contact-channel-item">
+                        <div class="contact-channel-icon" style="background: rgba(225, 29, 72, 0.15); color: #E11D48;"><i class="fab fa-instagram"></i></div>
+                        <div>
+                            <h5 style="font-size: 0.88rem; font-weight: 800;">Official Instagram DM</h5>
+                            <span style="font-size: 0.74rem; color: var(--text-muted);">@ajmalcreator</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="contact-form-card">
+                <h3 style="font-size: 1.05rem; font-weight: 800; margin-bottom: 12px;">Send Quick Query</h3>
+                <div class="form-row">
+                    <input type="text" class="form-input" placeholder="Your Name">
+                    <input type="email" class="form-input" placeholder="Your Email">
+                </div>
+                <textarea class="form-textarea" placeholder="Write your admission or syllabus query here..."></textarea>
+                <button class="glow-btn" onclick="alert('Thank you! Your query has been logged.')">
+                    <i class="fas fa-paper-plane"></i> Submit Query
+                </button>
+            </div>
+        </section>
+
+        <!-- 🏛️ 4. EXPLORE UNIVERSITIES -->
+        <div class="section-header">
+            <div class="section-title">
+                <div class="title-icon" style="background: linear-gradient(135deg, #0284C7, #38BDF8);"><i class="fas fa-university"></i></div>
+                <span>Explore Top Central & State Universities</span>
+            </div>
+        </div>
+
+        <section class="uni-explore-grid">
+            <a href="admission.html" class="uni-card">
+                <div class="uni-icon"><i class="fas fa-monument"></i></div>
+                <div class="uni-meta">
+                    <h4>University of Allahabad</h4>
+                    <p>AU Main Campus & Colleges</p>
+                </div>
+            </a>
+
+            <a href="admission.html" class="uni-card">
+                <div class="uni-icon"><i class="fas fa-om"></i></div>
+                <div class="uni-meta">
+                    <h4>Banaras Hindu University</h4>
+                    <p>BHU Varanasi (FMC / MMV)</p>
+                </div>
+            </a>
+
+            <a href="admission.html" class="uni-card">
+                <div class="uni-icon"><i class="fas fa-landmark-dome"></i></div>
+                <div class="uni-meta">
+                    <h4>University of Delhi</h4>
+                    <p>DU North & South Campus</p>
+                </div>
+            </a>
+
+            <a href="admission.html" class="uni-card">
+                <div class="uni-icon"><i class="fas fa-book-atlas"></i></div>
+                <div class="uni-meta">
+                    <h4>Dr. BR Ambedkar University</h4>
+                    <p>BBAU Lucknow Admissions</p>
+                </div>
             </a>
         </section>
 
@@ -1210,7 +1674,7 @@
 
     <!-- INTERACTIVE JAVASCRIPT -->
     <script>
-        // 🌓 ULTRA-SMOOTH THEME TOGGLE
+        // 🌓 THEME TOGGLE
         function initAppTheme() {
             const current = localStorage.getItem('theme-mode') || 'dark';
             document.documentElement.setAttribute('data-theme', current);
@@ -1267,6 +1731,22 @@
             badge.style.borderColor = 'rgba(99, 102, 241, 0.4)';
             badge.style.color = 'var(--text-primary)';
             badge.innerHTML = `🎯 Predicted Merit Standing: <b>#${estimatedRank}</b> (All India Pool)`;
+        }
+
+        // ❓ FAQ ACCORDION TOGGLE
+        function toggleFaqAccordion(element) {
+            const body = element.querySelector('.faq-body');
+            const isActive = element.classList.contains('active');
+
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+                item.querySelector('.faq-body').style.display = 'none';
+            });
+
+            if (!isActive) {
+                element.classList.add('active');
+                body.style.display = 'block';
+            }
         }
     </script>
 </body>
