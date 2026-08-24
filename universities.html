@@ -413,7 +413,7 @@
             transform: translateX(4px);
         }
 
-        /* UNIVERSITY SECTION LAYOUT */
+        /* UNIVERSITY SECTION LAYOUT -> CHANGED TO SINGLE COLUMN (एक के नीचे एक) */
         .category-block { margin-bottom: 40px; }
         
         .cat-title-header {
@@ -470,10 +470,12 @@
             box-shadow: 0 4px 14px var(--primary-glow);
         }
 
+        /* 🚀 UPDATED TO SINGLE COLUMN (VERTICAL STACK) */
         .uni-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 14px;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 14px !important;
+            width: 100% !important;
         }
 
         .uni-card {
@@ -488,6 +490,8 @@
             color: var(--text-primary);
             backdrop-filter: var(--blur);
             transition: all 0.25s ease;
+            width: 100% !important;
+            max-width: 100% !important;
         }
 
         .uni-card:hover {
