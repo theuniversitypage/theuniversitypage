@@ -14,7 +14,6 @@
 
     <style>
         :root {
-            /* 🌌 DARK THEME (Default) */
             --bg-base: #060913;
             --bg-surface: rgba(13, 19, 36, 0.85);
             --bg-surface-hover: rgba(22, 31, 56, 0.95);
@@ -36,7 +35,6 @@
         }
 
         [data-theme="light"] {
-            /* ☀️ LIGHT THEME */
             --bg-base: #F4F6FC;
             --bg-surface: rgba(255, 255, 255, 0.92);
             --bg-surface-hover: rgba(255, 255, 255, 1);
@@ -174,12 +172,6 @@
             box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
             padding: 12px;
             z-index: 999999 !important;
-            animation: fadeIn 0.2s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-6px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         .resources-drawer.active { display: block !important; }
@@ -403,10 +395,7 @@
             background: var(--bg-surface);
             margin-bottom: 12px;
             cursor: pointer;
-            transition: border-color 0.2s ease;
         }
-        .resizer-box:hover { border-color: var(--primary); }
-
         .resizer-box input[type="file"] { display: none; }
         .resizer-box label {
             cursor: pointer;
@@ -486,7 +475,36 @@
             line-height: 1.5;
         }
 
-        /* FOOTER */
+        /* MULTI-SUBJECT CARDS FOR PREDICTOR */
+        .subject-slot-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+        .subject-slot {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 6px 4px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+        .subject-slot input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            font-weight: 800;
+            text-align: center;
+            font-size: 0.85rem;
+            outline: none;
+            margin-top: 2px;
+        }
+
+        /* MODERN FOOTER */
         .modern-footer {
             background: var(--bg-surface);
             border-top: 1px solid var(--border);
@@ -580,12 +598,14 @@
         @media (max-width: 850px) {
             .footer-container { grid-template-columns: 1fr 1fr; }
             .widgets-grid { grid-template-columns: 1fr; }
+            .subject-slot-grid { grid-template-columns: repeat(3, 1fr); }
         }
 
         @media (max-width: 520px) {
             .navbar { padding: 10px 14px; }
             .footer-container { grid-template-columns: 1fr; gap: 24px; }
             .sub-footer-bottom { flex-direction: column; align-items: flex-start; }
+            .subject-slot-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
@@ -638,7 +658,7 @@
 
         <section class="widgets-grid">
 
-            <!-- WIDGET 1: COLLEGE PREDICTOR -->
+            <!-- WIDGET 1: COLLEGE PREDICTOR (5 Subject Cards + Total + Category) -->
             <div class="widget-card">
                 <div>
                     <div class="widget-card-header">
@@ -647,17 +667,25 @@
                         </div>
                         <div class="widget-title-group">
                             <h3>College Predictor</h3>
-                            <p>Marks vs Rank Calculator</p>
+                            <p>49+ Central Universities & AU Ranking</p>
                         </div>
                     </div>
 
                     <select id="predExam" class="form-control-custom">
-                        <option value="cuet">CUET UG Entrance 2026</option>
-                        <option value="au">Allahabad University Entrance</option>
-                        <option value="bhu">BHU Course Admission</option>
+                        <option value="au">Allahabad University (AU)</option>
+                        <option value="bhu">Banaras Hindu University (BHU)</option>
+                        <option value="du">Delhi University (DU)</option>
+                        <option value="central49">Other 49+ Central Universities</option>
                     </select>
 
-                    <input type="number" id="predMarks" class="form-control-custom" placeholder="Enter Expected Marks (e.g. 185)">
+                    <p style="font-size: 0.76rem; font-weight: 700; color: var(--text-muted); margin-bottom: 6px;">Enter Subject Scores (Up to 5 Subjects):</p>
+                    <div class="subject-slot-grid">
+                        <div class="subject-slot">Sub 1<input type="number" id="sub1" placeholder="0"></div>
+                        <div class="subject-slot">Sub 2<input type="number" id="sub2" placeholder="0"></div>
+                        <div class="subject-slot">Sub 3<input type="number" id="sub3" placeholder="0"></div>
+                        <div class="subject-slot">Sub 4<input type="number" id="sub4" placeholder="0"></div>
+                        <div class="subject-slot">Sub 5<input type="number" id="sub5" placeholder="0"></div>
+                    </div>
 
                     <select id="predCat" class="form-control-custom">
                         <option value="ur">General / Unreserved</option>
@@ -668,7 +696,7 @@
                 </div>
 
                 <div>
-                    <button class="widget-btn" onclick="calculatePrediction()">
+                    <button class="widget-btn" onclick="calculateMultiSubjectPrediction()">
                         <i class="fas fa-chart-pie"></i> Predict Rank & College
                     </button>
                     <div class="output-box-inline" id="predictionResult"></div>
@@ -707,7 +735,7 @@
                 </div>
             </div>
 
-            <!-- WIDGET 3: PHOTO & SIGN RESIZER -->
+            <!-- WIDGET 3: PHOTO & SIGN RESIZER (50-500kb & 500kb-1mb) -->
             <div class="widget-card">
                 <div>
                     <div class="widget-card-header">
@@ -716,7 +744,7 @@
                         </div>
                         <div class="widget-title-group">
                             <h3>Photo & Sign Resizer</h3>
-                            <p>Fast Form Compression</p>
+                            <p>Fast Form Compression & PDF tools</p>
                         </div>
                     </div>
 
@@ -724,19 +752,19 @@
                         <input type="file" id="resizerInput" accept="image/*" onchange="processImageResize(event)">
                         <label for="resizerInput">
                             <i class="fas fa-cloud-upload-alt" style="font-size: 1.2rem; color: var(--primary);"></i>
-                            <span>Upload Photo or Signature</span>
+                            <span>Upload Image / Document</span>
                         </label>
                     </div>
 
                     <select id="resizePreset" class="form-control-custom">
                         <option value="photo">Passport Photo (50 KB - 500 KB)</option>
                         <option value="sign">Signature (50 KB - 500 KB)</option>
-                        <option value="doc">Document PDF (500 KB - 1 MB)</option>
+                        <option value="doc">Document File (500 KB - 1 MB)</option>
                     </select>
                 </div>
 
                 <a href="#" id="downloadResizedBtn" class="widget-btn" style="background: #D97706; display: none;" download="compressed-file.jpg">
-                    <i class="fas fa-download"></i> Download Compressed File
+                    <i class="fas fa-download"></i> Download Processed File
                 </a>
             </div>
 
@@ -771,7 +799,7 @@
                 </a>
             </div>
 
-            <!-- WIDGET 5: CUET SUBJECT COMBINATION CHECKER -->
+            <!-- WIDGET 5: CUET SUBJECT COMBINATION CHECKER (49+ Central Unis + AU 2026 1 Lang + 1 Domain + GAT) -->
             <div class="widget-card">
                 <div>
                     <div class="widget-card-header">
@@ -780,14 +808,14 @@
                         </div>
                         <div class="widget-title-group">
                             <h3>Subject Combo Mapping</h3>
-                            <p>CUET Exam Subject Selector</p>
+                            <p>2026 Latest Eligibility Mapper</p>
                         </div>
                     </div>
 
                     <select id="comboCourse" class="form-control-custom">
                         <option value="ba">B.A. Arts & Social Science</option>
                         <option value="bsc">B.Sc. Science Stream</option>
-                        <option value="bcom">B.Com Commerce</option>
+                        <option value="bcom">B.Com. Commerce</option>
                         <option value="ballb">BA LLB 5-Year Law</option>
                     </select>
 
@@ -795,9 +823,7 @@
                         <option value="au">Allahabad University (AU)</option>
                         <option value="bhu">Banaras Hindu University (BHU)</option>
                         <option value="du">Delhi University (DU)</option>
-                        <option value="jnu">Jawaharlal Nehru University (JNU)</option>
-                        <option value="amu">Aligarh Muslim University (AMU)</option>
-                        <option value="jmi">Jamia Millia Islamia</option>
+                        <option value="other49">Other 49+ Central Universities</option>
                     </select>
                 </div>
 
@@ -834,7 +860,7 @@
                 </div>
             </div>
 
-            <!-- WIDGET 7: AI STUDENT DRAFT WRITER -->
+            <!-- WIDGET 7: AI STUDENT DRAFT WRITER (Campus & College Related Problem Applications) -->
             <div class="widget-card">
                 <div>
                     <div class="widget-card-header">
@@ -843,24 +869,25 @@
                         </div>
                         <div class="widget-title-group">
                             <h3>AI Student Draft Writer</h3>
-                            <p>Application & Letter Generator</p>
+                            <p>Campus & College Applications</p>
                         </div>
                     </div>
 
                     <select id="aiDraftType" class="form-control-custom">
                         <option value="leave">Sick / Leave Application</option>
-                        <option value="fee">Fee Submission Extension</option>
+                        <option value="fee">Fee Concession / Extension</option>
                         <option value="tc">TC / Migration Certificate</option>
                         <option value="hostel">Hostel Accommodation Request</option>
-                        <option value="correction">Marksheet / Detail Correction</option>
+                        <option value="idcard">Duplicate ID Card Request</option>
+                        <option value="correction">Marksheet Details Correction</option>
                     </select>
 
-                    <input type="text" id="aiStudentName" class="form-control-custom" placeholder="Your Name & Roll No.">
+                    <input type="text" id="aiCampusName" class="form-control-custom" placeholder="College / Campus Name (e.g. CMP College)">
                 </div>
 
                 <div>
                     <button class="widget-btn" style="background: #0284C7;" onclick="generateAIDraft()">
-                        <i class="fas fa-magic"></i> Draft Letter
+                        <i class="fas fa-magic"></i> Draft Application
                     </button>
                     <div class="output-box-inline" id="aiDraftOutput"></div>
                 </div>
@@ -954,7 +981,7 @@
                 </div>
             </div>
 
-            <!-- WIDGET 11: MAIN CAMPUS VS AFFILIATED CUTOFF MATRIX -->
+            <!-- WIDGET 11: MAIN CAMPUS VS AFFILIATED CUTOFF MATRIX (AU Main Campus terminology fixed) -->
             <div class="widget-card">
                 <div>
                     <div class="widget-card-header">
@@ -1019,7 +1046,7 @@
                 </div>
             </div>
 
-            <!-- WIDGET 13: GAP YEAR AFFIDAVIT GENERATOR -->
+            <!-- WIDGET 13: GAP YEAR AFFIDAVIT DRAFT (Includes Main Campus & Affiliated Colleges) -->
             <div class="widget-card">
                 <div>
                     <div class="widget-card-header">
@@ -1028,17 +1055,17 @@
                         </div>
                         <div class="widget-title-group">
                             <h3>Gap Year Affidavit Draft</h3>
-                            <p>Instant Legal Draft Writer</p>
+                            <p>Campus & Affiliated College Legal Draft</p>
                         </div>
                     </div>
 
                     <input type="text" id="gapName" class="form-control-custom" placeholder="Full Student Name">
-                    <input type="number" id="gapYears" class="form-control-custom" placeholder="Gap Duration (e.g. 1 Year)">
+                    <input type="text" id="gapInst" class="form-control-custom" placeholder="Campus / College Name (e.g. AU Main Campus / CMP)">
                 </div>
 
                 <div>
                     <button class="widget-btn" style="background: #0F766E;" onclick="generateGapDraft()">
-                        <i class="fas fa-file-alt"></i> Create Gap Draft
+                        <i class="fas fa-file-alt"></i> Create Legal Draft
                     </button>
                     <div class="output-box-inline" id="gapOutput"></div>
                 </div>
@@ -1069,7 +1096,7 @@
                 </div>
             </div>
 
-            <!-- WIDGET 15: FEE EXEMPTION & SCHOLARSHIP CHECKER -->
+            <!-- WIDGET 15: FEE EXEMPTION & SCHOLARSHIP HELPER (Strictly 48000/- rule) -->
             <div class="widget-card">
                 <div>
                     <div class="widget-card-header">
@@ -1078,14 +1105,12 @@
                         </div>
                         <div class="widget-title-group">
                             <h3>Fee Exemption Helper</h3>
-                            <p>Scholarship Eligibility Check</p>
+                            <p>Income 48000/- Eligibility Check</p>
                         </div>
                     </div>
 
                     <select id="feeCategory" class="form-control-custom">
-                        <option value="gen">General Category</option>
-                        <option value="obc">OBC Non-Creamy Layer</option>
-                        <option value="scst">SC / ST Category</option>
+                        <option value="all">Applicable For All Categories</option>
                     </select>
 
                     <input type="number" id="incomeVal" class="form-control-custom" placeholder="Annual Family Income (e.g. 45000)">
@@ -1093,13 +1118,13 @@
 
                 <div>
                     <button class="widget-btn" style="background: #16A34A;" onclick="checkScholarshipEligibility()">
-                        <i class="fas fa-coins"></i> Check Concession
+                        <i class="fas fa-coins"></i> Check 48000/- Limit
                     </button>
                     <div class="output-box-inline" id="feeOutput"></div>
                 </div>
             </div>
 
-            <!-- WIDGET 16: DIRECT FOUNDER DOUBT HELPER -->
+            <!-- WIDGET 16: DIRECT FOUNDER DOUBT HELPER (+91 9984919392 WhatsApp) -->
             <div class="widget-card">
                 <div>
                     <div class="widget-card-header">
@@ -1117,9 +1142,9 @@
                 </div>
 
                 <div>
-                    <a href="https://wa.me/919984919392" target="_blank" class="widget-btn btn-whatsapp" style="justify-content: center;">
+                    <button class="widget-btn btn-whatsapp" onclick="sendDirectWhatsAppQuery()">
                         <i class="fab fa-whatsapp"></i> Chat on +91 9984919392
-                    </a>
+                    </button>
                     <div class="output-box-inline" id="askOutput">Direct WhatsApp Connection Ready</div>
                 </div>
             </div>
@@ -1182,7 +1207,7 @@
         </div>
     </footer>
 
-    <!-- INTERACTIVE JAVASCRIPT & THEME LOGIC -->
+    <!-- INTERACTIVE JAVASCRIPT & LOGIC -->
     <script>
         function initAppTheme() {
             const current = localStorage.getItem('theme-mode') || 'dark';
@@ -1219,33 +1244,40 @@
             }
         });
 
-        // 1. PREDICTOR (Supports AU 400+, BHU 500+, and other 49+ Central Universities 500+)
-        function calculatePrediction() {
-            const marks = parseInt(document.getElementById("predMarks").value);
+        // 1. MULTI-SUBJECT COLLEGE PREDICTOR (AU 400+, BHU/Central 500+)
+        function calculateMultiSubjectPrediction() {
+            const s1 = parseFloat(document.getElementById("sub1").value) || 0;
+            const s2 = parseFloat(document.getElementById("sub2").value) || 0;
+            const s3 = parseFloat(document.getElementById("sub3").value) || 0;
+            const s4 = parseFloat(document.getElementById("sub4").value) || 0;
+            const s5 = parseFloat(document.getElementById("sub5").value) || 0;
+            
+            const total = s1 + s2 + s3 + s4 + s5;
             const exam = document.getElementById("predExam").value;
+            const cat = document.getElementById("predCat").value;
             const resultBox = document.getElementById("predictionResult");
 
-            if (!marks || marks <= 0) {
+            if (total <= 0) {
                 resultBox.style.display = "block";
                 resultBox.style.background = "rgba(239, 68, 68, 0.15)";
                 resultBox.style.color = "#EF4444";
-                resultBox.innerHTML = "Please enter valid expected marks!";
+                resultBox.innerHTML = "Please enter marks in at least one subject slot!";
                 return;
             }
 
             let threshold = 500;
-            let campusName = "Central University Main Campus";
+            let campusName = "Central Universities (49+) Main Campus";
             if (exam === "au") { threshold = 400; campusName = "Allahabad University Main Campus"; }
             else if (exam === "bhu") { threshold = 500; campusName = "BHU Main Campus (FMC/MMV)"; }
-            else { threshold = 500; campusName = "Central Universities (49+) Main Campus"; }
+            else if (exam === "du") { threshold = 500; campusName = "Delhi University North/South Campus"; }
 
-            let status = marks >= threshold ? `High chance for ${campusName} admission!` : "Eligible for affiliated colleges and regional centers.";
-            let rank = Math.max(1, Math.round((800 - marks) * 14.5 + 40));
+            let status = total >= threshold ? `High chance for ${campusName} admission!` : "Eligible for affiliated colleges and regional constituent units.";
+            let rank = Math.max(1, Math.round((1000 - total) * 12.5 + 25));
 
             resultBox.style.display = "block";
             resultBox.style.background = "var(--bg-surface)";
             resultBox.style.color = "var(--text-primary)";
-            resultBox.innerHTML = `Est. Rank: <b>#${rank} - #${rank + 120}</b><br><span style="color:var(--accent-green);">${status}</span>`;
+            resultBox.innerHTML = `Total Score: <b>${total} Marks</b> | Est. Rank: <b>#${rank}</b><br><span style="color:var(--accent-green);">${status}</span>`;
         }
 
         // 2. PUSH BELL
@@ -1266,7 +1298,7 @@
             }
         }
 
-        // 3. CANVAS RESIZER (Supports photo 50-500kb, sign 50-500kb, doc 500kb-1mb)
+        // 3. CANVAS RESIZER (Photo & Sign: 50-500kb, Doc: 500kb-1mb)
         function processImageResize(event) {
             const file = event.target.files[0];
             if (!file) return;
@@ -1281,14 +1313,14 @@
                     const canvas = document.createElement("canvas");
                     const ctx = canvas.getContext("2d");
 
-                    let width = preset === "doc" ? 1200 : 600;
-                    let height = preset === "doc" ? 1600 : 700;
+                    let width = preset === "doc" ? 1200 : 700;
+                    let height = preset === "doc" ? 1600 : 900;
 
                     canvas.width = width;
                     canvas.height = height;
                     ctx.drawImage(img, 0, 0, width, height);
 
-                    let quality = preset === "doc" ? 0.85 : 0.70;
+                    let quality = preset === "doc" ? 0.85 : 0.75;
                     downloadBtn.href = canvas.toDataURL("image/jpeg", quality);
                     downloadBtn.style.display = "flex";
                 }
@@ -1297,7 +1329,7 @@
             reader.readAsDataURL(file);
         }
 
-        // 5. SUBJECT COMBO (Updated for 2026 guidelines e.g. AU 1 Language + 1 Domain + GAT)
+        // 5. SUBJECT COMBO (AU 2026: 1 Lang + 1 Domain + GAT)
         function checkSubjectCombo() {
             const course = document.getElementById("comboCourse").value;
             const univ = document.getElementById("comboUniv").value;
@@ -1305,17 +1337,19 @@
 
             let text = "";
             if (univ === "au") {
-                text = "Allahabad University 2026 Rule: 1 Language + 1 Domain Subject + General Test (GAT) as per updated guidelines.";
+                text = "Allahabad University 2026 Rule: 1 Language + 1 Domain Subject + General Test (GAT).";
             } else if (univ === "bhu") {
-                text = "BHU Rule: Section IA/IB (Language) + Section III (General Test) or Domain Specific subjects as per program.";
+                text = "BHU Rule: Section IA/IB (Language) + Section III (General Test) / Domain Specific subjects as per program.";
+            } else if (univ === "du") {
+                text = "DU Rule: 1 Language + Any 3 Domain Subjects studied in Class 12th.";
             } else {
-                text = "Central Universities Rule (49+): Typically 1 Language + 3 Domain Subjects or General Test depending on degree choice.";
+                text = "Central Universities (49+) Rule: 1 Language + Domain Specific Subjects or General Test as per NTA information bulletin.";
             }
 
             box.style.display = "block";
             box.style.background = "var(--bg-surface)";
             box.style.color = "var(--text-primary)";
-            box.innerHTML = `<b>Required Combination:</b> ${text}`;
+            box.innerHTML = `<b>Required Subject Mapping:</b> ${text}`;
         }
 
         // 6. AGE CALCULATOR
@@ -1345,23 +1379,24 @@
             box.innerHTML = `Age on Cutoff Date: <b>${years} Years, ${months} Months, ${days} Days</b>`;
         }
 
-        // 7. AI DRAFT (Comprehensive campus problem solving applications)
+        // 7. AI DRAFT (Campus & College Related Problem Applications)
         function generateAIDraft() {
-            const name = document.getElementById("aiStudentName").value || "[Student Name]";
+            const campus = document.getElementById("aiCampusName").value || "[College / Campus Name]";
             const type = document.getElementById("aiDraftType").value;
             const box = document.getElementById("aiDraftOutput");
             
-            let subject = "Application regarding campus student grievance";
+            let subject = "Application regarding student grievance";
             if (type === "leave") subject = "Application for Leave of Absence";
-            else if (type === "fee") subject = "Request for Semester Fee Submission Extension";
-            else if (type === "tc") subject = "Application for Issuance of Transfer / Migration Certificate";
-            else if (type === "hostel") subject = "Application for Hostel Room Allotment";
+            else if (type === "fee") subject = "Request for Fee Concession / Extension";
+            else if (type === "tc") subject = "Application for Transfer / Migration Certificate";
+            else if (type === "hostel") subject = "Application for Hostel Accommodation Allotment";
+            else if (type === "idcard") subject = "Application for Duplicate ID Card Issuance";
             else if (type === "correction") subject = "Application for Correction in Student Record / Marksheet";
 
             box.style.display = "block";
             box.style.background = "var(--bg-surface)";
             box.style.color = "var(--text-primary)";
-            box.innerHTML = `<b>To, The Dean / Registrar</b><br>Subject: ${subject}<br><br>Respected Sir/Madam,<br>I am ${name}, studying in the current academic session. I request you to kindly resolve my issue regarding the above subject.<br><br>Thanking You,<br><b>${name}</b>`;
+            box.innerHTML = `<b>To, The Principal / Dean</b><br><b>${campus}</b><br>Subject: ${subject}<br><br>Respected Sir/Madam,<br>I am a regular student enrolled in your esteemed institution. I am writing this application to kindly request a resolution regarding the above-stated matter.<br><br>Thanking You,<br><b>[Your Name & Roll No.]</b>`;
         }
 
         // 8. CGPA
@@ -1401,11 +1436,11 @@
             if (course === "ba_au") {
                 box.innerHTML = "<b>Recommended Choice Order:</b><br>1. Ancient History + Political Science + Hindi<br>2. Geography + Economics + English<br>3. Medieval History + Sociology + General Test";
             } else {
-                box.innerHTML = "<b>Recommended Choice Order:</b><br>1. FMC Main Campus - Political Science Hons<br>2. FMC Main Campus - History Hons<br>3. DAV / CMP Affiliated Social Science Group";
+                box.innerHTML = "<b>Recommended Choice Order:</b><br>1. Main Campus - Political Science Hons<br>2. Main Campus - History Hons<br>3. Affiliated College Social Science Group";
             }
         }
 
-        // 11. MATRIX (Fixed FMC vs Main Campus terminology)
+        // 11. MATRIX (AU Main Campus terminology fixed)
         function checkCollegeMatrix() {
             const univ = document.getElementById("matrixUniv").value;
             const box = document.getElementById("matrixOutput");
@@ -1438,13 +1473,13 @@
         // 13. GAP DRAFT (Includes Main Campus and Affiliated Colleges)
         function generateGapDraft() {
             const name = document.getElementById("gapName").value || "[Student Name]";
-            const years = document.getElementById("gapYears").value || "1 Year";
+            const inst = document.getElementById("gapInst").value || "[AU Main Campus / Affiliated College]";
             const box = document.getElementById("gapOutput");
 
             box.style.display = "block";
             box.style.background = "var(--bg-surface)";
             box.style.color = "var(--text-primary)";
-            box.innerHTML = `<b>OFFICIAL GAP AFFIDAVIT DRAFT:</b><br>I, ${name}, resident of India, do hereby solemnly affirm that I passed my qualifying examination earlier and there is a gap of ${years}. This gap was due to competitive exam preparation, and I was not involved in any criminal activity during this period. Submitted to Allahabad University Main Campus / Affiliated Colleges.`;
+            box.innerHTML = `<b>OFFICIAL GAP AFFIDAVIT DRAFT:</b><br>I, ${name}, resident of India, do hereby solemnly affirm that I passed my qualifying examination earlier and there is a gap period. This gap was due to exam preparation. Submitted for admission verification at <b>${inst}</b>.`;
         }
 
         // 14. RATIO PERCENTILE
@@ -1461,7 +1496,7 @@
             box.innerHTML = `Score Ratio: <b>${ratio}%</b> achieved`;
         }
 
-        // 15. SCHOLARSHIP (Strictly 48000/- threshold rule)
+        // 15. SCHOLARSHIP (Strictly 48000/- rule)
         function checkScholarshipEligibility() {
             const income = parseInt(document.getElementById("incomeVal").value);
             const box = document.getElementById("feeOutput");
@@ -1472,10 +1507,18 @@
             box.style.color = "var(--text-primary)";
 
             if (income <= 48000) {
-                box.innerHTML = "<b style='color:var(--accent-green);'>Eligible for Fee Exemption / Scholarship:</b> Annual income is within the 48000/- limit applicable across all categories.";
+                box.innerHTML = "<b style='color:var(--accent-green);'>Eligible for Fee Exemption / Scholarship:</b> Annual income is within the 48,000/- limit applicable across categories.";
             } else {
-                box.innerHTML = "<b style='color:var(--accent-red);'>Not Eligible:</b> Annual family income exceeds the 48000/- ceiling limit.";
+                box.innerHTML = "<b style='color:var(--accent-red);'>Not Eligible:</b> Annual family income exceeds the 48,000/- ceiling limit.";
             }
+        }
+
+        // 16. DIRECT WHATSAPP QUERY (+91 9984919392)
+        function sendDirectWhatsAppQuery() {
+            const name = document.getElementById("askName").value || "Student";
+            const query = document.getElementById("askQuery").value || "General Counseling Query";
+            const url = `https://wa.me/919984919392?text=${encodeURIComponent(`Hello Ajmal Sir, My name is ${name}. My query is: ${query}`)}`;
+            window.open(url, '_blank');
         }
     </script>
 </body>
