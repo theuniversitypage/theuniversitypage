@@ -16,7 +16,7 @@
             --bg-base: #060913;
             --bg-surface: rgba(13, 19, 36, 0.85);
             --bg-surface-hover: rgba(22, 31, 56, 0.95);
-            --bg-card: rgba(16, 24, 48, 0.7);
+            --bg-card: rgba(16, 24, 48, 0.75);
             --bg-chip: rgba(255, 255, 255, 0.06);
             --text-primary: #F8FAFC;
             --text-secondary: #CBD5E1;
@@ -252,7 +252,7 @@
             z-index: 1;
         }
 
-        /* BREADCRUMB */
+        /* BREADCRUMB (As shown in screenshot) */
         .breadcrumb {
             font-size: 0.82rem;
             color: var(--text-muted);
@@ -268,7 +268,7 @@
             text-decoration: none;
         }
 
-        /* HERO BANNER (As requested from screenshot) */
+        /* HERO */
         .page-hero {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -314,30 +314,30 @@
             margin: 0 auto;
         }
 
-        /* 📋 CLEAN TEXT CATEGORIES LIST (NO CARDS, PURE TEXT LINKS) */
+        /* 📋 PURE TEXT CATEGORIES LIST (COLUMN STACK) */
         .categories-list-wrapper {
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: var(--radius-xl);
             padding: 24px 28px;
             backdrop-filter: var(--blur);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 14px;
         }
 
         .category-text-item {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 16px 20px;
+            padding: 18px 22px;
             background: var(--bg-surface);
             border: 1px solid var(--border);
             border-radius: var(--radius-md);
             text-decoration: none;
             color: var(--text-primary);
-            font-size: 1.05rem;
+            font-size: 1.02rem;
             font-weight: 800;
             transition: all 0.25s ease;
         }
@@ -345,8 +345,8 @@
         .category-text-item:hover {
             border-color: var(--primary);
             background: var(--bg-surface-hover);
-            transform: translateX(4px);
-            box-shadow: 0 4px 16px var(--primary-glow);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--primary-glow);
         }
 
         .category-text-left {
@@ -358,7 +358,7 @@
         .category-text-left i {
             color: var(--primary);
             font-size: 1.2rem;
-            width: 24px;
+            width: 26px;
             text-align: center;
         }
 
@@ -370,7 +370,7 @@
 
         .category-text-item:hover .category-arrow {
             color: var(--primary);
-            transform: translateX(3px);
+            transform: translateX(4px);
         }
 
         /* FOOTER */
@@ -379,6 +379,7 @@
             border-top: 1px solid var(--border);
             padding: 40px 16px 24px;
             margin-top: auto;
+            backdrop-filter: var(--blur);
         }
 
         .footer-grid {
@@ -430,7 +431,7 @@
             .page-hero h1 { font-size: 1.6rem; }
             .footer-grid { grid-template-columns: 1fr 1fr; }
             .categories-list-wrapper { padding: 16px; }
-            .category-text-item { padding: 14px 16px; font-size: 0.95rem; }
+            .category-text-item { padding: 14px 16px; font-size: 0.92rem; }
         }
 
         @media (max-width: 480px) {
@@ -492,7 +493,7 @@
             <p>Select a category below to explore verified participating institutions and counseling admission portals.</p>
         </section>
 
-        <!-- 📋 CLEAN TEXT LIST (5 OPTIONS ONLY) -->
+        <!-- 📋 CLEAN TEXT LIST (5 OPTIONS ONLY, COLUMN LAYOUT) -->
         <section class="categories-list-wrapper">
             <a href="central-universities.html" class="category-text-item">
                 <div class="category-text-left">
