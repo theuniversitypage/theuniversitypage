@@ -367,6 +367,52 @@
             box-shadow: 0 4px 14px var(--primary-glow);
         }
 
+        /* SECTION HEADER WITH "MORE" LINK LINKED TO predictor.html */
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 36px 0 16px;
+            gap: 12px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+            font-weight: 900;
+        }
+
+        .title-icon {
+            width: 34px;
+            height: 34px;
+            min-width: 34px;
+            border-radius: 8px;
+            background: var(--gradient-primary);
+            color: #FFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+
+        .view-all-link {
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+            transition: transform 0.2s ease;
+        }
+
+        .view-all-link:hover {
+            transform: translateX(4px);
+        }
+
         /* UNIVERSITY SECTION LAYOUT */
         .category-block { margin-bottom: 40px; }
         
@@ -626,8 +672,9 @@
             <li><a href="latest-updates.html"><i class="fas fa-bolt" style="color: #EC4899;"></i> Real-Time Alerts</a></li>
             <li><a href="central-universities.html"><i class="fas fa-monument" style="color: #8B5CF6;"></i> Central Universities (49)</a></li>
             <li><a href="universities.html" class="active"><i class="fas fa-landmark" style="color: #06B6D4;"></i> All Universities</a></li>
+            <li><a href="predictor.html"><i class="fas fa-sliders-h" style="color: #F59E0B;"></i> Student Hub & Predictor</a></li>
             <li><a href="syllabus.html"><i class="fas fa-book-open" style="color: #10B981;"></i> Syllabus & PYQs</a></li>
-            <li><a href="cutoff.html"><i class="fas fa-chart-line" style="color: #F59E0B;"></i> Cutoff Analytics</a></li>
+            <li><a href="cutoff.html"><i class="fas fa-chart-line" style="color: #06B6D4;"></i> Cutoff Analytics</a></li>
             <li><a href="about-ajmal-mansoori.html"><i class="fas fa-user-shield" style="color: #6366F1;"></i> Founder Profile</a></li>
         </ul>
     </aside>
@@ -657,6 +704,15 @@
             <h1>All CUET Participating Universities</h1>
             <p>Comprehensive directory of all Central, State, Deemed, Private universities & Government Institutes participating under CUET.</p>
         </section>
+
+        <!-- 🎛️ INTERACTIVE STUDENT HUB HEADER WITH "MORE" LINK LINKED TO predictor.html -->
+        <div class="section-header">
+            <div class="section-title">
+                <div class="title-icon"><i class="fas fa-sliders-h"></i></div>
+                <span>Interactive Student Hub</span>
+            </div>
+            <a href="predictor.html" class="view-all-link">More <i class="fas fa-arrow-right"></i></a>
+        </div>
 
         <!-- FILTERS -->
         <section class="filter-controls">
