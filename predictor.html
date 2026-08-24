@@ -14,6 +14,7 @@
 
     <style>
         :root {
+            /* 🌌 DARK THEME (Default) */
             --bg-base: #060913;
             --bg-surface: rgba(13, 19, 36, 0.85);
             --bg-surface-hover: rgba(22, 31, 56, 0.95);
@@ -28,6 +29,8 @@
             --primary: #6366F1;
             --primary-glow: rgba(99, 102, 241, 0.35);
             --gradient-primary: linear-gradient(135deg, #6366F1 0%, #A855F7 50%, #EC4899 100%);
+            --gradient-yt: linear-gradient(135deg, #FF0000 0%, #E11D48 100%);
+            --shadow-glow: 0 0 50px -10px rgba(99, 102, 241, 0.25);
             --radius-md: 14px;
             --radius-lg: 20px;
             --radius-xl: 26px;
@@ -35,6 +38,7 @@
         }
 
         [data-theme="light"] {
+            /* ☀️ LIGHT THEME */
             --bg-base: #F4F6FC;
             --bg-surface: rgba(255, 255, 255, 0.92);
             --bg-surface-hover: rgba(255, 255, 255, 1);
@@ -47,6 +51,7 @@
             --border-hover: rgba(79, 70, 229, 0.5);
             --primary: #4F46E5;
             --primary-glow: rgba(79, 70, 229, 0.2);
+            --shadow-glow: 0 20px 40px -15px rgba(79, 70, 229, 0.12);
         }
 
         *, *::before, *::after {
@@ -172,6 +177,12 @@
             box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
             padding: 12px;
             z-index: 999999 !important;
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-6px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .resources-drawer.active { display: block !important; }
@@ -246,6 +257,52 @@
             justify-content: center;
             font-size: 1.1rem;
             flex-shrink: 0;
+        }
+
+        /* 📋 SECTION HEADER WITH "MORE" LINK */
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 36px 0 16px;
+            gap: 12px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+            font-weight: 900;
+        }
+
+        .title-icon {
+            width: 34px;
+            height: 34px;
+            min-width: 34px;
+            border-radius: 8px;
+            background: var(--gradient-primary);
+            color: #FFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+
+        .view-all-link {
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+            transition: transform 0.2s ease;
+        }
+
+        .view-all-link:hover {
+            transform: translateX(4px);
         }
 
         /* WIDGETS GRID */
@@ -475,7 +532,7 @@
             line-height: 1.5;
         }
 
-        /* MULTI-SUBJECT CARDS FOR PREDICTOR */
+        /* 5-SUBJECT CARDS FOR PREDICTOR */
         .subject-slot-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -502,6 +559,90 @@
             font-size: 0.85rem;
             outline: none;
             margin-top: 2px;
+        }
+
+        /* QUICK NAVIGATION VAULT */
+        .quicklinks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 14px;
+            margin-bottom: 35px;
+        }
+
+        .quicklink-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 16px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            color: var(--text-primary);
+            backdrop-filter: var(--blur);
+            transition: all 0.25s ease;
+        }
+
+        .quicklink-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--border-hover);
+            background: var(--bg-surface-hover);
+            box-shadow: 0 10px 24px -6px var(--primary-glow);
+        }
+
+        .quicklink-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            min-width: 0;
+        }
+
+        .quicklink-icon-wrap {
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+            border-radius: var(--radius-md);
+            background: var(--bg-chip);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+        }
+
+        .quicklink-info h4 {
+            font-size: 0.95rem;
+            font-weight: 800;
+            margin-bottom: 2px;
+            line-height: 1.2;
+        }
+
+        .quicklink-info p {
+            font-size: 0.74rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .quicklink-arrow {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--bg-chip);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .quicklink-card:hover .quicklink-arrow {
+            background: var(--primary);
+            color: #FFF;
         }
 
         /* MODERN FOOTER */
@@ -654,11 +795,18 @@
             <a href="index.html">Home</a> <i class="fas fa-chevron-right" style="font-size:0.65rem;"></i> <span>Student Utility Suite</span>
         </div>
 
-        <h2 class="suite-title"><i class="fas fa-sliders-h"></i> Interactive Student Utility Suite & Predictor</h2>
+        <!-- 🎛️ INTERACTIVE STUDENT HUB HEADER WITH "MORE" LINK LINKED TO predictor.html -->
+        <div class="section-header" style="margin-top: 0;">
+            <div class="section-title">
+                <div class="title-icon"><i class="fas fa-sliders-h"></i></div>
+                <span>Interactive Student Hub</span>
+            </div>
+            <a href="predictor.html" class="view-all-link">More <i class="fas fa-arrow-right"></i></a>
+        </div>
 
         <section class="widgets-grid">
 
-            <!-- WIDGET 1: COLLEGE PREDICTOR (5 Subject Cards + Total + Category) -->
+            <!-- WIDGET 1: COLLEGE PREDICTOR -->
             <div class="widget-card">
                 <div>
                     <div class="widget-card-header">
@@ -735,7 +883,7 @@
                 </div>
             </div>
 
-            <!-- WIDGET 3: PHOTO & SIGN RESIZER (50-500kb & 500kb-1mb) -->
+            <!-- WIDGET 3: PHOTO & SIGN RESIZER -->
             <div class="widget-card">
                 <div>
                     <div class="widget-card-header">
@@ -799,7 +947,7 @@
                 </a>
             </div>
 
-            <!-- WIDGET 5: CUET SUBJECT COMBINATION CHECKER (49+ Central Unis + AU 2026 1 Lang + 1 Domain + GAT) -->
+            <!-- WIDGET 5: CUET SUBJECT COMBINATION CHECKER -->
             <div class="widget-card">
                 <div>
                     <div class="widget-card-header">
@@ -860,7 +1008,7 @@
                 </div>
             </div>
 
-            <!-- WIDGET 7: AI STUDENT DRAFT WRITER (Campus & College Related Problem Applications) -->
+            <!-- WIDGET 7: AI STUDENT DRAFT WRITER -->
             <div class="widget-card">
                 <div>
                     <div class="widget-card-header">
@@ -981,7 +1129,7 @@
                 </div>
             </div>
 
-            <!-- WIDGET 11: MAIN CAMPUS VS AFFILIATED CUTOFF MATRIX (AU Main Campus terminology fixed) -->
+            <!-- WIDGET 11: MAIN CAMPUS VS AFFILIATED CUTOFF MATRIX -->
             <div class="widget-card">
                 <div>
                     <div class="widget-card-header">
@@ -1046,7 +1194,7 @@
                 </div>
             </div>
 
-            <!-- WIDGET 13: GAP YEAR AFFIDAVIT DRAFT (Includes Main Campus & Affiliated Colleges) -->
+            <!-- WIDGET 13: GAP YEAR AFFIDAVIT DRAFT -->
             <div class="widget-card">
                 <div>
                     <div class="widget-card-header">
@@ -1096,7 +1244,7 @@
                 </div>
             </div>
 
-            <!-- WIDGET 15: FEE EXEMPTION & SCHOLARSHIP HELPER (Strictly 48000/- rule) -->
+            <!-- WIDGET 15: FEE EXEMPTION & SCHOLARSHIP HELPER -->
             <div class="widget-card">
                 <div>
                     <div class="widget-card-header">
@@ -1105,7 +1253,7 @@
                         </div>
                         <div class="widget-title-group">
                             <h3>Fee Exemption Helper</h3>
-                            <p>Income 48000/- Eligibility Check</p>
+                            <p>Income 48,000/- Eligibility Check</p>
                         </div>
                     </div>
 
@@ -1118,13 +1266,13 @@
 
                 <div>
                     <button class="widget-btn" style="background: #16A34A;" onclick="checkScholarshipEligibility()">
-                        <i class="fas fa-coins"></i> Check 48000/- Limit
+                        <i class="fas fa-coins"></i> Check 48,000/- Limit
                     </button>
                     <div class="output-box-inline" id="feeOutput"></div>
                 </div>
             </div>
 
-            <!-- WIDGET 16: DIRECT FOUNDER DOUBT HELPER (+91 9984919392 WhatsApp) -->
+            <!-- WIDGET 16: DIRECT FOUNDER DOUBT HELPER -->
             <div class="widget-card">
                 <div>
                     <div class="widget-card-header">
@@ -1151,9 +1299,95 @@
 
         </section>
 
+        <!-- QUICK NAVIGATION VAULT -->
+        <div class="section-header">
+            <div class="section-title">
+                <div class="title-icon" style="background: linear-gradient(135deg, #EC4899, #F43F5E);"><i class="fas fa-layer-group"></i></div>
+                <span>Quick Access Portal</span>
+            </div>
+        </div>
+
+        <section class="quicklinks-grid">
+            <a href="result.html" class="quicklink-card">
+                <div class="quicklink-left">
+                    <div class="quicklink-icon-wrap" style="color: #10B981;"><i class="fas fa-trophy"></i></div>
+                    <div class="quicklink-info">
+                        <h4>Entrance Results</h4>
+                        <p>Scorecards & Merit Lists</p>
+                    </div>
+                </div>
+                <div class="quicklink-arrow"><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <a href="latest-jobs.html" class="quicklink-card">
+                <div class="quicklink-left">
+                    <div class="quicklink-icon-wrap" style="color: #F59E0B;"><i class="fas fa-briefcase"></i></div>
+                    <div class="quicklink-info">
+                        <h4>Latest Jobs</h4>
+                        <p>Govt, SSC & Banking Forms</p>
+                    </div>
+                </div>
+                <div class="quicklink-arrow"><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <a href="admitcard.html" class="quicklink-card">
+                <div class="quicklink-left">
+                    <div class="quicklink-icon-wrap" style="color: #F43F5E;"><i class="fas fa-id-card"></i></div>
+                    <div class="quicklink-info">
+                        <h4>Hall Tickets</h4>
+                        <p>Admit Cards & City Slips</p>
+                    </div>
+                </div>
+                <div class="quicklink-arrow"><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <a href="admission.html" class="quicklink-card">
+                <div class="quicklink-left">
+                    <div class="quicklink-icon-wrap" style="color: #8B5CF6;"><i class="fas fa-university"></i></div>
+                    <div class="quicklink-info">
+                        <h4>Admissions</h4>
+                        <p>Central Uni CSAS Portals</p>
+                    </div>
+                </div>
+                <div class="quicklink-arrow"><i class="fas fa-arrow-right"></i></div>
+            </a>
+        </section>
+
+        <!-- OFFICIAL CHANNELS & MENTORSHIP NETWORK -->
+        <div class="section-header">
+            <div class="section-title">
+                <div class="title-icon" style="background: var(--gradient-yt);"><i class="fab fa-youtube"></i></div>
+                <span>Official Channels & Mentorship Network</span>
+            </div>
+        </div>
+
+        <section class="channels-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 40px;">
+            <a href="https://youtube.com/@ajmalalimansoori" target="_blank" class="channel-card" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 18px 20px; display: flex; align-items: center; justify-content: space-between; text-decoration: none; color: var(--text-primary);">
+                <div class="channel-left" style="display: flex; align-items: center; gap: 14px;">
+                    <div class="channel-icon" style="width: 48px; height: 48px; border-radius: 14px; background: rgba(225, 29, 72, 0.1); color: #FF0000; display: flex; align-items: center; justify-content: center; font-size: 1.35rem;"><i class="fas fa-user-graduate"></i></div>
+                    <div>
+                        <h4 style="font-size: 0.98rem; font-weight: 800; margin-bottom: 3px;">Ajmal Mansoori</h4>
+                        <p style="font-size: 0.74rem; color: var(--text-muted); font-weight: 600;">Exam Strategy & Mentorship</p>
+                    </div>
+                </div>
+                <span class="yt-badge-btn" style="background: var(--gradient-yt); color: #FFF; padding: 8px 16px; border-radius: 9999px; font-size: 0.75rem; font-weight: 800;"><i class="fab fa-youtube"></i> Subscribe</span>
+            </a>
+
+            <a href="https://youtube.com/@theuniversitypage" target="_blank" class="channel-card" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 18px 20px; display: flex; align-items: center; justify-content: space-between; text-decoration: none; color: var(--text-primary);">
+                <div class="channel-left" style="display: flex; align-items: center; gap: 14px;">
+                    <div class="channel-icon" style="width: 48px; height: 48px; border-radius: 14px; background: rgba(225, 29, 72, 0.1); color: #FF0000; display: flex; align-items: center; justify-content: center; font-size: 1.35rem;"><i class="fas fa-graduation-cap"></i></div>
+                    <div>
+                        <h4 style="font-size: 0.98rem; font-weight: 800; margin-bottom: 3px;">The University Page</h4>
+                        <p style="font-size: 0.74rem; color: var(--text-muted); font-weight: 600;">Central Uni Updates & Cutoffs</p>
+                    </div>
+                </div>
+                <span class="yt-badge-btn" style="background: var(--gradient-yt); color: #FFF; padding: 8px 16px; border-radius: 9999px; font-size: 0.75rem; font-weight: 800;"><i class="fab fa-youtube"></i> Subscribe</span>
+            </a>
+        </section>
+
     </main>
 
-    <!-- === FULL ULTRA-GLASS FOOTER === -->
+    <!-- === MODERN FOOTER === -->
     <footer class="modern-footer">
         <div class="footer-container">
             <div>
@@ -1179,9 +1413,9 @@
             <div class="footer-column">
                 <h4>Ecosystem</h4>
                 <ul class="footer-links-list">
-                    <li><a href="https://learnifyclasses.akamai.net.in" target="_blank">Learnify Classes App</a></li>
-                    <li><a href="https://t.me/cuetwarriors2026" target="_blank">CUET Warriors Hub</a></li>
-                    <li><a href="https://youtube.com/@ajmalalimansoori" target="_blank">Ajmal Mansoori YouTube</a></li>
+                    <li><a href="https://learnifyclasses.akamai.net.in" target="_blank">Learnify App</a></li>
+                    <li><a href="join.html">Student Registration</a></li>
+                    <li><a href="https://youtube.com/@ajmalalimansoori" target="_blank">YouTube Channel</a></li>
                     <li><a href="about-ajmal-mansoori.html">Founder Desk</a></li>
                 </ul>
             </div>
@@ -1190,9 +1424,8 @@
                 <h4>Legal & Policies</h4>
                 <ul class="footer-links-list">
                     <li><a href="privacy-policy.html">Privacy Charter</a></li>
-                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="terms.html">Terms of Use</a></li>
                     <li><a href="disclaimer.html">Disclaimer</a></li>
-                    <li><a href="contact-us.html">Contact Helpdesk</a></li>
                 </ul>
             </div>
         </div>
@@ -1254,7 +1487,6 @@
             
             const total = s1 + s2 + s3 + s4 + s5;
             const exam = document.getElementById("predExam").value;
-            const cat = document.getElementById("predCat").value;
             const resultBox = document.getElementById("predictionResult");
 
             if (total <= 0) {
@@ -1298,7 +1530,7 @@
             }
         }
 
-        // 3. CANVAS RESIZER (Photo & Sign: 50-500kb, Doc: 500kb-1mb)
+        // 3. CANVAS RESIZER
         function processImageResize(event) {
             const file = event.target.files[0];
             if (!file) return;
@@ -1329,7 +1561,7 @@
             reader.readAsDataURL(file);
         }
 
-        // 5. SUBJECT COMBO (AU 2026: 1 Lang + 1 Domain + GAT)
+        // 5. SUBJECT COMBO
         function checkSubjectCombo() {
             const course = document.getElementById("comboCourse").value;
             const univ = document.getElementById("comboUniv").value;
@@ -1379,7 +1611,7 @@
             box.innerHTML = `Age on Cutoff Date: <b>${years} Years, ${months} Months, ${days} Days</b>`;
         }
 
-        // 7. AI DRAFT (Campus & College Related Problem Applications)
+        // 7. AI DRAFT
         function generateAIDraft() {
             const campus = document.getElementById("aiCampusName").value || "[College / Campus Name]";
             const type = document.getElementById("aiDraftType").value;
@@ -1440,7 +1672,7 @@
             }
         }
 
-        // 11. MATRIX (AU Main Campus terminology fixed)
+        // 11. MATRIX
         function checkCollegeMatrix() {
             const univ = document.getElementById("matrixUniv").value;
             const box = document.getElementById("matrixOutput");
@@ -1470,7 +1702,7 @@
             box.innerHTML = `Readiness Score: <b>${count} / 4 Documents Verified</b> ${count===4 ? '<span style="color:var(--accent-green);">Fully Ready for Counseling!</span>' : '<span style="color:var(--accent-amber);">Some certificates pending</span>'}`;
         }
 
-        // 13. GAP DRAFT (Includes Main Campus and Affiliated Colleges)
+        // 13. GAP DRAFT
         function generateGapDraft() {
             const name = document.getElementById("gapName").value || "[Student Name]";
             const inst = document.getElementById("gapInst").value || "[AU Main Campus / Affiliated College]";
@@ -1496,7 +1728,7 @@
             box.innerHTML = `Score Ratio: <b>${ratio}%</b> achieved`;
         }
 
-        // 15. SCHOLARSHIP (Strictly 48000/- rule)
+        // 15. SCHOLARSHIP
         function checkScholarshipEligibility() {
             const income = parseInt(document.getElementById("incomeVal").value);
             const box = document.getElementById("feeOutput");
@@ -1513,7 +1745,7 @@
             }
         }
 
-        // 16. DIRECT WHATSAPP QUERY (+91 9984919392)
+        // 16. DIRECT WHATSAPP QUERY
         function sendDirectWhatsAppQuery() {
             const name = document.getElementById("askName").value || "Student";
             const query = document.getElementById("askQuery").value || "General Counseling Query";
