@@ -6,7 +6,7 @@
     <meta name="google-site-verification" content="L8MTwwklD18hw-rbjRWfTjzMJD20u5BLAlTN1Zobp_U">
     <title>Interactive Student Utility Suite & Predictor | Allahabad University Page</title>
     
-    <!-- Fonts & Icons -->
+    <!-- Google Fonts & Font Awesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -46,7 +46,7 @@
             --text-secondary: #334155;
             --text-muted: #64748B;
             --border: rgba(15, 23, 42, 0.08);
-            --border-hover: rgba(99, 102, 241, 0.5);
+            --border-hover: rgba(79, 70, 229, 0.5);
             --primary: #4F46E5;
             --primary-glow: rgba(79, 70, 229, 0.2);
         }
@@ -486,7 +486,7 @@
             line-height: 1.5;
         }
 
-        /* MODERN FULL FOOTER */
+        /* FOOTER */
         .modern-footer {
             background: var(--bg-surface);
             border-top: 1px solid var(--border);
@@ -598,7 +598,7 @@
         <nav class="navbar">
             <a href="index.html" class="logo">
                 <div class="logo-badge"><i class="fas fa-graduation-cap"></i></div>
-                <span>The University Page</span>
+                <span>Allahabad University Page</span>
             </a>
             
             <div class="nav-right-actions">
@@ -729,13 +729,14 @@
                     </div>
 
                     <select id="resizePreset" class="form-control-custom">
-                        <option value="photo">Passport Photo (20 KB - 50 KB)</option>
-                        <option value="sign">Signature (10 KB - 20 KB)</option>
+                        <option value="photo">Passport Photo (50 KB - 500 KB)</option>
+                        <option value="sign">Signature (50 KB - 500 KB)</option>
+                        <option value="doc">Document PDF (500 KB - 1 MB)</option>
                     </select>
                 </div>
 
-                <a href="#" id="downloadResizedBtn" class="widget-btn" style="background: #D97706; display: none;" download="resized-image.jpg">
-                    <i class="fas fa-download"></i> Download Image
+                <a href="#" id="downloadResizedBtn" class="widget-btn" style="background: #D97706; display: none;" download="compressed-file.jpg">
+                    <i class="fas fa-download"></i> Download Compressed File
                 </a>
             </div>
 
@@ -785,15 +786,18 @@
 
                     <select id="comboCourse" class="form-control-custom">
                         <option value="ba">B.A. Arts & Social Science</option>
-                        <option value="bsc">B.Sc. PCM / PCB Stream</option>
-                        <option value="bcom">B.Com. Commerce</option>
+                        <option value="bsc">B.Sc. Science Stream</option>
+                        <option value="bcom">B.Com Commerce</option>
                         <option value="ballb">BA LLB 5-Year Law</option>
                     </select>
 
                     <select id="comboUniv" class="form-control-custom">
                         <option value="au">Allahabad University (AU)</option>
-                        <option value="bhu">Banaras Hindu Univ (BHU)</option>
+                        <option value="bhu">Banaras Hindu University (BHU)</option>
                         <option value="du">Delhi University (DU)</option>
+                        <option value="jnu">Jawaharlal Nehru University (JNU)</option>
+                        <option value="amu">Aligarh Muslim University (AMU)</option>
+                        <option value="jmi">Jamia Millia Islamia</option>
                     </select>
                 </div>
 
@@ -847,6 +851,8 @@
                         <option value="leave">Sick / Leave Application</option>
                         <option value="fee">Fee Submission Extension</option>
                         <option value="tc">TC / Migration Certificate</option>
+                        <option value="hostel">Hostel Accommodation Request</option>
+                        <option value="correction">Marksheet / Detail Correction</option>
                     </select>
 
                     <input type="text" id="aiStudentName" class="form-control-custom" placeholder="Your Name & Roll No.">
@@ -962,10 +968,10 @@
                     </div>
 
                     <select id="matrixUniv" class="form-control-custom">
-                        <option value="au_main">AU Main Campus (FMC)</option>
+                        <option value="au_main">AU Main Campus</option>
                         <option value="au_cmp">CMP Degree College</option>
                         <option value="au_ecc">Ewing Christian College (ECC)</option>
-                        <option value="bhu_fmc">BHU Main Campus FMC</option>
+                        <option value="bhu_fmc">BHU Main Campus</option>
                         <option value="bhu_dav">BHU DAV PG College</option>
                     </select>
 
@@ -1082,7 +1088,7 @@
                         <option value="scst">SC / ST Category</option>
                     </select>
 
-                    <input type="number" id="incomeVal" class="form-control-custom" placeholder="Annual Family Income (e.g. 180000)">
+                    <input type="number" id="incomeVal" class="form-control-custom" placeholder="Annual Family Income (e.g. 45000)">
                 </div>
 
                 <div>
@@ -1098,7 +1104,7 @@
                 <div>
                     <div class="widget-card-header">
                         <div class="widget-icon" style="background: rgba(99, 102, 241, 0.15); color: #818CF8;">
-                            <i class="fas fa-comment-medical"></i>
+                            <i class="fab fa-whatsapp"></i>
                         </div>
                         <div class="widget-title-group">
                             <h3>Ask Ajmal Sir Direct</h3>
@@ -1107,14 +1113,14 @@
                     </div>
 
                     <input type="text" id="askName" class="form-control-custom" placeholder="Your Name">
-                    <input type="text" id="askQuery" class="form-control-custom" placeholder="Type Query (e.g. 150 Marks AU BA)">
+                    <input type="text" id="askQuery" class="form-control-custom" placeholder="Type Query (e.g. AU BA 2026 Cutoff)">
                 </div>
 
                 <div>
-                    <button class="widget-btn" onclick="sendDirectQuery()">
-                        <i class="fab fa-telegram-plane"></i> Send Direct Question
-                    </button>
-                    <div class="output-box-inline" id="askOutput"></div>
+                    <a href="https://wa.me/919984919392" target="_blank" class="widget-btn btn-whatsapp" style="justify-content: center;">
+                        <i class="fab fa-whatsapp"></i> Chat on +91 9984919392
+                    </a>
+                    <div class="output-box-inline" id="askOutput">Direct WhatsApp Connection Ready</div>
                 </div>
             </div>
 
@@ -1213,25 +1219,33 @@
             }
         });
 
-        // 1. PREDICTOR
+        // 1. PREDICTOR (Supports AU 400+, BHU 500+, and other 49+ Central Universities 500+)
         function calculatePrediction() {
             const marks = parseInt(document.getElementById("predMarks").value);
+            const exam = document.getElementById("predExam").value;
             const resultBox = document.getElementById("predictionResult");
+
             if (!marks || marks <= 0) {
                 resultBox.style.display = "block";
                 resultBox.style.background = "rgba(239, 68, 68, 0.15)";
                 resultBox.style.color = "#EF4444";
-                resultBox.innerHTML = "Please Enter Valid Expected Marks!";
+                resultBox.innerHTML = "Please enter valid expected marks!";
                 return;
             }
 
-            let rank = Math.max(1, Math.round((600 - marks) * 11.2 + 30));
-            let status = marks >= 140 ? "High Chance for Main Campus" : "Eligible for Affiliated Colleges (CMP, ECC)";
-            
+            let threshold = 500;
+            let campusName = "Central University Main Campus";
+            if (exam === "au") { threshold = 400; campusName = "Allahabad University Main Campus"; }
+            else if (exam === "bhu") { threshold = 500; campusName = "BHU Main Campus (FMC/MMV)"; }
+            else { threshold = 500; campusName = "Central Universities (49+) Main Campus"; }
+
+            let status = marks >= threshold ? `High chance for ${campusName} admission!` : "Eligible for affiliated colleges and regional centers.";
+            let rank = Math.max(1, Math.round((800 - marks) * 14.5 + 40));
+
             resultBox.style.display = "block";
             resultBox.style.background = "var(--bg-surface)";
             resultBox.style.color = "var(--text-primary)";
-            resultBox.innerHTML = `Est. Rank: <b>#${rank} - #${rank + 95}</b><br><span style="color:var(--accent-green);">${status}</span>`;
+            resultBox.innerHTML = `Est. Rank: <b>#${rank} - #${rank + 120}</b><br><span style="color:var(--accent-green);">${status}</span>`;
         }
 
         // 2. PUSH BELL
@@ -1252,7 +1266,7 @@
             }
         }
 
-        // 3. CANVAS RESIZER
+        // 3. CANVAS RESIZER (Supports photo 50-500kb, sign 50-500kb, doc 500kb-1mb)
         function processImageResize(event) {
             const file = event.target.files[0];
             if (!file) return;
@@ -1267,14 +1281,15 @@
                     const canvas = document.createElement("canvas");
                     const ctx = canvas.getContext("2d");
 
-                    let width = preset === "photo" ? 350 : 300;
-                    let height = preset === "photo" ? 450 : 120;
+                    let width = preset === "doc" ? 1200 : 600;
+                    let height = preset === "doc" ? 1600 : 700;
 
                     canvas.width = width;
                     canvas.height = height;
                     ctx.drawImage(img, 0, 0, width, height);
 
-                    downloadBtn.href = canvas.toDataURL("image/jpeg", 0.75);
+                    let quality = preset === "doc" ? 0.85 : 0.70;
+                    downloadBtn.href = canvas.toDataURL("image/jpeg", quality);
                     downloadBtn.style.display = "flex";
                 }
                 img.src = e.target.result;
@@ -1282,7 +1297,7 @@
             reader.readAsDataURL(file);
         }
 
-        // 5. SUBJECT COMBO
+        // 5. SUBJECT COMBO (Updated for 2026 guidelines e.g. AU 1 Language + 1 Domain + GAT)
         function checkSubjectCombo() {
             const course = document.getElementById("comboCourse").value;
             const univ = document.getElementById("comboUniv").value;
@@ -1290,17 +1305,17 @@
 
             let text = "";
             if (univ === "au") {
-                text = "AU Rule: Hindi/English + General Test + Any 2 Domain Subjects studied in 12th.";
+                text = "Allahabad University 2026 Rule: 1 Language + 1 Domain Subject + General Test (GAT) as per updated guidelines.";
             } else if (univ === "bhu") {
-                text = "BHU Rule: Section I (Language) + Section III (General Test) compulsory.";
+                text = "BHU Rule: Section IA/IB (Language) + Section III (General Test) or Domain Specific subjects as per program.";
             } else {
-                text = "DU Rule: 1 Language + Any 3 Domain Subjects studied in Class 12th.";
+                text = "Central Universities Rule (49+): Typically 1 Language + 3 Domain Subjects or General Test depending on degree choice.";
             }
 
             box.style.display = "block";
             box.style.background = "var(--bg-surface)";
             box.style.color = "var(--text-primary)";
-            box.innerHTML = `<b>Combo Required:</b> ${text}`;
+            box.innerHTML = `<b>Required Combination:</b> ${text}`;
         }
 
         // 6. AGE CALCULATOR
@@ -1327,20 +1342,26 @@
             box.style.display = "block";
             box.style.background = "var(--bg-surface)";
             box.style.color = "var(--text-primary)";
-            box.innerHTML = `Age on Cutoff Date: <b>${years} Y, ${months} M, ${days} D</b>`;
+            box.innerHTML = `Age on Cutoff Date: <b>${years} Years, ${months} Months, ${days} Days</b>`;
         }
 
-        // 7. AI DRAFT
+        // 7. AI DRAFT (Comprehensive campus problem solving applications)
         function generateAIDraft() {
-            const name = document.getElementById("aiStudentName").value || "[Your Name]";
+            const name = document.getElementById("aiStudentName").value || "[Student Name]";
             const type = document.getElementById("aiDraftType").value;
             const box = document.getElementById("aiDraftOutput");
             
-            let subject = type === "leave" ? "Application for Leave of Absence" : "Request for Certificate Processing";
+            let subject = "Application regarding campus student grievance";
+            if (type === "leave") subject = "Application for Leave of Absence";
+            else if (type === "fee") subject = "Request for Semester Fee Submission Extension";
+            else if (type === "tc") subject = "Application for Issuance of Transfer / Migration Certificate";
+            else if (type === "hostel") subject = "Application for Hostel Room Allotment";
+            else if (type === "correction") subject = "Application for Correction in Student Record / Marksheet";
+
             box.style.display = "block";
             box.style.background = "var(--bg-surface)";
             box.style.color = "var(--text-primary)";
-            box.innerHTML = `<b>To, The Head/Dean</b><br>Subject: ${subject}<br>Respected Sir, I am ${name}. Kindly grant approval for my request.<br>Thanking You,<br><b>${name}</b>`;
+            box.innerHTML = `<b>To, The Dean / Registrar</b><br>Subject: ${subject}<br><br>Respected Sir/Madam,<br>I am ${name}, studying in the current academic session. I request you to kindly resolve my issue regarding the above subject.<br><br>Thanking You,<br><b>${name}</b>`;
         }
 
         // 8. CGPA
@@ -1351,7 +1372,7 @@
             box.style.display = "block";
             box.style.background = "var(--bg-surface)";
             box.style.color = "var(--text-primary)";
-            box.innerHTML = `Percentage: <b>${(cgpa * 9.5).toFixed(2)}%</b>`;
+            box.innerHTML = `Equivalent Percentage: <b>${(cgpa * 9.5).toFixed(2)}%</b>`;
         }
 
         // 9. NORMALISATION
@@ -1361,7 +1382,7 @@
             const box = document.getElementById("normOutput");
 
             if (!raw || raw <= 0) return;
-            let percent = shift === "hard" ? Math.min(99.9, ((raw + 15) / 200) * 100) : Math.min(99.9, (raw / 200) * 98);
+            let percent = shift === "hard" ? Math.min(99.9, ((raw + 18) / 200) * 100) : Math.min(99.9, (raw / 200) * 98.5);
 
             box.style.display = "block";
             box.style.background = "var(--bg-surface)";
@@ -1378,13 +1399,13 @@
             box.style.color = "var(--text-primary)";
 
             if (course === "ba_au") {
-                box.innerHTML = "<b>Top Choice Order:</b><br>1. Ancient History + Pol Sci + Hindi<br>2. Geography + Economics + Eng<br>3. History + Sociology + GT";
+                box.innerHTML = "<b>Recommended Choice Order:</b><br>1. Ancient History + Political Science + Hindi<br>2. Geography + Economics + English<br>3. Medieval History + Sociology + General Test";
             } else {
-                box.innerHTML = "<b>Top Choice Order:</b><br>1. FMC History + Economics<br>2. FMC Geography + Political Sci<br>3. DAV Social Science Group";
+                box.innerHTML = "<b>Recommended Choice Order:</b><br>1. FMC Main Campus - Political Science Hons<br>2. FMC Main Campus - History Hons<br>3. DAV / CMP Affiliated Social Science Group";
             }
         }
 
-        // 11. MATRIX
+        // 11. MATRIX (Fixed FMC vs Main Campus terminology)
         function checkCollegeMatrix() {
             const univ = document.getElementById("matrixUniv").value;
             const box = document.getElementById("matrixOutput");
@@ -1392,10 +1413,10 @@
             box.style.background = "var(--bg-surface)";
             box.style.color = "var(--text-primary)";
 
-            if (univ === "au_main") {
-                box.innerHTML = "<b>AU Main Campus (FMC):</b><br>Safe Score BA: <b>150+ Marks</b> | B.Sc: <b>155+ Marks</b> | B.Com: <b>160+ Marks</b>";
+            if (univ.includes("au")) {
+                box.innerHTML = "<b>Allahabad University Benchmark:</b><br>AU Main Campus Safe Score: <b>400+ Marks</b><br>Affiliated College (CMP/ECC): <b>250+ Marks</b>";
             } else {
-                box.innerHTML = "<b>Affiliated College (CMP/ECC):</b><br>Safe Score BA: <b>105+ Marks</b> | B.Sc: <b>115+ Marks</b>";
+                box.innerHTML = "<b>BHU Benchmark:</b><br>BHU Main Campus Safe Score: <b>500+ Marks</b><br>DAV PG College: <b>380+ Marks</b>";
             }
         }
 
@@ -1411,10 +1432,10 @@
             box.style.display = "block";
             box.style.background = "var(--bg-surface)";
             box.style.color = "var(--text-primary)";
-            box.innerHTML = `Readiness Score: <b>${count} / 4 Documents Ready</b> ${count===4 ? '<span style="color:var(--accent-green);">Ready for Admission!</span>' : '<span style="color:var(--accent-amber);">Complete remaining documents</span>'}`;
+            box.innerHTML = `Readiness Score: <b>${count} / 4 Documents Verified</b> ${count===4 ? '<span style="color:var(--accent-green);">Fully Ready for Counseling!</span>' : '<span style="color:var(--accent-amber);">Some certificates pending</span>'}`;
         }
 
-        // 13. GAP DRAFT
+        // 13. GAP DRAFT (Includes Main Campus and Affiliated Colleges)
         function generateGapDraft() {
             const name = document.getElementById("gapName").value || "[Student Name]";
             const years = document.getElementById("gapYears").value || "1 Year";
@@ -1423,7 +1444,7 @@
             box.style.display = "block";
             box.style.background = "var(--bg-surface)";
             box.style.color = "var(--text-primary)";
-            box.innerHTML = `<b>AFFIDAVIT DRAFT:</b><br>I, ${name}, state that I took a gap of ${years} for competitive exam preparation. I was not engaged in any unlawful activity.`;
+            box.innerHTML = `<b>OFFICIAL GAP AFFIDAVIT DRAFT:</b><br>I, ${name}, resident of India, do hereby solemnly affirm that I passed my qualifying examination earlier and there is a gap of ${years}. This gap was due to competitive exam preparation, and I was not involved in any criminal activity during this period. Submitted to Allahabad University Main Campus / Affiliated Colleges.`;
         }
 
         // 14. RATIO PERCENTILE
@@ -1437,12 +1458,11 @@
             box.style.display = "block";
             box.style.background = "var(--bg-surface)";
             box.style.color = "var(--text-primary)";
-            box.innerHTML = `Score Ratio: <b>${ratio}%</b> of total marks`;
+            box.innerHTML = `Score Ratio: <b>${ratio}%</b> achieved`;
         }
 
-        // 15. SCHOLARSHIP
+        // 15. SCHOLARSHIP (Strictly 48000/- threshold rule)
         function checkScholarshipEligibility() {
-            const cat = document.getElementById("feeCategory").value;
             const income = parseInt(document.getElementById("incomeVal").value);
             const box = document.getElementById("feeOutput");
 
@@ -1451,28 +1471,11 @@
             box.style.background = "var(--bg-surface)";
             box.style.color = "var(--text-primary)";
 
-            if (income <= 250000) {
-                box.innerHTML = "<b style='color:var(--accent-green);'>Eligible for UP Scholarship:</b> 100% Tuition Fee Reimbursement + Monthly Maintenance Allowance";
+            if (income <= 48000) {
+                box.innerHTML = "<b style='color:var(--accent-green);'>Eligible for Fee Exemption / Scholarship:</b> Annual income is within the 48000/- limit applicable across all categories.";
             } else {
-                box.innerHTML = "<b style='color:var(--accent-amber);'>General Category Guidelines:</b> Merit-cum-means scholarship criteria apply.";
+                box.innerHTML = "<b style='color:var(--accent-red);'>Not Eligible:</b> Annual family income exceeds the 48000/- ceiling limit.";
             }
-        }
-
-        // 16. DIRECT QUERY
-        function sendDirectQuery() {
-            const name = document.getElementById("askName").value || "Student";
-            const query = document.getElementById("askQuery").value;
-            const box = document.getElementById("askOutput");
-
-            if (!query) {
-                alert("Please enter your query!");
-                return;
-            }
-
-            box.style.display = "block";
-            box.style.background = "var(--bg-surface)";
-            box.style.color = "var(--text-primary)";
-            box.innerHTML = `<b>Query Received!</b> Hello ${name}, your question has been logged successfully. Our team will get back to you shortly.`;
         }
     </script>
 </body>
