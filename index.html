@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="google-site-verification" content="L8MTwwklD18hw-rbjRWfTjzMJD20u5BLAlTN1Zobp_U">
-    <title>Interactive Student Utility Suite & Predictor | Allahabad University Page</title>
+    <title>The University Page | Next-Gen University Entrance & Counseling Suite</title>
     
-    <!-- Google Fonts & Font Awesome -->
+    <!-- Fonts & Modern Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -14,11 +14,11 @@
 
     <style>
         :root {
-            /* 🌌 DARK THEME (Default) */
+            /* 🌌 PREMIUM DARK TOKENS */
             --bg-base: #060913;
             --bg-surface: rgba(13, 19, 36, 0.85);
             --bg-surface-hover: rgba(22, 31, 56, 0.95);
-            --bg-card: rgba(16, 24, 48, 0.75);
+            --bg-card: rgba(16, 24, 48, 0.7);
             --bg-chip: rgba(255, 255, 255, 0.06);
             --text-primary: #F8FAFC;
             --text-secondary: #CBD5E1;
@@ -26,11 +26,16 @@
             --border: rgba(255, 255, 255, 0.1);
             --border-hover: rgba(99, 102, 241, 0.5);
             
+            /* Accent & Gradients */
             --primary: #6366F1;
             --primary-glow: rgba(99, 102, 241, 0.35);
+            --secondary: #EC4899;
+            --accent-cyan: #06B6D4;
+            --accent-green: #10B981;
             --gradient-primary: linear-gradient(135deg, #6366F1 0%, #A855F7 50%, #EC4899 100%);
             --gradient-yt: linear-gradient(135deg, #FF0000 0%, #E11D48 100%);
             --shadow-glow: 0 0 50px -10px rgba(99, 102, 241, 0.25);
+            --radius-sm: 8px;
             --radius-md: 14px;
             --radius-lg: 20px;
             --radius-xl: 26px;
@@ -38,7 +43,7 @@
         }
 
         [data-theme="light"] {
-            /* ☀️ LIGHT THEME */
+            /* ☀️ ULTRA CLEAN LIGHT TOKENS */
             --bg-base: #F4F6FC;
             --bg-surface: rgba(255, 255, 255, 0.92);
             --bg-surface-hover: rgba(255, 255, 255, 1);
@@ -48,14 +53,14 @@
             --text-secondary: #334155;
             --text-muted: #64748B;
             --border: rgba(15, 23, 42, 0.08);
-            --border-hover: rgba(79, 70, 229, 0.5);
+            --border-hover: rgba(99, 102, 241, 0.5);
             --primary: #4F46E5;
             --primary-glow: rgba(79, 70, 229, 0.2);
             --shadow-glow: 0 20px 40px -15px rgba(79, 70, 229, 0.12);
         }
 
         *, *::before, *::after {
-            box-sizing: border-box !important;
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
@@ -92,13 +97,14 @@
             letter-spacing: -0.02em;
         }
 
-        /* HEADER NAVBAR */
+        /* 💎 TOP NAVBAR */
         .header-wrapper {
             position: sticky;
             top: 0;
-            z-index: 99999 !important;
+            z-index: 90;
             background: var(--bg-surface);
             backdrop-filter: var(--blur);
+            -webkit-backdrop-filter: var(--blur);
             border-bottom: 1px solid var(--border);
         }
 
@@ -117,11 +123,13 @@
             gap: 10px;
             text-decoration: none;
             color: var(--text-primary);
+            min-width: 0;
         }
 
         .logo-badge {
             width: 40px;
             height: 40px;
+            min-width: 40px;
             border-radius: var(--radius-md);
             background: var(--gradient-primary);
             display: flex;
@@ -132,134 +140,279 @@
             box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4);
         }
 
-        .logo span {
-            font-size: 1.05rem;
-            font-weight: 900;
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
         }
 
-        .nav-right-actions {
+        .logo-text h2 {
+            font-size: 1.05rem;
+            font-weight: 900;
+            line-height: 1.15;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .logo-text span {
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .nav-actions {
             display: flex;
             align-items: center;
             gap: 8px;
+            flex-shrink: 0;
         }
 
-        .sidebar-toggle-btn {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            color: var(--text-primary);
+        .control-btn {
             width: 40px;
             height: 40px;
             border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-primary);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1rem;
             cursor: pointer;
+            font-size: 1rem;
             transition: all 0.2s ease;
         }
 
-        .sidebar-toggle-btn:hover {
+        .control-btn:hover {
             border-color: var(--primary);
             color: var(--primary);
         }
 
-        /* FLOATING SIDEBAR DRAWER */
-        .resources-drawer {
-            display: none;
-            position: absolute;
-            top: calc(100% + 8px);
-            right: 16px;
-            width: 280px;
+        /* 📱 SLIDE-IN SIDEBAR DRAWER */
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .drawer-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .sidebar-drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 300px;
+            max-width: 85vw;
             background: var(--bg-surface);
             backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-left: 1px solid var(--border);
+            box-shadow: -10px 0 35px rgba(0, 0, 0, 0.4);
+            z-index: 999;
+            transform: translateX(100%);
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .sidebar-drawer.active {
+            transform: translateX(0);
+        }
+
+        .drawer-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 16px;
+        }
+
+        .drawer-header h3 {
+            font-size: 1.1rem;
+            font-weight: 800;
+        }
+
+        .drawer-close-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
             border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
-            padding: 12px;
-            z-index: 999999 !important;
-            animation: fadeIn 0.2s ease-out;
+            background: var(--bg-chip);
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-6px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .resources-drawer.active { display: block !important; }
-
-        .drawer-links-list { list-style: none; padding: 0; margin: 0; }
-        .drawer-links-list li { margin-bottom: 4px; }
-        .drawer-links-list a {
+        .drawer-links { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+        .drawer-links a {
             display: flex;
             align-items: center;
             gap: 12px;
-            padding: 10px 14px;
-            border-radius: 12px;
-            font-size: 0.86rem;
+            padding: 12px 14px;
+            border-radius: var(--radius-md);
+            font-size: 0.9rem;
             font-weight: 700;
             color: var(--text-secondary);
             text-decoration: none;
             transition: all 0.2s ease;
         }
 
-        .drawer-links-list a:hover {
+        .drawer-links a:hover, .drawer-links a.active {
             background: var(--bg-chip);
             color: var(--primary);
+            transform: translateX(4px);
         }
 
-        /* CONTAINER */
-        .container {
+        .drawer-links a i {
+            width: 24px;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        /* 🏛️ MAIN CONTAINER */
+        .main-container {
             flex: 1;
             max-width: 1280px;
             width: 100%;
             margin: 0 auto;
-            padding: 24px 16px 50px;
+            padding: 20px 16px 40px;
             position: relative;
             z-index: 1;
         }
 
-        .breadcrumb {
-            font-size: 0.82rem;
-            color: var(--text-muted);
-            margin-bottom: 16px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            flex-wrap: wrap;
-        }
-
-        .breadcrumb a {
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        .suite-title {
-            font-size: 1.6rem;
-            font-weight: 900;
-            color: var(--text-primary);
-            margin: 0 0 24px;
+        /* ⚡ LIVE HIGH-TECH TICKER */
+        .ticker-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 8px 14px;
+            margin-bottom: 24px;
             display: flex;
             align-items: center;
             gap: 12px;
-            letter-spacing: -0.02em;
+            backdrop-filter: var(--blur);
+            box-shadow: var(--shadow-glow);
         }
 
-        .suite-title i {
-            color: var(--primary);
-            background: var(--bg-chip);
-            border: 1px solid var(--border);
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
-            display: inline-flex;
+        .ticker-pill {
+            background: rgba(244, 63, 94, 0.15);
+            color: #F43F5E;
+            border: 1px solid rgba(244, 63, 94, 0.3);
+            padding: 4px 10px;
+            border-radius: 9999px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
+            gap: 6px;
             flex-shrink: 0;
         }
 
-        /* 📋 SECTION HEADER WITH "MORE" LINK */
+        .pulse-indicator {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #F43F5E;
+            box-shadow: 0 0 8px #F43F5E;
+            animation: neonPulse 1.4s infinite;
+        }
+
+        @keyframes neonPulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.3); opacity: 0.4; }
+        }
+
+        .ticker-marquee {
+            flex: 1;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .ticker-track {
+            display: inline-block;
+            animation: marqueeFlow 24s linear infinite;
+            font-size: 0.84rem;
+            font-weight: 700;
+        }
+
+        .ticker-track a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-right: 36px;
+        }
+
+        .ticker-track a:hover { color: var(--primary); }
+
+        @keyframes marqueeFlow {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* 🚀 ACCELERATOR PORTAL CARDS */
+        .portal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 14px;
+            margin-bottom: 30px;
+        }
+
+        .portal-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 18px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: var(--text-primary);
+            backdrop-filter: var(--blur);
+            transition: all 0.25s ease;
+        }
+
+        .portal-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--border-hover);
+            background: var(--bg-surface-hover);
+        }
+
+        .portal-icon {
+            width: 46px;
+            height: 46px;
+            min-width: 46px;
+            border-radius: var(--radius-md);
+            background: var(--bg-chip);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .portal-meta h3 { font-size: 0.98rem; font-weight: 800; margin-bottom: 2px; }
+        .portal-meta p { font-size: 0.76rem; color: var(--text-muted); font-weight: 600; }
+
+        /* 📋 SECTION HEADER */
         .section-header {
             display: flex;
             align-items: center;
@@ -305,263 +458,191 @@
             transform: translateX(4px);
         }
 
-        /* WIDGETS GRID */
-        .widgets-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-            gap: 20px;
+        /* 🔥 BULLETINS FEED */
+        .bulletin-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
             margin-bottom: 30px;
-            width: 100%;
         }
 
-        .widget-card {
+        .bulletin-item {
             background: var(--bg-card);
-            border-radius: var(--radius-lg);
             border: 1px solid var(--border);
-            padding: 22px 20px;
+            border-radius: var(--radius-md);
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-primary);
             backdrop-filter: var(--blur);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: all 0.25s ease;
-            position: relative;
-            overflow: hidden;
+            transition: all 0.2s ease;
         }
 
-        .widget-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 30px -6px var(--primary-glow);
+        .bulletin-item:hover {
             border-color: var(--primary);
             background: var(--bg-surface-hover);
         }
 
-        .widget-card-header {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            margin-bottom: 16px;
-        }
-
-        .widget-icon {
-            width: 44px;
-            height: 44px;
-            min-width: 44px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            flex-shrink: 0;
-            border: 1px solid var(--border);
-        }
-
-        .widget-title-group h3 {
-            font-size: 1.02rem;
-            font-weight: 800;
-            color: var(--text-primary);
-            margin-bottom: 2px;
-            line-height: 1.3;
-        }
-
-        .widget-title-group p {
-            font-size: 0.78rem;
-            color: var(--text-muted);
-            font-weight: 600;
-            margin: 0;
-        }
-
-        .form-control-custom {
-            width: 100%;
-            padding: 12px 14px;
-            border-radius: var(--radius-md);
-            border: 1px solid var(--border);
-            font-size: 0.86rem;
-            font-weight: 600;
-            background: var(--bg-surface);
-            color: var(--text-primary);
-            outline: none;
-            margin-bottom: 12px;
-            transition: all 0.2s ease;
-        }
-
-        .form-control-custom:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 12px var(--primary-glow);
-        }
-
-        .widget-btn {
-            background: var(--gradient-primary);
-            color: #FFFFFF;
-            border: none;
-            padding: 12px 16px;
-            border-radius: var(--radius-md);
-            font-weight: 800;
-            font-size: 0.86rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: all 0.2s ease;
-            width: 100%;
-            text-decoration: none;
-            box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3);
-            margin-top: 8px;
-        }
-
-        .widget-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.45);
-        }
-
-        .live-badge {
-            background: rgba(16, 185, 129, 0.15);
-            color: #34D399;
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.76rem;
-            font-weight: 800;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin-bottom: 14px;
-        }
-
-        .btn-whatsapp {
-            background: #25D366 !important;
-            box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3) !important;
-            margin-bottom: 8px;
-        }
-        .btn-whatsapp:hover { background: #20BA5A !important; }
-
-        .btn-dark {
-            background: var(--bg-chip) !important;
-            color: var(--text-primary) !important;
-            border: 1px solid var(--border) !important;
-            box-shadow: none !important;
-        }
-        .btn-dark:hover { border-color: var(--primary) !important; color: var(--primary) !important; }
-
-        .resizer-box {
-            border: 2px dashed var(--border);
-            padding: 18px 12px;
-            border-radius: var(--radius-md);
-            text-align: center;
-            background: var(--bg-surface);
-            margin-bottom: 12px;
-            cursor: pointer;
-        }
-        .resizer-box input[type="file"] { display: none; }
-        .resizer-box label {
-            cursor: pointer;
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: var(--primary);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .scholarship-links {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-bottom: 14px;
-        }
-
-        .scholar-btn-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 14px;
-            background: var(--bg-surface);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            font-size: 0.82rem;
-            font-weight: 700;
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: all 0.2s ease;
-        }
-
-        .scholar-btn-item:hover {
-            background: var(--bg-surface-hover);
-            border-color: #0D9488;
-            color: #14B8A6;
-            transform: translateX(3px);
-        }
-
-        .checklist-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-bottom: 14px;
-        }
-
-        .chk-item {
+        .bulletin-left {
             display: flex;
             align-items: center;
             gap: 10px;
-            font-size: 0.82rem;
-            font-weight: 600;
-            color: var(--text-secondary);
-            cursor: pointer;
+            flex: 1;
+            min-width: 0;
         }
 
-        .chk-item input {
-            accent-color: var(--primary);
-            width: 17px;
-            height: 17px;
-            cursor: pointer;
+        .badge-tag {
+            font-size: 0.68rem;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            flex-shrink: 0;
         }
 
-        .output-box-inline {
-            margin-top: 12px;
-            padding: 12px 14px;
-            background: var(--bg-surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
-            font-size: 0.82rem;
-            color: var(--text-primary);
+        .tag-cuet { background: rgba(99, 102, 241, 0.15); color: #818CF8; border: 1px solid rgba(99, 102, 241, 0.3); }
+        .tag-au { background: rgba(236, 72, 153, 0.15); color: #F472B6; border: 1px solid rgba(236, 72, 153, 0.3); }
+        .tag-job { background: rgba(16, 185, 129, 0.15); color: #34D399; border: 1px solid rgba(16, 185, 129, 0.3); }
+
+        .bulletin-text {
+            font-size: 0.88rem;
             font-weight: 700;
-            display: none;
-            word-break: break-word;
-            line-height: 1.5;
+            color: var(--text-primary);
+            line-height: 1.4;
         }
 
-        /* 5-SUBJECT CARDS FOR PREDICTOR */
-        .subject-slot-grid {
+        .bulletin-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .bulletin-date {
+            font-size: 0.74rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        .bulletin-arrow {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--bg-chip);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+        }
+
+        /* 🎛️ SMART UTILITIES SUITE */
+        .suite-grid {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 6px;
-            margin-bottom: 10px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-bottom: 35px;
         }
-        .subject-slot {
-            background: var(--bg-surface);
+
+        .suite-card {
+            background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 6px 4px;
-            font-size: 0.72rem;
-            font-weight: 700;
-            text-align: center;
-            color: var(--text-secondary);
+            border-radius: var(--radius-xl);
+            padding: 22px;
+            backdrop-filter: var(--blur);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: var(--shadow-glow);
         }
-        .subject-slot input {
+
+        .suite-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .suite-icon {
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
+            border-radius: 12px;
+            background: var(--gradient-primary);
+            color: #FFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .form-select, .form-input {
             width: 100%;
-            background: transparent;
-            border: none;
+            padding: 12px 14px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            background: var(--bg-surface);
             color: var(--text-primary);
+            font-size: 0.86rem;
+            font-weight: 600;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-select:focus, .form-input:focus {
+            border-color: var(--primary);
+        }
+
+        .glow-btn {
+            background: var(--gradient-primary);
+            color: #FFFFFF;
+            border: none;
+            padding: 13px 20px;
+            border-radius: var(--radius-md);
+            font-weight: 800;
+            font-size: 0.88rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            width: 100%;
+            text-decoration: none;
+            box-shadow: 0 6px 20px -4px rgba(99, 102, 241, 0.5);
+        }
+
+        .glow-btn:hover {
+            opacity: 0.95;
+            transform: translateY(-1px);
+        }
+
+        .predict-result {
+            display: none;
+            margin-top: 12px;
+            padding: 12px;
+            border-radius: var(--radius-md);
+            background: rgba(99, 102, 241, 0.15);
+            border: 1px solid rgba(99, 102, 241, 0.4);
+            color: var(--text-primary);
+            font-size: 0.84rem;
             font-weight: 800;
             text-align: center;
-            font-size: 0.85rem;
-            outline: none;
-            margin-top: 2px;
         }
 
-        /* QUICK NAVIGATION VAULT */
+        /* ⚡ QUICK NAVIGATION VAULT */
         .quicklinks-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -645,77 +726,388 @@
             color: #FFF;
         }
 
-        /* MODERN FOOTER */
+        /* 📺 1. ULTRA-PREMIUM CHANNELS HUB */
+        .channels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .channel-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            color: var(--text-primary);
+            backdrop-filter: var(--blur);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .channel-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--gradient-yt);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .channel-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(225, 29, 72, 0.4);
+            background: var(--bg-surface-hover);
+            box-shadow: 0 12px 30px -8px rgba(225, 29, 72, 0.25);
+        }
+
+        .channel-card:hover::before { opacity: 1; }
+
+        .channel-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            min-width: 0;
+        }
+
+        .channel-icon {
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            border-radius: 14px;
+            background: rgba(225, 29, 72, 0.1);
+            color: #FF0000;
+            border: 1px solid rgba(225, 29, 72, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.35rem;
+            transition: transform 0.3s ease;
+        }
+
+        .channel-card:hover .channel-icon {
+            transform: scale(1.08) rotate(3deg);
+            background: var(--gradient-yt);
+            color: #FFF;
+        }
+
+        .channel-meta h4 {
+            font-size: 0.98rem;
+            font-weight: 800;
+            margin-bottom: 3px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .channel-meta h4 i.fa-circle-check {
+            font-size: 0.8rem;
+            color: #38BDF8;
+        }
+
+        .channel-meta p {
+            font-size: 0.74rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .yt-badge-btn {
+            background: var(--gradient-yt);
+            color: #FFF;
+            padding: 8px 16px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+            flex-shrink: 0;
+            box-shadow: 0 4px 14px rgba(225, 29, 72, 0.35);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .channel-card:hover .yt-badge-btn {
+            transform: scale(1.04);
+            box-shadow: 0 6px 18px rgba(225, 29, 72, 0.5);
+        }
+
+        /* ❓ 2. FAQ ACCORDION */
+        .faq-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 18px 20px;
+            cursor: pointer;
+            backdrop-filter: var(--blur);
+            transition: border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .faq-item.active {
+            border-color: var(--primary);
+            background: var(--bg-surface-hover);
+        }
+
+        .faq-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .faq-header h4 {
+            font-size: 0.92rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.35;
+        }
+
+        .faq-chevron {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--bg-chip);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-chevron {
+            transform: rotate(180deg);
+            background: var(--primary);
+            color: #FFF;
+        }
+
+        .faq-body {
+            display: none;
+            padding-top: 12px;
+            margin-top: 12px;
+            border-top: 1px solid var(--border);
+            font-size: 0.84rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* 📞 3. CONTACT & HELPDESK */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .contact-info-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 24px;
+            backdrop-filter: var(--blur);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .contact-channels-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-channel-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px;
+            background: var(--bg-chip);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.2s;
+        }
+
+        .contact-channel-item:hover {
+            border-color: var(--primary);
+            transform: translateX(4px);
+        }
+
+        .contact-channel-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .contact-form-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 24px;
+            backdrop-filter: var(--blur);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .form-textarea {
+            width: 100%;
+            height: 100px;
+            padding: 12px 14px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            background: var(--bg-surface);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 0.86rem;
+            font-weight: 600;
+            outline: none;
+            resize: none;
+            margin-bottom: 14px;
+        }
+
+        .form-textarea:focus { border-color: var(--primary); }
+
+        /* 🏛️ 4. EXPLORE UNIVERSITIES */
+        .uni-explore-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 14px;
+            margin-bottom: 35px;
+        }
+
+        .uni-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 18px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: var(--text-primary);
+            backdrop-filter: var(--blur);
+            transition: all 0.25s ease;
+        }
+
+        .uni-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary);
+            background: var(--bg-surface-hover);
+            box-shadow: 0 10px 24px -6px var(--primary-glow);
+        }
+
+        .uni-icon {
+            width: 46px;
+            height: 46px;
+            min-width: 46px;
+            border-radius: var(--radius-md);
+            background: var(--bg-chip);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        .uni-meta h4 {
+            font-size: 0.95rem;
+            font-weight: 800;
+            margin-bottom: 2px;
+        }
+
+        .uni-meta p {
+            font-size: 0.74rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin: 0;
+        }
+
+        /* 🛡️ ULTRA-CLEAN MODERN FOOTER */
         .modern-footer {
             background: var(--bg-surface);
             border-top: 1px solid var(--border);
-            padding: 48px 20px 24px;
+            padding: 40px 16px 24px;
             margin-top: auto;
             backdrop-filter: var(--blur);
         }
 
-        .footer-container {
+        .footer-grid {
             max-width: 1280px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1.5fr repeat(3, 1fr);
-            gap: 32px;
-            padding-bottom: 32px;
+            gap: 28px;
+            padding-bottom: 28px;
             border-bottom: 1px solid var(--border);
         }
 
         .footer-brand-p {
-            font-size: 0.84rem;
+            font-size: 0.82rem;
             color: var(--text-muted);
             margin: 10px 0 16px;
-            line-height: 1.55;
+            line-height: 1.5;
         }
 
-        .footer-column h4 {
-            font-size: 0.95rem;
+        .footer-col h4 {
+            font-size: 0.9rem;
             font-weight: 800;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
             color: var(--text-primary);
         }
 
-        .footer-links-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .footer-links-list a {
-            font-size: 0.84rem;
+        .footer-nav { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+        .footer-nav a {
+            font-size: 0.82rem;
             font-weight: 600;
             color: var(--text-secondary);
             text-decoration: none;
-            transition: color 0.2s ease, transform 0.2s ease;
-            display: inline-block;
+            transition: color 0.2s;
         }
 
-        .footer-links-list a:hover {
-            color: var(--primary);
-            transform: translateX(4px);
-        }
+        .footer-nav a:hover { color: var(--primary); }
 
-        .sub-footer-bottom {
+        .footer-bottom {
             max-width: 1280px;
-            margin: 24px auto 0;
+            margin: 20px auto 0;
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
-            gap: 16px;
-            font-size: 0.82rem;
+            gap: 14px;
+            font-size: 0.78rem;
             color: var(--text-muted);
         }
 
-        .social-pill-group {
-            display: flex;
-            gap: 8px;
-        }
-
+        .social-pill-group { display: flex; gap: 8px; }
         .social-pill {
             width: 36px;
             height: 36px;
@@ -727,26 +1119,44 @@
             justify-content: center;
             color: var(--text-secondary);
             text-decoration: none;
-            transition: all 0.2s ease;
         }
 
-        .social-pill:hover {
-            background: var(--primary);
-            color: #FFF;
-            transform: translateY(-2px);
+        .social-pill:hover { background: var(--primary); color: #FFF; }
+
+        /* 📱 EXCLUSIVE MOBILE OPTIMIZATION */
+        @media (max-width: 768px) {
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .bulletin-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+            .bulletin-left {
+                width: 100%;
+                flex-wrap: wrap;
+            }
+            .bulletin-text {
+                width: 100%;
+                font-size: 0.85rem;
+            }
+            .bulletin-right {
+                width: 100%;
+                justify-content: space-between;
+                border-top: 1px solid var(--border);
+                padding-top: 6px;
+            }
+            .quicklinks-grid, .channels-grid, .uni-explore-grid, .suite-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
-        @media (max-width: 850px) {
-            .footer-container { grid-template-columns: 1fr 1fr; }
-            .widgets-grid { grid-template-columns: 1fr; }
-            .subject-slot-grid { grid-template-columns: repeat(3, 1fr); }
-        }
-
-        @media (max-width: 520px) {
+        @media (max-width: 480px) {
             .navbar { padding: 10px 14px; }
-            .footer-container { grid-template-columns: 1fr; gap: 24px; }
-            .sub-footer-bottom { flex-direction: column; align-items: flex-start; }
-            .subject-slot-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: 1fr; gap: 20px; }
+            .footer-bottom { flex-direction: column; align-items: flex-start; }
+            .section-title { font-size: 1.05rem; }
         }
     </style>
 </head>
@@ -754,552 +1164,205 @@
 
     <div class="ambient-glow"></div>
 
-    <!-- === HEADER NAVBAR === -->
+    <!-- 📱 SLIDE-IN SIDEBAR OVERLAY & DRAWER -->
+    <div class="drawer-overlay" id="drawerOverlay" onclick="closeNavDrawer()"></div>
+    
+    <aside class="sidebar-drawer" id="sidebarDrawer">
+        <div class="drawer-header">
+            <h3>Quick Navigation</h3>
+            <button class="drawer-close-btn" onclick="closeNavDrawer()" aria-label="Close Drawer">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <ul class="drawer-links">
+            <li><a href="index.html" class="active"><i class="fas fa-home" style="color: #6366F1;"></i> Home Workspace</a></li>
+            <li><a href="latest-updates.html"><i class="fas fa-bolt" style="color: #EC4899;"></i> Real-Time Alerts</a></li>
+            <li><a href="admission.html"><i class="fas fa-university" style="color: #8B5CF6;"></i> Central Admissions</a></li>
+            <li><a href="syllabus.html"><i class="fas fa-book-open" style="color: #10B981;"></i> Syllabus & PYQs</a></li>
+            <li><a href="cutoff.html"><i class="fas fa-chart-line" style="color: #06B6D4;"></i> Cutoff Analytics</a></li>
+            <li><a href="about-ajmal-mansoori.html"><i class="fas fa-user-shield" style="color: #6366F1;"></i> Founder Profile</a></li>
+        </ul>
+    </aside>
+
+    <!-- === MODERN STICKY HEADER === -->
     <header class="header-wrapper">
         <nav class="navbar">
             <a href="index.html" class="logo">
                 <div class="logo-badge"><i class="fas fa-graduation-cap"></i></div>
-                <span>Allahabad University Page</span>
+                <div class="logo-text">
+                    <h2>The University Page</h2>
+                    <span>Central Exam Suite</span>
+                </div>
             </a>
-            
-            <div class="nav-right-actions">
-                <button class="sidebar-toggle-btn" id="themeToggleBtn" onclick="toggleAppTheme()" title="Toggle Theme">
+
+            <div class="nav-actions">
+                <!-- Theme Mode Switcher -->
+                <button class="control-btn" id="themeToggleBtn" onclick="toggleAppTheme()" title="Switch Light/Dark Mode">
                     <i class="fas fa-sun" id="themeIcon"></i>
                 </button>
-                <button class="sidebar-toggle-btn" id="sidebarToggleBtn" onclick="toggleResourcesDrawer()" title="Menu">
+
+                <!-- Sidebar Slider Trigger Button -->
+                <button class="control-btn" onclick="openNavDrawer()" title="Open Navigation Menu">
                     <i class="fa-solid fa-bars-staggered"></i>
                 </button>
             </div>
         </nav>
-
-        <!-- FLOATING SIDEBAR DRAWER -->
-        <div class="resources-drawer" id="resourcesDrawer">
-            <ul class="drawer-links-list">
-                <li><a href="index.html"><i class="fas fa-home" style="color: #6366F1;"></i> Home Workspace</a></li>
-                <li><a href="latest-updates.html"><i class="fas fa-bolt" style="color: #EC4899;"></i> Real-Time Alerts</a></li>
-                <li><a href="result.html"><i class="fas fa-trophy" style="color: #10B981;"></i> All Results</a></li>
-                <li><a href="latest-jobs.html"><i class="fas fa-briefcase" style="color: #F59E0B;"></i> Latest Jobs</a></li>
-                <li><a href="central-universities.html"><i class="fas fa-monument" style="color: #8B5CF6;"></i> Central Universities (49)</a></li>
-                <li><a href="state-universities.html"><i class="fas fa-city" style="color: #0284C7;"></i> State Universities</a></li>
-                <li><a href="join.html"><i class="fas fa-user-plus" style="color: #10B981;"></i> Student Registration</a></li>
-                <li><a href="cutoff.html"><i class="fas fa-chart-line" style="color: #F59E0B;"></i> Cutoff Analytics</a></li>
-                <li><a href="about-ajmal-mansoori.html"><i class="fas fa-user-shield" style="color: #6366F1;"></i> Founder Profile</a></li>
-            </ul>
-        </div>
     </header>
 
     <!-- === MAIN CONTAINER === -->
-    <main class="container">
+    <main class="main-container">
 
-        <div class="breadcrumb">
-            <a href="index.html">Home</a> <i class="fas fa-chevron-right" style="font-size:0.65rem;"></i> <span>Student Utility Suite</span>
+        <!-- ⚡ LIVE TICKER -->
+        <div class="ticker-card">
+            <div class="ticker-pill">
+                <div class="pulse-indicator"></div> Live Alert
+            </div>
+            <div class="ticker-marquee">
+                <div class="ticker-track">
+                    <a href="scor.html">🔥 CUET UG Final Normalized Scorecard Portal Live - Check Campus Ranks</a>
+                    <a href="admission-details.html">🏛️ Allahabad University Main Campus CSAS Phase-1 Registration Active</a>
+                    <a href="job-details.html">⚡ SSC CGL Tier-1 National Application Window Open</a>
+                </div>
+            </div>
         </div>
 
-        <!-- 🎛️ INTERACTIVE STUDENT HUB HEADER WITH "MORE" LINK LINKED TO predictor.html -->
-        <div class="section-header" style="margin-top: 0;">
+        <!-- 🚀 ACCELERATOR PORTAL CARDS (4 ITEM GRID) -->
+        <section class="portal-grid">
+            <a href="https://learnifyclasses.akamai.net.in/new-courses" target="_blank" class="portal-card">
+                <div class="portal-icon" style="color: #6366F1;"><i class="fas fa-graduation-cap"></i></div>
+                <div class="portal-meta">
+                    <h3>Premium Courses</h3>
+                    <p>Live Classes & Mentorship</p>
+                </div>
+            </a>
+
+            <a href="https://learnifyclasses.akamai.net.in/ebooks" target="_blank" class="portal-card">
+                <div class="portal-icon" style="color: #EC4899;"><i class="fas fa-file-pdf"></i></div>
+                <div class="portal-meta">
+                    <h3>Notes/PDF</h3>
+                    <p>High-Yield Study Material</p>
+                </div>
+            </a>
+
+            <a href="syllabus.html" class="portal-card">
+                <div class="portal-icon" style="color: #10B981;"><i class="fas fa-book-open"></i></div>
+                <div class="portal-meta">
+                    <h3>Syllabus</h3>
+                    <p>Exam Pattern & PYQ Blueprints</p>
+                </div>
+            </a>
+
+            <a href="latest-updates.html" class="portal-card">
+                <div class="portal-icon" style="color: #06B6D4;"><i class="fas fa-newspaper"></i></div>
+                <div class="portal-meta">
+                    <h3>Current Affairs</h3>
+                    <p>Daily G.K. & Exam News</p>
+                </div>
+            </a>
+        </section>
+
+        <!-- 🔥 REAL-TIME BULLETINS FEED -->
+        <div class="section-header">
             <div class="section-title">
-                <div class="title-icon"><i class="fas fa-sliders-h"></i></div>
+                <div class="title-icon"><i class="fas fa-bolt"></i></div>
+                <span>Live Bulletins & Alerts</span>
+            </div>
+            <a href="latest-updates.html" class="view-all-link">All Updates <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="bulletin-list">
+            <a href="scor.html" class="bulletin-item">
+                <div class="bulletin-left">
+                    <span class="badge-tag tag-cuet">CUET UG</span>
+                    <p class="bulletin-text">CUET UG Official Scorecards Released - Direct Download Link Active</p>
+                </div>
+                <div class="bulletin-right">
+                    <span class="bulletin-date">Today</span>
+                    <div class="bulletin-arrow"><i class="fas fa-arrow-right"></i></div>
+                </div>
+            </a>
+
+            <a href="admission-details.html" class="bulletin-item">
+                <div class="bulletin-left">
+                    <span class="badge-tag tag-au">AU CSAS</span>
+                    <p class="bulletin-text">Allahabad University UG Main Campus Counseling Phase-1 Live</p>
+                </div>
+                <div class="bulletin-right">
+                    <span class="bulletin-date">Yesterday</span>
+                    <div class="bulletin-arrow"><i class="fas fa-arrow-right"></i></div>
+                </div>
+            </a>
+
+            <a href="job-details.html" class="bulletin-item">
+                <div class="bulletin-left">
+                    <span class="badge-tag tag-job">Recruitment</span>
+                    <p class="bulletin-text">SSC CGL Combined Graduate Level Exam Notification & Forms Open</p>
+                </div>
+                <div class="bulletin-right">
+                    <span class="bulletin-date">2 Days Ago</span>
+                    <div class="bulletin-arrow"><i class="fas fa-arrow-right"></i></div>
+                </div>
+            </a>
+        </div>
+
+        <!-- 🎛️ SMART UTILITIES SUITE WITH "MORE" LINK LINKED TO predictor.html -->
+        <div class="section-header">
+            <div class="section-title">
+                <div class="title-icon" style="background: linear-gradient(135deg, #6366F1, #8B5CF6);"><i class="fas fa-sliders-h"></i></div>
                 <span>Interactive Student Hub</span>
             </div>
             <a href="predictor.html" class="view-all-link">More <i class="fas fa-arrow-right"></i></a>
         </div>
 
-        <section class="widgets-grid">
-
-            <!-- WIDGET 1: COLLEGE PREDICTOR -->
-            <div class="widget-card">
+        <section class="suite-grid">
+            <!-- Rank Predictor Engine -->
+            <div class="suite-card">
                 <div>
-                    <div class="widget-card-header">
-                        <div class="widget-icon" style="background: rgba(99, 102, 241, 0.15); color: #818CF8;">
-                            <i class="fas fa-calculator"></i>
-                        </div>
-                        <div class="widget-title-group">
-                            <h3>College Predictor</h3>
-                            <p>49+ Central Universities & AU Ranking</p>
+                    <div class="suite-header">
+                        <div class="suite-icon"><i class="fas fa-chart-pie"></i></div>
+                        <div>
+                            <h3 style="font-size: 1.05rem; font-weight: 800;">Campus Rank Predictor</h3>
+                            <p style="font-size: 0.78rem; color: var(--text-muted); font-weight: 600;">Marks vs Percentile Modeling</p>
                         </div>
                     </div>
-
-                    <select id="predExam" class="form-control-custom">
-                        <option value="au">Allahabad University (AU)</option>
-                        <option value="bhu">Banaras Hindu University (BHU)</option>
-                        <option value="du">Delhi University (DU)</option>
-                        <option value="central49">Other 49+ Central Universities</option>
-                    </select>
-
-                    <p style="font-size: 0.76rem; font-weight: 700; color: var(--text-muted); margin-bottom: 6px;">Enter Subject Scores (Up to 5 Subjects):</p>
-                    <div class="subject-slot-grid">
-                        <div class="subject-slot">Sub 1<input type="number" id="sub1" placeholder="0"></div>
-                        <div class="subject-slot">Sub 2<input type="number" id="sub2" placeholder="0"></div>
-                        <div class="subject-slot">Sub 3<input type="number" id="sub3" placeholder="0"></div>
-                        <div class="subject-slot">Sub 4<input type="number" id="sub4" placeholder="0"></div>
-                        <div class="subject-slot">Sub 5<input type="number" id="sub5" placeholder="0"></div>
+                    <div class="input-group">
+                        <select id="predUniversity" class="form-select">
+                            <option value="cuet">CUET UG Central Universities (DU, BHU, AU)</option>
+                            <option value="au">University of Allahabad (Main Campus)</option>
+                            <option value="bhu">Banaras Hindu University (FMC / MMV)</option>
+                        </select>
+                        <input type="number" id="predScore" class="form-input" placeholder="Enter Expected Score (e.g. 580)">
                     </div>
-
-                    <select id="predCat" class="form-control-custom">
-                        <option value="ur">General / Unreserved</option>
-                        <option value="obc">OBC Category</option>
-                        <option value="ews">EWS Category</option>
-                        <option value="sc">SC / ST Category</option>
-                    </select>
                 </div>
-
                 <div>
-                    <button class="widget-btn" onclick="calculateMultiSubjectPrediction()">
-                        <i class="fas fa-chart-pie"></i> Predict Rank & College
+                    <button class="glow-btn" onclick="executePrediction()">
+                        <i class="fas fa-bolt"></i> Generate Rank Forecast
                     </button>
-                    <div class="output-box-inline" id="predictionResult"></div>
+                    <div id="predictionBadge" class="predict-result"></div>
                 </div>
             </div>
 
-            <!-- WIDGET 2: INSTANT ALERTS BELL -->
-            <div class="widget-card">
+            <!-- Telegram Community Network -->
+            <div class="suite-card">
                 <div>
-                    <div class="widget-card-header">
-                        <div class="widget-icon" style="background: rgba(16, 185, 129, 0.15); color: #34D399;">
-                            <i class="fas fa-bell"></i>
-                        </div>
-                        <div class="widget-title-group">
-                            <h3>Instant Alerts Bell</h3>
-                            <p>Direct Exam Updates</p>
+                    <div class="suite-header">
+                        <div class="suite-icon" style="background: linear-gradient(135deg, #06B6D4, #3B82F6);"><i class="fab fa-telegram-plane"></i></div>
+                        <div>
+                            <h3 style="font-size: 1.05rem; font-weight: 800;">CUET Warriors Network</h3>
+                            <p style="font-size: 0.78rem; color: var(--text-muted); font-weight: 600;">Real-Time Student Discussions</p>
                         </div>
                     </div>
-
-                    <div class="live-badge">
-                        <i class="fas fa-bolt"></i> Live 2026 Update Stream Active
-                    </div>
-
-                    <p style="font-size: 0.8rem; color: var(--text-muted); font-weight: 500; margin-bottom: 14px; line-height: 1.4;">
-                        Never miss an Admit Card release, Result declaration, or Counseling Cutoff deadline.
+                    <p style="font-size: 0.84rem; color: var(--text-secondary); line-height: 1.55; margin-bottom: 18px;">
+                        Join thousands of candidates for cutoff drop alerts, physical verification guidelines, and fast counseling resolution.
                     </p>
                 </div>
-
-                <div>
-                    <a href="https://t.me/cuetwarriors2026" target="_blank" class="widget-btn btn-whatsapp">
-                        <i class="fab fa-whatsapp"></i> Join WhatsApp Group
-                    </a>
-                    <button class="widget-btn btn-dark" id="pushBellBtn" onclick="toggleNotificationBell()">
-                        <i class="fas fa-bell"></i> Enable Push Alerts
-                    </button>
-                </div>
-            </div>
-
-            <!-- WIDGET 3: PHOTO & SIGN RESIZER -->
-            <div class="widget-card">
-                <div>
-                    <div class="widget-card-header">
-                        <div class="widget-icon" style="background: rgba(245, 158, 11, 0.15); color: #FBBF24;">
-                            <i class="fas fa-crop-alt"></i>
-                        </div>
-                        <div class="widget-title-group">
-                            <h3>Photo & Sign Resizer</h3>
-                            <p>Fast Form Compression & PDF tools</p>
-                        </div>
-                    </div>
-
-                    <div class="resizer-box">
-                        <input type="file" id="resizerInput" accept="image/*" onchange="processImageResize(event)">
-                        <label for="resizerInput">
-                            <i class="fas fa-cloud-upload-alt" style="font-size: 1.2rem; color: var(--primary);"></i>
-                            <span>Upload Image / Document</span>
-                        </label>
-                    </div>
-
-                    <select id="resizePreset" class="form-control-custom">
-                        <option value="photo">Passport Photo (50 KB - 500 KB)</option>
-                        <option value="sign">Signature (50 KB - 500 KB)</option>
-                        <option value="doc">Document File (500 KB - 1 MB)</option>
-                    </select>
-                </div>
-
-                <a href="#" id="downloadResizedBtn" class="widget-btn" style="background: #D97706; display: none;" download="compressed-file.jpg">
-                    <i class="fas fa-download"></i> Download Processed File
+                <a href="https://t.me/cuetwarriors2026" target="_blank" class="glow-btn" style="background: #229ED9;">
+                    <i class="fab fa-telegram-plane"></i> Join Telegram Forum
                 </a>
             </div>
-
-            <!-- WIDGET 4: UP SCHOLARSHIP PORTAL -->
-            <div class="widget-card">
-                <div>
-                    <div class="widget-card-header">
-                        <div class="widget-icon" style="background: rgba(13, 148, 136, 0.15); color: #2DD4BF;">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <div class="widget-title-group">
-                            <h3>UP Scholarship Portal</h3>
-                            <p>Dashmottar & Post-Matric</p>
-                        </div>
-                    </div>
-
-                    <div class="scholarship-links">
-                        <a href="https://scholarship.up.gov.in" target="_blank" class="scholar-btn-item">
-                            <span>Fresh Student Login</span> <i class="fas fa-chevron-right" style="font-size:0.75rem;"></i>
-                        </a>
-                        <a href="https://scholarship.up.gov.in" target="_blank" class="scholar-btn-item">
-                            <span>Renewal Student Login</span> <i class="fas fa-chevron-right" style="font-size:0.75rem;"></i>
-                        </a>
-                        <a href="https://scholarship.up.gov.in" target="_blank" class="scholar-btn-item">
-                            <span>Track Application Status</span> <i class="fas fa-chevron-right" style="font-size:0.75rem;"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <a href="document-details.html" class="widget-btn" style="background: #0D9488;">
-                    Aadhaar NPCI Mapping Guide
-                </a>
-            </div>
-
-            <!-- WIDGET 5: CUET SUBJECT COMBINATION CHECKER -->
-            <div class="widget-card">
-                <div>
-                    <div class="widget-card-header">
-                        <div class="widget-icon" style="background: rgba(139, 92, 246, 0.15); color: #A78BFA;">
-                            <i class="fas fa-book-reader"></i>
-                        </div>
-                        <div class="widget-title-group">
-                            <h3>Subject Combo Mapping</h3>
-                            <p>2026 Latest Eligibility Mapper</p>
-                        </div>
-                    </div>
-
-                    <select id="comboCourse" class="form-control-custom">
-                        <option value="ba">B.A. Arts & Social Science</option>
-                        <option value="bsc">B.Sc. Science Stream</option>
-                        <option value="bcom">B.Com. Commerce</option>
-                        <option value="ballb">BA LLB 5-Year Law</option>
-                    </select>
-
-                    <select id="comboUniv" class="form-control-custom">
-                        <option value="au">Allahabad University (AU)</option>
-                        <option value="bhu">Banaras Hindu University (BHU)</option>
-                        <option value="du">Delhi University (DU)</option>
-                        <option value="other49">Other 49+ Central Universities</option>
-                    </select>
-                </div>
-
-                <div>
-                    <button class="widget-btn" style="background: #8B5CF6;" onclick="checkSubjectCombo()">
-                        <i class="fas fa-layer-group"></i> Check Required Subjects
-                    </button>
-                    <div class="output-box-inline" id="comboOutput"></div>
-                </div>
-            </div>
-
-            <!-- WIDGET 6: AGE & ELIGIBILITY CALCULATOR -->
-            <div class="widget-card">
-                <div>
-                    <div class="widget-card-header">
-                        <div class="widget-icon" style="background: rgba(225, 29, 72, 0.15); color: #FB7185;">
-                            <i class="fas fa-user-clock"></i>
-                        </div>
-                        <div class="widget-title-group">
-                            <h3>Age & Eligibility Tool</h3>
-                            <p>Exam Cutoff Age Calculator</p>
-                        </div>
-                    </div>
-
-                    <input type="date" id="birthDate" class="form-control-custom" title="Date of Birth">
-                    <input type="date" id="cutoffDate" class="form-control-custom" value="2026-08-01" title="Cutoff Date">
-                </div>
-
-                <div>
-                    <button class="widget-btn" style="background: #E11D48;" onclick="calculateAge()">
-                        <i class="fas fa-history"></i> Calculate Exact Age
-                    </button>
-                    <div class="output-box-inline" id="ageOutput"></div>
-                </div>
-            </div>
-
-            <!-- WIDGET 7: AI STUDENT DRAFT WRITER -->
-            <div class="widget-card">
-                <div>
-                    <div class="widget-card-header">
-                        <div class="widget-icon" style="background: rgba(2, 132, 199, 0.15); color: #38BDF8;">
-                            <i class="fas fa-robot"></i>
-                        </div>
-                        <div class="widget-title-group">
-                            <h3>AI Student Draft Writer</h3>
-                            <p>Campus & College Applications</p>
-                        </div>
-                    </div>
-
-                    <select id="aiDraftType" class="form-control-custom">
-                        <option value="leave">Sick / Leave Application</option>
-                        <option value="fee">Fee Concession / Extension</option>
-                        <option value="tc">TC / Migration Certificate</option>
-                        <option value="hostel">Hostel Accommodation Request</option>
-                        <option value="idcard">Duplicate ID Card Request</option>
-                        <option value="correction">Marksheet Details Correction</option>
-                    </select>
-
-                    <input type="text" id="aiCampusName" class="form-control-custom" placeholder="College / Campus Name (e.g. CMP College)">
-                </div>
-
-                <div>
-                    <button class="widget-btn" style="background: #0284C7;" onclick="generateAIDraft()">
-                        <i class="fas fa-magic"></i> Draft Application
-                    </button>
-                    <div class="output-box-inline" id="aiDraftOutput"></div>
-                </div>
-            </div>
-
-            <!-- WIDGET 8: CGPA TO PERCENTAGE CONVERTER -->
-            <div class="widget-card">
-                <div>
-                    <div class="widget-card-header">
-                        <div class="widget-icon" style="background: var(--bg-chip); color: var(--text-primary);">
-                            <i class="fas fa-calculator"></i>
-                        </div>
-                        <div class="widget-title-group">
-                            <h3>CGPA Converter</h3>
-                            <p>Percentage Calculation</p>
-                        </div>
-                    </div>
-
-                    <input type="number" id="cgpaVal" class="form-control-custom" step="0.01" placeholder="Enter CGPA (e.g. 8.4)">
-                    <p style="font-size: 0.74rem; color: var(--text-muted); font-weight: 500; margin-bottom: 12px;">Standard Formula: CGPA x 9.5</p>
-                </div>
-
-                <div>
-                    <button class="widget-btn btn-dark" onclick="calculateCGPA()">
-                        <i class="fas fa-equals"></i> Calculate %
-                    </button>
-                    <div class="output-box-inline" id="cgpaOutput"></div>
-                </div>
-            </div>
-
-            <!-- WIDGET 9: CUET NORMALIZATION ESTIMATOR -->
-            <div class="widget-card">
-                <div>
-                    <div class="widget-card-header">
-                        <div class="widget-icon" style="background: rgba(16, 185, 129, 0.15); color: #34D399;">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <div class="widget-title-group">
-                            <h3>Normalised Score Helper</h3>
-                            <p>Raw Marks vs NTA Percentile</p>
-                        </div>
-                    </div>
-
-                    <input type="number" id="rawMarks" class="form-control-custom" placeholder="Enter Total Raw Score (e.g. 175)">
-                    
-                    <select id="shiftDiff" class="form-control-custom">
-                        <option value="easy">Exam Shift Level: Moderate / Easy</option>
-                        <option value="hard">Exam Shift Level: Hard / Difficult</option>
-                    </select>
-                </div>
-
-                <div>
-                    <button class="widget-btn" style="background: #059669;" onclick="estimateNormalisation()">
-                        <i class="fas fa-percentage"></i> Estimate Percentile
-                    </button>
-                    <div class="output-box-inline" id="normOutput"></div>
-                </div>
-            </div>
-
-            <!-- WIDGET 10: SUBJECT PREFERENCE ORDER GENERATOR -->
-            <div class="widget-card">
-                <div>
-                    <div class="widget-card-header">
-                        <div class="widget-icon" style="background: rgba(220, 38, 38, 0.15); color: #F87171;">
-                            <i class="fas fa-list-ol"></i>
-                        </div>
-                        <div class="widget-title-group">
-                            <h3>Choice Order Generator</h3>
-                            <p>Counseling Preference List</p>
-                        </div>
-                    </div>
-
-                    <select id="prefCourse" class="form-control-custom">
-                        <option value="ba_au">AU BA Arts Combinations</option>
-                        <option value="ba_bhu">BHU BA Social Science</option>
-                        <option value="bsc_au">AU B.Sc Science Group</option>
-                    </select>
-
-                    <select id="prefCareer" class="form-control-custom">
-                        <option value="upsc">Target: Civil Services / Govt Exams</option>
-                        <option value="academic">Target: Research & Teaching</option>
-                        <option value="general">Target: General Honors Degree</option>
-                    </select>
-                </div>
-
-                <div>
-                    <button class="widget-btn" style="background: #DC2626;" onclick="generatePreferenceList()">
-                        <i class="fas fa-sort-amount-down"></i> Generate Top Choices
-                    </button>
-                    <div class="output-box-inline" id="prefOutput"></div>
-                </div>
-            </div>
-
-            <!-- WIDGET 11: MAIN CAMPUS VS AFFILIATED CUTOFF MATRIX -->
-            <div class="widget-card">
-                <div>
-                    <div class="widget-card-header">
-                        <div class="widget-icon" style="background: rgba(55, 48, 163, 0.15); color: #818CF8;">
-                            <i class="fas fa-university"></i>
-                        </div>
-                        <div class="widget-title-group">
-                            <h3>Campus vs College Matrix</h3>
-                            <p>Cutoff Benchmark Guide</p>
-                        </div>
-                    </div>
-
-                    <select id="matrixUniv" class="form-control-custom">
-                        <option value="au_main">AU Main Campus</option>
-                        <option value="au_cmp">CMP Degree College</option>
-                        <option value="au_ecc">Ewing Christian College (ECC)</option>
-                        <option value="bhu_fmc">BHU Main Campus</option>
-                        <option value="bhu_dav">BHU DAV PG College</option>
-                    </select>
-
-                    <select id="matrixStream" class="form-control-custom">
-                        <option value="ba">B.A. Cutoff Trend</option>
-                        <option value="bsc">B.Sc. Cutoff Trend</option>
-                        <option value="bcom">B.Com Cutoff Trend</option>
-                    </select>
-                </div>
-
-                <div>
-                    <button class="widget-btn" style="background: #3730A3;" onclick="checkCollegeMatrix()">
-                        <i class="fas fa-table"></i> Check Safe Score
-                    </button>
-                    <div class="output-box-inline" id="matrixOutput"></div>
-                </div>
-            </div>
-
-            <!-- WIDGET 12: COUNSELING DOCUMENT CHECKLIST -->
-            <div class="widget-card">
-                <div>
-                    <div class="widget-card-header">
-                        <div class="widget-icon" style="background: rgba(180, 83, 9, 0.15); color: #F59E0B;">
-                            <i class="fas fa-clipboard-check"></i>
-                        </div>
-                        <div class="widget-title-group">
-                            <h3>Document Verifier</h3>
-                            <p>Counseling Readiness Checklist</p>
-                        </div>
-                    </div>
-
-                    <div class="checklist-group">
-                        <label class="chk-item"><input type="checkbox" id="chkTC"> Transfer / Migration Certificate</label>
-                        <label class="chk-item"><input type="checkbox" id="chkCaste"> Category Caste Certificate</label>
-                        <label class="chk-item"><input type="checkbox" id="chkIncome"> Recent Income Certificate</label>
-                        <label class="chk-item"><input type="checkbox" id="chkGap"> Gap Year Affidavit (if applicable)</label>
-                    </div>
-                </div>
-
-                <div>
-                    <button class="widget-btn" style="background: #B45309;" onclick="verifyDocuments()">
-                        <i class="fas fa-check-double"></i> Verify Readiness
-                    </button>
-                    <div class="output-box-inline" id="chkOutput"></div>
-                </div>
-            </div>
-
-            <!-- WIDGET 13: GAP YEAR AFFIDAVIT DRAFT -->
-            <div class="widget-card">
-                <div>
-                    <div class="widget-card-header">
-                        <div class="widget-icon" style="background: rgba(15, 118, 110, 0.15); color: #2DD4BF;">
-                            <i class="fas fa-file-contract"></i>
-                        </div>
-                        <div class="widget-title-group">
-                            <h3>Gap Year Affidavit Draft</h3>
-                            <p>Campus & Affiliated College Legal Draft</p>
-                        </div>
-                    </div>
-
-                    <input type="text" id="gapName" class="form-control-custom" placeholder="Full Student Name">
-                    <input type="text" id="gapInst" class="form-control-custom" placeholder="Campus / College Name (e.g. AU Main Campus / CMP)">
-                </div>
-
-                <div>
-                    <button class="widget-btn" style="background: #0F766E;" onclick="generateGapDraft()">
-                        <i class="fas fa-file-alt"></i> Create Legal Draft
-                    </button>
-                    <div class="output-box-inline" id="gapOutput"></div>
-                </div>
-            </div>
-
-            <!-- WIDGET 14: MARKS TO PERCENTILE CALCULATOR -->
-            <div class="widget-card">
-                <div>
-                    <div class="widget-card-header">
-                        <div class="widget-icon" style="background: var(--bg-chip); color: var(--text-primary);">
-                            <i class="fas fa-calculator"></i>
-                        </div>
-                        <div class="widget-title-group">
-                            <h3>Marks to Percentile</h3>
-                            <p>Quick Score Conversion</p>
-                        </div>
-                    </div>
-
-                    <input type="number" id="percMarks" class="form-control-custom" placeholder="Score Obtained (e.g. 165)">
-                    <input type="number" id="percTotal" class="form-control-custom" value="200" placeholder="Total Marks (Default 200)">
-                </div>
-
-                <div>
-                    <button class="widget-btn btn-dark" onclick="calculatePercentileQuick()">
-                        <i class="fas fa-percent"></i> Calculate Ratio %
-                    </button>
-                    <div class="output-box-inline" id="percOutput"></div>
-                </div>
-            </div>
-
-            <!-- WIDGET 15: FEE EXEMPTION & SCHOLARSHIP HELPER -->
-            <div class="widget-card">
-                <div>
-                    <div class="widget-card-header">
-                        <div class="widget-icon" style="background: rgba(22, 163, 74, 0.15); color: #4ADE80;">
-                            <i class="fas fa-hand-holding-usd"></i>
-                        </div>
-                        <div class="widget-title-group">
-                            <h3>Fee Exemption Helper</h3>
-                            <p>Income 48,000/- Eligibility Check</p>
-                        </div>
-                    </div>
-
-                    <select id="feeCategory" class="form-control-custom">
-                        <option value="all">Applicable For All Categories</option>
-                    </select>
-
-                    <input type="number" id="incomeVal" class="form-control-custom" placeholder="Annual Family Income (e.g. 45000)">
-                </div>
-
-                <div>
-                    <button class="widget-btn" style="background: #16A34A;" onclick="checkScholarshipEligibility()">
-                        <i class="fas fa-coins"></i> Check 48,000/- Limit
-                    </button>
-                    <div class="output-box-inline" id="feeOutput"></div>
-                </div>
-            </div>
-
-            <!-- WIDGET 16: DIRECT FOUNDER DOUBT HELPER -->
-            <div class="widget-card">
-                <div>
-                    <div class="widget-card-header">
-                        <div class="widget-icon" style="background: rgba(99, 102, 241, 0.15); color: #818CF8;">
-                            <i class="fab fa-whatsapp"></i>
-                        </div>
-                        <div class="widget-title-group">
-                            <h3>Ask Ajmal Sir Direct</h3>
-                            <p>Counseling Support Portal</p>
-                        </div>
-                    </div>
-
-                    <input type="text" id="askName" class="form-control-custom" placeholder="Your Name">
-                    <input type="text" id="askQuery" class="form-control-custom" placeholder="Type Query (e.g. AU BA 2026 Cutoff)">
-                </div>
-
-                <div>
-                    <button class="widget-btn btn-whatsapp" onclick="sendDirectWhatsAppQuery()">
-                        <i class="fab fa-whatsapp"></i> Chat on +91 9984919392
-                    </button>
-                    <div class="output-box-inline" id="askOutput">Direct WhatsApp Connection Ready</div>
-                </div>
-            </div>
-
         </section>
 
-        <!-- QUICK NAVIGATION VAULT -->
+        <!-- ⚡ QUICK NAVIGATION VAULT -->
         <div class="section-header">
             <div class="section-title">
                 <div class="title-icon" style="background: linear-gradient(135deg, #EC4899, #F43F5E);"><i class="fas fa-layer-group"></i></div>
@@ -1351,9 +1414,53 @@
                 </div>
                 <div class="quicklink-arrow"><i class="fas fa-arrow-right"></i></div>
             </a>
+
+            <a href="cutoff.html" class="quicklink-card">
+                <div class="quicklink-left">
+                    <div class="quicklink-icon-wrap" style="color: #06B6D4;"><i class="fas fa-chart-line"></i></div>
+                    <div class="quicklink-info">
+                        <h4>Cutoffs & Ranks</h4>
+                        <p>Category-Wise Merit Marks</p>
+                    </div>
+                </div>
+                <div class="quicklink-arrow"><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <a href="answerkey.html" class="quicklink-card">
+                <div class="quicklink-left">
+                    <div class="quicklink-icon-wrap" style="color: #EC4899;"><i class="fas fa-key"></i></div>
+                    <div class="quicklink-info">
+                        <h4>Answer Keys</h4>
+                        <p>Official Question Papers</p>
+                    </div>
+                </div>
+                <div class="quicklink-arrow"><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <a href="syllabus.html" class="quicklink-card">
+                <div class="quicklink-left">
+                    <div class="quicklink-icon-wrap" style="color: #10B981;"><i class="fas fa-book-open"></i></div>
+                    <div class="quicklink-info">
+                        <h4>Exam Syllabus</h4>
+                        <p>PDF Blueprints & Patterns</p>
+                    </div>
+                </div>
+                <div class="quicklink-arrow"><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <a href="document-details.html" class="quicklink-card">
+                <div class="quicklink-left">
+                    <div class="quicklink-icon-wrap" style="color: #0D9488;"><i class="fas fa-award"></i></div>
+                    <div class="quicklink-info">
+                        <h4>Scholarships</h4>
+                        <p>UP & National Schemes</p>
+                    </div>
+                </div>
+                <div class="quicklink-arrow"><i class="fas fa-arrow-right"></i></div>
+            </a>
         </section>
 
-        <!-- OFFICIAL CHANNELS & MENTORSHIP NETWORK -->
+        <!-- 📺 1. OFFICIAL CHANNELS & MENTORSHIP NETWORK -->
         <div class="section-header">
             <div class="section-title">
                 <div class="title-icon" style="background: var(--gradient-yt);"><i class="fab fa-youtube"></i></div>
@@ -1361,27 +1468,189 @@
             </div>
         </div>
 
-        <section class="channels-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 40px;">
-            <a href="https://youtube.com/@ajmalalimansoori" target="_blank" class="channel-card" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 18px 20px; display: flex; align-items: center; justify-content: space-between; text-decoration: none; color: var(--text-primary);">
-                <div class="channel-left" style="display: flex; align-items: center; gap: 14px;">
-                    <div class="channel-icon" style="width: 48px; height: 48px; border-radius: 14px; background: rgba(225, 29, 72, 0.1); color: #FF0000; display: flex; align-items: center; justify-content: center; font-size: 1.35rem;"><i class="fas fa-user-graduate"></i></div>
-                    <div>
-                        <h4 style="font-size: 0.98rem; font-weight: 800; margin-bottom: 3px;">Ajmal Mansoori</h4>
-                        <p style="font-size: 0.74rem; color: var(--text-muted); font-weight: 600;">Exam Strategy & Mentorship</p>
+        <section class="channels-grid">
+            <a href="https://youtube.com/@ajmalalimansoori" target="_blank" class="channel-card">
+                <div class="channel-left">
+                    <div class="channel-icon"><i class="fas fa-user-graduate"></i></div>
+                    <div class="channel-meta">
+                        <h4>Ajmal Mansoori <i class="fas fa-circle-check"></i></h4>
+                        <p>Exam Strategy & Direct Mentorship</p>
                     </div>
                 </div>
-                <span class="yt-badge-btn" style="background: var(--gradient-yt); color: #FFF; padding: 8px 16px; border-radius: 9999px; font-size: 0.75rem; font-weight: 800;"><i class="fab fa-youtube"></i> Subscribe</span>
+                <span class="yt-badge-btn"><i class="fab fa-youtube"></i> Subscribe</span>
             </a>
 
-            <a href="https://youtube.com/@theuniversitypage" target="_blank" class="channel-card" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 18px 20px; display: flex; align-items: center; justify-content: space-between; text-decoration: none; color: var(--text-primary);">
-                <div class="channel-left" style="display: flex; align-items: center; gap: 14px;">
-                    <div class="channel-icon" style="width: 48px; height: 48px; border-radius: 14px; background: rgba(225, 29, 72, 0.1); color: #FF0000; display: flex; align-items: center; justify-content: center; font-size: 1.35rem;"><i class="fas fa-graduation-cap"></i></div>
-                    <div>
-                        <h4 style="font-size: 0.98rem; font-weight: 800; margin-bottom: 3px;">The University Page</h4>
-                        <p style="font-size: 0.74rem; color: var(--text-muted); font-weight: 600;">Central Uni Updates & Cutoffs</p>
+            <a href="https://youtube.com/@theuniversitypage" target="_blank" class="channel-card">
+                <div class="channel-left">
+                    <div class="channel-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="channel-meta">
+                        <h4>The University Page <i class="fas fa-circle-check"></i></h4>
+                        <p>Central Uni Updates & Cutoffs</p>
                     </div>
                 </div>
-                <span class="yt-badge-btn" style="background: var(--gradient-yt); color: #FFF; padding: 8px 16px; border-radius: 9999px; font-size: 0.75rem; font-weight: 800;"><i class="fab fa-youtube"></i> Subscribe</span>
+                <span class="yt-badge-btn"><i class="fab fa-youtube"></i> Subscribe</span>
+            </a>
+
+            <a href="https://youtube.com/@allahabaduniversitypage" target="_blank" class="channel-card">
+                <div class="channel-left">
+                    <div class="channel-icon"><i class="fas fa-landmark"></i></div>
+                    <div class="channel-meta">
+                        <h4>Allahabad University Page <i class="fas fa-circle-check"></i></h4>
+                        <p>AU Campus Updates, NEP & Forms</p>
+                    </div>
+                </div>
+                <span class="yt-badge-btn"><i class="fab fa-youtube"></i> Subscribe</span>
+            </a>
+
+            <a href="https://youtube.com/@learnifyclasses" target="_blank" class="channel-card">
+                <div class="channel-left">
+                    <div class="channel-icon"><i class="fas fa-laptop-code"></i></div>
+                    <div class="channel-meta">
+                        <h4>Learnify Classes <i class="fas fa-circle-check"></i></h4>
+                        <p>Complete Exam Prep & Sessions</p>
+                    </div>
+                </div>
+                <span class="yt-badge-btn"><i class="fab fa-youtube"></i> Subscribe</span>
+            </a>
+        </section>
+
+        <!-- ❓ 2. FREQUENTLY ASKED QUESTIONS -->
+        <div class="section-header">
+            <div class="section-title">
+                <div class="title-icon" style="background: linear-gradient(135deg, #6366F1, #8B5CF6);"><i class="fas fa-circle-question"></i></div>
+                <span>Frequently Asked Questions</span>
+            </div>
+        </div>
+
+        <section class="faq-container">
+            <div class="faq-item" onclick="toggleFaqAccordion(this)">
+                <div class="faq-header">
+                    <h4>What is the Allahabad University NEP Credit System?</h4>
+                    <div class="faq-chevron"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-body">
+                    Under NEP, students complete 44 credits annually (184 credits across 4 years) to receive an Honours with Research degree. Check the Syllabus section for complete semester-wise course combinations.
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaqAccordion(this)">
+                <div class="faq-header">
+                    <h4>How accurate is the Campus Rank Predictor tool?</h4>
+                    <div class="faq-chevron"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-body">
+                    The predictor models previous years' merit cutoff drops, seat matrix allocations, and reservation statistics for Central Universities (AU, BHU, DU) to provide a realistic rank estimation.
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaqAccordion(this)">
+                <div class="faq-header">
+                    <h4>Where can I download verified e-books and test series?</h4>
+                    <div class="faq-chevron"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-body">
+                    You can access curated study booklets and full-length simulated mock tests directly through the Learnify Classes application and portal modules linked in the top accelerator grid.
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaqAccordion(this)">
+                <div class="faq-header">
+                    <h4>How do I stay alerted for immediate cutoff drops?</h4>
+                    <div class="faq-chevron"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-body">
+                    Join our official <b>CUET Warriors Forum</b> on Telegram to receive instant notifications the moment university counseling portals release new category merit cutoffs.
+                </div>
+            </div>
+        </section>
+
+        <!-- 📞 3. CONTACT & HELPDESK -->
+        <div class="section-header">
+            <div class="section-title">
+                <div class="title-icon" style="background: linear-gradient(135deg, #059669, #10B981);"><i class="fas fa-headset"></i></div>
+                <span>Contact & Student Support</span>
+            </div>
+        </div>
+
+        <section class="contact-grid">
+            <div class="contact-info-card">
+                <div>
+                    <h3 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 6px;">Need Direct Counseling Assistance?</h3>
+                    <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px;">
+                        Reach out across our official student helpdesk channels for admission queries, portal guidance, and document verification support.
+                    </p>
+                </div>
+                <div class="contact-channels-list">
+                    <a href="https://t.me/cuetwarriors2026" target="_blank" class="contact-channel-item">
+                        <div class="contact-channel-icon" style="background: rgba(34, 158, 217, 0.15); color: #229ED9;"><i class="fab fa-telegram-plane"></i></div>
+                        <div>
+                            <h5 style="font-size: 0.88rem; font-weight: 800;">Telegram Support Community</h5>
+                            <span style="font-size: 0.74rem; color: var(--text-muted);">Instant Chat & Doubts</span>
+                        </div>
+                    </a>
+                    <a href="https://instagram.com/ajmalcreator" target="_blank" class="contact-channel-item">
+                        <div class="contact-channel-icon" style="background: rgba(225, 29, 72, 0.15); color: #E11D48;"><i class="fab fa-instagram"></i></div>
+                        <div>
+                            <h5 style="font-size: 0.88rem; font-weight: 800;">Official Instagram DM</h5>
+                            <span style="font-size: 0.74rem; color: var(--text-muted);">@ajmalcreator</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="contact-form-card">
+                <h3 style="font-size: 1.05rem; font-weight: 800; margin-bottom: 12px;">Send Quick Query</h3>
+                <div class="form-row">
+                    <input type="text" class="form-input" placeholder="Your Name">
+                    <input type="email" class="form-input" placeholder="Your Email">
+                </div>
+                <textarea class="form-textarea" placeholder="Write your admission or syllabus query here..."></textarea>
+                <button class="glow-btn" onclick="alert('Thank you! Your query has been logged.')">
+                    <i class="fas fa-paper-plane"></i> Submit Query
+                </button>
+            </div>
+        </section>
+
+        <!-- 🏛️ 4. EXPLORE UNIVERSITIES -->
+        <div class="section-header">
+            <div class="section-title">
+                <div class="title-icon" style="background: linear-gradient(135deg, #0284C7, #38BDF8);"><i class="fas fa-university"></i></div>
+                <span>Explore Top Central & State Universities</span>
+            </div>
+            <a href="central-universities.html" class="view-all-link">More Universities <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <section class="uni-explore-grid">
+            <a href="admission.html" class="uni-card">
+                <div class="uni-icon"><i class="fas fa-monument"></i></div>
+                <div class="uni-meta">
+                    <h4>University of Allahabad</h4>
+                    <p>AU Main Campus & Colleges</p>
+                </div>
+            </a>
+
+            <a href="admission.html" class="uni-card">
+                <div class="uni-icon"><i class="fas fa-om"></i></div>
+                <div class="uni-meta">
+                    <h4>Banaras Hindu University</h4>
+                    <p>BHU Varanasi (FMC / MMV)</p>
+                </div>
+            </a>
+
+            <a href="admission.html" class="uni-card">
+                <div class="uni-icon"><i class="fas fa-landmark-dome"></i></div>
+                <div class="uni-meta">
+                    <h4>University of Delhi</h4>
+                    <p>DU North & South Campus</p>
+                </div>
+            </a>
+
+            <a href="admission.html" class="uni-card">
+                <div class="uni-icon"><i class="fas fa-book-atlas"></i></div>
+                <div class="uni-meta">
+                    <h4>Dr. BR Ambedkar University</h4>
+                    <p>BBAU Lucknow Admissions</p>
+                </div>
             </a>
         </section>
 
@@ -1389,30 +1658,32 @@
 
     <!-- === MODERN FOOTER === -->
     <footer class="modern-footer">
-        <div class="footer-container">
+        <div class="footer-grid">
             <div>
                 <div class="logo">
                     <div class="logo-badge"><i class="fas fa-graduation-cap"></i></div>
-                    <div class="logo-text" style="font-weight: 900; font-size: 1.05rem;">The University Page</div>
+                    <div class="logo-text" style="font-weight: 900; font-size: 1.05rem; display: flex; flex-direction: column;">
+                        <h2>The University Page</h2>
+                    </div>
                 </div>
                 <p class="footer-brand-p">
-                    Empowering students nationwide with verified admission roadmaps, cutoff predictions, and exam strategies by Ajmal Mansoori.
+                    Empowering students nationwide with accurate admission roadmaps, cutoff predictions, and exam strategies by Ajmal Mansoori.
                 </p>
             </div>
 
-            <div class="footer-column">
+            <div class="footer-col">
                 <h4>Admissions</h4>
-                <ul class="footer-links-list">
-                    <li><a href="admission.html">CUET UG Admissions</a></li>
-                    <li><a href="central-universities.html">Central Universities (49)</a></li>
-                    <li><a href="state-universities.html">State Universities</a></li>
+                <ul class="footer-nav">
+                    <li><a href="admission.html">CUET UG</a></li>
+                    <li><a href="admission.html">Allahabad University</a></li>
+                    <li><a href="admission.html">BHU Counseling</a></li>
                     <li><a href="cutoff.html">Cutoff Archives</a></li>
                 </ul>
             </div>
 
-            <div class="footer-column">
+            <div class="footer-col">
                 <h4>Ecosystem</h4>
-                <ul class="footer-links-list">
+                <ul class="footer-nav">
                     <li><a href="https://learnifyclasses.akamai.net.in" target="_blank">Learnify App</a></li>
                     <li><a href="join.html">Student Registration</a></li>
                     <li><a href="https://youtube.com/@ajmalalimansoori" target="_blank">YouTube Channel</a></li>
@@ -1420,9 +1691,9 @@
                 </ul>
             </div>
 
-            <div class="footer-column">
-                <h4>Legal & Policies</h4>
-                <ul class="footer-links-list">
+            <div class="footer-col">
+                <h4>Legal & Privacy</h4>
+                <ul class="footer-nav">
                     <li><a href="privacy-policy.html">Privacy Charter</a></li>
                     <li><a href="terms.html">Terms of Use</a></li>
                     <li><a href="disclaimer.html">Disclaimer</a></li>
@@ -1430,8 +1701,8 @@
             </div>
         </div>
 
-        <div class="sub-footer-bottom">
-            <div>&copy; 2026 The University Page. Founded by Ajmal Mansoori. All rights reserved. 🇮🇳</div>
+        <div class="footer-bottom">
+            <div>&copy; 2026 The University Page. Designed for Scholars Across India 🇮🇳</div>
             <div class="social-pill-group">
                 <a href="https://youtube.com/@ajmalalimansoori" target="_blank" class="social-pill"><i class="fab fa-youtube"></i></a>
                 <a href="https://instagram.com/ajmalcreator" target="_blank" class="social-pill"><i class="fab fa-instagram"></i></a>
@@ -1440,8 +1711,9 @@
         </div>
     </footer>
 
-    <!-- INTERACTIVE JAVASCRIPT & LOGIC -->
+    <!-- INTERACTIVE JAVASCRIPT -->
     <script>
+        // 🌓 THEME TOGGLE
         function initAppTheme() {
             const current = localStorage.getItem('theme-mode') || 'dark';
             document.documentElement.setAttribute('data-theme', current);
@@ -1465,292 +1737,55 @@
         }
         initAppTheme();
 
-        function toggleResourcesDrawer() {
-            const drawer = document.getElementById("resourcesDrawer");
-            if (drawer) drawer.classList.toggle("active");
+        // 📱 SLIDE-IN SIDEBAR DRAWER LOGIC
+        function openNavDrawer() {
+            document.getElementById('sidebarDrawer').classList.add('active');
+            document.getElementById('drawerOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
 
-        document.addEventListener("click", function(event) {
-            if (!event.target.closest("#sidebarToggleBtn") && !event.target.closest("#resourcesDrawer")) {
-                const drawer = document.getElementById("resourcesDrawer");
-                if (drawer) drawer.classList.remove("active");
-            }
-        });
+        function closeNavDrawer() {
+            document.getElementById('sidebarDrawer').classList.remove('active');
+            document.getElementById('drawerOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
 
-        // 1. MULTI-SUBJECT COLLEGE PREDICTOR (AU 400+, BHU/Central 500+)
-        function calculateMultiSubjectPrediction() {
-            const s1 = parseFloat(document.getElementById("sub1").value) || 0;
-            const s2 = parseFloat(document.getElementById("sub2").value) || 0;
-            const s3 = parseFloat(document.getElementById("sub3").value) || 0;
-            const s4 = parseFloat(document.getElementById("sub4").value) || 0;
-            const s5 = parseFloat(document.getElementById("sub5").value) || 0;
+        // 🧮 PREDICTOR ENGINE
+        function executePrediction() {
+            const score = parseInt(document.getElementById('predScore').value);
+            const badge = document.getElementById('predictionBadge');
             
-            const total = s1 + s2 + s3 + s4 + s5;
-            const exam = document.getElementById("predExam").value;
-            const resultBox = document.getElementById("predictionResult");
-
-            if (total <= 0) {
-                resultBox.style.display = "block";
-                resultBox.style.background = "rgba(239, 68, 68, 0.15)";
-                resultBox.style.color = "#EF4444";
-                resultBox.innerHTML = "Please enter marks in at least one subject slot!";
+            if (!score || score <= 0) {
+                badge.style.display = 'block';
+                badge.style.background = 'rgba(244, 63, 94, 0.15)';
+                badge.style.borderColor = 'rgba(244, 63, 94, 0.4)';
+                badge.style.color = '#F43F5E';
+                badge.innerHTML = '⚠️ Please enter a valid expected entrance score!';
                 return;
             }
 
-            let threshold = 500;
-            let campusName = "Central Universities (49+) Main Campus";
-            if (exam === "au") { threshold = 400; campusName = "Allahabad University Main Campus"; }
-            else if (exam === "bhu") { threshold = 500; campusName = "BHU Main Campus (FMC/MMV)"; }
-            else if (exam === "du") { threshold = 500; campusName = "Delhi University North/South Campus"; }
-
-            let status = total >= threshold ? `High chance for ${campusName} admission!` : "Eligible for affiliated colleges and regional constituent units.";
-            let rank = Math.max(1, Math.round((1000 - total) * 12.5 + 25));
-
-            resultBox.style.display = "block";
-            resultBox.style.background = "var(--bg-surface)";
-            resultBox.style.color = "var(--text-primary)";
-            resultBox.innerHTML = `Total Score: <b>${total} Marks</b> | Est. Rank: <b>#${rank}</b><br><span style="color:var(--accent-green);">${status}</span>`;
+            const estimatedRank = Math.max(1, Math.round((800 - score) * 7.6 + 12));
+            badge.style.display = 'block';
+            badge.style.background = 'rgba(99, 102, 241, 0.15)';
+            badge.style.borderColor = 'rgba(99, 102, 241, 0.4)';
+            badge.style.color = 'var(--text-primary)';
+            badge.innerHTML = `🎯 Predicted Merit Standing: <b>#${estimatedRank}</b> (All India Pool)`;
         }
 
-        // 2. PUSH BELL
-        function toggleNotificationBell() {
-            const btn = document.getElementById("pushBellBtn");
-            if (Notification.permission === "granted") {
-                btn.innerHTML = `<i class="fas fa-check-circle"></i> Push Alerts Enabled`;
-                btn.style.background = "#059669";
-            } else if (Notification.permission !== "denied") {
-                Notification.requestPermission().then(permission => {
-                    if (permission === "granted") {
-                        btn.innerHTML = `<i class="fas fa-check-circle"></i> Push Alerts Enabled`;
-                        btn.style.background = "#059669";
-                    }
-                });
-            } else {
-                alert("Push Notifications are currently blocked in your browser settings.");
+        // ❓ FAQ ACCORDION TOGGLE
+        function toggleFaqAccordion(element) {
+            const body = element.querySelector('.faq-body');
+            const isActive = element.classList.contains('active');
+
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+                item.querySelector('.faq-body').style.display = 'none';
+            });
+
+            if (!isActive) {
+                element.classList.add('active');
+                body.style.display = 'block';
             }
-        }
-
-        // 3. CANVAS RESIZER
-        function processImageResize(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-
-            const preset = document.getElementById("resizePreset").value;
-            const downloadBtn = document.getElementById("downloadResizedBtn");
-            const reader = new FileReader();
-
-            reader.onload = function(e) {
-                const img = new Image();
-                img.onload = function() {
-                    const canvas = document.createElement("canvas");
-                    const ctx = canvas.getContext("2d");
-
-                    let width = preset === "doc" ? 1200 : 700;
-                    let height = preset === "doc" ? 1600 : 900;
-
-                    canvas.width = width;
-                    canvas.height = height;
-                    ctx.drawImage(img, 0, 0, width, height);
-
-                    let quality = preset === "doc" ? 0.85 : 0.75;
-                    downloadBtn.href = canvas.toDataURL("image/jpeg", quality);
-                    downloadBtn.style.display = "flex";
-                }
-                img.src = e.target.result;
-            }
-            reader.readAsDataURL(file);
-        }
-
-        // 5. SUBJECT COMBO
-        function checkSubjectCombo() {
-            const course = document.getElementById("comboCourse").value;
-            const univ = document.getElementById("comboUniv").value;
-            const box = document.getElementById("comboOutput");
-
-            let text = "";
-            if (univ === "au") {
-                text = "Allahabad University 2026 Rule: 1 Language + 1 Domain Subject + General Test (GAT).";
-            } else if (univ === "bhu") {
-                text = "BHU Rule: Section IA/IB (Language) + Section III (General Test) / Domain Specific subjects as per program.";
-            } else if (univ === "du") {
-                text = "DU Rule: 1 Language + Any 3 Domain Subjects studied in Class 12th.";
-            } else {
-                text = "Central Universities (49+) Rule: 1 Language + Domain Specific Subjects or General Test as per NTA information bulletin.";
-            }
-
-            box.style.display = "block";
-            box.style.background = "var(--bg-surface)";
-            box.style.color = "var(--text-primary)";
-            box.innerHTML = `<b>Required Subject Mapping:</b> ${text}`;
-        }
-
-        // 6. AGE CALCULATOR
-        function calculateAge() {
-            const dobVal = document.getElementById("birthDate").value;
-            const cutVal = document.getElementById("cutoffDate").value;
-            const box = document.getElementById("ageOutput");
-
-            if (!dobVal) {
-                alert("Please select your Date of Birth!");
-                return;
-            }
-
-            const dob = new Date(dobVal);
-            const cutoff = new Date(cutVal);
-
-            let years = cutoff.getFullYear() - dob.getFullYear();
-            let months = cutoff.getMonth() - dob.getMonth();
-            let days = cutoff.getDate() - dob.getDate();
-
-            if (days < 0) { months--; days += 30; }
-            if (months < 0) { years--; months += 12; }
-
-            box.style.display = "block";
-            box.style.background = "var(--bg-surface)";
-            box.style.color = "var(--text-primary)";
-            box.innerHTML = `Age on Cutoff Date: <b>${years} Years, ${months} Months, ${days} Days</b>`;
-        }
-
-        // 7. AI DRAFT
-        function generateAIDraft() {
-            const campus = document.getElementById("aiCampusName").value || "[College / Campus Name]";
-            const type = document.getElementById("aiDraftType").value;
-            const box = document.getElementById("aiDraftOutput");
-            
-            let subject = "Application regarding student grievance";
-            if (type === "leave") subject = "Application for Leave of Absence";
-            else if (type === "fee") subject = "Request for Fee Concession / Extension";
-            else if (type === "tc") subject = "Application for Transfer / Migration Certificate";
-            else if (type === "hostel") subject = "Application for Hostel Accommodation Allotment";
-            else if (type === "idcard") subject = "Application for Duplicate ID Card Issuance";
-            else if (type === "correction") subject = "Application for Correction in Student Record / Marksheet";
-
-            box.style.display = "block";
-            box.style.background = "var(--bg-surface)";
-            box.style.color = "var(--text-primary)";
-            box.innerHTML = `<b>To, The Principal / Dean</b><br><b>${campus}</b><br>Subject: ${subject}<br><br>Respected Sir/Madam,<br>I am a regular student enrolled in your esteemed institution. I am writing this application to kindly request a resolution regarding the above-stated matter.<br><br>Thanking You,<br><b>[Your Name & Roll No.]</b>`;
-        }
-
-        // 8. CGPA
-        function calculateCGPA() {
-            const cgpa = parseFloat(document.getElementById("cgpaVal").value);
-            const box = document.getElementById("cgpaOutput");
-            if (!cgpa) return;
-            box.style.display = "block";
-            box.style.background = "var(--bg-surface)";
-            box.style.color = "var(--text-primary)";
-            box.innerHTML = `Equivalent Percentage: <b>${(cgpa * 9.5).toFixed(2)}%</b>`;
-        }
-
-        // 9. NORMALISATION
-        function estimateNormalisation() {
-            const raw = parseInt(document.getElementById("rawMarks").value);
-            const shift = document.getElementById("shiftDiff").value;
-            const box = document.getElementById("normOutput");
-
-            if (!raw || raw <= 0) return;
-            let percent = shift === "hard" ? Math.min(99.9, ((raw + 18) / 200) * 100) : Math.min(99.9, (raw / 200) * 98.5);
-
-            box.style.display = "block";
-            box.style.background = "var(--bg-surface)";
-            box.style.color = "var(--text-primary)";
-            box.innerHTML = `Est. Normalised Percentile: <b>${percent.toFixed(2)} Percentile</b>`;
-        }
-
-        // 10. PREFERENCE LIST
-        function generatePreferenceList() {
-            const course = document.getElementById("prefCourse").value;
-            const box = document.getElementById("prefOutput");
-            box.style.display = "block";
-            box.style.background = "var(--bg-surface)";
-            box.style.color = "var(--text-primary)";
-
-            if (course === "ba_au") {
-                box.innerHTML = "<b>Recommended Choice Order:</b><br>1. Ancient History + Political Science + Hindi<br>2. Geography + Economics + English<br>3. Medieval History + Sociology + General Test";
-            } else {
-                box.innerHTML = "<b>Recommended Choice Order:</b><br>1. Main Campus - Political Science Hons<br>2. Main Campus - History Hons<br>3. Affiliated College Social Science Group";
-            }
-        }
-
-        // 11. MATRIX
-        function checkCollegeMatrix() {
-            const univ = document.getElementById("matrixUniv").value;
-            const box = document.getElementById("matrixOutput");
-            box.style.display = "block";
-            box.style.background = "var(--bg-surface)";
-            box.style.color = "var(--text-primary)";
-
-            if (univ.includes("au")) {
-                box.innerHTML = "<b>Allahabad University Benchmark:</b><br>AU Main Campus Safe Score: <b>400+ Marks</b><br>Affiliated College (CMP/ECC): <b>250+ Marks</b>";
-            } else {
-                box.innerHTML = "<b>BHU Benchmark:</b><br>BHU Main Campus Safe Score: <b>500+ Marks</b><br>DAV PG College: <b>380+ Marks</b>";
-            }
-        }
-
-        // 12. CHECKLIST
-        function verifyDocuments() {
-            const tc = document.getElementById("chkTC").checked;
-            const caste = document.getElementById("chkCaste").checked;
-            const inc = document.getElementById("chkIncome").checked;
-            const gap = document.getElementById("chkGap").checked;
-            const box = document.getElementById("chkOutput");
-
-            let count = (tc?1:0) + (caste?1:0) + (inc?1:0) + (gap?1:0);
-            box.style.display = "block";
-            box.style.background = "var(--bg-surface)";
-            box.style.color = "var(--text-primary)";
-            box.innerHTML = `Readiness Score: <b>${count} / 4 Documents Verified</b> ${count===4 ? '<span style="color:var(--accent-green);">Fully Ready for Counseling!</span>' : '<span style="color:var(--accent-amber);">Some certificates pending</span>'}`;
-        }
-
-        // 13. GAP DRAFT
-        function generateGapDraft() {
-            const name = document.getElementById("gapName").value || "[Student Name]";
-            const inst = document.getElementById("gapInst").value || "[AU Main Campus / Affiliated College]";
-            const box = document.getElementById("gapOutput");
-
-            box.style.display = "block";
-            box.style.background = "var(--bg-surface)";
-            box.style.color = "var(--text-primary)";
-            box.innerHTML = `<b>OFFICIAL GAP AFFIDAVIT DRAFT:</b><br>I, ${name}, resident of India, do hereby solemnly affirm that I passed my qualifying examination earlier and there is a gap period. This gap was due to exam preparation. Submitted for admission verification at <b>${inst}</b>.`;
-        }
-
-        // 14. RATIO PERCENTILE
-        function calculatePercentileQuick() {
-            const marks = parseFloat(document.getElementById("percMarks").value);
-            const total = parseFloat(document.getElementById("percTotal").value) || 200;
-            const box = document.getElementById("percOutput");
-
-            if (!marks) return;
-            let ratio = ((marks / total) * 100).toFixed(2);
-            box.style.display = "block";
-            box.style.background = "var(--bg-surface)";
-            box.style.color = "var(--text-primary)";
-            box.innerHTML = `Score Ratio: <b>${ratio}%</b> achieved`;
-        }
-
-        // 15. SCHOLARSHIP
-        function checkScholarshipEligibility() {
-            const income = parseInt(document.getElementById("incomeVal").value);
-            const box = document.getElementById("feeOutput");
-
-            if (!income) return;
-            box.style.display = "block";
-            box.style.background = "var(--bg-surface)";
-            box.style.color = "var(--text-primary)";
-
-            if (income <= 48000) {
-                box.innerHTML = "<b style='color:var(--accent-green);'>Eligible for Fee Exemption / Scholarship:</b> Annual income is within the 48,000/- limit applicable across categories.";
-            } else {
-                box.innerHTML = "<b style='color:var(--accent-red);'>Not Eligible:</b> Annual family income exceeds the 48,000/- ceiling limit.";
-            }
-        }
-
-        // 16. DIRECT WHATSAPP QUERY
-        function sendDirectWhatsAppQuery() {
-            const name = document.getElementById("askName").value || "Student";
-            const query = document.getElementById("askQuery").value || "General Counseling Query";
-            const url = `https://wa.me/919984919392?text=${encodeURIComponent(`Hello Ajmal Sir, My name is ${name}. My query is: ${query}`)}`;
-            window.open(url, '_blank');
         }
     </script>
 </body>
