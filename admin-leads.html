@@ -83,7 +83,7 @@
         .navbar {
             max-width: 1320px;
             margin: 0 auto;
-            padding: 12px 18px;
+            padding: 12px 16px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -112,6 +112,7 @@
             gap: 6px;
             transition: all 0.2s ease;
             text-decoration: none;
+            white-space: nowrap;
         }
 
         .btn-action:hover { border-color: var(--primary); color: var(--primary); }
@@ -169,7 +170,7 @@
             max-width: 1320px;
             width: 100%;
             margin: 0 auto;
-            padding: 24px 18px 60px;
+            padding: 20px 14px 50px;
         }
 
         .dash-header {
@@ -178,34 +179,38 @@
             justify-content: space-between;
             flex-wrap: wrap;
             gap: 16px;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
+        }
+
+        .dash-header h1 {
+            font-size: 1.5rem;
         }
 
         .stats-cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 14px;
-            margin-bottom: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
         }
 
         .stat-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: var(--radius-lg);
-            padding: 18px 20px;
+            padding: 16px 18px;
             display: flex;
             align-items: center;
             gap: 14px;
         }
 
         .stat-icon {
-            width: 44px; height: 44px; border-radius: 12px;
+            width: 40px; height: 40px; border-radius: 10px;
             display: flex; align-items: center; justify-content: center;
-            font-size: 1.25rem; flex-shrink: 0;
+            font-size: 1.1rem; flex-shrink: 0;
         }
 
-        .stat-data h4 { font-size: 0.76rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; margin-bottom: 2px; }
-        .stat-data p { font-size: 1.35rem; font-weight: 900; color: var(--text-primary); }
+        .stat-data h4 { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; margin-bottom: 2px; }
+        .stat-data p { font-size: 1.25rem; font-weight: 900; color: var(--text-primary); }
 
         /* CONTROLS & EXPORT TOOLBAR */
         .controls-bar {
@@ -220,7 +225,7 @@
         .search-box {
             position: relative;
             flex: 1;
-            min-width: 260px;
+            min-width: 100%;
         }
 
         .search-box input {
@@ -248,14 +253,23 @@
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
+            width: 100%;
         }
 
-        /* LEADS TABLE */
-        .table-wrap {
+        .export-group .btn-action {
+            flex: 1;
+            justify-content: center;
+            padding: 10px 8px;
+            font-size: 0.78rem;
+        }
+
+        /* DESKTOP TABLE VIEW */
+        .desktop-table-wrap {
+            display: block;
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: var(--radius-xl);
-            overflow: hidden;
+            overflow-x: auto;
             box-shadow: 0 4px 20px rgba(0,0,0,0.05);
         }
 
@@ -268,7 +282,7 @@
         .leads-table th {
             background: var(--bg-surface);
             padding: 14px 16px;
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             font-weight: 800;
             color: var(--text-primary);
             border-bottom: 1px solid var(--border);
@@ -280,21 +294,67 @@
         .leads-table td {
             padding: 14px 16px;
             border-bottom: 1px solid var(--border);
-            font-size: 0.88rem;
+            font-size: 0.86rem;
             color: var(--text-secondary);
             font-weight: 600;
+            white-space: nowrap;
         }
 
         .leads-table tr:last-child td { border-bottom: none; }
         .leads-table tr:hover td { background: var(--bg-surface); }
 
+        /* MOBILE CARD VIEW (Hidden on desktop, shown on mobile) */
+        .mobile-cards-wrap {
+            display: none;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .lead-mobile-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .lead-card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+        }
+
+        .lead-card-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            font-size: 0.8rem;
+        }
+
+        .lead-card-field span {
+            color: var(--text-muted);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            display: block;
+        }
+
+        .lead-card-field strong {
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
         .badge-uni {
             background: rgba(99, 102, 241, 0.15);
             color: #818CF8;
             border: 1px solid rgba(99, 102, 241, 0.3);
-            padding: 4px 10px;
+            padding: 3px 8px;
             border-radius: 6px;
-            font-size: 0.74rem;
+            font-size: 0.7rem;
             font-weight: 700;
             display: inline-block;
         }
@@ -310,10 +370,7 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            transition: opacity 0.2s ease;
         }
-
-        .btn-wa-chat:hover { opacity: 0.9; }
 
         .btn-delete-row {
             background: rgba(239, 68, 68, 0.15);
@@ -323,22 +380,20 @@
             border-radius: 8px;
             font-size: 0.76rem;
             cursor: pointer;
-            transition: all 0.2s ease;
         }
 
-        .btn-delete-row:hover { background: #EF4444; color: #FFF; }
-
         .empty-state {
-            padding: 60px 20px;
+            padding: 50px 20px;
             text-align: center;
             color: var(--text-muted);
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
+        /* RESPONSIVE TOGGLE BETWEEN TABLE AND CARDS */
         @media (max-width: 900px) {
-            .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-            .leads-table th, .leads-table td { white-space: nowrap; }
+            .desktop-table-wrap { display: none; }
+            .mobile-cards-wrap { display: flex; }
         }
     </style>
 </head>
@@ -354,7 +409,7 @@
             <form onsubmit="verifyAdminPass(event)">
                 <input type="password" id="adminPassInput" class="auth-input" placeholder="ENTER MASTER PIN" required autofocus>
                 <button type="submit" class="btn-action btn-primary-action" style="width:100%; justify-content:center; padding:12px;">
-                    <i class="fas fa-unlock-alt"></i> Unlock Leads Dashboard
+                    <i class="fas fa-unlock-alt"></i> Unlock Dashboard
                 </button>
             </form>
             <p id="authError" style="color:#EF4444; font-size:0.78rem; font-weight:700; margin-top:10px; display:none;">Invalid PIN. Access Denied.</p>
@@ -367,13 +422,13 @@
             <a href="index.html" class="logo">
                 <div class="logo-badge"><i class="fas fa-graduation-cap"></i></div>
                 <div>
-                    <h2 style="font-size:1.05rem; font-weight:900;">The University Page</h2>
-                    <span style="font-size:0.65rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Admin Leads Portal</span>
+                    <h2 style="font-size:1rem; font-weight:900;">The University Page</h2>
+                    <span style="font-size:0.6rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Admin Leads Portal</span>
                 </div>
             </a>
             <div class="nav-actions">
                 <button class="btn-action" id="themeToggleBtn" onclick="toggleAppTheme()"><i class="fas fa-sun" id="themeIcon"></i></button>
-                <button class="btn-action" onclick="logoutAdmin()"><i class="fas fa-sign-out-alt"></i> Lock</button>
+                <button class="btn-action" onclick="logoutAdmin()"><i class="fas fa-sign-out-alt"></i></button>
             </div>
         </nav>
     </header>
@@ -383,10 +438,10 @@
         
         <div class="dash-header">
             <div>
-                <h1>Real-Time Student Registrations</h1>
-                <p style="font-size:0.86rem; color:var(--text-muted);">Direct incoming student entries from <code>join.html</code> portal.</p>
+                <h1>Student Registrations</h1>
+                <p style="font-size:0.82rem; color:var(--text-muted);">Real-time live entries from <code>join.html</code></p>
             </div>
-            <a href="join.html" target="_blank" class="btn-action"><i class="fas fa-external-link-alt"></i> Open Live Form</a>
+            <a href="join.html" target="_blank" class="btn-action"><i class="fas fa-external-link-alt"></i> Form</a>
         </div>
 
         <!-- STATS CARDS -->
@@ -401,15 +456,8 @@
             <div class="stat-card">
                 <div class="stat-icon" style="background:rgba(16,185,129,0.15); color:#10B981;"><i class="fab fa-whatsapp"></i></div>
                 <div class="stat-data">
-                    <h4>Verified WhatsApp</h4>
+                    <h4>WhatsApp Leads</h4>
                     <p id="waCount">0</p>
-                </div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon" style="background:rgba(245,158,11,0.15); color:#F59E0B;"><i class="fas fa-university"></i></div>
-                <div class="stat-data">
-                    <h4>Top Target Uni</h4>
-                    <p id="topUni" style="font-size:1rem;">Allahabad Uni</p>
                 </div>
             </div>
         </div>
@@ -418,18 +466,18 @@
         <div class="controls-bar">
             <div class="search-box">
                 <i class="fas fa-search"></i>
-                <input type="text" id="leadsSearchInput" onkeyup="filterLeadsTable()" placeholder="Search by student name, WhatsApp number, university, or course...">
+                <input type="text" id="leadsSearchInput" onkeyup="filterLeadsTable()" placeholder="Search name, WhatsApp, university...">
             </div>
 
             <div class="export-group">
-                <button class="btn-action" onclick="exportToPDF()"><i class="fas fa-file-pdf" style="color:#EF4444;"></i> Download PDF</button>
-                <button class="btn-action" onclick="exportToCSV()"><i class="fas fa-file-excel" style="color:#10B981;"></i> Download Excel/CSV</button>
-                <button class="btn-action" onclick="copyTableData()"><i class="fas fa-copy" style="color:var(--primary);"></i> Copy All</button>
+                <button class="btn-action" onclick="exportToPDF()"><i class="fas fa-file-pdf" style="color:#EF4444;"></i> PDF</button>
+                <button class="btn-action" onclick="exportToCSV()"><i class="fas fa-file-excel" style="color:#10B981;"></i> Excel</button>
+                <button class="btn-action" onclick="copyTableData()"><i class="fas fa-copy" style="color:var(--primary);"></i> Copy</button>
             </div>
         </div>
 
-        <!-- TABLE -->
-        <div class="table-wrap">
+        <!-- DESKTOP TABLE -->
+        <div class="desktop-table-wrap">
             <table class="leads-table">
                 <thead>
                     <tr>
@@ -437,20 +485,23 @@
                         <th>Student Name</th>
                         <th>WhatsApp Direct</th>
                         <th>University & Campus</th>
-                        <th>Level & Course</th>
-                        <th>Admission Status</th>
-                        <th>Session Year</th>
+                        <th>Course & Level</th>
+                        <th>Status</th>
+                        <th>Session</th>
                         <th>Help Needed</th>
                         <th>Source</th>
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody id="leadsTableBody">
-                    <tr>
-                        <td colspan="10" class="empty-state"><i class="fas fa-circle-notch fa-spin"></i> Connecting to Firestore Database...</td>
-                    </tr>
+                <tbody id="desktopTableBody">
+                    <tr><td colspan="10" class="empty-state"><i class="fas fa-circle-notch fa-spin"></i> Connecting to Database...</td></tr>
                 </tbody>
             </table>
+        </div>
+
+        <!-- MOBILE CARD VIEW -->
+        <div class="mobile-cards-wrap" id="mobileCardsContainer">
+            <div class="empty-state"><i class="fas fa-circle-notch fa-spin"></i> Connecting to Database...</div>
         </div>
 
     </main>
@@ -474,8 +525,6 @@
         const db = getFirestore(app);
 
         let allLeads = [];
-
-        // PIN AUTHENTICATION (Master PIN: 1009)
         const MASTER_PIN = "1009"; 
 
         window.verifyAdminPass = function(e) {
@@ -501,7 +550,6 @@
             startListening();
         }
 
-        // REAL-TIME FIRESTORE LISTENER
         function startListening() {
             try {
                 const q = query(collection(db, "community_leads"), orderBy("createdAt", "desc"));
@@ -510,36 +558,38 @@
                     snapshot.forEach((docSnap) => {
                         allLeads.push({ id: docSnap.id, ...docSnap.data() });
                     });
-                    renderTable(allLeads);
+                    renderLeads(allLeads);
                 }, (err) => {
-                    console.error("Firestore Listen Error:", err);
-                    document.getElementById("leadsTableBody").innerHTML = `<tr><td colspan="10" class="empty-state" style="color:#EF4444;">Database Error: ${err.message}</td></tr>`;
+                    console.error("Firestore Error:", err);
                 });
             } catch(e) {
                 console.error(e);
             }
         }
 
-        // RENDER TABLE
-        function renderTable(leads) {
-            const tbody = document.getElementById("leadsTableBody");
+        function renderLeads(leads) {
+            const desktopBody = document.getElementById("desktopTableBody");
+            const mobileContainer = document.getElementById("mobileCardsContainer");
+            
             document.getElementById("totalCount").innerText = leads.length;
             document.getElementById("waCount").innerText = leads.length;
 
             if (leads.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="10" class="empty-state">No student registrations received yet.</td></tr>`;
+                desktopBody.innerHTML = `<tr><td colspan="10" class="empty-state">No student registrations received yet.</td></tr>`;
+                mobileContainer.innerHTML = `<div class="empty-state">No student registrations received yet.</div>`;
                 return;
             }
 
-            tbody.innerHTML = leads.map((lead) => {
+            // 1. Render Desktop Table
+            desktopBody.innerHTML = leads.map((lead) => {
                 const formattedDate = lead.createdAt?.toDate ? lead.createdAt.toDate().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', dateStyle: 'medium', timeStyle: 'short' }) : "Just now";
                 const waNumber = lead.whatsappNumber || "";
                 const cleanPhone = waNumber.replace(/[^0-9]/g, '');
-                const waLink = `https://wa.me/91${cleanPhone}?text=${encodeURIComponent(`Hello ${lead.fullName}, Greetings from The University Page! We received your registration inquiry regarding ${lead.universityName || 'CUET Admissions'}.`)}`;
+                const waLink = `https://wa.me/91${cleanPhone}?text=${encodeURIComponent(`Hello ${lead.fullName}, Greetings from The University Page!`)}`;
 
                 return `
                     <tr>
-                        <td style="font-size:0.8rem; color:var(--text-muted);">${formattedDate}</td>
+                        <td style="font-size:0.78rem; color:var(--text-muted);">${formattedDate}</td>
                         <td style="font-weight:800; color:var(--text-primary);">${lead.fullName || 'Anonymous'}</td>
                         <td>
                             <a href="${waLink}" target="_blank" class="btn-wa-chat">
@@ -548,25 +598,77 @@
                         </td>
                         <td>
                             <span class="badge-uni">${lead.universityName || 'University'}</span>
-                            <div style="font-size:0.78rem; color:var(--text-muted); margin-top:3px;">${lead.collegeCampus || 'Main Campus'}</div>
+                            <div style="font-size:0.74rem; color:var(--text-muted); margin-top:2px;">${lead.collegeCampus || 'Main Campus'}</div>
                         </td>
                         <td>
                             <strong style="color:var(--primary);">${lead.targetCourse || 'Course'}</strong>
-                            <div style="font-size:0.75rem; color:var(--text-muted);">Level: ${lead.programmeLevel || 'UG'}</div>
+                            <div style="font-size:0.72rem; color:var(--text-muted);">Level: ${lead.programmeLevel || 'UG'}</div>
                         </td>
-                        <td style="font-size:0.82rem; font-weight:700;">${lead.admissionStatus || '-'}</td>
-                        <td style="font-size:0.8rem; font-weight:700; color:var(--accent-amber);">${lead.admissionYear || '-'}</td>
-                        <td style="font-size:0.8rem; color:var(--text-muted); max-width:180px;">${lead.helpRequired || '-'}</td>
-                        <td style="font-size:0.8rem; color:var(--text-muted);">${lead.referralSource || '-'}</td>
+                        <td style="font-size:0.8rem; font-weight:700;">${lead.admissionStatus || '-'}</td>
+                        <td style="font-size:0.78rem; font-weight:700; color:var(--accent-amber);">${lead.admissionYear || '-'}</td>
+                        <td style="font-size:0.78rem; color:var(--text-muted); max-width:160px;">${lead.helpRequired || '-'}</td>
+                        <td style="font-size:0.78rem; color:var(--text-muted);">${lead.referralSource || '-'}</td>
                         <td>
                             <button class="btn-delete-row" onclick="deleteLead('${lead.id}')" title="Delete record"><i class="fas fa-trash-alt"></i></button>
                         </td>
                     </tr>
                 `;
             }).join('');
+
+            // 2. Render Mobile Cards
+            mobileContainer.innerHTML = leads.map((lead) => {
+                const formattedDate = lead.createdAt?.toDate ? lead.createdAt.toDate().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', dateStyle: 'short', timeStyle: 'short' }) : "Just now";
+                const waNumber = lead.whatsappNumber || "";
+                const cleanPhone = waNumber.replace(/[^0-9]/g, '');
+                const waLink = `https://wa.me/91${cleanPhone}?text=${encodeURIComponent(`Hello ${lead.fullName}, Greetings from The University Page!`)}`;
+
+                return `
+                    <div class="lead-mobile-card">
+                        <div class="lead-card-top">
+                            <div>
+                                <h3 style="font-size:0.95rem; font-weight:800; color:var(--text-primary);">${lead.fullName || 'Anonymous'}</h3>
+                                <span style="font-size:0.7rem; color:var(--text-muted);">${formattedDate}</span>
+                            </div>
+                            <button class="btn-delete-row" onclick="deleteLead('${lead.id}')"><i class="fas fa-trash-alt"></i></button>
+                        </div>
+                        
+                        <div class="lead-card-body">
+                            <div class="lead-card-field">
+                                <span>WhatsApp</span>
+                                <a href="${waLink}" target="_blank" class="btn-wa-chat" style="padding:4px 8px; font-size:0.72rem; margin-top:2px;">
+                                    <i class="fab fa-whatsapp"></i> +91 ${waNumber}
+                                </a>
+                            </div>
+                            <div class="lead-card-field">
+                                <span>University</span>
+                                <strong>${lead.universityName || 'University'}</strong>
+                            </div>
+                            <div class="lead-card-field">
+                                <span>Campus</span>
+                                <strong>${lead.collegeCampus || 'Main Campus'}</strong>
+                            </div>
+                            <div class="lead-card-field">
+                                <span>Course</span>
+                                <strong style="color:var(--primary);">${lead.targetCourse || 'Course'} (${lead.programmeLevel || 'UG'})</strong>
+                            </div>
+                            <div class="lead-card-field">
+                                <span>Status</span>
+                                <strong>${lead.admissionStatus || '-'}</strong>
+                            </div>
+                            <div class="lead-card-field">
+                                <span>Session</span>
+                                <strong style="color:var(--accent-amber);">${lead.admissionYear || '-'}</strong>
+                            </div>
+                            <div class="lead-card-field" style="grid-column: 1 / -1;">
+                                <span>Help Needed</span>
+                                <strong>${lead.helpRequired || '-'}</strong>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
         }
 
-        // DELETE RECORD
         window.deleteLead = async function(id) {
             if (confirm("Are you sure you want to permanently delete this student record?")) {
                 try {
@@ -577,7 +679,6 @@
             }
         };
 
-        // LIVE SEARCH
         window.filterLeadsTable = function() {
             const queryVal = document.getElementById("leadsSearchInput").value.toLowerCase();
             const filtered = allLeads.filter(l => 
@@ -588,107 +689,58 @@
                 (l.targetCourse || "").toLowerCase().includes(queryVal) ||
                 (l.admissionStatus || "").toLowerCase().includes(queryVal)
             );
-            renderTable(filtered);
+            renderLeads(filtered);
         };
 
-        // EXPORT TO PDF
         window.exportToPDF = function() {
-            if (allLeads.length === 0) {
-                alert("No student leads available to generate PDF!");
-                return;
-            }
-
+            if (allLeads.length === 0) { alert("No leads to export!"); return; }
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF('l', 'mm', 'a4');
-
             doc.setFillColor(79, 70, 229);
             doc.rect(0, 0, 297, 24, 'F');
             doc.setTextColor(255, 255, 255);
             doc.setFontSize(15);
-            doc.setFont('helvetica', 'bold');
-            doc.text("The University Page - Student Community Registrations Report", 14, 15);
-
-            doc.setFontSize(9);
-            doc.text(`Generated on: ${new Date().toLocaleString('en-IN')}`, 210, 15);
+            doc.text("The University Page - Student Registrations Report", 14, 15);
 
             const tableRows = allLeads.map((l, idx) => [
-                idx + 1,
-                l.fullName || 'Anonymous',
-                l.whatsappNumber ? `+91 ${l.whatsappNumber}` : '-',
-                l.universityName || 'University',
-                l.collegeCampus || 'Main Campus',
+                idx + 1, l.fullName || 'Anonymous', l.whatsappNumber ? `+91 ${l.whatsappNumber}` : '-',
+                l.universityName || 'University', l.collegeCampus || 'Main Campus',
                 `${l.programmeLevel || 'UG'} - ${l.targetCourse || 'Course'}`,
-                l.admissionStatus || '-',
-                l.admissionYear || '-',
-                l.helpRequired || '-'
+                l.admissionStatus || '-', l.admissionYear || '-', l.helpRequired || '-'
             ]);
 
             doc.autoTable({
-                head: [['#', 'Student Name', 'WhatsApp No', 'University', 'Campus / College', 'Course & Level', 'Status', 'Session', 'Help Needed']],
-                body: tableRows,
-                startY: 30,
-                theme: 'striped',
+                head: [['#', 'Student Name', 'WhatsApp No', 'University', 'Campus / College', 'Course & Level', 'Status', 'Session', 'Help']],
+                body: tableRows, startY: 30, theme: 'striped',
                 headStyles: { fillColor: [15, 23, 42], textColor: [255, 255, 255], fontStyle: 'bold' },
                 styles: { fontSize: 7.5, cellPadding: 2.5 }
             });
-
             doc.save(`Student_Registrations_${new Date().toISOString().slice(0,10)}.pdf`);
         };
 
-        // EXPORT TO CSV (EXCEL)
         window.exportToCSV = function() {
-            if (allLeads.length === 0) {
-                alert("No student data available to export!");
-                return;
-            }
-
+            if (allLeads.length === 0) { alert("No data to export!"); return; }
             let csvContent = "data:text/csv;charset=utf-8,";
             csvContent += "Date,Full Name,WhatsApp Number,University Type,University Name,Campus/College,Programme Level,Target Course,Admission Status,Admission Through,Admission Year,Help Required,Referral Source\n";
-
             allLeads.forEach(l => {
                 const date = l.createdAt?.toDate ? l.createdAt.toDate().toISOString() : "";
-                const row = [
-                    `"${date}"`,
-                    `"${l.fullName || ''}"`,
-                    `"${l.whatsappNumber || ''}"`,
-                    `"${l.category || ''}"`,
-                    `"${l.universityName || ''}"`,
-                    `"${l.collegeCampus || ''}"`,
-                    `"${l.programmeLevel || ''}"`,
-                    `"${l.targetCourse || ''}"`,
-                    `"${l.admissionStatus || ''}"`,
-                    `"${l.admissionThrough || ''}"`,
-                    `"${l.admissionYear || ''}"`,
-                    `"${l.helpRequired || ''}"`,
-                    `"${l.referralSource || ''}"`
-                ];
-                csvContent += row.join(",") + "\n";
+                csvContent += [`"${date}"`, `"${l.fullName || ''}"`, `"${l.whatsappNumber || ''}"`, `"${l.category || ''}"`, `"${l.universityName || ''}"`, `"${l.collegeCampus || ''}"`, `"${l.programmeLevel || ''}"`, `"${l.targetCourse || ''}"`, `"${l.admissionStatus || ''}"`, `"${l.admissionThrough || ''}"`, `"${l.admissionYear || ''}"`, `"${l.helpRequired || ''}"`, `"${l.referralSource || ''}"`].join(",") + "\n";
             });
-
-            const encodedUri = encodeURI(csvContent);
             const link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
+            link.setAttribute("href", encodeURI(csvContent));
             link.setAttribute("download", `Student_Registrations_${new Date().toISOString().slice(0,10)}.csv`);
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
         };
 
-        // COPY TO CLIPBOARD
         window.copyTableData = function() {
-            if (allLeads.length === 0) {
-                alert("No data available to copy!");
-                return;
-            }
-
+            if (allLeads.length === 0) { alert("No data to copy!"); return; }
             let text = "Student Registrations - The University Page\n\n";
             allLeads.forEach((l, i) => {
                 text += `${i+1}. ${l.fullName} | +91 ${l.whatsappNumber} | ${l.universityName} | ${l.targetCourse} (${l.programmeLevel}) | Status: ${l.admissionStatus} | Session: ${l.admissionYear}\n`;
             });
-
-            navigator.clipboard.writeText(text).then(() => {
-                alert("All registration records copied to clipboard successfully!");
-            });
+            navigator.clipboard.writeText(text).then(() => { alert("All records copied successfully!"); });
         };
     </script>
 
