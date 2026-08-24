@@ -1,75 +1,163 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="google-site-verification" content="L8MTwwklD18hw-rbjRWfTjzMJD20u5BLAlTN1Zobp_U">
-    <title>Interactive Student Utility Suite & Predictor - The University Page</title>
+    <title>Interactive Student Utility Suite & Predictor | Allahabad University Page</title>
     
-    <!-- Google Fonts & Font Awesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <style>
-        /* Anti-Overflow & Ultra-Responsive Mobile Rules */
-        *, *::before, *::after {
-            box-sizing: border-box !important;
-            max-width: 100%;
+        :root {
+            /* 🌌 DARK THEME (Default) */
+            --bg-base: #060913;
+            --bg-surface: rgba(13, 19, 36, 0.85);
+            --bg-surface-hover: rgba(22, 31, 56, 0.95);
+            --bg-card: rgba(16, 24, 48, 0.75);
+            --bg-chip: rgba(255, 255, 255, 0.06);
+            --text-primary: #F8FAFC;
+            --text-secondary: #CBD5E1;
+            --text-muted: #94A3B8;
+            --border: rgba(255, 255, 255, 0.1);
+            --border-hover: rgba(99, 102, 241, 0.5);
+            
+            --primary: #6366F1;
+            --primary-glow: rgba(99, 102, 241, 0.35);
+            --gradient-primary: linear-gradient(135deg, #6366F1 0%, #A855F7 50%, #EC4899 100%);
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --radius-xl: 26px;
+            --blur: blur(20px);
         }
 
-        html, body {
-            width: 100% !important;
-            max-width: 100% !important;
-            overflow-x: hidden !important;
+        [data-theme="light"] {
+            /* ☀️ LIGHT THEME */
+            --bg-base: #F4F6FC;
+            --bg-surface: rgba(255, 255, 255, 0.92);
+            --bg-surface-hover: rgba(255, 255, 255, 1);
+            --bg-card: rgba(255, 255, 255, 0.88);
+            --bg-chip: rgba(15, 23, 42, 0.05);
+            --text-primary: #0F172A;
+            --text-secondary: #334155;
+            --text-muted: #64748B;
+            --border: rgba(15, 23, 42, 0.08);
+            --border-hover: rgba(99, 102, 241, 0.5);
+            --primary: #4F46E5;
+            --primary-glow: rgba(79, 70, 229, 0.2);
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box !important;
             margin: 0;
             padding: 0;
-            background-color: var(--bg-main, #FDFBF7);
-            color: var(--text-dark, #0F172A);
+        }
+
+        body {
             font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-primary);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            -webkit-text-size-adjust: 100%;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            position: relative;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .ambient-glow {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 900px;
+            height: 450px;
+            background: radial-gradient(circle, var(--primary-glow) 0%, rgba(236, 72, 153, 0.06) 50%, transparent 80%);
+            pointer-events: none;
+            z-index: 0;
+            filter: blur(80px);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Cabinet Grotesk', 'Plus Jakarta Sans', sans-serif;
+            letter-spacing: -0.02em;
         }
 
         /* HEADER NAVBAR */
         .header-wrapper {
-            position: relative;
+            position: sticky;
+            top: 0;
             z-index: 99999 !important;
-            background: #FFFFFF;
-            border-bottom: 1px solid #E2E8F0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+            background: var(--bg-surface);
+            backdrop-filter: var(--blur);
+            border-bottom: 1px solid var(--border);
         }
 
         .navbar {
-            max-width: 1240px;
+            max-width: 1280px;
             margin: 0 auto;
-            padding: 14px 16px;
+            padding: 12px 18px;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
-        .sidebar-toggle-btn {
-            background: #FFFFFF;
-            border: 2px solid #2563EB;
-            color: #2563EB;
-            width: 44px;
-            height: 44px;
-            border-radius: 14px;
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-badge {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-md);
+            background: var(--gradient-primary);
             display: flex;
             align-items: center;
             justify-content: center;
+            color: #FFF;
             font-size: 1.15rem;
+            box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4);
+        }
+
+        .logo span {
+            font-size: 1.05rem;
+            font-weight: 900;
+        }
+
+        .nav-right-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sidebar-toggle-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
             cursor: pointer;
             transition: all 0.2s ease;
         }
 
         .sidebar-toggle-btn:hover {
-            background: #EEF2FF;
-            color: #1D4ED8;
-            border-color: #1D4ED8;
+            border-color: var(--primary);
+            color: var(--primary);
         }
 
         /* FLOATING SIDEBAR DRAWER */
@@ -78,11 +166,12 @@
             position: absolute;
             top: calc(100% + 8px);
             right: 16px;
-            width: 260px;
-            background: #FFFFFF;
-            border: 1px solid #E2E8F0;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.15);
+            width: 280px;
+            background: var(--bg-surface);
+            backdrop-filter: blur(25px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
             padding: 12px;
             z-index: 999999 !important;
             animation: fadeIn 0.2s ease-out;
@@ -103,31 +192,33 @@
             gap: 12px;
             padding: 10px 14px;
             border-radius: 12px;
-            font-size: 0.88rem;
+            font-size: 0.86rem;
             font-weight: 700;
-            color: #334155;
+            color: var(--text-secondary);
             text-decoration: none;
             transition: all 0.2s ease;
         }
 
         .drawer-links-list a:hover {
-            background: #EEF2FF;
-            color: #4F46E5;
+            background: var(--bg-chip);
+            color: var(--primary);
         }
 
+        /* CONTAINER */
         .container {
             flex: 1;
-            width: 100% !important;
-            max-width: 1240px;
-            margin: 16px auto 40px;
-            padding: 0 12px;
-            box-sizing: border-box;
+            max-width: 1280px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 24px 16px 50px;
+            position: relative;
+            z-index: 1;
         }
 
         .breadcrumb {
             font-size: 0.82rem;
-            color: var(--text-muted, #64748B);
-            margin-bottom: 14px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
             font-weight: 600;
             display: flex;
             align-items: center;
@@ -136,124 +227,128 @@
         }
 
         .breadcrumb a {
-            color: var(--primary, #4F46E5);
+            color: var(--primary);
             text-decoration: none;
         }
 
         .suite-title {
-            font-size: 1.3rem;
-            font-weight: 800;
-            color: #0F172A;
-            margin: 10px 0 20px;
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--text-primary);
+            margin: 0 0 24px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            letter-spacing: -0.3px;
+            gap: 12px;
+            letter-spacing: -0.02em;
         }
 
         .suite-title i {
-            color: #4F46E5;
-            background: #EEF2FF;
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
+            color: var(--primary);
+            background: var(--bg-chip);
+            border: 1px solid var(--border);
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-size: 1rem;
+            font-size: 1.1rem;
             flex-shrink: 0;
         }
 
         /* WIDGETS GRID */
         .widgets-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 16px;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 20px;
             margin-bottom: 30px;
-            width: 100% !important;
+            width: 100%;
         }
 
         .widget-card {
-            background: #FFFFFF;
-            border-radius: 20px;
-            border: 1px solid #E2E8F0;
-            padding: 20px 16px;
-            box-shadow: 0 4px 18px rgba(15, 23, 42, 0.03);
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            padding: 22px 20px;
+            backdrop-filter: var(--blur);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             transition: all 0.25s ease;
-            width: 100% !important;
-            min-width: 0;
             position: relative;
+            overflow: hidden;
         }
 
         .widget-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px -5px rgba(79, 70, 229, 0.12);
-            border-color: #C7D2FE;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px -6px var(--primary-glow);
+            border-color: var(--primary);
+            background: var(--bg-surface-hover);
         }
 
         .widget-card-header {
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 14px;
+            gap: 14px;
+            margin-bottom: 16px;
         }
 
         .widget-icon {
-            width: 42px;
-            height: 42px;
-            min-width: 42px;
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             flex-shrink: 0;
+            border: 1px solid var(--border);
         }
 
         .widget-title-group h3 {
-            font-size: 0.98rem;
+            font-size: 1.02rem;
             font-weight: 800;
-            color: #0F172A;
+            color: var(--text-primary);
             margin-bottom: 2px;
-            line-height: 1.2;
+            line-height: 1.3;
         }
 
         .widget-title-group p {
-            font-size: 0.76rem;
-            color: #64748B;
+            font-size: 0.78rem;
+            color: var(--text-muted);
             font-weight: 600;
             margin: 0;
         }
 
         .form-control-custom {
-            width: 100% !important;
-            padding: 10px 12px;
-            border-radius: 10px;
-            border: 1px solid #CBD5E1;
-            font-size: 0.82rem;
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            font-size: 0.86rem;
             font-weight: 600;
-            background: #F8FAFC;
-            color: #0F172A;
+            background: var(--bg-surface);
+            color: var(--text-primary);
             outline: none;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            transition: all 0.2s ease;
         }
 
         .form-control-custom:focus {
-            border-color: #4F46E5;
-            background: #FFFFFF;
+            border-color: var(--primary);
+            box-shadow: 0 0 12px var(--primary-glow);
         }
 
         .widget-btn {
-            background: #4F46E5;
+            background: var(--gradient-primary);
             color: #FFFFFF;
             border: none;
-            padding: 11px 14px;
-            border-radius: 25px;
-            font-weight: 700;
-            font-size: 0.83rem;
+            padding: 12px 16px;
+            border-radius: var(--radius-md);
+            font-weight: 800;
+            font-size: 0.86rem;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -262,56 +357,62 @@
             transition: all 0.2s ease;
             width: 100%;
             text-decoration: none;
-            box-sizing: border-box;
-            margin-top: 6px;
+            box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3);
+            margin-top: 8px;
         }
 
         .widget-btn:hover {
-            background: #4338CA;
             transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.45);
         }
 
         .live-badge {
-            background: #ECFDF5;
-            color: #059669;
-            padding: 5px 12px;
+            background: rgba(16, 185, 129, 0.15);
+            color: #34D399;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            padding: 6px 12px;
             border-radius: 20px;
-            font-size: 0.74rem;
-            font-weight: 700;
+            font-size: 0.76rem;
+            font-weight: 800;
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
 
         .btn-whatsapp {
             background: #25D366 !important;
-            color: white !important;
+            box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3) !important;
             margin-bottom: 8px;
         }
-        .btn-whatsapp:hover { background: #1EBE5D !important; }
+        .btn-whatsapp:hover { background: #20BA5A !important; }
 
         .btn-dark {
-            background: #0F172A !important;
-            color: white !important;
+            background: var(--bg-chip) !important;
+            color: var(--text-primary) !important;
+            border: 1px solid var(--border) !important;
+            box-shadow: none !important;
         }
+        .btn-dark:hover { border-color: var(--primary) !important; color: var(--primary) !important; }
 
         .resizer-box {
-            border: 2px dashed #CBD5E1;
-            padding: 14px 10px;
-            border-radius: 12px;
+            border: 2px dashed var(--border);
+            padding: 18px 12px;
+            border-radius: var(--radius-md);
             text-align: center;
-            background: #F8FAFC;
-            margin-bottom: 10px;
+            background: var(--bg-surface);
+            margin-bottom: 12px;
             cursor: pointer;
+            transition: border-color 0.2s ease;
         }
+        .resizer-box:hover { border-color: var(--primary); }
 
         .resizer-box input[type="file"] { display: none; }
         .resizer-box label {
             cursor: pointer;
-            font-size: 0.78rem;
+            font-size: 0.8rem;
             font-weight: 700;
-            color: #4F46E5;
+            color: var(--primary);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -322,112 +423,175 @@
             display: flex;
             flex-direction: column;
             gap: 8px;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
 
         .scholar-btn-item {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 9px 12px;
-            background: #F8FAFC;
-            border: 1px solid #E2E8F0;
+            padding: 10px 14px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
             border-radius: 10px;
-            font-size: 0.8rem;
+            font-size: 0.82rem;
             font-weight: 700;
-            color: #0F172A;
+            color: var(--text-secondary);
             text-decoration: none;
             transition: all 0.2s ease;
         }
 
         .scholar-btn-item:hover {
-            background: #F1F5F9;
+            background: var(--bg-surface-hover);
             border-color: #0D9488;
-            color: #0D9488;
+            color: #14B8A6;
+            transform: translateX(3px);
         }
 
         .checklist-group {
             display: flex;
             flex-direction: column;
-            gap: 6px;
-            margin-bottom: 10px;
+            gap: 8px;
+            margin-bottom: 14px;
         }
 
         .chk-item {
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 0.78rem;
+            gap: 10px;
+            font-size: 0.82rem;
             font-weight: 600;
-            color: #334155;
+            color: var(--text-secondary);
             cursor: pointer;
         }
 
         .chk-item input {
-            accent-color: #4F46E5;
-            width: 16px;
-            height: 16px;
+            accent-color: var(--primary);
+            width: 17px;
+            height: 17px;
             cursor: pointer;
         }
 
         .output-box-inline {
-            margin-top: 10px;
-            padding: 10px 12px;
-            background: #EEF2FF;
-            border-radius: 10px;
-            font-size: 0.78rem;
-            color: #3730A3;
+            margin-top: 12px;
+            padding: 12px 14px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            font-size: 0.82rem;
+            color: var(--text-primary);
             font-weight: 700;
             display: none;
             word-break: break-word;
-            line-height: 1.45;
+            line-height: 1.5;
         }
 
-        /* SINGLE LINE MINIMAL FOOTER */
-        footer {
-            background: #FFFFFF;
-            border-top: 1px solid #E2E8F0;
-            padding: 20px 10px 18px;
-            text-align: center;
-            width: 100% !important;
+        /* MODERN FULL FOOTER */
+        .modern-footer {
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border);
+            padding: 48px 20px 24px;
             margin-top: auto;
+            backdrop-filter: var(--blur);
         }
 
-        .footer-links {
-            display: flex !important;
-            justify-content: center !important;
-            align-items: center !important;
-            gap: 16px !important;
-            flex-wrap: nowrap !important;
-            margin-bottom: 8px !important;
-            width: 100% !important;
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr repeat(3, 1fr);
+            gap: 32px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border);
         }
 
-        .footer-links a {
-            font-size: 0.78rem;
+        .footer-brand-p {
+            font-size: 0.84rem;
+            color: var(--text-muted);
+            margin: 10px 0 16px;
+            line-height: 1.55;
+        }
+
+        .footer-column h4 {
+            font-size: 0.95rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .footer-links-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-links-list a {
+            font-size: 0.84rem;
             font-weight: 600;
-            color: #334155;
-            white-space: nowrap !important;
+            color: var(--text-secondary);
             text-decoration: none;
+            transition: color 0.2s ease, transform 0.2s ease;
+            display: inline-block;
         }
 
-        .copyright {
-            color: #64748B;
-            font-size: 0.78rem;
-            font-weight: 500;
+        .footer-links-list a:hover {
+            color: var(--primary);
+            transform: translateX(4px);
         }
 
-        @media (max-width: 600px) {
-            .container { padding: 8px 8px 30px; }
-            .widgets-grid { grid-template-columns: 1fr !important; gap: 12px; }
-            .widget-card { padding: 16px 12px; }
-            footer { padding: 16px 6px 12px; }
-            .footer-links { gap: 10px !important; }
-            .footer-links a { font-size: 0.72rem !important; }
+        .sub-footer-bottom {
+            max-width: 1280px;
+            margin: 24px auto 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+
+        .social-pill-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        .social-pill {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: var(--bg-chip);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .social-pill:hover {
+            background: var(--primary);
+            color: #FFF;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 850px) {
+            .footer-container { grid-template-columns: 1fr 1fr; }
+            .widgets-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 520px) {
+            .navbar { padding: 10px 14px; }
+            .footer-container { grid-template-columns: 1fr; gap: 24px; }
+            .sub-footer-bottom { flex-direction: column; align-items: flex-start; }
         }
     </style>
 </head>
 <body>
+
+    <div class="ambient-glow"></div>
 
     <!-- === HEADER NAVBAR === -->
     <header class="header-wrapper">
@@ -437,8 +601,11 @@
                 <span>The University Page</span>
             </a>
             
-            <div class="header-right">
-                <button class="sidebar-toggle-btn" id="sidebarToggleBtn" onclick="toggleResourcesDrawer()">
+            <div class="nav-right-actions">
+                <button class="sidebar-toggle-btn" id="themeToggleBtn" onclick="toggleAppTheme()" title="Toggle Theme">
+                    <i class="fas fa-sun" id="themeIcon"></i>
+                </button>
+                <button class="sidebar-toggle-btn" id="sidebarToggleBtn" onclick="toggleResourcesDrawer()" title="Menu">
                     <i class="fa-solid fa-bars-staggered"></i>
                 </button>
             </div>
@@ -447,20 +614,15 @@
         <!-- FLOATING SIDEBAR DRAWER -->
         <div class="resources-drawer" id="resourcesDrawer">
             <ul class="drawer-links-list">
-                <li><a href="index.html"><i class="fas fa-home" style="color: #4F46E5;"></i> Home</a></li>
-                <li><a href="latest-updates.html"><i class="fas fa-bolt" style="color: #DC2626;"></i> Live Updates</a></li>
-                <li><a href="admission.html"><i class="fas fa-book-open" style="color: #4F46E5;"></i> Programs</a></li>
-                <li><a href="admission.html"><i class="fas fa-university" style="color: #4F46E5;"></i> Universities</a></li>
-                <li><a href="document-details.html"><i class="fas fa-award" style="color: #0D9488;"></i> Scholarships</a></li>
-                <li><a href="admission.html"><i class="fas fa-map-marker-alt" style="color: #E11D48;"></i> Campus Locations</a></li>
-                <li><a href="latest-jobs.html"><i class="fas fa-briefcase" style="color: #D97706;"></i> Latest Job</a></li>
-                <li><a href="admitcard.html"><i class="fas fa-id-card" style="color: #F43F5E;"></i> Admit Card</a></li>
-                <li><a href="result.html"><i class="fas fa-trophy" style="color: #10B981;"></i> Result</a></li>
-                <li><a href="cutoff.html"><i class="fas fa-chart-line" style="color: #0284C7;"></i> Cutoff</a></li>
-                <li><a href="admission.html"><i class="fas fa-university" style="color: #8B5CF6;"></i> Admission</a></li>
-                <li><a href="syllabus.html"><i class="fas fa-book-open" style="color: #10B981;"></i> Syllabus</a></li>
-                <li><a href="answerkey.html"><i class="fas fa-key" style="color: #E11D48;"></i> Answer Key</a></li>
-                <li><a href="about-ajmal-mansoori.html"><i class="fas fa-user-graduate" style="color: #4F46E5;"></i> About Founder</a></li>
+                <li><a href="index.html"><i class="fas fa-home" style="color: #6366F1;"></i> Home Workspace</a></li>
+                <li><a href="latest-updates.html"><i class="fas fa-bolt" style="color: #EC4899;"></i> Real-Time Alerts</a></li>
+                <li><a href="result.html"><i class="fas fa-trophy" style="color: #10B981;"></i> All Results</a></li>
+                <li><a href="latest-jobs.html"><i class="fas fa-briefcase" style="color: #F59E0B;"></i> Latest Jobs</a></li>
+                <li><a href="central-universities.html"><i class="fas fa-monument" style="color: #8B5CF6;"></i> Central Universities (49)</a></li>
+                <li><a href="state-universities.html"><i class="fas fa-city" style="color: #0284C7;"></i> State Universities</a></li>
+                <li><a href="join.html"><i class="fas fa-user-plus" style="color: #10B981;"></i> Student Registration</a></li>
+                <li><a href="cutoff.html"><i class="fas fa-chart-line" style="color: #F59E0B;"></i> Cutoff Analytics</a></li>
+                <li><a href="about-ajmal-mansoori.html"><i class="fas fa-user-shield" style="color: #6366F1;"></i> Founder Profile</a></li>
             </ul>
         </div>
     </header>
@@ -469,7 +631,7 @@
     <main class="container">
 
         <div class="breadcrumb">
-            <a href="index.html">Home</a> <i class="fas fa-angle-right"></i> <span>Student Utility Suite</span>
+            <a href="index.html">Home</a> <i class="fas fa-chevron-right" style="font-size:0.65rem;"></i> <span>Student Utility Suite</span>
         </div>
 
         <h2 class="suite-title"><i class="fas fa-sliders-h"></i> Interactive Student Utility Suite & Predictor</h2>
@@ -480,7 +642,7 @@
             <div class="widget-card">
                 <div>
                     <div class="widget-card-header">
-                        <div class="widget-icon" style="background: #EEF2FF; color: #4F46E5;">
+                        <div class="widget-icon" style="background: rgba(99, 102, 241, 0.15); color: #818CF8;">
                             <i class="fas fa-calculator"></i>
                         </div>
                         <div class="widget-title-group">
@@ -513,12 +675,11 @@
                 </div>
             </div>
 
-
             <!-- WIDGET 2: INSTANT ALERTS BELL -->
             <div class="widget-card">
                 <div>
                     <div class="widget-card-header">
-                        <div class="widget-icon" style="background: #ECFDF5; color: #059669;">
+                        <div class="widget-icon" style="background: rgba(16, 185, 129, 0.15); color: #34D399;">
                             <i class="fas fa-bell"></i>
                         </div>
                         <div class="widget-title-group">
@@ -531,7 +692,7 @@
                         <i class="fas fa-bolt"></i> Live 2026 Update Stream Active
                     </div>
 
-                    <p style="font-size: 0.78rem; color: #64748B; font-weight: 500; margin-bottom: 12px; line-height: 1.35;">
+                    <p style="font-size: 0.8rem; color: var(--text-muted); font-weight: 500; margin-bottom: 14px; line-height: 1.4;">
                         Never miss an Admit Card release, Result declaration, or Counseling Cutoff deadline.
                     </p>
                 </div>
@@ -546,12 +707,11 @@
                 </div>
             </div>
 
-
             <!-- WIDGET 3: PHOTO & SIGN RESIZER -->
             <div class="widget-card">
                 <div>
                     <div class="widget-card-header">
-                        <div class="widget-icon" style="background: #FEF3C7; color: #D97706;">
+                        <div class="widget-icon" style="background: rgba(245, 158, 11, 0.15); color: #FBBF24;">
                             <i class="fas fa-crop-alt"></i>
                         </div>
                         <div class="widget-title-group">
@@ -563,7 +723,7 @@
                     <div class="resizer-box">
                         <input type="file" id="resizerInput" accept="image/*" onchange="processImageResize(event)">
                         <label for="resizerInput">
-                            <i class="fas fa-cloud-upload-alt" style="font-size: 1.2rem; color: #4F46E5;"></i>
+                            <i class="fas fa-cloud-upload-alt" style="font-size: 1.2rem; color: var(--primary);"></i>
                             <span>Upload Photo or Signature</span>
                         </label>
                     </div>
@@ -579,12 +739,11 @@
                 </a>
             </div>
 
-
             <!-- WIDGET 4: UP SCHOLARSHIP PORTAL -->
             <div class="widget-card">
                 <div>
                     <div class="widget-card-header">
-                        <div class="widget-icon" style="background: #CCFBF1; color: #0D9488;">
+                        <div class="widget-icon" style="background: rgba(13, 148, 136, 0.15); color: #2DD4BF;">
                             <i class="fas fa-graduation-cap"></i>
                         </div>
                         <div class="widget-title-group">
@@ -595,13 +754,13 @@
 
                     <div class="scholarship-links">
                         <a href="https://scholarship.up.gov.in" target="_blank" class="scholar-btn-item">
-                            <span>Fresh Student Login</span> <i class="fas fa-chevron-right"></i>
+                            <span>Fresh Student Login</span> <i class="fas fa-chevron-right" style="font-size:0.75rem;"></i>
                         </a>
                         <a href="https://scholarship.up.gov.in" target="_blank" class="scholar-btn-item">
-                            <span>Renewal Student Login</span> <i class="fas fa-chevron-right"></i>
+                            <span>Renewal Student Login</span> <i class="fas fa-chevron-right" style="font-size:0.75rem;"></i>
                         </a>
                         <a href="https://scholarship.up.gov.in" target="_blank" class="scholar-btn-item">
-                            <span>Track Application Status</span> <i class="fas fa-chevron-right"></i>
+                            <span>Track Application Status</span> <i class="fas fa-chevron-right" style="font-size:0.75rem;"></i>
                         </a>
                     </div>
                 </div>
@@ -611,12 +770,11 @@
                 </a>
             </div>
 
-
             <!-- WIDGET 5: CUET SUBJECT COMBINATION CHECKER -->
             <div class="widget-card">
                 <div>
                     <div class="widget-card-header">
-                        <div class="widget-icon" style="background: #F3E8FF; color: #8B5CF6;">
+                        <div class="widget-icon" style="background: rgba(139, 92, 246, 0.15); color: #A78BFA;">
                             <i class="fas fa-book-reader"></i>
                         </div>
                         <div class="widget-title-group">
@@ -647,12 +805,11 @@
                 </div>
             </div>
 
-
             <!-- WIDGET 6: AGE & ELIGIBILITY CALCULATOR -->
             <div class="widget-card">
                 <div>
                     <div class="widget-card-header">
-                        <div class="widget-icon" style="background: #FFE4E6; color: #E11D48;">
+                        <div class="widget-icon" style="background: rgba(225, 29, 72, 0.15); color: #FB7185;">
                             <i class="fas fa-user-clock"></i>
                         </div>
                         <div class="widget-title-group">
@@ -673,12 +830,11 @@
                 </div>
             </div>
 
-
             <!-- WIDGET 7: AI STUDENT DRAFT WRITER -->
             <div class="widget-card">
                 <div>
                     <div class="widget-card-header">
-                        <div class="widget-icon" style="background: #E0F2FE; color: #0284C7;">
+                        <div class="widget-icon" style="background: rgba(2, 132, 199, 0.15); color: #38BDF8;">
                             <i class="fas fa-robot"></i>
                         </div>
                         <div class="widget-title-group">
@@ -704,12 +860,11 @@
                 </div>
             </div>
 
-
             <!-- WIDGET 8: CGPA TO PERCENTAGE CONVERTER -->
             <div class="widget-card">
                 <div>
                     <div class="widget-card-header">
-                        <div class="widget-icon" style="background: #F1F5F9; color: #0F172A;">
+                        <div class="widget-icon" style="background: var(--bg-chip); color: var(--text-primary);">
                             <i class="fas fa-calculator"></i>
                         </div>
                         <div class="widget-title-group">
@@ -719,7 +874,7 @@
                     </div>
 
                     <input type="number" id="cgpaVal" class="form-control-custom" step="0.01" placeholder="Enter CGPA (e.g. 8.4)">
-                    <p style="font-size: 0.72rem; color: #64748B; font-weight: 500; margin-bottom: 8px;">Standard Formula: CGPA x 9.5</p>
+                    <p style="font-size: 0.74rem; color: var(--text-muted); font-weight: 500; margin-bottom: 12px;">Standard Formula: CGPA x 9.5</p>
                 </div>
 
                 <div>
@@ -730,12 +885,11 @@
                 </div>
             </div>
 
-
             <!-- WIDGET 9: CUET NORMALIZATION ESTIMATOR -->
             <div class="widget-card">
                 <div>
                     <div class="widget-card-header">
-                        <div class="widget-icon" style="background: #ECFDF5; color: #059669;">
+                        <div class="widget-icon" style="background: rgba(16, 185, 129, 0.15); color: #34D399;">
                             <i class="fas fa-chart-line"></i>
                         </div>
                         <div class="widget-title-group">
@@ -760,12 +914,11 @@
                 </div>
             </div>
 
-
             <!-- WIDGET 10: SUBJECT PREFERENCE ORDER GENERATOR -->
             <div class="widget-card">
                 <div>
                     <div class="widget-card-header">
-                        <div class="widget-icon" style="background: #FEE2E2; color: #DC2626;">
+                        <div class="widget-icon" style="background: rgba(220, 38, 38, 0.15); color: #F87171;">
                             <i class="fas fa-list-ol"></i>
                         </div>
                         <div class="widget-title-group">
@@ -795,12 +948,11 @@
                 </div>
             </div>
 
-
             <!-- WIDGET 11: MAIN CAMPUS VS AFFILIATED CUTOFF MATRIX -->
             <div class="widget-card">
                 <div>
                     <div class="widget-card-header">
-                        <div class="widget-icon" style="background: #E0E7FF; color: #3730A3;">
+                        <div class="widget-icon" style="background: rgba(55, 48, 163, 0.15); color: #818CF8;">
                             <i class="fas fa-university"></i>
                         </div>
                         <div class="widget-title-group">
@@ -832,12 +984,11 @@
                 </div>
             </div>
 
-
             <!-- WIDGET 12: COUNSELING DOCUMENT CHECKLIST -->
             <div class="widget-card">
                 <div>
                     <div class="widget-card-header">
-                        <div class="widget-icon" style="background: #FEF3C7; color: #B45309;">
+                        <div class="widget-icon" style="background: rgba(180, 83, 9, 0.15); color: #F59E0B;">
                             <i class="fas fa-clipboard-check"></i>
                         </div>
                         <div class="widget-title-group">
@@ -862,12 +1013,11 @@
                 </div>
             </div>
 
-
             <!-- WIDGET 13: GAP YEAR AFFIDAVIT GENERATOR -->
             <div class="widget-card">
                 <div>
                     <div class="widget-card-header">
-                        <div class="widget-icon" style="background: #CCFBF1; color: #0F766E;">
+                        <div class="widget-icon" style="background: rgba(15, 118, 110, 0.15); color: #2DD4BF;">
                             <i class="fas fa-file-contract"></i>
                         </div>
                         <div class="widget-title-group">
@@ -888,12 +1038,11 @@
                 </div>
             </div>
 
-
             <!-- WIDGET 14: MARKS TO PERCENTILE CALCULATOR -->
             <div class="widget-card">
                 <div>
                     <div class="widget-card-header">
-                        <div class="widget-icon" style="background: #F1F5F9; color: #334155;">
+                        <div class="widget-icon" style="background: var(--bg-chip); color: var(--text-primary);">
                             <i class="fas fa-calculator"></i>
                         </div>
                         <div class="widget-title-group">
@@ -914,12 +1063,11 @@
                 </div>
             </div>
 
-
             <!-- WIDGET 15: FEE EXEMPTION & SCHOLARSHIP CHECKER -->
             <div class="widget-card">
                 <div>
                     <div class="widget-card-header">
-                        <div class="widget-icon" style="background: #DCFCE7; color: #16A34A;">
+                        <div class="widget-icon" style="background: rgba(22, 163, 74, 0.15); color: #4ADE80;">
                             <i class="fas fa-hand-holding-usd"></i>
                         </div>
                         <div class="widget-title-group">
@@ -945,12 +1093,11 @@
                 </div>
             </div>
 
-
             <!-- WIDGET 16: DIRECT FOUNDER DOUBT HELPER -->
             <div class="widget-card">
                 <div>
                     <div class="widget-card-header">
-                        <div class="widget-icon" style="background: #EEF2FF; color: #4F46E5;">
+                        <div class="widget-icon" style="background: rgba(99, 102, 241, 0.15); color: #818CF8;">
                             <i class="fas fa-comment-medical"></i>
                         </div>
                         <div class="widget-title-group">
@@ -975,27 +1122,92 @@
 
     </main>
 
-    <!-- === SINGLE LINE MINIMAL FOOTER (SCREENSHOT MATCHING) === -->
-    <footer>
-        <div class="footer-links">
-            <a href="contact-us.html">Contact Us</a>
-            <a href="privacy-policy.html">Privacy Policy</a>
-            <a href="disclaimer.html">Disclaimer</a>
+    <!-- === FULL ULTRA-GLASS FOOTER === -->
+    <footer class="modern-footer">
+        <div class="footer-container">
+            <div>
+                <div class="logo">
+                    <div class="logo-badge"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="logo-text" style="font-weight: 900; font-size: 1.05rem;">The University Page</div>
+                </div>
+                <p class="footer-brand-p">
+                    Empowering students nationwide with verified admission roadmaps, cutoff predictions, and exam strategies by Ajmal Mansoori.
+                </p>
+            </div>
+
+            <div class="footer-column">
+                <h4>Admissions</h4>
+                <ul class="footer-links-list">
+                    <li><a href="admission.html">CUET UG Admissions</a></li>
+                    <li><a href="central-universities.html">Central Universities (49)</a></li>
+                    <li><a href="state-universities.html">State Universities</a></li>
+                    <li><a href="cutoff.html">Cutoff Archives</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Ecosystem</h4>
+                <ul class="footer-links-list">
+                    <li><a href="https://learnifyclasses.akamai.net.in" target="_blank">Learnify Classes App</a></li>
+                    <li><a href="https://t.me/cuetwarriors2026" target="_blank">CUET Warriors Hub</a></li>
+                    <li><a href="https://youtube.com/@ajmalalimansoori" target="_blank">Ajmal Mansoori YouTube</a></li>
+                    <li><a href="about-ajmal-mansoori.html">Founder Desk</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Legal & Policies</h4>
+                <ul class="footer-links-list">
+                    <li><a href="privacy-policy.html">Privacy Charter</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="disclaimer.html">Disclaimer</a></li>
+                    <li><a href="contact-us.html">Contact Helpdesk</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="copyright">
-            &copy; 2026 The University Page. All rights reserved.
+
+        <div class="sub-footer-bottom">
+            <div>&copy; 2026 The University Page. Founded by Ajmal Mansoori. All rights reserved. 🇮🇳</div>
+            <div class="social-pill-group">
+                <a href="https://youtube.com/@ajmalalimansoori" target="_blank" class="social-pill"><i class="fab fa-youtube"></i></a>
+                <a href="https://instagram.com/ajmalcreator" target="_blank" class="social-pill"><i class="fab fa-instagram"></i></a>
+                <a href="https://t.me/cuetwarriors2026" target="_blank" class="social-pill"><i class="fab fa-telegram-plane"></i></a>
+            </div>
         </div>
     </footer>
 
-    <!-- INTERACTIVE JAVASCRIPT -->
+    <!-- INTERACTIVE JAVASCRIPT & THEME LOGIC -->
     <script>
+        function initAppTheme() {
+            const current = localStorage.getItem('theme-mode') || 'dark';
+            document.documentElement.setAttribute('data-theme', current);
+            renderThemeIcon(current);
+        }
+
+        function toggleAppTheme() {
+            const active = document.documentElement.getAttribute('data-theme');
+            const target = active === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', target);
+            localStorage.setItem('theme-mode', target);
+            renderThemeIcon(target);
+        }
+
+        function renderThemeIcon(theme) {
+            const icon = document.getElementById('themeIcon');
+            if (icon) {
+                icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+                icon.style.color = theme === 'dark' ? '#F59E0B' : 'inherit';
+            }
+        }
+        initAppTheme();
+
         function toggleResourcesDrawer() {
             const drawer = document.getElementById("resourcesDrawer");
             if (drawer) drawer.classList.toggle("active");
         }
 
         document.addEventListener("click", function(event) {
-            if (!event.target.closest(".sidebar-toggle-btn") && !event.target.closest("#resourcesDrawer")) {
+            if (!event.target.closest("#sidebarToggleBtn") && !event.target.closest("#resourcesDrawer")) {
                 const drawer = document.getElementById("resourcesDrawer");
                 if (drawer) drawer.classList.remove("active");
             }
@@ -1007,8 +1219,8 @@
             const resultBox = document.getElementById("predictionResult");
             if (!marks || marks <= 0) {
                 resultBox.style.display = "block";
-                resultBox.style.background = "#FEE2E2";
-                resultBox.style.color = "#991B1B";
+                resultBox.style.background = "rgba(239, 68, 68, 0.15)";
+                resultBox.style.color = "#EF4444";
                 resultBox.innerHTML = "Please Enter Valid Expected Marks!";
                 return;
             }
@@ -1017,9 +1229,9 @@
             let status = marks >= 140 ? "High Chance for Main Campus" : "Eligible for Affiliated Colleges (CMP, ECC)";
             
             resultBox.style.display = "block";
-            resultBox.style.background = "#EEF2FF";
-            resultBox.style.color = "#3730A3";
-            resultBox.innerHTML = `Est. Rank: <b>#${rank} - #${rank + 95}</b><br><span style="color:#059669;">${status}</span>`;
+            resultBox.style.background = "var(--bg-surface)";
+            resultBox.style.color = "var(--text-primary)";
+            resultBox.innerHTML = `Est. Rank: <b>#${rank} - #${rank + 95}</b><br><span style="color:var(--accent-green);">${status}</span>`;
         }
 
         // 2. PUSH BELL
@@ -1086,8 +1298,8 @@
             }
 
             box.style.display = "block";
-            box.style.background = "#F3E8FF";
-            box.style.color = "#6B21A8";
+            box.style.background = "var(--bg-surface)";
+            box.style.color = "var(--text-primary)";
             box.innerHTML = `<b>Combo Required:</b> ${text}`;
         }
 
@@ -1113,8 +1325,8 @@
             if (months < 0) { years--; months += 12; }
 
             box.style.display = "block";
-            box.style.background = "#FFE4E6";
-            box.style.color = "#9F1239";
+            box.style.background = "var(--bg-surface)";
+            box.style.color = "var(--text-primary)";
             box.innerHTML = `Age on Cutoff Date: <b>${years} Y, ${months} M, ${days} D</b>`;
         }
 
@@ -1126,8 +1338,8 @@
             
             let subject = type === "leave" ? "Application for Leave of Absence" : "Request for Certificate Processing";
             box.style.display = "block";
-            box.style.background = "#E0F2FE";
-            box.style.color = "#0369A1";
+            box.style.background = "var(--bg-surface)";
+            box.style.color = "var(--text-primary)";
             box.innerHTML = `<b>To, The Head/Dean</b><br>Subject: ${subject}<br>Respected Sir, I am ${name}. Kindly grant approval for my request.<br>Thanking You,<br><b>${name}</b>`;
         }
 
@@ -1137,6 +1349,8 @@
             const box = document.getElementById("cgpaOutput");
             if (!cgpa) return;
             box.style.display = "block";
+            box.style.background = "var(--bg-surface)";
+            box.style.color = "var(--text-primary)";
             box.innerHTML = `Percentage: <b>${(cgpa * 9.5).toFixed(2)}%</b>`;
         }
 
@@ -1150,8 +1364,8 @@
             let percent = shift === "hard" ? Math.min(99.9, ((raw + 15) / 200) * 100) : Math.min(99.9, (raw / 200) * 98);
 
             box.style.display = "block";
-            box.style.background = "#ECFDF5";
-            box.style.color = "#065F46";
+            box.style.background = "var(--bg-surface)";
+            box.style.color = "var(--text-primary)";
             box.innerHTML = `Est. Normalised Percentile: <b>${percent.toFixed(2)} Percentile</b>`;
         }
 
@@ -1160,8 +1374,8 @@
             const course = document.getElementById("prefCourse").value;
             const box = document.getElementById("prefOutput");
             box.style.display = "block";
-            box.style.background = "#FEE2E2";
-            box.style.color = "#991B1B";
+            box.style.background = "var(--bg-surface)";
+            box.style.color = "var(--text-primary)";
 
             if (course === "ba_au") {
                 box.innerHTML = "<b>Top Choice Order:</b><br>1. Ancient History + Pol Sci + Hindi<br>2. Geography + Economics + Eng<br>3. History + Sociology + GT";
@@ -1175,8 +1389,8 @@
             const univ = document.getElementById("matrixUniv").value;
             const box = document.getElementById("matrixOutput");
             box.style.display = "block";
-            box.style.background = "#E0E7FF";
-            box.style.color = "#3730A3";
+            box.style.background = "var(--bg-surface)";
+            box.style.color = "var(--text-primary)";
 
             if (univ === "au_main") {
                 box.innerHTML = "<b>AU Main Campus (FMC):</b><br>Safe Score BA: <b>150+ Marks</b> | B.Sc: <b>155+ Marks</b> | B.Com: <b>160+ Marks</b>";
@@ -1195,9 +1409,9 @@
 
             let count = (tc?1:0) + (caste?1:0) + (inc?1:0) + (gap?1:0);
             box.style.display = "block";
-            box.style.background = "#FEF3C7";
-            box.style.color = "#92400E";
-            box.innerHTML = `Readiness Score: <b>${count} / 4 Documents Ready</b> ${count===4 ? '🟢 Ready for Admission!' : '🟡 Complete remaining documents'}`;
+            box.style.background = "var(--bg-surface)";
+            box.style.color = "var(--text-primary)";
+            box.innerHTML = `Readiness Score: <b>${count} / 4 Documents Ready</b> ${count===4 ? '<span style="color:var(--accent-green);">Ready for Admission!</span>' : '<span style="color:var(--accent-amber);">Complete remaining documents</span>'}`;
         }
 
         // 13. GAP DRAFT
@@ -1207,8 +1421,8 @@
             const box = document.getElementById("gapOutput");
 
             box.style.display = "block";
-            box.style.background = "#CCFBF1";
-            box.style.color = "#115E59";
+            box.style.background = "var(--bg-surface)";
+            box.style.color = "var(--text-primary)";
             box.innerHTML = `<b>AFFIDAVIT DRAFT:</b><br>I, ${name}, state that I took a gap of ${years} for competitive exam preparation. I was not engaged in any unlawful activity.`;
         }
 
@@ -1221,6 +1435,8 @@
             if (!marks) return;
             let ratio = ((marks / total) * 100).toFixed(2);
             box.style.display = "block";
+            box.style.background = "var(--bg-surface)";
+            box.style.color = "var(--text-primary)";
             box.innerHTML = `Score Ratio: <b>${ratio}%</b> of total marks`;
         }
 
@@ -1232,13 +1448,13 @@
 
             if (!income) return;
             box.style.display = "block";
-            box.style.background = "#DCFCE7";
-            box.style.color = "#166534";
+            box.style.background = "var(--bg-surface)";
+            box.style.color = "var(--text-primary)";
 
             if (income <= 250000) {
-                box.innerHTML = "<b>🟢 Eligible for UP Scholarship:</b> 100% Tuition Fee Reimbursement + Monthly Maintenance Allowance";
+                box.innerHTML = "<b style='color:var(--accent-green);'>Eligible for UP Scholarship:</b> 100% Tuition Fee Reimbursement + Monthly Maintenance Allowance";
             } else {
-                box.innerHTML = "<b>🟡 General Category Guidelines:</b> Merit-cum-means scholarship criteria apply.";
+                box.innerHTML = "<b style='color:var(--accent-amber);'>General Category Guidelines:</b> Merit-cum-means scholarship criteria apply.";
             }
         }
 
@@ -1254,9 +1470,9 @@
             }
 
             box.style.display = "block";
-            box.style.background = "#EEF2FF";
-            box.style.color = "#3730A3";
-            box.innerHTML = `<b>Query Received!</b> Hello ${name}, your question has been logged for Telegram support. Click Telegram button below to join.`;
+            box.style.background = "var(--bg-surface)";
+            box.style.color = "var(--text-primary)";
+            box.innerHTML = `<b>Query Received!</b> Hello ${name}, your question has been logged successfully. Our team will get back to you shortly.`;
         }
     </script>
 </body>
