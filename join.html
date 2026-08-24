@@ -13,36 +13,39 @@
 
     <style>
         :root {
-            /* DARK THEME */
+            /* 🌌 DARK THEME */
             --bg-base: #060913;
-            --bg-surface: #0e1526;
-            --bg-card: #121b33;
-            --bg-chip: rgba(255, 255, 255, 0.08);
-            --text-primary: #FFFFFF;
+            --bg-surface: rgba(13, 19, 36, 0.85);
+            --bg-surface-hover: rgba(22, 31, 56, 0.95);
+            --bg-card: rgba(16, 24, 48, 0.75);
+            --bg-chip: rgba(255, 255, 255, 0.06);
+            --text-primary: #F8FAFC;
             --text-secondary: #CBD5E1;
             --text-muted: #94A3B8;
-            --border: rgba(255, 255, 255, 0.12);
-            --border-hover: #6366F1;
+            --border: rgba(255, 255, 255, 0.1);
+            --border-hover: rgba(99, 102, 241, 0.5);
             
             --primary: #6366F1;
             --primary-glow: rgba(99, 102, 241, 0.35);
-            --gradient-primary: linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #EC4899 100%);
-            --radius-md: 12px;
-            --radius-lg: 18px;
-            --radius-xl: 24px;
+            --gradient-primary: linear-gradient(135deg, #6366F1 0%, #A855F7 50%, #EC4899 100%);
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --radius-xl: 26px;
+            --blur: blur(20px);
         }
 
         [data-theme="light"] {
-            /* LIGHT THEME */
-            --bg-base: #F8FAFC;
-            --bg-surface: #FFFFFF;
-            --bg-card: #FFFFFF;
-            --bg-chip: #F1F5F9;
+            /* ☀️ LIGHT THEME */
+            --bg-base: #F4F6FC;
+            --bg-surface: rgba(255, 255, 255, 0.92);
+            --bg-surface-hover: rgba(255, 255, 255, 1);
+            --bg-card: rgba(255, 255, 255, 0.88);
+            --bg-chip: rgba(15, 23, 42, 0.05);
             --text-primary: #0F172A;
             --text-secondary: #334155;
             --text-muted: #64748B;
-            --border: #E2E8F0;
-            --border-hover: #4F46E5;
+            --border: rgba(15, 23, 42, 0.08);
+            --border-hover: rgba(99, 102, 241, 0.5);
             --primary: #4F46E5;
             --primary-glow: rgba(79, 70, 229, 0.2);
         }
@@ -62,7 +65,22 @@
             flex-direction: column;
             overflow-x: hidden;
             transition: background-color 0.3s ease, color 0.3s ease;
+            position: relative;
             -webkit-font-smoothing: antialiased;
+        }
+
+        .ambient-glow {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 900px;
+            height: 450px;
+            background: radial-gradient(circle, var(--primary-glow) 0%, rgba(236, 72, 153, 0.06) 50%, transparent 80%);
+            pointer-events: none;
+            z-index: 0;
+            filter: blur(80px);
         }
 
         h1, h2, h3, h4 {
@@ -75,15 +93,15 @@
             position: sticky;
             top: 0;
             z-index: 90;
-            width: 100%;
             background: var(--bg-surface);
+            backdrop-filter: var(--blur);
             border-bottom: 1px solid var(--border);
         }
 
         .navbar {
-            max-width: 1240px;
+            max-width: 1280px;
             margin: 0 auto;
-            padding: 12px 16px;
+            padding: 12px 18px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -100,7 +118,6 @@
         .logo-badge {
             width: 40px;
             height: 40px;
-            min-width: 40px;
             border-radius: var(--radius-md);
             background: var(--gradient-primary);
             display: flex;
@@ -108,6 +125,7 @@
             justify-content: center;
             color: #FFF;
             font-size: 1.15rem;
+            box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4);
         }
 
         .logo-text h2 {
@@ -145,6 +163,11 @@
             transition: all 0.2s ease;
         }
 
+        .control-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
         /* DRAWER */
         .drawer-overlay {
             position: fixed;
@@ -167,6 +190,7 @@
             width: 300px;
             max-width: 85vw;
             background: var(--bg-surface);
+            backdrop-filter: blur(25px);
             border-left: 1px solid var(--border);
             z-index: 999;
             transform: translateX(100%);
@@ -201,7 +225,7 @@
             justify-content: center;
         }
 
-        .drawer-links { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+        .drawer-links { list-style: none; display: flex; flex-direction: column; gap: 6px; }
         .drawer-links a {
             display: flex;
             align-items: center;
@@ -223,10 +247,12 @@
         /* MAIN CONTAINER */
         .form-container {
             flex: 1;
-            width: 100%;
             max-width: 900px;
+            width: 100%;
             margin: 0 auto;
-            padding: 24px 16px 50px;
+            padding: 28px 16px 60px;
+            position: relative;
+            z-index: 1;
         }
 
         /* HERO CARD */
@@ -234,8 +260,9 @@
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: var(--radius-xl);
-            padding: 30px 24px;
+            padding: 36px 28px;
             margin-bottom: 24px;
+            backdrop-filter: var(--blur);
             box-shadow: 0 0 50px -10px var(--primary-glow);
             text-align: center;
         }
@@ -246,7 +273,7 @@
             border: 1px solid rgba(99, 102, 241, 0.3);
             padding: 5px 14px;
             border-radius: 9999px;
-            font-size: 0.76rem;
+            font-size: 0.74rem;
             font-weight: 800;
             letter-spacing: 0.6px;
             text-transform: uppercase;
@@ -257,10 +284,10 @@
         }
 
         .form-hero-card h1 {
-            font-size: 2rem;
+            font-size: 2.1rem;
             font-weight: 900;
             line-height: 1.25;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             background: linear-gradient(135deg, var(--text-primary) 30%, var(--primary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -270,23 +297,25 @@
             font-size: 0.9rem;
             color: var(--text-muted);
             line-height: 1.6;
-            max-width: 680px;
+            max-width: 720px;
             margin: 0 auto;
+            font-weight: 500;
         }
 
-        /* FORM STYLING */
+        /* FORM CARD */
         .connect-form-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: var(--radius-xl);
-            padding: 32px 28px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            padding: 36px 32px;
+            backdrop-filter: var(--blur);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
         }
 
         .form-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 18px;
+            gap: 20px;
             margin-bottom: 24px;
         }
 
@@ -296,7 +325,7 @@
 
         .input-label {
             display: block;
-            font-size: 0.84rem;
+            font-size: 0.85rem;
             font-weight: 700;
             color: var(--text-primary);
             margin-bottom: 8px;
@@ -342,10 +371,10 @@
             background: var(--gradient-primary);
             color: #FFFFFF;
             border: none;
-            padding: 15px 28px;
+            padding: 16px 28px;
             border-radius: var(--radius-md);
             font-weight: 800;
-            font-size: 0.95rem;
+            font-size: 0.98rem;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -367,13 +396,13 @@
             transform: none;
         }
 
-        /* ALERTS */
+        /* STATUS ALERTS */
         .status-alert {
             display: none;
             padding: 16px;
             border-radius: var(--radius-md);
-            margin-bottom: 20px;
-            font-size: 0.88rem;
+            margin-bottom: 24px;
+            font-size: 0.9rem;
             font-weight: 700;
             text-align: center;
         }
@@ -394,13 +423,13 @@
         .modern-footer {
             background: var(--bg-surface);
             border-top: 1px solid var(--border);
-            padding: 40px 16px 20px;
+            padding: 40px 16px 24px;
             margin-top: auto;
-            width: 100%;
+            backdrop-filter: var(--blur);
         }
 
         .footer-container {
-            max-width: 1240px;
+            max-width: 1280px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1.5fr repeat(3, 1fr);
@@ -443,7 +472,7 @@
         }
 
         .sub-footer-bottom {
-            max-width: 1240px;
+            max-width: 1280px;
             margin: 20px auto 0;
             display: flex;
             align-items: center;
@@ -480,9 +509,9 @@
 
         @media (max-width: 768px) {
             .form-grid { grid-template-columns: 1fr; gap: 14px; }
-            .form-hero-card { padding: 22px 16px; }
-            .form-hero-card h1 { font-size: 1.5rem; }
-            .connect-form-card { padding: 22px 16px; }
+            .form-hero-card { padding: 24px 16px; }
+            .form-hero-card h1 { font-size: 1.6rem; }
+            .connect-form-card { padding: 24px 16px; }
             .footer-container { grid-template-columns: 1fr 1fr; }
         }
 
@@ -494,7 +523,9 @@
 </head>
 <body>
 
-    <!-- SIDEBAR OVERLAY & DRAWER -->
+    <div class="ambient-glow"></div>
+
+    <!-- SIDEBAR DRAWER -->
     <div class="drawer-overlay" id="drawerOverlay" onclick="closeNavDrawer()"></div>
     <aside class="sidebar-drawer" id="sidebarDrawer">
         <div class="drawer-header">
@@ -533,7 +564,7 @@
     <main class="form-container">
 
         <section class="form-hero-card">
-            <div class="hero-badge"><i class="fas fa-users"></i> Official Student Portal</div>
+            <div class="hero-badge">Official Student Portal</div>
             <h1>Connect With The University Page | Student Registration</h1>
             <p>University admission, cutoff alerts, counselling, hostel, scholarship, campus updates aur student community se judne ke liye apni sahi jankari bharen.</p>
         </section>
@@ -571,7 +602,7 @@
                         </select>
                     </div>
 
-                    <!-- 4. University Name -->
+                    <!-- 4. University Name (All Central + Others) -->
                     <div class="form-group">
                         <label class="input-label" for="universitySelect">University Name <span>*</span></label>
                         <select id="universitySelect" class="input-control" onchange="handleUniversityChange()" disabled required>
@@ -587,9 +618,9 @@
                         </select>
                     </div>
 
-                    <!-- 6. Course / Programme Level -->
+                    <!-- 6. Course Level / Programme -->
                     <div class="form-group">
-                        <label class="input-label" for="progLevelSelect">Course / Programme <span>*</span></label>
+                        <label class="input-label" for="progLevelSelect">Course Programme Level <span>*</span></label>
                         <select id="progLevelSelect" class="input-control" required>
                             <option value="" disabled selected>-- Select Level --</option>
                             <option value="UG">UG (Undergraduate)</option>
@@ -600,7 +631,7 @@
                         </select>
                     </div>
 
-                    <!-- 7. Target Course / Programme -->
+                    <!-- 7. Target Single Course Name -->
                     <div class="form-group">
                         <label class="input-label" for="courseSelect">Target Course / Programme <span>*</span></label>
                         <select id="courseSelect" class="input-control" disabled required>
@@ -633,30 +664,37 @@
                         </select>
                     </div>
 
-                    <!-- 10. Admission Year -->
+                    <!-- 10. Admission Year (2020 to Present) -->
                     <div class="form-group">
                         <label class="input-label" for="admissionYear">Admission Year <span>*</span></label>
                         <select id="admissionYear" class="input-control" required>
                             <option value="" disabled selected>-- Select Session --</option>
                             <option value="2026-27" selected>2026-27</option>
                             <option value="2025-26">2025-26</option>
-                            <option value="Other">Other</option>
+                            <option value="2024-25">2024-25</option>
+                            <option value="2023-24">2023-24</option>
+                            <option value="2022-23">2022-23</option>
+                            <option value="2021-22">2021-22</option>
+                            <option value="2020-21">2020-21</option>
                         </select>
                     </div>
 
-                    <!-- 11. What Help Do You Need? -->
+                    <!-- 11. What Help Do You Need? (Expanded Options) -->
                     <div class="form-group">
                         <label class="input-label" for="helpRequired">What Help Do You Need? <span>*</span></label>
                         <select id="helpRequired" class="input-control" required>
                             <option value="" disabled selected>-- Select Support Area --</option>
-                            <option value="Admission/Counselling">Admission / Counselling</option>
-                            <option value="Cut-off Updates">Cut-off Updates</option>
-                            <option value="Hostel">Hostel Guidance</option>
-                            <option value="Scholarship">Scholarship Assistance</option>
-                            <option value="Course/Subject Guidance">Course / Subject Guidance</option>
-                            <option value="Study Material">Study Material</option>
-                            <option value="Campus Information">Campus Information</option>
-                            <option value="Other">Other</option>
+                            <option value="Admission and Counselling Guidance">Admission and Counselling Guidance</option>
+                            <option value="Real-time Cut-off Updates">Real-time Cut-off Updates</option>
+                            <option value="Hostel Accommodation Assistance">Hostel Accommodation Assistance</option>
+                            <option value="Scholarship Application Support">Scholarship Application Support</option>
+                            <option value="Course and Subject Choice Guidance">Course and Subject Choice Guidance</option>
+                            <option value="Study Material and PYQs">Study Material and PYQs</option>
+                            <option value="Campus and College Information">Campus and College Information</option>
+                            <option value="Document Verification Help">Document Verification Help</option>
+                            <option value="Fee Structure and Payment Queries">Fee Structure and Payment Queries</option>
+                            <option value="Anti-Ragging and Safety Guidance">Anti-Ragging and Safety Guidance</option>
+                            <option value="Other General Assistance">Other General Assistance</option>
                         </select>
                     </div>
 
@@ -669,22 +707,16 @@
                             <option value="Telegram">Telegram</option>
                             <option value="Instagram">Instagram</option>
                             <option value="WhatsApp">WhatsApp</option>
-                            <option value="Google">Google Search</option>
-                            <option value="Friend/Student">Friend / Fellow Student</option>
+                            <option value="Google Search">Google Search</option>
+                            <option value="Friend or Fellow Student">Friend or Fellow Student</option>
                             <option value="Other">Other</option>
                         </select>
-                    </div>
-
-                    <!-- 13. Optional Query -->
-                    <div class="form-group form-group-full">
-                        <label class="input-label" for="userQuery">Any Admission Question / Target Year (Optional)</label>
-                        <input type="text" id="userQuery" class="input-control" placeholder="e.g. Seeking cutoff guidance for AU BA 2026">
                     </div>
 
                 </div>
 
                 <button type="submit" id="submitBtn" class="submit-btn">
-                    <i class="fas fa-paper-plane"></i> Submit & Join Community
+                    Submit & Join Community
                 </button>
             </form>
         </section>
@@ -748,7 +780,7 @@
         </div>
     </footer>
 
-    <!-- REALTIME FIREBASE SCRIPT & COMPREHENSIVE UNIVERSITY DATA -->
+    <!-- REALTIME FIREBASE SCRIPT & COMPREHENSIVE UNIVERSITY DATABASE -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
@@ -766,238 +798,92 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // COMPREHENSIVE UNIVERSITY & COLLEGE DATABASE
+        // ALL 49+ CENTRAL UNIVERSITIES & SINGLE COURSES DATABASE
         const universityDirectory = {
             central: {
-                "au": {
-                    name: "University of Allahabad (AU)",
-                    colleges: [
-                        "AU Main Campus (FMC)",
-                        "Ewing Christian College (ECC)",
-                        "Choudhary Mahadeo Prasad Degree College (CMP)",
-                        "Allahabad Degree College (ADC)",
-                        "Iswar Saran Degree College (ISDC)",
-                        "Shyama Prasad Mukherjee Govt College (SPM)",
-                        "SS Khanna Girls Degree College (SSK)",
-                        "Jagat Taran Girls Degree College (JT)",
-                        "Arya Kanya Degree College (AKDC)",
-                        "Hamidia Girls Degree College",
-                        "KP Training College",
-                        "Rajarshi Tandon Mahila Mahavidyalaya"
-                    ],
-                    courses: [
-                        "B.A. (Honours / Research)",
-                        "B.Sc. Mathematics Group",
-                        "B.Sc. Bio Group",
-                        "B.Com (Commerce)",
-                        "B.A. LL.B. (5-Year Integrated)",
-                        "LL.B. (3-Year)",
-                        "B.Tech / BCA (Professional)",
-                        "B.Voc / Vocational Courses",
-                        "M.A. (Medieval & Modern History)",
-                        "M.A. (Political Science / Geography / Hindi / English)",
-                        "M.Sc. / M.Com / LL.M."
-                    ]
-                },
-                "bhu": {
-                    name: "Banaras Hindu University (BHU)",
-                    colleges: [
-                        "Faculty of Main Campus (FMC)",
-                        "Mahila Mahavidyalaya (MMV - Female)",
-                        "DAV Post Graduate College (DAV PGC)",
-                        "Arya Mahila PG College (AMPGC)",
-                        "Vasanta Kanya Mahavidyalaya (VKM)",
-                        "Vasant Kanya PG College (VKM Rajghat)",
-                        "Rajiv Gandhi South Campus (RGSC Barkachha)"
-                    ],
-                    courses: [
-                        "B.A. (Hons) Arts / Social Sciences",
-                        "B.Sc. (Hons) Maths Group",
-                        "B.Sc. (Hons) Bio Group",
-                        "B.Sc. (Hons) Agriculture",
-                        "B.Com (Hons) / Financial Markets",
-                        "B.A. LL.B. (Hons)",
-                        "B.Tech (Food Tech / Dairy Tech)",
-                        "M.A. / M.Sc. / M.Com"
-                    ]
-                },
-                "du": {
-                    name: "University of Delhi (DU)",
-                    colleges: [
-                        "North Campus - Hindu College",
-                        "North Campus - St. Stephen's College",
-                        "North Campus - Hansraj College",
-                        "North Campus - Miranda House",
-                        "North Campus - Kirori Mal College (KMC)",
-                        "North Campus - Ramjas College",
-                        "North Campus - Shri Ram College of Commerce (SRCC)",
-                        "South Campus - Sri Venkateswara College (Venky)",
-                        "South Campus - Lady Shri Ram College (LSR)",
-                        "South Campus - Gargi College",
-                        "South Campus - Atma Ram Sanatan Dharma (ARSD)",
-                        "Off-Campus - Shaheed Bhagat Singh College",
-                        "Off-Campus - Delhi College of Arts & Commerce (DCAC)"
-                    ],
-                    courses: [
-                        "B.A. (Hons) Political Science / History / Economics",
-                        "B.Com (Hons) / B.Com Programme",
-                        "B.Sc. (Hons) Physics / Chemistry / Maths / CS",
-                        "B.A. (Programme) Multidisciplinary",
-                        "BMS / BBA (FIA) / BBE",
-                        "B.Tech (IT & Mathematical Innovations)"
-                    ]
-                },
-                "jnu": {
-                    name: "Jawaharlal Nehru University (JNU)",
-                    colleges: ["JNU Main Campus (School of Language, Literature & Culture Studies)"],
-                    courses: [
-                        "B.A. (Hons) Foreign Languages (French / German / Russian / Spanish / Japanese / Korean / Arabic / Persian / Chinese)",
-                        "COP (Certificate of Proficiency)",
-                        "Integrated B.Sc.-M.Sc. Ayurveda Biology"
-                    ]
-                },
-                "bbau": {
-                    name: "Babasaheb Bhimrao Ambedkar University (BBAU)",
-                    colleges: ["BBAU Lucknow Main Campus", "BBAU Satellite Campus Amethi"],
-                    courses: ["B.A. (Hons) Public Admin", "B.Sc. Life Sciences", "B.Com (Hons)", "B.A. LL.B. (Integrated)", "B.Tech (CSE/ECE/Civil)", "BBA / BCA"]
-                },
-                "amu": {
-                    name: "Aligarh Muslim University (AMU)",
-                    colleges: ["AMU Main Campus Aligarh", "AMU Center Malappuram / Murshidabad / Kishanganj"],
-                    courses: ["B.A. (Hons) Selected Courses via CUET", "B.Voc (Production / Fashion / Medical Lab)", "B.Sc. (Hons) Community Science"]
-                },
-                "jmi": {
-                    name: "Jamia Millia Islamia (JMI)",
-                    colleges: ["JMI Main Campus New Delhi"],
-                    courses: ["B.A. (Hons) History / Hindi / Economics / Turkish / Sanskrit", "B.Sc. Biotechnology", "B.Voc (Solar Energy)"]
-                },
-                "other_central": {
-                    name: "Other Central Universities (CURAJ / CUHAR / CUPB / CUSB / CUAP)",
-                    colleges: ["Central University Main Campuses"],
-                    courses: ["Integrated B.Sc.-M.Sc.", "Integrated B.A.-B.Ed. / B.Sc.-B.Ed.", "B.A. / B.Sc. / B.Com", "B.Tech Engineering"]
-                }
+                "au": { name: "University of Allahabad", colleges: ["AU Main Campus (FMC)", "Ewing Christian College (ECC)", "CMP Degree College", "Allahabad Degree College (ADC)", "Iswar Saran Degree College (ISDC)", "SS Khanna Girls Degree College", "Hamidia Girls Degree College"], courses: ["BA", "BSc", "BCom", "BALLB", "LLB", "BTech", "BVoc", "MA", "MSc", "MCom", "LLM", "PhD"] },
+                "bhu": { name: "Banaras Hindu University (BHU)", colleges: ["FMC Main Campus", "Mahila Mahavidyalaya (MMV)", "DAV PG College", "Arya Mahila PG College", "Vasanta Kanya Mahavidyalaya", "RGSC Barkachha"], courses: ["BA", "BSc", "BCom", "BALLB", "BTech", "BSc Agriculture", "MA", "MSc", "MCom", "PhD"] },
+                "du": { name: "University of Delhi (DU)", colleges: ["Hindu College", "St. Stephen's College", "Hansraj College", "Miranda House", "Kirori Mal College", "Ramjas College", "SRCC", "Sri Venkateswara College", "LSR College", "Gargi College"], courses: ["BA", "BCom", "BSc", "BMS", "BTech", "MA", "MSc", "MCom", "PhD"] },
+                "jnu": { name: "Jawaharlal Nehru University (JNU)", colleges: ["JNU Main Campus New Delhi"], courses: ["BA Foreign Languages", "BSc-MSc Ayurveda", "MA", "MSc", "MTech", "PhD"] },
+                "bbau": { name: "Babasaheb Bhimrao Ambedkar University (BBAU)", colleges: ["BBAU Lucknow Main Campus", "BBAU Amethi Satellite Campus"], courses: ["BA", "BSc", "BCom", "BALLB", "BTech", "BBA", "BCA", "MA", "MSc", "PhD"] },
+                "amu": { name: "Aligarh Muslim University (AMU)", colleges: ["AMU Main Campus Aligarh", "AMU Centers (Malappuram, Murshidabad, Kishanganj)"], courses: ["BA", "BSc", "BCom", "BVoc", "BTech", "MA", "MSc", "PhD"] },
+                "jmi": { name: "Jamia Millia Islamia (JMI)", colleges: ["JMI Main Campus New Delhi"], courses: ["BA", "BSc", "BVoc", "BTech", "MA", "MSc", "PhD"] },
+                "uoh": { name: "University of Hyderabad (UoH)", colleges: ["UoH Main Campus Hyderabad"], courses: ["Integrated MA", "Integrated MSc", "BTech", "MA", "MSc", "MTech", "PhD"] },
+                "visva": { name: "Visva-Bharati University", colleges: ["Santiniketan Campus West Bengal"], courses: ["BA", "BSc", "BCom", "BFine Arts", "MA", "MSc", "PhD"] },
+                "hnbgu": { name: "HNB Garhwal University", colleges: ["Srinagar Campus Uttarakhand", "Tehri Campus", "Pauri Campus"], courses: ["BA", "BSc", "BCom", "BTech", "MA", "MSc", "PhD"] },
+                "nehu": { name: "North-Eastern Hill University (NEHU)", colleges: ["Shillong Campus", "Tura Campus"], courses: ["BA", "BSc", "BCom", "BTech", "MA", "MSc", "PhD"] },
+                "curaj": { name: "Central University of Rajasthan", colleges: ["Ajmer Campus Rajasthan"], courses: ["Integrated MSc", "BTech", "MSc", "MA", "PhD"] },
+                "cuhar": { name: "Central University of Haryana", colleges: ["Mahendragarh Campus"], courses: ["B.Tech", "B.Voc", "B.Sc. (Hons)", "MA", "MSc", "PhD"] },
+                "cupb": { name: "Central University of Punjab", colleges: ["Bathinda Campus"], courses: ["BTech", "MSc", "MA", "MEd", "PhD"] },
+                "cusb": { name: "Central University of South Bihar", colleges: ["Gaya Campus"], courses: ["Integrated BA-BEd", "BSc-BEd", "B.A. LL.B.", "MA", "MSc", "PhD"] },
+                "cug": { name: "Central University of Gujarat", colleges: ["Gandhinagar Campus"], courses: ["MA", "MSc", "BA (German)", "PhD"] },
+                "cuk": { name: "Central University of Kerala", colleges: ["Kasaragod Campus"], courses: ["MA", "MSc", "B.Ed", "PhD"] },
+                "cukarnataka": { name: "Central University of Karnataka", colleges: ["Kalaburagi Campus"], courses: ["Integrated BSc", "BTech", "MA", "MSc", "PhD"] },
+                "cutn": { name: "Central University of Tamil Nadu", colleges: ["Thiruvarur Campus"], courses: ["Integrated MSc", "Integrated MA", "BTech", "MBA", "PhD"] },
+                "cuo": { name: "Central University of Odisha", colleges: ["Koraput Campus"], courses: ["BA", "BSc", "MA", "MSc", "PhD"] },
+                "cuhp": { name: "Central University of Himachal Pradesh", colleges: ["Dharamshala Campus"], courses: ["BSc", "BVoc", "MA", "MSc", "MBA", "PhD"] },
+                "cujammu": { name: "Central University of Jammu", colleges: ["Samba Campus"], courses: ["BTech", "BSc", "MA", "MSc", "MBA", "PhD"] },
+                "cukashmir": { name: "Central University of Kashmir", colleges: ["Ganderbal Campus"], courses: ["BTech", "BSc", "MA", "MSc", "PhD"] },
+                "cujharkhand": { name: "Central University of Jharkhand", colleges: ["Ranchi Campus"], courses: ["Integrated Tech", "Integrated MSc", "MA", "PhD"] },
+                "cuap": { name: "Central University of Andhra Pradesh", colleges: ["Anantapur Campus"], courses: ["BTech", "BSc", "BA", "MA", "PhD"] },
+                "ctuap": { name: "Central Tribal University of Andhra Pradesh", colleges: ["Vizianagaram Campus"], courses: ["BTech", "BSc", "BA", "MA", "PhD"] },
+                "igntu": { name: "Indira Gandhi National Tribal University (IGNTU)", colleges: ["Amarkantak Campus MP"], courses: ["BA", "BSc", "BCom", "BTech", "MA", "MSc", "PhD"] },
+                "dhsgsu": { name: "Doctor Harisingh Gour Vishwavidyalaya", colleges: ["Sagar Campus MP"], courses: ["BA", "BSc", "BCom", "BALLB", "BTech", "MA", "MSc", "PhD"] },
+                "ggu": { name: "Guru Ghasidas Vishwavidyalaya (GGU)", colleges: ["Bilaspur Campus Chhattisgarh"], courses: ["BTech", "BPharm", "BSc", "BA", "MA", "MSc", "PhD"] },
+                "mgahv": { name: "Mahatma Gandhi Antarrashtriya Hindi Vishwavidyalaya", colleges: ["Wardha Campus Maharashtra"], courses: ["BA", "MA", "MPhil", "PhD"] },
+                "mgcub": { name: "Mahatma Gandhi Central University (MGCUB)", colleges: ["Motihari Campus Bihar"], courses: ["BA", "BSc", "BCom", "BTech", "MA", "MSc", "PhD"] },
+                "pondi": { name: "Pondicherry University", colleges: ["Puducherry Campus", "Karaikal / Mahe Center"], courses: ["Integrated PG", "MBA", "MCA", "MTech", "PhD"] },
+                "eflu": { name: "English and Foreign Languages University (EFLU)", colleges: ["Hyderabad Campus", "Shillong / Lucknow Campus"], courses: ["BA", "MA", "BEd", "PhD"] },
+                "manuu": { name: "Maulana Azad National Urdu University (MANUU)", colleges: ["Hyderabad Campus"], courses: ["BA", "BSc", "BCom", "BTech", "MA", "MSc", "PhD"] },
+                "tezpur": { name: "Tezpur University", colleges: ["Tezpur Campus Assam"], courses: ["Integrated MSc", "BTech", "BCom", "MA", "MSc", "PhD"] },
+                "assam": { name: "Assam University", colleges: ["Silchar Campus", "Diphu Campus"], courses: ["BA", "BSc", "BCom", "BTech", "MA", "MSc", "PhD"] },
+                "mzu": { name: "Mizoram University", colleges: ["Aizawl Campus"], courses: ["BA", "BSc", "BCom", "BTech", "MA", "MSc", "PhD"] },
+                "nagaland": { name: "Nagaland University", colleges: ["Lumami Campus"], courses: ["BA", "BSc", "BCom", "BTech", "MA", "MSc", "PhD"] },
+                "manipur": { name: "Manipur University", colleges: ["Imphal Campus"], courses: ["BA", "BSc", "BCom", "BTech", "MA", "MSc", "PhD"] },
+                "tripura": { name: "Tripura University", colleges: ["Suryamaninagar Campus"], courses: ["BA", "BSc", "BCom", "MA", "MSc", "PhD"] },
+                "sikkim": { name: "Sikkim University", colleges: ["Gangtok Campus"], courses: ["BA", "BSc", "BCom", "MA", "MSc", "PhD"] },
+                "rgu": { name: "Rajiv Gandhi University (RGU)", colleges: ["Itanagar Campus Arunachal Pradesh"], courses: ["BA", "BSc", "BCom", "BTech", "MA", "MSc", "PhD"] },
+                "csu": { name: "Central Sanskrit University", colleges: ["New Delhi & National Campuses"], courses: ["Shastri (BA)", "Acharya (MA)", "PhD"] },
+                "nsu": { name: "National Sanskrit University", colleges: ["Tirupati Campus AP"], courses: ["Shastri (BA)", "Acharya (MA)", "PhD"] },
+                "slbsnsu": { name: "Shri Lal Bahadur Shastri National Sanskrit University", colleges: ["New Delhi Campus"], courses: ["Shastri (BA)", "Acharya (MA)", "PhD"] },
+                "cau": { name: "Central Agricultural University (CAU)", colleges: ["Imphal Campus Manipur"], courses: ["BSc Agriculture", "BTech", "MSc", "PhD"] },
+                "rlbcau": { name: "Rani Lakshmi Bai Central Agricultural University", colleges: ["Jhansi Campus UP"], courses: ["BSc Agriculture", "BSc Horticulture", "MSc", "PhD"] },
+                "rpcau": { name: "Dr. Rajendra Prasad Central Agricultural University", colleges: ["Pusa Samastipur Bihar"], courses: ["BSc Agriculture", "BTech", "MSc", "PhD"] },
+                "sammakka": { name: "Sammakkka Sarakka Central Tribal University", colleges: ["Mulugu Campus Telangana"], courses: ["BA", "BSc", "MA", "MSc", "PhD"] }
             },
             state: {
-                "aud": {
-                    name: "Dr. B.R. Ambedkar University Delhi (AUD)",
-                    colleges: ["Kashmere Gate Campus", "Karampura Campus", "Lodhi Road Campus"],
-                    courses: ["B.A. (Hons) Economics / History / Psychology / Sociology", "BBA", "B.Voc Courses"]
-                },
-                "aktu": {
-                    name: "Dr. A.P.J. Abdul Kalam Technical University (AKTU)",
-                    colleges: ["IET Lucknow", "BIET Jhansi", "KNIT Sultanpur", "AKTU Affiliated Colleges"],
-                    courses: ["B.Tech (Lateral Entry / First Year)", "B.Pharm", "BBA / BCA / MBA / MCA"]
-                },
-                "mmmut": {
-                    name: "Madan Mohan Malaviya University of Tech (MMMUT)",
-                    colleges: ["MMMUT Gorakhpur Main Campus"],
-                    courses: ["B.Tech (Selected Branches)", "BBA / B.Pharma"]
-                },
-                "hbtu": {
-                    name: "Harcourt Butler Technical University (HBTU)",
-                    colleges: ["East Campus (Civil & Chem)", "West Campus Kanpur"],
-                    courses: ["B.Tech Chemical / Mechanical / CSE", "BS-MS Integrated", "BBA"]
-                },
-                "davv": {
-                    name: "Devi Ahilya Vishwavidyalaya (DAVV)",
-                    colleges: ["IET DAVV", "IMS DAVV", "IIPS DAVV Indore"],
-                    courses: ["Integrated MBA (5 Years)", "B.Com (Hons)", "B.Pharm", "BCA / MCA Integrated"]
-                },
-                "ggsipu": {
-                    name: "Guru Gobind Singh Indraprastha Uni (GGSIPU)",
-                    colleges: ["USICT Main Campus Dwarka", "MAIT", "MSIT", "BVISR", "VIPS Pitampura"],
-                    courses: ["BBA / B.Com (Hons)", "BCA", "B.A. LL.B. / BBA LL.B.", "B.A. (JMC)"]
-                },
-                "rmlau": {
-                    name: "Dr. Rammanohar Lohia Avadh University (RMLAU)",
-                    colleges: ["RMLAU Campus Ayodhya", "Affiliated Colleges (Faizabad, Sultanpur, Ambedkar Nagar)"],
-                    courses: ["B.Tech / BCA", "B.A. / B.Sc. / B.Com", "B.Pharma", "B.P.Ed"]
-                },
-                "other_state": {
-                    name: "Other State Universities (GJU / CCSU / DDU / Lucknow Uni)",
-                    colleges: ["State University Main Campus & Regional Colleges"],
-                    courses: ["B.A. / B.Sc. / B.Com", "B.Tech / B.Pharm", "LLB / LLM"]
-                }
+                "aud": { name: "Dr. B.R. Ambedkar University Delhi (AUD)", colleges: ["Kashmere Gate Campus", "Karampura Campus"], courses: ["BA", "BBA", "MA", "PhD"] },
+                "aktu": { name: "Dr. A.P.J. Abdul Kalam Technical University (AKTU)", colleges: ["IET Lucknow", "BIET Jhansi", "KNIT Sultanpur", "Affiliated Colleges"], courses: ["BTech", "BPharm", "BBA", "MBA", "MCA"] },
+                "mmmut": { name: "Madan Mohan Malaviya University of Tech (MMMUT)", colleges: ["Gorakhpur Campus"], courses: ["BTech", "BBA", "MBA", "MTech"] },
+                "hbtu": { name: "Harcourt Butler Technical University (HBTU)", colleges: ["Kanpur Campus"], courses: ["BTech", "BS-MS", "MBA", "PhD"] },
+                "davv": { name: "Devi Ahilya Vishwavidyalaya (DAVV)", colleges: ["Indore Campus"], courses: ["MBA", "BCom", "BPharm", "MCA", "MA"] },
+                "ggsipu": { name: "Guru Gobind Singh Indraprastha Uni (GGSIPU)", colleges: ["Dwarka Campus", "Affiliated Colleges"], courses: ["BBA", "BCA", "BALLB", "BTech", "MBA"] },
+                "rmlau": { name: "Dr. Rammanohar Lohia Avadh University (RMLAU)", colleges: ["Ayodhya Campus", "Affiliated Colleges"], courses: ["BA", "BSc", "BCom", "BTech", "MA", "MSc"] },
+                "other_state": { name: "Other State Universities (CCSU / DDU / Lucknow Uni)", colleges: ["Main Campus & Affiliated Colleges"], courses: ["BA", "BSc", "BCom", "BTech", "MA", "MSc", "LLB"] }
             },
             private: {
-                "amity": {
-                    name: "Amity University (Noida, Lucknow, Jaipur, Gurugram)",
-                    colleges: ["Amity University Noida", "Amity University Lucknow", "Amity University Jaipur"],
-                    courses: ["B.Tech Computer Science / AI", "B.A. (Hons) Applied Psychology / Journalism", "B.Com (Hons) / BBA", "B.A. LL.B."]
-                },
-                "lpu": {
-                    name: "Lovely Professional University (LPU)",
-                    colleges: ["LPU Main Campus Phagwara, Punjab"],
-                    courses: ["B.Tech CSE / Robotics", "B.Sc. Agriculture (Hons)", "BBA / B.Com (Hons)", "Design / Fashion / Hotel Mgmt"]
-                },
-                "galgotias": {
-                    name: "Galgotias University (Greater Noida)",
-                    colleges: ["Galgotias Main Campus Greater Noida"],
-                    courses: ["B.Tech Computer Science", "BBA / BCA", "B.A. LL.B. (Hons)", "B.Sc. Nursing / Paramedical"]
-                },
-                "snu": {
-                    name: "Shiv Nadar University (Greater Noida)",
-                    colleges: ["SNU Greater Noida Campus"],
-                    courses: ["B.Tech (All Streams)", "B.Sc. (Research) Chemistry / Physics / Maths", "B.A. (Research) Economics / History", "BMS"]
-                },
-                "other_private": {
-                    name: "Other Private Universities (CU / UPES / Sharda / BML Munjal / Chitkara)",
-                    colleges: ["Private University Main Campuses"],
-                    courses: ["B.Tech / BCA", "BBA / MBA Integrated", "B.Com / B.A.", "B.Pharma / Allied Health"]
-                }
+                "amity": { name: "Amity University (Noida, Lucknow, Jaipur)", colleges: ["Amity Noida", "Amity Lucknow", "Amity Jaipur"], courses: ["BTech", "BA", "BCom", "BBA", "BALLB", "MBA"] },
+                "lpu": { name: "Lovely Professional University (LPU)", colleges: ["Phagwara Campus Punjab"], courses: ["BTech", "BSc Agriculture", "BBA", "BCom", "MBA", "BTech CSE"] },
+                "galgotias": { name: "Galgotias University", colleges: ["Greater Noida Campus"], courses: ["BTech", "BBA", "BCA", "BALLB", "BSc Nursing"] },
+                "snu": { name: "Shiv Nadar University", colleges: ["Greater Noida Campus"], courses: ["BTech", "BSc Research", "BA Research", "BMS"] },
+                "other_private": { name: "Other Private Universities (CU / UPES / Sharda / Chitkara)", colleges: ["Main Campuses"], courses: ["BTech", "BBA", "BCom", "BPharm", "MBA"] }
             },
             deemed: {
-                "tiss": {
-                    name: "Tata Institute of Social Sciences (TISS)",
-                    colleges: ["TISS Mumbai", "TISS Tuljapur", "TISS Guwahati", "TISS Hyderabad"],
-                    courses: ["B.S. in Analytics & Sustainability Studies", "B.A. in Social Science / Social Work"]
-                },
-                "hamdard": {
-                    name: "Jamia Hamdard (New Delhi)",
-                    colleges: ["School of Pharmaceutical Education & Research", "School of Engineering & Tech"],
-                    courses: ["B.Pharm / D.Pharm", "B.Sc. Paramedical Sciences", "BCA / B.Tech"]
-                },
-                "jiit": {
-                    name: "Jaypee Institute of Information Tech (JIIT)",
-                    colleges: ["Sector 62 Campus Noida", "Sector 128 Campus Noida"],
-                    courses: ["B.Tech Computer Science / IT / Biotech", "Integrated B.Tech-M.Tech", "BBA / BCA"]
-                },
-                "dei": {
-                    name: "Dayalbagh Educational Institute (DEI)",
-                    colleges: ["DEI Agra Main Campus"],
-                    courses: ["B.Tech Footwear / Electrical", "B.Com (Hons)", "B.Voc", "B.A. / B.Sc."]
-                },
-                "other_deemed": {
-                    name: "Other Deemed Universities (TERI / Graphic Era / GITAM / NGBU)",
-                    colleges: ["Deemed University Main Campuses"],
-                    courses: ["B.Tech Engineering", "BBA / B.Com", "B.Sc. Applied Sciences", "Law Courses"]
-                }
+                "tiss": { name: "Tata Institute of Social Sciences (TISS)", colleges: ["Mumbai", "Tuljapur", "Guwahati", "Hyderabad"], courses: ["BA Social Work", "BS Analytics", "MA", "PhD"] },
+                "hamdard": { name: "Jamia Hamdard", colleges: ["New Delhi Campus"], courses: ["BPharm", "BSc Paramedical", "BTech", "MBA", "PhD"] },
+                "jiit": { name: "Jaypee Institute of Information Tech (JIIT)", colleges: ["Noida Sector 62 & 128"], courses: ["BTech", "BBA", "BCA", "MTech", "PhD"] },
+                "dei": { name: "Dayalbagh Educational Institute (DEI)", colleges: ["Agra Campus"], courses: ["BTech", "BCom", "BVoc", "BA", "BSc", "MBA"] },
+                "other_deemed": { name: "Other Deemed Universities (TERI / Graphic Era / GITAM)", colleges: ["Main Campuses"], courses: ["BTech", "BBA", "BCom", "Law", "MBA"] }
             },
             other: {
-                "nfsu": {
-                    name: "National Forensic Sciences University (NFSU)",
-                    colleges: ["NFSU Gandhinagar Campus", "NFSU Delhi Campus", "NFSU Goa / Tripura Campus"],
-                    courses: ["B.Sc.-M.Sc. Forensic Science (5-Year)", "B.Tech-M.Tech Computer Science (Cyber Security)", "BBA-MBA Integrated (Forensic Accounting)"]
-                },
-                "rgnau": {
-                    name: "Rajiv Gandhi National Aviation University (RGNAU)",
-                    colleges: ["RGNAU Amethi Campus (Ministry of Civil Aviation)"],
-                    courses: ["BMS in Aviation Operations", "PG Diploma in Airport Operations"]
-                },
-                "niftem": {
-                    name: "NIFTEM (Food Tech & Entrepreneurship)",
-                    colleges: ["NIFTEM Kundli (Haryana)", "NIFTEM Thanjavur (Tamil Nadu)"],
-                    courses: ["B.Tech Food Technology and Management", "M.Tech / MBA (Food & Agri Business)"]
-                },
-                "other_inst": {
-                    name: "Other Autonomous Colleges / Institutes",
-                    colleges: ["Autonomous Institute Main Campuses"],
-                    courses: ["B.A. / B.Sc. / B.Com", "B.Tech / BBA", "Diploma / Certificate"]
-                }
+                "nfsu": { name: "National Forensic Sciences University (NFSU)", colleges: ["Gandhinagar", "Delhi", "Goa", "Tripura"], courses: ["BSc-MSc Forensic", "BTech-MTech Cyber", "MBA", "PhD"] },
+                "rgnau": { name: "Rajiv Gandhi National Aviation University (RGNAU)", colleges: ["Amethi Campus"], courses: ["BMS Aviation", "PG Diploma"] },
+                "niftem": { name: "NIFTEM (Food Tech)", colleges: ["Kundli Haryana", "Thanjavur TN"], courses: ["BTech Food Tech", "MTech", "MBA"] },
+                "other_inst": { name: "Other Autonomous Institutes / Colleges", colleges: ["Main Campuses"], courses: ["BA", "BSc", "BCom", "BTech", "Diploma"] }
             }
         };
 
-        // Window Handlers for Cascading
+        // Cascading Dropdown Handlers
         window.handleCategoryChange = function() {
             const cat = document.getElementById("categorySelect").value;
             const uniSelect = document.getElementById("universitySelect");
@@ -1052,7 +938,7 @@
                 collegeSelect.appendChild(opt);
             });
 
-            // Populate Courses
+            // Populate Single Courses (e.g. BA, BSc, MA, etc.)
             uniData.courses.forEach(crs => {
                 const opt = document.createElement("option");
                 opt.value = crs;
@@ -1064,7 +950,7 @@
             courseSelect.disabled = false;
         };
 
-        // SUBMIT TO FIRESTORE
+        // SUBMIT TO FIRESTORE WITH PROFESSIONAL ENGLISH MESSAGE
         window.handleFormSubmit = async function(e) {
             e.preventDefault();
             const btn = document.getElementById("submitBtn");
@@ -1082,7 +968,6 @@
             const admissionYear = document.getElementById("admissionYear").value;
             const helpRequired = document.getElementById("helpRequired").value;
             const referralSource = document.getElementById("referralSource").value;
-            const query = document.getElementById("userQuery").value.trim();
 
             const universityName = universityDirectory[category]?.[uniKey]?.name || uniKey;
 
@@ -1091,7 +976,6 @@
             alertBox.style.display = "none";
 
             try {
-                // Save to Firestore Collection "community_leads"
                 await addDoc(collection(db, "community_leads"), {
                     fullName,
                     whatsappNumber,
@@ -1105,13 +989,12 @@
                     admissionYear,
                     helpRequired,
                     referralSource,
-                    userQuery: query || "None",
                     createdAt: serverTimestamp(),
                     source: "The University Page Web Form"
                 });
 
                 alertBox.className = "status-alert status-success";
-                alertBox.innerHTML = `Registration Successful! Thank you ${fullName}, your details have been recorded. You will receive official updates on WhatsApp.`;
+                alertBox.innerHTML = `Thank you ${fullName}! Our team will contact you shortly.`;
                 alertBox.style.display = "block";
 
                 document.getElementById("communityForm").reset();
@@ -1126,7 +1009,7 @@
                 alertBox.style.display = "block";
             } finally {
                 btn.disabled = false;
-                btn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit & Join Community';
+                btn.innerHTML = 'Submit & Join Community';
             }
         };
     </script>
