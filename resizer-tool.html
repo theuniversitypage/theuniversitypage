@@ -11,6 +11,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     
+    <!-- Cropper.js CDN for Professional Image Cropping -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+
     <!-- jsPDF Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
@@ -173,6 +177,12 @@
         }
         .checkbox-label input { accent-color: var(--primary); width: 16px; height: 16px; cursor: pointer; }
 
+        /* CROP CONTAINER */
+        .crop-container {
+            max-height: 400px; width: 100%; margin-bottom: 20px; display: none; background: #000; border-radius: 12px; overflow: hidden; border: 1px solid var(--border);
+        }
+        .crop-container img { max-width: 100%; display: block; }
+
         .action-btns { display: flex; gap: 10px; margin-top: 20px; }
         .studio-btn {
             flex: 1; background: var(--gradient-primary); color: #FFF; border: none;
@@ -182,6 +192,7 @@
         }
         .studio-btn:hover { transform: translateY(-1px); }
         .studio-btn.pdf-btn { background: #E11D48; box-shadow: 0 4px 14px rgba(225, 29, 72, 0.3); }
+        .studio-btn.crop-btn { background: #059669; box-shadow: 0 4px 14px rgba(5, 150, 105, 0.3); }
 
         .preview-area {
             margin-top: 24px; text-align: center; display: none; padding: 16px;
@@ -251,7 +262,7 @@
     <main class="main-container">
 
         <div class="breadcrumb">
-            <a href="index.html">Home</a> <i class="fas fa-chevron-right" style="font-size: 0.65rem;"></i> <span>Photo & Sign Resizer Studio</span>
+            <a href="index.html">Home</a> <i class="fas fa-chevron-right" style="font-size: 0.65rem;"></i> <span>Advanced Photo & Sign Studio</span>
         </div>
 
         <div class="studio-box">
@@ -261,7 +272,7 @@
                 </div>
                 <div>
                     <h2>Advanced Photo, Signature & PDF Studio</h2>
-                    <p style="font-size: 0.82rem; color: var(--text-muted); font-weight: 600;">Custom dimension resize (CM, MM, Inch, Pixel), Aspect Ratio, Crop, and JPG to PDF</p>
+                    <p style="font-size: 0.82rem; color: var(--text-muted); font-weight: 600;">Crop, Resize with Units (CM, MM, Inch, Pixel), KB/MB compression & PDF conversion</p>
                 </div>
             </div>
 
@@ -273,9 +284,20 @@
                 </label>
             </div>
 
+            <!-- CROPPER VIEW CONTAINER -->
+            <div class="crop-container" id="cropContainer">
+                <img id="imageToCrop" src="" alt="Crop Source">
+            </div>
+            
+            <div id="cropActionRow" style="display: none; margin-bottom: 16px;">
+                <button class="studio-btn crop-btn" onclick="confirmCrop()">
+                    <i class="fas fa-check"></i> Confirm Crop Area
+                </button>
+            </div>
+
             <div class="form-row-3">
                 <div>
-                    <label style="font-size: 0.76rem; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 6px;">Width Unit</label>
+                    <label style="font-size: 0.76rem; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 6px;">Unit</label>
                     <select id="unitSelect" class="form-control-custom" onchange="updateDimensionUnits()">
                         <option value="px">Pixels (px)</option>
                         <option value="cm">Centimeters (cm)</option>
@@ -285,39 +307,56 @@
                 </div>
                 <div>
                     <label style="font-size: 0.76rem; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 6px;" id="widthLabel">Width</label>
-                    <input type="number" id="widthInput" class="form-control-custom" value="350" placeholder="Width">
+                    <input type="number" id="widthInput" class="form-control-custom" value="350">
                 </div>
                 <div>
                     <label style="font-size: 0.76rem; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 6px;" id="heightLabel">Height</label>
-                    <input type="number" id="heightInput" class="form-control-custom" value="450" placeholder="Height">
+                    <input type="number" id="heightInput" class="form-control-custom" value="450">
                 </div>
             </div>
 
             <div class="form-row">
                 <div>
-                    <label style="font-size: 0.76rem; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 6px;">Resolution (DPI)</label>
+                    <label style="font-size: 0.76rem; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 6px;">DPI (Resolution)</label>
                     <select id="dpiSelect" class="form-control-custom">
-                        <option value="72">72 DPI (Standard Web)</option>
-                        <option value="150">150 DPI (Moderate Print)</option>
-                        <option value="300" selected>300 DPI (High Quality Form Print)</option>
+                        <option value="72">72 DPI (Web / Portal)</option>
+                        <option value="150">150 DPI (Standard)</option>
+                        <option value="300" selected>300 DPI (High Quality Print)</option>
                     </select>
                 </div>
                 <div>
                     <label style="font-size: 0.76rem; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 6px;">Target File Size (KB)</label>
-                    <input type="number" id="targetKbInput" class="form-control-custom" value="200" placeholder="e.g. 200 KB">
+                    <input type="number" id="targetKbInput" class="form-control-custom" value="200" placeholder="e.g. 50 to 500 KB">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div>
+                    <label style="font-size: 0.76rem; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 6px;">PDF Page Layout</label>
+                    <select id="pdfLayoutSelect" class="form-control-custom">
+                        <option value="portrait">Portrait (Vertical)</option>
+                        <option value="landscape">Landscape (Horizontal)</option>
+                    </select>
+                </div>
+                <div>
+                    <label style="font-size: 0.76rem; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 6px;">PDF Fit Mode</label>
+                    <select id="pdfFitSelect" class="form-control-custom">
+                        <option value="fit">Fit to Screen (A4 Standard)</option>
+                        <option value="actual">Actual Image Aspect Ratio</option>
+                    </select>
                 </div>
             </div>
 
             <label class="checkbox-label">
-                <input type="checkbox" id="aspectRatioCheck" checked> Maintain Aspect Ratio (प्रोपोर्शन सुरक्षित रखें)
+                <input type="checkbox" id="aspectRatioCheck" checked> Maintain Aspect Ratio (पोर्शन लॉक रखें)
             </label>
 
             <div class="action-btns">
                 <button class="studio-btn" onclick="processResize()">
-                    <i class="fas fa-compress-arrows-alt"></i> Resize, Crop & Compress
+                    <i class="fas fa-compress-arrows-alt"></i> Resize & Compress
                 </button>
                 <button class="studio-btn pdf-btn" onclick="convertJpgToPdf()">
-                    <i class="fas fa-file-pdf"></i> Convert JPG to PDF (Fit/Portrait)
+                    <i class="fas fa-file-pdf"></i> Convert JPG to PDF
                 </button>
             </div>
 
@@ -325,8 +364,8 @@
                 <h4 style="margin-bottom: 8px; font-size: 0.95rem;">Processed Result Preview</h4>
                 <img id="outputImage" src="" alt="Preview">
                 <div id="fileStats" style="font-size: 0.82rem; font-weight: 700; color: var(--accent-green); margin-bottom: 12px;"></div>
-                <a id="downloadBtn" href="#" class="studio-btn" style="max-width: 250px; margin: 0 auto;" download="resized-image.jpg">
-                    <i class="fas fa-download"></i> Download Processed File
+                <a id="downloadBtn" href="#" class="studio-btn" style="max-width: 250px; margin: 0 auto;" download="processed-image.jpg">
+                    <i class="fas fa-download"></i> Download File
                 </a>
             </div>
         </div>
@@ -418,23 +457,42 @@
             document.body.style.overflow = '';
         }
 
-        let uploadedImageObj = null;
+        let cropper = null;
+        let activeImageSource = null;
 
         function handleImageUpload(event) {
             const file = event.target.files[0];
             if (!file) return;
             const reader = new FileReader();
             reader.onload = function(e) {
-                const img = new Image();
-                img.onload = function() {
-                    uploadedImageObj = img;
-                    document.getElementById('previewArea').style.display = 'block';
-                    document.getElementById('outputImage').src = e.target.result;
-                    document.getElementById('fileStats').innerText = `File Loaded: Original Size (${(file.size/1024).toFixed(1)} KB)`;
+                const imageEl = document.getElementById('imageToCrop');
+                imageEl.src = e.target.result;
+                document.getElementById('cropContainer').style.display = 'block';
+                document.getElementById('cropActionRow').style.display = 'block';
+
+                if (cropper) {
+                    cropper.destroy();
                 }
-                img.src = e.target.result;
+                cropper = new Cropper(imageEl, {
+                    aspectRatio: NaN,
+                    viewMode: 1,
+                    autoCropArea: 0.8,
+                });
             }
             reader.readAsDataURL(file);
+        }
+
+        function confirmCrop() {
+            if (!cropper) return;
+            const canvas = cropper.getCroppedCanvas();
+            activeImageSource = canvas.toDataURL('image/jpeg');
+            
+            document.getElementById('cropContainer').style.display = 'none';
+            document.getElementById('cropActionRow').style.display = 'none';
+            
+            document.getElementById('previewArea').style.display = 'block';
+            document.getElementById('outputImage').src = activeImageSource;
+            document.getElementById('fileStats').innerText = "Crop Area Confirmed Successfully!";
         }
 
         function updateDimensionUnits() {
@@ -444,16 +502,20 @@
         }
 
         function processResize() {
-            if (!uploadedImageObj) {
-                alert("Please upload an image first!");
+            let srcToUse = activeImageSource;
+            if (!srcToUse && cropper) {
+                srcToUse = cropper.getCroppedCanvas().toDataURL('image/jpeg');
+            }
+            if (!srcToUse) {
+                alert("Please upload and select an image first!");
                 return;
             }
+
             const unit = document.getElementById('unitSelect').value;
             let wVal = parseFloat(document.getElementById('widthInput').value) || 350;
             let hVal = parseFloat(document.getElementById('heightInput').value) || 450;
             const dpi = parseInt(document.getElementById('dpiSelect').value) || 300;
 
-            // Convert CM, MM, Inches to Pixels based on DPI
             let pxWidth = wVal;
             let pxHeight = hVal;
 
@@ -468,47 +530,63 @@
                 pxHeight = hVal * dpi;
             }
 
-            const canvas = document.createElement('canvas');
-            canvas.width = Math.round(pxWidth);
-            canvas.height = Math.round(pxHeight);
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(uploadedImageObj, 0, 0, canvas.width, canvas.height);
+            const img = new Image();
+            img.onload = function() {
+                const canvas = document.createElement('canvas');
+                canvas.width = Math.round(pxWidth);
+                canvas.height = Math.round(pxHeight);
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
-            const targetKb = parseInt(document.getElementById('targetKbInput').value) || 200;
-            let quality = 0.90;
-            let dataUrl = canvas.toDataURL('image/jpeg', quality);
+                const targetKb = parseInt(document.getElementById('targetKbInput').value) || 200;
+                let quality = 0.90;
+                let dataUrl = canvas.toDataURL('image/jpeg', quality);
 
-            // Iterative compression to match target KB approximately
-            let head = 'data:image/jpeg;base64,';
-            let sizeKb = Math.round((dataUrl.length - head.length) * 3/4 / 1024);
-            
-            while (sizeKb > targetKb && quality > 0.1) {
-                quality -= 0.10;
-                dataUrl = canvas.toDataURL('image/jpeg', quality);
-                sizeKb = Math.round((dataUrl.length - head.length) * 3/4 / 1024);
+                let head = 'data:image/jpeg;base64,';
+                let sizeKb = Math.round((dataUrl.length - head.length) * 3/4 / 1024);
+                
+                while (sizeKb > targetKb && quality > 0.08) {
+                    quality -= 0.10;
+                    dataUrl = canvas.toDataURL('image/jpeg', quality);
+                    sizeKb = Math.round((dataUrl.length - head.length) * 3/4 / 1024);
+                }
+
+                document.getElementById('previewArea').style.display = 'block';
+                document.getElementById('outputImage').src = dataUrl;
+                document.getElementById('fileStats').innerText = `Resized & Compressed! Final Size: ~${sizeKb} KB (Target: ${targetKb} KB)`;
+                
+                const dlBtn = document.getElementById('downloadBtn');
+                dlBtn.href = dataUrl;
+                dlBtn.download = `resized-file-${sizeKb}kb.jpg`;
             }
-
-            document.getElementById('outputImage').src = dataUrl;
-            document.getElementById('fileStats').innerText = `Resized & Compressed Successfully! Final Size: ~${sizeKb} KB (Target: ${targetKb} KB)`;
-            
-            const dlBtn = document.getElementById('downloadBtn');
-            dlBtn.href = dataUrl;
-            dlBtn.download = `optimized-file-${sizeKb}kb.jpg`;
+            img.src = srcToUse;
         }
 
         function convertJpgToPdf() {
-            if (!uploadedImageObj) {
-                alert("Please upload an image first!");
+            let srcToUse = document.getElementById('outputImage').src || activeImageSource;
+            if (!srcToUse) {
+                alert("Please process or crop an image first!");
                 return;
             }
+
+            const layout = document.getElementById('pdfLayoutSelect').value;
+            const fitMode = document.getElementById('pdfFitSelect').value;
+
             const { jsPDF } = window.jspdf;
-            const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
-            const imgData = document.getElementById('outputImage').src;
+            const pdf = new jsPDF({ orientation: layout, unit: 'mm', format: 'a4' });
             
-            // Fit to screen portrait A4 format
-            pdf.addImage(imgData, 'JPEG', 10, 15, 190, 260);
-            pdf.save("student-document-fit.pdf");
-            alert("PDF Generated (Portrait / Fit Screen) and Downloaded Successfully!");
+            if (fitMode === 'fit') {
+                if (layout === 'portrait') {
+                    pdf.addImage(srcToUse, 'JPEG', 10, 15, 190, 260);
+                } else {
+                    pdf.addImage(srcToUse, 'JPEG', 15, 10, 267, 185);
+                }
+            } else {
+                pdf.addImage(srcToUse, 'JPEG', 15, 15, 100, 100);
+            }
+
+            pdf.save(`document-export-${layout}.pdf`);
+            alert("PDF Generated and Downloaded Successfully!");
         }
     </script>
 </body>
