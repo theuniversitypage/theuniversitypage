@@ -236,27 +236,27 @@
                 </div>
                 <div>
                     <h2>CUET Subject Combo Mapper</h2>
-                    <p style="font-size: 0.82rem; color: var(--text-muted); font-weight: 600;">Select University Category & Specific University to get exact 2026 subject combinations.</p>
+                    <p style="font-size: 0.82rem; color: var(--text-muted); font-weight: 600;">Select Category, Specific University, and Course to get exact 2026 subject combinations.</p>
                 </div>
             </div>
 
-            <!-- STEP 1: SELECT UNIVERSITY CATEGORY -->
+            <!-- STEP 1: SELECT CATEGORY -->
             <label style="font-size: 0.76rem; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 6px;">1. Select University Category</label>
             <select id="catSelect" class="form-control-custom" onchange="updateUniversityDropdown()">
-                <option value="central">Central University</option>
-                <option value="state">State University</option>
-                <option value="deemed">Deemed University</option>
-                <option value="private">Private University</option>
+                <option value="central">Central Universities</option>
+                <option value="state">State Universities</option>
+                <option value="deemed">Deemed Universities</option>
+                <option value="private">Private Universities</option>
                 <option value="govt">Other Government Institutions</option>
             </select>
 
-            <!-- STEP 2: SELECT SPECIFIC COLLEGE / UNIVERSITY -->
+            <!-- STEP 2: SELECT SPECIFIC UNIVERSITY -->
             <label style="font-size: 0.76rem; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 6px;">2. Select Specific College / University</label>
             <select id="uniSelect" class="form-control-custom">
-                <!-- Dynamically populated via script -->
+                <!-- Populated dynamically -->
             </select>
 
-            <!-- STEP 3: SELECT COURSE PROGRAM -->
+            <!-- STEP 3: SELECT COURSE -->
             <label style="font-size: 0.76rem; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 6px;">3. Select Target Course Program</label>
             <select id="comboCourse" class="form-control-custom">
                 <option value="ba">B.A. (Hons / Arts & Social Sciences)</option>
@@ -359,40 +359,78 @@
             document.body.style.overflow = '';
         }
 
-        // CASCADING UNIVERSITIES DATA BASED ON CATEGORY
-        const universityData = {
+        // FULL LIST OF CENTRAL, STATE, DEEMED, PRIVATE & GOVT UNIVERSITIES IN INDIA (CUET)
+        const universityDirectory = {
             central: [
-                { id: 'au', name: 'University of Allahabad (AU)' },
-                { id: 'bhu', name: 'Banaras Hindu University (BHU)' },
-                { id: 'du', name: 'University of Delhi (DU)' },
-                { id: 'jnu', name: 'Jawaharlal Nehru University (JNU)' },
-                { id: 'amu', name: 'Aligarh Muslim University (AMU)' },
-                { id: 'bbau', name: 'Babasaheb Bhimrao Ambedkar University (BBAU)' },
-                { id: 'other_central', name: 'Other Central Universities (49+)' }
+                { id: 'au', name: 'University of Allahabad (AU), Prayagraj, UP' },
+                { id: 'bhu', name: 'Banaras Hindu University (BHU), Varanasi, UP' },
+                { id: 'du', name: 'University of Delhi (DU), New Delhi' },
+                { id: 'jnu', name: 'Jawaharlal Nehru University (JNU), New Delhi' },
+                { id: 'amu', name: 'Aligarh Muslim University (AMU), Aligarh, UP' },
+                { id: 'bbau', name: 'Babasaheb Bhimrao Ambedkar University (BBAU), Lucknow, UP' },
+                { id: 'jmi', name: 'Jamia Millia Islamia (JMI), New Delhi' },
+                { id: 'uoh', name: 'University of Hyderabad (UoH), Hyderabad' },
+                { id: 'visva', name: 'Visva-Bharati University, Santiniketan, WB' },
+                { id: 'hnbgu', name: 'Hemvati Nandan Bahuguna Garhwal University, Uttarakhand' },
+                { id: 'cuh', name: 'Central University of Haryana, Mahendragarh' },
+                { id: 'curaj', name: 'Central University of Rajasthan, Ajmer' },
+                { id: 'cup', name: 'Central University of Punjab, Bathinda' },
+                { id: 'cub', name: 'Central University of South Bihar, Gaya' },
+                { id: 'cug', name: 'Central University of Gujarat, Gandhinagar' },
+                { id: 'cuk', name: 'Central University of Kerala, Kasaragod' },
+                { id: 'cutn', name: 'Central University of Tamil Nadu, Thiruvarur' },
+                { id: 'cuap', name: 'Central University of Andhra Pradesh' },
+                { id: 'cuj', name: 'Central University of Jharkhand, Ranchi' },
+                { id: 'cukash', name: 'Central University of Kashmir, Srinagar' },
+                { id: 'cujmu', name: 'Central University of Jammu, Samba' },
+                { id: 'cukor', name: 'Central University of Odisha, Koraput' },
+                { id: 'cuhip', name: 'Central University of Himachal Pradesh, Dharamshala' },
+                { id: 'cuse', name: 'Central University of South Eastern / Tripura' },
+                { id: 'manipur', name: 'Manipur University, Imphal' },
+                { id: 'nehu', name: 'North-Eastern Hill University (NEHU), Shillong' },
+                { id: 'nagaland', name: 'Nagaland University, Kohima' },
+                { id: 'mizoram', name: 'Mizoram University, Aizawl' },
+                { id: 'assam', name: 'Assam University, Silchar' },
+                { id: 'tezpur', name: 'Tezpur University, Napaam, Assam' },
+                { id: 'tripura', name: 'Tripura University, Suryamaninagar' },
+                { id: 'igntu', name: 'Indira Gandhi National Tribal University (IGNTU), Amarkantak, MP' },
+                { id: 'maulana', name: 'Maulana Azad National Urdu University (MANUU), Hyderabad' },
+                { id: 'english', name: 'English and Foreign Languages University (EFLU), Hyderabad' }
             ],
             state: [
-                { id: 'aud', name: 'Dr. B.R. Ambedkar University Delhi (AUD)' },
-                { id: 'aktu', name: 'Dr. A.P.J. Abdul Kalam Technical University (AKTU)' },
-                { id: 'mmmut', name: 'Madan Mohan Malaviya University of Tech (MMMUT)' },
-                { id: 'hbtu', name: 'Harcourt Butler Technical University (HBTU)' }
+                { id: 'aud', name: 'Dr. B.R. Ambedkar University Delhi (AUD), New Delhi' },
+                { id: 'aktu', name: 'Dr. A.P.J. Abdul Kalam Technical University (AKTU), Lucknow, UP' },
+                { id: 'mmmut', name: 'Madan Mohan Malaviya University of Tech (MMMUT), Gorakhpur, UP' },
+                { id: 'hbtu', name: 'Harcourt Butler Technical University (HBTU), Kanpur, UP' },
+                { id: 'lu', name: 'University of Lucknow, Lucknow, UP' },
+                { id: 'gorakhpur', name: 'Deen Dayal Upadhyaya Gorakhpur University, Gorakhpur, UP' },
+                { id: 'jnu_jpr', name: 'Jairamdas Kuntal State University / Rajasthan State' },
+                { id: 'cluster_jk', name: 'Cluster University of Jammu / Srinagar' },
+                { id: 'kannur', name: 'Kannur University, Kerala' }
             ],
             deemed: [
-                { id: 'tiss', name: 'Tata Institute of Social Sciences (TISS)' },
-                { id: 'jiit', name: 'Jaypee Institute of Information Technology (JIIT)' },
+                { id: 'tiss', name: 'Tata Institute of Social Sciences (TISS), Mumbai' },
+                { id: 'jiit', name: 'Jaypee Institute of Information Technology (JIIT), Noida' },
                 { id: 'jamia_hamdard', name: 'Jamia Hamdard, New Delhi' },
-                { id: 'teri', name: 'TERI School of Advanced Studies' }
+                { id: 'teri', name: 'TERI School of Advanced Studies, New Delhi' },
+                { id: 'avinashilingam', name: 'Avinashilingam Institute for Home Science, Coimbatore' },
+                { id: 'dayalbagh', name: 'Dayalbagh Educational Institute, Agra, UP' }
             ],
             private: [
-                { id: 'amity', name: 'Amity University (Noida, Lucknow, Jaipur)' },
-                { id: 'lpu', name: 'Lovely Professional University (LPU)' },
-                { id: 'galgotias', name: 'Galgotias University' },
-                { id: 'shiv_nadar', name: 'Shiv Nadar University' }
+                { id: 'amity', name: 'Amity University (Noida, Lucknow, Jaipur, etc.)' },
+                { id: 'lpu', name: 'Lovely Professional University (LPU), Phagwara, Punjab' },
+                { id: 'galgotias', name: 'Galgotias University, Greater Noida, UP' },
+                { id: 'shiv_nadar', name: 'Shiv Nadar University, Greater Noida, UP' },
+                { id: 'galgotias_coll', name: 'GL Bajaj / Sharda University, Greater Noida, UP' },
+                { id: 'graphic_era', name: 'Graphic Era University, Dehradun, Uttarakhand' },
+                { id: 'chitkara', name: 'Chitkara University, Punjab / Himachal Pradesh' }
             ],
             govt: [
-                { id: 'rgnau', name: 'Rajiv Gandhi National Aviation University (RGNAU)' },
-                { id: 'nfsu', name: 'National Forensic Sciences University (NFSU)' },
-                { id: 'niftem', name: 'NIFTEM (Food Tech & Entrepreneurship)' },
-                { id: 'iim_sambalpur', name: 'Indian Institute of Management (IIM) Sambalpur' }
+                { id: 'rgnau', name: 'Rajiv Gandhi National Aviation University (RGNAU), Amethi, UP' },
+                { id: 'nfsu', name: 'National Forensic Sciences University (NFSU), Gandhinagar & Delhi' },
+                { id: 'niftem', name: 'NIFTEM (Food Tech & Entrepreneurship), Kundli, Haryana' },
+                { id: 'iim_sambalpur', name: 'Indian Institute of Management (IIM) Sambalpur, Odisha' },
+                { id: 'iim_rohtak', name: 'Indian Institute of Management (IIM) Rohtak, Haryana' }
             ]
         };
 
@@ -401,7 +439,7 @@
             const uniSelect = document.getElementById('uniSelect');
             uniSelect.innerHTML = '';
 
-            const list = universityData[cat] || [];
+            const list = universityDirectory[cat] || [];
             list.forEach(uni => {
                 const opt = document.createElement('option');
                 opt.value = uni.id;
@@ -410,42 +448,42 @@
             });
         }
 
-        // Initialize dropdown on load
+        // Initialize on load
         updateUniversityDropdown();
 
-        // CHECK SUBJECT COMBO LOGIC (2026 Updated Guidelines)
+        // SUBJECT COMBO MAPPING LOGIC (2026 Updated Guidelines)
         function checkSubjectCombo() {
             const cat = document.getElementById("catSelect").value;
-            const uni = document.getElementById("uniSelect").value;
+            const uniSelect = document.getElementById("uniSelect");
+            const uniName = uniSelect.options[uniSelect.selectedIndex].text;
             const course = document.getElementById("comboCourse").value;
             const box = document.getElementById("comboOutput");
 
-            let title = "Selected Institution Policy";
             let requirements = "";
 
-            if (uni === "au") {
-                title = "University of Allahabad (AU 2026 Policy)";
+            if (cat === 'central' && document.getElementById("uniSelect").value === 'au') {
+                requirements = "<b>University of Allahabad (AU 2026 Policy):</b><br>";
                 if (course === "ba") {
-                    requirements = "1. Section I (Language - Hindi or English)<br>2. Section II (Any 1 Domain Subject studied in Class 12)<br>3. Section III (General Test - GAT mandatory)";
+                    requirements += "1. Section IA/IB (Language - Hindi or English)<br>2. Section II (Any 1 Domain Subject studied in Class 12)<br>3. Section III (General Test - GAT mandatory)";
                 } else if (course === "bsc") {
-                    requirements = "1. Section I (Language)<br>2. Section II (Physics, Chemistry, Mathematics / Biology)<br>3. General Test as per course branch.";
+                    requirements += "1. Section I (Language)<br>2. Section II (Physics, Chemistry, Mathematics / Biology)<br>3. General Test as per course branch.";
                 } else {
-                    requirements = "1. Language (Hindi/English)<br>2. Accountancy / Business Studies / Economics<br>3. General Test (GAT)";
+                    requirements += "1. Language (Hindi/English)<br>2. Accountancy / Business Studies / Economics<br>3. General Test (GAT)";
                 }
-            } else if (uni === "bhu") {
-                title = "Banaras Hindu University (BHU)";
-                requirements = "1. Section I (Language)<br>2. Domain Specific Subjects matching 12th board stream<br>3. Section III (General Test)";
-            } else if (uni === "du") {
-                title = "Delhi University (DU)";
-                requirements = "1. Any 1 Language from List A + Any 3 Domain Subjects from List B1/B2 studied in Class 12th.";
+            } else if (cat === 'central' && document.getElementById("uniSelect").value === 'bhu') {
+                requirements = "<b>Banaras Hindu University (BHU 2026 Policy):</b><br>";
+                requirements += "1. Section I (Language)<br>2. Domain Specific Subjects matching 12th board stream<br>3. Section III (General Test)";
+            } else if (cat === 'central' && document.getElementById("uniSelect").value === 'du') {
+                requirements = "<b>Delhi University (DU 2026 Policy):</b><br>";
+                requirements += "1. Any 1 Language from List A + Any 3 Domain Subjects from List B1/B2 studied in Class 12th.";
             } else {
-                title = "Participating Institution Guidelines";
-                requirements = "1 Language + 2 to 3 Domain Subjects + General Test (As per official NTA / University brochure).";
+                requirements = `<b>${uniName}:</b><br>`;
+                requirements += "1 Language (Hindi / English) + 2 to 3 Domain Specific Subjects + General Test (GAT) as per NTA information bulletin guidelines for 2026.";
             }
 
             box.style.display = "block";
             box.style.background = "var(--bg-surface)";
-            box.innerHTML = `<b style="color:var(--accent-purple); font-size:1.02rem;">${title}</b><br><br><b>Required Subject Combination:</b><br>${requirements}`;
+            box.innerHTML = `<b style="color:var(--accent-purple); font-size:1.02rem;">Requirement for: ${uniName}</b><br><br><b>Required Subject Combination:</b><br>${requirements}`;
         }
     </script>
 </body>
