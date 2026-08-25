@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>CUET UG Scorecard Details | The University Page</title>
+    <title>CUET UG 2026 Final Scorecard & Rank Portal | The University Page</title>
     
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,45 +13,44 @@
 
     <style>
         :root {
-            /* 🌌 DARK THEME */
             --bg-base: #060913;
-            --bg-surface: #0e1526;
-            --bg-card: #121b33;
-            --bg-chip: rgba(255, 255, 255, 0.08);
-            --text-primary: #FFFFFF;
+            --bg-surface: rgba(13, 19, 36, 0.85);
+            --bg-surface-hover: rgba(22, 31, 56, 0.95);
+            --bg-card: rgba(16, 24, 48, 0.8);
+            --bg-chip: rgba(255, 255, 255, 0.06);
+            --text-primary: #F8FAFC;
             --text-secondary: #CBD5E1;
             --text-muted: #94A3B8;
             --border: rgba(255, 255, 255, 0.12);
-            --border-hover: #6366F1;
+            --border-hover: rgba(99, 102, 241, 0.5);
             
             --primary: #6366F1;
             --primary-glow: rgba(99, 102, 241, 0.35);
-            --gradient-primary: linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #EC4899 100%);
-            --radius-md: 12px;
-            --radius-lg: 18px;
-            --radius-xl: 22px;
+            --accent-green: #10B981;
+            --accent-amber: #F59E0B;
+            --gradient-primary: linear-gradient(135deg, #6366F1 0%, #A855F7 50%, #EC4899 100%);
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --radius-xl: 26px;
+            --blur: blur(20px);
         }
 
         [data-theme="light"] {
-            /* ☀️ LIGHT THEME */
-            --bg-base: #F8FAFC;
-            --bg-surface: #FFFFFF;
-            --bg-card: #FFFFFF;
-            --bg-chip: #F1F5F9;
+            --bg-base: #F4F6FC;
+            --bg-surface: rgba(255, 255, 255, 0.92);
+            --bg-surface-hover: rgba(255, 255, 255, 1);
+            --bg-card: rgba(255, 255, 255, 0.9);
+            --bg-chip: rgba(15, 23, 42, 0.05);
             --text-primary: #0F172A;
             --text-secondary: #334155;
             --text-muted: #64748B;
-            --border: #E2E8F0;
-            --border-hover: #4F46E5;
+            --border: rgba(15, 23, 42, 0.08);
+            --border-hover: rgba(79, 70, 229, 0.5);
             --primary: #4F46E5;
             --primary-glow: rgba(79, 70, 229, 0.2);
         }
 
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -62,557 +61,133 @@
             flex-direction: column;
             overflow-x: hidden;
             transition: background-color 0.3s ease, color 0.3s ease;
+            position: relative;
             -webkit-font-smoothing: antialiased;
         }
 
-        h1, h2, h3, h4 {
-            font-family: 'Cabinet Grotesk', 'Plus Jakarta Sans', sans-serif;
-            letter-spacing: -0.02em;
+        .ambient-glow {
+            position: fixed;
+            top: 0; left: 50%; transform: translateX(-50%);
+            width: 100%; max-width: 900px; height: 450px;
+            background: radial-gradient(circle, var(--primary-glow) 0%, rgba(236, 72, 153, 0.06) 50%, transparent 80%);
+            pointer-events: none; z-index: 0; filter: blur(80px);
         }
+
+        h1, h2, h3, h4 { font-family: 'Cabinet Grotesk', 'Plus Jakarta Sans', sans-serif; letter-spacing: -0.02em; }
 
         /* NAVBAR */
         .header-wrapper {
-            position: sticky;
-            top: 0;
-            z-index: 90;
-            width: 100%;
-            background: var(--bg-surface);
+            position: sticky; top: 0; z-index: 90;
+            background: var(--bg-surface); backdrop-filter: var(--blur);
             border-bottom: 1px solid var(--border);
         }
-
         .navbar {
-            max-width: 1240px;
-            margin: 0 auto;
-            padding: 12px 16px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            max-width: 1280px; margin: 0 auto; padding: 12px 18px;
+            display: flex; align-items: center; justify-content: space-between;
         }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            color: var(--text-primary);
-        }
-
+        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-primary); }
         .logo-badge {
-            width: 40px;
-            height: 40px;
-            min-width: 40px;
-            border-radius: var(--radius-md);
-            background: var(--gradient-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #FFF;
-            font-size: 1.15rem;
+            width: 40px; height: 40px; border-radius: var(--radius-md);
+            background: var(--gradient-primary); display: flex; align-items: center;
+            justify-content: center; color: #FFF; font-size: 1.15rem;
+            box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4);
         }
+        .logo-text h2 { font-size: 1.05rem; font-weight: 900; line-height: 1.15; }
+        .logo-text span { font-size: 0.65rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
 
-        .logo-text h2 {
-            font-size: 1.05rem;
-            font-weight: 900;
-            line-height: 1.15;
-        }
-
-        .logo-text span {
-            font-size: 0.65rem;
-            font-weight: 700;
-            color: var(--text-muted);
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
+        .nav-actions { display: flex; align-items: center; gap: 8px; }
         .control-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            background: var(--bg-card);
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.2s ease;
+            width: 40px; height: 40px; border-radius: 12px; border: 1px solid var(--border);
+            background: var(--bg-card); color: var(--text-primary); display: flex;
+            align-items: center; justify-content: center; cursor: pointer; font-size: 1rem;
         }
 
-        /* DRAWER */
-        .drawer-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(4px);
-            z-index: 998;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
+        /* MAIN CONTAINER */
+        .main-container {
+            flex: 1; max-width: 860px; width: 100%; margin: 0 auto; padding: 28px 16px 60px; position: relative; z-index: 1;
         }
 
-        .drawer-overlay.active { opacity: 1; visibility: visible; }
+        .portal-hero {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-xl); padding: 36px 24px; margin-bottom: 24px;
+            backdrop-filter: var(--blur); box-shadow: 0 0 50px -10px var(--primary-glow); text-align: center;
+        }
+        .hero-badge {
+            background: rgba(99, 102, 241, 0.15); color: #818CF8; border: 1px solid rgba(99, 102, 241, 0.3);
+            padding: 5px 14px; border-radius: 9999px; font-size: 0.74rem; font-weight: 800;
+            text-transform: uppercase; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 12px;
+        }
+        .portal-hero h1 {
+            font-size: 2rem; font-weight: 900; margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--text-primary) 30%, var(--primary) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .portal-hero p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
 
-        .sidebar-drawer {
-            position: fixed;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            width: 300px;
-            max-width: 85vw;
-            background: var(--bg-surface);
-            border-left: 1px solid var(--border);
-            z-index: 999;
-            transform: translateX(100%);
-            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-            display: flex;
-            flex-direction: column;
-            padding: 20px;
-            overflow-y: auto;
+        /* SEARCH BOX */
+        .search-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-xl); padding: 28px; backdrop-filter: var(--blur); margin-bottom: 24px;
+        }
+        .search-box-row { display: flex; gap: 12px; }
+        .input-control {
+            flex: 1; padding: 14px 18px; border-radius: var(--radius-md); border: 1px solid var(--border);
+            background: var(--bg-surface); color: var(--text-primary); font-size: 0.95rem; font-weight: 700; outline: none;
+        }
+        .input-control:focus { border-color: var(--primary); box-shadow: 0 0 16px var(--primary-glow); }
+        .submit-btn {
+            background: var(--gradient-primary); color: #FFF; border: none; padding: 14px 26px;
+            border-radius: var(--radius-md); font-weight: 800; font-size: 0.95rem; cursor: pointer;
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4); white-space: nowrap; transition: transform 0.2s ease;
+        }
+        .submit-btn:hover { transform: translateY(-2px); }
+
+        /* SCORECARD RESULT SHEET */
+        .scorecard-sheet {
+            display: none; background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-xl); padding: 32px; backdrop-filter: var(--blur);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15); animation: fadeIn 0.3s ease-out;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .sheet-top { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid var(--border); padding-bottom: 16px; margin-bottom: 20px; }
+        .student-details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; font-size: 0.88rem; }
+        .detail-item span { color: var(--text-muted); font-size: 0.72rem; text-transform: uppercase; font-weight: 700; display: block; }
+        .detail-item strong { color: var(--text-primary); font-weight: 800; }
+
+        .score-metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 24px; }
+        .metric-box {
+            background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-md);
+            padding: 16px; text-align: center;
+        }
+        .metric-box span { font-size: 0.72rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; display: block; margin-bottom: 4px; }
+        .metric-box h3 { font-size: 1.35rem; font-weight: 900; color: var(--primary); }
+
+        .status-banner {
+            padding: 16px; border-radius: var(--radius-md); text-align: center; font-weight: 800; font-size: 0.95rem;
+            background: rgba(16, 185, 129, 0.15); color: #10B981; border: 1px solid rgba(16, 185, 129, 0.3); margin-bottom: 20px;
         }
 
-        .sidebar-drawer.active { transform: translateX(0); }
-
-        .drawer-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding-bottom: 16px;
-            border-bottom: 1px solid var(--border);
-            margin-bottom: 16px;
+        .action-row { display: flex; gap: 10px; }
+        .btn-print {
+            flex: 1; background: var(--bg-chip); color: var(--text-primary); border: 1px solid var(--border);
+            padding: 12px; border-radius: var(--radius-md); font-weight: 800; font-size: 0.86rem; cursor: pointer; display: flex;
+            align-items: center; justify-content: center; gap: 8px; text-decoration: none; transition: background 0.2s;
         }
+        .btn-print:hover { background: var(--bg-surface-hover); color: var(--primary); }
 
-        .drawer-close-btn {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            border: 1px solid var(--border);
-            background: var(--bg-chip);
-            color: var(--text-primary);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+        .error-msg { display: none; padding: 16px; background: rgba(239, 68, 68, 0.15); color: #EF4444; border: 1px solid rgba(239, 68, 68, 0.3); border-radius: var(--radius-md); font-weight: 700; text-align: center; margin-top: 14px; }
 
-        .drawer-links { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-        .drawer-links a {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 14px;
-            border-radius: var(--radius-md);
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: all 0.2s ease;
-        }
-
-        .drawer-links a:hover, .drawer-links a.active {
-            background: var(--bg-chip);
-            color: var(--primary);
-        }
-
-        /* MAIN POST CONTAINER */
-        .post-container {
-            flex: 1;
-            width: 100%;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px 16px 40px;
-        }
-
-        .breadcrumb {
-            font-size: 0.82rem;
-            color: var(--text-muted);
-            margin-bottom: 16px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            flex-wrap: wrap;
-        }
-
-        .breadcrumb a {
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        /* ARTICLE BOX */
-        .post-box {
-            background: var(--bg-card);
-            border-radius: var(--radius-xl);
-            padding: 28px 24px;
-            border: 1px solid var(--border);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            width: 100%;
-        }
-
-        .post-title {
-            font-size: 1.7rem;
-            font-weight: 900;
-            color: var(--text-primary);
-            margin-bottom: 12px;
-            line-height: 1.3;
-        }
-
-        .post-meta {
-            font-size: 0.82rem;
-            color: var(--text-muted);
-            margin-bottom: 20px;
-            display: flex;
-            gap: 16px;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 14px;
-            font-weight: 600;
-            flex-wrap: wrap;
-        }
-
-        .post-meta span {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .post-text {
-            color: var(--text-secondary);
-            margin-bottom: 24px;
-            font-size: 0.94rem;
-            line-height: 1.65;
-        }
-
-        /* OVERVIEW TABLE */
-        .section-subtitle {
-            margin-bottom: 14px;
-            color: var(--text-primary);
-            font-weight: 800;
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .table-responsive {
-            width: 100%;
-            border-radius: var(--radius-md);
-            border: 1px solid var(--border);
-            margin-bottom: 24px;
-            background: var(--bg-surface);
-            overflow: hidden;
-        }
-
-        .info-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .info-table th, .info-table td {
-            padding: 14px 16px;
-            border-bottom: 1px solid var(--border);
-            text-align: left;
-            font-size: 0.88rem;
-        }
-
-        .info-table tr:last-child th, .info-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .info-table th {
-            background: var(--bg-chip);
-            color: var(--text-primary);
-            width: 35%;
-            font-weight: 800;
-        }
-
-        .info-table td {
-            color: var(--text-secondary);
-            font-weight: 600;
-        }
-
-        /* IMPORTANT DOWNLOAD LINKS */
-        .important-links {
-            background: var(--bg-surface);
-            border-radius: var(--radius-lg);
-            padding: 22px 18px;
-            margin: 24px 0;
-            border: 1px solid var(--border);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .important-links::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--gradient-primary);
-        }
-
-        .important-links h3 {
-            color: var(--text-primary);
-            margin-bottom: 16px;
-            font-size: 1.1rem;
-            font-weight: 900;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .squircle-btn-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 12px;
-            width: 100%;
-        }
-
-        .squircle-btn {
-            background: var(--bg-card);
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 14px 16px;
-            border-radius: var(--radius-md);
-            border: 1px solid var(--border);
-            transition: all 0.2s ease;
-            text-decoration: none;
-            width: 100%;
-        }
-
-        .squircle-btn:hover {
-            border-color: var(--primary);
-            transform: translateY(-2px);
-        }
-
-        .sq-icon {
-            width: 44px;
-            height: 44px;
-            min-width: 44px;
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.25rem;
-            flex-shrink: 0;
-        }
-
-        .sq-text h4 {
-            font-size: 0.94rem;
-            font-weight: 800;
-            color: var(--text-primary);
-            margin-bottom: 2px;
-        }
-
-        .sq-text p {
-            font-size: 0.76rem;
-            color: var(--text-muted);
-            font-weight: 600;
-            margin: 0;
-        }
-
-        /* PROMO BANNERS */
-        .promo-banner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px;
-            border-radius: var(--radius-lg);
-            margin-top: 16px;
-            border: 1px solid var(--border);
-            gap: 16px;
-            width: 100%;
-        }
-
-        .promo-app { background: linear-gradient(135deg, #0e1526 0%, #1e1b4b 100%); }
-        .promo-telegram { background: linear-gradient(135deg, #072b42 0%, #034b6b 100%); }
-
-        .promo-text { flex: 1; min-width: 0; }
-        
-        .promo-badge {
-            display: inline-block;
-            background: var(--bg-chip);
-            border: 1px solid var(--border);
-            padding: 3px 10px;
-            border-radius: 20px;
-            font-size: 0.72rem;
-            font-weight: 700;
-            margin-bottom: 6px;
-        }
-
-        .badge-yellow { color: #FBBF24; }
-        .badge-blue { color: #38BDF8; }
-
-        .promo-text h4 { font-size: 1.1rem; margin-bottom: 3px; color: #FFFFFF; font-weight: 800; }
-        .promo-text p { font-size: 0.82rem; color: #94A3B8; margin: 0; font-weight: 500; }
-
-        .promo-sq-btn {
-            background: #FFFFFF;
-            color: #0F172A;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 8px 16px;
-            border-radius: var(--radius-md);
-            font-weight: 800;
-            text-decoration: none;
-            flex-shrink: 0;
-            transition: all 0.2s ease;
-        }
-
-        .promo-sq-icon { font-size: 1.1rem; }
-
-        /* FOOTER */
-        .modern-footer {
-            background: var(--bg-surface);
-            border-top: 1px solid var(--border);
-            padding: 40px 16px 20px;
-            margin-top: auto;
-            width: 100%;
-        }
-
-        .footer-container {
-            max-width: 1240px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1.5fr repeat(3, 1fr);
-            gap: 28px;
-            padding-bottom: 28px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .footer-brand-p {
-            font-size: 0.84rem;
-            color: var(--text-muted);
-            margin: 10px 0 16px;
-            line-height: 1.55;
-        }
-
-        .footer-column h4 {
-            font-size: 0.94rem;
-            font-weight: 800;
-            margin-bottom: 14px;
-            color: var(--text-primary);
-        }
-
-        .footer-links-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .footer-links-list a {
-            font-size: 0.84rem;
-            font-weight: 600;
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: all 0.2s ease;
-        }
-
-        .footer-links-list a:hover {
-            color: var(--primary);
-        }
-
-        .sub-footer-bottom {
-            max-width: 1240px;
-            margin: 20px auto 0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 14px;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        .social-pill-group {
-            display: flex;
-            gap: 8px;
-        }
-
-        .social-pill {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            background: var(--bg-chip);
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: all 0.2s ease;
-        }
-
-        .social-pill:hover {
-            background: var(--primary);
-            color: #FFF;
-        }
-
-        /* 📱 CLEAN MOBILE ADJUSTMENTS (NO OVERFLOW) */
-        @media (max-width: 768px) {
-            .post-container { padding: 14px 12px 30px; }
-            .post-box { padding: 18px 14px; border-radius: var(--radius-lg); }
-            .post-title { font-size: 1.35rem; }
-            .post-text { font-size: 0.9rem; }
-            
-            /* Responsive Vertical Table for Mobile */
-            .info-table th, .info-table td {
-                display: block;
-                width: 100% !important;
-                padding: 10px 12px;
-            }
-            .info-table th {
-                border-bottom: none;
-                padding-bottom: 2px;
-                font-size: 0.78rem;
-            }
-            .info-table td {
-                padding-top: 2px;
-                font-size: 0.88rem;
-            }
-
-            .footer-container { grid-template-columns: 1fr 1fr; gap: 20px; }
-            .promo-banner { flex-direction: column; text-align: center; gap: 12px; padding: 16px 14px; }
-            .promo-sq-btn { width: 100%; justify-content: center; }
-            .squircle-btn-grid { grid-template-columns: 1fr; }
-        }
-
-        @media (max-width: 480px) {
-            .navbar { padding: 10px 12px; }
-            .footer-container { grid-template-columns: 1fr; }
-            .sub-footer-bottom { flex-direction: column; align-items: flex-start; }
+        @media (max-width: 600px) {
+            .search-box-row { flex-direction: column; }
+            .score-metrics-grid { grid-template-columns: 1fr; }
+            .student-details-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <!-- 📲 SLIDE-IN SIDEBAR OVERLAY & DRAWER -->
-    <div class="drawer-overlay" id="drawerOverlay" onclick="closeNavDrawer()"></div>
-    <aside class="sidebar-drawer" id="sidebarDrawer">
-        <div class="drawer-header">
-            <h3>Quick Navigation</h3>
-            <button class="drawer-close-btn" onclick="closeNavDrawer()"><i class="fas fa-times"></i></button>
-        </div>
-        <ul class="drawer-links">
-            <li><a href="index.html"><i class="fas fa-home" style="color: #6366F1;"></i> Home Workspace</a></li>
-            <li><a href="latest-updates.html"><i class="fas fa-bolt" style="color: #EC4899;"></i> Real-Time Alerts</a></li>
-            <li><a href="result.html" class="active"><i class="fas fa-trophy" style="color: #10B981;"></i> All Results</a></li>
-            <li><a href="central-universities.html"><i class="fas fa-monument" style="color: #8B5CF6;"></i> Central Universities (49)</a></li>
-            <li><a href="state-universities.html"><i class="fas fa-city" style="color: #0284C7;"></i> State Universities</a></li>
-            <li><a href="cutoff.html"><i class="fas fa-chart-line" style="color: #F59E0B;"></i> Cutoff Analytics</a></li>
-            <li><a href="about-ajmal-mansoori.html"><i class="fas fa-user-shield" style="color: #6366F1;"></i> Founder Profile</a></li>
-        </ul>
-    </aside>
+    <div class="ambient-glow"></div>
 
     <!-- HEADER -->
     <header class="header-wrapper">
@@ -621,175 +196,85 @@
                 <div class="logo-badge"><i class="fas fa-graduation-cap"></i></div>
                 <div class="logo-text">
                     <h2>The University Page</h2>
-                    <span>Scorecard Engine</span>
+                    <span>Scorecard Portal</span>
                 </div>
             </a>
             <div class="nav-actions">
                 <button class="control-btn" id="themeToggleBtn" onclick="toggleAppTheme()"><i class="fas fa-sun" id="themeIcon"></i></button>
-                <button class="control-btn" onclick="openNavDrawer()"><i class="fa-solid fa-bars-staggered"></i></button>
             </div>
         </nav>
     </header>
 
     <!-- MAIN CONTAINER -->
-    <main class="post-container">
-        
-        <div class="breadcrumb">
-            <a href="index.html">Home</a> <i class="fas fa-chevron-right" style="font-size:0.65rem;"></i> 
-            <a href="result.html">Results</a> <i class="fas fa-chevron-right" style="font-size:0.65rem;"></i> 
-            <span id="breadcrumbTitle">Scorecard</span>
-        </div>
+    <main class="main-container">
 
-        <article class="post-box">
-            <h1 class="post-title" id="detailTitle">NTA CUET UG Final Scorecard 2026 Released: Direct Link & Scorecard Details</h1>
-            
-            <div class="post-meta">
-                <span><i class="far fa-calendar-alt"></i> Posted: <strong id="detailReleaseDate">August 2026</strong></span>
-                <span><i class="fas fa-folder-open"></i> Category: Result / Scorecard</span>
+        <section class="portal-hero">
+            <div class="hero-badge"><i class="fas fa-trophy"></i> Official Scorecard Verification</div>
+            <h1>CUET UG Final Scorecard Portal</h1>
+            <p>Enter your Roll Number or Registration ID to view your official normalized scorecard, percentile, and campus status.</p>
+        </section>
+
+        <!-- SEARCH CARD -->
+        <section class="search-card">
+            <form onsubmit="searchScorecard(event)">
+                <div class="search-box-row">
+                    <input type="text" id="searchInput" class="input-control" placeholder="Enter Roll Number or Registration ID (e.g. AU2026100)" required>
+                    <button type="submit" id="searchBtn" class="submit-btn">
+                        <i class="fas fa-search"></i> View Scorecard
+                    </button>
+                </div>
+            </form>
+            <div id="errorMsg" class="error-msg">No scorecard found with this ID. Please check and try again.</div>
+        </section>
+
+        <!-- RESULT SHEET -->
+        <section id="resultSheet" class="scorecard-sheet">
+            <div class="sheet-top">
+                <div>
+                    <h2 style="font-size: 1.25rem; font-weight: 900;" id="resName">Student Name</h2>
+                    <span style="font-size: 0.78rem; color: var(--text-muted); font-weight: 700;" id="resId">Roll No: --</span>
+                </div>
+                <div class="badge-tag tag-cuet" style="font-size:0.75rem; padding:6px 12px; background:rgba(99,102,241,0.2); color:#818CF8; border-radius:8px;">VERIFIED NTA RESULT</div>
             </div>
 
-            <p class="post-text" id="detailDesc">
-                National Testing Agency (NTA) has officially released the final scorecard and normalized percentile ranks for CUET UG 2026. Candidates who appeared for the examination can check their subject-wise marks and qualifying status through the verified link provided below.
-            </p>
-
-            <h3 class="section-subtitle"><i class="fas fa-clipboard-list" style="color:var(--primary);"></i> Examination Details Overview</h3>
-            <div class="table-responsive">
-                <table class="info-table">
-                    <tr>
-                        <th>Exam Conducting Body</th>
-                        <td id="authorityName">National Testing Agency (NTA)</td>
-                    </tr>
-                    <tr>
-                        <th>Examination Name</th>
-                        <td id="examNameText">CUET UG - 2026 Entrance</td>
-                    </tr>
-                    <tr>
-                        <th>Result Status</th>
-                        <td><span style="background: rgba(16, 185, 129, 0.15); color: #10B981; border: 1px solid rgba(16, 185, 129, 0.3); padding: 3px 10px; border-radius: 20px; font-weight: 800; font-size: 0.74rem;">Declared & Available</span></td>
-                    </tr>
-                    <tr>
-                        <th>Required Credentials</th>
-                        <td>Application Number & Date of Birth / Password</td>
-                    </tr>
-                </table>
+            <div class="student-details-grid">
+                <div class="detail-item"><span>Target University</span><strong id="resUni">University of Allahabad</strong></div>
+                <div class="detail-item"><span>Target Course</span><strong id="resCourse">B.A. (Hons)</strong></div>
+                <div class="detail-item"><span>Category</span><strong id="resCat">General</strong></div>
+                <div class="detail-item"><span>Exam Session</span><strong id="resSession">2026-27</strong></div>
             </div>
 
-            <!-- SQUIRCLE DOWNLOAD LINKS -->
-            <div class="important-links">
-                <h3><i class="fas fa-link" style="color: var(--primary);"></i> Important Direct Links</h3>
-                
-                <div class="squircle-btn-grid">
-                    <a href="https://cuet.nta.nic.in" id="downloadBtn1" target="_blank" class="squircle-btn">
-                        <div class="sq-icon" style="background: rgba(99, 102, 241, 0.15); color: #818CF8;">
-                            <i class="fas fa-cloud-download-alt"></i>
-                        </div>
-                        <div class="sq-text">
-                            <h4>Download Scorecard</h4>
-                            <p>Server 1 (Direct NTA Link)</p>
-                        </div>
-                    </a>
-
-                    <a href="https://cuet.nta.nic.in" id="officialBtn" target="_blank" class="squircle-btn">
-                        <div class="sq-icon" style="background: rgba(16, 185, 129, 0.15); color: #10B981;">
-                            <i class="fas fa-globe"></i>
-                        </div>
-                        <div class="sq-text">
-                            <h4>Official Portal</h4>
-                            <p>Visit Main Authority Site</p>
-                        </div>
-                    </a>
+            <div class="score-metrics-grid">
+                <div class="metric-box">
+                    <span>Total Raw Score</span>
+                    <h3 id="resRaw">--</h3>
+                </div>
+                <div class="metric-box">
+                    <span>Normalized Score</span>
+                    <h3 id="resNorm" style="color:var(--accent-amber);">--</h3>
+                </div>
+                <div class="metric-box">
+                    <span>Percentile</span>
+                    <h3 id="resPercentile" style="color:var(--accent-green);">--</h3>
                 </div>
             </div>
 
-            <!-- PROMO BANNERS -->
-            <div class="promo-banner promo-app">
-                <div class="promo-text">
-                    <div class="promo-badge badge-yellow"><i class="fas fa-star"></i> 4.9/5 Rating</div>
-                    <h4>Targeting Top Central Universities?</h4>
-                    <p>Get counseling guidance, e-books, and cut-off updates on Learnify Classes App.</p>
-                </div>
-                <a href="https://learnifyclasses.akamai.net.in/new-courses" target="_blank" class="promo-sq-btn">
-                    <i class="fab fa-google-play promo-sq-icon" style="color: #4F46E5;"></i>
-                    <span>Google Play</span>
-                </a>
+            <div class="status-banner" id="resStatus">
+                High Chance for Main Campus Admission
             </div>
 
-            <div class="promo-banner promo-telegram">
-                <div class="promo-text">
-                    <div class="promo-badge badge-blue"><i class="fas fa-users"></i> Join 50,000+ Students</div>
-                    <h4>Connect with Fellow Aspirants</h4>
-                    <p>Join CUET Warriors community for admission updates and mock tests.</p>
-                </div>
-                <a href="https://t.me/cuetwarriors2026" class="promo-sq-btn" target="_blank">
-                    <i class="fab fa-telegram-plane promo-sq-icon" style="color: #0284C7;"></i>
-                    <span>Telegram</span>
-                </a>
+            <div class="action-row">
+                <button class="btn-print" onclick="window.print()"><i class="fas fa-print"></i> Print / Save PDF</button>
+                <a href="join.html" class="btn-print" style="background:var(--primary); color:#FFF; border:none;"><i class="fas fa-user-plus"></i> Join Counseling</a>
             </div>
+        </section>
 
-        </article>
     </main>
 
-    <!-- FULL ULTRA-GLASS FOOTER -->
-    <footer class="modern-footer">
-        <div class="footer-container">
-            <div>
-                <div class="logo">
-                    <div class="logo-badge"><i class="fas fa-graduation-cap"></i></div>
-                    <div class="logo-text">
-                        <h2>The University Page</h2>
-                        <span>Educational Suite</span>
-                    </div>
-                </div>
-                <p class="footer-brand-p">
-                    Empowering students nationwide with accurate admission roadmaps, cutoff predictions, and exam strategies by Ajmal Mansoori.
-                </p>
-            </div>
-
-            <div class="footer-column">
-                <h4>Admissions</h4>
-                <ul class="footer-links-list">
-                    <li><a href="admission.html">CUET UG Admissions</a></li>
-                    <li><a href="central-universities.html">Central Universities (49)</a></li>
-                    <li><a href="state-universities.html">State Universities</a></li>
-                    <li><a href="cutoff.html">Cutoff Archives</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-column">
-                <h4>Ecosystem</h4>
-                <ul class="footer-links-list">
-                    <li><a href="https://learnifyclasses.akamai.net.in" target="_blank">Learnify Classes App</a></li>
-                    <li><a href="https://t.me/cuetwarriors2026" target="_blank">CUET Warriors Hub</a></li>
-                    <li><a href="https://youtube.com/@ajmalalimansoori" target="_blank">Ajmal Mansoori YouTube</a></li>
-                    <li><a href="about-ajmal-mansoori.html">Founder Desk</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-column">
-                <h4>Legal & Policies</h4>
-                <ul class="footer-links-list">
-                    <li><a href="privacy-policy.html">Privacy Charter</a></li>
-                    <li><a href="terms.html">Terms of Service</a></li>
-                    <li><a href="disclaimer.html">Disclaimer</a></li>
-                    <li><a href="contact-us.html">Contact Helpdesk</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="sub-footer-bottom">
-            <div>&copy; 2026 The University Page. Founded by Ajmal Mansoori. All rights reserved. 🇮🇳</div>
-            <div class="social-pill-group">
-                <a href="https://youtube.com/@ajmalalimansoori" target="_blank" class="social-pill"><i class="fab fa-youtube"></i></a>
-                <a href="https://instagram.com/ajmalcreator" target="_blank" class="social-pill"><i class="fab fa-instagram"></i></a>
-                <a href="https://t.me/cuetwarriors2026" target="_blank" class="social-pill"><i class="fab fa-telegram-plane"></i></a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- REALTIME FIREBASE SCRIPT -->
+    <!-- FIREBASE & SCRIPT -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, collection, query, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyD837pmW5N21lMgeVlpgWPx0FaMisSnxwU",
@@ -804,59 +289,66 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        const urlParams = new URLSearchParams(window.location.search);
-        const postId = urlParams.get("id");
+        window.searchScorecard = async function(e) {
+            e.preventDefault();
+            const queryVal = document.getElementById("searchInput").value.trim().toLowerCase();
+            const errBox = document.getElementById("errorMsg");
+            const sheet = document.getElementById("resultSheet");
+            const btn = document.getElementById("searchBtn");
 
-        function updateUI(data) {
-            if (!data) return;
-            const title = data.title || data.resultTitle || data.examTitle || "Scorecard Declared";
-            const date = data.releaseDate || data.date || "August 2026";
-            const url = data.resultUrl || data.link || data.examUrl || "#";
-            const authority = data.authority || data.org || "National Testing Agency (NTA)";
-            const desc = data.desc || data.description || "The official scorecards and qualifying ranks have been made available for download.";
-
-            document.getElementById("detailTitle").textContent = title;
-            document.getElementById("breadcrumbTitle").textContent = title.length > 25 ? title.substring(0, 25) + "..." : title;
-            document.getElementById("detailReleaseDate").textContent = date;
-            document.getElementById("detailDesc").textContent = desc;
-            document.getElementById("authorityName").textContent = authority;
-            document.getElementById("examNameText").textContent = title;
-
-            const finalUrl = url.startsWith("http") ? url : "https://" + url;
-            document.getElementById("downloadBtn1").href = finalUrl;
-            document.getElementById("officialBtn").href = finalUrl;
-        }
-
-        async function loadPost() {
-            if(!postId) return;
+            errBox.style.display = "none";
+            sheet.style.display = "none";
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Searching...';
 
             try {
-                const docRef = doc(db, "updates", postId);
-                const docSnap = await getDoc(docRef);
-                if (docSnap.exists()) {
-                    updateUI(docSnap.data());
-                    return;
+                const q = query(collection(db, "student_scorecards"));
+                const snapshot = await getDocs(q);
+                let found = null;
+
+                snapshot.forEach((docSnap) => {
+                    const data = docSnap.data();
+                    const roll = (data.rollNumber || "").toLowerCase();
+                    const name = (data.fullName || "").toLowerCase();
+                    if (roll === queryVal || name.includes(queryVal)) {
+                        found = data;
+                    }
+                });
+
+                if (found) {
+                    document.getElementById("resName").innerText = found.fullName || "Student";
+                    document.getElementById("resId").innerText = `Roll No / ID: ${found.rollNumber || '--'}`;
+                    document.getElementById("resUni").innerText = found.universityName || "University of Allahabad";
+                    document.getElementById("resCourse").innerText = found.targetCourse || "UG Degree";
+                    document.getElementById("resCat").innerText = found.category || "General";
+                    document.getElementById("resSession").innerText = found.admissionYear || "2026-27";
+                    document.getElementById("resRaw").innerText = found.rawScore || "--";
+                    document.getElementById("resNorm").innerText = found.normalizedScore || "--";
+                    document.getElementById("resPercentile").innerText = (found.percentile || "95.5") + "%";
+                    document.getElementById("resStatus").innerText = found.admissionStatus || "Eligible for Main Campus Counseling";
+                    
+                    sheet.style.display = "block";
+                } else {
+                    errBox.style.display = "block";
                 }
-            } catch(e) {
-                console.error("Firebase read error", e);
+            } catch (err) {
+                console.error("Search error:", err);
+                errBox.style.display = "block";
+                errBox.innerText = "Database connection error. Please try again.";
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-search"></i> View Scorecard';
             }
-
-            const localUpdates = JSON.parse(localStorage.getItem("learnify_admin_updates")) || [];
-            const match = localUpdates.find(i => i.id == postId) || localUpdates[0];
-            updateUI(match);
-        }
-
-        loadPost();
+        };
     </script>
 
-    <!-- THEME & DRAWER LOGIC -->
+    <!-- THEME SCRIPT -->
     <script>
         function initAppTheme() {
             const current = localStorage.getItem('theme-mode') || 'dark';
             document.documentElement.setAttribute('data-theme', current);
             renderThemeIcon(current);
         }
-
         function toggleAppTheme() {
             const active = document.documentElement.getAttribute('data-theme');
             const target = active === 'dark' ? 'light' : 'dark';
@@ -864,7 +356,6 @@
             localStorage.setItem('theme-mode', target);
             renderThemeIcon(target);
         }
-
         function renderThemeIcon(theme) {
             const icon = document.getElementById('themeIcon');
             if (icon) {
@@ -873,18 +364,6 @@
             }
         }
         initAppTheme();
-
-        window.openNavDrawer = function() {
-            document.getElementById('sidebarDrawer').classList.add('active');
-            document.getElementById('drawerOverlay').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        };
-
-        window.closeNavDrawer = function() {
-            document.getElementById('sidebarDrawer').classList.remove('active');
-            document.getElementById('drawerOverlay').classList.remove('active');
-            document.body.style.overflow = '';
-        };
     </script>
 </body>
 </html>
