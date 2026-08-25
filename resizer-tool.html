@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Photo, Signature & PDF Studio | The University Page</title>
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <!-- jsPDF Library for JPG to PDF conversion -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <style>
+        :root {
+            --bg-base: #060913;
+            --bg-surface: rgba(13, 19, 36, 0.85);
+            --bg-surface-hover: rgba(22, 31, 56, 0.95);
+            --bg-card: rgba(16, 24, 48, 0.75);
+            --bg-chip: rgba(255, 255, 255, 0.06);
+            --text-primary: #F8FAFC;
+            --text-secondary: #CBD5E1;
+            --text-muted: #94A3B8;
+            --border: rgba(255, 255, 255, 0.1);
+            --border-hover: rgba(99, 102, 241, 0.5);
+            
+            --primary: #6366F1;
+            --primary-glow: rgba(99, 102, 241, 0.35);
+            --accent-green: #10B981;
+            --accent-amber: #F59E0B;
+            --gradient-primary: linear-gradient(135deg, #6366F1 0%, #A855F7 50%, #EC4899 100%);
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --radius-xl: 26px;
+            --blur: blur(20px);
+        }
+
+        [data-theme="light"] {
+            --bg-base: #F4F6FC;
+            --bg-surface: rgba(255, 255, 255, 0.92);
+            --bg-surface-hover: rgba(255, 255, 255, 1);
+            --bg-card: rgba(255, 255, 255, 0.88);
+            --bg-chip: rgba(15, 23, 42, 0.05);
+            --text-primary: #0F172A;
+            --text-secondary: #334155;
+            --text-muted: #64748B;
+            --border: rgba(15, 23, 42, 0.08);
+            --border-hover: rgba(79, 70, 229, 0.5);
+            --primary: #4F46E5;
+            --primary-glow: rgba(79, 70, 229, 0.2);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            position: relative;
+        }
+
+        .ambient-glow {
+            position: fixed; top: 0; left: 50%; transform: translateX(-50%);
+            width: 100%; max-width: 900px; height: 450px;
+            background: radial-gradient(circle, var(--primary-glow) 0%, rgba(236, 72, 153, 0.06) 50%, transparent 80%);
+            pointer-events: none; z-index: 0; filter: blur(80px);
+        }
+
+        h1, h2, h3, h4 { font-family: 'Cabinet Grotesk', 'Plus Jakarta Sans', sans-serif; letter-spacing: -0.02em; }
+
+        /* NAVBAR */
+        .header-wrapper {
+            position: sticky; top: 0; z-index: 90; background: var(--bg-surface);
+            backdrop-filter: var(--blur); border-bottom: 1px solid var(--border);
+        }
+        .navbar {
+            max-width: 1280px; margin: 0 auto; padding: 12px 18px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-primary); }
+        .logo-badge {
+            width: 40px; height: 40px; border-radius: var(--radius-md);
+            background: var(--gradient-primary); display: flex; align-items: center;
+            justify-content: center; color: #FFF; font-size: 1.15rem;
+            box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4);
+        }
+        .logo-text h2 { font-size: 1.05rem; font-weight: 900; line-height: 1.15; }
+        .logo-text span { font-size: 0.65rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
+
+        .nav-actions { display: flex; align-items: center; gap: 8px; }
+        .control-btn {
+            width: 40px; height: 40px; border-radius: 12px; border: 1px solid var(--border);
+            background: var(--bg-card); color: var(--text-primary); display: flex;
+            align-items: center; justify-content: center; cursor: pointer; font-size: 1rem;
+        }
+
+        /* DRAWER */
+        .drawer-overlay {
+            position: fixed; inset: 0; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(4px);
+            z-index: 998; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .drawer-overlay.active { opacity: 1; visibility: visible; }
+        .sidebar-drawer {
+            position: fixed; top: 0; right: 0; bottom: 0; width: 300px; max-width: 85vw;
+            background: var(--bg-surface); backdrop-filter: blur(25px); border-left: 1px solid var(--border);
+            z-index: 999; transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex; flex-direction: column; padding: 20px; overflow-y: auto;
+        }
+        .sidebar-drawer.active { transform: translateX(0); }
+        .drawer-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding-bottom: 16px; border-bottom: 1px solid var(--border); margin-bottom: 16px;
+        }
+        .drawer-close-btn {
+            width: 36px; height: 36px; border-radius: 10px; border: 1px solid var(--border);
+            background: var(--bg-chip); color: var(--text-primary); cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .drawer-links { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+        .drawer-links a {
+            display: flex; align-items: center; gap: 12px; padding: 12px 14px;
+            border-radius: var(--radius-md); font-size: 0.9rem; font-weight: 700;
+            color: var(--text-secondary); text-decoration: none; transition: all 0.2s ease;
+        }
+        .drawer-links a:hover, .drawer-links a.active { background: var(--bg-chip); color: var(--primary); }
+
+        /* CONTAINER */
+        .main-container {
+            flex: 1; max-width: 900px; width: 100%; margin: 0 auto; padding: 24px 16px 50px; position: relative; z-index: 1;
+        }
+        .breadcrumb {
+            font-size: 0.82rem; color: var(--text-muted); margin-bottom: 20px; font-weight: 600;
+            display: flex; align-items: center; gap: 6px;
+        }
+        .breadcrumb a { color: var(--primary); text-decoration: none; }
+
+        /* STUDIO CARD */
+        .studio-box {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-xl); padding: 32px; backdrop-filter: var(--blur);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .upload-zone {
+            border: 2px dashed var(--border); border-radius: var(--radius-md);
+            padding: 24px; text-align: center; background: var(--bg-surface);
+            cursor: pointer; margin-bottom: 20px; transition: border-color 0.2s;
+        }
+        .upload-zone:hover { border-color: var(--primary); }
+        .upload-zone input[type="file"] { display: none; }
+        .upload-zone label { cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 0.865rem; font-weight: 700; color: var(--primary); }
+
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+        .form-control-custom {
+            width: 100%; padding: 12px 14px; border-radius: var(--radius-md);
+            border: 1px solid var(--border); font-size: 0.88rem; font-weight: 600;
+            background: var(--bg-surface); color: var(--text-primary); outline: none;
+        }
+        .form-control-custom:focus { border-color: var(--primary); box-shadow: 0 0 12px var(--primary-glow); }
+
+        .action-btns { display: flex; gap: 10px; margin-top: 20px; }
+        .studio-btn {
+            flex: 1; background: var(--gradient-primary); color: #FFF; border: none;
+            padding: 13px; border-radius: var(--radius-md); font-weight: 800; font-size: 0.88rem;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none;
+            box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3); transition: transform 0.2s;
+        }
+        .studio-btn:hover { transform: translateY(-1px); }
+        .studio-btn.pdf-btn { background: #E11D48; box-shadow: 0 4px 14px rgba(225, 29, 72, 0.3); }
+
+        .preview-area {
+            margin-top: 24px; text-align: center; display: none; padding: 16px;
+            background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-md);
+        }
+        .preview-area img { max-width: 100%; max-height: 250px; border-radius: 8px; border: 1px solid var(--border); margin-bottom: 12px; }
+
+        /* FOOTER */
+        .modern-footer { background: var(--bg-surface); border-top: 1px solid var(--border); padding: 40px 16px 24px; margin-top: auto; }
+        .footer-grid { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1.5fr repeat(3, 1fr); gap: 28px; padding-bottom: 28px; border-bottom: 1px solid var(--border); }
+        .footer-brand-p { font-size: 0.82rem; color: var(--text-muted); margin: 10px 0 16px; line-height: 1.5; }
+        .footer-col h4 { font-size: 0.9rem; font-weight: 800; margin-bottom: 14px; }
+        .footer-nav { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+        .footer-nav a { font-size: 0.82rem; font-weight: 600; color: var(--text-secondary); text-decoration: none; }
+        .footer-bottom { max-width: 1280px; margin: 20px auto 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; font-size: 0.78rem; color: var(--text-muted); }
+        .social-pill-group { display: flex; gap: 8px; }
+        .social-pill { width: 36px; height: 36px; border-radius: 8px; background: var(--bg-chip); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--text-secondary); text-decoration: none; }
+
+        @media (max-width: 768px) {
+            .form-row { grid-template-columns: 1fr; }
+            .action-btns { flex-direction: column; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-glow"></div>
+
+    <!-- DRAWER -->
+    <div class="drawer-overlay" id="drawerOverlay" onclick="closeNavDrawer()"></div>
+    <aside class="sidebar-drawer" id="sidebarDrawer">
+        <div class="drawer-header">
+            <h3>Quick Navigation</h3>
+            <button class="drawer-close-btn" onclick="closeNavDrawer()"><i class="fas fa-times"></i></button>
+        </div>
+        <ul class="drawer-links">
+            <li><a href="index.html"><i class="fas fa-home" style="color: #6366F1;"></i> Home Workspace</a></li>
+            <li><a href="latest-updates.html"><i class="fas fa-bolt" style="color: #EC4899;"></i> Real-Time Alerts</a></li>
+            <li><a href="central-universities.html"><i class="fas fa-monument" style="color: #8B5CF6;"></i> Central Universities (49)</a></li>
+            <li><a href="universities.html"><i class="fas fa-landmark" style="color: #06B6D4;"></i> All Universities</a></li>
+            <li><a href="predictor.html"><i class="fas fa-sliders-h" style="color: #F59E0B;"></i> Student Hub & Predictor</a></li>
+            <li><a href="resizer-tool.html" class="active"><i class="fas fa-crop-alt" style="color: #10B981;"></i> Photo & Sign Studio</a></li>
+            <li><a href="syllabus.html"><i class="fas fa-book-open" style="color: #10B981;"></i> Syllabus & PYQs</a></li>
+            <li><a href="about-ajmal-mansoori.html"><i class="fas fa-user-shield" style="color: #6366F1;"></i> Founder Profile</a></li>
+        </ul>
+    </aside>
+
+    <!-- HEADER -->
+    <header class="header-wrapper">
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <div class="logo-badge"><i class="fas fa-graduation-cap"></i></div>
+                <div class="logo-text">
+                    <h2>The University Page</h2>
+                    <span>Image & PDF Studio</span>
+                </div>
+            </a>
+            <div class="nav-actions">
+                <button class="control-btn" id="themeToggleBtn" onclick="toggleAppTheme()"><i class="fas fa-sun" id="themeIcon"></i></button>
+                <button class="control-btn" onclick="openNavDrawer()"><i class="fa-solid fa-bars-staggered"></i></button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="main-container">
+
+        <div class="breadcrumb">
+            <a href="index.html">Home</a> <i class="fas fa-chevron-right" style="font-size: 0.65rem;"></i> <span>Photo & Sign Resizer Studio</span>
+        </div>
+
+        <div class="studio-box">
+            <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 24px;">
+                <div style="width: 50px; height: 50px; border-radius: 14px; background: rgba(16,185,129,0.15); color: #10B981; display: flex; align-items: center; justify-content: center; font-size: 1.4rem;">
+                    <i class="fas fa-crop-alt"></i>
+                </div>
+                <div>
+                    <h2>Photo, Signature & PDF Studio</h2>
+                    <p style="font-size: 0.82rem; color: var(--text-muted); font-weight: 600;">Compress, Resize (50 KB - 500 KB), Convert JPG to PDF instantly</p>
+                </div>
+            </div>
+
+            <div class="upload-zone" onclick="document.getElementById('fileInput').click()">
+                <input type="file" id="fileInput" accept="image/*" onchange="handleImageUpload(event)">
+                <label>
+                    <i class="fas fa-cloud-upload-alt" style="font-size: 1.8rem; color: var(--primary);"></i>
+                    <span>Click here to upload Photo or Signature (JPG / PNG)</span>
+                </label>
+            </div>
+
+            <div class="form-row">
+                <div>
+                    <label style="font-size: 0.78rem; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 6px;">Select Preset / Target Size</label>
+                    <select id="presetSelect" class="form-control-custom">
+                        <option value="photo">Passport Photo (50 KB - 500 KB)</option>
+                        <option value="sign">Signature (50 KB - 500 KB)</option>
+                        <option value="doc">Document PDF (500 KB - 1 MB)</option>
+                    </select>
+                </div>
+                <div>
+                    <label style="font-size: 0.78rem; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 6px;">Compression Quality (KB)</label>
+                    <input type="range" id="qualitySlider" min="10" max="100" value="75" class="form-control-custom" style="padding: 6px;">
+                </div>
+            </div>
+
+            <div class="action-btns">
+                <button class="studio-btn" onclick="processResize()">
+                    <i class="fas fa-compress-arrows-alt"></i> Resize & Compress Image
+                </button>
+                <button class="studio-btn pdf-btn" onclick="convertJpgToPdf()">
+                    <i class="fas fa-file-pdf"></i> Convert JPG to PDF
+                </button>
+            </div>
+
+            <div class="preview-area" id="previewArea">
+                <h4 style="margin-bottom: 8px; font-size: 0.95rem;">Processed Result Preview</h4>
+                <img id="outputImage" src="" alt="Preview">
+                <div id="fileStats" style="font-size: 0.82rem; font-weight: 700; color: var(--accent-green); margin-bottom: 12px;"></div>
+                <a id="downloadBtn" href="#" class="studio-btn" style="max-width: 250px; margin: 0 auto;" download="processed-image.jpg">
+                    <i class="fas fa-download"></i> Download File
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="modern-footer">
+        <div class="footer-grid">
+            <div>
+                <div class="logo">
+                    <div class="logo-badge"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="logo-text">
+                        <h2>The University Page</h2>
+                        <span>Educational Suite</span>
+                    </div>
+                </div>
+                <p class="footer-brand-p">Empowering students nationwide with verified central cutoffs, syllabus blueprints, and real-time counseling support.</p>
+            </div>
+            <div class="footer-col">
+                <h4>CUET Directory</h4>
+                <ul class="footer-nav">
+                    <li><a href="central-universities.html">Central Universities (49)</a></li>
+                    <li><a href="state-universities.html">State Universities</a></li>
+                    <li><a href="deemed-universities.html">Deemed Universities</a></li>
+                    <li><a href="private-universities.html">Private Universities</a></li>
+                    <li><a href="govt-institutes.html">Govt. Institutes</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ecosystem</h4>
+                <ul class="footer-nav">
+                    <li><a href="https://learnifyclasses.akamai.net.in" target="_blank">Learnify App</a></li>
+                    <li><a href="https://t.me/cuetwarriors2026" target="_blank">Telegram Hub</a></li>
+                    <li><a href="https://youtube.com/@ajmalalimansoori" target="_blank">Ajmal Mansoori YT</a></li>
+                    <li><a href="about-ajmal-mansoori.html">Founder Profile</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul class="footer-nav">
+                    <li><a href="privacy-policy.html">Privacy Charter</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="disclaimer.html">Disclaimer</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div>&copy; 2026 The University Page. Official CUET NTA Directory Suite 🇮🇳</div>
+            <div class="social-pill-group">
+                <a href="https://youtube.com/@ajmalalimansoori" target="_blank" class="social-pill"><i class="fab fa-youtube"></i></a>
+                <a href="https://instagram.com/ajmalcreator" target="_blank" class="social-pill"><i class="fab fa-instagram"></i></a>
+                <a href="https://t.me/cuetwarriors2026" target="_blank" class="social-pill"><i class="fab fa-telegram-plane"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPT LOGIC -->
+    <script>
+        function initAppTheme() {
+            const current = localStorage.getItem('theme-mode') || 'dark';
+            document.documentElement.setAttribute('data-theme', current);
+            renderThemeIcon(current);
+        }
+        function toggleAppTheme() {
+            const active = document.documentElement.getAttribute('data-theme');
+            const target = active === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', target);
+            localStorage.setItem('theme-mode', target);
+            renderThemeIcon(target);
+        }
+        function renderThemeIcon(theme) {
+            const icon = document.getElementById('themeIcon');
+            if (icon) {
+                icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+                icon.style.color = theme === 'dark' ? '#F59E0B' : 'inherit';
+            }
+        }
+        initAppTheme();
+
+        function openNavDrawer() {
+            document.getElementById('sidebarDrawer').classList.add('active');
+            document.getElementById('drawerOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeNavDrawer() {
+            document.getElementById('sidebarDrawer').classList.remove('active');
+            document.getElementById('drawerOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        let uploadedImageObj = null;
+
+        function handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    uploadedImageObj = img;
+                    document.getElementById('previewArea').style.display = 'block';
+                    document.getElementById('outputImage').src = e.target.result;
+                    document.getElementById('fileStats').innerText = `Original File Loaded Successfully (${(file.size/1024).toFixed(1)} KB)`;
+                }
+                img.src = e.target.result;
+            }
+            reader.readAsDataURL(file);
+        }
+
+        function processResize() {
+            if (!uploadedImageObj) {
+                alert("Please upload an image first!");
+                return;
+            }
+            const preset = document.getElementById('presetSelect').value;
+            const qualityVal = parseInt(document.getElementById('qualitySlider').value) / 100;
+
+            let width = preset === 'photo' ? 400 : (preset === 'sign' ? 350 : 1200);
+            let height = preset === 'photo' ? 500 : (preset === 'sign' ? 150 : 1600);
+
+            const canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(uploadedImageObj, 0, 0, width, height);
+
+            const dataUrl = canvas.toDataURL('image/jpeg', qualityVal);
+            document.getElementById('outputImage').src = dataUrl;
+            
+            // Calculate approximate size
+            const head = 'data:image/jpeg;base64,';
+            const approxSize = Math.round((dataUrl.length - head.length) * 3/4 / 1024);
+            
+            document.getElementById('fileStats').innerText = `Processed Successfully! Estimated Size: ~${approxSize} KB`;
+            
+            const dlBtn = document.getElementById('downloadBtn');
+            dlBtn.href = dataUrl;
+            dlBtn.download = `${preset}-resized.jpg`;
+        }
+
+        function convertJpgToPdf() {
+            if (!uploadedImageObj) {
+                alert("Please upload an image first!");
+                return;
+            }
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF();
+            const imgData = document.getElementById('outputImage').src;
+            
+            pdf.addImage(imgData, 'JPEG', 15, 20, 180, 140);
+            pdf.save("document-export.pdf");
+            alert("PDF Generated and Downloaded Successfully!");
+        }
+    </script>
+</body>
+</html>
