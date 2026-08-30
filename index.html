@@ -76,6 +76,7 @@
             transition: background-color 0.3s ease, color 0.3s ease;
             position: relative;
             -webkit-font-smoothing: antialiased;
+            padding-bottom: 90px; /* Space for floating bottom dock */
         }
 
         .ambient-glow {
@@ -1051,6 +1052,69 @@
             margin: 0;
         }
 
+        /* 🌟 FLOATING BOTTOM NAVIGATION BAR (DOCK STYLE - IMAGE 03/06 INSPIRATION) */
+        .floating-bottom-dock {
+            position: fixed;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 32px);
+            max-width: 500px;
+            background: var(--bg-surface);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid var(--border);
+            border-radius: 9999px;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            z-index: 95;
+        }
+
+        .dock-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.65rem;
+            font-weight: 700;
+            gap: 3px;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .dock-item i {
+            font-size: 1.15rem;
+        }
+
+        .dock-item:hover, .dock-item.active {
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .dock-fab {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            color: #FFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+            margin-top: -18px;
+            text-decoration: none;
+            border: 3px solid var(--bg-base);
+            transition: transform 0.2s ease;
+        }
+
+        .dock-fab:hover {
+            transform: scale(1.1);
+        }
+
         /* 🛡️ ULTRA-CLEAN MODERN FOOTER */
         .modern-footer {
             background: var(--bg-surface);
@@ -1655,6 +1719,29 @@
         </section>
 
     </main>
+
+    <!-- 🌟 FLOATING BOTTOM DOCK NAVIGATION BAR (IOS / APP INSPIRED) -->
+    <nav class="floating-bottom-dock">
+        <a href="index.html" class="dock-item active">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="universities.html" class="dock-item">
+            <i class="fas fa-landmark"></i>
+            <span>Unis</span>
+        </a>
+        <a href="predictor.html" class="dock-fab" title="Student Hub & Predictor">
+            <i class="fas fa-plus"></i>
+        </a>
+        <a href="syllabus.html" class="dock-item">
+            <i class="fas fa-book-open"></i>
+            <span>Syllabus</span>
+        </a>
+        <a href="login.html" class="dock-item">
+            <i class="fas fa-user-shield"></i>
+            <span>Account</span>
+        </a>
+    </nav>
 
     <!-- === MODERN FOOTER === -->
     <footer class="modern-footer">
