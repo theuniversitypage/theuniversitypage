@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Admin Access Portal | The University Page</title>
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Firebase SDK (Compat Version for fast integration) -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #060913;
+            background-image: radial-gradient(circle at top center, rgba(99, 102, 241, 0.15), transparent 70%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* PREMIUM APP CARD CONTAINER */
+        .auth-card-container {
+            width: 100%;
+            max-width: 460px;
+            background: #FFFFFF;
+            border-radius: 32px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            position: relative;
+            padding: 36px 28px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            max-height: 92vh;
+        }
+
+        .form-scroll-area {
+            overflow-y: auto;
+            max-height: 65vh;
+            padding-right: 4px;
+        }
+        .form-scroll-area::-webkit-scrollbar { width: 4px; }
+        .form-scroll-area::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 4px; }
+
+        /* BRAND LOGO */
+        .brand-logo-area {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        .logo-badge-text {
+            font-size: 0.9rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: #0F172A;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .logo-badge-text span {
+            background: #6366F1;
+            color: #FFF;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 0.72rem;
+        }
+
+        /* WELCOME TEXT */
+        .welcome-block {
+            margin-bottom: 18px;
+            text-align: center;
+        }
+        .welcome-block h1 {
+            font-size: 1.45rem;
+            font-weight: 800;
+            color: #0F172A;
+            margin-bottom: 4px;
+            letter-spacing: -0.02em;
+        }
+        .welcome-block p {
+            font-size: 0.8rem;
+            color: #64748B;
+            font-weight: 500;
+        }
+
+        /* PILL SWITCHER */
+        .pill-switch-container {
+            background: #F1F5F9;
+            border-radius: 9999px;
+            padding: 4px;
+            display: flex;
+            margin-bottom: 18px;
+        }
+        .pill-btn {
+            flex: 1;
+            background: transparent;
+            border: none;
+            padding: 10px;
+            border-radius: 9999px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #64748B;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        .pill-btn.active {
+            background: #FFFFFF;
+            color: #0F172A;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+        }
+
+        /* INPUT FIELDS */
+        .input-group {
+            position: relative;
+            margin-bottom: 12px;
+        }
+        .input-group i.left-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #64748B;
+            font-size: 0.9rem;
+        }
+        .input-group i.right-icon {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #64748B;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+        .input-field, .input-select {
+            width: 100%;
+            padding: 13px 16px 13px 46px;
+            border: 1px solid #E2E8F0;
+            border-radius: 14px;
+            background: #F8FAFC;
+            font-size: 0.86rem;
+            font-weight: 600;
+            color: #0F172A;
+            outline: none;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        .input-select {
+            appearance: none;
+            cursor: pointer;
+        }
+        .input-field:focus, .input-select:focus {
+            border-color: #6366F1;
+            background: #FFFFFF;
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+        }
+        .input-field::placeholder {
+            color: #94A3B8;
+            font-weight: 500;
+        }
+
+        /* SUBMIT BUTTON */
+        .submit-btn {
+            background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);
+            color: #FFFFFF;
+            border: none;
+            width: 100%;
+            padding: 13px;
+            border-radius: 14px;
+            font-weight: 800;
+            font-size: 0.92rem;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.35);
+            transition: transform 0.2s, opacity 0.2s;
+            margin-top: 6px;
+            margin-bottom: 16px;
+        }
+        .submit-btn:hover { transform: translateY(-1px); opacity: 0.95; }
+
+        /* SOCIAL DIVIDER */
+        .social-divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #94A3B8;
+            font-size: 0.72rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .social-divider::before, .social-divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #E2E8F0;
+        }
+        .social-divider::before { margin-right: 10px; }
+        .social-divider::after { margin-left: 10px; }
+
+        .social-buttons-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .social-auth-btn {
+            background: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            padding: 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #334155;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+        .social-auth-btn:hover {
+            background: #F1F5F9;
+            border-color: #CBD5E1;
+            transform: translateY(-1px);
+        }
+        .social-auth-btn.google i { color: #DB4437; }
+        .social-auth-btn.facebook i { color: #4267B2; }
+
+        /* FOOTER SWITCH LINK */
+        .auth-footer-link {
+            text-align: center;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #64748B;
+        }
+        .auth-footer-link a {
+            color: #6366F1;
+            text-decoration: none;
+        }
+        .auth-footer-link a:hover { text-decoration: underline; }
+
+        /* PANELS TOGGLE */
+        .form-panel { display: none; }
+        .form-panel.active { display: block; animation: fadeIn 0.3s ease; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media (max-width: 480px) {
+            body { padding: 0; background: #FFFFFF; }
+            .auth-card-container { box-shadow: none; border-radius: 0; height: 100vh; padding: 22px 18px; justify-content: space-between; max-height: 100vh; }
+            .form-scroll-area { max-height: 68vh; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="auth-card-container">
+        
+        <div>
+            <!-- TOP BRAND -->
+            <div class="brand-logo-area">
+                <div class="logo-badge-text">The University Page <span>ADMIN</span></div>
+            </div>
+
+            <!-- WELCOME HEADER -->
+            <div class="welcome-block">
+                <h1>Admin Portal</h1>
+                <p>Secure authentication for authoritative management</p>
+            </div>
+
+            <!-- TAB SWITCHER -->
+            <div class="pill-switch-container">
+                <button class="pill-btn active" id="tabSignIn" onclick="switchTab('signin')">Sign In</button>
+                <button class="pill-btn" id="tabCreate" onclick="switchTab('create')">Create Admin</button>
+            </div>
+
+            <!-- FORM PANELS CONTAINER -->
+            <div class="form-scroll-area">
+                <!-- SIGN IN PANEL -->
+                <div id="signInPanel" class="form-panel active">
+                    <form onsubmit="handleAdminLogin(event)">
+                        <div class="input-group">
+                            <i class="fas fa-envelope left-icon"></i>
+                            <input type="email" id="loginEmail" class="input-field" placeholder="Admin Email" required>
+                        </div>
+
+                        <div class="input-group">
+                            <i class="fas fa-lock left-icon"></i>
+                            <input type="password" id="loginPass" class="input-field" placeholder="Password" required>
+                            <i class="fas fa-eye-slash right-icon" onclick="togglePassword('loginPass', this)"></i>
+                        </div>
+
+                        <button type="submit" class="submit-btn" id="loginBtn">Admin Login</button>
+                    </form>
+                </div>
+
+                <!-- CREATE ADMIN PANEL -->
+                <div id="createPanel" class="form-panel">
+                    <form onsubmit="handleAdminRegister(event)">
+                        <div class="input-group">
+                            <i class="fas fa-user left-icon"></i>
+                            <input type="text" id="regName" class="input-field" placeholder="Your Name" required>
+                        </div>
+
+                        <div class="input-group">
+                            <i class="fab fa-whatsapp left-icon" style="color: #25D366;"></i>
+                            <input type="tel" id="regPhone" class="input-field" placeholder="WhatsApp Number (e.g. 9984919392)" required>
+                        </div>
+
+                        <div class="input-group">
+                            <i class="fas fa-envelope left-icon"></i>
+                            <input type="email" id="regEmail" class="input-field" placeholder="Your Email" required>
+                        </div>
+
+                        <div class="input-group">
+                            <i class="fas fa-venus-mars left-icon"></i>
+                            <select id="regGender" class="input-select" required>
+                                <option value="" disabled selected>Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <i class="fas fa-map-marked-alt left-icon"></i>
+                            <select id="regState" class="input-select" required>
+                                <option value="" disabled selected>Select State</option>
+                                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Bihar">Bihar</option>
+                                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                <option value="Rajasthan">Rajasthan</option>
+                                <option value="Other">Other State</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <i class="fas fa-city left-icon"></i>
+                            <input type="text" id="regDistrict" class="input-field" placeholder="District (e.g. Prayagraj)" required>
+                        </div>
+
+                        <div class="input-group">
+                            <i class="fas fa-lock left-icon"></i>
+                            <input type="password" id="regPass" class="input-field" placeholder="Create Password" required>
+                            <i class="fas fa-eye-slash right-icon" onclick="togglePassword('regPass', this)"></i>
+                        </div>
+
+                        <button type="submit" class="submit-btn" id="regBtn">Register Admin</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- SOCIAL LOGIN -->
+            <div class="social-divider">Or continue with</div>
+            <div class="social-buttons-grid">
+                <button class="social-auth-btn google" onclick="socialAuth('Google')">
+                    <i class="fab fa-google"></i> Google
+                </button>
+                <button class="social-auth-btn facebook" onclick="socialAuth('Facebook')">
+                    <i class="fab fa-facebook-f"></i> Facebook
+                </button>
+            </div>
+        </div>
+
+        <!-- FOOTER SWITCH LINK -->
+        <div class="auth-footer-link" id="footerSwitchText">
+            Need an admin account? <a href="#" onclick="switchTab('create'); return false;">Create one</a>
+        </div>
+
+    </div>
+
+    <!-- FIREBASE INITIALIZATION & AUTH SCRIPT -->
+    <script>
+        // 🔑 FIREBASE CONFIGURATION (Replace with your actual Firebase project credentials)
+        const firebaseConfig = {
+            apiKey: "YOUR_FIREBASE_API_KEY",
+            authDomain: "your-project.firebaseapp.com",
+            projectId: "your-project-id",
+            storageBucket: "your-project.appspot.com",
+            messagingSenderId: "SENDER_ID",
+            appId: "APP_ID"
+        };
+
+        // Initialize Firebase
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        function switchTab(mode) {
+            const btnSign = document.getElementById('tabSignIn');
+            const btnCreate = document.getElementById('tabCreate');
+            const panelSign = document.getElementById('signInPanel');
+            const panelCreate = document.getElementById('createPanel');
+            const footerText = document.getElementById('footerSwitchText');
+
+            if (mode === 'signin') {
+                btnSign.classList.add('active');
+                btnCreate.classList.remove('active');
+                panelSign.classList.add('active');
+                panelCreate.classList.remove('active');
+                footerText.innerHTML = `Need an admin account? <a href="#" onclick="switchTab('create'); return false;">Create one</a>`;
+            } else {
+                btnCreate.classList.add('active');
+                btnSign.classList.remove('active');
+                panelCreate.classList.add('active');
+                panelSign.classList.remove('active');
+                footerText.innerHTML = `Already an admin? <a href="#" onclick="switchTab('signin'); return false;">Sign In</a>`;
+            }
+        }
+
+        function togglePassword(fieldId, iconEl) {
+            const field = document.getElementById(fieldId);
+            if (field.type === 'password') {
+                field.type = 'text';
+                iconEl.className = 'fas fa-eye right-icon';
+            } else {
+                field.type = 'password';
+                iconEl.className = 'fas fa-eye-slash right-icon';
+            }
+        }
+
+        // 🔐 ADMIN LOGIN (Firebase Auth)
+        async function handleAdminLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const pass = document.getElementById('loginPass').value;
+            const btn = document.getElementById('loginBtn');
+
+            btn.innerText = "Authenticating...";
+            btn.disabled = true;
+
+            try {
+                const userCred = await auth.signInWithEmailAndPassword(email, pass);
+                alert("Admin Login Successful! Welcome back.");
+                window.location.href = "index.html";
+            } catch (error) {
+                alert("Login Error: " + error.message);
+                btn.innerText = "Admin Login";
+                btn.disabled = false;
+            }
+        }
+
+        // 📝 ADMIN REGISTRATION (Firebase Auth + Firestore Profile Storage)
+        async function handleAdminRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById('regName').value;
+            const phone = document.getElementById('regPhone').value;
+            const email = document.getElementById('regEmail').value;
+            const gender = document.getElementById('regGender').value;
+            const state = document.getElementById('regState').value;
+            const district = document.getElementById('regDistrict').value;
+            const pass = document.getElementById('regPass').value;
+            const btn = document.getElementById('regBtn');
+
+            btn.innerText = "Creating Admin Account...";
+            btn.disabled = true;
+
+            try {
+                // 1. Create User in Firebase Auth
+                const userCred = await auth.createUserWithEmailAndPassword(email, pass);
+                const uid = userCred.user.uid;
+
+                // 2. Store detailed admin profile in Firestore
+                await db.collection("admins").doc(uid).set({
+                    fullName: name,
+                    whatsappNumber: phone,
+                    email: email,
+                    gender: gender,
+                    state: state,
+                    district: district,
+                    role: "Admin",
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                alert("Admin Account Created & Connected to Firebase Successfully!");
+                window.location.href = "index.html";
+            } catch (error) {
+                alert("Registration Error: " + error.message);
+                btn.innerText = "Register Admin";
+                btn.disabled = false;
+            }
+        }
+
+        // 🌐 SOCIAL AUTH (Google / Facebook)
+        async function socialAuth(providerName) {
+            let provider;
+            if (providerName === 'Google') {
+                provider = new firebase.auth.GoogleAuthProvider();
+            } else {
+                provider = new firebase.auth.FacebookAuthProvider();
+            }
+
+            try {
+                const result = await auth.signInWithPopup(provider);
+                const user = result.user;
+
+                // Save or check in Firestore
+                const docRef = db.collection("admins").doc(user.uid);
+                const doc = await docRef.get();
+                if (!doc.exists) {
+                    await docRef.set({
+                        fullName: user.displayName || "Admin User",
+                        email: user.email,
+                        role: "Admin",
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                }
+
+                alert(`Connected via ${providerName} Successfully!`);
+                window.location.href = "index.html";
+            } catch (error) {
+                alert("Social Login Error: " + error.message);
+            }
+        }
+    </script>
+</body>
+</html>
