@@ -6,7 +6,6 @@
     <meta name="google-site-verification" content="L8MTwwklD18hw-rbjRWfTjzMJD20u5BLAlTN1Zobp_U">
     <title>The University Page | Next-Gen University Entrance & Counseling Suite</title>
     
-    <!-- Fonts & Modern Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -1052,23 +1051,23 @@
             margin: 0;
         }
 
-        /* 🌟 FLOATING BOTTOM NAVIGATION BAR (DOCK STYLE - IMAGE 03/06 INSPIRATION) */
+        /* 🌟 PERFECT CENTERED FLOATING BOTTOM NAVIGATION BAR (DOCK STYLE) */
         .floating-bottom-dock {
             position: fixed;
             bottom: 16px;
             left: 50%;
             transform: translateX(-50%);
             width: calc(100% - 32px);
-            max-width: 500px;
+            max-width: 450px;
             background: var(--bg-surface);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
             border: 1px solid var(--border);
             border-radius: 9999px;
-            padding: 8px 16px;
+            padding: 8px 18px;
             display: flex;
             align-items: center;
-            justify-content: space-around;
+            justify-content: space-between;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
             z-index: 95;
         }
@@ -1079,7 +1078,7 @@
             align-items: center;
             text-decoration: none;
             color: var(--text-muted);
-            font-size: 0.65rem;
+            font-size: 0.68rem;
             font-weight: 700;
             gap: 3px;
             transition: color 0.2s ease, transform 0.2s ease;
@@ -1095,17 +1094,18 @@
         }
 
         .dock-fab {
-            width: 46px;
-            height: 46px;
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
             border-radius: 50%;
             background: var(--gradient-primary);
             color: #FFF;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
-            margin-top: -18px;
+            margin-top: -16px;
             text-decoration: none;
             border: 3px solid var(--bg-base);
             transition: transform 0.2s ease;
@@ -1228,7 +1228,6 @@
 
     <div class="ambient-glow"></div>
 
-    <!-- 📱 SLIDE-IN SIDEBAR OVERLAY & DRAWER -->
     <div class="drawer-overlay" id="drawerOverlay" onclick="closeNavDrawer()"></div>
     
     <aside class="sidebar-drawer" id="sidebarDrawer">
@@ -1248,7 +1247,6 @@
         </ul>
     </aside>
 
-    <!-- === MODERN STICKY HEADER === -->
     <header class="header-wrapper">
         <nav class="navbar">
             <a href="index.html" class="logo">
@@ -1260,12 +1258,10 @@
             </a>
 
             <div class="nav-actions">
-                <!-- Theme Mode Switcher -->
                 <button class="control-btn" id="themeToggleBtn" onclick="toggleAppTheme()" title="Switch Light/Dark Mode">
                     <i class="fas fa-sun" id="themeIcon"></i>
                 </button>
 
-                <!-- Sidebar Slider Trigger Button -->
                 <button class="control-btn" onclick="openNavDrawer()" title="Open Navigation Menu">
                     <i class="fa-solid fa-bars-staggered"></i>
                 </button>
@@ -1273,10 +1269,8 @@
         </nav>
     </header>
 
-    <!-- === MAIN CONTAINER === -->
     <main class="main-container">
 
-        <!-- ⚡ LIVE TICKER -->
         <div class="ticker-card">
             <div class="ticker-pill">
                 <div class="pulse-indicator"></div> Live Alert
@@ -1290,7 +1284,6 @@
             </div>
         </div>
 
-        <!-- 🚀 ACCELERATOR PORTAL CARDS (4 ITEM GRID) -->
         <section class="portal-grid">
             <a href="https://learnifyclasses.akamai.net.in/new-courses" target="_blank" class="portal-card">
                 <div class="portal-icon" style="color: #6366F1;"><i class="fas fa-graduation-cap"></i></div>
@@ -1325,7 +1318,6 @@
             </a>
         </section>
 
-        <!-- 🔥 REAL-TIME BULLETINS FEED -->
         <div class="section-header">
             <div class="section-title">
                 <div class="title-icon"><i class="fas fa-bolt"></i></div>
@@ -1369,7 +1361,6 @@
             </a>
         </div>
 
-        <!-- 🎛️ SMART UTILITIES SUITE WITH "MORE" LINK LINKED TO predictor.html -->
         <div class="section-header">
             <div class="section-title">
                 <div class="title-icon" style="background: linear-gradient(135deg, #6366F1, #8B5CF6);"><i class="fas fa-sliders-h"></i></div>
@@ -1379,7 +1370,6 @@
         </div>
 
         <section class="suite-grid">
-            <!-- Rank Predictor Engine -->
             <div class="suite-card">
                 <div>
                     <div class="suite-header">
@@ -1406,7 +1396,6 @@
                 </div>
             </div>
 
-            <!-- Telegram Community Network -->
             <div class="suite-card">
                 <div>
                     <div class="suite-header">
@@ -1426,7 +1415,6 @@
             </div>
         </section>
 
-        <!-- ⚡ QUICK NAVIGATION VAULT -->
         <div class="section-header">
             <div class="section-title">
                 <div class="title-icon" style="background: linear-gradient(135deg, #EC4899, #F43F5E);"><i class="fas fa-layer-group"></i></div>
@@ -1524,7 +1512,6 @@
             </a>
         </section>
 
-        <!-- 📺 1. OFFICIAL CHANNELS & MENTORSHIP NETWORK -->
         <div class="section-header">
             <div class="section-title">
                 <div class="title-icon" style="background: var(--gradient-yt);"><i class="fab fa-youtube"></i></div>
@@ -1578,7 +1565,6 @@
             </a>
         </section>
 
-        <!-- ❓ 2. FREQUENTLY ASKED QUESTIONS -->
         <div class="section-header">
             <div class="section-title">
                 <div class="title-icon" style="background: linear-gradient(135deg, #6366F1, #8B5CF6);"><i class="fas fa-circle-question"></i></div>
@@ -1628,7 +1614,6 @@
             </div>
         </section>
 
-        <!-- 📞 3. CONTACT & HELPDESK -->
         <div class="section-header">
             <div class="section-title">
                 <div class="title-icon" style="background: linear-gradient(135deg, #059669, #10B981);"><i class="fas fa-headset"></i></div>
@@ -1675,7 +1660,6 @@
             </div>
         </section>
 
-        <!-- 🏛️ 4. EXPLORE UNIVERSITIES -->
         <div class="section-header">
             <div class="section-title">
                 <div class="title-icon" style="background: linear-gradient(135deg, #0284C7, #38BDF8);"><i class="fas fa-university"></i></div>
@@ -1720,7 +1704,6 @@
 
     </main>
 
-    <!-- 🌟 FLOATING BOTTOM DOCK NAVIGATION BAR (IOS / APP INSPIRED) -->
     <nav class="floating-bottom-dock">
         <a href="index.html" class="dock-item active">
             <i class="fas fa-home"></i>
@@ -1743,7 +1726,6 @@
         </a>
     </nav>
 
-    <!-- === MODERN FOOTER === -->
     <footer class="modern-footer">
         <div class="footer-grid">
             <div>
@@ -1798,7 +1780,6 @@
         </div>
     </footer>
 
-    <!-- INTERACTIVE JAVASCRIPT -->
     <script>
         // 🌓 THEME TOGGLE
         function initAppTheme() {
