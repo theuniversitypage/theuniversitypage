@@ -177,37 +177,6 @@
         }
         .file-input-btn:hover { background: #F1F5F9; border-color: #94A3B8; }
 
-        /* CHECKBOX CHIPS FOR CLASSES / BOARDS */
-        .checkbox-container {
-            background: #F8FAFC;
-            border: 1px solid #E2E8F0;
-            border-radius: 16px;
-            padding: 16px;
-            margin-bottom: 14px;
-        }
-        .checkbox-container label {
-            display: block;
-            font-size: 0.82rem;
-            font-weight: 800;
-            color: #334155;
-            margin-bottom: 10px;
-        }
-        .checkbox-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-            gap: 10px;
-        }
-        .checkbox-label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: #475569;
-            cursor: pointer;
-        }
-        .checkbox-label input { width: 16px; height: 16px; accent-color: #6366F1; cursor: pointer; }
-
         /* INPUT FIELDS */
         .input-group { position: relative; margin-bottom: 14px; }
         .input-group i.left-icon { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: #64748B; font-size: 0.9rem; }
@@ -329,27 +298,38 @@
                     <input type="text" id="tSubjects" class="input-field" placeholder="Expert Subjects (e.g. Mathematics, Physics)" required>
                 </div>
 
-                <div class="checkbox-container">
-                    <label><i class="fa-solid fa-layer-group text-indigo-600 mr-1"></i> Preferred Classes (किन्हें पढ़ाना चाहते हैं?)</label>
-                    <div class="checkbox-grid">
-                        <label class="checkbox-label"><input type="checkbox" name="prefClass" value="Class 1-5"> Class 1–5</label>
-                        <label class="checkbox-label"><input type="checkbox" name="prefClass" value="Class 6-8"> Class 6–8</label>
-                        <label class="checkbox-label"><input type="checkbox" name="prefClass" value="Class 9-10"> Class 9–10</label>
-                        <label class="checkbox-label"><input type="checkbox" name="prefClass" value="Class 11-12"> Class 11–12</label>
-                        <label class="checkbox-label"><input type="checkbox" name="prefClass" value="Graduation"> Graduation</label>
-                        <label class="checkbox-label"><input type="checkbox" name="prefClass" value="Competitive"> Competitive</label>
-                    </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-layer-group left-icon"></i>
+                    <select id="tPrefClass" class="input-select" required>
+                        <option value="" disabled selected>Select Preferred Class (किन्हें पढ़ाना चाहते हैं?)</option>
+                        <option value="Class 1-5">Class 1–5</option>
+                        <option value="Class 6-8">Class 6–8</option>
+                        <option value="Class 9-10">Class 9–10</option>
+                        <option value="Class 11-12">Class 11–12</option>
+                        <option value="Graduation">Graduation</option>
+                        <option value="Competitive">Competitive Exams</option>
+                    </select>
                 </div>
 
-                <div class="checkbox-container">
-                    <label><i class="fa-solid fa-language text-indigo-600 mr-1"></i> Medium & Boards (माध्यम और बोर्ड)</label>
-                    <div class="checkbox-grid">
-                        <label class="checkbox-label"><input type="checkbox" name="prefMedium" value="Hindi Medium"> Hindi Medium</label>
-                        <label class="checkbox-label"><input type="checkbox" name="prefMedium" value="English Medium"> English Medium</label>
-                        <label class="checkbox-label"><input type="checkbox" name="prefBoard" value="UP Board"> UP Board</label>
-                        <label class="checkbox-label"><input type="checkbox" name="prefBoard" value="CBSE"> CBSE Board</label>
-                        <label class="checkbox-label"><input type="checkbox" name="prefBoard" value="ICSE"> ICSE Board</label>
-                    </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-language left-icon"></i>
+                    <select id="tMedium" class="input-select" required>
+                        <option value="" disabled selected>Select Teaching Medium (माध्यम)</option>
+                        <option value="Hindi Medium">Hindi Medium</option>
+                        <option value="English Medium">English Medium</option>
+                        <option value="Both Hindi & English">Both Hindi & English</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <i class="fa-solid fa-graduation-cap left-icon"></i>
+                    <select id="tBoard" class="input-select" required>
+                        <option value="" disabled selected>Select Preferred Board (बोर्ड)</option>
+                        <option value="UP Board">UP Board</option>
+                        <option value="CBSE Board">CBSE Board</option>
+                        <option value="ICSE Board">ICSE Board</option>
+                        <option value="All Boards">All Boards</option>
+                    </select>
                 </div>
 
                 <div class="input-group">
@@ -462,27 +442,13 @@
                         document.getElementById('tExp').value = data.experience || "";
                         document.getElementById('tSubjects').value = data.subjects || "";
                         document.getElementById('tArea').value = data.district || data.area || "";
-                        if(data.mode) document.getElementById('tMode').value = data.mode;
-                        document.getElementById('tFee').value = data.fee || "";
                         
-                        // Load Checkboxes for Classes
-                        if(data.prefClasses && Array.isArray(data.prefClasses)) {
-                            document.querySelectorAll('input[name="prefClass"]').forEach(chk => {
-                                if(data.prefClasses.includes(chk.value)) chk.checked = true;
-                            });
-                        }
-                        // Load Checkboxes for Medium
-                        if(data.prefMediums && Array.isArray(data.prefMediums)) {
-                            document.querySelectorAll('input[name="prefMedium"]').forEach(chk => {
-                                if(data.prefMediums.includes(chk.value)) chk.checked = true;
-                            });
-                        }
-                        // Load Checkboxes for Boards
-                        if(data.prefBoards && Array.isArray(data.prefBoards)) {
-                            document.querySelectorAll('input[name="prefBoard"]').forEach(chk => {
-                                if(data.prefBoards.includes(chk.value)) chk.checked = true;
-                            });
-                        }
+                        if(data.prefClass) document.getElementById('tPrefClass').value = data.prefClass;
+                        if(data.medium) document.getElementById('tMedium').value = data.medium;
+                        if(data.board) document.getElementById('tBoard').value = data.board;
+                        if(data.mode) document.getElementById('tMode').value = data.mode;
+                        
+                        document.getElementById('tFee').value = data.fee || "";
 
                         if(data.photoUrl) {
                             document.getElementById('photoPreviewImg').src = data.photoUrl;
@@ -499,7 +465,7 @@
             }
         });
 
-        // Update Profile with Photo and Preferences
+        // Update Profile
         async function updateTeacherProfile(e) {
             e.preventDefault();
             if (!currentUserId) return;
@@ -508,18 +474,6 @@
             btn.innerText = "Saving Updates...";
             btn.disabled = true;
 
-            // Collect selected classes
-            const selectedClasses = [];
-            document.querySelectorAll('input[name="prefClass"]:checked').forEach(chk => selectedClasses.push(chk.value));
-
-            // Collect selected mediums
-            const selectedMediums = [];
-            document.querySelectorAll('input[name="prefMedium"]:checked').forEach(chk => selectedMediums.push(chk.value));
-
-            // Collect selected boards
-            const selectedBoards = [];
-            document.querySelectorAll('input[name="prefBoard"]:checked').forEach(chk => selectedBoards.push(chk.value));
-
             try {
                 let updateData = {
                     fullName: document.getElementById('tName').value.trim(),
@@ -527,12 +481,12 @@
                     qualification: document.getElementById('tQual').value.trim(),
                     experience: document.getElementById('tExp').value.trim(),
                     subjects: document.getElementById('tSubjects').value.trim(),
+                    prefClass: document.getElementById('tPrefClass').value,
+                    medium: document.getElementById('tMedium').value,
+                    board: document.getElementById('tBoard').value,
                     district: document.getElementById('tArea').value.trim(),
                     mode: document.getElementById('tMode').value,
                     fee: document.getElementById('tFee').value.trim(),
-                    prefClasses: selectedClasses,
-                    prefMediums: selectedMediums,
-                    prefBoards: selectedBoards,
                     updatedAt: firebase.firestore.FieldValue.serverTimestamp()
                 };
 
