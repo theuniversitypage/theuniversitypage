@@ -143,6 +143,42 @@
         .stat-box span { font-size: 0.75rem; font-weight: 800; color: #64748B; text-transform: uppercase; }
         .stat-box h3 { font-size: 2rem; font-weight: 900; color: #0F172A; margin-top: 6px; }
 
+        /* PHOTO UPLOAD BOX */
+        .photo-upload-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: #F8FAFC;
+            border: 1px dashed #CBD5E1;
+            padding: 18px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+        .photo-preview {
+            width: 80px;
+            height: 80px;
+            border-radius: 16px;
+            object-fit: cover;
+            border: 2px solid #E2E8F0;
+            background: #E2E8F0;
+        }
+        .photo-upload-info h4 { font-size: 0.88rem; font-weight: 800; color: #0F172A; }
+        .photo-upload-info p { font-size: 0.72rem; color: #64748B; margin-top: 2px; }
+        .file-input-btn {
+            display: inline-block;
+            margin-top: 8px;
+            background: #FFFFFF;
+            border: 1px solid #CBD5E1;
+            padding: 6px 12px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #334155;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .file-input-btn:hover { background: #F1F5F9; border-color: #94A3B8; }
+
         /* INPUT FIELDS */
         .input-group { position: relative; margin-bottom: 14px; }
         .input-group i.left-icon { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: #64748B; font-size: 0.9rem; }
@@ -230,6 +266,20 @@
             <div class="section-header">Update Teaching Profile</div>
             
             <form id="teacherProfileForm" onsubmit="updateTeacherProfile(event)">
+                
+                <!-- PHOTO UPLOAD SECTION -->
+                <div class="photo-upload-container">
+                    <img id="photoPreviewImg" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" class="photo-preview" alt="Preview">
+                    <div class="photo-upload-info">
+                        <h4>Square Profile Photo</h4>
+                        <p>Max size: 2MB (JPG, PNG)</p>
+                        <label class="file-input-btn">
+                            <i class="fa-solid fa-cloud-arrow-up mr-1"></i> Choose Image
+                            <input type="file" id="tPhotoFile" accept="image/png, image/jpeg" class="hidden" onchange="previewImage(event)">
+                        </label>
+                    </div>
+                </div>
+
                 <div class="input-group">
                     <i class="fa-solid fa-user left-icon"></i>
                     <input type="text" id="tName" class="input-field" placeholder="Full Name" required>
@@ -281,10 +331,9 @@
         <!-- 3. STUDENT DATA TAB -->
         <div id="studentsTab" class="content-card">
             <div class="section-header">Connected Students & Leads</div>
-            <p class="text-sm font-semibold text-slate-500 mb-6">Aapke through ya aapke profile se jude hue students ki list:</p>
+            <p class="text-sm font-semibold text-slate-500 mb-6">Aapke through ya aapke profile से jude hue students ki list:</p>
             
             <div id="studentsListContainer" class="space-y-3">
-                <!-- Dynamic student rows will inject here -->
                 <div class="bg-slate-50 border border-slate-200 p-4 rounded-2xl flex justify-between items-center text-sm font-bold">
                     <div>
                         <p class="text-slate-900">Aman Gupta <span class="text-xs text-indigo-600 font-normal">(Class 9-10 Mathematics)</span></p>
@@ -317,14 +366,33 @@
         const db = firebase.firestore();
 
         let currentUserId = null;
+        let base64Photo = "";
 
-        // Tab Switching Logic
         function switchTab(tabId, btnElement) {
             document.querySelectorAll('.content-card').forEach(card => card.classList.remove('active'));
             document.querySelectorAll('.menu-item').forEach(item => item.classList.remove('active'));
 
             document.getElementById(tabId).classList.add('active');
             if(btnElement) btnElement.classList.add('active');
+        }
+
+        // Image Preview & 2MB Validation
+        function previewImage(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            if (file.size > 2 * 1024 * 1024) {
+                alert("File size exceeds 2MB limit. Please choose a smaller image.");
+                event.target.value = "";
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('photoPreviewImg').src = e.target.result;
+                base64Photo = e.target.result; // Base64 string to store in Firestore
+            };
+            reader.readAsDataURL(file);
         }
 
         // Auth State & Data Fetching
@@ -352,6 +420,11 @@
                         if(data.mode) document.getElementById('tMode').value = data.mode;
                         document.getElementById('tFee').value = data.fee || "";
                         
+                        if(data.photoUrl) {
+                            document.getElementById('photoPreviewImg').src = data.photoUrl;
+                            base64Photo = data.photoUrl;
+                        }
+
                         if(data.studentsCount !== undefined) {
                             document.getElementById('statStudents').innerText = data.studentsCount;
                         }
@@ -362,7 +435,7 @@
             }
         });
 
-        // Update Profile
+        // Update Profile with Photo
         async function updateTeacherProfile(e) {
             e.preventDefault();
             if (!currentUserId) return;
@@ -372,7 +445,7 @@
             btn.disabled = true;
 
             try {
-                await db.collection("admins").doc(currentUserId).update({
+                let updateData = {
                     fullName: document.getElementById('tName').value.trim(),
                     whatsappNumber: document.getElementById('tPhone').value.trim(),
                     qualification: document.getElementById('tQual').value.trim(),
@@ -382,7 +455,13 @@
                     mode: document.getElementById('tMode').value,
                     fee: document.getElementById('tFee').value.trim(),
                     updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-                });
+                };
+
+                if (base64Photo) {
+                    updateData.photoUrl = base64Photo;
+                }
+
+                await db.collection("admins").doc(currentUserId).update(updateData);
 
                 alert("Profile Updated Successfully!");
             } catch (error) {
