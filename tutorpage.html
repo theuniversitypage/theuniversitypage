@@ -12,7 +12,7 @@
     <!-- Inter Font & FontAwesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     
     <!-- Firebase SDK Compat -->
@@ -35,9 +35,9 @@
             display: flex; justify-content: space-between; align-items: center;
         }
 
-        /* SHOWCASE SECTION (SHADOW REMOVED FROM IMAGE) */
+        /* SHOWCASE SECTION */
         .showcase {
-            width: 100%; min-height: 420px; display: flex; justify-content: center; align-items: center; background: #fff; overflow: hidden;
+            width: 100%; min-height: 450px; display: flex; justify-content: center; align-items: center; background: #fff; overflow: hidden;
         }
         .container-showcase {
             width: 100%; max-width: 1280px; padding: 40px 24px;
@@ -50,18 +50,19 @@
         .subtitle {
             margin-top: 20px; font-size: 19px; line-height: 1.4; font-weight: 400; color: #4b4b4b; min-height: 30px;
         }
-        /* Cursor for typing effect */
         .typed-cursor {
             font-weight: 400; color: #673de6; animation: blink 0.7s infinite;
         }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-        .hero-img-box {
-            display: flex; justify-content: center; align-items: center;
+        /* RIGHT SIDE IMAGE SLIDER */
+        .hero-slider-box {
+            width: 100%; max-width: 450px; height: 320px; border-radius: 20px; overflow: hidden; position: relative; box-shadow: 0 15px 35px rgba(0,0,0,0.08);
         }
-        .hero-img-box img {
-            width: 100%; max-width: 420px; height: auto; object-fit: contain; /* Shadow completely removed */
+        .slider-img {
+            position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1s ease-in-out;
         }
+        .slider-img.active { opacity: 1; }
 
         /* SEARCH BAR */
         .search-wrapper {
@@ -96,7 +97,7 @@
         }
         .tutor-card:hover { transform: translateY(-3px); box-shadow: 0 12px 24px rgba(0,0,0,0.06); border-color: #cbd5e1; }
 
-        /* PRECISE BUTTONS */
+        /* BUTTONS */
         .btn-black-premium {
             width: 100%; height: 48px; border: none; border-radius: 11px;
             background: #161616; color: #ffffff; font-family: inherit; font-size: 15px; font-weight: 700;
@@ -113,7 +114,7 @@
         }
         .btn-darkblue-premium:hover { background: #5b32d6; }
 
-        /* ACADEMIC CATEGORIES */
+        /* ACADEMIC CATEGORIES (PREMIUM MAKEOVER) */
         .categories-section {
             max-width: 1280px; margin: 60px auto; padding: 0 24px;
         }
@@ -121,10 +122,30 @@
             display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-top: 20px;
         }
         .category-card {
-            background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; display: flex; align-items: center; gap: 16px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border: 1px solid #e2e8f0; border-radius: 16px; padding: 24px; display: flex; align-items: center; gap: 18px;
+            transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+        }
+        .category-card:hover {
+            transform: translateY(-4px); border-color: #673de6; box-shadow: 0 12px 25px rgba(103, 61, 230, 0.1);
         }
         .category-icon {
-            width: 50px; height: 50px; background: #e0e7ff; color: #4338ca; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0;
+            width: 56px; height: 56px; background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%); color: #ffffff; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        /* OUR BENEFITS (PREMIUM MAKEOVER) */
+        .benefits-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 24px; margin-top: 20px;
+        }
+        .benefit-card {
+            background: #ffffff; border: 1px solid #e2e8f0; border-radius: 18px; padding: 28px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03); transition: all 0.3s ease;
+        }
+        .benefit-card:hover {
+            transform: translateY(-4px); border-color: #10b981; box-shadow: 0 15px 35px rgba(16, 185, 129, 0.1);
+        }
+        .benefit-icon {
+            width: 50px; height: 50px; background: #ecfdf5; color: #059669; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 18px;
         }
 
         /* FOOTER */
@@ -146,7 +167,7 @@
         /* RESPONSIVE */
         @media (max-width: 768px) {
             .container-showcase { grid-template-columns: 1fr; text-align: center; }
-            .hero-img-box { margin-top: 20px; }
+            .hero-slider-box { margin: 0 auto; width: 100%; height: 260px; }
             .search-wrapper { grid-template-columns: 1fr; }
             .showcase h1 { font-size: 32px; }
             .subtitle { font-size: 16px; }
@@ -155,14 +176,13 @@
 </head>
 <body>
 
-    <!-- NAVBAR -->
+    <!-- NAVBAR (TP Logo box removed, clean left-aligned TutorPage + location) -->
     <header class="navbar">
         <div class="nav-container">
-            <div style="display: flex; align-items: center; gap: 12px;">
-                <div style="background: #673de6; color: #fff; width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px;">TP</div>
+            <div style="display: flex; align-items: center;">
                 <div>
-                    <span style="font-size: 18px; font-weight: 700; color: #161616; display: block; line-height: 1.2;">TutorPage</span>
-                    <span style="font-size: 12px; font-weight: 600; color: #dc2626; display: flex; align-items: center; gap: 4px;">
+                    <span style="font-size: 20px; font-weight: 800; color: #161616; display: block; line-height: 1.1; letter-spacing: -0.5px;">TutorPage</span>
+                    <span style="font-size: 12px; font-weight: 700; color: #dc2626; display: flex; align-items: center; gap: 4px; margin-top: 2px;">
                         <i class="fa-solid fa-location-dot"></i> Prayagraj, Allahabad
                     </span>
                 </div>
@@ -173,7 +193,7 @@
         </div>
     </header>
 
-    <!-- SHOWCASE HERO WITH LEFT TEXT & SHADOWLESS PNG -->
+    <!-- SHOWCASE HERO WITH LEFT TEXT & RIGHT IMAGE SLIDER -->
     <section class="showcase">
         <div class="container-showcase">
             <div>
@@ -183,9 +203,15 @@
                 </h1>
                 <p class="subtitle" id="typingSubtitle"></p>
             </div>
-            <div class="hero-img-box">
-                <!-- User provided PNG image on the right (Shadow removed) -->
-                <img src="tutorpage.png" alt="TutorPage Allahabad">
+            <div>
+                <!-- Right Side Automatic Image Slider (4-5 Allahabad / Education images) -->
+                <div class="hero-slider-box">
+                    <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=800&q=80" class="slider-img active" alt="Allahabad Education 1">
+                    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=80" class="slider-img" alt="Studying 2">
+                    <img src="https://images.unsplash.com/photo-1519452635265-7b1fbfd1e4e0?auto=format&fit=crop&w=800&q=80" class="slider-img" alt="Students 3">
+                    <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=800&q=80" class="slider-img" alt="Learning 4">
+                    <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80" class="slider-img" alt="Coaching 5">
+                </div>
             </div>
         </div>
     </section>
@@ -212,7 +238,7 @@
         </div>
     </section>
 
-    <!-- 3rd SECTION: ACADEMIC CATEGORIES -->
+    <!-- 3rd SECTION: ACADEMIC CATEGORIES (Given Life & Premium Makeover) -->
     <section class="categories-section" id="classes">
         <h2 style="font-size: 26px; font-weight: 700; color: #161616; margin-bottom: 6px;">Academic Categories</h2>
         <p style="font-size: 15px; color: #4b4b4b; margin-bottom: 20px;">Find expert tutors mapped to your exact academic standard.</p>
@@ -263,32 +289,26 @@
         </div>
     </section>
 
-    <!-- 4th SECTION: OUR BENEFITS -->
+    <!-- 4th SECTION: OUR BENEFITS (Given Life & Premium Makeover) -->
     <section class="categories-section" id="why-us">
         <h2 style="font-size: 26px; font-weight: 700; color: #161616; margin-bottom: 6px;">Our Benefits</h2>
         <p style="font-size: 15px; color: #4b4b4b; margin-bottom: 20px;">Why students and parents across Allahabad trust TutorPage.</p>
 
-        <div class="categories-grid">
-            <div class="category-card">
-                <div class="category-icon"><i class="fa-solid fa-user-check"></i></div>
-                <div>
-                    <h4 style="font-size: 16px; font-weight: 700; color: #161616;">100% Verified Tutors</h4>
-                    <p style="font-size: 13px; color: #4b4b4b; margin-top: 2px;">Strict qualification and ID checks for safety.</p>
-                </div>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon"><i class="fa-solid fa-user-check"></i></div>
+                <h4 style="font-size: 18px; font-weight: 700; color: #161616; margin-bottom: 8px;">100% Verified Tutors</h4>
+                <p style="font-size: 14px; color: #4b4b4b; line-height: 1.5;">Strict qualification and ID checks for absolute student safety and quality education.</p>
             </div>
-            <div class="category-card">
-                <div class="category-icon"><i class="fa-solid fa-map-location-dot"></i></div>
-                <div>
-                    <h4 style="font-size: 16px; font-weight: 700; color: #161616;">All Allahabad Localities</h4>
-                    <p style="font-size: 13px; color: #4b4b4b; margin-top: 2px;">Civil Lines, Allahpur, Naini & more.</p>
-                </div>
+            <div class="benefit-card">
+                <div class="benefit-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                <h4 style="font-size: 18px; font-weight: 700; color: #161616; margin-bottom: 8px;">All Allahabad Localities</h4>
+                <p style="font-size: 14px; color: #4b4b4b; line-height: 1.5;">Easily find home tutors right in Civil Lines, Allahpur, Naini, George Town, and more.</p>
             </div>
-            <div class="category-card">
-                <div class="category-icon"><i class="fa-solid fa-comments-dollar"></i></div>
-                <div>
-                    <h4 style="font-size: 16px; font-weight: 700; color: #161616;">Direct Connection</h4>
-                    <p style="font-size: 13px; color: #4b4b4b; margin-top: 2px;">Zero brokerage, direct WhatsApp chat.</p>
-                </div>
+            <div class="benefit-card">
+                <div class="benefit-icon"><i class="fa-solid fa-comments-dollar"></i></div>
+                <h4 style="font-size: 18px; font-weight: 700; color: #161616; margin-bottom: 8px;">Direct Connection</h4>
+                <p style="font-size: 14px; color: #4b4b4b; line-height: 1.5;">Zero brokerage or hidden fees. Connect instantly with tutors via direct WhatsApp chat.</p>
             </div>
         </div>
     </section>
@@ -354,8 +374,19 @@
         </div>
     </footer>
 
-    <!-- FIREBASE, TYPING EFFECT & SEARCH SCRIPT -->
+    <!-- FIREBASE, SLIDER, TYPING & SEARCH SCRIPT -->
     <script>
+        // Hero Slider Script (Rotates images every 3 seconds)
+        let currentSlide = 0;
+        const sliderImages = document.querySelectorAll('.slider-img');
+        function rotateSlider() {
+            if(sliderImages.length === 0) return;
+            sliderImages[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % sliderImages.length;
+            sliderImages[currentSlide].classList.add('active');
+        }
+        setInterval(rotateSlider, 3000);
+
         // Typing Effect Script
         const textToType = "Connect with Expert Tutors Near You for All Subjects & Classes.";
         let typingIdx = 0;
@@ -363,13 +394,13 @@
             if (typingIdx < textToType.length) {
                 document.getElementById("typingSubtitle").innerHTML += textToType.charAt(typingIdx);
                 typingIdx++;
-                setTimeout(typeWriter, 35);
+                setTimeout(typeWriter, 30);
             } else {
                 document.getElementById("typingSubtitle").innerHTML += '<span class="typed-cursor">|</span>';
             }
         }
         window.addEventListener('DOMContentLoaded', () => {
-            setTimeout(typeWriter, 400);
+            setTimeout(typeWriter, 300);
             fetchLiveTutors();
         });
 
