@@ -35,6 +35,22 @@
             display: flex; justify-content: space-between; align-items: center;
         }
 
+        /* SMOOTH TOP NAV SLIDER LINKS */
+        .nav-links {
+            display: flex; align-items: center; gap: 24px; list-style: none;
+        }
+        .nav-links li a {
+            font-size: 14px; font-weight: 600; color: #4b4b4b; text-decoration: none; transition: color 0.2s ease;
+        }
+        .nav-links li a:hover {
+            color: #673de6;
+        }
+        .nav-login-btn {
+            padding: 9px 18px; background: #161616; color: #fff; border-radius: 9px;
+            font-size: 13px; font-weight: 700; text-decoration: none; transition: background 0.2s ease;
+        }
+        .nav-login-btn:hover { background: #333333; }
+
         /* SHOWCASE SECTION */
         .showcase {
             width: 100%; min-height: 450px; display: flex; justify-content: center; align-items: center; background: #fff; overflow: hidden;
@@ -55,7 +71,7 @@
         }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-        /* RIGHT SIDE SINGLE STATIC IMAGE (tutorpage.png) */
+        /* RIGHT SIDE STATIC IMAGE */
         .hero-img-box {
             display: flex; justify-content: center; align-items: center;
         }
@@ -82,7 +98,7 @@
         }
         .search-btn:hover { background: #2a2a2a; }
 
-        /* ULTRA PREMIUM TUTOR CARDS WITH SUBTLE BLACK OUTLINE */
+        /* TUTOR CARDS */
         .tutors-section {
             max-width: 1280px; margin: 40px auto; padding: 0 24px;
         }
@@ -96,7 +112,7 @@
         }
         .tutor-card:hover { transform: translateY(-4px); box-shadow: 0 16px 30px rgba(0,0,0,0.08); }
 
-        /* BOOK NOW BUTTON: WhatsApp Green */
+        /* BUTTONS */
         .btn-green-whatsapp {
             width: 100%; height: 48px; border: none; border-radius: 11px;
             background: #22c55e; color: #ffffff; font-family: inherit; font-size: 15px; font-weight: 700;
@@ -106,7 +122,6 @@
         }
         .btn-green-whatsapp:hover { background: #16a34a; }
 
-        /* VIEW PROFILE BUTTON: Rich Black Premium */
         .btn-black-profile {
             width: 100%; height: 48px; border: none; border-radius: 11px;
             background: #161616; color: #ffffff; font-family: inherit; font-size: 15px; font-weight: 700;
@@ -116,7 +131,7 @@
         }
         .btn-black-profile:hover { background: #2a2a2a; }
 
-        /* ACADEMIC CATEGORIES (ULTRA PREMIUM WITH BLACK OUTLINE) */
+        /* ACADEMIC CATEGORIES */
         .categories-section {
             max-width: 1280px; margin: 60px auto; padding: 0 24px;
         }
@@ -127,9 +142,7 @@
             background: #ffffff; border: 1.5px solid #161616; border-radius: 16px; padding: 22px; display: flex; align-items: center; gap: 18px;
             transition: all 0.3s ease; box-shadow: 0 6px 18px rgba(0,0,0,0.03);
         }
-        .category-card:hover {
-            transform: translateY(-4px); box-shadow: 0 12px 25px rgba(22, 22, 22, 0.08);
-        }
+        .category-card:hover { transform: translateY(-4px); box-shadow: 0 12px 25px rgba(22, 22, 22, 0.08); }
         .category-icon {
             width: 52px; height: 52px; background: #161616; color: #ffffff; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0;
         }
@@ -142,9 +155,7 @@
             background: #ffffff; border: 1.5px solid #161616; border-radius: 18px; padding: 28px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.03); transition: all 0.3s ease;
         }
-        .benefit-card:hover {
-            transform: translateY(-4px); box-shadow: 0 15px 35px rgba(22, 22, 22, 0.08);
-        }
+        .benefit-card:hover { transform: translateY(-4px); box-shadow: 0 15px 35px rgba(22, 22, 22, 0.08); }
         .benefit-icon {
             width: 50px; height: 50px; background: #f3f4f6; color: #161616; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 18px; border: 1px solid #d1d5db;
         }
@@ -172,30 +183,37 @@
             .search-wrapper { grid-template-columns: 1fr; }
             .showcase h1 { font-size: 32px; }
             .subtitle { font-size: 16px; }
+            .nav-links { display: none; } /* Mobile can use footer or direct links */
         }
     </style>
 </head>
 <body>
 
-    <!-- NAVBAR -->
+    <!-- NAVBAR WITH BLUE LOCATION ICON & SMOOTH SLIDER/NAV LINKS -->
     <header class="navbar">
         <div class="nav-container">
             <div style="display: flex; align-items: center;">
                 <div>
                     <span style="font-size: 20px; font-weight: 800; color: #161616; display: block; line-height: 1.1; letter-spacing: -0.5px;">TutorPage</span>
-                    <span style="font-size: 12px; font-weight: 700; color: #dc2626; display: flex; align-items: center; gap: 4px; margin-top: 2px;">
-                        <i class="fa-solid fa-location-dot"></i> Prayagraj, Allahabad
+                    <span style="font-size: 12px; font-weight: 700; color: #2563eb; display: flex; align-items: center; gap: 4px; margin-top: 2px;">
+                        <i class="fa-solid fa-location-dot"></i> Prayagraj, Uttar Pradesh
                     </span>
                 </div>
             </div>
-            <div>
-                <a href="login.html" style="padding: 10px 20px; background: #161616; color: #fff; border-radius: 11px; font-size: 14px; font-weight: 600; text-decoration: none;">Teacher Portal</a>
-            </div>
+
+            <!-- Smooth Nav Slider / Links -->
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#tutors">Tutors</a></li>
+                <li><a href="#footer">Contact Us</a></li>
+                <li><a href="login.html">Join Tutors</a></li>
+                <li><a href="login.html" class="nav-login-btn">Login</a></li>
+            </ul>
         </div>
     </header>
 
-    <!-- SHOWCASE HERO WITH STATIC tutorpage.png IMAGE -->
-    <section class="showcase">
+    <!-- SHOWCASE HERO -->
+    <section class="showcase" id="home">
         <div class="container-showcase">
             <div>
                 <h1>
@@ -205,7 +223,6 @@
                 <p class="subtitle" id="typingSubtitle"></p>
             </div>
             <div class="hero-img-box">
-                <!-- Static User PNG Image: tutorpage.png -->
                 <img src="tutorpage.png" alt="TutorPage Allahabad">
             </div>
         </div>
@@ -371,7 +388,6 @@
 
     <!-- FIREBASE, TYPING EFFECT & SEARCH SCRIPT -->
     <script>
-        // Typing Effect Script
         const textToType = "Connect with Expert Tutors Near You for All Subjects & Classes.";
         let typingIdx = 0;
         function typeWriter() {
@@ -460,11 +476,9 @@
                             </div>
                         </div>
                         <div>
-                            <!-- BOOK NOW BUTTON: WhatsApp Green -->
                             <a href="https://wa.me/91${phone}?text=Hi%20${encodeURIComponent(name)},%20I%20found%20your%20profile%20on%20TutorPage%20and%20want%20to%20book%20a%20tuition." target="_blank" class="btn-green-whatsapp">
                                 <i class="fa-brands fa-whatsapp" style="font-size: 18px;"></i> Book Now
                             </a>
-                            <!-- VIEW PROFILE BUTTON: Rich Black Premium -->
                             <a href="https://wa.me/91${phone}?text=Hi%20${encodeURIComponent(name)},%20I%20want%20to%20view%20your%20full%20profile%20details." target="_blank" class="btn-black-profile">
                                 <i class="fa-solid fa-user"></i> View Profile
                             </a>
