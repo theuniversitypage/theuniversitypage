@@ -5,32 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>TutorPage | Allahabad में अपना Perfect Tutor खोजें</title>
     
-    <!-- Meta SEO -->
     <meta name="description" content="Find verified home and online tutors in Allahabad/Prayagraj for Mathematics, Science, English, and competitive exams.">
     <link rel="canonical" href="https://tutorpage.in/">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: { 50: '#eef2ff', 100: '#e0e7ff', 600: '#4f46e5', 700: '#4338ca' }
-                    }
-                }
-            }
-        }
-    </script>
-    
-    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
-    </style>
+    <!-- Firebase SDK Compat -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
+    <style> body { font-family: 'Plus Jakarta Sans', sans-serif; } </style>
 </head>
 <body class="bg-slate-50 text-slate-800 pb-20 md:pb-0">
 
@@ -40,7 +28,7 @@
             <span><i class="fa-solid fa-location-dot text-rose-400 mr-1"></i> Prayagraj / Allahabad, Uttar Pradesh</span>
             <div class="space-x-4 hidden md:block">
                 <a href="#contact" class="hover:underline">Help & Support</a>
-                <a href="#admin" class="hover:underline text-indigo-300 font-semibold"><i class="fa-solid fa-lock mr-1"></i> Admin Portal</a>
+                <a href="login.html" class="hover:underline text-indigo-300 font-semibold"><i class="fa-solid fa-lock mr-1"></i> Admin Portal</a>
             </div>
         </div>
     </div>
@@ -49,9 +37,7 @@
     <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <a href="#" class="flex items-center space-x-2">
-                <div class="bg-indigo-600 text-white p-2.5 rounded-xl text-xl font-black tracking-wider shadow-md shadow-indigo-200">
-                    TP
-                </div>
+                <div class="bg-indigo-600 text-white p-2.5 rounded-xl text-xl font-black tracking-wider shadow-md shadow-indigo-200">TP</div>
                 <div>
                     <span class="text-2xl font-extrabold tracking-tight text-slate-900">Tutor<span class="text-indigo-600">Page</span></span>
                     <span class="block text-[10px] uppercase tracking-wider font-bold text-slate-400">Allahabad Edition</span>
@@ -61,26 +47,19 @@
             <nav class="hidden md:flex items-center space-x-8 font-semibold text-sm text-slate-600">
                 <a href="#home" class="text-indigo-600">Home</a>
                 <a href="#find-tutor" class="hover:text-indigo-600 transition">Find Tutor</a>
-                <a href="#classes" class="hover:text-indigo-600 transition">Classes</a>
-                <a href="#areas" class="hover:text-indigo-600 transition">Popular Areas</a>
-                <a href="#post-requirement" class="hover:text-indigo-600 transition">Post Requirement</a>
+                <a href="login.html" class="hover:text-indigo-600 transition text-indigo-600 font-bold">Teacher Login</a>
             </nav>
 
             <div class="hidden md:flex items-center space-x-3">
-                <a href="#post-requirement" class="px-4 py-2 text-sm font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 rounded-xl transition">
-                    Post Requirement
-                </a>
-                <a href="#become-tutor" class="px-4 py-2 text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-lg shadow-indigo-200 transition">
+                <a href="login.html" class="px-4 py-2 text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-lg shadow-indigo-200 transition">
                     Become a Tutor
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- 1. HERO SECTION -->
+    <!-- HERO SECTION -->
     <section id="home" class="relative bg-gradient-to-b from-indigo-900 via-indigo-800 to-slate-900 text-white py-20 px-4 overflow-hidden">
-        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#e0e7ff_1px,transparent_1px)] [background-size:16px_16px]"></div>
-        
         <div class="max-w-5xl mx-auto text-center relative z-10">
             <span class="bg-indigo-700/60 border border-indigo-400/30 text-indigo-200 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider mb-6 inline-block">
                 #1 Verified Tutor Discovery Platform in Prayagraj
@@ -88,756 +67,93 @@
             <h1 class="text-4xl sm:text-6xl font-black tracking-tight mb-6">
                 Allahabad में अपना <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-emerald-300">Perfect Tutor</span> खोजें
             </h1>
-            <p class="text-lg sm:text-xl text-indigo-200 max-w-2xl mx-auto mb-10 font-medium">
-                Class, Subject और Location के हिसाब से सही Tutor खोजें और अपनी पढ़ाई शुरू करें।
-            </p>
-
-            <!-- Search Panel -->
-            <div class="bg-white p-4 sm:p-6 rounded-3xl shadow-2xl text-slate-800 max-w-4xl mx-auto text-left">
-                <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 px-2">
-                    <i class="fa-solid fa-magnifying-glass text-indigo-600 mr-1"></i> मुझे Tutor चाहिए
-                </div>
-                
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
-                    <div>
-                        <label class="block text-xs font-bold text-slate-600 mb-1">Select Class</label>
-                        <select id="searchClass" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-sm font-semibold focus:outline-none focus:border-indigo-600">
-                            <option value="">All Classes</option>
-                            <option value="Class 9-10">Class 9–10</option>
-                            <option value="Class 11-12">Class 11–12</option>
-                            <option value="Graduation">Graduation</option>
-                            <option value="Competitive">Competitive Exams</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-600 mb-1">Select Subject</label>
-                        <select id="searchSubject" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-sm font-semibold focus:outline-none focus:border-indigo-600">
-                            <option value="">All Subjects</option>
-                            <option value="Mathematics">Mathematics</option>
-                            <option value="Science">Science</option>
-                            <option value="Physics">Physics</option>
-                            <option value="Chemistry">Chemistry</option>
-                            <option value="English">English</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-600 mb-1">Select Area</label>
-                        <select id="searchArea" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-sm font-semibold focus:outline-none focus:border-indigo-600">
-                            <option value="">All Allahabad Areas</option>
-                            <option value="Civil Lines">Civil Lines</option>
-                            <option value="Allahpur">Allahpur</option>
-                            <option value="George Town">George Town</option>
-                            <option value="Teliarganj">Teliarganj</option>
-                            <option value="Naini">Naini</option>
-                            <option value="Tagore Town">Tagore Town</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-600 mb-1">Tuition Mode</label>
-                        <select id="searchMode" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-sm font-semibold focus:outline-none focus:border-indigo-600">
-                            <option value="">Home / Online</option>
-                            <option value="Home Tuition">Home Tuition</option>
-                            <option value="Online Tuition">Online Tuition</option>
-                        </select>
-                    </div>
-                </div>
-
-                <button onclick="triggerSearch()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 rounded-2xl shadow-lg shadow-indigo-200 transition flex items-center justify-center space-x-2 text-base">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <span>Find Tutor</span>
-                </button>
-            </div>
-
-            <!-- Trust badges below search -->
-            <div class="mt-8 flex flex-wrap justify-center items-center gap-6 text-xs sm:text-sm text-indigo-200 font-semibold">
-                <span><i class="fa-solid fa-check text-emerald-400 mr-1"></i> Multiple Tutors</span>
-                <span>•</span>
-                <span><i class="fa-solid fa-check text-emerald-400 mr-1"></i> Multiple Subjects</span>
-                <span>•</span>
-                <span><i class="fa-solid fa-check text-emerald-400 mr-1"></i> Multiple Areas</span>
-                <span>•</span>
-                <span><i class="fa-solid fa-check text-emerald-400 mr-1"></i> Easy Enquiry</span>
-            </div>
         </div>
     </section>
 
-    <!-- 2. QUICK ACTIONS CARDS -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-20 mb-16">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <a href="#find-tutor" class="bg-white p-6 rounded-3xl shadow-xl border border-slate-100 hover:border-indigo-200 transition group">
-                <div class="w-12 h-12 bg-indigo-50 group-hover:bg-indigo-600 text-indigo-600 group-hover:text-white rounded-2xl flex items-center justify-center text-xl font-bold mb-4 transition">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </div>
-                <h3 class="text-lg font-extrabold text-slate-900 mb-1">Find a Tutor</h3>
-                <p class="text-sm text-slate-500 font-medium">अपनी जरूरत के अनुसार Allahabad में Tutor खोजें।</p>
-            </a>
-
-            <a href="#become-tutor" class="bg-white p-6 rounded-3xl shadow-xl border border-slate-100 hover:border-indigo-200 transition group">
-                <div class="w-12 h-12 bg-emerald-50 group-hover:bg-emerald-600 text-emerald-600 group-hover:text-white rounded-2xl flex items-center justify-center text-xl font-bold mb-4 transition">
-                    <i class="fa-solid fa-chalkboard-user"></i>
-                </div>
-                <h3 class="text-lg font-extrabold text-slate-900 mb-1">Become a Tutor</h3>
-                <p class="text-sm text-slate-500 font-medium">Tutor के रूप में अपना Profile बनाएं और छात्र पाएं।</p>
-            </a>
-
-            <a href="#post-requirement" class="bg-white p-6 rounded-3xl shadow-xl border border-slate-100 hover:border-indigo-200 transition group">
-                <div class="w-12 h-12 bg-amber-50 group-hover:bg-amber-600 text-amber-600 group-hover:text-white rounded-2xl flex items-center justify-center text-xl font-bold mb-4 transition">
-                    <i class="fa-solid fa-file-pen"></i>
-                </div>
-                <h3 class="text-lg font-extrabold text-slate-900 mb-1">Post Your Requirement</h3>
-                <p class="text-sm text-slate-500 font-medium">अपनी Tuition Requirement Submit करें, हम ट्यूटर भेजेंगे।</p>
-            </a>
-        </div>
-    </section>
-
-    <!-- 3. POPULAR CLASSES -->
-    <section id="classes" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
-        <div class="flex justify-between items-end mb-8">
-            <div>
-                <span class="text-indigo-600 font-extrabold text-xs uppercase tracking-widest">Academic Categories</span>
-                <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-1">किस Class के लिए Tutor चाहिए?</h2>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-            <!-- Class Card 1 -->
-            <div onclick="filterByClass('Class 1-5')" class="bg-white p-5 rounded-2xl border border-slate-200 hover:border-indigo-600 hover:shadow-lg transition cursor-pointer text-center group">
-                <div class="text-3xl mb-3 text-indigo-500 group-hover:scale-110 transition"><i class="fa-solid fa-child-reaching"></i></div>
-                <h4 class="font-extrabold text-slate-900 mb-1">Class 1–5</h4>
-                <p class="text-xs text-slate-400 font-bold mb-3"><span class="tutor-count-c1">42</span> Tutors Available</p>
-                <span class="text-xs font-bold text-indigo-600 group-hover:underline">Find Tutors →</span>
-            </div>
-            <!-- Class Card 2 -->
-            <div onclick="filterByClass('Class 6-8')" class="bg-white p-5 rounded-2xl border border-slate-200 hover:border-indigo-600 hover:shadow-lg transition cursor-pointer text-center group">
-                <div class="text-3xl mb-3 text-indigo-500 group-hover:scale-110 transition"><i class="fa-solid fa-book-open-reader"></i></div>
-                <h4 class="font-extrabold text-slate-900 mb-1">Class 6–8</h4>
-                <p class="text-xs text-slate-400 font-bold mb-3"><span class="tutor-count-c2">68</span> Tutors Available</p>
-                <span class="text-xs font-bold text-indigo-600 group-hover:underline">Find Tutors →</span>
-            </div>
-            <!-- Class Card 3 -->
-            <div onclick="filterByClass('Class 9-10')" class="bg-white p-5 rounded-2xl border border-slate-200 hover:border-indigo-600 hover:shadow-lg transition cursor-pointer text-center group">
-                <div class="text-3xl mb-3 text-indigo-500 group-hover:scale-110 transition"><i class="fa-solid fa-graduation-cap"></i></div>
-                <h4 class="font-extrabold text-slate-900 mb-1">Class 9–10</h4>
-                <p class="text-xs text-slate-400 font-bold mb-3"><span class="tutor-count-c3">95</span> Tutors Available</p>
-                <span class="text-xs font-bold text-indigo-600 group-hover:underline">Find Tutors →</span>
-            </div>
-            <!-- Class Card 4 -->
-            <div onclick="filterByClass('Class 11-12')" class="bg-white p-5 rounded-2xl border border-slate-200 hover:border-indigo-600 hover:shadow-lg transition cursor-pointer text-center group">
-                <div class="text-3xl mb-3 text-indigo-500 group-hover:scale-110 transition"><i class="fa-solid fa-atom"></i></div>
-                <h4 class="font-extrabold text-slate-900 mb-1">Class 11–12</h4>
-                <p class="text-xs text-slate-400 font-bold mb-3"><span class="tutor-count-c4">110</span> Tutors Available</p>
-                <span class="text-xs font-bold text-indigo-600 group-hover:underline">Find Tutors →</span>
-            </div>
-            <!-- Class Card 5 -->
-            <div onclick="filterByClass('Graduation')" class="bg-white p-5 rounded-2xl border border-slate-200 hover:border-indigo-600 hover:shadow-lg transition cursor-pointer text-center group">
-                <div class="text-3xl mb-3 text-indigo-500 group-hover:scale-110 transition"><i class="fa-solid fa-user-tie"></i></div>
-                <h4 class="font-extrabold text-slate-900 mb-1">Graduation</h4>
-                <p class="text-xs text-slate-400 font-bold mb-3"><span class="tutor-count-c5">34</span> Tutors Available</p>
-                <span class="text-xs font-bold text-indigo-600 group-hover:underline">Find Tutors →</span>
-            </div>
-            <!-- Class Card 6 -->
-            <div onclick="filterByClass('Competitive')" class="bg-white p-5 rounded-2xl border border-slate-200 hover:border-indigo-600 hover:shadow-lg transition cursor-pointer text-center group">
-                <div class="text-3xl mb-3 text-indigo-500 group-hover:scale-110 transition"><i class="fa-solid fa-bullseye"></i></div>
-                <h4 class="font-extrabold text-slate-900 mb-1">Competitive</h4>
-                <p class="text-xs text-slate-400 font-bold mb-3"><span class="tutor-count-c6">52</span> Tutors Available</p>
-                <span class="text-xs font-bold text-indigo-600 group-hover:underline">Find Tutors →</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- 4. POPULAR SUBJECTS -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
-        <div class="flex justify-between items-end mb-8">
-            <div>
-                <span class="text-indigo-600 font-extrabold text-xs uppercase tracking-widest">Expertise</span>
-                <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-1">Popular Subjects</h2>
-            </div>
-            <a href="#find-tutor" class="text-sm font-bold text-indigo-600 hover:underline">View All Subjects →</a>
-        </div>
-
-        <div class="flex flex-wrap gap-2.5" id="subjectChipsContainer">
-            <!-- Dynamic Subject Pills -->
-            <button onclick="filterBySubject('Mathematics')" class="bg-white border border-slate-200 hover:bg-indigo-600 hover:text-white hover:border-indigo-600 px-4 py-2.5 rounded-xl font-bold text-sm shadow-sm transition">Mathematics</button>
-            <button onclick="filterBySubject('Science')" class="bg-white border border-slate-200 hover:bg-indigo-600 hover:text-white hover:border-indigo-600 px-4 py-2.5 rounded-xl font-bold text-sm shadow-sm transition">Science</button>
-            <button onclick="filterBySubject('Physics')" class="bg-white border border-slate-200 hover:bg-indigo-600 hover:text-white hover:border-indigo-600 px-4 py-2.5 rounded-xl font-bold text-sm shadow-sm transition">Physics</button>
-            <button onclick="filterBySubject('Chemistry')" class="bg-white border border-slate-200 hover:bg-indigo-600 hover:text-white hover:border-indigo-600 px-4 py-2.5 rounded-xl font-bold text-sm shadow-sm transition">Chemistry</button>
-            <button onclick="filterBySubject('Biology')" class="bg-white border border-slate-200 hover:bg-indigo-600 hover:text-white hover:border-indigo-600 px-4 py-2.5 rounded-xl font-bold text-sm shadow-sm transition">Biology</button>
-            <button onclick="filterBySubject('English')" class="bg-white border border-slate-200 hover:bg-indigo-600 hover:text-white hover:border-indigo-600 px-4 py-2.5 rounded-xl font-bold text-sm shadow-sm transition">English</button>
-            <button onclick="filterBySubject('Hindi')" class="bg-white border border-slate-200 hover:bg-indigo-600 hover:text-white hover:border-indigo-600 px-4 py-2.5 rounded-xl font-bold text-sm shadow-sm transition">Hindi</button>
-            <button onclick="filterBySubject('Social Science')" class="bg-white border border-slate-200 hover:bg-indigo-600 hover:text-white hover:border-indigo-600 px-4 py-2.5 rounded-xl font-bold text-sm shadow-sm transition">Social Science</button>
-            <button onclick="filterBySubject('Computer')" class="bg-white border border-slate-200 hover:bg-indigo-600 hover:text-white hover:border-indigo-600 px-4 py-2.5 rounded-xl font-bold text-sm shadow-sm transition">Computer</button>
-            <button onclick="filterBySubject('Accounts')" class="bg-white border border-slate-200 hover:bg-indigo-600 hover:text-white hover:border-indigo-600 px-4 py-2.5 rounded-xl font-bold text-sm shadow-sm transition">Accounts</button>
-            <button onclick="filterBySubject('Economics')" class="bg-white border border-slate-200 hover:bg-indigo-600 hover:text-white hover:border-indigo-600 px-4 py-2.5 rounded-xl font-bold text-sm shadow-sm transition">Economics</button>
-            <button onclick="filterBySubject('Urdu')" class="bg-white border border-slate-200 hover:bg-indigo-600 hover:text-white hover:border-indigo-600 px-4 py-2.5 rounded-xl font-bold text-sm shadow-sm transition">Urdu</button>
-        </div>
-    </section>
-
-    <!-- 5. POPULAR AREAS (Localities) -->
-    <section id="areas" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
-        <div class="mb-8">
-            <span class="text-indigo-600 font-extrabold text-xs uppercase tracking-widest">Prayagraj Locations</span>
-            <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-1">Allahabad में अपने Area का Tutor खोजें</h2>
-        </div>
-
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-            <!-- Area 1 -->
-            <div onclick="filterByArea('Civil Lines')" class="bg-white p-4 rounded-2xl border border-slate-200 hover:border-indigo-600 hover:shadow-md transition cursor-pointer flex items-center space-x-3 group">
-                <div class="w-10 h-10 bg-indigo-50 group-hover:bg-indigo-600 text-indigo-600 group-hover:text-white rounded-xl flex items-center justify-center font-bold transition"><i class="fa-solid fa-location-dot"></i></div>
-                <div>
-                    <h5 class="font-extrabold text-sm text-slate-900">Civil Lines</h5>
-                    <span class="text-[11px] text-slate-400 font-bold">38 Tutors</span>
-                </div>
-            </div>
-            <!-- Area 2 -->
-            <div onclick="filterByArea('Allahpur')" class="bg-white p-4 rounded-2xl border border-slate-200 hover:border-indigo-600 hover:shadow-md transition cursor-pointer flex items-center space-x-3 group">
-                <div class="w-10 h-10 bg-indigo-50 group-hover:bg-indigo-600 text-indigo-600 group-hover:text-white rounded-xl flex items-center justify-center font-bold transition"><i class="fa-solid fa-location-dot"></i></div>
-                <div>
-                    <h5 class="font-extrabold text-sm text-slate-900">Allahpur</h5>
-                    <span class="text-[11px] text-slate-400 font-bold">45 Tutors</span>
-                </div>
-            </div>
-            <!-- Area 3 -->
-            <div onclick="filterByArea('George Town')" class="bg-white p-4 rounded-2xl border border-slate-200 hover:border-indigo-600 hover:shadow-md transition cursor-pointer flex items-center space-x-3 group">
-                <div class="w-10 h-10 bg-indigo-50 group-hover:bg-indigo-600 text-indigo-600 group-hover:text-white rounded-xl flex items-center justify-center font-bold transition"><i class="fa-solid fa-location-dot"></i></div>
-                <div>
-                    <h5 class="font-extrabold text-sm text-slate-900">George Town</h5>
-                    <span class="text-[11px] text-slate-400 font-bold">29 Tutors</span>
-                </div>
-            </div>
-            <!-- Area 4 -->
-            <div onclick="filterByArea('Teliarganj')" class="bg-white p-4 rounded-2xl border border-slate-200 hover:border-indigo-600 hover:shadow-md transition cursor-pointer flex items-center space-x-3 group">
-                <div class="w-10 h-10 bg-indigo-50 group-hover:bg-indigo-600 text-indigo-600 group-hover:text-white rounded-xl flex items-center justify-center font-bold transition"><i class="fa-solid fa-location-dot"></i></div>
-                <div>
-                    <h5 class="font-extrabold text-sm text-slate-900">Teliarganj</h5>
-                    <span class="text-[11px] text-slate-400 font-bold">51 Tutors</span>
-                </div>
-            </div>
-            <!-- Area 5 -->
-            <div onclick="filterByArea('Naini')" class="bg-white p-4 rounded-2xl border border-slate-200 hover:border-indigo-600 hover:shadow-md transition cursor-pointer flex items-center space-x-3 group">
-                <div class="w-10 h-10 bg-indigo-50 group-hover:bg-indigo-600 text-indigo-600 group-hover:text-white rounded-xl flex items-center justify-center font-bold transition"><i class="fa-solid fa-location-dot"></i></div>
-                <div>
-                    <h5 class="font-extrabold text-sm text-slate-900">Naini</h5>
-                    <span class="text-[11px] text-slate-400 font-bold">40 Tutors</span>
-                </div>
-            </div>
-            <!-- Area 6 -->
-            <div onclick="filterByArea('Jhunsi')" class="bg-white p-4 rounded-2xl border border-slate-200 hover:border-indigo-600 hover:shadow-md transition cursor-pointer flex items-center space-x-3 group">
-                <div class="w-10 h-10 bg-indigo-50 group-hover:bg-indigo-600 text-indigo-600 group-hover:text-white rounded-xl flex items-center justify-center font-bold transition"><i class="fa-solid fa-location-dot"></i></div>
-                <div>
-                    <h5 class="font-extrabold text-sm text-slate-900">Jhunsi</h5>
-                    <span class="text-[11px] text-slate-400 font-bold">22 Tutors</span>
-                </div>
-            </div>
-            <!-- Area 7 -->
-            <div onclick="filterByArea('Tagore Town')" class="bg-white p-4 rounded-2xl border border-slate-200 hover:border-indigo-600 hover:shadow-md transition cursor-pointer flex items-center space-x-3 group">
-                <div class="w-10 h-10 bg-indigo-50 group-hover:bg-indigo-600 text-indigo-600 group-hover:text-white rounded-xl flex items-center justify-center font-bold transition"><i class="fa-solid fa-location-dot"></i></div>
-                <div>
-                    <h5 class="font-extrabold text-sm text-slate-900">Tagore Town</h5>
-                    <span class="text-[11px] text-slate-400 font-bold">33 Tutors</span>
-                </div>
-            </div>
-            <!-- Area 8 -->
-            <div onclick="filterByArea('Katra')" class="bg-white p-4 rounded-2xl border border-slate-200 hover:border-indigo-600 hover:shadow-md transition cursor-pointer flex items-center space-x-3 group">
-                <div class="w-10 h-10 bg-indigo-50 group-hover:bg-indigo-600 text-indigo-600 group-hover:text-white rounded-xl flex items-center justify-center font-bold transition"><i class="fa-solid fa-location-dot"></i></div>
-                <div>
-                    <h5 class="font-extrabold text-sm text-slate-900">Katra</h5>
-                    <span class="text-[11px] text-slate-400 font-bold">36 Tutors</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 6 & 7. FIND TUTOR PAGE / LISTING SECTION -->
-    <section id="find-tutor" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20 scroll-mt-24">
+    <!-- LIVE TUTORS DIRECTORY -->
+    <section id="find-tutor" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-20 scroll-mt-24">
         <div class="mb-8">
             <span class="text-indigo-600 font-extrabold text-xs uppercase tracking-widest">Marketplace Directory</span>
-            <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-1">Top Tutors in Allahabad</h2>
+            <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-1">Top Verified Tutors in Allahabad</h2>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
-            <!-- Sidebar Filters -->
-            <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm h-fit space-y-6">
-                <div class="flex justify-between items-center border-b border-slate-100 pb-4">
-                    <h3 class="font-extrabold text-slate-900 text-lg"><i class="fa-solid fa-filter text-indigo-600 mr-2"></i> Filters</h3>
-                    <button onclick="resetFilters()" class="text-xs font-bold text-rose-500 hover:underline">Reset All</button>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-slate-600 mb-2">Teaching Mode</label>
-                    <select id="filterMode" onchange="applyFilters()" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-sm font-semibold">
-                        <option value="">All Modes</option>
-                        <option value="Home Tuition">Home Tuition</option>
-                        <option value="Online Tuition">Online Tuition</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-slate-600 mb-2">Board</label>
-                    <select id="filterBoard" onchange="applyFilters()" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-sm font-semibold">
-                        <option value="">All Boards</option>
-                        <option value="CBSE">CBSE</option>
-                        <option value="ICSE">ICSE</option>
-                        <option value="UP Board">UP Board</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-slate-600 mb-2">Maximum Monthly Fee</label>
-                    <input type="range" id="filterFee" min="500" max="10000" step="500" value="10000" oninput="applyFilters()" class="w-full accent-indigo-600">
-                    <div class="flex justify-between text-xs font-bold text-slate-400 mt-1">
-                        <span>₹500</span>
-                        <span id="feeLabel" class="text-indigo-600 font-extrabold">₹10,000</span>
-                    </div>
-                </div>
-
-                <div class="flex items-center space-x-2 pt-2 border-t border-slate-100">
-                    <input type="checkbox" id="filterVerified" onchange="applyFilters()" class="w-4 h-4 accent-indigo-600 rounded">
-                    <label for="filterVerified" class="text-sm font-bold text-slate-700">Admin Verified Only <i class="fa-solid fa-circle-check text-blue-500 text-xs"></i></label>
-                </div>
-            </div>
-
-            <!-- Tutor Cards Grid & Results -->
-            <div class="lg:col-span-3 space-y-6">
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white p-4 rounded-2xl border border-slate-200 gap-4">
-                    <p class="text-sm font-bold text-slate-600"><span id="tutorCount" class="text-indigo-600 font-black">0</span> Tutors Found</p>
-                    <div class="flex items-center space-x-2 w-full sm:w-auto">
-                        <span class="text-xs font-bold text-slate-400 whitespace-nowrap">Sort by:</span>
-                        <select id="sortBy" onchange="applyFilters()" class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-1.5 text-xs font-bold text-slate-700 focus:outline-none">
-                            <option value="recommended">Recommended</option>
-                            <option value="rating">Highest Rated</option>
-                            <option value="feeLow">Lowest Fee</option>
-                            <option value="exp">Most Experienced</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Tutors Dynamic Grid -->
-                <div id="tutorsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Dynamic cards injected via JS -->
-                </div>
-
-                <!-- Empty State -->
-                <div id="noTutorsState" class="hidden bg-white p-12 rounded-3xl border border-slate-200 text-center">
-                    <div class="w-16 h-16 bg-rose-50 text-rose-500 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
-                        <i class="fa-solid fa-user-slash"></i>
-                    </div>
-                    <h3 class="text-lg font-black text-slate-900 mb-1">No Tutors Found</h3>
-                    <p class="text-sm text-slate-500 mb-6 font-medium">आपकी इस requirement के अनुसार अभी कोई ट्यूटर उपलब्ध नहीं है। अपनी requirement सबमिट करें!</p>
-                    <a href="#post-requirement" class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-6 py-3 rounded-2xl shadow-lg shadow-indigo-200 transition">
-                        Post Your Requirement
-                    </a>
-                </div>
-            </div>
+        <div id="tutorsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Dynamically Loaded from Firebase -->
+            <div class="col-span-3 text-center py-12 text-slate-400 font-bold">Loading verified tutors from database...</div>
         </div>
     </section>
 
-    <!-- 11. HOW TUTORPAGE WORKS -->
-    <section class="bg-indigo-900 text-white py-20 px-4 mb-20 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto relative z-10">
-            <div class="text-center max-w-2xl mx-auto mb-16">
-                <span class="bg-indigo-800 text-indigo-300 text-xs font-extrabold px-4 py-1.5 rounded-full uppercase tracking-widest border border-indigo-700">Simple Process</span>
-                <h2 class="text-3xl sm:text-4xl font-black mt-3">How TutorPage Works</h2>
-                <p class="text-indigo-200 text-sm mt-2 font-medium">चार आसान चरणों में अपने लिए सर्वश्रेष्ठ शिक्षक चुनें।</p>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="bg-indigo-800/50 border border-indigo-700/50 p-6 rounded-3xl backdrop-blur-sm relative">
-                    <span class="text-4xl font-black text-indigo-400 absolute top-4 right-6 opacity-40">01</span>
-                    <div class="w-12 h-12 bg-indigo-600 rounded-2xl flex items-center justify-center text-xl font-bold mb-4 shadow-md"><i class="fa-solid fa-magnifying-glass"></i></div>
-                    <h4 class="text-lg font-bold mb-2">Search</h4>
-                    <p class="text-xs text-indigo-200 font-medium">Class, Subject और Area select करें और ट्यूटर्स की सूची देखें।</p>
-                </div>
-                <div class="bg-indigo-800/50 border border-indigo-700/50 p-6 rounded-3xl backdrop-blur-sm relative">
-                    <span class="text-4xl font-black text-indigo-400 absolute top-4 right-6 opacity-40">02</span>
-                    <div class="w-12 h-12 bg-indigo-600 rounded-2xl flex items-center justify-center text-xl font-bold mb-4 shadow-md"><i class="fa-solid fa-scale-balanced"></i></div>
-                    <h4 class="text-lg font-bold mb-2">Compare</h4>
-                    <p class="text-xs text-indigo-200 font-medium">Different Tutors की profile, experience और fees तुलना करें।</p>
-                </div>
-                <div class="bg-indigo-800/50 border border-indigo-700/50 p-6 rounded-3xl backdrop-blur-sm relative">
-                    <span class="text-4xl font-black text-indigo-400 absolute top-4 right-6 opacity-40">03</span>
-                    <div class="w-12 h-12 bg-indigo-600 rounded-2xl flex items-center justify-center text-xl font-bold mb-4 shadow-md"><i class="fa-solid fa-comments"></i></div>
-                    <h4 class="text-lg font-bold mb-2">Contact</h4>
-                    <p class="text-xs text-indigo-200 font-medium">Tutor को enquiry भेजें या सीधा WhatsApp पर बातचीत करें।</p>
-                </div>
-                <div class="bg-indigo-800/50 border border-indigo-700/50 p-6 rounded-3xl backdrop-blur-sm relative">
-                    <span class="text-4xl font-black text-indigo-400 absolute top-4 right-6 opacity-40">04</span>
-                    <div class="w-12 h-12 bg-indigo-600 rounded-2xl flex items-center justify-center text-xl font-bold mb-4 shadow-md"><i class="fa-solid fa-graduation-cap"></i></div>
-                    <h4 class="text-lg font-bold mb-2">Start Learning</h4>
-                    <p class="text-xs text-indigo-200 font-medium">Demo और Discussion के बाद अपनी home या online tuition शुरू करें।</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 9. POST YOUR REQUIREMENT FORM -->
-    <section id="post-requirement" class="max-w-4xl mx-auto px-4 mb-20 scroll-mt-24">
-        <div class="bg-white p-8 sm:p-12 rounded-3xl border border-slate-200 shadow-xl relative overflow-hidden">
-            <div class="absolute top-0 right-0 w-32 h-32 bg-indigo-50 rounded-bl-full -z-10"></div>
-            
-            <div class="text-center max-w-xl mx-auto mb-8">
-                <span class="bg-amber-100 text-amber-700 text-xs font-extrabold px-3.5 py-1 rounded-full uppercase tracking-wider">Fast Matching</span>
-                <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-2">Tutor नहीं मिल रहा? अपनी Requirement भेजें</h2>
-                <p class="text-sm text-slate-500 font-medium mt-1">फॉर्म भरें, हमारी टीम Allahabad में आपके लिए बेस्ट ट्यूटर ढूंढकर संपर्क करेगी।</p>
-            </div>
-
-            <form id="requirementForm" onsubmit="handleRequirementSubmit(event)" class="space-y-4">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700 mb-1">Student Name *</label>
-                        <input type="text" id="reqStudent" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold focus:outline-none focus:border-indigo-600" placeholder="e.g. Aman Gupta">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700 mb-1">Parent Name *</label>
-                        <input type="text" id="reqParent" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold focus:outline-none focus:border-indigo-600" placeholder="e.g. Rajesh Gupta">
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700 mb-1">Class *</label>
-                        <select id="reqClass" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold focus:outline-none focus:border-indigo-600">
-                            <option value="Class 9-10">Class 9-10</option>
-                            <option value="Class 11-12">Class 11-12</option>
-                            <option value="Graduation">Graduation</option>
-                            <option value="Competitive">Competitive Exams</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700 mb-1">Subject *</label>
-                        <input type="text" id="reqSubject" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold focus:outline-none focus:border-indigo-600" placeholder="e.g. Mathematics">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700 mb-1">Area in Allahabad *</label>
-                        <select id="reqArea" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold focus:outline-none focus:border-indigo-600">
-                            <option value="Civil Lines">Civil Lines</option>
-                            <option value="Allahpur">Allahpur</option>
-                            <option value="George Town">George Town</option>
-                            <option value="Teliarganj">Teliarganj</option>
-                            <option value="Naini">Naini</option>
-                            <option value="Tagore Town">Tagore Town</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700 mb-1">Tuition Mode *</label>
-                        <select id="reqMode" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold focus:outline-none focus:border-indigo-600">
-                            <option value="Home Tuition">Home Tuition</option>
-                            <option value="Online Tuition">Online Tuition</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700 mb-1">Parent Mobile Number *</label>
-                        <input type="tel" id="reqPhone" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold focus:outline-none focus:border-indigo-600" placeholder="10-digit mobile number">
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-slate-700 mb-1">Additional Requirements / Budget</label>
-                    <textarea id="reqDetails" rows="3" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold focus:outline-none focus:border-indigo-600" placeholder="e.g. Need female tutor, Budget around ₹4000/month..."></textarea>
-                </div>
-
-                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-black py-4 rounded-2xl shadow-xl shadow-indigo-200 transition text-base">
-                    Find My Tutor
-                </button>
-            </form>
-
-            <div id="reqSuccessMsg" class="hidden bg-emerald-50 border border-emerald-200 text-emerald-800 p-6 rounded-2xl text-center font-bold">
-                <i class="fa-solid fa-circle-check text-2xl text-emerald-600 mb-2"></i>
-                <p>Your requirement has been submitted successfully. Our team will contact you shortly.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 10. BECOME A TUTOR -->
-    <section id="become-tutor" class="max-w-4xl mx-auto px-4 mb-20 scroll-mt-24">
-        <div class="bg-white p-8 sm:p-12 rounded-3xl border border-slate-200 shadow-xl">
-            <div class="text-center max-w-xl mx-auto mb-8">
-                <span class="bg-emerald-100 text-emerald-800 text-xs font-extrabold px-3.5 py-1 rounded-full uppercase tracking-wider">Join As Educator</span>
-                <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-2">Allahabad में Students तक पहुँचें</h2>
-                <p class="text-sm text-slate-500 font-medium mt-1">TutorPage पर अपना profile बनाएं और students/parents तक अपनी teaching services पहुँचाएं।</p>
-            </div>
-
-            <form id="tutorRegForm" onsubmit="handleTutorRegister(event)" class="space-y-4">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700 mb-1">Full Name *</label>
-                        <input type="text" id="tName" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold focus:outline-none focus:border-indigo-600" placeholder="e.g. Rahul Kumar">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700 mb-1">Mobile Number *</label>
-                        <input type="tel" id="tPhone" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold focus:outline-none focus:border-indigo-600" placeholder="10-digit mobile number">
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700 mb-1">Highest Qualification *</label>
-                        <input type="text" id="tQual" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold focus:outline-none focus:border-indigo-600" placeholder="e.g. M.Sc. Mathematics">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700 mb-1">Teaching Experience *</label>
-                        <input type="text" id="tExp" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold focus:outline-none focus:border-indigo-600" placeholder="e.g. 5+ Years">
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700 mb-1">Expert Subjects (Comma separated) *</label>
-                        <input type="text" id="tSubjects" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold focus:outline-none focus:border-indigo-600" placeholder="e.g. Mathematics, Physics">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700 mb-1">Preferred Locality in Allahabad *</label>
-                        <input type="text" id="tArea" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold focus:outline-none focus:border-indigo-600" placeholder="e.g. Allahpur, Civil Lines">
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700 mb-1">Teaching Mode *</label>
-                        <select id="tMode" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold focus:outline-none focus:border-indigo-600">
-                            <option value="Home Tuition">Home Tuition</option>
-                            <option value="Online Tuition">Online Tuition</option>
-                            <option value="Both Home & Online">Both Home & Online</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700 mb-1">Expected Monthly Fee (₹) *</label>
-                        <input type="number" id="tFee" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold focus:outline-none focus:border-indigo-600" placeholder="e.g. 3500">
-                    </div>
-                </div>
-
-                <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-black py-4 rounded-2xl shadow-xl shadow-emerald-200 transition text-base">
-                    Submit Tutor Profile
-                </button>
-            </form>
-
-            <div id="tutorSuccessMsg" class="hidden bg-amber-50 border border-amber-200 text-amber-800 p-6 rounded-2xl text-center font-bold">
-                <i class="fa-solid fa-clock text-2xl text-amber-600 mb-2"></i>
-                <p>Pending Approval! Your profile has been submitted. Admin will review and verify your profile before publishing.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 17. ADMIN PANEL DASHBOARD SIMULATION -->
-    <section id="admin" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20 scroll-mt-24">
-        <div class="bg-slate-900 text-white p-8 sm:p-12 rounded-3xl shadow-2xl border border-slate-800">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 pb-6 border-b border-slate-800 gap-4">
-                <div>
-                    <span class="bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 text-xs font-bold px-3 py-1 rounded-full uppercase">Secure Dashboard</span>
-                    <h2 class="text-2xl sm:text-3xl font-black mt-2"><i class="fa-solid fa-lock text-indigo-400 mr-2"></i> Admin Panel</h2>
-                </div>
-                <div class="flex gap-2">
-                    <button onclick="switchAdminTab('tutors')" id="btnTabTutors" class="bg-indigo-600 text-white px-4 py-2 rounded-xl text-xs font-bold transition">Manage Tutors</button>
-                    <button onclick="switchAdminTab('reqs')" id="btnTabReqs" class="bg-slate-800 text-slate-300 px-4 py-2 rounded-xl text-xs font-bold hover:bg-slate-700 transition">Parent Requirements</button>
-                </div>
-            </div>
-
-            <!-- Stats Bar -->
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
-                <div class="bg-slate-800/60 p-4 rounded-2xl border border-slate-700/50">
-                    <span class="text-xs text-slate-400 font-bold">Total Tutors</span>
-                    <h3 id="statTotalTutors" class="text-2xl font-black text-white mt-1">4</h3>
-                </div>
-                <div class="bg-slate-800/60 p-4 rounded-2xl border border-slate-700/50">
-                    <span class="text-xs text-slate-400 font-bold">Approved Tutors</span>
-                    <h3 id="statApprovedTutors" class="text-2xl font-black text-emerald-400 mt-1">3</h3>
-                </div>
-                <div class="bg-slate-800/60 p-4 rounded-2xl border border-slate-700/50">
-                    <span class="text-xs text-slate-400 font-bold">Total Requirements</span>
-                    <h3 id="statTotalReqs" class="text-2xl font-black text-indigo-400 mt-1">2</h3>
-                </div>
-                <div class="bg-slate-800/60 p-4 rounded-2xl border border-slate-700/50">
-                    <span class="text-xs text-slate-400 font-bold">Platform Status</span>
-                    <h3 class="text-2xl font-black text-teal-400 mt-1">Active</h3>
-                </div>
-            </div>
-
-            <!-- Admin Tab 1: Tutors Management -->
-            <div id="adminTabTutors" class="space-y-4">
-                <h4 class="text-sm font-extrabold text-slate-400 uppercase tracking-wider">Tutor Approval & Verification Queue</h4>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left text-sm">
-                        <thead class="bg-slate-800 text-slate-300 uppercase text-[11px] font-extrabold tracking-wider">
-                            <tr>
-                                <th class="p-3.5 rounded-l-xl">Name</th>
-                                <th class="p-3.5">Qualification</th>
-                                <th class="p-3.5">Area</th>
-                                <th class="p-3.5">Status</th>
-                                <th class="p-3.5 rounded-r-xl">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="adminTutorTableBody" class="divide-y divide-slate-800 font-medium">
-                            <!-- Injected by JS -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Admin Tab 2: Parent Requirements -->
-            <div id="adminTabReqs" class="hidden space-y-4">
-                <h4 class="text-sm font-extrabold text-slate-400 uppercase tracking-wider">Submitted Parent Enquiries</h4>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left text-sm">
-                        <thead class="bg-slate-800 text-slate-300 uppercase text-[11px] font-extrabold tracking-wider">
-                            <tr>
-                                <th class="p-3.5 rounded-l-xl">Parent / Student</th>
-                                <th class="p-3.5">Class & Subject</th>
-                                <th class="p-3.5">Area & Phone</th>
-                                <th class="p-3.5">Details</th>
-                                <th class="p-3.5 rounded-r-xl">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="adminReqTableBody" class="divide-y divide-slate-800 font-medium">
-                            <!-- Injected by JS -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="bg-slate-900 text-slate-400 pt-16 pb-12 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
-            <div>
-                <div class="flex items-center space-x-2 mb-4">
-                    <div class="bg-indigo-600 text-white p-2 rounded-xl text-lg font-black">TP</div>
-                    <span class="text-xl font-extrabold text-white">Tutor<span class="text-indigo-400">Page</span></span>
-                </div>
-                <p class="text-xs text-slate-400 leading-relaxed font-medium mb-4">“Allahabad में अपना Perfect Tutor खोजें” — Connecting students with verified tutors across Prayagraj.</p>
-                <div class="flex space-x-3 text-slate-300">
-                    <a href="#" class="w-9 h-9 bg-slate-800 rounded-xl flex items-center justify-center hover:bg-indigo-600 transition"><i class="fa-brands fa-facebook-f text-xs"></i></a>
-                    <a href="#" class="w-9 h-9 bg-slate-800 rounded-xl flex items-center justify-center hover:bg-indigo-600 transition"><i class="fa-brands fa-whatsapp text-xs"></i></a>
-                    <a href="#" class="w-9 h-9 bg-slate-800 rounded-xl flex items-center justify-center hover:bg-indigo-600 transition"><i class="fa-brands fa-instagram text-xs"></i></a>
-                </div>
-            </div>
-
-            <div>
-                <h4 class="text-white font-extrabold text-sm uppercase tracking-wider mb-4">Quick Links</h4>
-                <ul class="space-y-2.5 text-xs font-semibold">
-                    <li><a href="#home" class="hover:text-white transition">Home</a></li>
-                    <li><a href="#find-tutor" class="hover:text-white transition">Find Tutor</a></li>
-                    <li><a href="#become-tutor" class="hover:text-white transition">Become a Tutor</a></li>
-                    <li><a href="#post-requirement" class="hover:text-white transition">Post Requirement</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="text-white font-extrabold text-sm uppercase tracking-wider mb-4">Popular Localities</h4>
-                <ul class="space-y-2.5 text-xs font-semibold">
-                    <li><a href="#find-tutor" onclick="filterByArea('Civil Lines')" class="hover:text-white transition">Civil Lines Tutors</a></li>
-                    <li><a href="#find-tutor" onclick="filterByArea('Allahpur')" class="hover:text-white transition">Allahpur Tutors</a></li>
-                    <li><a href="#find-tutor" onclick="filterByArea('Naini')" class="hover:text-white transition">Naini Tutors</a></li>
-                    <li><a href="#find-tutor" onclick="filterByArea('Tagore Town')" class="hover:text-white transition">Tagore Town Tutors</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="text-white font-extrabold text-sm uppercase tracking-wider mb-4">Contact Allahabad</h4>
-                <p class="text-xs text-slate-400 mb-2 font-medium"><i class="fa-solid fa-location-dot text-indigo-400 mr-2"></i> Civil Lines, Prayagraj, UP</p>
-                <p class="text-xs text-slate-400 mb-4 font-medium"><i class="fa-solid fa-phone text-indigo-400 mr-2"></i> +91 98765 43210</p>
-                <div class="bg-indigo-950 border border-indigo-800/60 p-3 rounded-xl text-xs text-indigo-200 font-bold">
-                    Support: support@tutorpage.in
-                </div>
-            </div>
-        </div>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 font-medium">
-            <p>©️ 2026 TutorPage. All Rights Reserved.</p>
-            <div class="flex space-x-6 mt-4 sm:mt-0">
-                <a href="#" class="hover:underline">Privacy Policy</a>
-                <a href="#" class="hover:underline">Terms & Conditions</a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- MOBILE STICKY BOTTOM NAVIGATION -->
-    <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-slate-200 p-2.5 flex justify-around items-center z-50 shadow-lg">
-        <a href="#home" class="flex flex-col items-center text-indigo-600 text-[10px] font-bold">
-            <i class="fa-solid fa-house text-lg mb-0.5"></i> Home
-        </a>
-        <a href="#find-tutor" class="flex flex-col items-center text-slate-500 hover:text-indigo-600 text-[10px] font-bold">
-            <i class="fa-solid fa-search text-lg mb-0.5"></i> Find Tutor
-        </a>
-        <a href="#post-requirement" class="flex flex-col items-center text-slate-500 hover:text-indigo-600 text-[10px] font-bold">
-            <i class="fa-solid fa-file-pen text-lg mb-0.5"></i> Requirement
-        </a>
-        <a href="#become-tutor" class="flex flex-col items-center text-slate-500 hover:text-indigo-600 text-[10px] font-bold">
-            <i class="fa-solid fa-chalkboard-user text-lg mb-0.5"></i> Become Tutor
-        </a>
-    </div>
-
-    <!-- JAVASCRIPT MARKETPLACE CORE -->
+    <!-- FIREBASE RENDERING SCRIPT -->
     <script>
-        // Database simulation for Tutors & Requirements
-        let tutorsDB = [
-            { id: 1, name: "Rahul Kumar", qual: "M.Sc. Mathematics", exp: "5+ Years", subjects: "Mathematics, Physics", classes: "Class 9-10", area: "Allahpur", mode: "Home Tuition", board: "CBSE", rating: 4.8, verified: true, fee: 3500, photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" },
-            { id: 2, name: "Priya Singh", qual: "B.Tech, M.N.I.T. Allahabad", exp: "3+ Years", subjects: "Science, Chemistry", classes: "Class 11-12", area: "Civil Lines", mode: "Online Tuition", board: "ICSE", rating: 4.9, verified: true, fee: 4500, photo: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=300&q=80" },
-            { id: 3, name: "Amit Pandey", qual: "M.A. English, Univ. of Allahabad", exp: "7+ Years", subjects: "English, Hindi, Social Science", classes: "Class 6-8", area: "Teliarganj", mode: "Home Tuition", board: "UP Board", rating: 4.7, verified: false, fee: 2500, photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80" },
-            { id: 4, name: "Dr. Arvind Mishra", qual: "Ph.D. in Physics", exp: "10+ Years", subjects: "Physics, Mathematics", classes: "Competitive", area: "George Town", mode: "Home Tuition", board: "CBSE", rating: 5.0, verified: true, fee: 7000, photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80" }
-        ];
+        const firebaseConfig = {
+            apiKey: "AIzaSyD837pmW5N21lMgeVlpgWPx0FaMisSnxwU",
+            authDomain: "theuniversitypage-cc4a7.firebaseapp.com",
+            databaseURL: "https://theuniversitypage-cc4a7-default-rtdb.firebaseio.com",
+            projectId: "theuniversitypage-cc4a7",
+            storageBucket: "theuniversitypage-cc4a7.firebasestorage.app",
+            messagingSenderId: "31910615607",
+            appId: "1:31910615607:web:bee5bd81c8118a16d1bdb2"
+        };
 
-        let requirementsDB = [
-            { id: 1, student: "Aman Gupta", parent: "Rajesh Gupta", class: "Class 9-10", subject: "Mathematics", area: "Civil Lines", phone: "9876543210", details: "Need experienced male tutor." },
-            { id: 2, student: "Sneha Tiwari", parent: "Alok Tiwari", class: "Class 11-12", subject: "Physics", area: "Allahpur", phone: "9123456789", details: "Female tutor preferred for NEET prep." }
-        ];
+        if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
 
-        // Render Tutors on listing
-        function renderTutors(list) {
+        let liveTutors = [];
+
+        async function fetchLiveTutors() {
+            try {
+                const snapshot = await db.collection("admins").where("verified", "==", true).get();
+                liveTutors = [];
+                
+                snapshot.forEach(doc => {
+                    liveTutors.push(doc.data());
+                });
+
+                renderFrontendTutors(liveTutors);
+            } catch (error) {
+                console.error("Error fetching live tutors:", error);
+            }
+        }
+
+        function renderFrontendTutors(list) {
             const grid = document.getElementById('tutorsGrid');
-            const emptyState = document.getElementById('noTutorsState');
-            const countEl = document.getElementById('tutorCount');
-            
-            countEl.innerText = list.length;
             grid.innerHTML = '';
 
-            if(list.length === 0) {
-                emptyState.classList.remove('hidden');
+            if (list.length === 0) {
+                grid.innerHTML = `<div class="col-span-3 bg-white p-12 rounded-3xl text-center text-slate-500 font-bold border border-slate-200">No verified tutors available right now. Please check back later!</div>`;
                 return;
-            } else {
-                emptyState.classList.add('hidden');
             }
 
             list.forEach(t => {
-                const verifiedBadge = t.verified ? `<span class="bg-blue-50 text-blue-600 border border-blue-200 text-[10px] font-extrabold px-2 py-0.5 rounded-full"><i class="fa-solid fa-circle-check"></i> Verified</span>` : '';
-                
+                const photo = t.photoUrl || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=300&q=80';
                 const card = `
                     <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl transition flex flex-col justify-between">
                         <div>
                             <div class="flex items-start justify-between mb-4">
                                 <div class="flex items-center space-x-3">
-                                    <img src="${t.photo}" class="w-14 h-14 rounded-2xl object-cover border-2 border-indigo-100 shadow-sm" alt="${t.name}">
+                                    <img src="${photo}" class="w-14 h-14 rounded-2xl object-cover border-2 border-indigo-100 shadow-sm" alt="${t.fullName}">
                                     <div>
                                         <div class="flex items-center space-x-2">
-                                            <h4 class="font-black text-slate-900 text-base">${t.name}</h4>
-                                            ${verifiedBadge}
+                                            <h4 class="font-black text-slate-900 text-base">${t.fullName || 'Tutor'}</h4>
+                                            <span class="bg-blue-50 text-blue-600 text-[10px] font-extrabold px-2 py-0.5 rounded-full"><i class="fa-solid fa-circle-check"></i> Verified</span>
                                         </div>
-                                        <p class="text-xs text-indigo-600 font-bold">${t.qual}</p>
+                                        <p class="text-xs text-indigo-600 font-bold">${t.qualification || 'Educator'}</p>
                                     </div>
                                 </div>
-                                <div class="bg-amber-50 text-amber-700 text-xs font-black px-2.5 py-1 rounded-xl flex items-center space-x-1">
-                                    <i class="fa-solid fa-star text-[10px]"></i>
-                                    <span>${t.rating}</span>
-                                </div>
                             </div>
-
                             <div class="space-y-1.5 mb-5 text-xs font-semibold text-slate-600">
-                                <p><i class="fa-solid fa-book text-slate-400 mr-2 w-4"></i> <span class="text-slate-900">${t.subjects}</span> (${t.classes})</p>
-                                <p><i class="fa-solid fa-location-dot text-slate-400 mr-2 w-4"></i> ${t.area}, Allahabad • <span class="text-indigo-600">${t.mode}</span></p>
-                                <p><i class="fa-solid fa-briefcase text-slate-400 mr-2 w-4"></i> ${t.exp} Experience</p>
+                                <p><i class="fa-solid fa-book text-slate-400 mr-2 w-4"></i> <span class="text-slate-900">${t.subjects || 'General'}</span> (${t.prefClass || 'All Classes'})</p>
+                                <p><i class="fa-solid fa-location-dot text-slate-400 mr-2 w-4"></i> ${t.district || 'Allahabad'} • <span class="text-indigo-600">${t.mode || 'Home Tuition'}</span></p>
+                                <p><i class="fa-solid fa-briefcase text-slate-400 mr-2 w-4"></i> ${t.experience || 'Experienced'} Experience</p>
                             </div>
                         </div>
-
                         <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
                             <div>
-                                <span class="text-[10px] uppercase font-extrabold text-slate-400 block">Starting Fee</span>
-                                <span class="text-base font-black text-slate-900">₹${t.fee.toLocaleString()}<span class="text-xs text-slate-400 font-medium">/mo</span></span>
+                                <span class="text-[10px] uppercase font-extrabold text-slate-400 block">Monthly Fee</span>
+                                <span class="text-base font-black text-slate-900">₹${t.fee || '3000'}<span class="text-xs text-slate-400 font-medium">/mo</span></span>
                             </div>
                             <div class="space-x-2">
-                                <a href="https://wa.me/919876543210?text=Hi%20${encodeURIComponent(t.name)},%20I%20found%20your%20profile%20on%20TutorPage%20and%20need%20tuition." target="_blank" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 p-2.5 rounded-xl font-bold text-sm inline-block transition"><i class="fa-brands fa-whatsapp text-lg"></i></a>
-                                <button onclick="alert('Enquiry sent successfully to ${t.name}! They will contact you shortly.')" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2.5 rounded-xl text-xs font-extrabold shadow-md shadow-indigo-100 transition">Send Enquiry</button>
+                                <a href="https://wa.me/91${t.whatsappNumber || '9876543210'}?text=Hi%20${encodeURIComponent(t.fullName)},%20I%20found%20your%20profile%20on%20TutorPage%20and%20need%20tuition." target="_blank" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 p-2.5 rounded-xl font-bold text-sm inline-block transition"><i class="fa-brands fa-whatsapp text-lg"></i></a>
                             </div>
                         </div>
                     </div>
@@ -846,215 +162,7 @@
             });
         }
 
-        // Apply filters & sorting
-        function applyFilters() {
-            const mode = document.getElementById('filterMode').value;
-            const board = document.getElementById('filterBoard').value;
-            const maxFee = parseInt(document.getElementById('filterFee').value);
-            const verifiedOnly = document.getElementById('filterVerified').checked;
-            const sortBy = document.getElementById('sortBy').value;
-
-            document.getElementById('feeLabel').innerText = '₹' + maxFee.toLocaleString();
-
-            let filtered = tutorsDB.filter(t => {
-                if (mode && t.mode !== mode) return false;
-                if (board && t.board !== board) return false;
-                if (t.fee > maxFee) return false;
-                if (verifiedOnly && !t.verified) return false;
-                return true;
-            });
-
-            if (sortBy === 'rating') filtered.sort((a,b) => b.rating - a.rating);
-            if (sortBy === 'feeLow') filtered.sort((a,b) => a.fee - b.fee);
-            if (sortBy === 'exp') filtered.sort((a,b) => parseInt(b.exp) - parseInt(a.exp));
-
-            renderTutors(filtered);
-        }
-
-        function triggerSearch() {
-            const sClass = document.getElementById('searchClass').value;
-            const sSubj = document.getElementById('searchSubject').value;
-            const sArea = document.getElementById('searchArea').value;
-            const sMode = document.getElementById('searchMode').value;
-
-            let results = tutorsDB.filter(t => {
-                if (sClass && !t.classes.includes(sClass)) return false;
-                if (sSubj && !t.subjects.toLowerCase().includes(sSubj.toLowerCase())) return false;
-                if (sArea && t.area !== sArea) return false;
-                if (sMode && t.mode !== sMode) return false;
-                return true;
-            });
-
-            renderTutors(results);
-            window.location.hash = '#find-tutor';
-        }
-
-        function filterByClass(cls) {
-            let results = tutorsDB.filter(t => t.classes.includes(cls));
-            renderTutors(results);
-            window.location.hash = '#find-tutor';
-        }
-
-        function filterBySubject(subj) {
-            let results = tutorsDB.filter(t => t.subjects.toLowerCase().includes(subj.toLowerCase()));
-            renderTutors(results);
-            window.location.hash = '#find-tutor';
-        }
-
-        function filterByArea(areaName) {
-            let results = tutorsDB.filter(t => t.area.toLowerCase() === areaName.toLowerCase());
-            renderTutors(results);
-            window.location.hash = '#find-tutor';
-        }
-
-        function resetFilters() {
-            document.getElementById('filterMode').value = '';
-            document.getElementById('filterBoard').value = '';
-            document.getElementById('filterFee').value = 10000;
-            document.getElementById('filterVerified').checked = false;
-            applyFilters();
-        }
-
-        // Form requirements submit
-        function handleRequirementSubmit(e) {
-            e.preventDefault();
-            const newReq = {
-                id: requirementsDB.length + 1,
-                student: document.getElementById('reqStudent').value,
-                parent: document.getElementById('reqParent').value,
-                class: document.getElementById('reqClass').value,
-                subject: document.getElementById('reqSubject').value,
-                area: document.getElementById('reqArea').value,
-                phone: document.getElementById('reqPhone').value,
-                details: document.getElementById('reqDetails').value
-            };
-            requirementsDB.unshift(newReq);
-            document.getElementById('requirementForm').reset();
-            document.getElementById('requirementForm').classList.add('hidden');
-            document.getElementById('reqSuccessMsg').classList.remove('hidden');
-            updateAdminStats();
-            renderAdminReqs();
-        }
-
-        // Tutor Registration submit (Pending Approval)
-        function handleTutorRegister(e) {
-            e.preventDefault();
-            const newTutor = {
-                id: tutorsDB.length + 1,
-                name: document.getElementById('tName').value,
-                qual: document.getElementById('tQual').value,
-                exp: document.getElementById('tExp').value,
-                subjects: document.getElementById('tSubjects').value,
-                classes: "Class 9-12",
-                area: document.getElementById('tArea').value,
-                mode: document.getElementById('tMode').value,
-                board: "CBSE",
-                rating: 4.5,
-                verified: false, // Must be verified by admin
-                fee: parseInt(document.getElementById('tFee').value) || 3000,
-                photo: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=300&q=80"
-            };
-            tutorsDB.push(newTutor);
-            document.getElementById('tutorRegForm').reset();
-            document.getElementById('tutorRegForm').classList.add('hidden');
-            document.getElementById('tutorSuccessMsg').classList.remove('hidden');
-            updateAdminStats();
-            renderAdminTutors();
-        }
-
-        // Admin Panel Functions
-        function switchAdminTab(tab) {
-            const tTutors = document.getElementById('adminTabTutors');
-            const tReqs = document.getElementById('adminTabReqs');
-            const bTutors = document.getElementById('btnTabTutors');
-            const bReqs = document.getElementById('btnTabReqs');
-
-            if(tab === 'tutors') {
-                tTutors.classList.remove('hidden');
-                tReqs.classList.add('hidden');
-                bTutors.className = "bg-indigo-600 text-white px-4 py-2 rounded-xl text-xs font-bold transition";
-                bReqs.className = "bg-slate-800 text-slate-300 px-4 py-2 rounded-xl text-xs font-bold hover:bg-slate-700 transition";
-            } else {
-                tReqs.classList.remove('hidden');
-                tTutors.classList.add('hidden');
-                bReqs.className = "bg-indigo-600 text-white px-4 py-2 rounded-xl text-xs font-bold transition";
-                bTutors.className = "bg-slate-800 text-slate-300 px-4 py-2 rounded-xl text-xs font-bold hover:bg-slate-700 transition";
-            }
-        }
-
-        function updateAdminStats() {
-            document.getElementById('statTotalTutors').innerText = tutorsDB.length;
-            document.getElementById('statApprovedTutors').innerText = tutorsDB.filter(t => t.verified).length;
-            document.getElementById('statTotalReqs').innerText = requirementsDB.length;
-        }
-
-        function renderAdminTutors() {
-            const tbody = document.getElementById('adminTutorTableBody');
-            tbody.innerHTML = '';
-            tutorsDB.forEach(t => {
-                const statusBadge = t.verified 
-                    ? `<span class="bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded text-xs font-bold">Approved</span>`
-                    : `<span class="bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded text-xs font-bold">Pending</span>`;
-                
-                tbody.innerHTML += `
-                    <tr class="border-b border-slate-800">
-                        <td class="p-3.5 font-bold text-white">${t.name}</td>
-                        <td class="p-3.5 text-slate-400">${t.qual}</td>
-                        <td class="p-3.5 text-slate-400">${t.area}</td>
-                        <td class="p-3.5">${statusBadge}</td>
-                        <td class="p-3.5">
-                            <button onclick="toggleVerify(${t.id})" class="bg-indigo-600/30 hover:bg-indigo-600 text-indigo-300 hover:text-white px-3 py-1 rounded-lg text-xs font-bold transition">
-                                ${t.verified ? 'Unverify' : 'Approve'}
-                            </button>
-                            <button onclick="deleteTutor(${t.id})" class="ml-1 text-rose-400 hover:text-rose-300 px-2 py-1 text-xs"><i class="fa-solid fa-trash"></i></button>
-                        </td>
-                    </tr>
-                `;
-            });
-        }
-
-        function renderAdminReqs() {
-            const tbody = document.getElementById('adminReqTableBody');
-            tbody.innerHTML = '';
-            requirementsDB.forEach(r => {
-                tbody.innerHTML += `
-                    <tr class="border-b border-slate-800">
-                        <td class="p-3.5 font-bold text-white">${r.parent}<br><span class="text-xs font-normal text-slate-400">Student: ${r.student}</span></td>
-                        <td class="p-3.5 text-slate-300">${r.class}<br><span class="text-xs text-indigo-400">${r.subject}</span></td>
-                        <td class="p-3.5 text-slate-300">${r.area}<br><span class="text-xs text-emerald-400 font-mono">${r.phone}</span></td>
-                        <td class="p-3.5 text-slate-400 text-xs">${r.details || 'None'}</td>
-                        <td class="p-3.5">
-                            <span class="bg-indigo-500/10 text-indigo-300 text-[10px] font-bold px-2 py-1 rounded">New Enquiry</span>
-                        </td>
-                    </tr>
-                `;
-            });
-        }
-
-        function toggleVerify(id) {
-            const t = tutorsDB.find(x => x.id === id);
-            if(t) {
-                t.verified = !t.verified;
-                renderAdminTutors();
-                applyFilters();
-                updateAdminStats();
-            }
-        }
-
-        function deleteTutor(id) {
-            tutorsDB = tutorsDB.filter(x => x.id !== id);
-            renderAdminTutors();
-            applyFilters();
-            updateAdminStats();
-        }
-
-        // Initializer
-        window.onload = function() {
-            renderTutors(tutorsDB);
-            renderAdminTutors();
-            renderAdminReqs();
-            updateAdminStats();
-        };
+        window.onload = fetchLiveTutors;
     </script>
 </body>
 </html>
