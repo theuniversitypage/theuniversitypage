@@ -16,7 +16,8 @@
             theme: {
                 extend: {
                     colors: {
-                        brand: { 600: '#4F46E5', 700: '#4338CA' }
+                        darkblue: { 900: '#0F172A', 800: '#1E293B', 700: '#334155' },
+                        richblack: { 900: '#090D16', 800: '#111827' }
                     }
                 }
             }
@@ -43,25 +44,30 @@
         }
         .card-box:hover {
             transform: translateY(-4px);
-            box-shadow: 0 20px 35px -10px rgba(79, 70, 229, 0.12);
-            border-color: #4F46E5;
+            box-shadow: 0 20px 35px -10px rgba(15, 23, 42, 0.12);
+            border-color: #0F172A;
         }
-        .btn-indigo {
-            background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);
+        /* Premium Dark Blue Button */
+        .btn-darkblue {
+            background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
             color: #ffffff;
-            box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3);
+            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.3);
             transition: all 0.2s ease;
         }
-        .btn-indigo:hover { opacity: 0.92; transform: translateY(-1px); }
-        
-        /* Mobile Slide Menu Styles */
-        #mobileMenu {
-            transform: translateX(-100%);
-            transition: transform 0.3s ease-in-out;
+        .btn-darkblue:hover { opacity: 0.92; transform: translateY(-1px); }
+
+        /* Premium Rich Black Button */
+        .btn-richblack {
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+            color: #ffffff;
+            box-shadow: 0 4px 14px rgba(17, 24, 39, 0.3);
+            transition: all 0.2s ease;
         }
-        #mobileMenu.open {
-            transform: translateX(0);
-        }
+        .btn-richblack:hover { opacity: 0.92; transform: translateY(-1px); }
+
+        /* Mobile Slide Menu */
+        #mobileMenu { transform: translateX(-100%); transition: transform 0.3s ease-in-out; }
+        #mobileMenu.open { transform: translateX(0); }
     </style>
 </head>
 <body class="pb-20 md:pb-0">
@@ -69,13 +75,11 @@
     <!-- TOP NAVBAR -->
     <header class="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            
-            <!-- Left Side: Logo & Location -->
             <div class="flex items-center space-x-3">
                 <button onclick="toggleSidebar()" class="md:hidden text-slate-700 text-xl focus:outline-none mr-1">
                     <i class="fa-solid fa-bars"></i>
                 </button>
-                <div class="bg-indigo-600 text-white p-2.5 rounded-xl text-lg font-black tracking-wider shadow-md">
+                <div class="btn-darkblue p-2.5 rounded-xl text-lg font-black tracking-wider shadow-md">
                     TP
                 </div>
                 <div>
@@ -86,24 +90,22 @@
                 </div>
             </div>
             
-            <!-- Desktop Nav Links -->
             <nav class="hidden md:flex items-center space-x-8 font-bold text-sm text-slate-600">
-                <a href="#home" class="text-indigo-600">Home</a>
-                <a href="#tutors" class="hover:text-indigo-600 transition">Tutors</a>
-                <a href="#classes" class="hover:text-indigo-600 transition">Classes</a>
-                <a href="#subjects" class="hover:text-indigo-600 transition">Subjects</a>
+                <a href="#home" class="text-slate-900">Home</a>
+                <a href="#tutors" class="hover:text-slate-900 transition">Tutors</a>
+                <a href="#classes" class="hover:text-slate-900 transition">Classes</a>
+                <a href="#why-us" class="hover:text-slate-900 transition">Why Us</a>
             </nav>
 
-            <!-- Right Side CTA -->
             <div class="hidden md:flex items-center space-x-3">
-                <a href="login.html" class="px-5 py-2.5 text-xs font-black text-white btn-gradient rounded-xl transition">
+                <a href="login.html" class="px-5 py-2.5 text-xs font-black text-white btn-darkblue rounded-xl transition">
                     Become a Tutor
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- MOBILE SLIDE BAR / DRAWER -->
+    <!-- MOBILE DRAWER -->
     <div id="backdrop" class="fixed inset-0 bg-black/50 z-50 hidden md:hidden" onclick="toggleSidebar()"></div>
     <div id="mobileMenu" class="fixed top-0 bottom-0 left-0 w-72 bg-white z-50 shadow-2xl p-6 flex flex-col justify-between md:hidden">
         <div>
@@ -112,22 +114,22 @@
                 <button onclick="toggleSidebar()" class="text-slate-400 hover:text-slate-700 text-xl"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <ul class="space-y-4 font-bold text-slate-700 text-base">
-                <li><a href="#home" onclick="toggleSidebar()" class="block py-2 hover:text-indigo-600"><i class="fa-solid fa-house mr-3 text-indigo-600"></i> Home</a></li>
-                <li><a href="#tutors" onclick="toggleSidebar()" class="block py-2 hover:text-indigo-600"><i class="fa-solid fa-chalkboard-user mr-3 text-indigo-600"></i> Tutors</a></li>
-                <li><a href="#classes" onclick="toggleSidebar()" class="block py-2 hover:text-indigo-600"><i class="fa-solid fa-map-location-dot mr-3 text-indigo-600"></i> Locations</a></li>
-                <li><a href="#why-us" onclick="toggleSidebar()" class="block py-2 hover:text-indigo-600"><i class="fa-solid fa-briefcase mr-3 text-indigo-600"></i> Services</a></li>
-                <li><a href="#footer" onclick="toggleSidebar()" class="block py-2 hover:text-indigo-600"><i class="fa-solid fa-address-book mr-3 text-indigo-600"></i> Contact Us</a></li>
+                <li><a href="#home" onclick="toggleSidebar()" class="block py-2 hover:text-slate-900"><i class="fa-solid fa-house mr-3 text-slate-800"></i> Home</a></li>
+                <li><a href="#tutors" onclick="toggleSidebar()" class="block py-2 hover:text-slate-900"><i class="fa-solid fa-chalkboard-user mr-3 text-slate-800"></i> Tutors</a></li>
+                <li><a href="#classes" onclick="toggleSidebar()" class="block py-2 hover:text-slate-900"><i class="fa-solid fa-graduation-cap mr-3 text-slate-800"></i> Classes</a></li>
+                <li><a href="#why-us" onclick="toggleSidebar()" class="block py-2 hover:text-slate-900"><i class="fa-solid fa-briefcase mr-3 text-slate-800"></i> Services</a></li>
+                <li><a href="#footer" onclick="toggleSidebar()" class="block py-2 hover:text-slate-900"><i class="fa-solid fa-address-book mr-3 text-slate-800"></i> Contact Us</a></li>
             </ul>
         </div>
-        <a href="login.html" class="block text-center py-3 text-sm font-black text-white btn-gradient rounded-xl">Portal Login</a>
+        <a href="login.html" class="block text-center py-3 text-sm font-black text-white btn-darkblue rounded-xl">Portal Login</a>
     </div>
 
     <!-- 1st SECTION: HERO BANNER -->
-    <section id="home" class="relative bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 text-white py-24 px-4 text-center overflow-hidden">
-        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#6366F1_1px,transparent_1px)] [background-size:20px_20px]"></div>
+    <section id="home" class="relative bg-gradient-to-br from-slate-900 via-darkblue-900 to-richblack-900 text-white py-24 px-4 text-center overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:20px_20px]"></div>
         
         <div class="max-w-4xl mx-auto relative z-10 space-y-6">
-            <span class="bg-indigo-500/20 border border-indigo-400/30 text-indigo-300 text-xs font-extrabold px-4 py-2 rounded-full uppercase tracking-widest inline-block shadow-lg">
+            <span class="bg-white/10 border border-white/20 text-slate-200 text-xs font-extrabold px-4 py-2 rounded-full uppercase tracking-widest inline-block shadow-lg backdrop-blur-md">
                 🎯 Prayagraj's Most Trusted Education Network
             </span>
             <h1 class="text-4xl sm:text-6xl font-black tracking-tight leading-tight">
@@ -136,32 +138,41 @@
             <p class="text-slate-300 text-base sm:text-lg font-medium max-w-2xl mx-auto">
                 Civil Lines, Allahpur, Naini और George Town के सर्वश्रेष्ठ होम और ऑनलाइन ट्यूटर्स से सीधे जुड़ें।
             </p>
-            <div class="flex justify-center gap-4 pt-4">
-                <a href="#tutors" class="px-8 py-4 text-sm font-black btn-gradient rounded-2xl uppercase tracking-wider">
-                    Browse Tutors
-                </a>
-                <a href="#post-requirement" class="px-8 py-4 text-sm font-black bg-white/10 hover:bg-white/20 text-white rounded-2xl border border-white/20 backdrop-blur-md transition">
-                    Post Requirement
-                </a>
-            </div>
         </div>
     </section>
 
-    <!-- 2nd SECTION: TUTORS SHOWCASE (Profile photo, experience, qualifications, students count, subjects, class, Book Now, View Profile) -->
-    <section id="tutors" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-30 mb-20">
-        <div class="bg-white border border-slate-200 p-6 sm:p-10 rounded-3xl shadow-2xl">
-            <div class="flex justify-between items-center mb-8 border-b border-slate-100 pb-4">
-                <div>
-                    <span class="text-indigo-600 font-extrabold text-xs uppercase tracking-widest">Expert Educators</span>
-                    <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-1">Verified Tutors Available</h2>
-                </div>
+    <!-- SEARCH BAR SECTION (NEW) -->
+    <div class="max-w-5xl mx-auto px-4 -mt-8 relative z-40 mb-12">
+        <div class="bg-white p-4 sm:p-6 rounded-3xl shadow-2xl border border-slate-200 grid grid-cols-1 sm:grid-cols-3 gap-4 items-center">
+            <div>
+                <label class="block text-[11px] font-black text-slate-400 uppercase mb-1"><i class="fa-solid fa-book mr-1"></i> Subject</label>
+                <input type="text" id="searchSubject" placeholder="e.g. Mathematics, Physics" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold focus:outline-none focus:border-slate-800">
             </div>
+            <div>
+                <label class="block text-[11px] font-black text-slate-400 uppercase mb-1"><i class="fa-solid fa-location-dot mr-1"></i> Location / Area</label>
+                <input type="text" id="searchArea" placeholder="e.g. Civil Lines, Naini" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold focus:outline-none focus:border-slate-800">
+            </div>
+            <div class="sm:pt-5">
+                <button onclick="filterTutors()" class="w-full py-3.5 btn-darkblue rounded-xl font-black text-sm tracking-wider uppercase shadow-lg">
+                    <i class="fa-solid fa-magnifying-glass mr-2"></i> Search Tutor
+                </button>
+            </div>
+        </div>
+    </div>
 
-            <!-- Dynamic Tutors Grid -->
-            <div id="liveTutorsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="col-span-3 text-center py-12 text-slate-400 font-bold bg-slate-50 rounded-2xl border border-slate-200">
-                    <i class="fa-solid fa-spinner fa-spin mr-2 text-indigo-600"></i> Loading verified tutors from database...
-                </div>
+    <!-- 2nd SECTION: TUTORS SHOWCASE -->
+    <section id="tutors" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+        <div class="flex justify-between items-center mb-8 border-b border-slate-200 pb-4">
+            <div>
+                <span class="text-slate-500 font-extrabold text-xs uppercase tracking-widest">Expert Educators</span>
+                <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-1">Verified Tutors Available</h2>
+            </div>
+        </div>
+
+        <!-- Dynamic Tutors Grid -->
+        <div id="liveTutorsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="col-span-3 text-center py-12 text-slate-400 font-bold bg-white rounded-2xl border border-slate-200">
+                <i class="fa-solid fa-spinner fa-spin mr-2 text-slate-800"></i> Loading verified tutors from database...
             </div>
         </div>
     </section>
@@ -169,48 +180,48 @@
     <!-- 3rd SECTION: ACADEMIC CATEGORIES -->
     <section id="classes" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
         <div class="text-center mb-10">
-            <span class="text-indigo-600 font-extrabold text-xs uppercase tracking-widest">Course Levels</span>
+            <span class="text-slate-500 font-extrabold text-xs uppercase tracking-widest">Course Levels</span>
             <h2 class="text-2xl sm:text-4xl font-black text-slate-900 mt-1">Academic Category</h2>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <div class="card-box p-6 flex items-center space-x-4">
-                <div class="w-14 h-14 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center text-2xl font-bold flex-shrink-0"><i class="fa-solid fa-child-reaching"></i></div>
+                <div class="w-14 h-14 bg-slate-100 text-slate-900 rounded-2xl flex items-center justify-center text-2xl font-bold flex-shrink-0"><i class="fa-solid fa-child-reaching"></i></div>
                 <div>
                     <h4 class="font-black text-slate-900 text-lg">Class 1–5</h4>
                     <p class="text-xs text-slate-500 font-bold mt-0.5">All Subjects</p>
                 </div>
             </div>
             <div class="card-box p-6 flex items-center space-x-4">
-                <div class="w-14 h-14 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center text-2xl font-bold flex-shrink-0"><i class="fa-solid fa-book-open-reader"></i></div>
+                <div class="w-14 h-14 bg-slate-100 text-slate-900 rounded-2xl flex items-center justify-center text-2xl font-bold flex-shrink-0"><i class="fa-solid fa-book-open-reader"></i></div>
                 <div>
                     <h4 class="font-black text-slate-900 text-lg">Class 6–8</h4>
                     <p class="text-xs text-slate-500 font-bold mt-0.5">Middle School</p>
                 </div>
             </div>
             <div class="card-box p-6 flex items-center space-x-4">
-                <div class="w-14 h-14 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center text-2xl font-bold flex-shrink-0"><i class="fa-solid fa-graduation-cap"></i></div>
+                <div class="w-14 h-14 bg-slate-100 text-slate-900 rounded-2xl flex items-center justify-center text-2xl font-bold flex-shrink-0"><i class="fa-solid fa-graduation-cap"></i></div>
                 <div>
                     <h4 class="font-black text-slate-900 text-lg">Class 9–10</h4>
                     <p class="text-xs text-slate-500 font-bold mt-0.5">Board Prep</p>
                 </div>
             </div>
             <div class="card-box p-6 flex items-center space-x-4">
-                <div class="w-14 h-14 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center text-2xl font-bold flex-shrink-0"><i class="fa-solid fa-atom"></i></div>
+                <div class="w-14 h-14 bg-slate-100 text-slate-900 rounded-2xl flex items-center justify-center text-2xl font-bold flex-shrink-0"><i class="fa-solid fa-atom"></i></div>
                 <div>
                     <h4 class="font-black text-slate-900 text-lg">Class 11–12</h4>
                     <p class="text-xs text-slate-500 font-bold mt-0.5">Science / Arts / Comm</p>
                 </div>
             </div>
             <div class="card-box p-6 flex items-center space-x-4">
-                <div class="w-14 h-14 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center text-2xl font-bold flex-shrink-0"><i class="fa-solid fa-user-tie"></i></div>
+                <div class="w-14 h-14 bg-slate-100 text-slate-900 rounded-2xl flex items-center justify-center text-2xl font-bold flex-shrink-0"><i class="fa-solid fa-user-tie"></i></div>
                 <div>
                     <h4 class="font-black text-slate-900 text-lg">Graduation</h4>
                     <p class="text-xs text-slate-500 font-bold mt-0.5">Degree Courses</p>
                 </div>
             </div>
             <div class="card-box p-6 flex items-center space-x-4">
-                <div class="w-14 h-14 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center text-2xl font-bold flex-shrink-0"><i class="fa-solid fa-bullseye"></i></div>
+                <div class="w-14 h-14 bg-slate-100 text-slate-900 rounded-2xl flex items-center justify-center text-2xl font-bold flex-shrink-0"><i class="fa-solid fa-bullseye"></i></div>
                 <div>
                     <h4 class="font-black text-slate-900 text-lg">Competitive</h4>
                     <p class="text-xs text-slate-500 font-bold mt-0.5">CUET / JEE / NEET</p>
@@ -220,27 +231,27 @@
     </section>
 
     <!-- 4th SECTION: OUR BENEFITS -->
-    <section id="why-us" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20" id="subjects">
-        <div class="bg-indigo-900 text-white p-8 sm:p-14 rounded-3xl shadow-xl">
+    <section id="why-us" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+        <div class="bg-darkblue-900 text-white p-8 sm:p-14 rounded-3xl shadow-xl">
             <div class="text-center max-w-2xl mx-auto mb-12">
-                <span class="bg-indigo-800 text-indigo-300 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest">Why Choose Us</span>
+                <span class="bg-slate-800 text-slate-300 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest border border-slate-700">Why Choose Us</span>
                 <h2 class="text-3xl font-black mt-3">Our Benefits</h2>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-indigo-800/50 p-6 rounded-2xl border border-indigo-700/50">
-                    <div class="w-12 h-12 bg-indigo-600 text-white rounded-xl flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-user-check"></i></div>
+                <div class="bg-darkblue-800 p-6 rounded-2xl border border-slate-700">
+                    <div class="w-12 h-12 bg-slate-900 text-white rounded-xl flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-user-check"></i></div>
                     <h4 class="text-lg font-bold mb-2">100% Verified Tutors</h4>
-                    <p class="text-xs text-indigo-200 font-medium">All educators undergo strict credential checks and qualification reviews.</p>
+                    <p class="text-xs text-slate-300 font-medium">All educators undergo strict credential checks and qualification reviews.</p>
                 </div>
-                <div class="bg-indigo-800/50 p-6 rounded-2xl border border-indigo-700/50">
-                    <div class="w-12 h-12 bg-indigo-600 text-white rounded-xl flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-map-location-dot"></i></div>
+                <div class="bg-darkblue-800 p-6 rounded-2xl border border-slate-700">
+                    <div class="w-12 h-12 bg-slate-900 text-white rounded-xl flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-map-location-dot"></i></div>
                     <h4 class="text-lg font-bold mb-2">All Allahabad Localities</h4>
-                    <p class="text-xs text-indigo-200 font-medium">Find teachers right in your neighborhood whether in Civil Lines or Naini.</p>
+                    <p class="text-xs text-slate-300 font-medium">Find teachers right in your neighborhood whether in Civil Lines or Naini.</p>
                 </div>
-                <div class="bg-indigo-800/50 p-6 rounded-2xl border border-indigo-700/50">
-                    <div class="w-12 h-12 bg-indigo-600 text-white rounded-xl flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-comments-dollar"></i></div>
+                <div class="bg-darkblue-800 p-6 rounded-2xl border border-slate-700">
+                    <div class="w-12 h-12 bg-slate-900 text-white rounded-xl flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-comments-dollar"></i></div>
                     <h4 class="text-lg font-bold mb-2">Direct & Transparent</h4>
-                    <p class="text-xs text-indigo-200 font-medium">Direct WhatsApp connection with tutors with zero hidden brokerage fees.</p>
+                    <p class="text-xs text-slate-300 font-medium">Direct WhatsApp connection with tutors with zero hidden brokerage fees.</p>
                 </div>
             </div>
         </div>
@@ -250,7 +261,7 @@
     <section id="post-requirement" class="max-w-4xl mx-auto px-4 mb-20 scroll-mt-24">
         <div class="card-box p-8 sm:p-12 shadow-2xl relative">
             <div class="text-center max-w-xl mx-auto mb-8">
-                <span class="bg-indigo-100 text-indigo-800 text-xs font-black px-3.5 py-1 rounded-full uppercase tracking-wider">Fast Matching</span>
+                <span class="bg-slate-100 text-slate-800 text-xs font-black px-3.5 py-1 rounded-full uppercase tracking-wider">Fast Matching</span>
                 <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-2">Tutor नहीं मिल रहा? अपनी Requirement भेजें</h2>
                 <p class="text-sm text-slate-500 font-medium mt-1">फॉर्म भरें, हमारी टीम Allahabad में आपके लिए बेस्ट ट्यूटर ढूंढकर संपर्क करेगी।</p>
             </div>
@@ -259,14 +270,14 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-bold text-slate-700 mb-1">Student Name *</label>
-                        <input type="text" id="reqStudent" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold focus:outline-none focus:border-indigo-600" placeholder="e.g. Aman Gupta">
+                        <input type="text" id="reqStudent" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold focus:outline-none focus:border-slate-800" placeholder="e.g. Aman Gupta">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-slate-700 mb-1">Parent Mobile Number *</label>
-                        <input type="tel" id="reqPhone" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold focus:outline-none focus:border-indigo-600" placeholder="10-digit mobile number">
+                        <input type="tel" id="reqPhone" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold focus:outline-none focus:border-slate-800" placeholder="10-digit mobile number">
                     </div>
                 </div>
-                <button type="submit" class="w-full btn-gradient font-black py-4 rounded-xl shadow-xl transition text-base">
+                <button type="submit" class="w-full btn-darkblue font-black py-4 rounded-xl shadow-xl transition text-base">
                     Find My Tutor Now
                 </button>
             </form>
@@ -279,7 +290,7 @@
     </section>
 
     <!-- 5th SECTION: PROFESSIONAL FOOTER -->
-    <footer id="footer" class="bg-slate-900 text-slate-400 pt-16 pb-12 border-t border-slate-800">
+    <footer id="footer" class="bg-darkblue-900 text-slate-400 pt-16 pb-12 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-5 gap-8 mb-12 text-xs">
             <div>
                 <h4 class="text-white font-extrabold text-sm uppercase tracking-wider mb-4">Popular Localities</h4>
@@ -316,8 +327,8 @@
                 <ul class="space-y-2 font-medium">
                     <li><a href="#home" class="hover:text-white transition">Home</a></li>
                     <li><a href="#tutors" class="hover:text-white transition">Tutors</a></li>
-                    <li><a href="#classes" class="hover:text-white transition">Locations</a></li>
-                    <li><a href="#why-us" class="hover:text-white transition">Services</a></li>
+                    <li><a href="#classes" class="hover:text-white transition">Classes</a></li>
+                    <li><a href="#why-us" class="hover:text-white transition">Why Us</a></li>
                     <li><a href="#footer" class="hover:text-white transition">Contact Us</a></li>
                 </ul>
             </div>
@@ -340,9 +351,8 @@
         </div>
     </footer>
 
-    <!-- FIREBASE LIVE SCRIPT & MOBILE MENU TOGGLE -->
+    <!-- FIREBASE LIVE SCRIPT & SEARCH LOGIC -->
     <script>
-        // Toggle Mobile Sidebar Drawer
         function toggleSidebar() {
             const menu = document.getElementById('mobileMenu');
             const backdrop = document.getElementById('backdrop');
@@ -350,7 +360,6 @@
             backdrop.classList.toggle('hidden');
         }
 
-        // Firebase Configuration & Data Fetching
         const firebaseConfig = {
             apiKey: "AIzaSyD837pmW5N21lMgeVlpgWPx0FaMisSnxwU",
             authDomain: "theuniversitypage-cc4a7.firebaseapp.com",
@@ -367,63 +376,92 @@
         }
         const db = firebase.firestore();
 
+        let allTutors = [];
+
         async function fetchLiveTutors() {
             const grid = document.getElementById('liveTutorsGrid');
             try {
                 const snapshot = await db.collection("admins").where("verified", "==", true).get();
+                allTutors = [];
                 
-                grid.innerHTML = '';
-
-                if (snapshot.empty) {
-                    grid.innerHTML = `<div class="col-span-3 text-center py-8 text-slate-500 font-bold bg-slate-50 rounded-2xl border border-slate-200">No verified tutors online right now. Check back soon!</div>`;
-                    return;
-                }
-
                 snapshot.forEach(doc => {
-                    const t = doc.data();
-                    const photo = t.photoUrl || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=300&q=80';
-                    const name = t.fullName || 'Tutor';
-                    const qual = t.qualification || 'Educator';
-                    const exp = t.experience || '3+ Years Exp';
-                    const subjects = t.subjects || 'General Subjects';
-                    const prefClass = t.prefClass || 'Class 9-10';
-                    const studentsCount = t.studentsCount || '15+';
-                    const phone = t.whatsappNumber || '9876543210';
-
-                    const card = `
-                        <div class="card-box p-6 flex flex-col justify-between">
-                            <div>
-                                <div class="flex items-center space-x-4 mb-4">
-                                    <img src="${photo}" class="w-16 h-16 rounded-2xl object-cover border-2 border-indigo-100 shadow-sm" alt="${name}">
-                                    <div>
-                                        <h4 class="font-black text-slate-900 text-base">${name}</h4>
-                                        <p class="text-xs text-indigo-600 font-extrabold">${qual}</p>
-                                        <span class="text-[11px] font-bold text-slate-400 block mt-0.5"><i class="fa-solid fa-briefcase text-slate-400 mr-1"></i> ${exp}</span>
-                                    </div>
-                                </div>
-                                <div class="space-y-1.5 mb-5 text-xs font-semibold text-slate-600 bg-slate-50 p-3.5 rounded-xl border border-slate-100">
-                                    <p><i class="fa-solid fa-book text-indigo-500 mr-2 w-4"></i> <span class="text-slate-900">${subjects}</span></p>
-                                    <p><i class="fa-solid fa-graduation-cap text-indigo-500 mr-2 w-4"></i> Target: <span class="text-slate-900">${prefClass}</span></p>
-                                    <p><i class="fa-solid fa-users text-indigo-500 mr-2 w-4"></i> Students Taught: <span class="text-slate-900">${studentsCount}</span></p>
-                                </div>
-                            </div>
-                            <div class="space-y-2 pt-2 border-t border-slate-100">
-                                <a href="https://wa.me/91${phone}?text=Hi%20${encodeURIComponent(name)},%20I%20found%20your%20profile%20on%20TutorPage%20and%20want%20to%20book%20a%20tuition." target="_blank" class="block text-center w-full py-2.5 btn-gradient rounded-xl font-extrabold text-xs tracking-wider uppercase shadow-md">
-                                    <i class="fa-brands fa-whatsapp mr-1 text-sm"></i> Book Now
-                                </a>
-                                <a href="https://wa.me/91${phone}?text=Hi%20${encodeURIComponent(name)},%20I%20want%20to%20view%20your%20full%20profile%20details." target="_blank" class="block text-center w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl font-bold text-xs tracking-wider uppercase transition">
-                                    View Profile
-                                </a>
-                            </div>
-                        </div>
-                    `;
-                    grid.innerHTML += card;
+                    allTutors.push(doc.data());
                 });
 
+                renderTutors(allTutors);
             } catch (error) {
                 console.error("Error loading live tutors:", error);
                 grid.innerHTML = `<div class="col-span-3 text-center py-6 text-rose-500 font-bold">Error loading tutors from database.</div>`;
             }
+        }
+
+        function renderTutors(tutorsList) {
+            const grid = document.getElementById('liveTutorsGrid');
+            grid.innerHTML = '';
+
+            if (tutorsList.length === 0) {
+                grid.innerHTML = `<div class="col-span-3 text-center py-8 text-slate-500 font-bold bg-white rounded-2xl border border-slate-200">No verified tutors found matching your search.</div>`;
+                return;
+            }
+
+            tutorsList.forEach(t => {
+                const photo = t.photoUrl || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=300&q=80';
+                const name = t.fullName || 'Tutor';
+                const qual = t.qualification || 'Educator';
+                const exp = t.experience || '3+ Years Exp';
+                const subjects = t.subjects || 'General Subjects';
+                const prefClass = t.prefClass || 'Class 9-10';
+                const studentsCount = t.studentsCount || '15+';
+                const phone = t.whatsappNumber || '9876543210';
+
+                const card = `
+                    <div class="card-box p-6 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center space-x-4 mb-4">
+                                <img src="${photo}" class="w-16 h-16 rounded-2xl object-cover border-2 border-slate-200 shadow-sm" alt="${name}">
+                                <div>
+                                    <h4 class="font-black text-slate-900 text-base">${name}</h4>
+                                    <p class="text-xs text-slate-800 font-extrabold">${qual}</p>
+                                    <span class="text-[11px] font-bold text-slate-400 block mt-0.5"><i class="fa-solid fa-briefcase mr-1"></i> ${exp}</span>
+                                </div>
+                            </div>
+                            <div class="space-y-1.5 mb-5 text-xs font-semibold text-slate-600 bg-slate-50 p-3.5 rounded-xl border border-slate-100">
+                                <p><i class="fa-solid fa-book text-slate-800 mr-2 w-4"></i> <span class="text-slate-900">${subjects}</span></p>
+                                <p><i class="fa-solid fa-graduation-cap text-slate-800 mr-2 w-4"></i> Target: <span class="text-slate-900">${prefClass}</span></p>
+                                <p><i class="fa-solid fa-users text-slate-800 mr-2 w-4"></i> Students Taught: <span class="text-slate-900">${studentsCount}</span></p>
+                            </div>
+                        </div>
+                        <div class="space-y-2 pt-2 border-t border-slate-100">
+                            <a href="https://wa.me/91${phone}?text=Hi%20${encodeURIComponent(name)},%20I%20found%20your%20profile%20on%20TutorPage%20and%20want%20to%20book%20a%20tuition." target="_blank" class="block text-center w-full py-2.5 btn-darkblue rounded-xl font-extrabold text-xs tracking-wider uppercase shadow-md">
+                                <i class="fa-brands fa-whatsapp mr-1 text-sm"></i> Book Now
+                            </a>
+                            <a href="https://wa.me/91${phone}?text=Hi%20${encodeURIComponent(name)},%20I%20want%20to%20view%20your%20full%20profile%20details." target="_blank" class="block text-center w-full py-2.5 btn-richblack rounded-xl font-bold text-xs tracking-wider uppercase shadow-md transition">
+                                View Profile
+                            </a>
+                        </div>
+                    </div>
+                `;
+                grid.innerHTML += card;
+            });
+        }
+
+        // Search Filter Function
+        function filterTutors() {
+            const subQuery = document.getElementById('searchSubject').value.toLowerCase().trim();
+            const areaQuery = document.getElementById('searchArea').value.toLowerCase().trim();
+
+            const filtered = allTutors.filter(t => {
+                const subjects = (t.subjects || '').toLowerCase();
+                const area = (t.district || '').toLowerCase();
+                const name = (t.fullName || '').toLowerCase();
+
+                const matchesSub = subQuery === '' || subjects.includes(subQuery) || name.includes(subQuery);
+                const matchesArea = areaQuery === '' || area.includes(areaQuery);
+
+                return matchesSub && matchesArea;
+            });
+
+            renderTutors(filtered);
         }
 
         function handleRequirementSubmit(e) {
