@@ -21,22 +21,31 @@
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background: #030712;
+            background: #030712; /* Rich Dark Background */
             background-image: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.25), transparent 60%),
                               radial-gradient(circle at 100% 100%, rgba(236, 72, 153, 0.15), transparent 50%);
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 20px;
             color: #F8FAFC;
         }
 
+        /* MAIN CENTering WRAPPER */
+        .wrapper-container {
+            width: 100%;
+            max-width: 480px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
         /* VIP GLASS CARD CONTAINER */
         .auth-card-container {
             width: 100%;
-            max-width: 480px;
-            background: rgba(11, 15, 25, 0.9);
+            background: rgba(11, 15, 25, 0.92);
             backdrop-filter: blur(40px);
             -webkit-backdrop-filter: blur(40px);
             border: 1px solid rgba(255, 255, 255, 0.12);
@@ -44,16 +53,15 @@
             box-shadow: 0 30px 70px rgba(0, 0, 0, 0.7), 0 0 50px rgba(99, 102, 241, 0.2);
             overflow: hidden;
             position: relative;
-            padding: 42px 34px 34px;
+            padding: 40px 32px 28px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            max-height: 94vh;
         }
 
         .form-scroll-area {
             overflow-y: auto;
-            max-height: 56vh;
+            max-height: 52vh;
             padding-right: 4px;
         }
         .form-scroll-area::-webkit-scrollbar { width: 4px; }
@@ -62,7 +70,7 @@
         /* VIP BRAND LOGO */
         .brand-logo-area {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
         .logo-badge-text {
             font-size: 1.05rem;
@@ -85,18 +93,18 @@
 
         /* WELCOME HEADER */
         .welcome-block {
-            margin-bottom: 24px;
+            margin-bottom: 20px;
             text-align: center;
         }
         .welcome-block h1 {
-            font-size: 1.65rem;
+            font-size: 1.6rem;
             font-weight: 900;
             color: #FFFFFF;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             letter-spacing: -0.02em;
         }
         .welcome-block p {
-            font-size: 0.84rem;
+            font-size: 0.82rem;
             color: #94A3B8;
             font-weight: 500;
         }
@@ -108,15 +116,15 @@
             border-radius: 9999px;
             padding: 5px;
             display: flex;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
         .pill-btn {
             flex: 1;
             background: transparent;
             border: none;
-            padding: 11px;
+            padding: 10px;
             border-radius: 9999px;
-            font-size: 0.84rem;
+            font-size: 0.82rem;
             font-weight: 800;
             color: #94A3B8;
             cursor: pointer;
@@ -131,7 +139,7 @@
         /* VIP INPUT FIELDS */
         .input-group {
             position: relative;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
         }
         .input-group i.left-icon {
             position: absolute;
@@ -139,7 +147,7 @@
             top: 50%;
             transform: translateY(-50%);
             color: #818CF8;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
         .input-group i.right-icon {
             position: absolute;
@@ -147,7 +155,7 @@
             top: 50%;
             transform: translateY(-50%);
             color: #94A3B8;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             cursor: pointer;
             transition: color 0.2s;
         }
@@ -155,11 +163,11 @@
         
         .input-field, .input-select {
             width: 100%;
-            padding: 14px 16px 14px 48px;
+            padding: 13px 16px 13px 48px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 16px;
             background: rgba(15, 23, 42, 0.75);
-            font-size: 0.88rem;
+            font-size: 0.85rem;
             font-weight: 600;
             color: #FFFFFF;
             outline: none;
@@ -184,21 +192,21 @@
             color: #FFFFFF;
         }
 
-        /* CLEAN SHADOW-FREE SUBMIT BUTTON */
+        /* SHADOW-FREE SUBMIT BUTTON */
         .submit-btn {
             background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);
             color: #FFFFFF;
             border: none;
             width: 100%;
-            padding: 14px;
+            padding: 13px;
             border-radius: 16px;
             font-weight: 900;
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             cursor: pointer;
-            box-shadow: none; /* Shadow completely removed */
+            box-shadow: none;
             transition: transform 0.2s, opacity 0.2s;
-            margin-top: 8px;
-            margin-bottom: 18px;
+            margin-top: 6px;
+            margin-bottom: 16px;
             letter-spacing: 0.3px;
         }
         .submit-btn:hover { transform: translateY(-1px); opacity: 0.95; }
@@ -209,9 +217,9 @@
             align-items: center;
             text-align: center;
             color: #64748B;
-            font-size: 0.74rem;
+            font-size: 0.72rem;
             font-weight: 700;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
             text-transform: uppercase;
             letter-spacing: 0.8px;
         }
@@ -227,14 +235,14 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 12px;
-            margin-bottom: 18px;
+            margin-bottom: 16px;
         }
         .social-auth-btn {
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 11px;
+            padding: 10px;
             border-radius: 14px;
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             font-weight: 700;
             color: #E2E8F0;
             cursor: pointer;
@@ -254,7 +262,7 @@
         /* FOOTER SWITCH LINK */
         .auth-footer-link {
             text-align: center;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             font-weight: 700;
             color: #94A3B8;
         }
@@ -264,6 +272,16 @@
         }
         .auth-footer-link a:hover { text-decoration: underline; }
 
+        /* COPYRIGHT FOOTER BAR */
+        .copyright-footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #64748B;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
         /* PANELS TOGGLE */
         .form-panel { display: none; }
         .form-panel.active { display: block; animation: fadeIn 0.3s ease; }
@@ -272,127 +290,136 @@
 
         @media (max-width: 480px) {
             body { padding: 0; background: #030712; }
-            .auth-card-container { border: none; box-shadow: none; border-radius: 0; height: 100vh; padding: 26px 20px; justify-content: space-between; max-height: 100vh; }
-            .form-scroll-area { max-height: 64vh; }
+            .wrapper-container { max-width: 100%; height: 100vh; justify-content: center; padding: 16px; }
+            .auth-card-container { border: none; box-shadow: none; border-radius: 28px; width: 100%; padding: 28px 22px 22px; }
+            .form-scroll-area { max-height: 52vh; }
         }
     </style>
 </head>
 <body>
 
-    <div class="auth-card-container">
+    <div class="wrapper-container">
         
-        <div>
-            <!-- TOP BRAND -->
-            <div class="brand-logo-area">
-                <div class="logo-badge-text">TutorPage <span>VIP ADMIN</span></div>
-            </div>
-
-            <!-- WELCOME HEADER -->
-            <div class="welcome-block">
-                <h1>Enterprise Access</h1>
-                <p>Secure executive management portal for Prayagraj</p>
-            </div>
-
-            <!-- TAB SWITCHER -->
-            <div class="pill-switch-container">
-                <button class="pill-btn active" id="tabSignIn" onclick="switchTab('signin')">Sign In</button>
-                <button class="pill-btn" id="tabCreate" onclick="switchTab('create')">Create Admin</button>
-            </div>
-
-            <!-- FORM PANELS CONTAINER -->
-            <div class="form-scroll-area">
-                <!-- SIGN IN PANEL -->
-                <div id="signInPanel" class="form-panel active">
-                    <form onsubmit="handleAdminLogin(event)">
-                        <div class="input-group">
-                            <i class="fa-solid fa-envelope-circle-check left-icon"></i>
-                            <input type="email" id="loginEmail" class="input-field" placeholder="Admin Email" required>
-                        </div>
-
-                        <div class="input-group">
-                            <i class="fa-solid fa-shield-keyhole left-icon"></i>
-                            <input type="password" id="loginPass" class="input-field" placeholder="Secure Password" required>
-                            <i class="fa-solid fa-eye-slash right-icon" onclick="togglePassword('loginPass', this)"></i>
-                        </div>
-
-                        <button type="submit" class="submit-btn" id="loginBtn">Authenticate Admin</button>
-                    </form>
+        <div class="auth-card-container">
+            <div>
+                <!-- TOP BRAND -->
+                <div class="brand-logo-area">
+                    <div class="logo-badge-text">TutorPage <span>VIP ADMIN</span></div>
                 </div>
 
-                <!-- CREATE ADMIN PANEL -->
-                <div id="createPanel" class="form-panel">
-                    <form onsubmit="handleAdminRegister(event)">
-                        <div class="input-group">
-                            <i class="fa-solid fa-user-shield left-icon"></i>
-                            <input type="text" id="regName" class="input-field" placeholder="Your Full Name" required>
-                        </div>
+                <!-- WELCOME HEADER -->
+                <div class="welcome-block">
+                    <h1>Enterprise Access</h1>
+                    <p>Secure executive management portal for Prayagraj</p>
+                </div>
 
-                        <div class="input-group">
-                            <i class="fa-brands fa-whatsapp left-icon" style="color: #25D366;"></i>
-                            <input type="tel" id="regPhone" class="input-field" placeholder="WhatsApp Number (e.g. 9876543210)" required>
-                        </div>
+                <!-- TAB SWITCHER -->
+                <div class="pill-switch-container">
+                    <button class="pill-btn active" id="tabSignIn" onclick="switchTab('signin')">Sign In</button>
+                    <button class="pill-btn" id="tabCreate" onclick="switchTab('create')">Create Admin</button>
+                </div>
 
-                        <div class="input-group">
-                            <i class="fa-solid fa-envelope-circle-check left-icon"></i>
-                            <input type="email" id="regEmail" class="input-field" placeholder="Your Email Address" required>
-                        </div>
+                <!-- FORM PANELS CONTAINER -->
+                <div class="form-scroll-area">
+                    <!-- SIGN IN PANEL -->
+                    <div id="signInPanel" class="form-panel active">
+                        <form onsubmit="handleAdminLogin(event)">
+                            <div class="input-group">
+                                <i class="fa-solid fa-envelope-circle-check left-icon"></i>
+                                <input type="email" id="loginEmail" class="input-field" placeholder="Admin Email" required>
+                            </div>
 
-                        <div class="input-group">
-                            <i class="fa-solid fa-venus-mars left-icon"></i>
-                            <select id="regGender" class="input-select" required>
-                                <option value="" disabled selected>Select Gender</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </div>
+                            <div class="input-group">
+                                <i class="fa-solid fa-shield-keyhole left-icon"></i>
+                                <input type="password" id="loginPass" class="input-field" placeholder="Secure Password" required>
+                                <i class="fa-solid fa-eye-slash right-icon" onclick="togglePassword('loginPass', this)"></i>
+                            </div>
 
-                        <div class="input-group">
-                            <i class="fa-solid fa-map-location-dot left-icon"></i>
-                            <select id="regState" class="input-select" required>
-                                <option value="" disabled selected>Select State</option>
-                                <option value="Uttar Pradesh">Uttar Pradesh</option>
-                                <option value="Delhi">Delhi</option>
-                                <option value="Bihar">Bihar</option>
-                                <option value="Madhya Pradesh">Madhya Pradesh</option>
-                                <option value="Rajasthan">Rajasthan</option>
-                                <option value="Other">Other State</option>
-                            </select>
-                        </div>
+                            <button type="submit" class="submit-btn" id="loginBtn">Authenticate Admin</button>
+                        </form>
+                    </div>
 
-                        <div class="input-group">
-                            <i class="fa-solid fa-city left-icon"></i>
-                            <input type="text" id="regDistrict" class="input-field" placeholder="District (e.g. Prayagraj)" required>
-                        </div>
+                    <!-- CREATE ADMIN PANEL -->
+                    <div id="createPanel" class="form-panel">
+                        <form onsubmit="handleAdminRegister(event)">
+                            <div class="input-group">
+                                <i class="fa-solid fa-user-shield left-icon"></i>
+                                <input type="text" id="regName" class="input-field" placeholder="Your Full Name" required>
+                            </div>
 
-                        <div class="input-group">
-                            <i class="fa-solid fa-shield-keyhole left-icon"></i>
-                            <input type="password" id="regPass" class="input-field" placeholder="Create Secure Password" required>
-                            <i class="fa-solid fa-eye-slash right-icon" onclick="togglePassword('regPass', this)"></i>
-                        </div>
+                            <div class="input-group">
+                                <i class="fa-brands fa-whatsapp left-icon" style="color: #25D366;"></i>
+                                <input type="tel" id="regPhone" class="input-field" placeholder="WhatsApp Number (e.g. 9876543210)" required>
+                            </div>
 
-                        <button type="submit" class="submit-btn" id="regBtn">Register Admin Profile</button>
-                    </form>
+                            <div class="input-group">
+                                <i class="fa-solid fa-envelope-circle-check left-icon"></i>
+                                <input type="email" id="regEmail" class="input-field" placeholder="Your Email Address" required>
+                            </div>
+
+                            <div class="input-group">
+                                <i class="fa-solid fa-venus-mars left-icon"></i>
+                                <select id="regGender" class="input-select" required>
+                                    <option value="" disabled selected>Select Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <i class="fa-solid fa-map-location-dot left-icon"></i>
+                                <select id="regState" class="input-select" required>
+                                    <option value="" disabled selected>Select State</option>
+                                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                    <option value="Delhi">Delhi</option>
+                                    <option value="Bihar">Bihar</option>
+                                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                    <option value="Rajasthan">Rajasthan</option>
+                                    <option value="Other">Other State</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <i class="fa-solid fa-city left-icon"></i>
+                                <input type="text" id="regDistrict" class="input-field" placeholder="District (e.g. Prayagraj)" required>
+                            </div>
+
+                            <div class="input-group">
+                                <i class="fa-solid fa-shield-keyhole left-icon"></i>
+                                <input type="password" id="regPass" class="input-field" placeholder="Create Secure Password" required>
+                                <i class="fa-solid fa-eye-slash right-icon" onclick="togglePassword('regPass', this)"></i>
+                            </div>
+
+                            <button type="submit" class="submit-btn" id="regBtn">Register Admin Profile</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- SOCIAL LOGIN -->
+                <div class="social-divider">Or continue securely with</div>
+                <div class="social-buttons-grid">
+                    <button class="social-auth-btn" onclick="socialAuth('Google')">
+                        <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.13 0-5.78-2.11-6.73-4.96H1.14v3.15C3.17 21.31 7.26 24 12 24z"/><path fill="#FBBC05" d="M5.27 14.24c-.25-.72-.38-1.5-.38-2.24s.13-1.52.38-2.24V6.61H1.14C.41 8.08 0 9.73 0 12s.41 3.92 1.14 5.39l4.13-3.15z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.26 0 3.17 2.69 1.14 6.61l4.13 3.15c.95-2.85 3.6-4.96 6.73-4.96z"/></svg>
+                        <span>Google</span>
+                    </button>
+                    <button class="social-auth-btn" onclick="socialAuth('Facebook')">
+                        <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#1877F2" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        <span>Facebook</span>
+                    </button>
                 </div>
             </div>
 
-            <!-- SOCIAL LOGIN -->
-            <div class="social-divider">Or continue securely with</div>
-            <div class="social-buttons-grid">
-                <button class="social-auth-btn" onclick="socialAuth('Google')">
-                    <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.13 0-5.78-2.11-6.73-4.96H1.14v3.15C3.17 21.31 7.26 24 12 24z"/><path fill="#FBBC05" d="M5.27 14.24c-.25-.72-.38-1.5-.38-2.24s.13-1.52.38-2.24V6.61H1.14C.41 8.08 0 9.73 0 12s.41 3.92 1.14 5.39l4.13-3.15z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.26 0 3.17 2.69 1.14 6.61l4.13 3.15c.95-2.85 3.6-4.96 6.73-4.96z"/></svg>
-                    <span>Google</span>
-                </button>
-                <button class="social-auth-btn" onclick="socialAuth('Facebook')">
-                    <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#1877F2" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                    <span>Facebook</span>
-                </button>
+            <!-- FOOTER SWITCH LINK -->
+            <div class="auth-footer-link" id="footerSwitchText">
+                Need an admin account? <a href="#" onclick="switchTab('create'); return false;">Create one</a>
             </div>
+
         </div>
 
-        <!-- FOOTER SWITCH LINK -->
-        <div class="auth-footer-link" id="footerSwitchText">
-            Need an admin account? <a href="#" onclick="switchTab('create'); return false;">Create one</a>
+        <!-- COPYRIGHT FOOTER -->
+        <div class="copyright-footer">
+            © 2026 TutorPage. All Rights Reserved.
         </div>
 
     </div>
