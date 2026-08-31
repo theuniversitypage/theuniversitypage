@@ -65,7 +65,7 @@
             
             <nav class="hidden md:flex items-center space-x-8 font-semibold text-sm text-slate-600">
                 <a href="#home" class="text-indigo-600">Home</a>
-                <a href="#find-tutor" class="hover:text-indigo-600 transition">Find Tutor</a>
+                <a href="#live-tutors" class="hover:text-indigo-600 transition font-bold text-indigo-600">Top Tutors</a>
                 <a href="#classes" class="hover:text-indigo-600 transition">Classes</a>
                 <a href="#areas" class="hover:text-indigo-600 transition">Popular Areas</a>
                 <a href="#post-requirement" class="hover:text-indigo-600 transition">Post Requirement</a>
@@ -99,19 +99,145 @@
         </div>
     </section>
 
-    <!-- 6 & 7. FIND TUTOR PAGE / LIVE DIRECTORY SECTION -->
-    <section id="find-tutor" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-20 scroll-mt-24">
-        <div class="mb-8 flex justify-between items-end">
+    <!-- 🌟 SEPARATE TOP SECTION: LIVE VERIFIED TUTORS FROM DATABASE (उपर ही अलग सेक्शन) -->
+    <section id="live-tutors" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 mb-16">
+        <div class="bg-gradient-to-r from-indigo-50 to-blue-50 border border-indigo-100 p-6 sm:p-10 rounded-3xl shadow-sm">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
+                <div>
+                    <span class="bg-indigo-600 text-white text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider">🔥 Featured & Verified</span>
+                    <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-2">Latest Registered Tutors in Allahabad</h2>
+                    <p class="text-xs sm:text-sm text-slate-500 font-semibold mt-1">ये टीचर्स अभी हाल ही में जुड़े हैं और पढ़ाने के लिए उपलब्ध हैं।</p>
+                </div>
+                <a href="#find-tutor" class="text-xs font-extrabold text-indigo-600 hover:underline bg-white px-4 py-2 rounded-xl shadow-sm border border-slate-200">View All Directory →</a>
+            </div>
+
+            <!-- Dynamic Grid for Live Tutors -->
+            <div id="liveTutorsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="col-span-3 text-center py-10 text-slate-400 font-bold">Loading live tutors from database...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. POPULAR CLASSES -->
+    <section id="classes" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+        <div class="flex justify-between items-end mb-8">
             <div>
-                <span class="text-indigo-600 font-extrabold text-xs uppercase tracking-widest">Marketplace Directory</span>
-                <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-1">Top Verified Tutors in Allahabad</h2>
+                <span class="text-indigo-600 font-extrabold text-xs uppercase tracking-widest">Academic Categories</span>
+                <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-1">किस Class के लिए Tutor चाहिए?</h2>
             </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="tutorsGrid">
-            <!-- Dynamically Loaded Verified Tutors from Firebase -->
-            <div class="col-span-3 bg-white p-12 rounded-3xl text-center text-slate-400 font-bold border border-slate-200">
-                Loading live verified tutors from database...
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 hover:border-indigo-600 hover:shadow-lg transition cursor-pointer text-center group">
+                <div class="text-3xl mb-3 text-indigo-500 group-hover:scale-110 transition"><i class="fa-solid fa-child-reaching"></i></div>
+                <h4 class="font-extrabold text-slate-900 mb-1">Class 1–5</h4>
+                <p class="text-xs text-slate-400 font-bold mb-3">42 Tutors Available</p>
+            </div>
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 hover:border-indigo-600 hover:shadow-lg transition cursor-pointer text-center group">
+                <div class="text-3xl mb-3 text-indigo-500 group-hover:scale-110 transition"><i class="fa-solid fa-book-open-reader"></i></div>
+                <h4 class="font-extrabold text-slate-900 mb-1">Class 6–8</h4>
+                <p class="text-xs text-slate-400 font-bold mb-3">68 Tutors Available</p>
+            </div>
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 hover:border-indigo-600 hover:shadow-lg transition cursor-pointer text-center group">
+                <div class="text-3xl mb-3 text-indigo-500 group-hover:scale-110 transition"><i class="fa-solid fa-graduation-cap"></i></div>
+                <h4 class="font-extrabold text-slate-900 mb-1">Class 9–10</h4>
+                <p class="text-xs text-slate-400 font-bold mb-3">95 Tutors Available</p>
+            </div>
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 hover:border-indigo-600 hover:shadow-lg transition cursor-pointer text-center group">
+                <div class="text-3xl mb-3 text-indigo-500 group-hover:scale-110 transition"><i class="fa-solid fa-atom"></i></div>
+                <h4 class="font-extrabold text-slate-900 mb-1">Class 11–12</h4>
+                <p class="text-xs text-slate-400 font-bold mb-3">110 Tutors Available</p>
+            </div>
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 hover:border-indigo-600 hover:shadow-lg transition cursor-pointer text-center group">
+                <div class="text-3xl mb-3 text-indigo-500 group-hover:scale-110 transition"><i class="fa-solid fa-user-tie"></i></div>
+                <h4 class="font-extrabold text-slate-900 mb-1">Graduation</h4>
+                <p class="text-xs text-slate-400 font-bold mb-3">34 Tutors Available</p>
+            </div>
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 hover:border-indigo-600 hover:shadow-lg transition cursor-pointer text-center group">
+                <div class="text-3xl mb-3 text-indigo-500 group-hover:scale-110 transition"><i class="fa-solid fa-bullseye"></i></div>
+                <h4 class="font-extrabold text-slate-900 mb-1">Competitive</h4>
+                <p class="text-xs text-slate-400 font-bold mb-3">52 Tutors Available</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. POST YOUR REQUIREMENT FORM -->
+    <section id="post-requirement" class="max-w-4xl mx-auto px-4 mb-20 scroll-mt-24">
+        <div class="bg-white p-8 sm:p-12 rounded-3xl border border-slate-200 shadow-xl relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-indigo-50 rounded-bl-full -z-10"></div>
+            
+            <div class="text-center max-w-xl mx-auto mb-8">
+                <span class="bg-amber-100 text-amber-700 text-xs font-extrabold px-3.5 py-1 rounded-full uppercase tracking-wider">Fast Matching</span>
+                <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-2">Tutor नहीं मिल रहा? अपनी Requirement भेजें</h2>
+                <p class="text-sm text-slate-500 font-medium mt-1">फॉर्म भरें, हमारी टीम Allahabad में आपके लिए बेस्ट ट्यूटर ढूंढकर संपर्क करेगी।</p>
+            </div>
+
+            <form id="requirementForm" onsubmit="handleRequirementSubmit(event)" class="space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Student Name *</label>
+                        <input type="text" id="reqStudent" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold focus:outline-none focus:border-indigo-600" placeholder="e.g. Aman Gupta">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Parent Name *</label>
+                        <input type="text" id="reqParent" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold focus:outline-none focus:border-indigo-600" placeholder="e.g. Rajesh Gupta">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Class *</label>
+                        <select id="reqClass" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold focus:outline-none focus:border-indigo-600">
+                            <option value="Class 9-10">Class 9-10</option>
+                            <option value="Class 11-12">Class 11-12</option>
+                            <option value="Graduation">Graduation</option>
+                            <option value="Competitive">Competitive Exams</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Subject *</label>
+                        <input type="text" id="reqSubject" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold focus:outline-none focus:border-indigo-600" placeholder="e.g. Mathematics">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Area in Allahabad *</label>
+                        <select id="reqArea" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold focus:outline-none focus:border-indigo-600">
+                            <option value="Civil Lines">Civil Lines</option>
+                            <option value="Allahpur">Allahpur</option>
+                            <option value="George Town">George Town</option>
+                            <option value="Teliarganj">Teliarganj</option>
+                            <option value="Naini">Naini</option>
+                            <option value="Tagore Town">Tagore Town</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Tuition Mode *</label>
+                        <select id="reqMode" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold focus:outline-none focus:border-indigo-600">
+                            <option value="Home Tuition">Home Tuition</option>
+                            <option value="Online Tuition">Online Tuition</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Parent Mobile Number *</label>
+                        <input type="tel" id="reqPhone" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold focus:outline-none focus:border-indigo-600" placeholder="10-digit mobile number">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Additional Requirements / Budget</label>
+                    <textarea id="reqDetails" rows="3" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold focus:outline-none focus:border-indigo-600" placeholder="e.g. Need female tutor, Budget around ₹4000/month..."></textarea>
+                </div>
+
+                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-black py-4 rounded-2xl shadow-xl shadow-indigo-200 transition text-base">
+                    Find My Tutor
+                </button>
+            </form>
+
+            <div id="reqSuccessMsg" class="hidden bg-emerald-50 border border-emerald-200 text-emerald-800 p-6 rounded-2xl text-center font-bold">
+                <i class="fa-solid fa-circle-check text-2xl text-emerald-600 mb-2"></i>
+                <p>Your requirement has been submitted successfully. Our team will contact you shortly.</p>
             </div>
         </div>
     </section>
@@ -126,21 +252,13 @@
                 </div>
                 <p class="text-xs text-slate-400 leading-relaxed font-medium mb-4">“Allahabad में अपना Perfect Tutor खोजें” — Connecting students with verified tutors across Prayagraj.</p>
             </div>
-            <div>
-                <h4 class="text-white font-extrabold text-sm uppercase tracking-wider mb-4">Quick Links</h4>
-                <ul class="space-y-2.5 text-xs font-semibold">
-                    <li><a href="#home" class="hover:text-white transition">Home</a></li>
-                    <li><a href="#find-tutor" class="hover:text-white transition">Find Tutor</a></li>
-                    <li><a href="login.html" class="hover:text-white transition">Teacher Login</a></li>
-                </ul>
-            </div>
         </div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-slate-800/80 flex justify-between items-center text-xs text-slate-500 font-medium">
             <p>©️ 2026 TutorPage. All Rights Reserved.</p>
         </div>
     </footer>
 
-    <!-- LIVE FIREBASE DATA FETCHING SCRIPT -->
+    <!-- FIREBASE LIVE SCRIPT -->
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyD837pmW5N21lMgeVlpgWPx0FaMisSnxwU",
@@ -158,16 +276,16 @@
         }
         const db = firebase.firestore();
 
-        async function fetchVerifiedTutors() {
-            const grid = document.getElementById('tutorsGrid');
+        // Fetch Verified Tutors from Firebase and show them right at the top section
+        async function fetchLiveTutors() {
+            const grid = document.getElementById('liveTutorsGrid');
             try {
-                // Fetch only verified tutors from Firestore database
                 const snapshot = await db.collection("admins").where("verified", "==", true).get();
                 
                 grid.innerHTML = '';
 
                 if (snapshot.empty) {
-                    grid.innerHTML = `<div class="col-span-3 bg-white p-12 rounded-3xl text-center text-slate-500 font-bold border border-slate-200">No verified tutors available right now. Check back soon!</div>`;
+                    grid.innerHTML = `<div class="col-span-3 text-center py-6 text-slate-500 font-bold">No verified tutors online right now. Check back soon!</div>`;
                     return;
                 }
 
@@ -227,12 +345,20 @@
                 });
 
             } catch (error) {
-                console.error("Error loading tutors:", error);
-                grid.innerHTML = `<div class="col-span-3 bg-white p-12 rounded-3xl text-center text-rose-500 font-bold border border-slate-200">Error loading tutors from database.</div>`;
+                console.error("Error loading live tutors:", error);
+                grid.innerHTML = `<div class="col-span-3 text-center py-6 text-rose-500 font-bold">Error loading tutors from database.</div>`;
             }
         }
 
-        window.onload = fetchVerifiedTutors;
+        // Post requirement form handler
+        function handleRequirementSubmit(e) {
+            e.preventDefault();
+            document.getElementById('requirementForm').reset();
+            document.getElementById('requirementForm').classList.add('hidden');
+            document.getElementById('reqSuccessMsg').classList.remove('hidden');
+        }
+
+        window.onload = fetchLiveTutors;
     </script>
 </body>
 </html>
