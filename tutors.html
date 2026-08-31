@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="hi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>All Tutors Directory | TutorPage Allahabad</title>
+    
+    <!-- Meta SEO -->
+    <meta name="description" content="Browse all verified home and online tutors in Allahabad by subject, location, class, and fee range.">
+    <link rel="canonical" href="https://tutorpage.in/tutors.html">
+
+    <!-- Inter Font & FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <!-- Firebase SDK Compat -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "Inter", Arial, sans-serif; background: #ffffff; color: #161616; }
+
+        /* NAVBAR (Index Theme Match) */
+        .navbar {
+            position: sticky; top: 0; z-index: 50;
+            background: #ffffff; border-bottom: 1px solid #e5e5e5;
+            height: 80px; display: flex; align-items: center;
+        }
+        .nav-container {
+            width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 24px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .nav-links {
+            display: flex; align-items: center; gap: 24px; list-style: none;
+        }
+        .nav-links li a {
+            font-size: 14px; font-weight: 600; color: #4b4b4b; text-decoration: none; transition: color 0.2s ease;
+        }
+        .nav-links li a:hover { color: #673de6; }
+        .nav-login-btn {
+            padding: 9px 18px; background: #161616; color: #fff; border-radius: 9px;
+            font-size: 13px; font-weight: 700; text-decoration: none; transition: background 0.2s ease;
+        }
+        .nav-login-btn:hover { background: #333333; }
+
+        /* PAGE HEADER */
+        .page-header {
+            background: #f8fafc; border-bottom: 1px solid #e2e8f0; padding: 40px 24px; text-align: center;
+        }
+        .page-header h1 {
+            font-size: 36px; font-weight: 800; color: #161616; letter-spacing: -1px;
+        }
+        .page-header p {
+            font-size: 16px; color: #4b4b4b; margin-top: 8px;
+        }
+
+        /* ADVANCED FILTER SECTION */
+        .filter-section {
+            max-width: 1280px; margin: 30px auto 10px; padding: 0 24px;
+        }
+        .filter-grid {
+            background: #f8fafc; border: 1.5px solid #161616; border-radius: 16px; padding: 20px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) auto; gap: 16px; align-items: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.03);
+        }
+        .filter-input {
+            width: 100%; padding: 12px 16px; border: 1px solid #cbd5e1; border-radius: 10px;
+            font-size: 14px; font-weight: 500; outline: none; background: #fff; font-family: inherit;
+        }
+        .filter-input:focus { border-color: #161616; box-shadow: 0 0 0 3px rgba(22, 22, 22, 0.1); }
+        
+        .reset-btn {
+            height: 46px; padding: 0 20px; border: 1.5px solid #161616; border-radius: 10px;
+            background: #ffffff; color: #161616; font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.2s ease;
+        }
+        .reset-btn:hover { background: #f1f5f9; }
+
+        /* TUTORS DIRECTORY GRID */
+        .tutors-section {
+            max-width: 1280px; margin: 30px auto 60px; padding: 0 24px;
+        }
+        .tutors-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; margin-top: 20px;
+        }
+        .tutor-card {
+            background: #ffffff; border: 1.5px solid #161616; border-radius: 16px; padding: 24px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.04); display: flex; flex-direction: column; justify-content: space-between;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .tutor-card:hover { transform: translateY(-4px); box-shadow: 0 16px 30px rgba(0,0,0,0.08); }
+
+        /* BUTTONS (Exact Match with Index Page) */
+        .btn-green-whatsapp {
+            width: 100%; height: 48px; border: none; border-radius: 11px;
+            background: #22c55e; color: #ffffff; font-family: inherit; font-size: 15px; font-weight: 700;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
+            transition: all 0.2s ease; text-decoration: none; margin-top: 12px;
+            box-shadow: 0 4px 14px rgba(34, 197, 94, 0.3);
+        }
+        .btn-green-whatsapp:hover { background: #16a34a; }
+
+        .btn-black-profile {
+            width: 100%; height: 48px; border: none; border-radius: 11px;
+            background: #161616; color: #ffffff; font-family: inherit; font-size: 15px; font-weight: 700;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
+            transition: all 0.2s ease; text-decoration: none; margin-top: 8px;
+            box-shadow: 0 4px 14px rgba(22, 22, 22, 0.2);
+        }
+        .btn-black-profile:hover { background: #2a2a2a; }
+
+        /* FOOTER (Exact Match) */
+        .footer {
+            background: #111827; color: #9ca3af; padding: 60px 24px 30px; margin-top: 80px; border-top: 1px solid #1f2937;
+        }
+        .footer-container {
+            max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; font-size: 14px;
+        }
+        .footer h4 { color: #ffffff; font-size: 15px; font-weight: 700; text-transform: uppercase; margin-bottom: 16px; letter-spacing: 0.5px; }
+        .footer ul { list-style: none; }
+        .footer ul li { margin-bottom: 10px; }
+        .footer ul li a { color: #9ca3af; text-decoration: none; transition: color 0.2s; }
+        .footer-bottom {
+            max-width: 1280px; margin: 0 auto; padding-top: 25px; border-top: 1px solid #1f2937;
+            display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: #6b7280;
+        }
+
+        @media (max-width: 768px) {
+            .filter-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div style="display: flex; align-items: center;">
+                <div>
+                    <a href="index.html" style="font-size: 20px; font-weight: 800; color: #161616; text-decoration: none; display: block; line-height: 1.1; letter-spacing: -0.5px;">TutorPage</a>
+                    <span style="font-size: 12px; font-weight: 700; color: #2563eb; display: flex; align-items: center; gap: 4px; margin-top: 2px;">
+                        <i class="fa-solid fa-location-dot"></i> Prayagraj, Uttar Pradesh
+                    </span>
+                </div>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tutors.html" style="color: #673de6; font-weight: 700;">Tutors</a></li>
+                <li><a href="index.html#footer">Contact Us</a></li>
+                <li><a href="login.html">Join Tutors</a></li>
+                <li><a href="login.html" class="nav-login-btn">Login</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+        <h1>Explore Verified Tutors in Allahabad</h1>
+        <p>Filter by subject, locality, class, and monthly fee to find your ideal tutor.</p>
+    </div>
+
+    <!-- ADVANCED FILTER BAR -->
+    <div class="filter-section">
+        <div class="filter-grid">
+            <input type="text" id="filterSubject" class="filter-input" placeholder="Filter by Subject (e.g. Maths, Physics)" oninput="applyFilters()">
+            <input type="text" id="filterArea" class="filter-input" placeholder="Filter by Location (e.g. Civil Lines)" oninput="applyFilters()">
+            <input type="text" id="filterClass" class="filter-input" placeholder="Filter by Class (e.g. Class 9-10)" oninput="applyFilters()">
+            <select id="filterFee" class="filter-input" onchange="applyFilters()">
+                <option value="">All Fee Ranges</option>
+                <option value="low">Under ₹3,000 / mo</option>
+                <option value="mid">₹3,000 - ₹6,000 / mo</option>
+                <option value="high">Above ₹6,000 / mo</option>
+            </select>
+            <button onclick="resetFilters()" class="reset-btn">Reset</button>
+        </div>
+    </div>
+
+    <!-- TUTORS DIRECTORY GRID -->
+    <section class="tutors-section">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+            <h2 id="resultCount" style="font-size: 20px; font-weight: 700; color: #161616;">All Available Tutors</h2>
+        </div>
+
+        <div id="allTutorsGrid" class="tutors-grid">
+            <div style="grid-column: 1 / -1; text-align: center; padding: 50px; color: #6b7280; font-weight: 500;">
+                <i class="fa-solid fa-spinner fa-spin" style="margin-right: 8px;"></i> Loading verified tutors directory...
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div>
+                <h4>Popular Localities</h4>
+                <ul>
+                    <li><a href="tutors.html">Civil Lines Tutors</a></li>
+                    <li><a href="tutors.html">Allahpur Tutors</a></li>
+                    <li><a href="tutors.html">George Town Tutors</a></li>
+                    <li><a href="tutors.html">Teliarganj Tutors</a></li>
+                    <li><a href="tutors.html">Naini Tutors</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Top Subjects</h4>
+                <ul>
+                    <li><a href="tutors.html">Mathematics Tutors</a></li>
+                    <li><a href="tutors.html">Physics Tutors</a></li>
+                    <li><a href="tutors.html">Chemistry Tutors</a></li>
+                    <li><a href="tutors.html">English Tutors</a></li>
+                    <li><a href="tutors.html">Biology Tutors</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Academic Boards</h4>
+                <ul>
+                    <li><a href="tutors.html">UP Board Tutors</a></li>
+                    <li><a href="tutors.html">CBSE Board Tutors</a></li>
+                    <li><a href="tutors.html">ICSE Board Tutors</a></li>
+                    <li><a href="tutors.html">Competitive Exams</a></li>
+                    <li><a href="tutors.html">CUET Preparation</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home Page</a></li>
+                    <li><a href="login.html">Teacher Login</a></li>
+                    <li><a href="index.html#classes">Categories</a></li>
+                    <li><a href="index.html#why-us">Our Benefits</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact Us</h4>
+                <p style="margin-bottom: 8px; color: #d1d5db;">Prayagraj, Uttar Pradesh</p>
+                <p style="margin-bottom: 12px; color: #d1d5db;">Email: support@tutorpage.in</p>
+                <div style="background: #1f2937; padding: 10px; border-radius: 8px; color: #818cf8; font-weight: 600; text-align: center;">
+                    24/7 Helpline Active
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>©️ 2026 TutorPage Allahabad. All Rights Reserved.</p>
+            <div style="display: flex; gap: 20px;">
+                <a href="#" style="color: #6b7280; text-decoration: none;">Privacy Policy</a>
+                <a href="#" style="color: #6b7280; text-decoration: none;">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FIREBASE & FILTER LOGIC SCRIPT -->
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyD837pmW5N21lMgeVlpgWPx0FaMisSnxwU",
+            authDomain: "theuniversitypage-cc4a7.firebaseapp.com",
+            databaseURL: "https://theuniversitypage-cc4a7-default-rtdb.firebaseio.com",
+            projectId: "theuniversitypage-cc4a7",
+            storageBucket: "theuniversitypage-cc4a7.firebasestorage.app",
+            messagingSenderId: "31910615607",
+            appId: "1:31910615607:web:bee5bd81c8118a16d1bdb2",
+            measurementId: "G-6E55FCSXDP"
+        };
+
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+        const db = firebase.firestore();
+
+        let allTutors = [];
+
+        window.addEventListener('DOMContentLoaded', async () => {
+            const grid = document.getElementById('allTutorsGrid');
+            try {
+                const snapshot = await db.collection("admins").where("verified", "==", true).get();
+                allTutors = [];
+                
+                snapshot.forEach(doc => {
+                    allTutors.push(doc.data());
+                });
+
+                renderDirectory(allTutors);
+            } catch (error) {
+                console.error("Error loading tutors directory:", error);
+                grid.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 30px; color: #dc2626; font-weight: 600;">Error loading tutors from database.</div>`;
+            }
+        });
+
+        function renderDirectory(list) {
+            const grid = document.getElementById('allTutorsGrid');
+            document.getElementById('resultCount').innerText = `Showing ${list.length} Verified Tutors`;
+            grid.innerHTML = '';
+
+            if (list.length === 0) {
+                grid.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #6b7280; font-weight: 600;">No verified tutors found matching your filters.</div>`;
+                return;
+            }
+
+            list.forEach(t => {
+                const photo = t.photoUrl || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=300&q=80';
+                const name = t.fullName || 'Tutor';
+                const qual = t.qualification || 'Educator';
+                const exp = t.experience || '3+ Years Exp';
+                const subjects = t.subjects || 'General Subjects';
+                const prefClass = t.prefClass || 'Class 9-10';
+                const studentsCount = t.studentsCount || '15+';
+                const phone = t.whatsappNumber || '9876543210';
+                const expectedFee = t.expectedFee || '₹3,000 - ₹5,000 / mo';
+
+                const card = `
+                    <div class="tutor-card">
+                        <div>
+                            <div style="display: flex; gap: 14px; align-items: center; margin-bottom: 16px;">
+                                <img src="${photo}" style="width: 65px; height: 65px; border-radius: 12px; object-fit: cover; border: 1px solid #cbd5e1;" alt="${name}">
+                                <div>
+                                    <h4 style="font-size: 16px; font-weight: 700; color: #161616;">${name}</h4>
+                                    <p style="font-size: 12px; font-weight: 700; color: #4338ca; margin-top: 2px;">${qual}</p>
+                                    <span style="font-size: 11px; font-weight: 600; color: #6b7280; display: block; margin-top: 2px;"><i class="fa-solid fa-briefcase" style="margin-right: 4px;"></i> ${exp}</span>
+                                </div>
+                            </div>
+                            <div style="background: #f8fafc; border: 1px solid #f1f5f9; border-radius: 10px; padding: 12px; font-size: 12px; font-weight: 500; color: #4b4b4b; line-height: 1.6; margin-bottom: 16px;">
+                                <div><i class="fa-solid fa-book" style="color: #4338ca; width: 18px;"></i> <b>Subjects:</b> ${subjects}</div>
+                                <div style="margin-top: 4px;"><i class="fa-solid fa-graduation-cap" style="color: #4338ca; width: 18px;"></i> <b>Target Class:</b> ${prefClass}</div>
+                                <div style="margin-top: 4px;"><i class="fa-solid fa-indian-rupee-sign" style="color: #4338ca; width: 18px;"></i> <b>Expected Fee:</b> ${expectedFee}</div>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="https://wa.me/91${phone}?text=Hi%20${encodeURIComponent(name)},%20I%20found%20your%20profile%20on%20TutorPage%20and%20want%20to%20book%20a%20tuition." target="_blank" class="btn-green-whatsapp">
+                                <i class="fa-brands fa-whatsapp" style="font-size: 18px;"></i> Book Now
+                            </a>
+                            <a href="https://wa.me/91${phone}?text=Hi%20${encodeURIComponent(name)},%20I%20want%20to%20view%20your%20full%20profile%20details." target="_blank" class="btn-black-profile">
+                                <i class="fa-solid fa-user"></i> View Profile
+                            </a>
+                        </div>
+                    </div>
+                `;
+                grid.innerHTML += card;
+            });
+        }
+
+        function applyFilters() {
+            const subQuery = document.getElementById('filterSubject').value.toLowerCase().trim();
+            const areaQuery = document.getElementById('filterArea').value.toLowerCase().trim();
+            const classQuery = document.getElementById('filterClass').value.toLowerCase().trim();
+            const feeQuery = document.getElementById('filterFee').value;
+
+            const filtered = allTutors.filter(t => {
+                const subjects = (t.subjects || '').toLowerCase();
+                const area = (t.district || '').toLowerCase();
+                const prefClass = (t.prefClass || '').toLowerCase();
+                const name = (t.fullName || '').toLowerCase();
+
+                const matchesSub = subQuery === '' || subjects.includes(subQuery) || name.includes(subQuery);
+                const matchesArea = areaQuery === '' || area.includes(areaQuery);
+                const matchesClass = classQuery === '' || prefClass.includes(classQuery);
+
+                return matchesSub && matchesArea && matchesClass;
+            });
+
+            renderDirectory(filtered);
+        }
+
+        function resetFilters() {
+            document.getElementById('filterSubject').value = '';
+            document.getElementById('filterArea').value = '';
+            document.getElementById('filterClass').value = '';
+            document.getElementById('filterFee').value = '';
+            renderDirectory(allTutors);
+        }
+    </script>
+</body>
+</html>
