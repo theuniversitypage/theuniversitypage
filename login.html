@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Enterprise Admin Portal | TutorPage</title>
+    <title>VIP Admin Access | TutorPage Enterprise</title>
     
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,7 +22,8 @@
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background: #030712;
-            background-image: radial-gradient(circle at top center, rgba(99, 102, 241, 0.2), transparent 70%);
+            background-image: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.25), transparent 60%),
+                              radial-gradient(circle at 100% 100%, rgba(236, 72, 153, 0.15), transparent 50%);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -31,19 +32,19 @@
             color: #F8FAFC;
         }
 
-        /* ULTRA-PREMIUM GLASS CARD */
+        /* VIP GLASS CARD CONTAINER */
         .auth-card-container {
             width: 100%;
             max-width: 480px;
-            background: rgba(13, 19, 38, 0.85);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
+            background: rgba(11, 15, 25, 0.9);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
             border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: 36px;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(99, 102, 241, 0.15);
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.7), 0 0 50px rgba(99, 102, 241, 0.2);
             overflow: hidden;
             position: relative;
-            padding: 40px 32px 32px;
+            padding: 42px 34px 34px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -52,21 +53,21 @@
 
         .form-scroll-area {
             overflow-y: auto;
-            max-height: 58vh;
+            max-height: 56vh;
             padding-right: 4px;
         }
         .form-scroll-area::-webkit-scrollbar { width: 4px; }
-        .form-scroll-area::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.2); border-radius: 4px; }
+        .form-scroll-area::-webkit-scrollbar-thumb { background: rgba(99, 102, 241, 0.5); border-radius: 4px; }
 
-        /* BRAND LOGO BADGE */
+        /* VIP BRAND LOGO */
         .brand-logo-area {
             text-align: center;
             margin-bottom: 20px;
         }
         .logo-badge-text {
-            font-size: 1rem;
+            font-size: 1.05rem;
             font-weight: 900;
-            letter-spacing: 2px;
+            letter-spacing: 2.5px;
             color: #FFFFFF;
             text-transform: uppercase;
             display: inline-flex;
@@ -79,16 +80,16 @@
             padding: 3px 10px;
             border-radius: 8px;
             font-size: 0.72rem;
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.5);
         }
 
         /* WELCOME HEADER */
         .welcome-block {
-            margin-bottom: 22px;
+            margin-bottom: 24px;
             text-align: center;
         }
         .welcome-block h1 {
-            font-size: 1.6rem;
+            font-size: 1.65rem;
             font-weight: 900;
             color: #FFFFFF;
             margin-bottom: 6px;
@@ -100,14 +101,14 @@
             font-weight: 500;
         }
 
-        /* PREMIUM PILL SWITCHER */
+        /* LUXURY PILL SWITCHER */
         .pill-switch-container {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 9999px;
             padding: 5px;
             display: flex;
-            margin-bottom: 22px;
+            margin-bottom: 24px;
         }
         .pill-btn {
             flex: 1;
@@ -124,10 +125,10 @@
         .pill-btn.active {
             background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);
             color: #FFFFFF;
-            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
         }
 
-        /* INPUT FIELDS */
+        /* VIP INPUT FIELDS */
         .input-group {
             position: relative;
             margin-bottom: 14px;
@@ -137,7 +138,7 @@
             left: 18px;
             top: 50%;
             transform: translateY(-50%);
-            color: #94A3B8;
+            color: #818CF8;
             font-size: 0.95rem;
         }
         .input-group i.right-icon {
@@ -148,13 +149,16 @@
             color: #94A3B8;
             font-size: 0.95rem;
             cursor: pointer;
+            transition: color 0.2s;
         }
+        .input-group i.right-icon:hover { color: #FFFFFF; }
+        
         .input-field, .input-select {
             width: 100%;
             padding: 14px 16px 14px 48px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 16px;
-            background: rgba(17, 24, 39, 0.7);
+            background: rgba(15, 23, 42, 0.75);
             font-size: 0.88rem;
             font-weight: 600;
             color: #FFFFFF;
@@ -168,8 +172,8 @@
         }
         .input-field:focus, .input-select:focus {
             border-color: #6366F1;
-            background: rgba(17, 24, 39, 0.95);
-            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+            background: rgba(15, 23, 42, 0.95);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.25);
         }
         .input-field::placeholder {
             color: #64748B;
@@ -180,7 +184,7 @@
             color: #FFFFFF;
         }
 
-        /* GLOW SUBMIT BUTTON */
+        /* PREMIUM GLOW SUBMIT BUTTON */
         .submit-btn {
             background: linear-gradient(135deg, #6366F1 0%, #EC4899 100%);
             color: #FFFFFF;
@@ -191,7 +195,7 @@
             font-weight: 900;
             font-size: 0.95rem;
             cursor: pointer;
-            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.45);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
             transition: transform 0.2s, opacity 0.2s;
             margin-top: 8px;
             margin-bottom: 18px;
@@ -226,8 +230,8 @@
             margin-bottom: 18px;
         }
         .social-auth-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             padding: 11px;
             border-radius: 14px;
             font-size: 0.82rem;
@@ -242,8 +246,8 @@
             text-decoration: none;
         }
         .social-auth-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.15);
             transform: translateY(-1px);
         }
         .social-auth-btn.google i { color: #DB4437; }
@@ -282,13 +286,13 @@
         <div>
             <!-- TOP BRAND -->
             <div class="brand-logo-area">
-                <div class="logo-badge-text">TutorPage <span>ADMIN</span></div>
+                <div class="logo-badge-text">TutorPage <span>VIP ADMIN</span></div>
             </div>
 
             <!-- WELCOME HEADER -->
             <div class="welcome-block">
                 <h1>Enterprise Access</h1>
-                <p>Secure management portal for Prayagraj operations</p>
+                <p>Secure executive management portal for Prayagraj</p>
             </div>
 
             <!-- TAB SWITCHER -->
@@ -303,14 +307,14 @@
                 <div id="signInPanel" class="form-panel active">
                     <form onsubmit="handleAdminLogin(event)">
                         <div class="input-group">
-                            <i class="fas fa-envelope left-icon"></i>
+                            <i class="fa-solid fa-envelope-circle-check left-icon"></i>
                             <input type="email" id="loginEmail" class="input-field" placeholder="Admin Email" required>
                         </div>
 
                         <div class="input-group">
-                            <i class="fas fa-lock left-icon"></i>
-                            <input type="password" id="loginPass" class="input-field" placeholder="Password" required>
-                            <i class="fas fa-eye-slash right-icon" onclick="togglePassword('loginPass', this)"></i>
+                            <i class="fa-solid fa-shield-keyhole left-icon"></i>
+                            <input type="password" id="loginPass" class="input-field" placeholder="Secure Password" required>
+                            <i class="fa-solid fa-eye-slash right-icon" onclick="togglePassword('loginPass', this)"></i>
                         </div>
 
                         <button type="submit" class="submit-btn" id="loginBtn">Authenticate Admin</button>
@@ -321,22 +325,22 @@
                 <div id="createPanel" class="form-panel">
                     <form onsubmit="handleAdminRegister(event)">
                         <div class="input-group">
-                            <i class="fas fa-user left-icon"></i>
+                            <i class="fa-solid fa-user-shield left-icon"></i>
                             <input type="text" id="regName" class="input-field" placeholder="Your Full Name" required>
                         </div>
 
                         <div class="input-group">
-                            <i class="fab fa-whatsapp left-icon" style="color: #25D366;"></i>
+                            <i class="fa-brands fa-whatsapp left-icon" style="color: #25D366;"></i>
                             <input type="tel" id="regPhone" class="input-field" placeholder="WhatsApp Number (e.g. 9876543210)" required>
                         </div>
 
                         <div class="input-group">
-                            <i class="fas fa-envelope left-icon"></i>
+                            <i class="fa-solid fa-envelope-circle-check left-icon"></i>
                             <input type="email" id="regEmail" class="input-field" placeholder="Your Email Address" required>
                         </div>
 
                         <div class="input-group">
-                            <i class="fas fa-venus-mars left-icon"></i>
+                            <i class="fa-solid fa-venus-mars left-icon"></i>
                             <select id="regGender" class="input-select" required>
                                 <option value="" disabled selected style="background: #0F172A;">Select Gender</option>
                                 <option value="Male" style="background: #0F172A;">Male</option>
@@ -346,7 +350,7 @@
                         </div>
 
                         <div class="input-group">
-                            <i class="fas fa-map-marked-alt left-icon"></i>
+                            <i class="fa-solid fa-map-location-dot left-icon"></i>
                             <select id="regState" class="input-select" required>
                                 <option value="" disabled selected style="background: #0F172A;">Select State</option>
                                 <option value="Uttar Pradesh" style="background: #0F172A;">Uttar Pradesh</option>
@@ -359,14 +363,14 @@
                         </div>
 
                         <div class="input-group">
-                            <i class="fas fa-city left-icon"></i>
+                            <i class="fa-solid fa-city left-icon"></i>
                             <input type="text" id="regDistrict" class="input-field" placeholder="District (e.g. Prayagraj)" required>
                         </div>
 
                         <div class="input-group">
-                            <i class="fas fa-lock left-icon"></i>
+                            <i class="fa-solid fa-shield-keyhole left-icon"></i>
                             <input type="password" id="regPass" class="input-field" placeholder="Create Secure Password" required>
-                            <i class="fas fa-eye-slash right-icon" onclick="togglePassword('regPass', this)"></i>
+                            <i class="fa-solid fa-eye-slash right-icon" onclick="togglePassword('regPass', this)"></i>
                         </div>
 
                         <button type="submit" class="submit-btn" id="regBtn">Register Admin Profile</button>
@@ -375,7 +379,7 @@
             </div>
 
             <!-- SOCIAL LOGIN -->
-            <div class="social-divider">Or continue with</div>
+            <div class="social-divider">Or continue securely with</div>
             <div class="social-buttons-grid">
                 <button class="social-auth-btn google" onclick="socialAuth('Google')">
                     <i class="fab fa-google"></i> Google
@@ -438,10 +442,10 @@
             const field = document.getElementById(fieldId);
             if (field.type === 'password') {
                 field.type = 'text';
-                iconEl.className = 'fas fa-eye right-icon';
+                iconEl.className = 'fa-solid fa-eye right-icon';
             } else {
                 field.type = 'password';
-                iconEl.className = 'fas fa-eye-slash right-icon';
+                iconEl.className = 'fa-solid fa-eye-slash right-icon';
             }
         }
 
