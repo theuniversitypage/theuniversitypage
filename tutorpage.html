@@ -5,12 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>TutorPage | Allahabad में अपना Perfect Tutor खोजें</title>
     
+    <!-- Meta SEO -->
     <meta name="description" content="Find verified home and online tutors in Allahabad/Prayagraj for Mathematics, Science, English, and competitive exams.">
     <link rel="canonical" href="https://tutorpage.in/">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { 50: '#eef2ff', 100: '#e0e7ff', 600: '#4f46e5', 700: '#4338ca' }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Firebase SDK Compat -->
@@ -18,7 +33,9 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 
-    <style> body { font-family: 'Plus Jakarta Sans', sans-serif; } </style>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
 </head>
 <body class="bg-slate-50 text-slate-800 pb-20 md:pb-0">
 
@@ -28,7 +45,7 @@
             <span><i class="fa-solid fa-location-dot text-rose-400 mr-1"></i> Prayagraj / Allahabad, Uttar Pradesh</span>
             <div class="space-x-4 hidden md:block">
                 <a href="#contact" class="hover:underline">Help & Support</a>
-                <a href="login.html" class="hover:underline text-indigo-300 font-semibold"><i class="fa-solid fa-lock mr-1"></i> Admin Portal</a>
+                <a href="login.html" class="hover:underline text-indigo-300 font-semibold"><i class="fa-solid fa-lock mr-1"></i> Admin / Teacher Portal</a>
             </div>
         </div>
     </div>
@@ -37,7 +54,9 @@
     <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <a href="#" class="flex items-center space-x-2">
-                <div class="bg-indigo-600 text-white p-2.5 rounded-xl text-xl font-black tracking-wider shadow-md shadow-indigo-200">TP</div>
+                <div class="bg-indigo-600 text-white p-2.5 rounded-xl text-xl font-black tracking-wider shadow-md shadow-indigo-200">
+                    TP
+                </div>
                 <div>
                     <span class="text-2xl font-extrabold tracking-tight text-slate-900">Tutor<span class="text-indigo-600">Page</span></span>
                     <span class="block text-[10px] uppercase tracking-wider font-bold text-slate-400">Allahabad Edition</span>
@@ -47,10 +66,15 @@
             <nav class="hidden md:flex items-center space-x-8 font-semibold text-sm text-slate-600">
                 <a href="#home" class="text-indigo-600">Home</a>
                 <a href="#find-tutor" class="hover:text-indigo-600 transition">Find Tutor</a>
-                <a href="login.html" class="hover:text-indigo-600 transition text-indigo-600 font-bold">Teacher Login</a>
+                <a href="#classes" class="hover:text-indigo-600 transition">Classes</a>
+                <a href="#areas" class="hover:text-indigo-600 transition">Popular Areas</a>
+                <a href="#post-requirement" class="hover:text-indigo-600 transition">Post Requirement</a>
             </nav>
 
             <div class="hidden md:flex items-center space-x-3">
+                <a href="#post-requirement" class="px-4 py-2 text-sm font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 rounded-xl transition">
+                    Post Requirement
+                </a>
                 <a href="login.html" class="px-4 py-2 text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-lg shadow-indigo-200 transition">
                     Become a Tutor
                 </a>
@@ -58,8 +82,10 @@
         </div>
     </header>
 
-    <!-- HERO SECTION -->
+    <!-- 1. HERO SECTION -->
     <section id="home" class="relative bg-gradient-to-b from-indigo-900 via-indigo-800 to-slate-900 text-white py-20 px-4 overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#e0e7ff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        
         <div class="max-w-5xl mx-auto text-center relative z-10">
             <span class="bg-indigo-700/60 border border-indigo-400/30 text-indigo-200 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider mb-6 inline-block">
                 #1 Verified Tutor Discovery Platform in Prayagraj
@@ -67,23 +93,54 @@
             <h1 class="text-4xl sm:text-6xl font-black tracking-tight mb-6">
                 Allahabad में अपना <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-emerald-300">Perfect Tutor</span> खोजें
             </h1>
+            <p class="text-lg sm:text-xl text-indigo-200 max-w-2xl mx-auto mb-10 font-medium">
+                Class, Subject और Location के हिसाब से सही Tutor खोजें और अपनी पढ़ाई शुरू करें।
+            </p>
         </div>
     </section>
 
-    <!-- LIVE TUTORS DIRECTORY -->
+    <!-- 6 & 7. FIND TUTOR PAGE / LIVE DIRECTORY SECTION -->
     <section id="find-tutor" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-20 scroll-mt-24">
-        <div class="mb-8">
-            <span class="text-indigo-600 font-extrabold text-xs uppercase tracking-widest">Marketplace Directory</span>
-            <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-1">Top Verified Tutors in Allahabad</h2>
+        <div class="mb-8 flex justify-between items-end">
+            <div>
+                <span class="text-indigo-600 font-extrabold text-xs uppercase tracking-widest">Marketplace Directory</span>
+                <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-1">Top Verified Tutors in Allahabad</h2>
+            </div>
         </div>
 
-        <div id="tutorsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Dynamically Loaded from Firebase -->
-            <div class="col-span-3 text-center py-12 text-slate-400 font-bold">Loading verified tutors from database...</div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="tutorsGrid">
+            <!-- Dynamically Loaded Verified Tutors from Firebase -->
+            <div class="col-span-3 bg-white p-12 rounded-3xl text-center text-slate-400 font-bold border border-slate-200">
+                Loading live verified tutors from database...
+            </div>
         </div>
     </section>
 
-    <!-- FIREBASE RENDERING SCRIPT -->
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 pt-16 pb-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+            <div>
+                <div class="flex items-center space-x-2 mb-4">
+                    <div class="bg-indigo-600 text-white p-2 rounded-xl text-lg font-black">TP</div>
+                    <span class="text-xl font-extrabold text-white">Tutor<span class="text-indigo-400">Page</span></span>
+                </div>
+                <p class="text-xs text-slate-400 leading-relaxed font-medium mb-4">“Allahabad में अपना Perfect Tutor खोजें” — Connecting students with verified tutors across Prayagraj.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-extrabold text-sm uppercase tracking-wider mb-4">Quick Links</h4>
+                <ul class="space-y-2.5 text-xs font-semibold">
+                    <li><a href="#home" class="hover:text-white transition">Home</a></li>
+                    <li><a href="#find-tutor" class="hover:text-white transition">Find Tutor</a></li>
+                    <li><a href="login.html" class="hover:text-white transition">Teacher Login</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-slate-800/80 flex justify-between items-center text-xs text-slate-500 font-medium">
+            <p>©️ 2026 TutorPage. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- LIVE FIREBASE DATA FETCHING SCRIPT -->
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyD837pmW5N21lMgeVlpgWPx0FaMisSnxwU",
@@ -92,77 +149,90 @@
             projectId: "theuniversitypage-cc4a7",
             storageBucket: "theuniversitypage-cc4a7.firebasestorage.app",
             messagingSenderId: "31910615607",
-            appId: "1:31910615607:web:bee5bd81c8118a16d1bdb2"
+            appId: "1:31910615607:web:bee5bd81c8118a16d1bdb2",
+            measurementId: "G-6E55FCSXDP"
         };
 
-        if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
         const db = firebase.firestore();
 
-        let liveTutors = [];
-
-        async function fetchLiveTutors() {
-            try {
-                const snapshot = await db.collection("admins").where("verified", "==", true).get();
-                liveTutors = [];
-                
-                snapshot.forEach(doc => {
-                    liveTutors.push(doc.data());
-                });
-
-                renderFrontendTutors(liveTutors);
-            } catch (error) {
-                console.error("Error fetching live tutors:", error);
-            }
-        }
-
-        function renderFrontendTutors(list) {
+        async function fetchVerifiedTutors() {
             const grid = document.getElementById('tutorsGrid');
-            grid.innerHTML = '';
+            try {
+                // Fetch only verified tutors from Firestore database
+                const snapshot = await db.collection("admins").where("verified", "==", true).get();
+                
+                grid.innerHTML = '';
 
-            if (list.length === 0) {
-                grid.innerHTML = `<div class="col-span-3 bg-white p-12 rounded-3xl text-center text-slate-500 font-bold border border-slate-200">No verified tutors available right now. Please check back later!</div>`;
-                return;
-            }
+                if (snapshot.empty) {
+                    grid.innerHTML = `<div class="col-span-3 bg-white p-12 rounded-3xl text-center text-slate-500 font-bold border border-slate-200">No verified tutors available right now. Check back soon!</div>`;
+                    return;
+                }
 
-            list.forEach(t => {
-                const photo = t.photoUrl || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=300&q=80';
-                const card = `
-                    <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl transition flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-start justify-between mb-4">
-                                <div class="flex items-center space-x-3">
-                                    <img src="${photo}" class="w-14 h-14 rounded-2xl object-cover border-2 border-indigo-100 shadow-sm" alt="${t.fullName}">
-                                    <div>
-                                        <div class="flex items-center space-x-2">
-                                            <h4 class="font-black text-slate-900 text-base">${t.fullName || 'Tutor'}</h4>
-                                            <span class="bg-blue-50 text-blue-600 text-[10px] font-extrabold px-2 py-0.5 rounded-full"><i class="fa-solid fa-circle-check"></i> Verified</span>
+                snapshot.forEach(doc => {
+                    const t = doc.data();
+                    const photo = t.photoUrl || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=300&q=80';
+                    const name = t.fullName || 'Tutor';
+                    const qual = t.qualification || 'Educator';
+                    const subjects = t.subjects || 'General Subjects';
+                    const prefClass = t.prefClass || 'All Classes';
+                    const medium = t.medium || '';
+                    const board = t.board || '';
+                    const area = t.district || 'Allahabad';
+                    const mode = t.mode || 'Home Tuition';
+                    const exp = t.experience || 'Experienced';
+                    const fee = t.fee || '3000';
+                    const phone = t.whatsappNumber || '9876543210';
+
+                    const card = `
+                        <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl transition flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-start justify-between mb-4">
+                                    <div class="flex items-center space-x-3">
+                                        <img src="${photo}" class="w-16 h-16 rounded-2xl object-cover border-2 border-indigo-100 shadow-md" alt="${name}">
+                                        <div>
+                                            <div class="flex items-center space-x-2">
+                                                <h4 class="font-black text-slate-900 text-base">${name}</h4>
+                                                <span class="bg-blue-50 text-blue-600 border border-blue-200 text-[10px] font-extrabold px-2 py-0.5 rounded-full"><i class="fa-solid fa-circle-check"></i> Verified</span>
+                                            </div>
+                                            <p class="text-xs text-indigo-600 font-bold mt-0.5">${qual}</p>
                                         </div>
-                                        <p class="text-xs text-indigo-600 font-bold">${t.qualification || 'Educator'}</p>
                                     </div>
                                 </div>
+
+                                <div class="space-y-1.5 mb-5 text-xs font-semibold text-slate-600">
+                                    <p><i class="fa-solid fa-book text-slate-400 mr-2 w-4"></i> <span class="text-slate-900">${subjects}</span> (${prefClass})</p>
+                                    <p><i class="fa-solid fa-language text-slate-400 mr-2 w-4"></i> ${medium} • ${board}</p>
+                                    <p><i class="fa-solid fa-location-dot text-slate-400 mr-2 w-4"></i> ${area}, Allahabad • <span class="text-indigo-600">${mode}</span></p>
+                                    <p><i class="fa-solid fa-briefcase text-slate-400 mr-2 w-4"></i> ${exp} Experience</p>
+                                </div>
                             </div>
-                            <div class="space-y-1.5 mb-5 text-xs font-semibold text-slate-600">
-                                <p><i class="fa-solid fa-book text-slate-400 mr-2 w-4"></i> <span class="text-slate-900">${t.subjects || 'General'}</span> (${t.prefClass || 'All Classes'})</p>
-                                <p><i class="fa-solid fa-location-dot text-slate-400 mr-2 w-4"></i> ${t.district || 'Allahabad'} • <span class="text-indigo-600">${t.mode || 'Home Tuition'}</span></p>
-                                <p><i class="fa-solid fa-briefcase text-slate-400 mr-2 w-4"></i> ${t.experience || 'Experienced'} Experience</p>
+
+                            <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                                <div>
+                                    <span class="text-[10px] uppercase font-extrabold text-slate-400 block">Monthly Fee</span>
+                                    <span class="text-base font-black text-slate-900">₹${Number(fee).toLocaleString()}<span class="text-xs text-slate-400 font-medium">/mo</span></span>
+                                </div>
+                                <div class="space-x-2 flex items-center">
+                                    <a href="https://wa.me/91${phone}?text=Hi%20${encodeURIComponent(name)},%20I%20found%20your%20profile%20on%20TutorPage%20and%20need%20tuition." target="_blank" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 px-3.5 py-2.5 rounded-xl font-bold text-sm inline-flex items-center gap-1.5 transition">
+                                        <i class="fa-brands fa-whatsapp text-lg text-emerald-600"></i> WhatsApp
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                        <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-                            <div>
-                                <span class="text-[10px] uppercase font-extrabold text-slate-400 block">Monthly Fee</span>
-                                <span class="text-base font-black text-slate-900">₹${t.fee || '3000'}<span class="text-xs text-slate-400 font-medium">/mo</span></span>
-                            </div>
-                            <div class="space-x-2">
-                                <a href="https://wa.me/91${t.whatsappNumber || '9876543210'}?text=Hi%20${encodeURIComponent(t.fullName)},%20I%20found%20your%20profile%20on%20TutorPage%20and%20need%20tuition." target="_blank" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 p-2.5 rounded-xl font-bold text-sm inline-block transition"><i class="fa-brands fa-whatsapp text-lg"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                grid.innerHTML += card;
-            });
+                    `;
+                    grid.innerHTML += card;
+                });
+
+            } catch (error) {
+                console.error("Error loading tutors:", error);
+                grid.innerHTML = `<div class="col-span-3 bg-white p-12 rounded-3xl text-center text-rose-500 font-bold border border-slate-200">Error loading tutors from database.</div>`;
+            }
         }
 
-        window.onload = fetchLiveTutors;
+        window.onload = fetchVerifiedTutors;
     </script>
 </body>
 </html>
