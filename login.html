@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Admin Access Portal | TutorPage</title>
     
+    <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
+    <!-- Firebase SDK (Compat Version) -->
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
@@ -283,38 +285,44 @@
         
         <div class="auth-card-container">
             <div>
+                <!-- TOP BRAND -->
                 <div class="brand-logo-area">
-                    <div class="logo-badge-text">TutorPage <span>ADMIN</span></div>
+                    <div class="logo-badge-text">TutorPage <span>PORTAL</span></div>
                 </div>
 
+                <!-- WELCOME HEADER -->
                 <div class="welcome-block">
-                    <h1>Admin Portal</h1>
-                    <p>Secure executive management portal for Prayagraj</p>
+                    <h1>Access Portal</h1>
+                    <p>Secure login for Admin & Educators</p>
                 </div>
 
+                <!-- TAB SWITCHER -->
                 <div class="pill-switch-container">
                     <button class="pill-btn active" id="tabSignIn" onclick="switchTab('signin')">Sign In</button>
-                    <button class="pill-btn" id="tabCreate" onclick="switchTab('create')">Create Admin</button>
+                    <button class="pill-btn" id="tabCreate" onclick="switchTab('create')">Register</button>
                 </div>
 
+                <!-- FORM PANELS CONTAINER -->
                 <div class="form-scroll-area">
+                    <!-- SIGN IN PANEL -->
                     <div id="signInPanel" class="form-panel active">
                         <form id="loginForm" onsubmit="handleAdminLogin(event)">
                             <div class="input-group">
                                 <i class="fa-solid fa-envelope-circle-check left-icon"></i>
-                                <input type="email" id="loginEmail" class="input-field" placeholder="Admin Email" required>
+                                <input type="email" id="loginEmail" class="input-field" placeholder="Email Address" required>
                             </div>
 
                             <div class="input-group">
                                 <i class="fa-solid fa-shield-keyhole left-icon"></i>
-                                <input type="password" id="loginPass" class="input-field" placeholder="Secure Password" required>
+                                <input type="password" id="loginPass" class="input-field" placeholder="Password" required>
                                 <i class="fa-solid fa-eye-slash right-icon" onclick="togglePassword('loginPass', this)"></i>
                             </div>
 
-                            <button type="submit" class="submit-btn" id="loginBtn">Authenticate Admin</button>
+                            <button type="submit" class="submit-btn" id="loginBtn">Login to Portal</button>
                         </form>
                     </div>
 
+                    <!-- CREATE ADMIN / TEACHER PANEL -->
                     <div id="createPanel" class="form-panel">
                         <form id="registerForm" onsubmit="handleAdminRegister(event)">
                             <div class="input-group">
@@ -362,15 +370,16 @@
 
                             <div class="input-group">
                                 <i class="fa-solid fa-shield-keyhole left-icon"></i>
-                                <input type="password" id="regPass" class="input-field" placeholder="Create Secure Password (Min 6 chars)" required>
+                                <input type="password" id="regPass" class="input-field" placeholder="Create Password (Min 6 chars)" required>
                                 <i class="fa-solid fa-eye-slash right-icon" onclick="togglePassword('regPass', this)"></i>
                             </div>
 
-                            <button type="submit" class="submit-btn" id="regBtn">Register Admin Profile</button>
+                            <button type="submit" class="submit-btn" id="regBtn">Register Profile</button>
                         </form>
                     </div>
                 </div>
 
+                <!-- SOCIAL LOGIN -->
                 <div class="social-divider">Or continue securely with</div>
                 <div class="social-buttons-grid">
                     <button class="social-auth-btn" onclick="socialAuth('Google')">
@@ -384,20 +393,23 @@
                 </div>
             </div>
 
+            <!-- FOOTER SWITCH LINK -->
             <div class="auth-footer-link" id="footerSwitchText">
-                Need an admin account? <a href="#" onclick="switchTab('create'); return false;">Create one</a>
+                Need an account? <a href="#" onclick="switchTab('create'); return false; ">Register</a>
             </div>
 
         </div>
 
+        <!-- COPYRIGHT FOOTER -->
         <div class="copyright-footer">
             © 2026 TutorPage. All Rights Reserved.
         </div>
 
     </div>
 
+    <!-- FIREBASE INITIALIZATION & AUTH SCRIPT -->
     <script>
-        // 🔑 FIREBASE CONFIGURATION (Linked properly with your project credentials)
+        // 🔑 FIREBASE CONFIGURATION
         const firebaseConfig = {
             apiKey: "AIzaSyD837pmW5N21lMgeVlpgWPx0FaMisSnxwU",
             authDomain: "theuniversitypage-cc4a7.firebaseapp.com",
@@ -409,12 +421,14 @@
             measurementId: "G-6E55FCSXDP"
         };
 
-        // Initialize Firebase safely
         if (!firebase.apps.length) {
             firebase.initializeApp(firebaseConfig);
         }
         const auth = firebase.auth();
         const db = firebase.firestore();
+
+        // 👑 अपनी असली ओनर (Admin) ईमेल आईडी यहाँ सेट करें
+        const OWNER_EMAIL = "ajmalmansoori@gmail.com"; // आवश्यकतानुसार बदल लें
 
         function switchTab(mode) {
             const btnSign = document.getElementById('tabSignIn');
@@ -428,13 +442,13 @@
                 btnCreate.classList.remove('active');
                 panelSign.classList.add('active');
                 panelCreate.classList.remove('active');
-                footerText.innerHTML = `Need an admin account? <a href="#" onclick="switchTab('create'); return false;">Create one</a>`;
+                footerText.innerHTML = `Need an account? <a href="#" onclick="switchTab('create'); return false;">Register</a>`;
             } else {
                 btnCreate.classList.add('active');
                 btnSign.classList.remove('active');
                 panelCreate.classList.add('active');
                 panelSign.classList.remove('active');
-                footerText.innerHTML = `Already an admin? <a href="#" onclick="switchTab('signin'); return false;">Sign In</a>`;
+                footerText.innerHTML = `Already registered? <a href="#" onclick="switchTab('signin'); return false;">Sign In</a>`;
             }
         }
 
@@ -449,7 +463,7 @@
             }
         }
 
-        // 🔐 ADMIN LOGIN (Firebase Auth)
+        // 🔐 LOGIN & SMART REDIRECT LOGIC
         async function handleAdminLogin(e) {
             e.preventDefault();
             const email = document.getElementById('loginEmail').value.trim();
@@ -460,17 +474,23 @@
             btn.disabled = true;
 
             try {
-                await auth.signInWithEmailAndPassword(email, pass);
-                alert("Admin Login Successful! Welcome back.");
-                window.location.href = "admin.html";
+                const userCred = await auth.signInWithEmailAndPassword(email, pass);
+                alert("Login Successful!");
+
+                // स्मार्ट रीडायरेक्ट: ओwner सीधे admin.html पर जाएगा, टीचर अपने डैशबोर्ड पर जाएगा
+                if (email.toLowerCase() === OWNER_EMAIL.toLowerCase()) {
+                    window.location.href = "admin.html";
+                } else {
+                    window.location.href = "teacher-dashboard.html";
+                }
             } catch (error) {
                 alert("Login Error: " + error.message);
-                btn.innerText = "Authenticate Admin";
+                btn.innerText = "Login to Portal";
                 btn.disabled = false;
             }
         }
 
-        // 📝 ADMIN REGISTRATION (Firebase Auth + Firestore Profile Storage - Fixed & Robust)
+        // 📝 REGISTRATION (Teacher / User)
         async function handleAdminRegister(e) {
             e.preventDefault();
             const name = document.getElementById('regName').value.trim();
@@ -487,15 +507,13 @@
                 return;
             }
 
-            btn.innerText = "Creating Admin Account...";
+            btn.innerText = "Creating Account...";
             btn.disabled = true;
 
             try {
-                // 1. Create User in Firebase Auth
                 const userCred = await auth.createUserWithEmailAndPassword(email, pass);
                 const uid = userCred.user.uid;
 
-                // 2. Store detailed admin profile in Firestore `admins` collection
                 await db.collection("admins").doc(uid).set({
                     fullName: name,
                     whatsappNumber: phone,
@@ -503,15 +521,20 @@
                     gender: gender,
                     state: state,
                     district: district,
-                    role: "Admin",
+                    role: email.toLowerCase() === OWNER_EMAIL.toLowerCase() ? "Admin" : "Teacher",
                     createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 });
 
-                alert("Admin Account Created & Connected to Firebase Successfully!");
-                window.location.href = "admin.html";
+                alert("Account Created Successfully!");
+                
+                if (email.toLowerCase() === OWNER_EMAIL.toLowerCase()) {
+                    window.location.href = "admin.html";
+                } else {
+                    window.location.href = "teacher-dashboard.html";
+                }
             } catch (error) {
                 alert("Registration Error: " + error.message);
-                btn.innerText = "Register Admin Profile";
+                btn.innerText = "Register Profile";
                 btn.disabled = false;
             }
         }
@@ -528,17 +551,22 @@
                 const doc = await docRef.get();
                 if (!doc.exists) {
                     await docRef.set({
-                        fullName: user.displayName || "Admin User",
+                        fullName: user.displayName || "User",
                         email: user.email,
-                        role: "Admin",
+                        role: user.email.toLowerCase() === OWNER_EMAIL.toLowerCase() ? "Admin" : "Teacher",
                         createdAt: firebase.firestore.FieldValue.serverTimestamp()
                     });
                 }
 
                 alert(`Connected via ${providerName} Successfully!`);
-                window.location.href = "admin.html";
+
+                if (user.email.toLowerCase() === OWNER_EMAIL.toLowerCase()) {
+                    window.location.href = "admin.html";
+                } else {
+                    window.location.href = "teacher-dashboard.html";
+                }
             } catch (error) {
-                alert("Social Login/Signup Error: " + error.message);
+                alert("Social Login Error: " + error.message);
             }
         }
     </script>
