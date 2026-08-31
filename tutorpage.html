@@ -5,17 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>TutorPage | Allahabad's #1 Verified Tutor Network</title>
     
-    <!-- Meta SEO -->
     <meta name="description" content="Find verified home and online tutors in Allahabad/Prayagraj for Mathematics, Science, English, and competitive exams.">
     <link rel="canonical" href="https://tutorpage.in/">
 
-    <!-- Inter Font & FontAwesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     
-    <!-- Firebase SDK Compat -->
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
@@ -45,8 +42,9 @@
         .nav-links li a:hover {
             color: #673de6;
         }
+        /* LOGIN BUTTON WITH BRIGHT WHITE TEXT */
         .nav-login-btn {
-            padding: 9px 18px; background: #161616; color: #fff; border-radius: 9px;
+            padding: 9px 18px; background: #161616; color: #ffffff !important; border-radius: 9px;
             font-size: 13px; font-weight: 700; text-decoration: none; transition: background 0.2s ease;
         }
         .nav-login-btn:hover { background: #333333; }
@@ -183,13 +181,12 @@
             .search-wrapper { grid-template-columns: 1fr; }
             .showcase h1 { font-size: 32px; }
             .subtitle { font-size: 16px; }
-            .nav-links { display: none; } /* Mobile can use footer or direct links */
+            .nav-links { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <!-- NAVBAR WITH BLUE LOCATION ICON & SMOOTH SLIDER/NAV LINKS -->
     <header class="navbar">
         <div class="nav-container">
             <div style="display: flex; align-items: center;">
@@ -201,18 +198,16 @@
                 </div>
             </div>
 
-            <!-- Smooth Nav Slider / Links -->
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#tutors">Tutors</a></li>
-                <li><a href="#footer">Contact Us</a></li>
+                <li><a href="tutorpage.html">Home</a></li>
+                <li><a href="tutors.html">Tutors</a></li>
+                <li><a href="#contact-tutor.html">Contact Us</a></li>
                 <li><a href="login.html">Join Tutors</a></li>
                 <li><a href="login.html" class="nav-login-btn">Login</a></li>
             </ul>
         </div>
     </header>
 
-    <!-- SHOWCASE HERO -->
     <section class="showcase" id="home">
         <div class="container-showcase">
             <div>
@@ -228,7 +223,6 @@
         </div>
     </section>
 
-    <!-- SEARCH BAR SECTION -->
     <div class="search-wrapper">
         <input type="text" id="searchSubject" class="search-input" placeholder="Search by Subject (e.g. Math)">
         <input type="text" id="searchArea" class="search-input" placeholder="Location (e.g. Civil Lines)">
@@ -238,7 +232,6 @@
         </button>
     </div>
 
-    <!-- 2nd SECTION: FEATURED VERIFIED TUTORS -->
     <section class="tutors-section" id="tutors">
         <h2 style="font-size: 26px; font-weight: 700; color: #161616; margin-bottom: 6px;">Featured Verified Tutors</h2>
         <p style="font-size: 15px; color: #4b4b4b; margin-bottom: 20px;">Browse top qualified educators available in your area.</p>
@@ -250,7 +243,6 @@
         </div>
     </section>
 
-    <!-- 3rd SECTION: ACADEMIC CATEGORIES -->
     <section class="categories-section" id="classes">
         <h2 style="font-size: 26px; font-weight: 700; color: #161616; margin-bottom: 6px;">Academic Categories</h2>
         <p style="font-size: 15px; color: #4b4b4b; margin-bottom: 20px;">Find expert tutors mapped to your exact academic standard.</p>
@@ -301,7 +293,6 @@
         </div>
     </section>
 
-    <!-- 4th SECTION: OUR BENEFITS -->
     <section class="categories-section" id="why-us">
         <h2 style="font-size: 26px; font-weight: 700; color: #161616; margin-bottom: 6px;">Our Benefits</h2>
         <p style="font-size: 15px; color: #4b4b4b; margin-bottom: 20px;">Why students and parents across Allahabad trust TutorPage.</p>
@@ -325,7 +316,6 @@
         </div>
     </section>
 
-    <!-- 5th SECTION: PROFESSIONAL FOOTER -->
     <footer class="footer" id="footer">
         <div class="footer-container">
             <div>
@@ -386,7 +376,6 @@
         </div>
     </footer>
 
-    <!-- FIREBASE, TYPING EFFECT & SEARCH SCRIPT -->
     <script>
         const textToType = "Connect with Expert Tutors Near You for All Subjects & Classes.";
         let typingIdx = 0;
