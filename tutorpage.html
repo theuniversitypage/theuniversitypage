@@ -5,69 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>TutorPage | Allahabad में अपना Perfect Tutor खोजें</title>
     
-    <!-- Meta SEO -->
     <meta name="description" content="Find verified home and online tutors in Allahabad/Prayagraj for Mathematics, Science, English, and competitive exams.">
     <link rel="canonical" href="https://tutorpage.in/">
 
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        brand: { 50: '#eef2ff', 100: '#e0e7ff', 600: '#4f46e5', 700: '#4338ca' }
+                        hostinger: { 600: '#673DE6', 700: '#582EC5', dark: '#0F172A' }
                     }
                 }
             }
         }
     </script>
     
-    <!-- FontAwesome & Google Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
-    <!-- Firebase SDK Compat -->
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(226, 232, 240, 0.8);
+        .hostinger-gradient {
+            background: linear-gradient(135deg, #673DE6 0%, #3B82F6 100%);
+        }
+        .hostinger-card {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 10px 30px -5px rgba(103, 61, 230, 0.06);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .hostinger-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -10px rgba(103, 61, 230, 0.12);
+            border-color: #673DE6;
         }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900 pb-20 md:pb-0">
 
-    <!-- TOP BAR -->
-    <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800">
+    <div class="bg-slate-900 text-slate-300 text-xs py-2.5 px-4 border-b border-slate-800">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <span class="flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-indigo-400"></i> Prayagraj / Allahabad, Uttar Pradesh</span>
-            <div class="space-x-4 hidden md:flex items-center">
+            <span class="flex items-center gap-2 font-medium"><i class="fa-solid fa-location-dot text-indigo-400"></i> Prayagraj / Allahabad, Uttar Pradesh</span>
+            <div class="space-x-6 hidden md:flex items-center font-bold">
                 <a href="#contact" class="hover:text-white transition">Help & Support</a>
-                <a href="login.html" class="text-indigo-400 font-bold hover:underline"><i class="fa-solid fa-lock mr-1"></i> Portal Login</a>
+                <a href="login.html" class="text-indigo-400 hover:text-indigo-300 transition flex items-center gap-1.5"><i class="fa-solid fa-lock text-[11px]"></i> Portal Login</a>
             </div>
         </div>
     </div>
 
-    <!-- NAVBAR -->
-    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <a href="#" class="flex items-center space-x-3">
-                <div class="bg-indigo-600 text-white p-2.5 rounded-2xl text-xl font-black tracking-wider shadow-lg shadow-indigo-200">
+                <div class="hostinger-gradient text-white p-2.5 rounded-2xl text-xl font-black tracking-wider shadow-lg shadow-indigo-200">
                     TP
                 </div>
                 <div>
                     <span class="text-2xl font-black tracking-tight text-slate-900">Tutor<span class="text-indigo-600">Page</span></span>
-                    <span class="block text-[10px] uppercase tracking-widest font-extrabold text-slate-400">Allahabad Edition</span>
+                    <span class="block text-[9px] uppercase tracking-widest font-extrabold text-indigo-600">Allahabad Edition</span>
                 </div>
             </a>
             
-            <nav class="hidden md:flex items-center space-x-8 font-bold text-sm text-slate-600">
+            <nav class="hidden md:flex items-center space-x-8 font-extrabold text-sm text-slate-600">
                 <a href="#home" class="text-indigo-600">Home</a>
                 <a href="#live-tutors" class="hover:text-indigo-600 transition">Verified Tutors</a>
                 <a href="#classes" class="hover:text-indigo-600 transition">Classes</a>
@@ -79,42 +82,39 @@
                 <a href="#post-requirement" class="px-4 py-2.5 text-xs font-black text-indigo-600 bg-indigo-50 hover:bg-indigo-100 rounded-xl transition">
                     Post Requirement
                 </a>
-                <a href="login.html" class="px-5 py-2.5 text-xs font-black text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-lg shadow-indigo-200 transition">
+                <a href="login.html" class="px-5 py-2.5 text-xs font-black text-white hostinger-gradient hover:opacity-95 rounded-xl shadow-lg shadow-indigo-200 transition">
                     Become a Tutor
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- 1. HERO SECTION -->
-    <section id="home" class="relative bg-gradient-to-br from-indigo-950 via-indigo-900 to-slate-900 text-white py-24 px-4 overflow-hidden">
-        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#e0e7ff_1px,transparent_1px)] [background-size:20px_20px]"></div>
+    <section id="home" class="relative bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-white py-24 px-4 overflow-hidden">
+        <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#818cf8_1px,transparent_1px)] [background-size:24px_24px]"></div>
         
         <div class="max-w-5xl mx-auto text-center relative z-10">
-            <span class="bg-indigo-800/80 border border-indigo-500/30 text-indigo-200 text-xs font-extrabold px-4 py-2 rounded-full uppercase tracking-widest mb-6 inline-block shadow-inner">
-                ⚡ #1 Verified Tutor Discovery Platform in Prayagraj
+            <span class="bg-indigo-600/30 border border-indigo-400/40 text-indigo-300 text-xs font-extrabold px-4 py-2 rounded-full uppercase tracking-widest mb-6 inline-block shadow-inner backdrop-blur-md">
+                🚀 #1 Verified Tutor Discovery Platform in Prayagraj
             </span>
             <h1 class="text-4xl sm:text-6xl font-black tracking-tight mb-6 leading-tight">
-                Allahabad में अपना <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-emerald-300">Perfect Tutor</span> खोजें
+                Allahabad में अपना <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-300 via-emerald-400 to-teal-200">Perfect Tutor</span> खोजें
             </h1>
-            <p class="text-base sm:text-lg text-indigo-200 max-w-2xl mx-auto mb-10 font-medium">
-                क्लास, सब्जेक्ट और लोकेशन के हिसाब से सीधे अनुभवी शिक्षकों से जुड़ें और अपनी पढ़ाई को आसान बनाएं।
+            <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto mb-10 font-medium">
+                क्लास, सब्जेक्ट और लोकेशन के हिसाब से सीधे अनुभवी और वेरीफाइड शिक्षकों से जुड़ें।
             </p>
         </div>
     </section>
 
-    <!-- 🌟 FEATURED LIVE VERIFIED TUTORS SECTION (TOP PRIORITY) -->
-    <section id="live-tutors" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-20 mb-16">
-        <div class="bg-gradient-to-r from-indigo-50 via-blue-50 to-slate-50 border border-indigo-100 p-6 sm:p-10 rounded-3xl shadow-xl">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4 border-b border-indigo-100 pb-6">
+    <section id="live-tutors" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 relative z-20 mb-16">
+        <div class="bg-gradient-to-r from-white via-indigo-50/30 to-white border border-indigo-100 p-6 sm:p-10 rounded-3xl shadow-2xl">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4 border-b border-slate-100 pb-6">
                 <div>
                     <span class="bg-emerald-600 text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider">🔥 Live & Verified</span>
                     <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-2">Latest Active Tutors in Allahabad</h2>
-                    <p class="text-xs sm:text-sm text-slate-500 font-semibold mt-1">ये सभी शिक्षक एडमिन द्वारा वेरीफाइड हैं और ट्यूशन के लिए उपलब्ध हैं।</p>
+                    <p class="text-xs sm:text-sm text-slate-500 font-semibold mt-1">ये सभी शिक्षक एडमिन द्वारा अप्रूव्ड हैं और ट्यूशन के लिए उपलब्ध हैं।</p>
                 </div>
             </div>
 
-            <!-- Dynamic Grid for Live Tutors -->
             <div id="liveTutorsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="col-span-3 text-center py-12 text-slate-400 font-bold bg-white rounded-2xl border border-slate-200 shadow-sm">
                     <i class="fa-solid fa-spinner fa-spin mr-2 text-indigo-600"></i> Loading verified tutors from database...
@@ -123,7 +123,6 @@
         </div>
     </section>
 
-    <!-- 3. POPULAR CLASSES -->
     <section id="classes" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
         <div class="flex justify-between items-end mb-8">
             <div>
@@ -133,46 +132,45 @@
         </div>
 
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-            <div class="bg-white p-5 rounded-2xl border border-slate-200 hover:border-indigo-600 hover:shadow-lg transition cursor-pointer text-center group">
-                <div class="text-3xl mb-3 text-indigo-500 group-hover:scale-110 transition"><i class="fa-solid fa-child-reaching"></i></div>
-                <h4 class="font-extrabold text-slate-900 mb-1">Class 1–5</h4>
-                <p class="text-xs text-slate-400 font-bold mb-3">42 Tutors Available</p>
+            <div class="hostinger-card p-5 rounded-2xl text-center group cursor-pointer">
+                <div class="text-3xl mb-3 text-indigo-600 group-hover:scale-110 transition"><i class="fa-solid fa-child-reaching"></i></div>
+                <h4 class="font-black text-slate-900 mb-1">Class 1–5</h4>
+                <p class="text-xs text-slate-400 font-bold">42 Tutors</p>
             </div>
-            <div class="bg-white p-5 rounded-2xl border border-slate-200 hover:border-indigo-600 hover:shadow-lg transition cursor-pointer text-center group">
-                <div class="text-3xl mb-3 text-indigo-500 group-hover:scale-110 transition"><i class="fa-solid fa-book-open-reader"></i></div>
-                <h4 class="font-extrabold text-slate-900 mb-1">Class 6–8</h4>
-                <p class="text-xs text-slate-400 font-bold mb-3">68 Tutors Available</p>
+            <div class="hostinger-card p-5 rounded-2xl text-center group cursor-pointer">
+                <div class="text-3xl mb-3 text-indigo-600 group-hover:scale-110 transition"><i class="fa-solid fa-book-open-reader"></i></div>
+                <h4 class="font-black text-slate-900 mb-1">Class 6–8</h4>
+                <p class="text-xs text-slate-400 font-bold">68 Tutors</p>
             </div>
-            <div class="bg-white p-5 rounded-2xl border border-slate-200 hover:border-indigo-600 hover:shadow-lg transition cursor-pointer text-center group">
-                <div class="text-3xl mb-3 text-indigo-500 group-hover:scale-110 transition"><i class="fa-solid fa-graduation-cap"></i></div>
-                <h4 class="font-extrabold text-slate-900 mb-1">Class 9–10</h4>
-                <p class="text-xs text-slate-400 font-bold mb-3">95 Tutors Available</p>
+            <div class="hostinger-card p-5 rounded-2xl text-center group cursor-pointer">
+                <div class="text-3xl mb-3 text-indigo-600 group-hover:scale-110 transition"><i class="fa-solid fa-graduation-cap"></i></div>
+                <h4 class="font-black text-slate-900 mb-1">Class 9–10</h4>
+                <p class="text-xs text-slate-400 font-bold">95 Tutors</p>
             </div>
-            <div class="bg-white p-5 rounded-2xl border border-slate-200 hover:border-indigo-600 hover:shadow-lg transition cursor-pointer text-center group">
-                <div class="text-3xl mb-3 text-indigo-500 group-hover:scale-110 transition"><i class="fa-solid fa-atom"></i></div>
-                <h4 class="font-extrabold text-slate-900 mb-1">Class 11–12</h4>
-                <p class="text-xs text-slate-400 font-bold mb-3">110 Tutors Available</p>
+            <div class="hostinger-card p-5 rounded-2xl text-center group cursor-pointer">
+                <div class="text-3xl mb-3 text-indigo-600 group-hover:scale-110 transition"><i class="fa-solid fa-atom"></i></div>
+                <h4 class="font-black text-slate-900 mb-1">Class 11–12</h4>
+                <p class="text-xs text-slate-400 font-bold">110 Tutors</p>
             </div>
-            <div class="bg-white p-5 rounded-2xl border border-slate-200 hover:border-indigo-600 hover:shadow-lg transition cursor-pointer text-center group">
-                <div class="text-3xl mb-3 text-indigo-500 group-hover:scale-110 transition"><i class="fa-solid fa-user-tie"></i></div>
-                <h4 class="font-extrabold text-slate-900 mb-1">Graduation</h4>
-                <p class="text-xs text-slate-400 font-bold mb-3">34 Tutors Available</p>
+            <div class="hostinger-card p-5 rounded-2xl text-center group cursor-pointer">
+                <div class="text-3xl mb-3 text-indigo-600 group-hover:scale-110 transition"><i class="fa-solid fa-user-tie"></i></div>
+                <h4 class="font-black text-slate-900 mb-1">Graduation</h4>
+                <p class="text-xs text-slate-400 font-bold">34 Tutors</p>
             </div>
-            <div class="bg-white p-5 rounded-2xl border border-slate-200 hover:border-indigo-600 hover:shadow-lg transition cursor-pointer text-center group">
-                <div class="text-3xl mb-3 text-indigo-500 group-hover:scale-110 transition"><i class="fa-solid fa-bullseye"></i></div>
-                <h4 class="font-extrabold text-slate-900 mb-1">Competitive</h4>
-                <p class="text-xs text-slate-400 font-bold mb-3">52 Tutors Available</p>
+            <div class="hostinger-card p-5 rounded-2xl text-center group cursor-pointer">
+                <div class="text-3xl mb-3 text-indigo-600 group-hover:scale-110 transition"><i class="fa-solid fa-bullseye"></i></div>
+                <h4 class="font-black text-slate-900 mb-1">Competitive</h4>
+                <p class="text-xs text-slate-400 font-bold">52 Tutors</p>
             </div>
         </div>
     </section>
 
-    <!-- 9. POST YOUR REQUIREMENT FORM -->
     <section id="post-requirement" class="max-w-4xl mx-auto px-4 mb-20 scroll-mt-24">
-        <div class="bg-white p-8 sm:p-12 rounded-3xl border border-slate-200 shadow-xl relative overflow-hidden">
+        <div class="bg-white p-8 sm:p-12 rounded-3xl border border-slate-200 shadow-2xl relative overflow-hidden">
             <div class="absolute top-0 right-0 w-32 h-32 bg-indigo-50 rounded-bl-full -z-10"></div>
             
             <div class="text-center max-w-xl mx-auto mb-8">
-                <span class="bg-amber-100 text-amber-800 text-xs font-extrabold px-3.5 py-1 rounded-full uppercase tracking-wider">Fast Matching</span>
+                <span class="bg-amber-100 text-amber-800 text-xs font-black px-3.5 py-1 rounded-full uppercase tracking-wider">Fast Matching</span>
                 <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-2">Tutor नहीं मिल रहा? अपनी Requirement भेजें</h2>
                 <p class="text-sm text-slate-500 font-medium mt-1">फॉर्म भरें, हमारी टीम Allahabad में आपके लिए बेस्ट ट्यूटर ढूंढकर संपर्क करेगी।</p>
             </div>
@@ -235,7 +233,7 @@
                     <textarea id="reqDetails" rows="3" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold focus:outline-none focus:border-indigo-600" placeholder="e.g. Need female tutor, Budget around ₹4000/month..."></textarea>
                 </div>
 
-                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-black py-4 rounded-2xl shadow-xl shadow-indigo-200 transition text-base">
+                <button type="submit" class="w-full hostinger-gradient text-white font-black py-4 rounded-2xl shadow-xl shadow-indigo-200 transition text-base">
                     Find My Tutor
                 </button>
             </form>
@@ -247,8 +245,7 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="bg-slate-900 text-slate-400 pt-16 pb-12 border-t border-slate-800">
+    <footer class="bg-slate-950 text-slate-400 pt-16 pb-12 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 font-medium">
             <p>©️ 2026 TutorPage. All Rights Reserved.</p>
             <div class="flex space-x-6 mt-4 sm:mt-0">
@@ -258,106 +255,10 @@
         </div>
     </footer>
 
-    <!-- FIREBASE LIVE SCRIPT -->
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyD837pmW5N21lMgeVlpgWPx0FaMisSnxwU",
             authDomain: "theuniversitypage-cc4a7.firebaseapp.com",
             databaseURL: "https://theuniversitypage-cc4a7-default-rtdb.firebaseio.com",
             projectId: "theuniversitypage-cc4a7",
-            storageBucket: "theuniversitypage-cc4a7.firebasestorage.app",
-            messagingSenderId: "31910615607",
-            appId: "1:31910615607:web:bee5bd81c8118a16d1bdb2",
-            measurementId: "G-6E55FCSXDP"
-        };
-
-        if (!firebase.apps.length) {
-            firebase.initializeApp(firebaseConfig);
-        }
-        const db = firebase.firestore();
-
-        // Fetch Verified Tutors from Firebase and show them right at the top section
-        async function fetchLiveTutors() {
-            const grid = document.getElementById('liveTutorsGrid');
-            try {
-                const snapshot = await db.collection("admins").where("verified", "==", true).get();
-                
-                grid.innerHTML = '';
-
-                if (snapshot.empty) {
-                    grid.innerHTML = `<div class="col-span-3 text-center py-8 text-slate-500 font-bold bg-white rounded-2xl border border-slate-200">No verified tutors online right now. Check back soon!</div>`;
-                    return;
-                }
-
-                snapshot.forEach(doc => {
-                    const t = doc.data();
-                    const photo = t.photoUrl || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=300&q=80';
-                    const name = t.fullName || 'Tutor';
-                    const qual = t.qualification || 'Educator';
-                    const subjects = t.subjects || 'General Subjects';
-                    const prefClass = t.prefClass || 'All Classes';
-                    const medium = t.medium || '';
-                    const board = t.board || '';
-                    const area = t.district || 'Allahabad';
-                    const mode = t.mode || 'Home Tuition';
-                    const exp = t.experience || 'Experienced';
-                    const fee = t.fee || '3000';
-                    const phone = t.whatsappNumber || '9876543210';
-
-                    const card = `
-                        <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl transition flex flex-col justify-between">
-                            <div>
-                                <div class="flex items-start justify-between mb-4">
-                                    <div class="flex items-center space-x-3">
-                                        <img src="${photo}" class="w-16 h-16 rounded-2xl object-cover border-2 border-indigo-100 shadow-md" alt="${name}">
-                                        <div>
-                                            <div class="flex items-center space-x-2">
-                                                <h4 class="font-black text-slate-900 text-base">${name}</h4>
-                                                <span class="bg-blue-50 text-blue-600 border border-blue-200 text-[10px] font-extrabold px-2 py-0.5 rounded-full"><i class="fa-solid fa-circle-check"></i> Verified</span>
-                                            </div>
-                                            <p class="text-xs text-indigo-600 font-bold mt-0.5">${qual}</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="space-y-1.5 mb-5 text-xs font-semibold text-slate-600">
-                                    <p><i class="fa-solid fa-book text-slate-400 mr-2 w-4"></i> <span class="text-slate-900">${subjects}</span> (${prefClass})</p>
-                                    <p><i class="fa-solid fa-language text-slate-400 mr-2 w-4"></i> ${medium} • ${board}</p>
-                                    <p><i class="fa-solid fa-location-dot text-slate-400 mr-2 w-4"></i> ${area}, Allahabad • <span class="text-indigo-600">${mode}</span></p>
-                                    <p><i class="fa-solid fa-briefcase text-slate-400 mr-2 w-4"></i> ${exp} Experience</p>
-                                </div>
-                            </div>
-
-                            <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-                                <div>
-                                    <span class="text-[10px] uppercase font-extrabold text-slate-400 block">Monthly Fee</span>
-                                    <span class="text-base font-black text-slate-900">₹${Number(fee).toLocaleString()}<span class="text-xs text-slate-400 font-medium">/mo</span></span>
-                                </div>
-                                <div class="space-x-2 flex items-center">
-                                    <a href="https://wa.me/91${phone}?text=Hi%20${encodeURIComponent(name)},%20I%20found%20your%20profile%20on%20TutorPage%20and%20need%20tuition." target="_blank" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 px-3.5 py-2.5 rounded-xl font-bold text-sm inline-flex items-center gap-1.5 transition shadow-sm">
-                                        <i class="fa-brands fa-whatsapp text-lg text-emerald-600"></i> WhatsApp
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                    grid.innerHTML += card;
-                });
-
-            } catch (error) {
-                console.error("Error loading live tutors:", error);
-                grid.innerHTML = `<div class="col-span-3 text-center py-6 text-rose-500 font-bold">Error loading tutors from database.</div>`;
-            }
-        }
-
-        function handleRequirementSubmit(e) {
-            e.preventDefault();
-            document.getElementById('requirementForm').reset();
-            document.getElementById('requirementForm').classList.add('hidden');
-            document.getElementById('reqSuccessMsg').classList.remove('hidden');
-        }
-
-        window.onload = fetchLiveTutors;
-    </script>
-</body>
-</html>
+            storageBucket
