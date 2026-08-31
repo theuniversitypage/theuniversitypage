@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <!-- Firebase SDK (Compat Version) -->
+    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
@@ -22,143 +22,137 @@
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background: #F1F5F9;
-            background-image: radial-gradient(circle at top center, rgba(99, 102, 241, 0.08), transparent 70%);
+            color: #0F172A;
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px;
-            color: #0F172A;
         }
 
-        .wrapper-container {
-            width: 100%;
-            max-width: 600px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* PREMIUM GLASS CARD CONTAINER */
-        .dashboard-card {
-            width: 100%;
+        /* SIDEBAR / LEFT SLIDER */
+        .sidebar {
+            width: 260px;
             background: #FFFFFF;
-            border: 1px solid #E2E8F0;
-            border-radius: 36px;
-            box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.08);
-            overflow: hidden;
-            position: relative;
-            padding: 36px 32px;
-        }
-
-        .dashboard-scroll {
-            max-height: 72vh;
-            overflow-y: auto;
-            padding-right: 4px;
-        }
-        .dashboard-scroll::-webkit-scrollbar { width: 4px; }
-        .dashboard-scroll::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 4px; }
-
-        /* HEADER & LOGOUT */
-        .portal-header {
+            border-right: 1px solid #E2E8F0;
             display: flex;
+            flex-direction: column;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 24px;
-            border-bottom: 1px solid #E2E8F0;
-            padding-bottom: 16px;
+            position: fixed;
+            top: 0; bottom: 0; left: 0;
+            z-index: 50;
+            transition: transform 0.3s ease;
         }
-        .logo-badge-text {
-            font-size: 1rem;
+
+        .sidebar-brand {
+            padding: 24px;
+            font-size: 1.1rem;
             font-weight: 900;
             letter-spacing: 2px;
-            color: #0F172A;
             text-transform: uppercase;
-            display: inline-flex;
+            border-bottom: 1px solid #F1F5F9;
+            display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
-        .logo-badge-text span {
+        .sidebar-brand span {
             background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);
             color: #FFF;
             padding: 3px 10px;
             border-radius: 8px;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
         }
 
-        .logout-btn {
-            background: #FEF2F2;
-            color: #EF4444;
-            border: 1px solid #FEE2E2;
-            padding: 8px 14px;
-            border-radius: 12px;
+        .sidebar-menu {
+            padding: 20px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex-grow: 1;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 14px;
+            font-size: 0.88rem;
             font-weight: 700;
-            font-size: 0.78rem;
+            color: #64748B;
+            background: transparent;
+            border: none;
             cursor: pointer;
-            transition: all 0.2s;
+            width: 100%;
+            text-align: left;
+            transition: all 0.2s ease;
         }
-        .logout-btn:hover { background: #FEE2E2; }
+        .menu-item i { font-size: 1rem; width: 20px; text-align: center; }
+        .menu-item:hover { background: #F8FAFC; color: #0F172A; }
+        .menu-item.active {
+            background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);
+            color: #FFFFFF;
+            box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3);
+        }
 
-        /* STATS GRID */
+        .menu-item.logout {
+            color: #EF4444;
+            margin-top: auto;
+        }
+        .menu-item.logout:hover { background: #FEF2F2; }
+
+        /* MAIN CONTENT AREA */
+        .main-content {
+            margin-left: 260px;
+            flex-grow: 1;
+            padding: 30px;
+            max-width: 900px;
+        }
+
+        .content-card {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-radius: 28px;
+            padding: 32px;
+            box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.05);
+            display: none;
+        }
+        .content-card.active { display: block; animation: fadeIn 0.25s ease; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+        .section-header {
+            font-size: 1.25rem;
+            font-weight: 900;
+            color: #0F172A;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #F1F5F9;
+        }
+
+        /* STATS */
         .stats-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
-            margin-bottom: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 15px;
         }
         .stat-box {
             background: #F8FAFC;
             border: 1px solid #E2E8F0;
             border-radius: 20px;
-            padding: 18px;
-            text-align: center;
+            padding: 20px;
         }
-        .stat-box span {
-            font-size: 0.72rem;
-            font-weight: 800;
-            color: #64748B;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .stat-box h3 {
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: #0F172A;
-            margin-top: 4px;
-        }
+        .stat-box span { font-size: 0.75rem; font-weight: 800; color: #64748B; text-transform: uppercase; }
+        .stat-box h3 { font-size: 2rem; font-weight: 900; color: #0F172A; margin-top: 6px; }
 
-        /* SECTION TITLE */
-        .section-title {
-            font-size: 0.95rem;
-            font-weight: 800;
-            color: #0F172A;
-            margin-bottom: 14px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        /* INPUT FIELDS (Matching Login Page) */
-        .input-group {
-            position: relative;
-            margin-bottom: 12px;
-        }
-        .input-group i.left-icon {
-            position: absolute;
-            left: 18px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #64748B;
-            font-size: 0.9rem;
-        }
+        /* INPUT FIELDS */
+        .input-group { position: relative; margin-bottom: 14px; }
+        .input-group i.left-icon { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: #64748B; font-size: 0.9rem; }
         .input-field, .input-select {
             width: 100%;
             padding: 13px 16px 13px 48px;
             border: 1px solid #E2E8F0;
             border-radius: 16px;
             background: #F8FAFC;
-            font-size: 0.85rem;
+            font-size: 0.88rem;
             font-weight: 600;
             color: #0F172A;
             outline: none;
@@ -166,138 +160,144 @@
             font-family: inherit;
         }
         .input-select { appearance: none; cursor: pointer; }
-        .input-field:focus, .input-select:focus {
-            border-color: #6366F1;
-            background: #FFFFFF;
-            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12);
-        }
-        .input-field::placeholder { color: #94A3B8; font-weight: 500; }
+        .input-field:focus, .input-select:focus { border-color: #6366F1; background: #FFFFFF; box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12); }
 
-        /* SAVE BUTTON */
         .submit-btn {
             background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);
-            color: #FFFFFF;
-            border: none;
-            width: 100%;
-            padding: 13px;
-            border-radius: 16px;
-            font-weight: 900;
-            font-size: 0.92rem;
-            cursor: pointer;
-            transition: transform 0.2s, opacity 0.2s;
-            margin-top: 8px;
-            letter-spacing: 0.3px;
+            color: #FFFFFF; border: none; width: 100%; padding: 14px;
+            border-radius: 16px; font-weight: 900; font-size: 0.95rem; cursor: pointer;
+            transition: opacity 0.2s; margin-top: 10px;
         }
-        .submit-btn:hover { transform: translateY(-1px); opacity: 0.95; }
+        .submit-btn:hover { opacity: 0.95; }
 
-        .copyright-footer {
-            margin-top: 18px;
-            text-align: center;
-            font-size: 0.75rem;
-            color: #64748B;
-            font-weight: 600;
-        }
-
-        @media (max-width: 480px) {
-            body { padding: 0; background: #FFFFFF; }
-            .wrapper-container { max-width: 100%; }
-            .dashboard-card { border: none; box-shadow: none; border-radius: 0; min-height: 100vh; padding: 24px 18px; }
-            .dashboard-scroll { max-height: 76vh; }
+        /* MOBILE RESPONSIVE */
+        @media (max-width: 768px) {
+            .sidebar { width: 100%; height: 70px; bottom: 0; top: auto; flex-direction: row; align-items: center; padding: 0 10px; border-right: none; border-top: 1px solid #E2E8F0; }
+            .sidebar-brand { display: none; }
+            .sidebar-menu { flex-direction: row; justify-content: space-around; padding: 10px 0; }
+            .menu-item { flex-direction: column; gap: 4px; font-size: 0.65rem; padding: 6px; text-align: center; }
+            .menu-item i { font-size: 1.2rem; }
+            .menu-item.logout { margin-top: 0; }
+            .main-content { margin-left: 0; margin-bottom: 80px; padding: 16px; max-width: 100%; }
         }
     </style>
 </head>
 <body>
 
-    <div class="wrapper-container">
-        
-        <div class="dashboard-card">
+    <!-- LEFT SIDEBAR / SLIDER -->
+    <nav class="sidebar">
+        <div class="sidebar-brand">
+            Tutor<span>Page</span>
+        </div>
+        <div class="sidebar-menu">
+            <button class="menu-item active" onclick="switchTab('homeTab', this)">
+                <i class="fa-solid fa-house"></i> Home
+            </button>
+            <button class="menu-item" onclick="switchTab('profileTab', this)">
+                <i class="fa-solid fa-user-pen"></i> Profile Update
+            </button>
+            <button class="menu-item" onclick="switchTab('studentsTab', this)">
+                <i class="fa-solid fa-users"></i> Student Data
+            </button>
+            <button class="menu-item logout" onclick="logoutTeacher()">
+                <i class="fa-solid fa-right-from-bracket"></i> Log Out
+            </button>
+        </div>
+    </nav>
+
+    <!-- MAIN DISPLAY AREA -->
+    <main class="main-content">
+
+        <!-- 1. HOME TAB -->
+        <div id="homeTab" class="content-card active">
+            <div class="section-header">Dashboard Overview</div>
+            <p class="text-sm font-semibold text-slate-600 mb-6">Welcome back, <span id="welcomeName" class="text-indigo-600 font-bold">Educator</span>! Here is your quick performance summary.</p>
             
-            <!-- PORTAL HEADER -->
-            <div class="portal-header">
-                <div class="logo-badge-text">TutorPage <span>TEACHER</span></div>
-                <button class="logout-btn" onclick="logoutTeacher()">
-                    <i class="fa-solid fa-right-from-bracket mr-1"></i> Logout
-                </button>
-            </div>
-
-            <div class="dashboard-scroll">
-                
-                <!-- STATS DISPLAY -->
-                <div class="stats-grid">
-                    <div class="stat-box">
-                        <span>Students Enrolled</span>
-                        <h3 id="studentCount">0</h3>
-                    </div>
-                    <div class="stat-box">
-                        <span>Profile Status</span>
-                        <h3 class="text-emerald-600 text-lg mt-2" style="font-size: 1.2rem;">Verified</h3>
-                    </div>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <span>Total Students Connected</span>
+                    <h3 id="statStudents">0</h3>
                 </div>
-
-                <!-- EDIT PROFILE FORM -->
-                <div class="section-title">
-                    <i class="fa-solid fa-user-pen text-indigo-600"></i> Edit Your Teaching Profile
+                <div class="stat-box">
+                    <span>Profile Status</span>
+                    <h3 class="text-emerald-600" style="font-size: 1.5rem; margin-top: 10px;">Verified Active</h3>
                 </div>
-
-                <form id="teacherProfileForm" onsubmit="updateTeacherProfile(event)">
-                    <div class="input-group">
-                        <i class="fa-solid fa-user left-icon"></i>
-                        <input type="text" id="tName" class="input-field" placeholder="Full Name" required>
-                    </div>
-
-                    <div class="input-group">
-                        <i class="fab fa-whatsapp left-icon" style="color: #25D366;"></i>
-                        <input type="tel" id="tPhone" class="input-field" placeholder="WhatsApp Number" required>
-                    </div>
-
-                    <div class="input-group">
-                        <i class="fa-solid fa-graduation-cap left-icon"></i>
-                        <input type="text" id="tQual" class="input-field" placeholder="Highest Qualification (e.g. M.Sc Math)" required>
-                    </div>
-
-                    <div class="input-group">
-                        <i class="fa-solid fa-briefcase left-icon"></i>
-                        <input type="text" id="tExp" class="input-field" placeholder="Teaching Experience (e.g. 5+ Years)" required>
-                    </div>
-
-                    <div class="input-group">
-                        <i class="fa-solid fa-book-bookmark left-icon"></i>
-                        <input type="text" id="tSubjects" class="input-field" placeholder="Expert Subjects (e.g. Mathematics, Physics)" required>
-                    </div>
-
-                    <div class="input-group">
-                        <i class="fa-solid fa-map-location-dot left-icon"></i>
-                        <input type="text" id="tArea" class="input-field" placeholder="Preferred Area in Allahabad" required>
-                    </div>
-
-                    <div class="input-group">
-                        <i class="fa-solid fa-laptop-house left-icon"></i>
-                        <select id="tMode" class="input-select" required>
-                            <option value="Home Tuition">Home Tuition</option>
-                            <option value="Online Tuition">Online Tuition</option>
-                            <option value="Both Home & Online">Both Home & Online</option>
-                        </select>
-                    </div>
-
-                    <div class="input-group">
-                        <i class="fa-solid fa-indian-rupee-sign left-icon"></i>
-                        <input type="number" id="tFee" class="input-field" placeholder="Expected Monthly Fee (₹)" required>
-                    </div>
-
-                    <button type="submit" class="submit-btn" id="saveBtn">Save Profile Updates</button>
-                </form>
-
             </div>
         </div>
 
-        <!-- COPYRIGHT FOOTER -->
-        <div class="copyright-footer">
-            © 2026 TutorPage. Educator Member Portal.
+        <!-- 2. PROFILE UPDATE TAB -->
+        <div id="profileTab" class="content-card">
+            <div class="section-header">Update Teaching Profile</div>
+            
+            <form id="teacherProfileForm" onsubmit="updateTeacherProfile(event)">
+                <div class="input-group">
+                    <i class="fa-solid fa-user left-icon"></i>
+                    <input type="text" id="tName" class="input-field" placeholder="Full Name" required>
+                </div>
+
+                <div class="input-group">
+                    <i class="fab fa-whatsapp left-icon" style="color: #25D366;"></i>
+                    <input type="tel" id="tPhone" class="input-field" placeholder="WhatsApp Number" required>
+                </div>
+
+                <div class="input-group">
+                    <i class="fa-solid fa-graduation-cap left-icon"></i>
+                    <input type="text" id="tQual" class="input-field" placeholder="Highest Qualification (e.g. M.Sc Math)" required>
+                </div>
+
+                <div class="input-group">
+                    <i class="fa-solid fa-briefcase left-icon"></i>
+                    <input type="text" id="tExp" class="input-field" placeholder="Teaching Experience (e.g. 5+ Years)" required>
+                </div>
+
+                <div class="input-group">
+                    <i class="fa-solid fa-book-bookmark left-icon"></i>
+                    <input type="text" id="tSubjects" class="input-field" placeholder="Expert Subjects (e.g. Mathematics, Physics)" required>
+                </div>
+
+                <div class="input-group">
+                    <i class="fa-solid fa-map-location-dot left-icon"></i>
+                    <input type="text" id="tArea" class="input-field" placeholder="Preferred Area in Allahabad" required>
+                </div>
+
+                <div class="input-group">
+                    <i class="fa-solid fa-laptop-house left-icon"></i>
+                    <select id="tMode" class="input-select" required>
+                        <option value="Home Tuition">Home Tuition</option>
+                        <option value="Online Tuition">Online Tuition</option>
+                        <option value="Both Home & Online">Both Home & Online</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <i class="fa-solid fa-indian-rupee-sign left-icon"></i>
+                    <input type="number" id="tFee" class="input-field" placeholder="Expected Monthly Fee (₹)" required>
+                </div>
+
+                <button type="submit" class="submit-btn" id="saveBtn">Save Profile Updates</button>
+            </form>
         </div>
 
-    </div>
+        <!-- 3. STUDENT DATA TAB -->
+        <div id="studentsTab" class="content-card">
+            <div class="section-header">Connected Students & Leads</div>
+            <p class="text-sm font-semibold text-slate-500 mb-6">Aapke through ya aapke profile se jude hue students ki list:</p>
+            
+            <div id="studentsListContainer" class="space-y-3">
+                <!-- Dynamic student rows will inject here -->
+                <div class="bg-slate-50 border border-slate-200 p-4 rounded-2xl flex justify-between items-center text-sm font-bold">
+                    <div>
+                        <p class="text-slate-900">Aman Gupta <span class="text-xs text-indigo-600 font-normal">(Class 9-10 Mathematics)</span></p>
+                        <span class="text-xs text-slate-400 font-normal"><i class="fa-solid fa-location-dot mr-1"></i> Civil Lines, Allahabad</span>
+                    </div>
+                    <span class="bg-emerald-50 text-emerald-600 text-xs px-3 py-1 rounded-xl">Connected</span>
+                </div>
+            </div>
+        </div>
 
-    <!-- FIREBASE SCRIPT & LOGIC -->
+    </main>
+
+    <!-- FIREBASE & NAVIGATION LOGIC -->
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyD837pmW5N21lMgeVlpgWPx0FaMisSnxwU",
@@ -318,7 +318,16 @@
 
         let currentUserId = null;
 
-        // Check authentication and load teacher's profile data
+        // Tab Switching Logic
+        function switchTab(tabId, btnElement) {
+            document.querySelectorAll('.content-card').forEach(card => card.classList.remove('active'));
+            document.querySelectorAll('.menu-item').forEach(item => item.classList.remove('active'));
+
+            document.getElementById(tabId).classList.add('active');
+            if(btnElement) btnElement.classList.add('active');
+        }
+
+        // Auth State & Data Fetching
         auth.onAuthStateChanged(async (user) => {
             if (!user) {
                 window.location.href = "login.html";
@@ -331,7 +340,10 @@
 
                     if (doc.exists) {
                         const data = doc.data();
-                        document.getElementById('tName').value = data.fullName || user.displayName || "";
+                        const teacherName = data.fullName || user.displayName || "Educator";
+                        
+                        document.getElementById('welcomeName').innerText = teacherName;
+                        document.getElementById('tName').value = teacherName;
                         document.getElementById('tPhone').value = data.whatsappNumber || "";
                         document.getElementById('tQual').value = data.qualification || "";
                         document.getElementById('tExp').value = data.experience || "";
@@ -340,20 +352,17 @@
                         if(data.mode) document.getElementById('tMode').value = data.mode;
                         document.getElementById('tFee').value = data.fee || "";
                         
-                        // Display student count if available in database
                         if(data.studentsCount !== undefined) {
-                            document.getElementById('studentCount').innerText = data.studentsCount;
+                            document.getElementById('statStudents').innerText = data.studentsCount;
                         }
-                    } else {
-                        document.getElementById('tName').value = user.displayName || "";
                     }
                 } catch (error) {
-                    console.error("Error loading profile:", error);
+                    console.error("Error fetching data:", error);
                 }
             }
         });
 
-        // Update profile in Firestore
+        // Update Profile
         async function updateTeacherProfile(e) {
             e.preventDefault();
             if (!currentUserId) return;
