@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>VIP Admin Access | TutorPage Enterprise</title>
+    <title>Admin Access Portal | TutorPage</title>
     
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,19 +21,18 @@
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background: #030712; /* Rich Dark Background */
-            background-image: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.25), transparent 60%),
-                              radial-gradient(circle at 100% 100%, rgba(236, 72, 153, 0.15), transparent 50%);
+            background: #F1F5F9; /* Clean Light SaaS Background */
+            background-image: radial-gradient(circle at top center, rgba(99, 102, 241, 0.08), transparent 70%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            color: #F8FAFC;
+            color: #0F172A;
         }
 
-        /* MAIN CENTering WRAPPER */
+        /* MAIN CENTERING WRAPPER */
         .wrapper-container {
             width: 100%;
             max-width: 480px;
@@ -42,15 +41,13 @@
             align-items: center;
         }
 
-        /* VIP GLASS CARD CONTAINER */
+        /* ULTRA-PREMIUM CLEAN CARD */
         .auth-card-container {
             width: 100%;
-            background: rgba(11, 15, 25, 0.92);
-            backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
             border-radius: 36px;
-            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.7), 0 0 50px rgba(99, 102, 241, 0.2);
+            box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.08);
             overflow: hidden;
             position: relative;
             padding: 40px 32px 28px;
@@ -65,9 +62,9 @@
             padding-right: 4px;
         }
         .form-scroll-area::-webkit-scrollbar { width: 4px; }
-        .form-scroll-area::-webkit-scrollbar-thumb { background: rgba(99, 102, 241, 0.5); border-radius: 4px; }
+        .form-scroll-area::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 4px; }
 
-        /* VIP BRAND LOGO */
+        /* BRAND LOGO BADGE */
         .brand-logo-area {
             text-align: center;
             margin-bottom: 18px;
@@ -76,19 +73,19 @@
             font-size: 1.05rem;
             font-weight: 900;
             letter-spacing: 2.5px;
-            color: #FFFFFF;
+            color: #0F172A;
             text-transform: uppercase;
             display: inline-flex;
             align-items: center;
             gap: 8px;
         }
         .logo-badge-text span {
-            background: linear-gradient(135deg, #6366F1 0%, #EC4899 100%);
+            background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);
             color: #FFF;
             padding: 3px 10px;
             border-radius: 8px;
             font-size: 0.72rem;
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.5);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
         }
 
         /* WELCOME HEADER */
@@ -99,20 +96,20 @@
         .welcome-block h1 {
             font-size: 1.6rem;
             font-weight: 900;
-            color: #FFFFFF;
+            color: #0F172A;
             margin-bottom: 4px;
             letter-spacing: -0.02em;
         }
         .welcome-block p {
             font-size: 0.82rem;
-            color: #94A3B8;
+            color: #64748B;
             font-weight: 500;
         }
 
-        /* LUXURY PILL SWITCHER */
+        /* PILL SWITCHER */
         .pill-switch-container {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: #F8FAFC;
+            border: 1px solid #E2E8F0;
             border-radius: 9999px;
             padding: 5px;
             display: flex;
@@ -126,17 +123,17 @@
             border-radius: 9999px;
             font-size: 0.82rem;
             font-weight: 800;
-            color: #94A3B8;
+            color: #64748B;
             cursor: pointer;
             transition: all 0.25s ease;
         }
         .pill-btn.active {
-            background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);
-            color: #FFFFFF;
-            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+            background: #FFFFFF;
+            color: #0F172A;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
         }
 
-        /* VIP INPUT FIELDS */
+        /* INPUT FIELDS */
         .input-group {
             position: relative;
             margin-bottom: 12px;
@@ -146,7 +143,7 @@
             left: 18px;
             top: 50%;
             transform: translateY(-50%);
-            color: #818CF8;
+            color: #64748B;
             font-size: 0.9rem;
         }
         .input-group i.right-icon {
@@ -154,22 +151,22 @@
             right: 18px;
             top: 50%;
             transform: translateY(-50%);
-            color: #94A3B8;
+            color: #64748B;
             font-size: 0.9rem;
             cursor: pointer;
             transition: color 0.2s;
         }
-        .input-group i.right-icon:hover { color: #FFFFFF; }
+        .input-group i.right-icon:hover { color: #0F172A; }
         
         .input-field, .input-select {
             width: 100%;
             padding: 13px 16px 13px 48px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid #E2E8F0;
             border-radius: 16px;
-            background: rgba(15, 23, 42, 0.75);
+            background: #F8FAFC;
             font-size: 0.85rem;
             font-weight: 600;
-            color: #FFFFFF;
+            color: #0F172A;
             outline: none;
             transition: all 0.2s ease;
             font-family: inherit;
@@ -180,16 +177,16 @@
         }
         .input-field:focus, .input-select:focus {
             border-color: #6366F1;
-            background: rgba(15, 23, 42, 0.95);
-            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.25);
+            background: #FFFFFF;
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12);
         }
         .input-field::placeholder {
-            color: #64748B;
+            color: #94A3B8;
             font-weight: 500;
         }
         .input-select option {
-            background: #0F172A;
-            color: #FFFFFF;
+            background: #FFFFFF;
+            color: #0F172A;
         }
 
         /* SHADOW-FREE SUBMIT BUTTON */
@@ -216,7 +213,7 @@
             display: flex;
             align-items: center;
             text-align: center;
-            color: #64748B;
+            color: #94A3B8;
             font-size: 0.72rem;
             font-weight: 700;
             margin-bottom: 14px;
@@ -226,7 +223,7 @@
         .social-divider::before, .social-divider::after {
             content: '';
             flex: 1;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid #E2E8F0;
         }
         .social-divider::before { margin-right: 12px; }
         .social-divider::after { margin-left: 12px; }
@@ -238,13 +235,13 @@
             margin-bottom: 16px;
         }
         .social-auth-btn {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
             padding: 10px;
             border-radius: 14px;
             font-size: 0.8rem;
             font-weight: 700;
-            color: #E2E8F0;
+            color: #334155;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -252,10 +249,11 @@
             gap: 10px;
             transition: all 0.2s ease;
             text-decoration: none;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
         }
         .social-auth-btn:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.15);
+            background: #F8FAFC;
+            border-color: #CBD5E1;
             transform: translateY(-1px);
         }
 
@@ -264,17 +262,17 @@
             text-align: center;
             font-size: 0.78rem;
             font-weight: 700;
-            color: #94A3B8;
+            color: #64748B;
         }
         .auth-footer-link a {
-            color: #818CF8;
+            color: #6366F1;
             text-decoration: none;
         }
         .auth-footer-link a:hover { text-decoration: underline; }
 
         /* COPYRIGHT FOOTER BAR */
         .copyright-footer {
-            margin-top: 20px;
+            margin-top: 18px;
             text-align: center;
             font-size: 0.75rem;
             color: #64748B;
@@ -289,9 +287,9 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
         @media (max-width: 480px) {
-            body { padding: 0; background: #030712; }
+            body { padding: 0; background: #FFFFFF; }
             .wrapper-container { max-width: 100%; height: 100vh; justify-content: center; padding: 16px; }
-            .auth-card-container { border: none; box-shadow: none; border-radius: 28px; width: 100%; padding: 28px 22px 22px; }
+            .auth-card-container { border: none; box-shadow: none; border-radius: 28px; width: 100%; padding: 26px 20px 20px; }
             .form-scroll-area { max-height: 52vh; }
         }
     </style>
@@ -304,12 +302,12 @@
             <div>
                 <!-- TOP BRAND -->
                 <div class="brand-logo-area">
-                    <div class="logo-badge-text">TutorPage <span>VIP ADMIN</span></div>
+                    <div class="logo-badge-text">TutorPage <span>ADMIN</span></div>
                 </div>
 
                 <!-- WELCOME HEADER -->
                 <div class="welcome-block">
-                    <h1>Enterprise Access</h1>
+                    <h1>Admin Portal</h1>
                     <p>Secure executive management portal for Prayagraj</p>
                 </div>
 
