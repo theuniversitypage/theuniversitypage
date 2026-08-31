@@ -23,10 +23,9 @@
         }
     </script>
     
-    <!-- FontAwesome Icons -->
+    <!-- FontAwesome & Google Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <!-- Firebase SDK Compat -->
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
@@ -35,17 +34,22 @@
 
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 pb-20 md:pb-0">
+<body class="bg-slate-50 text-slate-900 pb-20 md:pb-0">
 
     <!-- TOP BAR -->
-    <div class="bg-indigo-900 text-white text-xs py-2 px-4">
+    <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <span><i class="fa-solid fa-location-dot text-rose-400 mr-1"></i> Prayagraj / Allahabad, Uttar Pradesh</span>
-            <div class="space-x-4 hidden md:block">
-                <a href="#contact" class="hover:underline">Help & Support</a>
-                <a href="login.html" class="hover:underline text-indigo-300 font-semibold"><i class="fa-solid fa-lock mr-1"></i> Admin / Teacher Portal</a>
+            <span class="flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-indigo-400"></i> Prayagraj / Allahabad, Uttar Pradesh</span>
+            <div class="space-x-4 hidden md:flex items-center">
+                <a href="#contact" class="hover:text-white transition">Help & Support</a>
+                <a href="login.html" class="text-indigo-400 font-bold hover:underline"><i class="fa-solid fa-lock mr-1"></i> Portal Login</a>
             </div>
         </div>
     </div>
@@ -53,29 +57,29 @@
     <!-- NAVBAR -->
     <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <a href="#" class="flex items-center space-x-2">
-                <div class="bg-indigo-600 text-white p-2.5 rounded-xl text-xl font-black tracking-wider shadow-md shadow-indigo-200">
+            <a href="#" class="flex items-center space-x-3">
+                <div class="bg-indigo-600 text-white p-2.5 rounded-2xl text-xl font-black tracking-wider shadow-lg shadow-indigo-200">
                     TP
                 </div>
                 <div>
-                    <span class="text-2xl font-extrabold tracking-tight text-slate-900">Tutor<span class="text-indigo-600">Page</span></span>
-                    <span class="block text-[10px] uppercase tracking-wider font-bold text-slate-400">Allahabad Edition</span>
+                    <span class="text-2xl font-black tracking-tight text-slate-900">Tutor<span class="text-indigo-600">Page</span></span>
+                    <span class="block text-[10px] uppercase tracking-widest font-extrabold text-slate-400">Allahabad Edition</span>
                 </div>
             </a>
             
-            <nav class="hidden md:flex items-center space-x-8 font-semibold text-sm text-slate-600">
+            <nav class="hidden md:flex items-center space-x-8 font-bold text-sm text-slate-600">
                 <a href="#home" class="text-indigo-600">Home</a>
-                <a href="#live-tutors" class="hover:text-indigo-600 transition font-bold text-indigo-600">Top Tutors</a>
+                <a href="#live-tutors" class="hover:text-indigo-600 transition">Verified Tutors</a>
                 <a href="#classes" class="hover:text-indigo-600 transition">Classes</a>
                 <a href="#areas" class="hover:text-indigo-600 transition">Popular Areas</a>
                 <a href="#post-requirement" class="hover:text-indigo-600 transition">Post Requirement</a>
             </nav>
 
             <div class="hidden md:flex items-center space-x-3">
-                <a href="#post-requirement" class="px-4 py-2 text-sm font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 rounded-xl transition">
+                <a href="#post-requirement" class="px-4 py-2.5 text-xs font-black text-indigo-600 bg-indigo-50 hover:bg-indigo-100 rounded-xl transition">
                     Post Requirement
                 </a>
-                <a href="login.html" class="px-4 py-2 text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-lg shadow-indigo-200 transition">
+                <a href="login.html" class="px-5 py-2.5 text-xs font-black text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-lg shadow-indigo-200 transition">
                     Become a Tutor
                 </a>
             </div>
@@ -83,37 +87,38 @@
     </header>
 
     <!-- 1. HERO SECTION -->
-    <section id="home" class="relative bg-gradient-to-b from-indigo-900 via-indigo-800 to-slate-900 text-white py-20 px-4 overflow-hidden">
-        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#e0e7ff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+    <section id="home" class="relative bg-gradient-to-br from-indigo-950 via-indigo-900 to-slate-900 text-white py-24 px-4 overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#e0e7ff_1px,transparent_1px)] [background-size:20px_20px]"></div>
         
         <div class="max-w-5xl mx-auto text-center relative z-10">
-            <span class="bg-indigo-700/60 border border-indigo-400/30 text-indigo-200 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider mb-6 inline-block">
-                #1 Verified Tutor Discovery Platform in Prayagraj
+            <span class="bg-indigo-800/80 border border-indigo-500/30 text-indigo-200 text-xs font-extrabold px-4 py-2 rounded-full uppercase tracking-widest mb-6 inline-block shadow-inner">
+                ⚡ #1 Verified Tutor Discovery Platform in Prayagraj
             </span>
-            <h1 class="text-4xl sm:text-6xl font-black tracking-tight mb-6">
+            <h1 class="text-4xl sm:text-6xl font-black tracking-tight mb-6 leading-tight">
                 Allahabad में अपना <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-emerald-300">Perfect Tutor</span> खोजें
             </h1>
-            <p class="text-lg sm:text-xl text-indigo-200 max-w-2xl mx-auto mb-10 font-medium">
-                Class, Subject और Location के हिसाब से सही Tutor खोजें और अपनी पढ़ाई शुरू करें।
+            <p class="text-base sm:text-lg text-indigo-200 max-w-2xl mx-auto mb-10 font-medium">
+                क्लास, सब्जेक्ट और लोकेशन के हिसाब से सीधे अनुभवी शिक्षकों से जुड़ें और अपनी पढ़ाई को आसान बनाएं।
             </p>
         </div>
     </section>
 
-    <!-- 🌟 SEPARATE TOP SECTION: LIVE VERIFIED TUTORS FROM DATABASE (उपर ही अलग सेक्शन) -->
-    <section id="live-tutors" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 mb-16">
-        <div class="bg-gradient-to-r from-indigo-50 to-blue-50 border border-indigo-100 p-6 sm:p-10 rounded-3xl shadow-sm">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
+    <!-- 🌟 FEATURED LIVE VERIFIED TUTORS SECTION (TOP PRIORITY) -->
+    <section id="live-tutors" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-20 mb-16">
+        <div class="bg-gradient-to-r from-indigo-50 via-blue-50 to-slate-50 border border-indigo-100 p-6 sm:p-10 rounded-3xl shadow-xl">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4 border-b border-indigo-100 pb-6">
                 <div>
-                    <span class="bg-indigo-600 text-white text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider">🔥 Featured & Verified</span>
-                    <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-2">Latest Registered Tutors in Allahabad</h2>
-                    <p class="text-xs sm:text-sm text-slate-500 font-semibold mt-1">ये टीचर्स अभी हाल ही में जुड़े हैं और पढ़ाने के लिए उपलब्ध हैं।</p>
+                    <span class="bg-emerald-600 text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider">🔥 Live & Verified</span>
+                    <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-2">Latest Active Tutors in Allahabad</h2>
+                    <p class="text-xs sm:text-sm text-slate-500 font-semibold mt-1">ये सभी शिक्षक एडमिन द्वारा वेरीफाइड हैं और ट्यूशन के लिए उपलब्ध हैं।</p>
                 </div>
-                <a href="#find-tutor" class="text-xs font-extrabold text-indigo-600 hover:underline bg-white px-4 py-2 rounded-xl shadow-sm border border-slate-200">View All Directory →</a>
             </div>
 
             <!-- Dynamic Grid for Live Tutors -->
             <div id="liveTutorsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="col-span-3 text-center py-10 text-slate-400 font-bold">Loading live tutors from database...</div>
+                <div class="col-span-3 text-center py-12 text-slate-400 font-bold bg-white rounded-2xl border border-slate-200 shadow-sm">
+                    <i class="fa-solid fa-spinner fa-spin mr-2 text-indigo-600"></i> Loading verified tutors from database...
+                </div>
             </div>
         </div>
     </section>
@@ -167,7 +172,7 @@
             <div class="absolute top-0 right-0 w-32 h-32 bg-indigo-50 rounded-bl-full -z-10"></div>
             
             <div class="text-center max-w-xl mx-auto mb-8">
-                <span class="bg-amber-100 text-amber-700 text-xs font-extrabold px-3.5 py-1 rounded-full uppercase tracking-wider">Fast Matching</span>
+                <span class="bg-amber-100 text-amber-800 text-xs font-extrabold px-3.5 py-1 rounded-full uppercase tracking-wider">Fast Matching</span>
                 <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-2">Tutor नहीं मिल रहा? अपनी Requirement भेजें</h2>
                 <p class="text-sm text-slate-500 font-medium mt-1">फॉर्म भरें, हमारी टीम Allahabad में आपके लिए बेस्ट ट्यूटर ढूंढकर संपर्क करेगी।</p>
             </div>
@@ -244,17 +249,12 @@
 
     <!-- FOOTER -->
     <footer class="bg-slate-900 text-slate-400 pt-16 pb-12 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
-            <div>
-                <div class="flex items-center space-x-2 mb-4">
-                    <div class="bg-indigo-600 text-white p-2 rounded-xl text-lg font-black">TP</div>
-                    <span class="text-xl font-extrabold text-white">Tutor<span class="text-indigo-400">Page</span></span>
-                </div>
-                <p class="text-xs text-slate-400 leading-relaxed font-medium mb-4">“Allahabad में अपना Perfect Tutor खोजें” — Connecting students with verified tutors across Prayagraj.</p>
-            </div>
-        </div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-slate-800/80 flex justify-between items-center text-xs text-slate-500 font-medium">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 font-medium">
             <p>©️ 2026 TutorPage. All Rights Reserved.</p>
+            <div class="flex space-x-6 mt-4 sm:mt-0">
+                <a href="#" class="hover:underline">Privacy Policy</a>
+                <a href="#" class="hover:underline">Terms & Conditions</a>
+            </div>
         </div>
     </footer>
 
@@ -285,7 +285,7 @@
                 grid.innerHTML = '';
 
                 if (snapshot.empty) {
-                    grid.innerHTML = `<div class="col-span-3 text-center py-6 text-slate-500 font-bold">No verified tutors online right now. Check back soon!</div>`;
+                    grid.innerHTML = `<div class="col-span-3 text-center py-8 text-slate-500 font-bold bg-white rounded-2xl border border-slate-200">No verified tutors online right now. Check back soon!</div>`;
                     return;
                 }
 
@@ -334,7 +334,7 @@
                                     <span class="text-base font-black text-slate-900">₹${Number(fee).toLocaleString()}<span class="text-xs text-slate-400 font-medium">/mo</span></span>
                                 </div>
                                 <div class="space-x-2 flex items-center">
-                                    <a href="https://wa.me/91${phone}?text=Hi%20${encodeURIComponent(name)},%20I%20found%20your%20profile%20on%20TutorPage%20and%20need%20tuition." target="_blank" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 px-3.5 py-2.5 rounded-xl font-bold text-sm inline-flex items-center gap-1.5 transition">
+                                    <a href="https://wa.me/91${phone}?text=Hi%20${encodeURIComponent(name)},%20I%20found%20your%20profile%20on%20TutorPage%20and%20need%20tuition." target="_blank" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 px-3.5 py-2.5 rounded-xl font-bold text-sm inline-flex items-center gap-1.5 transition shadow-sm">
                                         <i class="fa-brands fa-whatsapp text-lg text-emerald-600"></i> WhatsApp
                                     </a>
                                 </div>
@@ -350,7 +350,6 @@
             }
         }
 
-        // Post requirement form handler
         function handleRequirementSubmit(e) {
             e.preventDefault();
             document.getElementById('requirementForm').reset();
