@@ -10,6 +10,7 @@
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
 
 <!-- FontAwesome Premium Icons CDN -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -163,7 +164,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 
     <div class="section-title">Books Near <span id="feedLocationTitle" style="color:var(--accent)">Prayagraj</span></div>
     <div class="product-grid" id="productGridContainer">
-      <!-- Default + Live Firebase Books will show here -->
+      <!-- Default + Live Firebase Books -->
     </div>
   </div>
 
@@ -173,10 +174,8 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     
     <div class="main-img-box" id="mainImg"><i class="fa-solid fa-book"></i></div>
     <div class="thumb-row">
-      <div class="thumb-item active" onclick="changeImage(0)"><i class="fa-solid fa-image"></i> 1</div>
-      <div class="thumb-item" onclick="changeImage(1)"><i class="fa-solid fa-image"></i> 2</div>
-      <div class="thumb-item" onclick="changeImage(2)"><i class="fa-solid fa-image"></i> 3</div>
-      <div class="thumb-item" onclick="changeImage(3)"><i class="fa-solid fa-image"></i> 4</div>
+      <div class="thumb-item active" onclick="changeImage(0)"><i class="fa-solid fa-image"></i> Front</div>
+      <div class="thumb-item" onclick="changeImage(1)"><i class="fa-solid fa-image"></i> Back/Index</div>
     </div>
 
     <h2 class="book-title" id="dTitle">Book Title</h2>
@@ -209,15 +208,22 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     </div>
   </div>
 
-  <!-- 4. SELL BOOK VIEW (Accessible via Profile) -->
+  <!-- 4. SELL BOOK VIEW (With Front & Back Image Upload and Auto +91 country code) -->
   <div id="sellView" class="view-section">
     <div class="back-link" onclick="switchView('profile')"><i class="fa-solid fa-arrow-left"></i> Back to Profile</div>
     <div class="section-title">List Your Book / Notes</div>
     <form onsubmit="publishBookToFirebase(event)">
+      
       <div class="form-card">
-        <div class="form-group">
-          <label><i class="fa-solid fa-camera"></i> Book Image URL or Photo Name</label>
-          <input type="text" id="sellImages" placeholder="Paste image link or leave blank for default icon">
+        <div class="row-2">
+          <div class="form-group">
+            <label><i class="fa-solid fa-camera"></i> Photo 1 (Front Cover) *</label>
+            <input type="file" id="sellImageFront" accept="image/*" style="padding:6px" required>
+          </div>
+          <div class="form-group">
+            <label><i class="fa-solid fa-camera"></i> Photo 2 (Back / Index) *</label>
+            <input type="file" id="sellImageBack" accept="image/*" style="padding:6px" required>
+          </div>
         </div>
       </div>
 
@@ -244,8 +250,11 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
         </div>
 
         <div class="form-group">
-          <label><i class="fa-brands fa-whatsapp"></i> Seller WhatsApp Number *</label>
-          <input type="tel" id="sellWhatsApp" placeholder="e.g., 9984919392" required>
+          <label><i class="fa-brands fa-whatsapp"></i> Seller WhatsApp Number (India +91 Auto) *</label>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span style="background:var(--bg2); border:1px solid var(--line); padding:11px 12px; border-radius:12px; font-weight:700; font-size:12px;">+91</span>
+            <input type="tel" id="sellWhatsApp" placeholder="e.g., 9984919392" maxlength="10" required style="flex:1;">
+          </div>
         </div>
 
         <div class="row-3">
@@ -394,7 +403,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     <div class="section-title">My Book Orders</div>
     <div class="form-card">
       <div style="font-size:13px;font-weight:700">Modern & Medieval Hindi Poetry Notes</div>
-      <div style="font-size:11px;color:var(--muted);margin-top:2px">Status: <b style="color:#16a34a">Connected on WhatsApp (9984919392)</b></div>
+      <div style="font-size:11px;color:var(--muted);margin-top:2px">Status: <b style="color:#16a34a">Connected on WhatsApp (+91 9984919392)</b></div>
     </div>
   </div>
 
@@ -412,7 +421,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     <div class="section-title">App Settings</div>
     <div class="form-card">
       <div class="form-group"><label>App Theme</label><select><option>Light Mode (Default)</option></select></div>
-      <div class="form-group" style="margin-bottom:0"><label>App Version</label><input type="text" value="BookNear v5.5 Final Edition" disabled></div>
+      <div class="form-group" style="margin-bottom:0"><label>App Version</label><input type="text" value="BookNear v6.0 Pro Edition" disabled></div>
     </div>
   </div>
 
@@ -450,7 +459,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     </div>
   </div>
 
-  <!-- BOTTOM NAVIGATION (Sell button removed from bottom dock) -->
+  <!-- BOTTOM NAVIGATION -->
   <nav class="bottom-nav">
     <button class="nav-item active" onclick="switchView('home')" id="nav-home"><span class="icon"><i class="fa-solid fa-house"></i></span><span>Home</span></button>
     <button class="nav-item" onclick="switchView('categories')" id="nav-cat"><span class="icon"><i class="fa-solid fa-layer-group"></i></span><span>Categories</span></button>
@@ -476,25 +485,11 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
   firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
   const auth = firebase.auth();
+  const storage = firebase.storage();
 
   let isLoggedIn = false;
   let currentUserObject = null;
-
-  // Default Mock Books to ensure feed is never completely blank
-  let booksData = [
-    {
-      title: "Modern & Medieval Hindi Poetry Notes",
-      price: "₹249", old: "₹499", author: "Ajmal Mansoori",
-      location: "Zero Road, Prayagraj", whatsapp: "9984919392",
-      imageUrl: ""
-    },
-    {
-      title: "CUET General Test & Domain Guide",
-      price: "₹399", old: "₹799", author: "Learnify Classes",
-      location: "Katra, Prayagraj", whatsapp: "9984919392",
-      imageUrl: ""
-    }
-  ];
+  let booksData = [];
 
   auth.onAuthStateChanged((user) => {
     if (user) {
@@ -510,14 +505,25 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     }
   });
 
-  // Fetch live books and merge with mock books
   function fetchLiveBooksFromFirebase() {
     db.collection("booksListings").orderBy("createdAt", "desc").onSnapshot((snapshot) => {
       const container = document.getElementById('productGridContainer');
       container.innerHTML = "";
       
-      // Start with default mock books
-      let combinedBooks = [...booksData];
+      let combinedBooks = [
+        {
+          title: "Modern & Medieval Hindi Poetry Notes",
+          price: "₹249", old: "₹499", author: "Ajmal Mansoori",
+          location: "Zero Road, Prayagraj", whatsapp: "9984919392",
+          imageUrlFront: "", imageUrlBack: ""
+        },
+        {
+          title: "CUET General Test & Domain Guide",
+          price: "₹399", old: "₹799", author: "Learnify Classes",
+          location: "Katra, Prayagraj", whatsapp: "9984919392",
+          imageUrlFront: "", imageUrlBack: ""
+        }
+      ];
 
       snapshot.forEach((doc) => {
         const b = doc.data();
@@ -528,15 +534,16 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
           author: b.author || "Student Seller",
           location: b.location || "Local Hub",
           whatsapp: b.whatsapp || "9984919392",
-          imageUrl: b.imageUrl || ""
+          imageUrlFront: b.imageUrlFront || "",
+          imageUrlBack: b.imageUrlBack || ""
         });
       });
 
       booksData = combinedBooks;
 
       booksData.forEach((b, index) => {
-        const imgContent = b.imageUrl 
-          ? `<img src="${b.imageUrl}" style="width:100%; height:100%; object-fit:cover; border-radius:14px;" />` 
+        const imgContent = b.imageUrlFront 
+          ? `<img src="${b.imageUrlFront}" style="width:100%; height:100%; object-fit:cover; border-radius:14px;" />` 
           : `<i class="fa-solid fa-book"></i>`;
 
         container.innerHTML += `
@@ -550,24 +557,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
         `;
       });
     }, (error) => {
-      console.log("Using default mock store view.");
-      renderMockBooks();
-    });
-  }
-
-  function renderMockBooks() {
-    const container = document.getElementById('productGridContainer');
-    container.innerHTML = "";
-    booksData.forEach((b, index) => {
-      container.innerHTML += `
-        <div class="product-card" onclick="openBookDetail(${index})">
-          <div class="fav-icon" onclick="toggleFavorite(event, ${index})"><i class="fa-regular fa-heart"></i></div>
-          <div class="p-img"><i class="fa-solid fa-book"></i></div>
-          <div class="p-loc"><i class="fa-solid fa-location-pin"></i> ${b.location}</div>
-          <div class="p-title">${b.title}</div>
-          <div><span class="price">${b.price}</span><span class="old-price">${b.old}</span></div>
-        </div>
-      `;
+      console.log("Loading offline view.");
     });
   }
 
@@ -604,6 +594,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
   }
 
   let currentBook = 0;
+  let currentImageTab = 'front';
 
   function switchView(viewName) {
     document.querySelectorAll('.view-section').forEach(v => v.classList.remove('active'));
@@ -668,7 +659,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
       submitBtn.textContent = "Register New Account 🚀";
     } else {
       isRegisterMode = false;
-      loginBtn.classList.add('active');
+      loginTabBtn.classList.add('active');
       regBtn.classList.remove('active');
       title.textContent = "Welcome Back";
       subtitle.textContent = "Login securely with Firebase Account";
@@ -733,13 +724,33 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     document.getElementById('dLoc').textContent = b.location;
     document.getElementById('dAuthor').textContent = b.author;
     
-    const mainImgBox = document.getElementById('mainImg');
-    if(b.imageUrl) {
-      mainImgBox.innerHTML = `<img src="${b.imageUrl}" style="width:100%; height:100%; object-fit:cover; border-radius:18px;" />`;
-    } else {
-      mainImgBox.innerHTML = `<i class="fa-solid fa-book"></i>`;
-    }
+    displayBookImage('front');
     switchView('detail');
+  }
+
+  function displayBookImage(type) {
+    currentImageTab = type;
+    const b = booksData[currentBook];
+    const mainImgBox = document.getElementById('mainImg');
+    const thumbs = document.querySelectorAll('.thumb-item');
+    
+    thumbs.forEach(t => t.classList.remove('active'));
+
+    if(type === 'front') {
+      thumbs[0].classList.add('active');
+      if(b.imageUrlFront) {
+        mainImgBox.innerHTML = `<img src="${b.imageUrlFront}" style="width:100%; height:100%; object-fit:cover; border-radius:18px;" />`;
+      } else {
+        mainImgBox.innerHTML = `<i class="fa-solid fa-book"></i>`;
+      }
+    } else {
+      thumbs[1].classList.add('active');
+      if(b.imageUrlBack) {
+        mainImgBox.innerHTML = `<img src="${b.imageUrlBack}" style="width:100%; height:100%; object-fit:cover; border-radius:18px;" />`;
+      } else {
+        mainImgBox.innerHTML = `<i class="fa-solid fa-book-open"></i>`;
+      }
+    }
   }
 
   function updateQty(itemId, change) {
@@ -750,7 +761,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     qtyElem.textContent = currentQty;
   }
 
-  function publishBookToFirebase(e) {
+  async function publishBookToFirebase(e) {
     event.preventDefault();
 
     if(!isLoggedIn) {
@@ -762,14 +773,35 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     const title = document.getElementById('sellTitle').value;
     const author = document.getElementById('sellAuthor').value;
     const category = document.getElementById('sellCategory').value;
-    const whatsapp = document.getElementById('sellWhatsApp').value;
+    const rawWhatsApp = document.getElementById('sellWhatsApp').value.trim();
+    const whatsapp = "+91" + rawWhatsApp.replace(/^\+91/, '');
     const price = document.getElementById('sellPrice').value;
     const oldPrice = document.getElementById('sellOldPrice').value;
     const state = document.getElementById('sellState').value;
     const district = document.getElementById('sellDistrict').value;
     const area = document.getElementById('sellArea').value;
     const fullLoc = `${area}, ${district}, ${state}`;
-    const imgUrl = document.getElementById('sellImages').value;
+    
+    const frontFile = document.getElementById('sellImageFront').files[0];
+    const backFile = document.getElementById('sellImageBack').files[0];
+    
+    let frontUrl = "";
+    let backUrl = "";
+
+    try {
+      if(frontFile) {
+        const refFront = storage.ref('book_images/' + Date.now() + '_front_' + frontFile.name);
+        const snapFront = await refFront.put(frontFile);
+        frontUrl = await snapFront.ref.getDownloadURL();
+      }
+      if(backFile) {
+        const refBack = storage.ref('book_images/' + Date.now() + '_back_' + backFile.name);
+        const snapBack = await refBack.put(backFile);
+        backUrl = await snapBack.ref.getDownloadURL();
+      }
+    } catch(err) {
+      console.warn("Storage upload note:", err.message);
+    }
 
     db.collection("booksListings").add({
       title: title,
@@ -779,11 +811,12 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
       price: price,
       oldPrice: oldPrice || "499",
       location: fullLoc,
-      imageUrl: imgUrl || "",
+      imageUrlFront: frontUrl || "",
+      imageUrlBack: backUrl || "",
       sellerEmail: currentUserObject.email,
       createdAt: firebase.firestore.FieldValue.serverTimestamp()
     }).then(() => {
-      alert("Book successfully published live!");
+      alert("Book successfully published live with Front & Back photos!");
       switchView('home');
     }).catch((error) => {
       alert("Error publishing book: " + error.message);
@@ -813,7 +846,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
   function orderOnWhatsApp() {
     const b = booksData[currentBook];
     const message = encodeURIComponent(`Hello, I want to buy this book from BookNear:\n*${b.title}*\nPrice: ${b.price}\nPickup Location: ${b.location}`);
-    const sellerWhatsApp = b.whatsapp || "9984919392";
+    const sellerWhatsApp = (b.whatsapp || "+919984919392").replace(/^\+/, '');
     window.open(`https://wa.me/${sellerWhatsApp}?text=${message}`, '_blank');
   }
 
