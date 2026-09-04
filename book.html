@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#f5f3ee">
 <title>Learnify — India's Student Book Marketplace</title>
 
-<!-- Firebase App, Auth & Firestore SDKs -->
+<!-- Firebase SDKs -->
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
@@ -87,12 +87,18 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 .menu-item{background:var(--surface2);border:1px solid var(--line);padding:14px 16px;border-radius:14px;display:flex;justify-content:space-between;align-items:center;font-size:13px;cursor:pointer;transition:.2s;font-weight:600}
 .menu-item:hover{border-color:var(--accent)}
 
+/* Login & Auth styling */
+.auth-tabs{display:flex;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:4px;margin-bottom:16px}
+.tab-btn{flex:1;padding:8px;text-align:center;font-size:11px;font-weight:700;cursor:pointer;border-radius:9px;background:none;border:none;color:var(--muted)}
+.tab-btn.active{background:var(--surface2);color:var(--text);box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.social-btn{width:100%;padding:11px;border-radius:12px;border:1px solid var(--line);background:var(--surface2);color:var(--text);font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;margin-bottom:10px}
+.btn-primary{width:100%;background:var(--accent);border:none;color:#fff;padding:12px;border-radius:12px;font-weight:800;font-size:13px;cursor:pointer}
+
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(5px);z-index:200;display:none;align-items:flex-end;justify-content:center}
 .modal-overlay.open{display:flex}
 .modal-content{width:100%;max-width:var(--max);background:var(--bg2);border-top:1px solid var(--line);border-radius:24px 24px 0 0;padding:24px;max-height:80vh;overflow-y:auto}
 .city-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
-.city-pill{background:var(--surface2);border:1px solid var(--line);padding:10px;border-radius:12px;font-size:12px;font-weight:700;text-align:center;cursor:pointer;transition:.2s}
-.city-pill:hover{border-color:var(--accent);background:var(--accent);color:#fff}
+.city-pill{background:var(--surface2);border:1px solid var(--line);padding:10px;border-radius:12px;font-size:12px;font-weight:700;text-align:center;cursor:pointer}
 
 .bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:var(--max);height:65px;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(20px);border-top:1px solid var(--line);display:flex;justify-content:space-around;align-items:center;z-index:60;padding:0 10px}
 .nav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--muted);font-size:9px;font-weight:600;background:none;border:none;cursor:pointer}
@@ -110,7 +116,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
       <div class="logo" onclick="switchView('home')">&lt;/&gt; LEARNIFY<i>.</i></div>
       <div class="header-actions">
         <button class="icon-btn" onclick="switchView('cart')">🛒</button>
-        <button class="icon-btn" onclick="switchView('profile')">👤</button>
+        <button class="icon-btn" onclick="handleProfileClick()">👤</button>
       </div>
     </div>
     <div class="location-bar" onclick="openLocationModal()">
@@ -118,7 +124,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     </div>
   </header>
 
-  <!-- HOME VIEW -->
+  <!-- 1. HOME VIEW -->
   <div id="homeView" class="view-section active">
     <div class="section-title">Categories <span style="font-size:11px;color:var(--accent);cursor:pointer;" onclick="switchView('categories')">See All</span></div>
     <div class="categories">
@@ -141,7 +147,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     </div>
   </div>
 
-  <!-- BOOK DETAIL VIEW -->
+  <!-- 2. BOOK DETAIL VIEW -->
   <div id="detailView" class="view-section">
     <div class="back-link" onclick="switchView('home')">← Back to Store</div>
     
@@ -171,7 +177,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     </div>
   </div>
 
-  <!-- CATEGORIES VIEW -->
+  <!-- 3. CATEGORIES VIEW -->
   <div id="categoriesView" class="view-section">
     <div class="section-title">All Categories</div>
     <div class="cat-grid">
@@ -180,7 +186,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     </div>
   </div>
 
-  <!-- SELL BOOK VIEW -->
+  <!-- 4. SELL BOOK VIEW -->
   <div id="sellView" class="view-section">
     <div class="section-title">List Your Book / Notes</div>
     <form onsubmit="publishBookToFirebase(event)">
@@ -200,17 +206,36 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
           </div>
         </div>
       </div>
-      <button type="submit" style="width:100%;background:var(--accent);border:none;color:#fff;padding:13px;border-radius:12px;font-weight:800;cursor:pointer;">Publish Listing to Cloud 🚀</button>
+      <button type="submit" style="width:100%;background:var(--accent);border:none;color:#fff;padding:13px;border-radius:12px;font-weight:800;cursor:pointer;">Publish Listing 🚀</button>
     </form>
   </div>
 
-  <!-- CART VIEW -->
+  <!-- 5. CART VIEW -->
   <div id="cartView" class="view-section">
     <div class="section-title">Shopping Cart</div>
-    <p style="font-size:12px; color:var(--muted)">Your cart is synced with Firebase cloud.</p>
+    <p style="font-size:12px; color:var(--muted)">Your cart is ready for checkout.</p>
   </div>
 
-  <!-- PROFILE VIEW -->
+  <!-- 6. AUTH / LOGIN VIEW (Shows if NOT logged in) -->
+  <div id="authView" class="view-section">
+    <div class="section-title">Account Access</div>
+    <div class="form-card">
+      <div class="auth-tabs">
+        <button class="tab-btn active" id="tabLogin" onclick="switchAuthTab('login')">Login</button>
+        <button class="tab-btn" id="tabReg" onclick="switchAuthTab('reg')">Create Account</button>
+      </div>
+      <button class="social-btn" onclick="loginWithGoogleFirebase()">
+        <svg width="14" height="14" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/></svg>
+        Continue with Google
+      </button>
+      <div style="text-align:center; font-size:11px; color:var(--muted); margin:10px 0;">or with email</div>
+      <div class="form-group"><label>Email Address</label><input type="email" id="emailInput" placeholder="ajmal@learnify.com"></div>
+      <div class="form-group"><label>Password</label><input type="password" id="passInput" placeholder="••••••••"></div>
+      <button class="btn-primary" onclick="simulateManualLogin()">Submit & Proceed</button>
+    </div>
+  </div>
+
+  <!-- 7. PROFILE DASHBOARD VIEW (Shows AFTER login) -->
   <div id="profileView" class="view-section">
     <div class="form-card" style="text-align:center">
       <div style="width:60px;height:60px;border-radius:50%;background:var(--accent);color:#fff;font-size:22px;font-weight:800;display:grid;place-items:center;margin:0 auto 10px" id="userAvatarIcon">AM</div>
@@ -218,8 +243,38 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
       <p style="margin:0;font-size:12px;color:var(--muted)" id="profileEmailText">ajmal@learnify.com</p>
     </div>
     <div class="menu-list">
-      <div class="menu-item" onclick="loginWithGoogleFirebase()"><span>🌐 Login with Google (Firebase)</span><span>→</span></div>
+      <div class="menu-item" onclick="switchView('orders')"><span>📦 My Orders</span><span>→</span></div>
+      <div class="menu-item" onclick="switchView('favorites')"><span>🤍 My Favorites (Wishlist)</span><span>→</span></div>
+      <div class="menu-item" onclick="switchView('settings')"><span>⚙️ App Settings</span><span>→</span></div>
       <div class="menu-item" style="color:#dc2626;" onclick="logoutFirebase()"><span>🚪 Logout</span><span>→</span></div>
+    </div>
+  </div>
+
+  <!-- SUB-VIEWS: ORDERS, FAVORITES, SETTINGS -->
+  <div id="ordersView" class="view-section">
+    <div class="back-link" onclick="switchView('profile')">← Back to Profile</div>
+    <div class="section-title">My Book Orders & History</div>
+    <div class="form-card">
+      <div style="font-size:13px;font-weight:700">Modern & Medieval Hindi Poetry Notes</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:2px">Status: <b style="color:#16a34a">Confirmed / WhatsApp Connected</b></div>
+    </div>
+  </div>
+
+  <div id="favoritesView" class="view-section">
+    <div class="back-link" onclick="switchView('profile')">← Back to Profile</div>
+    <div class="section-title">My Favorite Books (Wishlist)</div>
+    <div class="form-card">
+      <div style="font-size:13px;font-weight:700">CUET General Test & Domain Guide</div>
+      <div style="font-size:11px;color:var(--accent);margin-top:2px">₹399 • Katra, Prayagraj</div>
+    </div>
+  </div>
+
+  <div id="settingsView" class="view-section">
+    <div class="back-link" onclick="switchView('profile')">← Back to Profile</div>
+    <div class="section-title">App Settings</div>
+    <div class="form-card">
+      <div class="form-group"><label>App Theme</label><select><option>Light Mode</option></select></div>
+      <div class="form-group" style="margin-bottom:0"><label>App Version</label><input type="text" value="v3.2 Brand Edition" disabled></div>
     </div>
   </div>
 
@@ -245,7 +300,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     <button class="nav-item" onclick="switchView('categories')" id="nav-cat"><span class="icon">🗂️</span><span>Categories</span></button>
     <button class="nav-item" onclick="switchView('sell')" id="nav-sell"><span class="icon">➕</span><span>Sell Book</span></button>
     <button class="nav-item" onclick="switchView('cart')" id="nav-cart"><span class="icon">🛒</span><span>Cart</span></button>
-    <button class="nav-item" onclick="switchView('profile')" id="nav-profile"><span class="icon">👤</span><span>Profile</span></button>
+    <button class="nav-item" onclick="handleProfileClick()" id="nav-profile"><span class="icon">👤</span><span>Profile</span></button>
   </nav>
 
 </div>
@@ -263,22 +318,23 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     measurementId: "G-6E55FCSXDP"
   };
 
-  // Initialize Firebase safely
   firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
   const auth = firebase.auth();
 
+  let isLoggedIn = false;
+
   // Track Auth State changes automatically
   auth.onAuthStateChanged((user) => {
     if (user) {
-      document.getElementById('profileNameText').textContent = user.displayName || "Student User";
-      document.getElementById('profileEmailText').textContent = user.email || "";
+      isLoggedIn = true;
+      document.getElementById('profileNameText').textContent = user.displayName || "Ajmal Mansoori";
+      document.getElementById('profileEmailText').textContent = user.email || "ajmal@learnify.com";
       if(user.displayName) {
         document.getElementById('userAvatarIcon').textContent = user.displayName.charAt(0).toUpperCase();
       }
     } else {
-      document.getElementById('profileNameText').textContent = "Not Logged In";
-      document.getElementById('profileEmailText').textContent = "Please login with Google";
+      isLoggedIn = false;
     }
   });
 
@@ -312,10 +368,28 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     } else if(viewName === 'profile') {
       document.getElementById('profileView').classList.add('active');
       document.getElementById('nav-profile').classList.add('active');
+    } else if(viewName === 'auth') {
+      document.getElementById('authView').classList.add('active');
+      document.getElementById('nav-profile').classList.add('active');
+    } else if(viewName === 'orders') {
+      document.getElementById('ordersView').classList.add('active');
+    } else if(viewName === 'favorites') {
+      document.getElementById('favoritesView').classList.add('active');
+    } else if(viewName === 'settings') {
+      document.getElementById('settingsView').classList.add('active');
     } else if(viewName === 'detail') {
       document.getElementById('detailView').classList.add('active');
     }
     window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  // Profile click handler checks if logged in
+  function handleProfileClick() {
+    if(isLoggedIn) {
+      switchView('profile');
+    } else {
+      switchView('auth');
+    }
   }
 
   function openBookDetail(index) {
@@ -332,19 +406,31 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
   function loginWithGoogleFirebase() {
     const provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider).then((result) => {
+      isLoggedIn = true;
       alert("Successfully logged in, " + result.user.displayName + "!");
+      switchView('profile');
     }).catch((error) => {
       alert("Login Error: " + error.message);
     });
   }
 
+  function simulateManualLogin() {
+    isLoggedIn = true;
+    alert("Login successful!");
+    switchView('profile');
+  }
+
   function logoutFirebase() {
     firebase.auth().signOut().then(() => {
+      isLoggedIn = false;
       alert("Logged out successfully.");
+      switchView('auth');
+    }).catch(() => {
+      isLoggedIn = false;
+      switchView('auth');
     });
   }
 
-  /* Publish Listing directly to Firestore */
   function publishBookToFirebase(e) {
     event.preventDefault();
     const title = document.getElementById('sellTitle').value;
