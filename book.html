@@ -163,13 +163,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 
     <div class="section-title">Books Near <span id="feedLocationTitle" style="color:var(--accent)">Prayagraj</span></div>
     <div class="product-grid" id="productGridContainer">
-      <div class="product-card">
-        <div class="fav-icon" onclick="toggleFavorite(event, 0)"><i class="fa-regular fa-heart"></i></div>
-        <div class="p-img" onclick="openBookDetail(0)"><span class="p-tag">BESTSELLER</span><i class="fa-solid fa-book"></i></div>
-        <div class="p-loc" onclick="openBookDetail(0)"><i class="fa-solid fa-location-pin"></i> Zero Road, Prayagraj</div>
-        <div class="p-title" onclick="openBookDetail(0)">Modern & Medieval Hindi Poetry Notes</div>
-        <div onclick="openBookDetail(0)"><span class="price">₹249</span><span class="old-price">₹499</span></div>
-      </div>
+      <!-- Dynamic live books from Firebase Firestore will appear here -->
     </div>
   </div>
 
@@ -193,6 +187,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     </div>
 
     <div class="info-card">
+      <div class="info-row"><span><i class="fa-solid fa-user-pen"></i> Author</span> <b id="dAuthor" style="color:var(--text)">Ajmal Mansoori</b></div>
       <div class="info-row"><span><i class="fa-solid fa-map-pin"></i> Pickup Location</span> <b id="dLoc" style="color:var(--accent)">Zero Road, Prayagraj</b></div>
       <div class="info-row"><span><i class="fa-solid fa-box"></i> Net Quantity</span> <b id="dQty">1 Unit (Printed Book)</b></div>
     </div>
@@ -220,7 +215,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     <form onsubmit="publishBookToFirebase(event)">
       <div class="form-card">
         <div class="form-group">
-          <label><i class="fa-solid fa-camera"></i> Upload 3 to 4 Book Photos *</label>
+          <label><i class="fa-solid fa-camera"></i> Upload Book Photos *</label>
           <input type="file" id="sellImages" multiple accept="image/*" style="padding:6px" required>
           <span style="font-size:9px;color:var(--muted)">Cover and internal pages preview photos</span>
         </div>
@@ -330,18 +325,18 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     <button style="width:100%;background:#25D366;border:none;color:#fff;padding:13px;border-radius:14px;font-weight:800;cursor:pointer;box-shadow:0 4px 12px rgba(37,211,102,.25);" onclick="orderOnWhatsApp()"><i class="fa-brands fa-whatsapp"></i> Checkout via WhatsApp</button>
   </div>
 
-  <!-- 6. AUTH / LOGIN VIEW -->
+  <!-- 6. REAL FIREBASE AUTH / LOGIN VIEW -->
   <div id="authView" class="view-section">
     <div class="back-link" onclick="switchView('home')"><i class="fa-solid fa-arrow-left"></i> Back to Store</div>
     
     <div class="auth-header">
       <h1 id="authTitle">Welcome Back</h1>
-      <p id="authSubtitle">Login to manage your bookstore orders & wishlist</p>
+      <p id="authSubtitle">Login securely with Firebase Account</p>
     </div>
 
     <div class="auth-tabs">
-      <button class="tab-btn active" id="loginTabBtn" onclick="switchTab('login')">Login</button>
-      <button class="tab-btn" id="registerTabBtn" onclick="switchTab('register')">Create Account</button>
+      <button class="tab-btn active" id="loginTabBtn" onclick="switchAuthTab('login')">Login</button>
+      <button class="tab-btn" id="registerTabBtn" onclick="switchAuthTab('register')">Create Account</button>
     </div>
 
     <div class="social-buttons">
@@ -350,7 +345,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
       </button>
     </div>
 
-    <div class="divider" id="dividerText">or login with email</div>
+    <div class="divider" id="dividerText">or with email & password</div>
 
     <div class="form-group" id="nameFieldGroup" style="display:none;">
       <label>Full Name</label>
@@ -359,15 +354,15 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 
     <div class="form-group">
       <label>Email Address</label>
-      <input type="email" id="userEmailInput" placeholder="ajmal@learnify.com">
+      <input type="email" id="userEmailInput" placeholder="e.g., ajmal@learnify.com">
     </div>
 
     <div class="form-group">
       <label>Password</label>
-      <input type="password" placeholder="Inter Your Password">
+      <input type="password" id="userPassInput" placeholder="Enter your password">
     </div>
 
-    <button class="btn-primary" id="submitBtn" onclick="simulateAuth('Ajmal Mansoori')">Login to Account</button>
+    <button class="btn-primary" id="submitAuthBtn" onclick="handleEmailAuth()">Login to Account</button>
   </div>
 
   <!-- 7. PROFILE DASHBOARD VIEW -->
@@ -383,7 +378,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
       <div class="menu-item" onclick="switchView('orders')"><span><i class="fa-solid fa-box-archive"></i> My Book Orders</span><span>→</span></div>
       <div class="menu-item" onclick="switchView('favorites')"><span><i class="fa-solid fa-heart"></i> My Favorites (Wishlist)</span><span>→</span></div>
       <div class="menu-item" onclick="switchView('settings')"><span><i class="fa-solid fa-gear"></i> App Settings</span><span>→</span></div>
-      <div class="menu-item" style="color: #dc2626;" onclick="logout()"><span style="color:#dc2626"><i class="fa-solid fa-right-from-bracket"></i> Logout</span><span>→</span></div>
+      <div class="menu-item" style="color: #dc2626;" onclick="logoutFirebase()"><span style="color:#dc2626"><i class="fa-solid fa-right-from-bracket"></i> Logout</span><span>→</span></div>
     </div>
   </div>
 
@@ -411,11 +406,11 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     <div class="section-title">App Settings</div>
     <div class="form-card">
       <div class="form-group"><label>App Theme</label><select><option>Light Mode (Default)</option></select></div>
-      <div class="form-group" style="margin-bottom:0"><label>App Version</label><input type="text" value="BookNear v4.2 Professional Edition" disabled></div>
+      <div class="form-group" style="margin-bottom:0"><label>App Version</label><input type="text" value="BookNear v4.5 Secure & Live Edition" disabled></div>
     </div>
   </div>
 
-  <!-- RAPIDO-STYLE LOCATION SELECTOR MODAL -->
+  <!-- LOCATION SELECTOR MODAL -->
   <div class="modal-overlay" id="locationModal">
     <div class="modal-content">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
@@ -478,18 +473,67 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
   const auth = firebase.auth();
 
   let isLoggedIn = false;
+  let currentUserObject = null;
+  let booksData = [];
 
+  // Real Firebase Auth state observer (Secures Login check)
   auth.onAuthStateChanged((user) => {
     if (user) {
       isLoggedIn = true;
-      document.getElementById('userNameDisplay').textContent = user.displayName || "Ajmal Mansoori";
-      document.getElementById('userEmailDisplay').textContent = user.email || "ajmal@learnify.com";
-      if(user.displayName) {
-        document.getElementById('userInitial').textContent = user.displayName.charAt(0).toUpperCase();
-      }
+      currentUserObject = user;
+      const displayName = user.displayName || user.email.split('@')[0];
+      document.getElementById('userNameDisplay').textContent = displayName;
+      document.getElementById('userEmailDisplay').textContent = user.email;
+      document.getElementById('userInitial').textContent = displayName.charAt(0).toUpperCase();
     } else {
       isLoggedIn = false;
+      currentUserObject = null;
     }
+  });
+
+  // Real-time listener: Fetches live books from Firestore and renders on Home Feed
+  function fetchLiveBooksFromFirebase() {
+    db.collection("booksListings").orderBy("createdAt", "desc").onSnapshot((snapshot) => {
+      const container = document.getElementById('productGridContainer');
+      container.innerHTML = "";
+      booksData = [];
+
+      if(snapshot.empty) {
+        container.innerHTML = `<p style="font-size:12px;color:var(--muted);grid-column:span 2;text-align:center;">No books listed yet. Be the first to sell!</p>`;
+        return;
+      }
+
+      snapshot.forEach((doc) => {
+        const b = doc.data();
+        const index = booksData.length;
+        booksData.push({
+          title: b.title || "Untitled Book",
+          price: "₹" + (b.price || "0"),
+          old: b.oldPrice ? "₹" + b.oldPrice : "₹499",
+          author: b.author || "Student Seller",
+          location: b.location || "Local Hub",
+          pages: b.pages || "200 Pages",
+          images: ["📖", "📚", "📝", "📘"]
+        });
+
+        container.innerHTML += `
+          <div class="product-card" onclick="openBookDetail(${index})">
+            <div class="fav-icon" onclick="toggleFavorite(event, ${index})"><i class="fa-regular fa-heart"></i></div>
+            <div class="p-img"><span class="p-tag">${b.category || 'BOOK'}</span><i class="fa-solid fa-book"></i></div>
+            <div class="p-loc"><i class="fa-solid fa-location-pin"></i> ${b.location || 'Local Hub'}</div>
+            <div class="p-title">${b.title}</div>
+            <div><span class="price">₹${b.price}</span><span class="old-price">₹499</span></div>
+          </div>
+        `;
+      });
+    }, (error) => {
+      console.error("Error fetching books: ", error);
+    });
+  }
+
+  // Load live books on window startup
+  window.addEventListener('DOMContentLoaded', () => {
+    fetchLiveBooksFromFirebase();
   });
 
   /* Hierarchical Districts Database */
@@ -520,15 +564,6 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
       });
     }
   }
-
-  const booksData = [
-    {
-      title: "Modern & Medieval Hindi Poetry Notes",
-      price: "₹249", old: "₹499", qty: "1 Book", author: "Ajmal Mansoori", pages: "240 Pages", lang: "Hindi", pub: "BookNear Publications",
-      location: "Zero Road, Prayagraj",
-      images: ["📖", "📜", "✍️", "📚"]
-    }
-  ];
 
   let currentBook = 0;
 
@@ -571,63 +606,92 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
   }
 
   let isRegisterMode = false;
-  function switchTab(mode) {
+  function switchAuthTab(mode) {
     const loginBtn = document.getElementById('loginTabBtn');
     const regBtn = document.getElementById('registerTabBtn');
     const title = document.getElementById('authTitle');
     const subtitle = document.getElementById('authSubtitle');
     const nameGroup = document.getElementById('nameFieldGroup');
     const divider = document.getElementById('dividerText');
-    const submitBtn = document.getElementById('submitBtn');
+    const submitBtn = document.getElementById('submitAuthBtn');
 
     if(mode === 'register') {
       isRegisterMode = true;
       regBtn.classList.add('active');
       loginBtn.classList.remove('active');
       title.textContent = "Create Account";
-      subtitle.textContent = "Sign up to start buying and selling books";
+      subtitle.textContent = "Sign up securely to start buying and selling";
       nameGroup.style.display = 'block';
       divider.textContent = "or sign up with email";
-      submitBtn.textContent = "Register New Account";
+      submitBtn.textContent = "Register New Account 🚀";
     } else {
       isRegisterMode = false;
       loginBtn.classList.add('active');
       regBtn.classList.remove('active');
       title.textContent = "Welcome Back";
-      subtitle.textContent = "Login to manage your bookstore orders & wishlist";
+      subtitle.textContent = "Login securely with Firebase Account";
       nameGroup.style.display = 'none';
-      divider.textContent = "or login with email";
+      divider.textContent = "or with email & password";
       submitBtn.textContent = "Login to Account";
     }
   }
 
-  function simulateAuth(defaultName) {
-    let name = defaultName;
-    if(isRegisterMode) {
-      const nameInput = document.getElementById('fullNameInput').value;
-      if(nameInput) name = nameInput;
+  // Real Firebase Email/Password Authentication & Registration Handler
+  function handleEmailAuth() {
+    const email = document.getElementById('userEmailInput').value;
+    const password = document.getElementById('userPassInput').value;
+    const fullName = document.getElementById('fullNameInput').value;
+
+    if(!email || !password) {
+      alert("Kripya Email aur Password dono enter karein.");
+      return;
     }
-    const emailVal = document.getElementById('userEmailInput').value || 'ajmal@learnify.com';
-    document.getElementById('userNameDisplay').textContent = name;
-    document.getElementById('userEmailDisplay').textContent = emailVal;
-    document.getElementById('userInitial').textContent = name.charAt(0).toUpperCase();
-    isLoggedIn = true;
-    switchView('profile');
+
+    if(isRegisterMode) {
+      auth.createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          if(fullName) {
+            user.updateProfile({ displayName: fullName });
+          }
+          alert("Account successfully created and logged in!");
+          switchView('profile');
+        })
+        .catch((error) => {
+          alert("Registration Error: " + error.message);
+        });
+    } else {
+      auth.signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          alert("Successfully logged in!");
+          switchView('profile');
+        })
+        .catch((error) => {
+          alert("Login Error: " + error.message);
+        });
+    }
   }
 
+  // Real Firebase Google Login Handler
   function loginWithGoogleFirebase() {
     const provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithPopup(provider).then((result) => {
-      isLoggedIn = true;
-      switchView('profile');
-    }).catch(() => { simulateAuth('Ajmal Mansoori'); });
+    auth.signInWithPopup(provider)
+      .then((result) => {
+        alert("Google Authentication Successful!");
+        switchView('profile');
+      })
+      .catch((error) => {
+        alert("Google Login Error: " + error.message);
+      });
   }
 
-  function logout() {
-    firebase.auth().signOut().then(() => {
-      isLoggedIn = false;
+  function logoutFirebase() {
+    auth.signOut().then(() => {
+      alert("Logged out successfully.");
       switchView('auth');
-    }).catch(() => { isLoggedIn = false; switchView('auth'); });
+    }).catch((error) => {
+      alert("Logout Error: " + error.message);
+    });
   }
 
   function openBookDetail(index) {
@@ -637,6 +701,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     document.getElementById('dPrice').textContent = b.price;
     document.getElementById('dOldPrice').textContent = b.old;
     document.getElementById('dLoc').textContent = b.location;
+    document.getElementById('dAuthor').textContent = b.author;
     switchView('detail');
   }
 
@@ -648,10 +713,21 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     qtyElem.textContent = currentQty;
   }
 
+  // Publish Book form submitting live data to Firestore Database
   function publishBookToFirebase(e) {
     event.preventDefault();
+
+    if(!isLoggedIn) {
+      alert("Book list karne ke liye pehle login karna zaroori hai!");
+      switchView('auth');
+      return;
+    }
+
     const title = document.getElementById('sellTitle').value;
+    const author = document.getElementById('sellAuthor').value;
+    const category = document.getElementById('sellCategory').value;
     const price = document.getElementById('sellPrice').value;
+    const oldPrice = document.getElementById('sellOldPrice').value;
     const state = document.getElementById('sellState').value;
     const district = document.getElementById('sellDistrict').value;
     const area = document.getElementById('sellArea').value;
@@ -659,15 +735,18 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 
     db.collection("booksListings").add({
       title: title,
+      author: author,
+      category: category,
       price: price,
+      oldPrice: oldPrice || "499",
       location: fullLoc,
+      sellerEmail: currentUserObject.email,
       createdAt: firebase.firestore.FieldValue.serverTimestamp()
     }).then(() => {
-      alert("Book listed successfully in " + fullLoc + "!");
+      alert("Book successfully published live to database from " + fullLoc + "!");
       switchView('home');
-    }).catch(() => {
-      alert("Listing published successfully!");
-      switchView('home');
+    }).catch((error) => {
+      alert("Error publishing book: " + error.message);
     });
   }
 
@@ -696,6 +775,22 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     const message = encodeURIComponent(`Hello, I want to buy this book from BookNear:\n*${b.title}*\nPrice: ${b.price}\nPickup Location: ${b.location}`);
     const sellerWhatsApp = "9984919392";
     window.open(`https://wa.me/${sellerWhatsApp}?text=${message}`, '_blank');
+  }
+
+  function toggleFavorite(event, index) {
+    event.stopPropagation();
+    const icon = event.currentTarget.querySelector('i');
+    if(icon.classList.contains('fa-regular')) {
+      icon.classList.remove('fa-regular');
+      icon.classList.add('fa-solid');
+      icon.style.color = '#e11d48';
+      alert("Added to your Favorites wishlist!");
+    } else {
+      icon.classList.remove('fa-solid');
+      icon.classList.add('fa-regular');
+      icon.style.color = '';
+      alert("Removed from Favorites.");
+    }
   }
 </script>
 </body>
