@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#f2efe9">
+<meta name="theme-color" content="#f4f1ea">
 <title>BookNear — India's Hyperlocal Student Bookstore</title>
 
 <!-- Firebase SDKs -->
@@ -18,27 +18,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap');
 
 :root[data-theme="light"]{
- --bg:#f2efe9;--bg2:#faf8f5;--surface:rgba(255,255,255,.9);--surface2:#ffffff;
- --text:#0d0f12;--muted:#5f6470;--line:rgba(13,15,18,.09);
- --accent:#b57c2e;--accent-hover:#966421;--max:480px;
+ --bg:#f4f1ea; --bg2:#faf8f5; --surface:rgba(255,255,255,.95); --surface2:#ffffff;
+ --text:#121417; --muted:#646a73; --line:rgba(18,20,23,.08);
+ --accent:#c28c38; --accent-hover:#a0712a; --max:480px;
 }
 :root[data-theme="dark"]{
- --bg:#121418;--bg2:#1a1d24;--surface:rgba(26,29,36,.9);--surface2:#1e222a;
- --text:#f3f4f6;--muted:#9ca3af;--line:rgba(243,244,246,.1);
- --accent:#d4a373;--accent-hover:#bc8a5f;--max:480px;
+ --bg:#0f1115; --bg2:#161920; --surface:rgba(22,25,32,.95); --surface2:#1a1e26;
+ --text:#f3f4f6; --muted:#9ca3af; --line:rgba(243,244,246,.08);
+ --accent:#d4a373; --accent-hover:#bc8a5f; --max:480px;
 }
 
 *{box-sizing:border-box}
 body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);color:var(--text);display:flex;justify-content:center;min-height:100vh;transition:background .3s,color .3s}
 
-.app-container{width:100%;max-width:var(--max);min-height:100vh;background:var(--bg);position:relative;padding-bottom:80px;border-inline:1px solid var(--line);box-shadow:0 0 40px rgba(0,0,0,.03)}
+.app-container{width:100%;max-width:var(--max);min-height:100vh;background:var(--bg);position:relative;padding-bottom:80px;border-inline:1px solid var(--line);box-shadow:0 0 50px rgba(0,0,0,.04)}
 
-.app-header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);padding:12px 16px;display:flex;flex-direction:column;gap:6px}
+.app-header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);padding:12px 16px;display:flex;flex-direction:column;gap:6px}
 .header-top-row{display:flex;align-items:center;justify-content:space-between}
-.logo{font-weight:800;font-size:17px;letter-spacing:.05em;cursor:pointer}
+.logo{font-weight:800;font-size:18px;letter-spacing:.06em;cursor:pointer}
 .logo i{color:var(--accent);font-style:normal}
 .header-actions{display:flex;gap:8px}
-.icon-btn{width:36px;height:36px;border-radius:12px;border:1px solid var(--line);background:var(--surface2);color:var(--text);display:grid;place-items:center;cursor:pointer;font-size:13px;box-shadow:0 2px 6px rgba(0,0,0,.02)}
+.icon-btn{width:38px;height:38px;border-radius:12px;border:1px solid var(--line);background:var(--surface2);color:var(--text);display:grid;place-items:center;cursor:pointer;font-size:13px;box-shadow:0 2px 8px rgba(0,0,0,.03);transition:.2s}
+.icon-btn:hover{border-color:var(--accent)}
 
 .location-bar{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--accent);cursor:pointer;padding:2px 0}
 .location-bar span{color:var(--muted);font-weight:400;font-size:10px}
@@ -53,10 +54,10 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 .cat-pill:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
 
 .product-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:20px}
-.product-card{background:var(--surface2);border:1px solid var(--line);border-radius:18px;padding:12px;cursor:pointer;transition:.2s;position:relative;box-shadow:0 4px 12px rgba(0,0,0,.02)}
+.product-card{background:var(--surface2);border:1px solid var(--line);border-radius:18px;padding:12px;cursor:pointer;transition:.2s;position:relative;box-shadow:0 4px 15px rgba(0,0,0,.02)}
 .product-card:hover{border-color:var(--accent);transform:translateY(-2px)}
-.p-img{height:120px;background:rgba(181,124,46,.08);border-radius:14px;display:grid;place-items:center;font-size:28px;color:var(--accent);margin-bottom:8px;position:relative;overflow:hidden}
-.p-tag{position:absolute;top:6px;left:6px;background:rgba(13,15,18,.75);color:#fff;font-size:7px;padding:2px 6px;border-radius:4px;font-weight:700;z-index:2}
+.p-img{height:125px;background:rgba(194,140,56,.08);border-radius:14px;display:grid;place-items:center;font-size:28px;color:var(--accent);margin-bottom:8px;position:relative;overflow:hidden}
+.p-tag{position:absolute;top:6px;left:6px;background:rgba(18,20,23,.8);color:#fff;font-size:7px;padding:2px 6px;border-radius:4px;font-weight:700;z-index:2}
 .fav-icon{position:absolute;top:6px;right:6px;background:var(--surface2);border-radius:50%;width:26px;height:26px;display:grid;place-items:center;font-size:12px;cursor:pointer;box-shadow:0 2px 5px rgba(0,0,0,.05);z-index:2}
 .p-loc{font-size:9px;color:var(--accent);font-weight:700;margin-bottom:2px}
 .p-title{font-size:12px;font-weight:700;margin:0 0 4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
@@ -64,10 +65,10 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 .old-price{font-size:10px;color:var(--muted);text-decoration:line-through;margin-left:4px}
 
 .back-link{font-size:12px;color:var(--accent);cursor:pointer;font-weight:700;margin-bottom:14px;display:inline-block}
-.main-img-box{width:100%;height:220px;background:var(--surface2);border:1px solid var(--line);border-radius:18px;display:grid;place-items:center;font-size:50px;color:var(--accent);margin-bottom:10px;box-shadow:0 4px 12px rgba(0,0,0,.02);overflow:hidden}
+.main-img-box{width:100%;height:230px;background:var(--surface2);border:1px solid var(--line);border-radius:18px;display:grid;place-items:center;font-size:50px;color:var(--accent);margin-bottom:10px;box-shadow:0 4px 15px rgba(0,0,0,.02);overflow:hidden}
 .thumb-row{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:16px}
-.thumb-item{height:45px;background:var(--surface2);border:1px solid var(--line);border-radius:10px;display:grid;place-items:center;font-size:11px;cursor:pointer;color:var(--muted);font-weight:700}
-.thumb-item.active, .thumb-item:hover{border-color:var(--accent);color:var(--accent);background:rgba(181,124,46,.05)}
+.thumb-item{height:46px;background:var(--surface2);border:1px solid var(--line);border-radius:12px;display:grid;place-items:center;font-size:11px;cursor:pointer;color:var(--muted);font-weight:700;transition:.2s}
+.thumb-item.active, .thumb-item:hover{border-color:var(--accent);color:var(--accent);background:rgba(194,140,56,.06)}
 .book-title{font-size:18px;font-weight:800;margin:0 0 6px}
 .price-box{display:flex;align-items:baseline;gap:8px;margin-bottom:12px}
 .current-rate{font-size:22px;font-weight:800;color:var(--accent)}
@@ -79,7 +80,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 
 .cart-list{display:flex;flex-direction:column;gap:12px;margin-bottom:16px}
 .cart-item{background:var(--surface2);border:1px solid var(--line);border-radius:18px;padding:14px;display:flex;gap:12px;align-items:center;position:relative;box-shadow:0 2px 8px rgba(0,0,0,.02)}
-.item-img{width:50px;height:50px;background:rgba(181,124,46,.08);border-radius:12px;display:grid;place-items:center;font-size:20px;flex-shrink:0;color:var(--accent)}
+.item-img{width:50px;height:50px;background:rgba(194,140,56,.08);border-radius:12px;display:grid;place-items:center;font-size:20px;flex-shrink:0;color:var(--accent)}
 .item-details{flex:1}
 .item-title{font-size:11px;font-weight:700;margin:0 0 4px;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
 .item-price{font-size:12px;font-weight:800;color:var(--accent);margin-bottom:6px}
@@ -92,7 +93,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 .bill-row.total{font-size:13px;font-weight:800;color:var(--text);border-top:1px solid var(--line);padding-top:8px;margin-top:8px}
 
 .cat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.cat-card{background:var(--surface2);border:1px solid var(--line);border-radius:18px;padding:20px 16px;text-align:center;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.02);transition:.2s}
+.cat-card{background:var(--surface2);border:1px solid var(--line);border-radius:18px;padding:22px 16px;text-align:center;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.02);transition:.2s}
 .cat-card:hover{border-color:var(--accent);transform:translateY(-2px)}
 
 .form-card{background:var(--surface2);border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:14px;box-shadow:0 2px 8px rgba(0,0,0,.02)}
@@ -120,18 +121,18 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 .divider::before, .divider::after{content:'';flex:1;border-bottom:1px solid var(--line)}
 .divider::before{margin-right:.75em}
 .divider::after{margin-left:.75em}
-.btn-primary{width:100%;background:var(--accent);border:none;color:#fff;padding:13px;border-radius:14px;font-weight:800;font-size:13px;cursor:pointer;transition:.2s;margin-top:4px;box-shadow:0 4px 12px rgba(181,124,46,.25)}
+.btn-primary{width:100%;background:var(--accent);border:none;color:#fff;padding:13px;border-radius:14px;font-weight:800;font-size:13px;cursor:pointer;transition:.2s;margin-top:4px;box-shadow:0 4px 12px rgba(194,140,56,.25)}
 .btn-primary:hover{background:var(--accent-hover);transform:translateY(-1px)}
 
 .profile-card{background:var(--surface2);border:1px solid var(--line);border-radius:20px;padding:20px;text-align:center;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,.03)}
-.profile-avatar{width:70px;height:70px;border-radius:50%;background:var(--accent);color:#fff;font-size:26px;font-weight:800;display:grid;place-items:center;margin:0 auto 12px;box-shadow:0 4px 12px rgba(181,124,46,.3)}
+.profile-avatar{width:70px;height:70px;border-radius:50%;background:var(--accent);color:#fff;font-size:26px;font-weight:800;display:grid;place-items:center;margin:0 auto 12px;box-shadow:0 4px 12px rgba(194,140,56,.3)}
 .profile-name{font-size:18px;font-weight:800;margin:0 0 2px}
 .profile-email{font-size:12px;color:var(--muted);margin-bottom:14px}
 
 /* Location Modal */
-.modal-overlay{position:fixed;inset:0;background:rgba(13,15,18,0.6);backdrop-filter:blur(6px);z-index:200;display:none;align-items:flex-end;justify-content:center}
+.modal-overlay{position:fixed;inset:0;background:rgba(12,14,17,0.65);backdrop-filter:blur(6px);z-index:200;display:none;align-items:flex-end;justify-content:center}
 .modal-overlay.open{display:flex}
-.modal-content{width:100%;max-width:var(--max);background:var(--bg2);border-top:1px solid var(--line);border-radius:24px 24px 0 0;padding:24px;max-height:85vh;overflow-y:auto;box-shadow:0 -10px 40px rgba(0,0,0,.1)}
+.modal-content{width:100%;max-width:var(--max);background:var(--bg2);border-top:1px solid var(--line);border-radius:24px 24px 0 0;padding:24px;max-height:85vh;overflow-y:auto;box-shadow:0 -10px 40px rgba(0,0,0,.15)}
 
 .bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:var(--max);height:65px;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(20px);border-top:1px solid var(--line);display:flex;justify-content:space-around;align-items:center;z-index:60;padding:0 10px}
 .nav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--muted);font-size:9px;font-weight:700;background:none;border:none;cursor:pointer;transition:.2s}
@@ -389,7 +390,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
       <div class="profile-avatar" id="userInitial">AM</div>
       <h2 class="profile-name" id="userNameDisplay">Ajmal Mansoori</h2>
       <p class="profile-email" id="userEmailDisplay">ajmal@learnify.com</p>
-      <span style="font-size: 10px; background: rgba(181,124,46,0.12); color: var(--accent); padding: 4px 10px; border-radius: 20px; font-weight: 700;"><i class="fa-solid fa-shield-check"></i> Verified Account</span>
+      <span style="font-size: 10px; background: rgba(194,140,56,0.12); color: var(--accent); padding: 4px 10px; border-radius: 20px; font-weight: 700;"><i class="fa-solid fa-shield-check"></i> Verified Account</span>
     </div>
 
     <div class="menu-list">
@@ -433,7 +434,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
       </div>
       <div class="form-group" style="margin-bottom:0">
         <label>App Version</label>
-        <input type="text" value="BookNear v8.0 Persistent Edition" disabled>
+        <input type="text" value="BookNear v8.5 Elite Edition" disabled>
       </div>
     </div>
   </div>
