@@ -163,7 +163,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 
     <div class="section-title">Books Near <span id="feedLocationTitle" style="color:var(--accent)">Prayagraj</span></div>
     <div class="product-grid" id="productGridContainer">
-      <!-- Dynamic live books from Firebase Firestore -->
+      <!-- Default + Live Firebase Books will show here -->
     </div>
   </div>
 
@@ -209,16 +209,15 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     </div>
   </div>
 
-  <!-- 4. SELL BOOK VIEW (Accessible only via Profile Dashboard) -->
+  <!-- 4. SELL BOOK VIEW (Accessible via Profile) -->
   <div id="sellView" class="view-section">
     <div class="back-link" onclick="switchView('profile')"><i class="fa-solid fa-arrow-left"></i> Back to Profile</div>
     <div class="section-title">List Your Book / Notes</div>
     <form onsubmit="publishBookToFirebase(event)">
       <div class="form-card">
         <div class="form-group">
-          <label><i class="fa-solid fa-camera"></i> Upload Book Photo (Optional)</label>
-          <input type="file" id="sellImages" accept="image/*" style="padding:6px">
-          <span style="font-size:9px;color:var(--muted)">Fast upload preview image</span>
+          <label><i class="fa-solid fa-camera"></i> Book Image URL or Photo Name</label>
+          <input type="text" id="sellImages" placeholder="Paste image link or leave blank for default icon">
         </div>
       </div>
 
@@ -285,7 +284,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
         </div>
       </div>
 
-      <button type="submit" class="btn-primary"><i class="fa-solid fa-cloud-arrow-up"></i> Publish Listing</button>
+      <button type="submit" class="btn-primary"><i class="fa-solid fa-cloud-arrow-up"></i> Publish Listing Instantly</button>
     </form>
   </div>
 
@@ -413,7 +412,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     <div class="section-title">App Settings</div>
     <div class="form-card">
       <div class="form-group"><label>App Theme</label><select><option>Light Mode (Default)</option></select></div>
-      <div class="form-group" style="margin-bottom:0"><label>App Version</label><input type="text" value="BookNear v5.2 Optimized Edition" disabled></div>
+      <div class="form-group" style="margin-bottom:0"><label>App Version</label><input type="text" value="BookNear v5.5 Final Edition" disabled></div>
     </div>
   </div>
 
@@ -451,7 +450,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     </div>
   </div>
 
-  <!-- BOTTOM NAVIGATION (Sell button replaced with Cart/Home/Categories/Profile) -->
+  <!-- BOTTOM NAVIGATION (Sell button removed from bottom dock) -->
   <nav class="bottom-nav">
     <button class="nav-item active" onclick="switchView('home')" id="nav-home"><span class="icon"><i class="fa-solid fa-house"></i></span><span>Home</span></button>
     <button class="nav-item" onclick="switchView('categories')" id="nav-cat"><span class="icon"><i class="fa-solid fa-layer-group"></i></span><span>Categories</span></button>
@@ -477,11 +476,25 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
   firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
   const auth = firebase.auth();
-  const storage = firebase.storage();
 
   let isLoggedIn = false;
   let currentUserObject = null;
-  let booksData = [];
+
+  // Default Mock Books to ensure feed is never completely blank
+  let booksData = [
+    {
+      title: "Modern & Medieval Hindi Poetry Notes",
+      price: "₹249", old: "₹499", author: "Ajmal Mansoori",
+      location: "Zero Road, Prayagraj", whatsapp: "9984919392",
+      imageUrl: ""
+    },
+    {
+      title: "CUET General Test & Domain Guide",
+      price: "₹399", old: "₹799", author: "Learnify Classes",
+      location: "Katra, Prayagraj", whatsapp: "9984919392",
+      imageUrl: ""
+    }
+  ];
 
   auth.onAuthStateChanged((user) => {
     if (user) {
@@ -497,31 +510,31 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     }
   });
 
+  // Fetch live books and merge with mock books
   function fetchLiveBooksFromFirebase() {
     db.collection("booksListings").orderBy("createdAt", "desc").onSnapshot((snapshot) => {
       const container = document.getElementById('productGridContainer');
       container.innerHTML = "";
-      booksData = [];
-
-      if(snapshot.empty) {
-        container.innerHTML = `<p style="font-size:12px;color:var(--muted);grid-column:span 2;text-align:center;">No books listed yet. Login and sell from your profile!</p>`;
-        return;
-      }
+      
+      // Start with default mock books
+      let combinedBooks = [...booksData];
 
       snapshot.forEach((doc) => {
         const b = doc.data();
-        const index = booksData.length;
-        booksData.push({
+        combinedBooks.unshift({
           title: b.title || "Untitled Book",
           price: "₹" + (b.price || "0"),
           old: b.oldPrice ? "₹" + b.oldPrice : "₹499",
           author: b.author || "Student Seller",
           location: b.location || "Local Hub",
           whatsapp: b.whatsapp || "9984919392",
-          imageUrl: b.imageUrl || "",
-          images: ["📖", "📚", "📝", "📘"]
+          imageUrl: b.imageUrl || ""
         });
+      });
 
+      booksData = combinedBooks;
+
+      booksData.forEach((b, index) => {
         const imgContent = b.imageUrl 
           ? `<img src="${b.imageUrl}" style="width:100%; height:100%; object-fit:cover; border-radius:14px;" />` 
           : `<i class="fa-solid fa-book"></i>`;
@@ -530,12 +543,31 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
           <div class="product-card" onclick="openBookDetail(${index})">
             <div class="fav-icon" onclick="toggleFavorite(event, ${index})"><i class="fa-regular fa-heart"></i></div>
             <div class="p-img">${imgContent}</div>
-            <div class="p-loc"><i class="fa-solid fa-location-pin"></i> ${b.location || 'Local Hub'}</div>
+            <div class="p-loc"><i class="fa-solid fa-location-pin"></i> ${b.location}</div>
             <div class="p-title">${b.title}</div>
-            <div><span class="price">₹${b.price}</span><span class="old-price">₹499</span></div>
+            <div><span class="price">${b.price}</span><span class="old-price">${b.old}</span></div>
           </div>
         `;
       });
+    }, (error) => {
+      console.log("Using default mock store view.");
+      renderMockBooks();
+    });
+  }
+
+  function renderMockBooks() {
+    const container = document.getElementById('productGridContainer');
+    container.innerHTML = "";
+    booksData.forEach((b, index) => {
+      container.innerHTML += `
+        <div class="product-card" onclick="openBookDetail(${index})">
+          <div class="fav-icon" onclick="toggleFavorite(event, ${index})"><i class="fa-regular fa-heart"></i></div>
+          <div class="p-img"><i class="fa-solid fa-book"></i></div>
+          <div class="p-loc"><i class="fa-solid fa-location-pin"></i> ${b.location}</div>
+          <div class="p-title">${b.title}</div>
+          <div><span class="price">${b.price}</span><span class="old-price">${b.old}</span></div>
+        </div>
+      `;
     });
   }
 
@@ -584,6 +616,11 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
       document.getElementById('categoriesView').classList.add('active');
       document.getElementById('nav-cat').classList.add('active');
     } else if(viewName === 'sell') {
+      if(!isLoggedIn) {
+        alert("Pehle login karein!");
+        switchView('auth');
+        return;
+      }
       document.getElementById('sellView').classList.add('active');
     } else if(viewName === 'cart') {
       document.getElementById('cartView').classList.add('active');
@@ -656,7 +693,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
         .then((userCredential) => {
           const user = userCredential.user;
           if(fullName) { user.updateProfile({ displayName: fullName }); }
-          alert("Account successfully created and logged in!");
+          alert("Account successfully created!");
           switchView('profile');
         })
         .catch((error) => { alert("Registration Error: " + error.message); });
@@ -713,7 +750,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     qtyElem.textContent = currentQty;
   }
 
-  async function publishBookToFirebase(e) {
+  function publishBookToFirebase(e) {
     event.preventDefault();
 
     if(!isLoggedIn) {
@@ -732,22 +769,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     const district = document.getElementById('sellDistrict').value;
     const area = document.getElementById('sellArea').value;
     const fullLoc = `${area}, ${district}, ${state}`;
-    
-    const fileInput = document.getElementById('sellImages');
-    let photoUrl = "";
-
-    if(fileInput.files && fileInput.files[0]) {
-      const file = fileInput.files[0];
-      const storageRef = storage.ref('book_images/' + Date.now() + '_' + file.name);
-      
-      try {
-        const snapshot = await storageRef.put(file);
-        photoUrl = await snapshot.ref.getDownloadURL();
-      } catch(err) {
-        // Fallback if storage rule fails so listing still publishes without crashing
-        console.warn("Storage upload skipped or failed:", err.message);
-      }
-    }
+    const imgUrl = document.getElementById('sellImages').value;
 
     db.collection("booksListings").add({
       title: title,
@@ -757,7 +779,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
       price: price,
       oldPrice: oldPrice || "499",
       location: fullLoc,
-      imageUrl: photoUrl || "",
+      imageUrl: imgUrl || "",
       sellerEmail: currentUserObject.email,
       createdAt: firebase.firestore.FieldValue.serverTimestamp()
     }).then(() => {
