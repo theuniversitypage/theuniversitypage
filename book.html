@@ -70,8 +70,20 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 .specs-list li{padding:5px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between}
 .specs-list li span{color:var(--text);font-weight:600}
 
+/* Cart Styles (Integrated) */
 .cart-list{display:flex;flex-direction:column;gap:12px;margin-bottom:16px}
-.cart-item{background:var(--surface2);border:1px solid var(--line);border-radius:16px;padding:12px;display:flex;gap:12px;align-items:center}
+.cart-item{background:var(--surface2);border:1px solid var(--line);border-radius:16px;padding:12px;display:flex;gap:12px;align-items:center;position:relative}
+.item-img{width:50px;height:50px;background:rgba(168,116,44,.1);border-radius:10px;display:grid;place-items:center;font-size:20px;flex-shrink:0}
+.item-details{flex:1}
+.item-title{font-size:11px;font-weight:700;margin:0 0 4px;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.item-price{font-size:12px;font-weight:800;color:var(--accent);margin-bottom:6px}
+.qty-control{display:flex;align-items:center;gap:8px}
+.qty-btn{width:22px;height:22px;border:1px solid var(--line);background:var(--surface);border-radius:6px;font-weight:700;cursor:pointer;display:grid;place-items:center;font-size:11px}
+.qty-num{font-size:11px;font-weight:700;width:14px;text-align:center}
+.remove-btn{position:absolute;top:10px;right:10px;background:none;border:none;color:var(--muted);cursor:pointer;font-size:13px}
+.bill-card{background:var(--surface2);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:20px}
+.bill-row{display:flex;justify-content:space-between;font-size:11px;margin-bottom:6px;color:var(--muted)}
+.bill-row.total{font-size:13px;font-weight:800;color:var(--text);border-top:1px solid var(--line);padding-top:8px;margin-top:8px}
 
 .cat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 .cat-card{background:var(--surface2);border:1px solid var(--line);border-radius:16px;padding:16px;text-align:center;cursor:pointer}
@@ -88,6 +100,9 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 .menu-item:hover{border-color:var(--accent)}
 
 /* Login & Auth styling */
+.auth-header{text-align:center;margin-bottom:18px}
+.auth-header h1{font-size:22px;font-weight:800;margin:0 0 4px}
+.auth-header p{font-size:11px;color:var(--muted);margin:0}
 .auth-tabs{display:flex;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:4px;margin-bottom:16px}
 .tab-btn{flex:1;padding:8px;text-align:center;font-size:11px;font-weight:700;cursor:pointer;border-radius:9px;background:none;border:none;color:var(--muted)}
 .tab-btn.active{background:var(--surface2);color:var(--text);box-shadow:0 2px 8px rgba(0,0,0,.04)}
@@ -210,40 +225,94 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     </form>
   </div>
 
-  <!-- 5. CART VIEW -->
+  <!-- 5. CART VIEW (Fully Functional with Quantity Controls) -->
   <div id="cartView" class="view-section">
-    <div class="section-title">Shopping Cart</div>
-    <p style="font-size:12px; color:var(--muted)">Your cart is ready for checkout.</p>
+    <div class="section-title">Your Shopping Bag (2 Items)</div>
+    <div class="cart-list">
+      <div class="cart-item">
+        <div class="item-img">📖</div>
+        <div class="item-details">
+          <div class="item-title">Modern & Medieval Hindi Poetry Notes</div>
+          <div class="item-price">₹249</div>
+          <div class="qty-control">
+            <button class="qty-btn" onclick="updateQty(1, -1)">-</button>
+            <span class="qty-num" id="qty1">1</span>
+            <button class="qty-btn" onclick="updateQty(1, 1)">+</button>
+          </div>
+        </div>
+        <button class="remove-btn" onclick="this.closest('.cart-item').remove()">🗑️</button>
+      </div>
+
+      <div class="cart-item">
+        <div class="item-img">🎯</div>
+        <div class="item-details">
+          <div class="item-title">CUET General Test & Domain Guide</div>
+          <div class="item-price">₹399</div>
+          <div class="qty-control">
+            <button class="qty-btn" onclick="updateQty(2, -1)">-</button>
+            <span class="qty-num" id="qty2">1</span>
+            <button class="qty-btn" onclick="updateQty(2, 1)">+</button>
+          </div>
+        </div>
+        <button class="remove-btn" onclick="this.closest('.cart-item').remove()">🗑️</button>
+      </div>
+    </div>
+
+    <div class="section-title" style="font-size: 14px;">Price Details</div>
+    <div class="bill-card">
+      <div class="bill-row"><span>Bag Total</span> <span>₹648</span></div>
+      <div class="bill-row"><span>Bag Discount</span> <span style="color:#16a34a">- ₹400</span></div>
+      <div class="bill-row total"><span>Total Amount</span> <span>₹648</span></div>
+    </div>
+    <button style="width:100%;background:#25D366;border:none;color:#fff;padding:12px;border-radius:12px;font-weight:800;cursor:pointer;" onclick="orderOnWhatsApp()">Checkout via WhatsApp 💬</button>
   </div>
 
-  <!-- 6. AUTH / LOGIN VIEW (Shows if NOT logged in) -->
+  <!-- 6. AUTH / LOGIN PAGE VIEW (Light mode styled) -->
   <div id="authView" class="view-section">
-    <div class="section-title">Account Access</div>
+    <div class="back-link" onclick="switchView('home')">← Back to Store</div>
+    <div class="auth-header">
+      <h1 id="authTitle">Welcome Back</h1>
+      <p id="authSubtitle">Login to manage your bookstore orders & wishlist</p>
+    </div>
+
+    <div class="auth-tabs">
+      <button class="tab-btn active" id="tabLogin" onclick="switchAuthTab('login')">Login</button>
+      <button class="tab-btn" id="tabReg" onclick="switchAuthTab('reg')">Create Account</button>
+    </div>
+
     <div class="form-card">
-      <div class="auth-tabs">
-        <button class="tab-btn active" id="tabLogin" onclick="switchAuthTab('login')">Login</button>
-        <button class="tab-btn" id="tabReg" onclick="switchAuthTab('reg')">Create Account</button>
-      </div>
       <button class="social-btn" onclick="loginWithGoogleFirebase()">
         <svg width="14" height="14" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/></svg>
         Continue with Google
       </button>
-      <div style="text-align:center; font-size:11px; color:var(--muted); margin:10px 0;">or with email</div>
-      <div class="form-group"><label>Email Address</label><input type="email" id="emailInput" placeholder="ajmal@learnify.com"></div>
-      <div class="form-group"><label>Password</label><input type="password" id="passInput" placeholder="••••••••"></div>
-      <button class="btn-primary" onclick="simulateManualLogin()">Submit & Proceed</button>
+      <div style="text-align:center; font-size:11px; color:var(--muted); margin:12px 0;">or continue with email</div>
+      
+      <div class="form-group" id="nameFieldGroup" style="display:none;">
+        <label>Full Name</label>
+        <input type="text" id="fullNameInput" placeholder="Enter your full name">
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" id="emailInput" placeholder="ajmal@learnify.com">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" placeholder="••••••••">
+      </div>
+      <button class="btn-primary" id="submitAuthBtn" onclick="simulateManualLogin()">Login to Account</button>
     </div>
   </div>
 
-  <!-- 7. PROFILE DASHBOARD VIEW (Shows AFTER login) -->
+  <!-- 7. PROFILE DASHBOARD VIEW -->
   <div id="profileView" class="view-section">
     <div class="form-card" style="text-align:center">
       <div style="width:60px;height:60px;border-radius:50%;background:var(--accent);color:#fff;font-size:22px;font-weight:800;display:grid;place-items:center;margin:0 auto 10px" id="userAvatarIcon">AM</div>
       <h3 style="margin:0 0 4px" id="profileNameText">Ajmal Mansoori</h3>
       <p style="margin:0;font-size:12px;color:var(--muted)" id="profileEmailText">ajmal@learnify.com</p>
+      <span style="font-size: 10px; background: rgba(168,116,44,0.15); color: var(--accent); padding: 3px 8px; border-radius: 20px; font-weight: 700; display:inline-block; margin-top:6px;">Verified Account</span>
     </div>
     <div class="menu-list">
-      <div class="menu-item" onclick="switchView('orders')"><span>📦 My Orders</span><span>→</span></div>
+      <div class="menu-item" onclick="switchView('orders')"><span>📦 My Book Orders</span><span>→</span></div>
       <div class="menu-item" onclick="switchView('favorites')"><span>🤍 My Favorites (Wishlist)</span><span>→</span></div>
       <div class="menu-item" onclick="switchView('settings')"><span>⚙️ App Settings</span><span>→</span></div>
       <div class="menu-item" style="color:#dc2626;" onclick="logoutFirebase()"><span>🚪 Logout</span><span>→</span></div>
@@ -257,6 +326,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     <div class="form-card">
       <div style="font-size:13px;font-weight:700">Modern & Medieval Hindi Poetry Notes</div>
       <div style="font-size:11px;color:var(--muted);margin-top:2px">Status: <b style="color:#16a34a">Confirmed / WhatsApp Connected</b></div>
+      <div style="font-size:11px;color:var(--muted);margin-top:4px">Location: Zero Road, Prayagraj</div>
     </div>
   </div>
 
@@ -273,8 +343,8 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     <div class="back-link" onclick="switchView('profile')">← Back to Profile</div>
     <div class="section-title">App Settings</div>
     <div class="form-card">
-      <div class="form-group"><label>App Theme</label><select><option>Light Mode</option></select></div>
-      <div class="form-group" style="margin-bottom:0"><label>App Version</label><input type="text" value="v3.2 Brand Edition" disabled></div>
+      <div class="form-group"><label>App Theme</label><select><option>Light Mode (Default)</option></select></div>
+      <div class="form-group" style="margin-bottom:0"><label>App Version</label><input type="text" value="v3.5 Original Brand Edition" disabled></div>
     </div>
   </div>
 
@@ -324,7 +394,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 
   let isLoggedIn = false;
 
-  // Track Auth State changes automatically
+  // Track Firebase Auth state
   auth.onAuthStateChanged((user) => {
     if (user) {
       isLoggedIn = true;
@@ -392,6 +462,32 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     }
   }
 
+  // Toggle between Login and Register tabs in Auth view
+  function switchAuthTab(tab) {
+    const tabLogin = document.getElementById('tabLogin');
+    const tabReg = document.getElementById('tabReg');
+    const title = document.getElementById('authTitle');
+    const subtitle = document.getElementById('authSubtitle');
+    const nameGroup = document.getElementById('nameFieldGroup');
+    const submitBtn = document.getElementById('submitAuthBtn');
+
+    if(tab === 'reg') {
+      tabReg.classList.add('active');
+      tabLogin.classList.remove('active');
+      title.textContent = "Create Account";
+      subtitle.textContent = "Sign up to start buying and selling books";
+      nameGroup.style.display = 'block';
+      submitBtn.textContent = "Register New Account 🚀";
+    } else {
+      tabLogin.classList.add('active');
+      tabReg.classList.remove('active');
+      title.textContent = "Welcome Back";
+      subtitle.textContent = "Login to manage your bookstore orders & wishlist";
+      nameGroup.style.display = 'none';
+      submitBtn.textContent = "Login to Account";
+    }
+  }
+
   function openBookDetail(index) {
     currentBook = index;
     const b = booksData[index];
@@ -400,6 +496,14 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     document.getElementById('dOldPrice').textContent = b.old;
     document.getElementById('dLoc').textContent = b.location;
     switchView('detail');
+  }
+
+  function updateQty(itemId, change) {
+    const qtyElem = document.getElementById('qty' + itemId);
+    let currentQty = parseInt(qtyElem.textContent);
+    currentQty += change;
+    if (currentQty < 1) currentQty = 1;
+    qtyElem.textContent = currentQty;
   }
 
   /* Firebase Google Login Integration */
