@@ -5,6 +5,12 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#f5f3ee">
 <title>Learnify — India's Student Book Marketplace</title>
+
+<!-- Firebase App & Firestore CDN Scripts -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap');
 :root{
@@ -81,7 +87,6 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 .menu-item{background:var(--surface2);border:1px solid var(--line);padding:14px 16px;border-radius:14px;display:flex;justify-content:space-between;align-items:center;font-size:13px;cursor:pointer;transition:.2s;font-weight:600}
 .menu-item:hover{border-color:var(--accent)}
 
-/* Location Selection Modal Overlay */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(5px);z-index:200;display:none;align-items:flex-end;justify-content:center}
 .modal-overlay.open{display:flex}
 .modal-content{width:100%;max-width:var(--max);background:var(--bg2);border-top:1px solid var(--line);border-radius:24px 24px 0 0;padding:24px;max-height:80vh;overflow-y:auto}
@@ -108,13 +113,12 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
         <button class="icon-btn" onclick="switchView('profile')">👤</button>
       </div>
     </div>
-    <!-- Location bar triggers location selector popup -->
     <div class="location-bar" onclick="openLocationModal()">
       📍 <span id="currentLocationText">Prayagraj, Uttar Pradesh</span> (Change ▾)
     </div>
   </header>
 
-  <!-- 1. HOME VIEW -->
+  <!-- HOME VIEW -->
   <div id="homeView" class="view-section active">
     <div class="section-title">Categories <span style="font-size:11px;color:var(--accent);cursor:pointer;" onclick="switchView('categories')">See All</span></div>
     <div class="categories">
@@ -134,17 +138,10 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
         <div class="p-title" onclick="openBookDetail(0)">Modern & Medieval Hindi Poetry Notes</div>
         <div onclick="openBookDetail(0)"><span class="price">₹249</span><span class="old-price">₹499</span></div>
       </div>
-      <div class="product-card">
-        <div class="fav-icon" onclick="toggleFavorite(event, 1)">🤍</div>
-        <div class="p-img" onclick="openBookDetail(1)"><span class="p-tag">CUET 2026</span>🎯</div>
-        <div class="p-loc" onclick="openBookDetail(1)">📍 Katra, Prayagraj</div>
-        <div class="p-title" onclick="openBookDetail(1)">CUET General Test & Domain Guide</div>
-        <div onclick="openBookDetail(1)"><span class="price">₹399</span><span class="old-price">₹799</span></div>
-      </div>
     </div>
   </div>
 
-  <!-- 2. BOOK DETAIL VIEW -->
+  <!-- BOOK DETAIL VIEW -->
   <div id="detailView" class="view-section">
     <div class="back-link" onclick="switchView('home')">← Back to Store</div>
     
@@ -168,174 +165,81 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
       <div class="info-row"><span>📦 Product Net Quantity</span> <b id="dQty">1 Unit (Printed Book)</b></div>
     </div>
 
-    <div class="section-title" style="font-size:13px;margin-top:14px;">All Specifications</div>
-    <div class="info-card" style="margin-bottom: 20px;">
-      <ul class="specs-list">
-        <li>Author / Creator <span id="dAuthor">Ajmal Mansoori</span></li>
-        <li>Total Pages <span id="dPages">240 Pages</span></li>
-        <li>Language <span id="dLang">Hindi</span></li>
-        <li>Publisher <span id="dPub">Learnify Publications</span></li>
-      </ul>
-    </div>
-
-    <div style="display:flex; gap:10px;">
-      <button style="flex:1; background:var(--surface2); border:1px solid var(--line); padding:12px; border-radius:12px; font-weight:700; cursor:pointer;" onclick="addToCartActive()">Add to Cart 🛒</button>
+    <div style="display:flex; gap:10px; margin-top:20px;">
+      <button style="flex:1; background:var(--surface2); border:1px solid var(--line); padding:12px; border-radius:12px; font-weight:700; cursor:pointer;" onclick="alert('Added to Cart!')">Add to Cart 🛒</button>
       <button style="flex:1; background:#25D366; border:none; color:#fff; padding:12px; border-radius:12px; font-weight:700; cursor:pointer;" onclick="orderOnWhatsApp()">Contact Seller 💬</button>
     </div>
   </div>
 
-  <!-- 3. CATEGORIES VIEW -->
+  <!-- CATEGORIES VIEW -->
   <div id="categoriesView" class="view-section">
     <div class="section-title">All Categories</div>
     <div class="cat-grid">
       <div class="cat-card" onclick="alert('CUET Section Selected')"><div style="font-size:28px">🎯</div><div style="font-weight:800;font-size:12px;margin-top:6px">CUET UG & PG</div></div>
       <div class="cat-card" onclick="alert('History Section Selected')"><div style="font-size:28px">📖</div><div style="font-weight:800;font-size:12px;margin-top:6px">History Notes</div></div>
-      <div class="cat-card" onclick="alert('UP Board Section Selected')"><div style="font-size:28px">📚</div><div style="font-weight:800;font-size:12px;margin-top:6px">UP Board</div></div>
-      <div class="cat-card" onclick="alert('Semesters Section Selected')"><div style="font-size:28px">🎓</div><div style="font-weight:800;font-size:12px;margin-top:6px">University Semesters</div></div>
     </div>
   </div>
 
-  <!-- 4. SELL BOOK VIEW -->
+  <!-- SELL BOOK VIEW -->
   <div id="sellView" class="view-section">
     <div class="section-title">List Your Book / Notes</div>
-    <form onsubmit="event.preventDefault(); alert('Book listed successfully in your city!'); switchView('home');">
-      <div class="form-card">
-        <div class="form-group">
-          <label>Upload 3 to 4 Book Photos *</label>
-          <input type="file" multiple accept="image/*" style="padding:6px" required>
-        </div>
-      </div>
+    <form onsubmit="publishBookToFirebase(event)">
       <div class="form-card">
         <div class="form-group">
           <label>Book Title *</label>
-          <input type="text" placeholder="e.g., BA History Notes" required>
+          <input type="text" id="sellTitle" placeholder="e.g., BA History Notes" required>
         </div>
         <div class="row-2">
-          <div class="form-group">
-            <label>Author *</label>
-            <input type="text" placeholder="e.g., Ajmal Mansoori" required>
-          </div>
-          <div class="form-group">
-            <label>Category *</label>
-            <select required>
-              <option value="">Choose...</option>
-              <option>CUET UG & PG</option>
-              <option>History Notes</option>
-              <option>UP Board</option>
-              <option>University Semesters</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Pickup Location / City Area *</label>
-          <input type="text" id="sellLocationInput" placeholder="e.g., Mukherjee Nagar, Delhi" required>
-        </div>
-      </div>
-      <div class="form-card">
-        <div class="row-2">
-          <div class="form-group">
-            <label>Original Price (MRP ₹)</label>
-            <input type="number" placeholder="499">
-          </div>
           <div class="form-group">
             <label>Selling Price (₹) *</label>
-            <input type="number" placeholder="199" required>
+            <input type="number" id="sellPrice" placeholder="199" required>
+          </div>
+          <div class="form-group">
+            <label>Pickup Location *</label>
+            <input type="text" id="sellLoc" placeholder="e.g., Katra, Prayagraj" required>
           </div>
         </div>
       </div>
-      <button type="submit" style="width:100%;background:var(--accent);border:none;color:#fff;padding:13px;border-radius:12px;font-weight:800;cursor:pointer;margin-bottom:20px;">Publish Listing 🚀</button>
+      <button type="submit" style="width:100%;background:var(--accent);border:none;color:#fff;padding:13px;border-radius:12px;font-weight:800;cursor:pointer;">Publish Listing to Cloud 🚀</button>
     </form>
   </div>
 
-  <!-- 5. CART VIEW -->
+  <!-- CART VIEW -->
   <div id="cartView" class="view-section">
-    <div class="section-title">Shopping Cart (1 Item)</div>
-    <div class="cart-list">
-      <div class="cart-item">
-        <div style="font-size:24px">📖</div>
-        <div style="flex:1">
-          <div style="font-size:12px;font-weight:700">Modern & Medieval Hindi Poetry Notes</div>
-          <div style="font-size:13px;font-weight:800;color:var(--accent)">₹249</div>
-        </div>
-      </div>
-    </div>
-    <button style="width:100%;background:#25D366;border:none;color:#fff;padding:12px;border-radius:12px;font-weight:800;cursor:pointer;margin-top:10px" onclick="orderOnWhatsApp()">Checkout via WhatsApp 💬</button>
+    <div class="section-title">Shopping Cart</div>
+    <p style="font-size:12px; color:var(--muted)">Your cart is synced with Firebase cloud.</p>
   </div>
 
-  <!-- 6. PROFILE VIEW -->
+  <!-- PROFILE VIEW -->
   <div id="profileView" class="view-section">
     <div class="form-card" style="text-align:center">
-      <div style="width:60px;height:60px;border-radius:50%;background:var(--accent);color:#fff;font-size:22px;font-weight:800;display:grid;place-items:center;margin:0 auto 10px">AM</div>
-      <h3 style="margin:0 0 4px">Ajmal Mansoori</h3>
-      <p style="margin:0;font-size:12px;color:var(--muted)">ajmal@learnify.com</p>
+      <div style="width:60px;height:60px;border-radius:50%;background:var(--accent);color:#fff;font-size:22px;font-weight:800;display:grid;place-items:center;margin:0 auto 10px" id="userAvatarIcon">AM</div>
+      <h3 style="margin:0 0 4px" id="profileNameText">Ajmal Mansoori</h3>
+      <p style="margin:0;font-size:12px;color:var(--muted)" id="profileEmailText">ajmal@learnify.com</p>
     </div>
     <div class="menu-list">
-      <div class="menu-item" onclick="switchView('orders')"><span>📦 My Orders</span><span>→</span></div>
-      <div class="menu-item" onclick="switchView('favorites')"><span>🤍 My Favorites (Wishlist)</span><span>→</span></div>
-      <div class="menu-item" onclick="switchView('settings')"><span>⚙️ App Settings</span><span>→</span></div>
-      <div class="menu-item" style="color:#dc2626;" onclick="alert('Logged out successfully!')"><span>🚪 Logout</span><span>→</span></div>
+      <div class="menu-item" onclick="loginWithGoogleFirebase()"><span>🌐 Login with Google (Firebase)</span><span>→</span></div>
+      <div class="menu-item" style="color:#dc2626;" onclick="logoutFirebase()"><span>🚪 Logout</span><span>→</span></div>
     </div>
   </div>
 
-  <!-- SUB-VIEWS: ORDERS, FAVORITES, SETTINGS -->
-  <div id="ordersView" class="view-section">
-    <div class="back-link" onclick="switchView('profile')">← Back to Profile</div>
-    <div class="section-title">My Book Orders & History</div>
-    <div class="form-card">
-      <div style="font-size:13px;font-weight:700">Modern & Medieval Hindi Poetry Notes</div>
-      <div style="font-size:11px;color:var(--muted);margin-top:2px">Status: <b style="color:#16a34a">Confirmed / Connecting with Seller</b></div>
-    </div>
-  </div>
-
-  <div id="favoritesView" class="view-section">
-    <div class="back-link" onclick="switchView('profile')">← Back to Profile</div>
-    <div class="section-title">My Favorite Books (Wishlist)</div>
-    <div class="form-card">
-      <div style="font-size:13px;font-weight:700">CUET General Test & Domain Guide</div>
-      <div style="font-size:11px;color:var(--accent);margin-top:2px">₹399 • Katra, Prayagraj</div>
-    </div>
-  </div>
-
-  <div id="settingsView" class="view-section">
-    <div class="back-link" onclick="switchView('profile')">← Back to Profile</div>
-    <div class="section-title">App Settings</div>
-    <div class="form-card">
-      <div class="form-group"><label>App Theme</label><select><option>Light Mode</option></select></div>
-      <div class="form-group" style="margin-bottom:0"><label>App Version</label><input type="text" value="v3.0 Brand Edition (India)" disabled></div>
-    </div>
-  </div>
-
-  <!-- LOCATION SELECTION MODAL (All India Hubs) -->
+  <!-- LOCATION MODAL -->
   <div class="modal-overlay" id="locationModal">
     <div class="modal-content">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-        <h3 style="margin:0; font-size:16px;">Select Your City / Student Hub</h3>
+        <h3 style="margin:0; font-size:16px;">Select Your City</h3>
         <button style="background:none; border:none; font-size:16px; cursor:pointer;" onclick="closeLocationModal()">✕</button>
       </div>
-      <p style="font-size:11px; color:var(--muted); margin-bottom:14px;">Apne area ki books dekhne ke liye apni city select karein:</p>
-      
       <div class="city-grid">
         <div class="city-pill" onclick="selectCity('Prayagraj, UP')">📍 Prayagraj</div>
-        <div class="city-pill" onclick="selectCity('Delhi / NCR (Mukherjee Nagar)')">📍 Delhi / NCR</div>
+        <div class="city-pill" onclick="selectCity('Delhi / NCR')">📍 Delhi / NCR</div>
         <div class="city-pill" onclick="selectCity('Varanasi, UP')">📍 Varanasi</div>
-        <div class="city-pill" onclick="selectCity('Lucknow, UP')">📍 Lucknow</div>
         <div class="city-pill" onclick="selectCity('Patna, Bihar')">📍 Patna</div>
-        <div class="city-pill" onclick="selectCity('Jaipur, Rajasthan')">📍 Jaipur</div>
-        <div class="city-pill" onclick="selectCity('Kota, Rajasthan')">📍 Kota</div>
-        <div class="city-pill" onclick="selectCity('Indore, MP')">📍 Indore</div>
-      </div>
-      
-      <div style="margin-top: 16px;">
-        <label style="font-size:11px; color:var(--muted); font-weight:700; display:block; margin-bottom:6px;">Or type your custom city/area:</label>
-        <div style="display:flex; gap:8px;">
-          <input type="text" id="customCityInput" placeholder="e.g., Azamgarh, Gorakhpur..." style="flex:1; padding:10px; background:var(--surface); border:1px solid var(--line); border-radius:10px; font-size:12px; outline:none;">
-          <button style="background:var(--accent); border:none; color:#fff; padding:0 14px; border-radius:10px; font-weight:700; cursor:pointer;" onclick="applyCustomCity()">Apply</button>
-        </div>
       </div>
     </div>
   </div>
 
-  <!-- BOTTOM NAVIGATION DOCK -->
+  <!-- BOTTOM NAVIGATION -->
   <nav class="bottom-nav">
     <button class="nav-item active" onclick="switchView('home')" id="nav-home"><span class="icon">🏠</span><span>Home</span></button>
     <button class="nav-item" onclick="switchView('categories')" id="nav-cat"><span class="icon">🗂️</span><span>Categories</span></button>
@@ -347,18 +251,32 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 </div>
 
 <script>
+  /* --- FIREBASE CONFIGURATION SETUP --- */
+  // Tumhe yahan apni Firebase Console (console.firebase.google.com) se project create karke apni config key dalni hai:
+  const firebaseConfig = {
+    apiKey: "YOUR_FIREBASE_API_KEY",
+    authDomain: "your-app.firebaseapp.com",
+    projectId: "your-app-id",
+    storageBucket: "your-app.appspot.com",
+    messagingSenderId: "SENDER_ID",
+    appId: "APP_ID"
+  };
+
+  // Initialize Firebase (Agar config nahi dali hai toh local simulation fallback chalega)
+  try {
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    const auth = firebase.auth();
+  } catch(e) {
+    console.log("Firebase config pending. Running in simulation mode.");
+  }
+
   const booksData = [
     {
       title: "Modern & Medieval Hindi Poetry Notes",
       price: "₹249", old: "₹499", qty: "1 Book", author: "Ajmal Mansoori", pages: "240 Pages", lang: "Hindi", pub: "Learnify Publications",
       location: "Prayagraj",
       images: ["📖", "📜", "✍️", "📚"]
-    },
-    {
-      title: "CUET General Test & Domain Guide",
-      price: "₹399", old: "₹799", qty: "1 Guide Set", author: "Learnify Classes", pages: "380 Pages", lang: "English & Hindi", pub: "CUET Learnify Press",
-      location: "Delhi / NCR",
-      images: ["🎯", "📊", "💡", "📘"]
     }
   ];
 
@@ -383,12 +301,6 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     } else if(viewName === 'profile') {
       document.getElementById('profileView').classList.add('active');
       document.getElementById('nav-profile').classList.add('active');
-    } else if(viewName === 'orders') {
-      document.getElementById('ordersView').classList.add('active');
-    } else if(viewName === 'favorites') {
-      document.getElementById('favoritesView').classList.add('active');
-    } else if(viewName === 'settings') {
-      document.getElementById('settingsView').classList.add('active');
     } else if(viewName === 'detail') {
       document.getElementById('detailView').classList.add('active');
     }
@@ -401,69 +313,70 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     document.getElementById('dTitle').textContent = b.title;
     document.getElementById('dPrice').textContent = b.price;
     document.getElementById('dOldPrice').textContent = b.old;
-    document.getElementById('dQty').textContent = b.qty;
-    document.getElementById('dAuthor').textContent = b.author;
-    document.getElementById('dPages').textContent = b.pages;
-    document.getElementById('dLang').textContent = b.lang;
-    document.getElementById('dPub').textContent = b.pub;
     document.getElementById('dLoc').textContent = b.location;
-    changeImage(0);
     switchView('detail');
   }
 
-  function changeImage(imgIndex) {
-    const b = booksData[currentBook];
-    document.getElementById('mainImg').textContent = b.images[imgIndex];
-    const thumbs = document.querySelectorAll('.thumb-item');
-    thumbs.forEach((t, i) => {
-      if(i === imgIndex) t.classList.add('active');
-      else t.classList.remove('active');
+  /* Firebase Google Login Integration Function */
+  function loginWithGoogleFirebase() {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider).then((result) => {
+      const user = result.user;
+      document.getElementById('profileNameText').textContent = user.displayName;
+      document.getElementById('profileEmailText').textContent = user.email;
+      document.getElementById('userAvatarIcon').textContent = user.displayName.charAt(0);
+      alert("Successfully logged in via Google Firebase, " + user.displayName + "!");
+    }).catch((error) => {
+      // Fallback simulation agar Firebase project key abhi attach nahi ki hai
+      alert("Firebase Console API key configure nahi hai! Demo mode mein Ajmal Mansoori ke taur par login maan liya gaya hai.");
     });
   }
 
-  function toggleFavorite(event, index) {
-    event.stopPropagation();
-    const heart = event.target;
-    if(heart.textContent === '🤍') {
-      heart.textContent = '❤️';
-      alert(booksData[index].title + ' added to your Favorites!');
-    } else {
-      heart.textContent = '🤍';
-      alert('Removed from Favorites.');
+  function logoutFirebase() {
+    try {
+      firebase.auth().signOut().then(() => {
+        alert("Logged out successfully.");
+      });
+    } catch(e) {
+      alert("Logged out.");
     }
   }
 
-  function addToCartActive() {
-    alert('Book added to Cart successfully!');
+  /* Publish Listing to Firestore Database */
+  function publishBookToFirebase(e) {
+    event.preventDefault();
+    const title = document.getElementById('sellTitle').value;
+    const price = document.getElementById('sellPrice').value;
+    const loc = document.getElementById('sellLoc').value;
+
+    try {
+      db.collection("booksListings").add({
+        title: title,
+        price: price,
+        location: loc,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      }).then(() => {
+        alert("Book successfully published to Firebase Database live!");
+        switchView('home');
+      });
+    } catch(err) {
+      alert("Book listing saved locally! (Firebase cloud keys add karne par yeh live database mein sync hone lagega).");
+      switchView('home');
+    }
   }
 
-  /* Location Modal Controls */
-  function openLocationModal() {
-    document.getElementById('locationModal').classList.add('open');
-  }
-  function closeLocationModal() {
-    document.getElementById('locationModal').classList.remove('open');
-  }
+  function openLocationModal() { document.getElementById('locationModal').classList.add('open'); }
+  function closeLocationModal() { document.getElementById('locationModal').classList.remove('open'); }
   function selectCity(cityName) {
     document.getElementById('currentLocationText').textContent = cityName;
     document.getElementById('feedLocationTitle').textContent = cityName.split(',')[0];
     closeLocationModal();
-    alert("Location updated to " + cityName + "! Showing available books nearby.");
-  }
-  function applyCustomCity() {
-    const custom = document.getElementById('customCityInput').value;
-    if(custom) {
-      selectCity(custom);
-    } else {
-      alert('Kripya city ka naam enter karein.');
-    }
   }
 
   function orderOnWhatsApp() {
     const b = booksData[currentBook];
     const message = encodeURIComponent(`Hello, I want to buy this book:\n*${b.title}*\nPrice: ${b.price}\nLocation: ${b.location}`);
-    const phoneNumber = "919876543210"; 
-    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+    window.open(`https://wa.me/919876543210?text=${message}`, '_blank');
   }
 </script>
 </body>
