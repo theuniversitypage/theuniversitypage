@@ -6,11 +6,10 @@
 <meta name="theme-color" content="#f2efe9">
 <title>BookNear — India's Hyperlocal Student Bookstore</title>
 
-<!-- Firebase SDKs -->
+<!-- Firebase SDKs (Auth & Firestore only, Storage ki zaroorat nahi) -->
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
 
 <!-- FontAwesome Premium Icons CDN -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -59,8 +58,8 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 
 .back-link{font-size:12px;color:var(--accent);cursor:pointer;font-weight:700;margin-bottom:14px;display:inline-block}
 .main-img-box{width:100%;height:220px;background:var(--surface2);border:1px solid var(--line);border-radius:18px;display:grid;place-items:center;font-size:50px;color:var(--accent);margin-bottom:10px;box-shadow:0 4px 12px rgba(0,0,0,.02);overflow:hidden}
-.thumb-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}
-.thumb-item{height:50px;background:var(--surface2);border:1px solid var(--line);border-radius:12px;display:grid;place-items:center;font-size:11px;cursor:pointer;color:var(--muted);font-weight:700}
+.thumb-row{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:16px}
+.thumb-item{height:45px;background:var(--surface2);border:1px solid var(--line);border-radius:10px;display:grid;place-items:center;font-size:11px;cursor:pointer;color:var(--muted);font-weight:700}
 .thumb-item.active, .thumb-item:hover{border-color:var(--accent);color:var(--accent);background:rgba(181,124,46,.05)}
 .book-title{font-size:18px;font-weight:800;margin:0 0 6px}
 .price-box{display:flex;align-items:baseline;gap:8px;margin-bottom:12px}
@@ -163,9 +162,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     <div style="height: 14px;"></div>
 
     <div class="section-title">Books Near <span id="feedLocationTitle" style="color:var(--accent)">Prayagraj</span></div>
-    <div class="product-grid" id="productGridContainer">
-      <!-- Default + Live Firebase Books -->
-    </div>
+    <div class="product-grid" id="productGridContainer"></div>
   </div>
 
   <!-- 2. BOOK DETAIL VIEW -->
@@ -174,8 +171,8 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     
     <div class="main-img-box" id="mainImg"><i class="fa-solid fa-book"></i></div>
     <div class="thumb-row">
-      <div class="thumb-item active" onclick="changeImage(0)"><i class="fa-solid fa-image"></i> Front</div>
-      <div class="thumb-item" onclick="changeImage(1)"><i class="fa-solid fa-image"></i> Back/Index</div>
+      <div class="thumb-item active" onclick="displayBookImage('front')"><i class="fa-solid fa-image"></i> Front Cover</div>
+      <div class="thumb-item" onclick="displayBookImage('back')"><i class="fa-solid fa-image"></i> Back/Index</div>
     </div>
 
     <h2 class="book-title" id="dTitle">Book Title</h2>
@@ -208,20 +205,20 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     </div>
   </div>
 
-  <!-- 4. SELL BOOK VIEW (With Front & Back Image Upload and Auto +91 country code) -->
+  <!-- 4. SELL BOOK VIEW (Free Base64 Image Upload: Front & Back) -->
   <div id="sellView" class="view-section">
     <div class="back-link" onclick="switchView('profile')"><i class="fa-solid fa-arrow-left"></i> Back to Profile</div>
     <div class="section-title">List Your Book / Notes</div>
-    <form onsubmit="publishBookToFirebase(event)">
+    <form onsubmit="publishBookToFirestore(event)">
       
       <div class="form-card">
         <div class="row-2">
           <div class="form-group">
-            <label><i class="fa-solid fa-camera"></i> Photo 1 (Front Cover) *</label>
+            <label><i class="fa-solid fa-camera"></i> Front Cover Photo *</label>
             <input type="file" id="sellImageFront" accept="image/*" style="padding:6px" required>
           </div>
           <div class="form-group">
-            <label><i class="fa-solid fa-camera"></i> Photo 2 (Back / Index) *</label>
+            <label><i class="fa-solid fa-camera"></i> Back / Index Photo *</label>
             <input type="file" id="sellImageBack" accept="image/*" style="padding:6px" required>
           </div>
         </div>
@@ -293,7 +290,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
         </div>
       </div>
 
-      <button type="submit" class="btn-primary"><i class="fa-solid fa-cloud-arrow-up"></i> Publish Listing Instantly</button>
+      <button type="submit" class="btn-primary"><i class="fa-solid fa-cloud-arrow-up"></i> Publish Listing Free (No Card Needed)</button>
     </form>
   </div>
 
@@ -421,7 +418,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     <div class="section-title">App Settings</div>
     <div class="form-card">
       <div class="form-group"><label>App Theme</label><select><option>Light Mode (Default)</option></select></div>
-      <div class="form-group" style="margin-bottom:0"><label>App Version</label><input type="text" value="BookNear v6.0 Pro Edition" disabled></div>
+      <div class="form-group" style="margin-bottom:0"><label>App Version</label><input type="text" value="BookNear v7.0 Free Base64 Edition" disabled></div>
     </div>
   </div>
 
@@ -485,7 +482,6 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
   firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
   const auth = firebase.auth();
-  const storage = firebase.storage();
 
   let isLoggedIn = false;
   let currentUserObject = null;
@@ -514,13 +510,13 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
         {
           title: "Modern & Medieval Hindi Poetry Notes",
           price: "₹249", old: "₹499", author: "Ajmal Mansoori",
-          location: "Zero Road, Prayagraj", whatsapp: "9984919392",
+          location: "Zero Road, Prayagraj", whatsapp: "+919984919392",
           imageUrlFront: "", imageUrlBack: ""
         },
         {
           title: "CUET General Test & Domain Guide",
           price: "₹399", old: "₹799", author: "Learnify Classes",
-          location: "Katra, Prayagraj", whatsapp: "9984919392",
+          location: "Katra, Prayagraj", whatsapp: "+919984919392",
           imageUrlFront: "", imageUrlBack: ""
         }
       ];
@@ -533,7 +529,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
           old: b.oldPrice ? "₹" + b.oldPrice : "₹499",
           author: b.author || "Student Seller",
           location: b.location || "Local Hub",
-          whatsapp: b.whatsapp || "9984919392",
+          whatsapp: b.whatsapp || "+919984919392",
           imageUrlFront: b.imageUrlFront || "",
           imageUrlBack: b.imageUrlBack || ""
         });
@@ -594,7 +590,6 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
   }
 
   let currentBook = 0;
-  let currentImageTab = 'front';
 
   function switchView(viewName) {
     document.querySelectorAll('.view-section').forEach(v => v.classList.remove('active'));
@@ -659,7 +654,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
       submitBtn.textContent = "Register New Account 🚀";
     } else {
       isRegisterMode = false;
-      loginTabBtn.classList.add('active');
+      loginBtn.classList.add('active');
       regBtn.classList.remove('active');
       title.textContent = "Welcome Back";
       subtitle.textContent = "Login securely with Firebase Account";
@@ -729,7 +724,6 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
   }
 
   function displayBookImage(type) {
-    currentImageTab = type;
     const b = booksData[currentBook];
     const mainImgBox = document.getElementById('mainImg');
     const thumbs = document.querySelectorAll('.thumb-item');
@@ -761,7 +755,17 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     qtyElem.textContent = currentQty;
   }
 
-  async function publishBookToFirebase(e) {
+  // Helper function to convert file to Base64 (Free, no Storage plan needed!)
+  function convertFileToBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = error => reject(error);
+    });
+  }
+
+  async function publishBookToFirestore(e) {
     event.preventDefault();
 
     if(!isLoggedIn) {
@@ -785,22 +789,18 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     const frontFile = document.getElementById('sellImageFront').files[0];
     const backFile = document.getElementById('sellImageBack').files[0];
     
-    let frontUrl = "";
-    let backUrl = "";
+    let frontBase64 = "";
+    let backBase64 = "";
 
     try {
       if(frontFile) {
-        const refFront = storage.ref('book_images/' + Date.now() + '_front_' + frontFile.name);
-        const snapFront = await refFront.put(frontFile);
-        frontUrl = await snapFront.ref.getDownloadURL();
+        frontBase64 = await convertFileToBase64(frontFile);
       }
       if(backFile) {
-        const refBack = storage.ref('book_images/' + Date.now() + '_back_' + backFile.name);
-        const snapBack = await refBack.put(backFile);
-        backUrl = await snapBack.ref.getDownloadURL();
+        backBase64 = await convertFileToBase64(backFile);
       }
     } catch(err) {
-      console.warn("Storage upload note:", err.message);
+      console.log("Image conversion note:", err);
     }
 
     db.collection("booksListings").add({
@@ -811,12 +811,12 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
       price: price,
       oldPrice: oldPrice || "499",
       location: fullLoc,
-      imageUrlFront: frontUrl || "",
-      imageUrlBack: backUrl || "",
+      imageUrlFront: frontBase64,
+      imageUrlBack: backBase64,
       sellerEmail: currentUserObject.email,
       createdAt: firebase.firestore.FieldValue.serverTimestamp()
     }).then(() => {
-      alert("Book successfully published live with Front & Back photos!");
+      alert("Book successfully published live with photos (100% Free)!");
       switchView('home');
     }).catch((error) => {
       alert("Error publishing book: " + error.message);
