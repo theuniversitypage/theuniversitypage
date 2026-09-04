@@ -10,7 +10,6 @@
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
 
 <!-- FontAwesome Premium Icons CDN -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -210,15 +209,16 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     </div>
   </div>
 
-  <!-- 4. SELL BOOK VIEW (Requires Login & Includes WhatsApp Number Field) -->
+  <!-- 4. SELL BOOK VIEW (Accessible only via Profile Dashboard) -->
   <div id="sellView" class="view-section">
+    <div class="back-link" onclick="switchView('profile')"><i class="fa-solid fa-arrow-left"></i> Back to Profile</div>
     <div class="section-title">List Your Book / Notes</div>
     <form onsubmit="publishBookToFirebase(event)">
       <div class="form-card">
         <div class="form-group">
-          <label><i class="fa-solid fa-camera"></i> Upload Book Photos *</label>
-          <input type="file" id="sellImages" multiple accept="image/*" style="padding:6px" required>
-          <span style="font-size:9px;color:var(--muted)">Cover and internal pages preview photos</span>
+          <label><i class="fa-solid fa-camera"></i> Upload Book Photo (Optional)</label>
+          <input type="file" id="sellImages" accept="image/*" style="padding:6px">
+          <span style="font-size:9px;color:var(--muted)">Fast upload preview image</span>
         </div>
       </div>
 
@@ -413,7 +413,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     <div class="section-title">App Settings</div>
     <div class="form-card">
       <div class="form-group"><label>App Theme</label><select><option>Light Mode (Default)</option></select></div>
-      <div class="form-group" style="margin-bottom:0"><label>App Version</label><input type="text" value="BookNear v5.0 Secure & Live Edition" disabled></div>
+      <div class="form-group" style="margin-bottom:0"><label>App Version</label><input type="text" value="BookNear v5.2 Optimized Edition" disabled></div>
     </div>
   </div>
 
@@ -451,11 +451,10 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     </div>
   </div>
 
-  <!-- BOTTOM NAVIGATION -->
+  <!-- BOTTOM NAVIGATION (Sell button replaced with Cart/Home/Categories/Profile) -->
   <nav class="bottom-nav">
     <button class="nav-item active" onclick="switchView('home')" id="nav-home"><span class="icon"><i class="fa-solid fa-house"></i></span><span>Home</span></button>
     <button class="nav-item" onclick="switchView('categories')" id="nav-cat"><span class="icon"><i class="fa-solid fa-layer-group"></i></span><span>Categories</span></button>
-    <button class="nav-item" onclick="handleSellClick()" id="nav-sell"><span class="icon"><i class="fa-solid fa-circle-plus"></i></span><span>Sell Book</span></button>
     <button class="nav-item" onclick="switchView('cart')" id="nav-cart"><span class="icon"><i class="fa-solid fa-bag-shopping"></i></span><span>Cart</span></button>
     <button class="nav-item" onclick="handleProfileClick()" id="nav-profile"><span class="icon"><i class="fa-solid fa-user-gear"></i></span><span>Profile</span></button>
   </nav>
@@ -498,7 +497,6 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     }
   });
 
-  // Fetch live books from Firestore including images
   function fetchLiveBooksFromFirebase() {
     db.collection("booksListings").orderBy("createdAt", "desc").onSnapshot((snapshot) => {
       const container = document.getElementById('productGridContainer');
@@ -506,7 +504,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
       booksData = [];
 
       if(snapshot.empty) {
-        container.innerHTML = `<p style="font-size:12px;color:var(--muted);grid-column:span 2;text-align:center;">No books listed yet. Be the first to sell!</p>`;
+        container.innerHTML = `<p style="font-size:12px;color:var(--muted);grid-column:span 2;text-align:center;">No books listed yet. Login and sell from your profile!</p>`;
         return;
       }
 
@@ -587,7 +585,6 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
       document.getElementById('nav-cat').classList.add('active');
     } else if(viewName === 'sell') {
       document.getElementById('sellView').classList.add('active');
-      document.getElementById('nav-sell').classList.add('active');
     } else if(viewName === 'cart') {
       document.getElementById('cartView').classList.add('active');
       document.getElementById('nav-cart').classList.add('active');
@@ -611,16 +608,6 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 
   function handleProfileClick() {
     if(isLoggedIn) { switchView('profile'); } else { switchView('auth'); }
-  }
-
-  // Restrict Sell Book view access to logged-in users only
-  function handleSellClick() {
-    if(isLoggedIn) {
-      switchView('sell');
-    } else {
-      alert("Book list karne ke liye pehle login karna zaroori hai!");
-      switchView('auth');
-    }
   }
 
   let isRegisterMode = false;
@@ -754,12 +741,11 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
       const storageRef = storage.ref('book_images/' + Date.now() + '_' + file.name);
       
       try {
-        alert("Uploading book photo to cloud... Kripya thoda intezaar karein.");
         const snapshot = await storageRef.put(file);
         photoUrl = await snapshot.ref.getDownloadURL();
       } catch(err) {
-        alert("Photo upload failed: " + err.message);
-        return;
+        // Fallback if storage rule fails so listing still publishes without crashing
+        console.warn("Storage upload skipped or failed:", err.message);
       }
     }
 
@@ -775,7 +761,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
       sellerEmail: currentUserObject.email,
       createdAt: firebase.firestore.FieldValue.serverTimestamp()
     }).then(() => {
-      alert("Book successfully published live with photo!");
+      alert("Book successfully published live!");
       switchView('home');
     }).catch((error) => {
       alert("Error publishing book: " + error.message);
