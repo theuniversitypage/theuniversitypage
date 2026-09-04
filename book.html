@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f5f3ee">
+<title>Learnify — India's Student Book Marketplace</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap');
+:root{
+ --bg:#f5f3ee;--bg2:#fbfaf7;--surface:rgba(255,255,255,.85);--surface2:#fff;
+ --text:#111318;--muted:#656a74;--line:rgba(17,19,24,.105);
+ --accent:#a8742c;--accent2:#855a20;--max:480px;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);color:var(--text);display:flex;justify-content:center;min-height:100vh}
+
+.app-container{width:100%;max-width:var(--max);min-height:100vh;background:var(--bg);position:relative;padding-bottom:80px;border-inline:1px solid var(--line)}
+
+.app-header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);padding:10px 16px;display:flex;flex-direction:column;gap:6px}
+.header-top-row{display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:800;font-size:15px;letter-spacing:.06em;cursor:pointer;font-family:monospace}
+.logo i{color:var(--accent);font-style:normal}
+.header-actions{display:flex;gap:6px}
+.icon-btn{width:34px;height:34px;border-radius:10px;border:1px solid var(--line);background:var(--surface2);color:var(--text);display:grid;place-items:center;cursor:pointer;font-size:13px}
+
+.location-bar{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--accent);cursor:pointer;padding:2px 0}
+.location-bar span{color:var(--muted);font-weight:400;font-size:10px}
+
+.view-section{display:none;padding:16px}
+.view-section.active{display:block}
+
+.section-title{font-size:15px;font-weight:800;margin:0 0 12px;display:flex;justify-content:space-between;align-items:center}
+.categories{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}
+.categories::-webkit-scrollbar{display:none}
+.cat-pill{flex:0 0 auto;padding:7px 14px;background:var(--surface2);border:1px solid var(--line);border-radius:20px;font-size:11px;font-weight:600;cursor:pointer}
+.cat-pill:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+.product-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:20px}
+.product-card{background:var(--surface2);border:1px solid var(--line);border-radius:16px;padding:12px;cursor:pointer;transition:.2s;position:relative}
+.product-card:hover{border-color:var(--accent)}
+.p-img{height:120px;background:rgba(168,116,44,.08);border-radius:12px;display:grid;place-items:center;font-size:26px;color:var(--accent);margin-bottom:8px;position:relative}
+.p-tag{position:absolute;top:6px;left:6px;background:rgba(0,0,0,.6);color:#fff;font-size:7px;padding:2px 5px;border-radius:4px}
+.fav-icon{position:absolute;top:6px;right:6px;background:rgba(255,255,255,.9);border-radius:50%;width:24px;height:24px;display:grid;place-items:center;font-size:12px;cursor:pointer}
+.p-loc{font-size:9px;color:var(--accent);font-weight:700;margin-bottom:2px}
+.p-title{font-size:12px;font-weight:700;margin:0 0 4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.price{font-size:13px;font-weight:800;color:var(--accent)}
+.old-price{font-size:10px;color:var(--muted);text-decoration:line-through;margin-left:4px}
+
+.back-link{font-size:12px;color:var(--accent);cursor:pointer;font-weight:700;margin-bottom:14px;display:inline-block}
+.main-img-box{width:100%;height:220px;background:var(--surface2);border:1px solid var(--line);border-radius:16px;display:grid;place-items:center;font-size:50px;color:var(--accent);margin-bottom:10px}
+.thumb-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}
+.thumb-item{height:50px;background:var(--surface2);border:1px solid var(--line);border-radius:10px;display:grid;place-items:center;font-size:12px;cursor:pointer;color:var(--muted)}
+.thumb-item.active, .thumb-item:hover{border-color:var(--accent);color:var(--accent)}
+.book-title{font-size:18px;font-weight:800;margin:0 0 6px}
+.price-box{display:flex;align-items:baseline;gap:8px;margin-bottom:12px}
+.current-rate{font-size:20px;font-weight:800;color:var(--accent)}
+.original-rate{font-size:12px;color:var(--muted);text-decoration:line-through}
+
+.info-card{background:var(--surface2);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:12px;font-size:12px}
+.info-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--line)}
+.info-row:last-child{border-bottom:none}
+.specs-list{list-style:none;padding:0;margin:0;font-size:12px;color:var(--muted)}
+.specs-list li{padding:5px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between}
+.specs-list li span{color:var(--text);font-weight:600}
+
+.cart-list{display:flex;flex-direction:column;gap:12px;margin-bottom:16px}
+.cart-item{background:var(--surface2);border:1px solid var(--line);border-radius:16px;padding:12px;display:flex;gap:12px;align-items:center}
+
+.cat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.cat-card{background:var(--surface2);border:1px solid var(--line);border-radius:16px;padding:16px;text-align:center;cursor:pointer}
+.cat-card:hover{border-color:var(--accent)}
+
+.form-card{background:var(--surface2);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:14px}
+.form-group{margin-bottom:12px}
+.form-group label{display:block;font-size:11px;color:var(--muted);margin-bottom:4px;font-weight:700}
+.form-group input, .form-group select, .form-group textarea{width:100%;padding:10px 12px;background:var(--surface);border:1px solid var(--line);border-radius:10px;color:var(--text);font:inherit;font-size:12px;outline:none}
+.row-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+.menu-list{display:flex;flex-direction:column;gap:8px}
+.menu-item{background:var(--surface2);border:1px solid var(--line);padding:14px 16px;border-radius:14px;display:flex;justify-content:space-between;align-items:center;font-size:13px;cursor:pointer;transition:.2s;font-weight:600}
+.menu-item:hover{border-color:var(--accent)}
+
+/* Location Selection Modal Overlay */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(5px);z-index:200;display:none;align-items:flex-end;justify-content:center}
+.modal-overlay.open{display:flex}
+.modal-content{width:100%;max-width:var(--max);background:var(--bg2);border-top:1px solid var(--line);border-radius:24px 24px 0 0;padding:24px;max-height:80vh;overflow-y:auto}
+.city-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+.city-pill{background:var(--surface2);border:1px solid var(--line);padding:10px;border-radius:12px;font-size:12px;font-weight:700;text-align:center;cursor:pointer;transition:.2s}
+.city-pill:hover{border-color:var(--accent);background:var(--accent);color:#fff}
+
+.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:var(--max);height:65px;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(20px);border-top:1px solid var(--line);display:flex;justify-content:space-around;align-items:center;z-index:60;padding:0 10px}
+.nav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--muted);font-size:9px;font-weight:600;background:none;border:none;cursor:pointer}
+.nav-item span.icon{font-size:18px}
+.nav-item.active, .nav-item:hover{color:var(--accent)}
+</style>
+</head>
+<body>
+
+<div class="app-container">
+
+  <!-- HEADER -->
+  <header class="app-header">
+    <div class="header-top-row">
+      <div class="logo" onclick="switchView('home')">&lt;/&gt; LEARNIFY<i>.</i></div>
+      <div class="header-actions">
+        <button class="icon-btn" onclick="switchView('cart')">🛒</button>
+        <button class="icon-btn" onclick="switchView('profile')">👤</button>
+      </div>
+    </div>
+    <!-- Location bar triggers location selector popup -->
+    <div class="location-bar" onclick="openLocationModal()">
+      📍 <span id="currentLocationText">Prayagraj, Uttar Pradesh</span> (Change ▾)
+    </div>
+  </header>
+
+  <!-- 1. HOME VIEW -->
+  <div id="homeView" class="view-section active">
+    <div class="section-title">Categories <span style="font-size:11px;color:var(--accent);cursor:pointer;" onclick="switchView('categories')">See All</span></div>
+    <div class="categories">
+      <div class="cat-pill" onclick="switchView('categories')">CUET UG</div>
+      <div class="cat-pill" onclick="switchView('categories')">History Notes</div>
+      <div class="cat-pill" onclick="switchView('categories')">UP Board</div>
+      <div class="cat-pill" onclick="switchView('categories')">Semesters</div>
+    </div>
+    <div style="height: 14px;"></div>
+
+    <div class="section-title">Books Available in <span id="feedLocationTitle" style="color:var(--accent)">Prayagraj</span></div>
+    <div class="product-grid" id="productGridContainer">
+      <div class="product-card">
+        <div class="fav-icon" onclick="toggleFavorite(event, 0)">🤍</div>
+        <div class="p-img" onclick="openBookDetail(0)"><span class="p-tag">BESTSELLER</span>📖</div>
+        <div class="p-loc" onclick="openBookDetail(0)">📍 Zero Road, Prayagraj</div>
+        <div class="p-title" onclick="openBookDetail(0)">Modern & Medieval Hindi Poetry Notes</div>
+        <div onclick="openBookDetail(0)"><span class="price">₹249</span><span class="old-price">₹499</span></div>
+      </div>
+      <div class="product-card">
+        <div class="fav-icon" onclick="toggleFavorite(event, 1)">🤍</div>
+        <div class="p-img" onclick="openBookDetail(1)"><span class="p-tag">CUET 2026</span>🎯</div>
+        <div class="p-loc" onclick="openBookDetail(1)">📍 Katra, Prayagraj</div>
+        <div class="p-title" onclick="openBookDetail(1)">CUET General Test & Domain Guide</div>
+        <div onclick="openBookDetail(1)"><span class="price">₹399</span><span class="old-price">₹799</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. BOOK DETAIL VIEW -->
+  <div id="detailView" class="view-section">
+    <div class="back-link" onclick="switchView('home')">← Back to Store</div>
+    
+    <div class="main-img-box" id="mainImg">📖</div>
+    <div class="thumb-row">
+      <div class="thumb-item active" onclick="changeImage(0)">Photo 1</div>
+      <div class="thumb-item" onclick="changeImage(1)">Photo 2</div>
+      <div class="thumb-item" onclick="changeImage(2)">Photo 3</div>
+      <div class="thumb-item" onclick="changeImage(3)">Photo 4</div>
+    </div>
+
+    <h2 class="book-title" id="dTitle">Book Title</h2>
+    <div class="price-box">
+      <span class="current-rate" id="dPrice">₹249</span>
+      <span class="original-rate" id="dOldPrice">₹499</span>
+      <span style="font-size:11px;color:#16a34a;font-weight:700;margin-left:auto">50% OFF</span>
+    </div>
+
+    <div class="info-card">
+      <div class="info-row"><span>📍 Pickup Location</span> <b id="dLoc" style="color:var(--accent)">Zero Road, Prayagraj</b></div>
+      <div class="info-row"><span>📦 Product Net Quantity</span> <b id="dQty">1 Unit (Printed Book)</b></div>
+    </div>
+
+    <div class="section-title" style="font-size:13px;margin-top:14px;">All Specifications</div>
+    <div class="info-card" style="margin-bottom: 20px;">
+      <ul class="specs-list">
+        <li>Author / Creator <span id="dAuthor">Ajmal Mansoori</span></li>
+        <li>Total Pages <span id="dPages">240 Pages</span></li>
+        <li>Language <span id="dLang">Hindi</span></li>
+        <li>Publisher <span id="dPub">Learnify Publications</span></li>
+      </ul>
+    </div>
+
+    <div style="display:flex; gap:10px;">
+      <button style="flex:1; background:var(--surface2); border:1px solid var(--line); padding:12px; border-radius:12px; font-weight:700; cursor:pointer;" onclick="addToCartActive()">Add to Cart 🛒</button>
+      <button style="flex:1; background:#25D366; border:none; color:#fff; padding:12px; border-radius:12px; font-weight:700; cursor:pointer;" onclick="orderOnWhatsApp()">Contact Seller 💬</button>
+    </div>
+  </div>
+
+  <!-- 3. CATEGORIES VIEW -->
+  <div id="categoriesView" class="view-section">
+    <div class="section-title">All Categories</div>
+    <div class="cat-grid">
+      <div class="cat-card" onclick="alert('CUET Section Selected')"><div style="font-size:28px">🎯</div><div style="font-weight:800;font-size:12px;margin-top:6px">CUET UG & PG</div></div>
+      <div class="cat-card" onclick="alert('History Section Selected')"><div style="font-size:28px">📖</div><div style="font-weight:800;font-size:12px;margin-top:6px">History Notes</div></div>
+      <div class="cat-card" onclick="alert('UP Board Section Selected')"><div style="font-size:28px">📚</div><div style="font-weight:800;font-size:12px;margin-top:6px">UP Board</div></div>
+      <div class="cat-card" onclick="alert('Semesters Section Selected')"><div style="font-size:28px">🎓</div><div style="font-weight:800;font-size:12px;margin-top:6px">University Semesters</div></div>
+    </div>
+  </div>
+
+  <!-- 4. SELL BOOK VIEW -->
+  <div id="sellView" class="view-section">
+    <div class="section-title">List Your Book / Notes</div>
+    <form onsubmit="event.preventDefault(); alert('Book listed successfully in your city!'); switchView('home');">
+      <div class="form-card">
+        <div class="form-group">
+          <label>Upload 3 to 4 Book Photos *</label>
+          <input type="file" multiple accept="image/*" style="padding:6px" required>
+        </div>
+      </div>
+      <div class="form-card">
+        <div class="form-group">
+          <label>Book Title *</label>
+          <input type="text" placeholder="e.g., BA History Notes" required>
+        </div>
+        <div class="row-2">
+          <div class="form-group">
+            <label>Author *</label>
+            <input type="text" placeholder="e.g., Ajmal Mansoori" required>
+          </div>
+          <div class="form-group">
+            <label>Category *</label>
+            <select required>
+              <option value="">Choose...</option>
+              <option>CUET UG & PG</option>
+              <option>History Notes</option>
+              <option>UP Board</option>
+              <option>University Semesters</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Pickup Location / City Area *</label>
+          <input type="text" id="sellLocationInput" placeholder="e.g., Mukherjee Nagar, Delhi" required>
+        </div>
+      </div>
+      <div class="form-card">
+        <div class="row-2">
+          <div class="form-group">
+            <label>Original Price (MRP ₹)</label>
+            <input type="number" placeholder="499">
+          </div>
+          <div class="form-group">
+            <label>Selling Price (₹) *</label>
+            <input type="number" placeholder="199" required>
+          </div>
+        </div>
+      </div>
+      <button type="submit" style="width:100%;background:var(--accent);border:none;color:#fff;padding:13px;border-radius:12px;font-weight:800;cursor:pointer;margin-bottom:20px;">Publish Listing 🚀</button>
+    </form>
+  </div>
+
+  <!-- 5. CART VIEW -->
+  <div id="cartView" class="view-section">
+    <div class="section-title">Shopping Cart (1 Item)</div>
+    <div class="cart-list">
+      <div class="cart-item">
+        <div style="font-size:24px">📖</div>
+        <div style="flex:1">
+          <div style="font-size:12px;font-weight:700">Modern & Medieval Hindi Poetry Notes</div>
+          <div style="font-size:13px;font-weight:800;color:var(--accent)">₹249</div>
+        </div>
+      </div>
+    </div>
+    <button style="width:100%;background:#25D366;border:none;color:#fff;padding:12px;border-radius:12px;font-weight:800;cursor:pointer;margin-top:10px" onclick="orderOnWhatsApp()">Checkout via WhatsApp 💬</button>
+  </div>
+
+  <!-- 6. PROFILE VIEW -->
+  <div id="profileView" class="view-section">
+    <div class="form-card" style="text-align:center">
+      <div style="width:60px;height:60px;border-radius:50%;background:var(--accent);color:#fff;font-size:22px;font-weight:800;display:grid;place-items:center;margin:0 auto 10px">AM</div>
+      <h3 style="margin:0 0 4px">Ajmal Mansoori</h3>
+      <p style="margin:0;font-size:12px;color:var(--muted)">ajmal@learnify.com</p>
+    </div>
+    <div class="menu-list">
+      <div class="menu-item" onclick="switchView('orders')"><span>📦 My Orders</span><span>→</span></div>
+      <div class="menu-item" onclick="switchView('favorites')"><span>🤍 My Favorites (Wishlist)</span><span>→</span></div>
+      <div class="menu-item" onclick="switchView('settings')"><span>⚙️ App Settings</span><span>→</span></div>
+      <div class="menu-item" style="color:#dc2626;" onclick="alert('Logged out successfully!')"><span>🚪 Logout</span><span>→</span></div>
+    </div>
+  </div>
+
+  <!-- SUB-VIEWS: ORDERS, FAVORITES, SETTINGS -->
+  <div id="ordersView" class="view-section">
+    <div class="back-link" onclick="switchView('profile')">← Back to Profile</div>
+    <div class="section-title">My Book Orders & History</div>
+    <div class="form-card">
+      <div style="font-size:13px;font-weight:700">Modern & Medieval Hindi Poetry Notes</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:2px">Status: <b style="color:#16a34a">Confirmed / Connecting with Seller</b></div>
+    </div>
+  </div>
+
+  <div id="favoritesView" class="view-section">
+    <div class="back-link" onclick="switchView('profile')">← Back to Profile</div>
+    <div class="section-title">My Favorite Books (Wishlist)</div>
+    <div class="form-card">
+      <div style="font-size:13px;font-weight:700">CUET General Test & Domain Guide</div>
+      <div style="font-size:11px;color:var(--accent);margin-top:2px">₹399 • Katra, Prayagraj</div>
+    </div>
+  </div>
+
+  <div id="settingsView" class="view-section">
+    <div class="back-link" onclick="switchView('profile')">← Back to Profile</div>
+    <div class="section-title">App Settings</div>
+    <div class="form-card">
+      <div class="form-group"><label>App Theme</label><select><option>Light Mode</option></select></div>
+      <div class="form-group" style="margin-bottom:0"><label>App Version</label><input type="text" value="v3.0 Brand Edition (India)" disabled></div>
+    </div>
+  </div>
+
+  <!-- LOCATION SELECTION MODAL (All India Hubs) -->
+  <div class="modal-overlay" id="locationModal">
+    <div class="modal-content">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+        <h3 style="margin:0; font-size:16px;">Select Your City / Student Hub</h3>
+        <button style="background:none; border:none; font-size:16px; cursor:pointer;" onclick="closeLocationModal()">✕</button>
+      </div>
+      <p style="font-size:11px; color:var(--muted); margin-bottom:14px;">Apne area ki books dekhne ke liye apni city select karein:</p>
+      
+      <div class="city-grid">
+        <div class="city-pill" onclick="selectCity('Prayagraj, UP')">📍 Prayagraj</div>
+        <div class="city-pill" onclick="selectCity('Delhi / NCR (Mukherjee Nagar)')">📍 Delhi / NCR</div>
+        <div class="city-pill" onclick="selectCity('Varanasi, UP')">📍 Varanasi</div>
+        <div class="city-pill" onclick="selectCity('Lucknow, UP')">📍 Lucknow</div>
+        <div class="city-pill" onclick="selectCity('Patna, Bihar')">📍 Patna</div>
+        <div class="city-pill" onclick="selectCity('Jaipur, Rajasthan')">📍 Jaipur</div>
+        <div class="city-pill" onclick="selectCity('Kota, Rajasthan')">📍 Kota</div>
+        <div class="city-pill" onclick="selectCity('Indore, MP')">📍 Indore</div>
+      </div>
+      
+      <div style="margin-top: 16px;">
+        <label style="font-size:11px; color:var(--muted); font-weight:700; display:block; margin-bottom:6px;">Or type your custom city/area:</label>
+        <div style="display:flex; gap:8px;">
+          <input type="text" id="customCityInput" placeholder="e.g., Azamgarh, Gorakhpur..." style="flex:1; padding:10px; background:var(--surface); border:1px solid var(--line); border-radius:10px; font-size:12px; outline:none;">
+          <button style="background:var(--accent); border:none; color:#fff; padding:0 14px; border-radius:10px; font-weight:700; cursor:pointer;" onclick="applyCustomCity()">Apply</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM NAVIGATION DOCK -->
+  <nav class="bottom-nav">
+    <button class="nav-item active" onclick="switchView('home')" id="nav-home"><span class="icon">🏠</span><span>Home</span></button>
+    <button class="nav-item" onclick="switchView('categories')" id="nav-cat"><span class="icon">🗂️</span><span>Categories</span></button>
+    <button class="nav-item" onclick="switchView('sell')" id="nav-sell"><span class="icon">➕</span><span>Sell Book</span></button>
+    <button class="nav-item" onclick="switchView('cart')" id="nav-cart"><span class="icon">🛒</span><span>Cart</span></button>
+    <button class="nav-item" onclick="switchView('profile')" id="nav-profile"><span class="icon">👤</span><span>Profile</span></button>
+  </nav>
+
+</div>
+
+<script>
+  const booksData = [
+    {
+      title: "Modern & Medieval Hindi Poetry Notes",
+      price: "₹249", old: "₹499", qty: "1 Book", author: "Ajmal Mansoori", pages: "240 Pages", lang: "Hindi", pub: "Learnify Publications",
+      location: "Prayagraj",
+      images: ["📖", "📜", "✍️", "📚"]
+    },
+    {
+      title: "CUET General Test & Domain Guide",
+      price: "₹399", old: "₹799", qty: "1 Guide Set", author: "Learnify Classes", pages: "380 Pages", lang: "English & Hindi", pub: "CUET Learnify Press",
+      location: "Delhi / NCR",
+      images: ["🎯", "📊", "💡", "📘"]
+    }
+  ];
+
+  let currentBook = 0;
+
+  function switchView(viewName) {
+    document.querySelectorAll('.view-section').forEach(v => v.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+
+    if(viewName === 'home') {
+      document.getElementById('homeView').classList.add('active');
+      document.getElementById('nav-home').classList.add('active');
+    } else if(viewName === 'categories') {
+      document.getElementById('categoriesView').classList.add('active');
+      document.getElementById('nav-cat').classList.add('active');
+    } else if(viewName === 'sell') {
+      document.getElementById('sellView').classList.add('active');
+      document.getElementById('nav-sell').classList.add('active');
+    } else if(viewName === 'cart') {
+      document.getElementById('cartView').classList.add('active');
+      document.getElementById('nav-cart').classList.add('active');
+    } else if(viewName === 'profile') {
+      document.getElementById('profileView').classList.add('active');
+      document.getElementById('nav-profile').classList.add('active');
+    } else if(viewName === 'orders') {
+      document.getElementById('ordersView').classList.add('active');
+    } else if(viewName === 'favorites') {
+      document.getElementById('favoritesView').classList.add('active');
+    } else if(viewName === 'settings') {
+      document.getElementById('settingsView').classList.add('active');
+    } else if(viewName === 'detail') {
+      document.getElementById('detailView').classList.add('active');
+    }
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  function openBookDetail(index) {
+    currentBook = index;
+    const b = booksData[index];
+    document.getElementById('dTitle').textContent = b.title;
+    document.getElementById('dPrice').textContent = b.price;
+    document.getElementById('dOldPrice').textContent = b.old;
+    document.getElementById('dQty').textContent = b.qty;
+    document.getElementById('dAuthor').textContent = b.author;
+    document.getElementById('dPages').textContent = b.pages;
+    document.getElementById('dLang').textContent = b.lang;
+    document.getElementById('dPub').textContent = b.pub;
+    document.getElementById('dLoc').textContent = b.location;
+    changeImage(0);
+    switchView('detail');
+  }
+
+  function changeImage(imgIndex) {
+    const b = booksData[currentBook];
+    document.getElementById('mainImg').textContent = b.images[imgIndex];
+    const thumbs = document.querySelectorAll('.thumb-item');
+    thumbs.forEach((t, i) => {
+      if(i === imgIndex) t.classList.add('active');
+      else t.classList.remove('active');
+    });
+  }
+
+  function toggleFavorite(event, index) {
+    event.stopPropagation();
+    const heart = event.target;
+    if(heart.textContent === '🤍') {
+      heart.textContent = '❤️';
+      alert(booksData[index].title + ' added to your Favorites!');
+    } else {
+      heart.textContent = '🤍';
+      alert('Removed from Favorites.');
+    }
+  }
+
+  function addToCartActive() {
+    alert('Book added to Cart successfully!');
+  }
+
+  /* Location Modal Controls */
+  function openLocationModal() {
+    document.getElementById('locationModal').classList.add('open');
+  }
+  function closeLocationModal() {
+    document.getElementById('locationModal').classList.remove('open');
+  }
+  function selectCity(cityName) {
+    document.getElementById('currentLocationText').textContent = cityName;
+    document.getElementById('feedLocationTitle').textContent = cityName.split(',')[0];
+    closeLocationModal();
+    alert("Location updated to " + cityName + "! Showing available books nearby.");
+  }
+  function applyCustomCity() {
+    const custom = document.getElementById('customCityInput').value;
+    if(custom) {
+      selectCity(custom);
+    } else {
+      alert('Kripya city ka naam enter karein.');
+    }
+  }
+
+  function orderOnWhatsApp() {
+    const b = booksData[currentBook];
+    const message = encodeURIComponent(`Hello, I want to buy this book:\n*${b.title}*\nPrice: ${b.price}\nLocation: ${b.location}`);
+    const phoneNumber = "919876543210"; 
+    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+  }
+</script>
+</body>
+</html>
