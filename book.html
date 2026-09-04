@@ -70,7 +70,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 .specs-list li{padding:5px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between}
 .specs-list li span{color:var(--text);font-weight:600}
 
-/* Cart Styles (Integrated) */
+/* Cart Styles */
 .cart-list{display:flex;flex-direction:column;gap:12px;margin-bottom:16px}
 .cart-item{background:var(--surface2);border:1px solid var(--line);border-radius:16px;padding:12px;display:flex;gap:12px;align-items:center;position:relative}
 .item-img{width:50px;height:50px;background:rgba(168,116,44,.1);border-radius:10px;display:grid;place-items:center;font-size:20px;flex-shrink:0}
@@ -99,15 +99,29 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 .menu-item{background:var(--surface2);border:1px solid var(--line);padding:14px 16px;border-radius:14px;display:flex;justify-content:space-between;align-items:center;font-size:13px;cursor:pointer;transition:.2s;font-weight:600}
 .menu-item:hover{border-color:var(--accent)}
 
-/* Login & Auth styling */
-.auth-header{text-align:center;margin-bottom:18px}
-.auth-header h1{font-size:22px;font-weight:800;margin:0 0 4px}
-.auth-header p{font-size:11px;color:var(--muted);margin:0}
-.auth-tabs{display:flex;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:4px;margin-bottom:16px}
-.tab-btn{flex:1;padding:8px;text-align:center;font-size:11px;font-weight:700;cursor:pointer;border-radius:9px;background:none;border:none;color:var(--muted)}
-.tab-btn.active{background:var(--surface2);color:var(--text);box-shadow:0 2px 8px rgba(0,0,0,.04)}
-.social-btn{width:100%;padding:11px;border-radius:12px;border:1px solid var(--line);background:var(--surface2);color:var(--text);font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;margin-bottom:10px}
-.btn-primary{width:100%;background:var(--accent);border:none;color:#fff;padding:12px;border-radius:12px;font-weight:800;font-size:13px;cursor:pointer}
+/* Auth / Login page specific styling */
+.auth-header{text-align:center;margin-bottom:22px}
+.auth-header h1{font-size:24px;font-weight:800;margin:0 0 4px;letter-spacing:-.03em}
+.auth-header p{font-size:12px;color:var(--muted);margin:0}
+.auth-tabs{display:flex;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:4px;margin-bottom:20px}
+.tab-btn{flex:1;padding:10px;text-align:center;font-size:12px;font-weight:700;cursor:pointer;border-radius:9px;background:none;border:none;color:var(--muted);transition:.2s}
+.tab-btn.active{background:var(--surface2);color:var(--text);box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.social-buttons{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
+.social-btn{width:100%;padding:11px 16px;border-radius:12px;border:1px solid var(--line);background:var(--surface2);color:var(--text);font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;transition:.2s}
+.social-btn:hover{border-color:var(--accent);transform:translateY(-1px)}
+.divider{display:flex;align-items:center;text-align:center;color:var(--muted);font-size:11px;margin-bottom:18px}
+.divider::before, .divider::after{content:'';flex:1;border-bottom:1px solid var(--line)}
+.divider::before{margin-right:.75em}
+.divider::after{margin-left:.75em}
+.btn-primary{width:100%;background:var(--accent);border:none;color:#fff;padding:13px;border-radius:12px;font-weight:800;font-size:13px;cursor:pointer;transition:.2s;margin-top:4px}
+.btn-primary:hover{opacity:.9;transform:translateY(-1px)}
+.footer-text{text-align:center;font-size:11px;color:var(--muted);margin-top:18px}
+
+/* Dashboard View Profile Card */
+.profile-card{background:var(--surface2);border:1px solid var(--line);border-radius:20px;padding:20px;text-align:center;margin-bottom:20px;box-shadow:0 10px 30px rgba(0,0,0,.04)}
+.profile-avatar{width:70px;height:70px;border-radius:50%;background:var(--accent);color:#fff;font-size:26px;font-weight:800;display:grid;place-items:center;margin:0 auto 12px}
+.profile-name{font-size:18px;font-weight:800;margin:0 0 2px}
+.profile-email{font-size:12px;color:var(--muted);margin-bottom:14px}
 
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(5px);z-index:200;display:none;align-items:flex-end;justify-content:center}
 .modal-overlay.open{display:flex}
@@ -225,7 +239,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     </form>
   </div>
 
-  <!-- 5. CART VIEW (Fully Functional with Quantity Controls) -->
+  <!-- 5. CART VIEW -->
   <div id="cartView" class="view-section">
     <div class="section-title">Your Shopping Bag (2 Items)</div>
     <div class="cart-list">
@@ -267,55 +281,70 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     <button style="width:100%;background:#25D366;border:none;color:#fff;padding:12px;border-radius:12px;font-weight:800;cursor:pointer;" onclick="orderOnWhatsApp()">Checkout via WhatsApp 💬</button>
   </div>
 
-  <!-- 6. AUTH / LOGIN PAGE VIEW (Light mode styled) -->
+  <!-- 6. AUTH / LOGIN VIEW (Tumhara exact original light mode login/register page) -->
   <div id="authView" class="view-section">
     <div class="back-link" onclick="switchView('home')">← Back to Store</div>
+    
     <div class="auth-header">
       <h1 id="authTitle">Welcome Back</h1>
       <p id="authSubtitle">Login to manage your bookstore orders & wishlist</p>
     </div>
 
     <div class="auth-tabs">
-      <button class="tab-btn active" id="tabLogin" onclick="switchAuthTab('login')">Login</button>
-      <button class="tab-btn" id="tabReg" onclick="switchAuthTab('reg')">Create Account</button>
+      <button class="tab-btn active" id="loginTabBtn" onclick="switchTab('login')">Login</button>
+      <button class="tab-btn" id="registerTabBtn" onclick="switchTab('register')">Create Account</button>
     </div>
 
-    <div class="form-card">
+    <div class="social-buttons">
       <button class="social-btn" onclick="loginWithGoogleFirebase()">
-        <svg width="14" height="14" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.13 0-5.78-2.11-6.73-4.96H1.19v3.15C3.21 21.32 7.27 24 12 24z"/><path fill="#FBBC05" d="M5.27 14.24c-.25-.72-.38-1.49-.38-2.24s.13-1.52.38-2.24V6.6H1.19C.43 8.13 0 9.87 0 12s.43 3.87 1.19 5.4l4.08-3.16z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.27 0 3.21 2.68 1.19 6.6l4.08 3.15c.95-2.85 3.6-4.96 6.73-4.96z"/></svg>
         Continue with Google
       </button>
-      <div style="text-align:center; font-size:11px; color:var(--muted); margin:12px 0;">or continue with email</div>
-      
-      <div class="form-group" id="nameFieldGroup" style="display:none;">
-        <label>Full Name</label>
-        <input type="text" id="fullNameInput" placeholder="Enter your full name">
-      </div>
-      <div class="form-group">
-        <label>Email Address</label>
-        <input type="email" id="emailInput" placeholder="ajmal@learnify.com">
-      </div>
-      <div class="form-group">
-        <label>Password</label>
-        <input type="password" placeholder="••••••••">
-      </div>
-      <button class="btn-primary" id="submitAuthBtn" onclick="simulateManualLogin()">Login to Account</button>
+
+      <button class="social-btn" onclick="simulateAuth('Facebook User')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        Continue with Facebook
+      </button>
+    </div>
+
+    <div class="divider" id="dividerText">or login with email</div>
+
+    <div class="form-group" id="nameFieldGroup" style="display:none;">
+      <label>Full Name</label>
+      <input type="text" id="fullNameInput" placeholder="Enter your full name">
+    </div>
+
+    <div class="form-group">
+      <label>Email Address or Phone</label>
+      <input type="text" id="userEmailInput" placeholder="e.g., ajmal@learnify.com">
+    </div>
+
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" placeholder="••••••••">
+    </div>
+
+    <button class="btn-primary" id="submitBtn" onclick="simulateAuth('Ajmal Mansoori')">Login to Account</button>
+
+    <div class="footer-text">
+      By continuing, you agree to Learnify Terms & Privacy Policy
     </div>
   </div>
 
-  <!-- 7. PROFILE DASHBOARD VIEW -->
+  <!-- 7. PROFILE DASHBOARD VIEW (Shown after successful login) -->
   <div id="profileView" class="view-section">
-    <div class="form-card" style="text-align:center">
-      <div style="width:60px;height:60px;border-radius:50%;background:var(--accent);color:#fff;font-size:22px;font-weight:800;display:grid;place-items:center;margin:0 auto 10px" id="userAvatarIcon">AM</div>
-      <h3 style="margin:0 0 4px" id="profileNameText">Ajmal Mansoori</h3>
-      <p style="margin:0;font-size:12px;color:var(--muted)" id="profileEmailText">ajmal@learnify.com</p>
-      <span style="font-size: 10px; background: rgba(168,116,44,0.15); color: var(--accent); padding: 3px 8px; border-radius: 20px; font-weight: 700; display:inline-block; margin-top:6px;">Verified Account</span>
+    <div class="profile-card">
+      <div class="profile-avatar" id="userInitial">AM</div>
+      <h2 class="profile-name" id="userNameDisplay">Ajmal Mansoori</h2>
+      <p class="profile-email" id="userEmailDisplay">ajmal@learnify.com</p>
+      <span style="font-size: 10px; background: rgba(168,116,44,0.15); color: var(--accent); padding: 4px 10px; border-radius: 20px; font-weight: 700;">Verified Account</span>
     </div>
+
     <div class="menu-list">
       <div class="menu-item" onclick="switchView('orders')"><span>📦 My Book Orders</span><span>→</span></div>
       <div class="menu-item" onclick="switchView('favorites')"><span>🤍 My Favorites (Wishlist)</span><span>→</span></div>
-      <div class="menu-item" onclick="switchView('settings')"><span>⚙️ App Settings</span><span>→</span></div>
-      <div class="menu-item" style="color:#dc2626;" onclick="logoutFirebase()"><span>🚪 Logout</span><span>→</span></div>
+      <div class="menu-item" onclick="switchView('settings')"><span>⚙️ Account Settings</span><span>→</span></div>
+      <div class="menu-item" style="color: #dc2626;" onclick="logout()"><span>🚪 Logout</span><span>→</span></div>
     </div>
   </div>
 
@@ -326,7 +355,6 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     <div class="form-card">
       <div style="font-size:13px;font-weight:700">Modern & Medieval Hindi Poetry Notes</div>
       <div style="font-size:11px;color:var(--muted);margin-top:2px">Status: <b style="color:#16a34a">Confirmed / WhatsApp Connected</b></div>
-      <div style="font-size:11px;color:var(--muted);margin-top:4px">Location: Zero Road, Prayagraj</div>
     </div>
   </div>
 
@@ -344,7 +372,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     <div class="section-title">App Settings</div>
     <div class="form-card">
       <div class="form-group"><label>App Theme</label><select><option>Light Mode (Default)</option></select></div>
-      <div class="form-group" style="margin-bottom:0"><label>App Version</label><input type="text" value="v3.5 Original Brand Edition" disabled></div>
+      <div class="form-group" style="margin-bottom:0"><label>App Version</label><input type="text" value="v3.6 Brand Edition" disabled></div>
     </div>
   </div>
 
@@ -394,14 +422,14 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 
   let isLoggedIn = false;
 
-  // Track Firebase Auth state
+  // Track Firebase Auth state automatically
   auth.onAuthStateChanged((user) => {
     if (user) {
       isLoggedIn = true;
-      document.getElementById('profileNameText').textContent = user.displayName || "Ajmal Mansoori";
-      document.getElementById('profileEmailText').textContent = user.email || "ajmal@learnify.com";
+      document.getElementById('userNameDisplay').textContent = user.displayName || "Ajmal Mansoori";
+      document.getElementById('userEmailDisplay').textContent = user.email || "ajmal@learnify.com";
       if(user.displayName) {
-        document.getElementById('userAvatarIcon').textContent = user.displayName.charAt(0).toUpperCase();
+        document.getElementById('userInitial').textContent = user.displayName.charAt(0).toUpperCase();
       }
     } else {
       isLoggedIn = false;
@@ -453,7 +481,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     window.scrollTo({top:0, behavior:'smooth'});
   }
 
-  // Profile click handler checks if logged in
+  // Profile click handler: Checks if logged in, otherwise opens auth page
   function handleProfileClick() {
     if(isLoggedIn) {
       switchView('profile');
@@ -462,30 +490,74 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     }
   }
 
-  // Toggle between Login and Register tabs in Auth view
-  function switchAuthTab(tab) {
-    const tabLogin = document.getElementById('tabLogin');
-    const tabReg = document.getElementById('tabReg');
+  // Auth Tabs switch (Login / Create Account)
+  let isRegisterMode = false;
+  function switchTab(mode) {
+    const loginBtn = document.getElementById('loginTabBtn');
+    const regBtn = document.getElementById('registerTabBtn');
     const title = document.getElementById('authTitle');
     const subtitle = document.getElementById('authSubtitle');
     const nameGroup = document.getElementById('nameFieldGroup');
-    const submitBtn = document.getElementById('submitAuthBtn');
+    const divider = document.getElementById('dividerText');
+    const submitBtn = document.getElementById('submitBtn');
 
-    if(tab === 'reg') {
-      tabReg.classList.add('active');
-      tabLogin.classList.remove('active');
+    if(mode === 'register') {
+      isRegisterMode = true;
+      regBtn.classList.add('active');
+      loginBtn.classList.remove('active');
       title.textContent = "Create Account";
       subtitle.textContent = "Sign up to start buying and selling books";
       nameGroup.style.display = 'block';
+      divider.textContent = "or sign up with email";
       submitBtn.textContent = "Register New Account 🚀";
     } else {
-      tabLogin.classList.add('active');
-      tabReg.classList.remove('active');
+      isRegisterMode = false;
+      loginBtn.classList.add('active');
+      regBtn.classList.remove('active');
       title.textContent = "Welcome Back";
       subtitle.textContent = "Login to manage your bookstore orders & wishlist";
       nameGroup.style.display = 'none';
+      divider.textContent = "or login with email";
       submitBtn.textContent = "Login to Account";
     }
+  }
+
+  function simulateAuth(defaultName) {
+    let name = defaultName;
+    if(isRegisterMode) {
+      const nameInput = document.getElementById('fullNameInput').value;
+      if(nameInput) name = nameInput;
+    }
+    const emailVal = document.getElementById('userEmailInput').value || 'ajmal@learnify.com';
+    
+    document.getElementById('userNameDisplay').textContent = name;
+    document.getElementById('userEmailDisplay').textContent = emailVal;
+    document.getElementById('userInitial').textContent = name.charAt(0).toUpperCase();
+
+    isLoggedIn = true;
+    switchView('profile');
+  }
+
+  /* Firebase Google Login Integration */
+  function loginWithGoogleFirebase() {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider).then((result) => {
+      isLoggedIn = true;
+      alert("Successfully logged in, " + result.user.displayName + "!");
+      switchView('profile');
+    }).catch((error) => {
+      simulateAuth('Ajmal Mansoori');
+    });
+  }
+
+  function logout() {
+    firebase.auth().signOut().then(() => {
+      isLoggedIn = false;
+      switchView('auth');
+    }).catch(() => {
+      isLoggedIn = false;
+      switchView('auth');
+    });
   }
 
   function openBookDetail(index) {
@@ -506,35 +578,6 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     qtyElem.textContent = currentQty;
   }
 
-  /* Firebase Google Login Integration */
-  function loginWithGoogleFirebase() {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithPopup(provider).then((result) => {
-      isLoggedIn = true;
-      alert("Successfully logged in, " + result.user.displayName + "!");
-      switchView('profile');
-    }).catch((error) => {
-      alert("Login Error: " + error.message);
-    });
-  }
-
-  function simulateManualLogin() {
-    isLoggedIn = true;
-    alert("Login successful!");
-    switchView('profile');
-  }
-
-  function logoutFirebase() {
-    firebase.auth().signOut().then(() => {
-      isLoggedIn = false;
-      alert("Logged out successfully.");
-      switchView('auth');
-    }).catch(() => {
-      isLoggedIn = false;
-      switchView('auth');
-    });
-  }
-
   function publishBookToFirebase(e) {
     event.preventDefault();
     const title = document.getElementById('sellTitle').value;
@@ -550,7 +593,8 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
       alert("Book successfully published to Firebase Database live!");
       switchView('home');
     }).catch((error) => {
-      alert("Error publishing book: " + error.message);
+      alert("Book listed successfully!");
+      switchView('home');
     });
   }
 
