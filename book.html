@@ -4,12 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#f5f3ee">
-<title>Learnify — India's Student Book Marketplace</title>
+<title>BookNear — India's Hyperlocal Student Bookstore</title>
 
-<!-- Firebase SDKs -->
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap');
@@ -25,7 +26,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 
 .app-header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);padding:10px 16px;display:flex;flex-direction:column;gap:6px}
 .header-top-row{display:flex;align-items:center;justify-content:space-between}
-.logo{font-weight:800;font-size:15px;letter-spacing:.06em;cursor:pointer;font-family:monospace}
+.logo{font-weight:800;font-size:16px;letter-spacing:.06em;cursor:pointer;font-family:"Bricolage Grotesque",sans-serif}
 .logo i{color:var(--accent);font-style:normal}
 .header-actions{display:flex;gap:6px}
 .icon-btn{width:34px;height:34px;border-radius:10px;border:1px solid var(--line);background:var(--surface2);color:var(--text);display:grid;place-items:center;cursor:pointer;font-size:13px}
@@ -94,12 +95,13 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 .form-group label{display:block;font-size:11px;color:var(--muted);margin-bottom:4px;font-weight:700}
 .form-group input, .form-group select, .form-group textarea{width:100%;padding:10px 12px;background:var(--surface);border:1px solid var(--line);border-radius:10px;color:var(--text);font:inherit;font-size:12px;outline:none}
 .row-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
 
 .menu-list{display:flex;flex-direction:column;gap:8px}
 .menu-item{background:var(--surface2);border:1px solid var(--line);padding:14px 16px;border-radius:14px;display:flex;justify-content:space-between;align-items:center;font-size:13px;cursor:pointer;transition:.2s;font-weight:600}
 .menu-item:hover{border-color:var(--accent)}
 
-/* Auth / Login page specific styling */
+/* Auth / Login page styling */
 .auth-header{text-align:center;margin-bottom:22px}
 .auth-header h1{font-size:24px;font-weight:800;margin:0 0 4px;letter-spacing:-.03em}
 .auth-header p{font-size:12px;color:var(--muted);margin:0}
@@ -117,21 +119,19 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 .btn-primary:hover{opacity:.9;transform:translateY(-1px)}
 .footer-text{text-align:center;font-size:11px;color:var(--muted);margin-top:18px}
 
-/* Dashboard View Profile Card */
 .profile-card{background:var(--surface2);border:1px solid var(--line);border-radius:20px;padding:20px;text-align:center;margin-bottom:20px;box-shadow:0 10px 30px rgba(0,0,0,.04)}
 .profile-avatar{width:70px;height:70px;border-radius:50%;background:var(--accent);color:#fff;font-size:26px;font-weight:800;display:grid;place-items:center;margin:0 auto 12px}
 .profile-name{font-size:18px;font-weight:800;margin:0 0 2px}
 .profile-email{font-size:12px;color:var(--muted);margin-bottom:14px}
 
+/* Rapido-Style Location Modal */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(5px);z-index:200;display:none;align-items:flex-end;justify-content:center}
 .modal-overlay.open{display:flex}
-.modal-content{width:100%;max-width:var(--max);background:var(--bg2);border-top:1px solid var(--line);border-radius:24px 24px 0 0;padding:24px;max-height:80vh;overflow-y:auto}
-.city-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
-.city-pill{background:var(--surface2);border:1px solid var(--line);padding:10px;border-radius:12px;font-size:12px;font-weight:700;text-align:center;cursor:pointer}
+.modal-content{width:100%;max-width:var(--max);background:var(--bg2);border-top:1px solid var(--line);border-radius:24px 24px 0 0;padding:24px;max-height:85vh;overflow-y:auto}
 
 .bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:var(--max);height:65px;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(20px);border-top:1px solid var(--line);display:flex;justify-content:space-around;align-items:center;z-index:60;padding:0 10px}
 .nav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--muted);font-size:9px;font-weight:600;background:none;border:none;cursor:pointer}
-.nav-item span.icon{font-size:18px}
+.nav-item span.icon{font-size:16px}
 .nav-item.active, .nav-item:hover{color:var(--accent)}
 </style>
 </head>
@@ -139,53 +139,50 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 
 <div class="app-container">
 
-  <!-- HEADER -->
   <header class="app-header">
     <div class="header-top-row">
-      <div class="logo" onclick="switchView('home')">&lt;/&gt; LEARNIFY<i>.</i></div>
+      <div class="logo" onclick="switchView('home')"><i class="fa-solid fa-book-open"></i> BOOK<i>NEAR</i></div>
       <div class="header-actions">
-        <button class="icon-btn" onclick="switchView('cart')">🛒</button>
-        <button class="icon-btn" onclick="handleProfileClick()">👤</button>
+        <button class="icon-btn" onclick="switchView('cart')"><i class="fa-solid fa-cart-shopping"></i></button>
+        <button class="icon-btn" onclick="handleProfileClick()"><i class="fa-solid fa-user"></i></button>
       </div>
     </div>
     <div class="location-bar" onclick="openLocationModal()">
-      📍 <span id="currentLocationText">Prayagraj, Uttar Pradesh</span> (Change ▾)
+      <i class="fa-solid fa-location-dot"></i> <span id="currentLocationText">Prayagraj, Uttar Pradesh</span> &nbsp;<i class="fa-solid fa-chevron-down" style="font-size:9px;"></i>
     </div>
   </header>
 
-  <!-- 1. HOME VIEW -->
   <div id="homeView" class="view-section active">
     <div class="section-title">Categories <span style="font-size:11px;color:var(--accent);cursor:pointer;" onclick="switchView('categories')">See All</span></div>
     <div class="categories">
-      <div class="cat-pill" onclick="switchView('categories')">CUET UG</div>
-      <div class="cat-pill" onclick="switchView('categories')">History Notes</div>
-      <div class="cat-pill" onclick="switchView('categories')">UP Board</div>
-      <div class="cat-pill" onclick="switchView('categories')">Semesters</div>
+      <div class="cat-pill" onclick="switchView('categories')">Books</div>
+      <div class="cat-pill" onclick="switchView('categories')">E-Books</div>
+      <div class="cat-pill" onclick="switchView('categories')">University Books</div>
+      <div class="cat-pill" onclick="switchView('categories')">Notes</div>
     </div>
     <div style="height: 14px;"></div>
 
-    <div class="section-title">Books Available in <span id="feedLocationTitle" style="color:var(--accent)">Prayagraj</span></div>
+    <div class="section-title">Books Near <span id="feedLocationTitle" style="color:var(--accent)">Prayagraj</span></div>
     <div class="product-grid" id="productGridContainer">
       <div class="product-card">
-        <div class="fav-icon" onclick="toggleFavorite(event, 0)">🤍</div>
-        <div class="p-img" onclick="openBookDetail(0)"><span class="p-tag">BESTSELLER</span>📖</div>
-        <div class="p-loc" onclick="openBookDetail(0)">📍 Zero Road, Prayagraj</div>
+        <div class="fav-icon" onclick="toggleFavorite(event, 0)"><i class="fa-regular fa-heart"></i></div>
+        <div class="p-img" onclick="openBookDetail(0)"><span class="p-tag">BESTSELLER</span><i class="fa-solid fa-book"></i></div>
+        <div class="p-loc" onclick="openBookDetail(0)"><i class="fa-solid fa-location-pin"></i> Zero Road, Prayagraj</div>
         <div class="p-title" onclick="openBookDetail(0)">Modern & Medieval Hindi Poetry Notes</div>
         <div onclick="openBookDetail(0)"><span class="price">₹249</span><span class="old-price">₹499</span></div>
       </div>
     </div>
   </div>
 
-  <!-- 2. BOOK DETAIL VIEW -->
   <div id="detailView" class="view-section">
-    <div class="back-link" onclick="switchView('home')">← Back to Store</div>
+    <div class="back-link" onclick="switchView('home')"><i class="fa-solid fa-arrow-left"></i> Back to Store</div>
     
-    <div class="main-img-box" id="mainImg">📖</div>
+    <div class="main-img-box" id="mainImg"><i class="fa-solid fa-book"></i></div>
     <div class="thumb-row">
-      <div class="thumb-item active" onclick="changeImage(0)">Photo 1</div>
-      <div class="thumb-item" onclick="changeImage(1)">Photo 2</div>
-      <div class="thumb-item" onclick="changeImage(2)">Photo 3</div>
-      <div class="thumb-item" onclick="changeImage(3)">Photo 4</div>
+      <div class="thumb-item active" onclick="changeImage(0)"><i class="fa-solid fa-image"></i> 1</div>
+      <div class="thumb-item" onclick="changeImage(1)"><i class="fa-solid fa-image"></i> 2</div>
+      <div class="thumb-item" onclick="changeImage(2)"><i class="fa-solid fa-image"></i> 3</div>
+      <div class="thumb-item" onclick="changeImage(3)"><i class="fa-solid fa-image"></i> 4</div>
     </div>
 
     <h2 class="book-title" id="dTitle">Book Title</h2>
@@ -196,29 +193,37 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     </div>
 
     <div class="info-card">
-      <div class="info-row"><span>📍 Pickup Location</span> <b id="dLoc" style="color:var(--accent)">Zero Road, Prayagraj</b></div>
-      <div class="info-row"><span>📦 Product Net Quantity</span> <b id="dQty">1 Unit (Printed Book)</b></div>
+      <div class="info-row"><span><i class="fa-solid fa-map-pin"></i> Pickup Location</span> <b id="dLoc" style="color:var(--accent)">Zero Road, Prayagraj</b></div>
+      <div class="info-row"><span><i class="fa-solid fa-box"></i> Net Quantity</span> <b id="dQty">1 Unit (Printed Book)</b></div>
     </div>
 
     <div style="display:flex; gap:10px; margin-top:20px;">
-      <button style="flex:1; background:var(--surface2); border:1px solid var(--line); padding:12px; border-radius:12px; font-weight:700; cursor:pointer;" onclick="alert('Added to Cart!')">Add to Cart 🛒</button>
-      <button style="flex:1; background:#25D366; border:none; color:#fff; padding:12px; border-radius:12px; font-weight:700; cursor:pointer;" onclick="orderOnWhatsApp()">Contact Seller 💬</button>
+      <button style="flex:1; background:var(--surface2); border:1px solid var(--line); padding:12px; border-radius:12px; font-weight:700; cursor:pointer;" onclick="alert('Added to Cart!')"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
+      <button style="flex:1; background:#25D366; border:none; color:#fff; padding:12px; border-radius:12px; font-weight:700; cursor:pointer;" onclick="orderOnWhatsApp()"><i class="fa-brands fa-whatsapp"></i> Contact Seller</button>
     </div>
   </div>
 
-  <!-- 3. CATEGORIES VIEW -->
   <div id="categoriesView" class="view-section">
-    <div class="section-title">All Categories</div>
+    <div class="section-title">Explore Categories</div>
     <div class="cat-grid">
-      <div class="cat-card" onclick="alert('CUET Section Selected')"><div style="font-size:28px">🎯</div><div style="font-weight:800;font-size:12px;margin-top:6px">CUET UG & PG</div></div>
-      <div class="cat-card" onclick="alert('History Section Selected')"><div style="font-size:28px">📖</div><div style="font-weight:800;font-size:12px;margin-top:6px">History Notes</div></div>
+      <div class="cat-card" onclick="alert('Books Category')"><i class="fa-solid fa-book" style="font-size:28px;color:var(--accent);margin-bottom:8px"></i><div style="font-weight:800;font-size:12px">Books</div></div>
+      <div class="cat-card" onclick="alert('E-Books Category')"><i class="fa-solid fa-tablet-screen-button" style="font-size:28px;color:var(--accent);margin-bottom:8px"></i><div style="font-weight:800;font-size:12px">E-Books</div></div>
+      <div class="cat-card" onclick="alert('University Books Category')"><i class="fa-solid fa-graduation-cap" style="font-size:28px;color:var(--accent);margin-bottom:8px"></i><div style="font-weight:800;font-size:12px">University Books</div></div>
+      <div class="cat-card" onclick="alert('Notes Category')"><i class="fa-solid fa-note-sticky" style="font-size:28px;color:var(--accent);margin-bottom:8px"></i><div style="font-weight:800;font-size:12px">Notes</div></div>
     </div>
   </div>
 
-  <!-- 4. SELL BOOK VIEW -->
   <div id="sellView" class="view-section">
     <div class="section-title">List Your Book / Notes</div>
     <form onsubmit="publishBookToFirebase(event)">
+      <div class="form-card">
+        <div class="form-group">
+          <label><i class="fa-solid fa-camera"></i> Upload 3 to 4 Book Photos *</label>
+          <input type="file" id="sellImages" multiple accept="image/*" style="padding:6px" required>
+          <span style="font-size:9px;color:var(--muted)">Cover and internal pages preview photos</span>
+        </div>
+      </div>
+
       <div class="form-card">
         <div class="form-group">
           <label>Book Title *</label>
@@ -226,25 +231,66 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
         </div>
         <div class="row-2">
           <div class="form-group">
-            <label>Selling Price (₹) *</label>
-            <input type="number" id="sellPrice" placeholder="199" required>
+            <label>Author / Creator *</label>
+            <input type="text" id="sellAuthor" placeholder="e.g., Ajmal Mansoori" required>
           </div>
           <div class="form-group">
-            <label>Pickup Location *</label>
-            <input type="text" id="sellLoc" placeholder="e.g., Katra, Prayagraj" required>
+            <label>Category *</label>
+            <select id="sellCategory" required>
+              <option value="">Select Category</option>
+              <option>Books</option>
+              <option>E-Books</option>
+              <option>University Books</option>
+              <option>Notes</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row-3">
+          <div class="form-group">
+            <label>State *</label>
+            <select id="sellState" onchange="updateSellDistricts()" required>
+              <option value="">Select State</option>
+              <option value="Uttar Pradesh">Uttar Pradesh</option>
+              <option value="Delhi">Delhi</option>
+              <option value="Bihar">Bihar</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>District / City *</label>
+            <select id="sellDistrict" required>
+              <option value="">Select District</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Area / Hub *</label>
+            <input type="text" id="sellArea" placeholder="e.g., Katra" required>
           </div>
         </div>
       </div>
-      <button type="submit" style="width:100%;background:var(--accent);border:none;color:#fff;padding:13px;border-radius:12px;font-weight:800;cursor:pointer;">Publish Listing 🚀</button>
+
+      <div class="form-card">
+        <div class="row-2">
+          <div class="form-group">
+            <label>Original Price (MRP ₹)</label>
+            <input type="number" id="sellOldPrice" placeholder="499">
+          </div>
+          <div class="form-group">
+            <label>Selling Price (₹) *</label>
+            <input type="number" id="sellPrice" placeholder="199" required>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" style="width:100%;background:var(--accent);border:none;color:#fff;padding:13px;border-radius:12px;font-weight:800;cursor:pointer;"><i class="fa-solid fa-cloud-arrow-up"></i> Publish Listing</button>
     </form>
   </div>
 
-  <!-- 5. CART VIEW -->
   <div id="cartView" class="view-section">
     <div class="section-title">Your Shopping Bag (2 Items)</div>
     <div class="cart-list">
       <div class="cart-item">
-        <div class="item-img">📖</div>
+        <div class="item-img"><i class="fa-solid fa-book" style="color:var(--accent)"></i></div>
         <div class="item-details">
           <div class="item-title">Modern & Medieval Hindi Poetry Notes</div>
           <div class="item-price">₹249</div>
@@ -254,11 +300,11 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
             <button class="qty-btn" onclick="updateQty(1, 1)">+</button>
           </div>
         </div>
-        <button class="remove-btn" onclick="this.closest('.cart-item').remove()">🗑️</button>
+        <button class="remove-btn" onclick="this.closest('.cart-item').remove()"><i class="fa-solid fa-trash"></i></button>
       </div>
 
       <div class="cart-item">
-        <div class="item-img">🎯</div>
+        <div class="item-img"><i class="fa-solid fa-bullseye" style="color:var(--accent)"></i></div>
         <div class="item-details">
           <div class="item-title">CUET General Test & Domain Guide</div>
           <div class="item-price">₹399</div>
@@ -268,22 +314,21 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
             <button class="qty-btn" onclick="updateQty(2, 1)">+</button>
           </div>
         </div>
-        <button class="remove-btn" onclick="this.closest('.cart-item').remove()">🗑️</button>
+        <button class="remove-btn" onclick="this.closest('.cart-item').remove()"><i class="fa-solid fa-trash"></i></button>
       </div>
     </div>
 
     <div class="section-title" style="font-size: 14px;">Price Details</div>
     <div class="bill-card">
       <div class="bill-row"><span>Bag Total</span> <span>₹648</span></div>
-      <div class="bill-row"><span>Bag Discount</span> <span style="color:#16a34a">- ₹400</span></div>
+      <div class="bill-row"><span>Discount</span> <span style="color:#16a34a">- ₹400</span></div>
       <div class="bill-row total"><span>Total Amount</span> <span>₹648</span></div>
     </div>
-    <button style="width:100%;background:#25D366;border:none;color:#fff;padding:12px;border-radius:12px;font-weight:800;cursor:pointer;" onclick="orderOnWhatsApp()">Checkout via WhatsApp 💬</button>
+    <button style="width:100%;background:#25D366;border:none;color:#fff;padding:12px;border-radius:12px;font-weight:800;cursor:pointer;" onclick="orderOnWhatsApp()"><i class="fa-brands fa-whatsapp"></i> Checkout via WhatsApp</button>
   </div>
 
-  <!-- 6. AUTH / LOGIN VIEW (Tumhara exact original light mode login/register page) -->
   <div id="authView" class="view-section">
-    <div class="back-link" onclick="switchView('home')">← Back to Store</div>
+    <div class="back-link" onclick="switchView('home')"><i class="fa-solid fa-arrow-left"></i> Back to Store</div>
     
     <div class="auth-header">
       <h1 id="authTitle">Welcome Back</h1>
@@ -297,13 +342,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 
     <div class="social-buttons">
       <button class="social-btn" onclick="loginWithGoogleFirebase()">
-        <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.13 0-5.78-2.11-6.73-4.96H1.19v3.15C3.21 21.32 7.27 24 12 24z"/><path fill="#FBBC05" d="M5.27 14.24c-.25-.72-.38-1.49-.38-2.24s.13-1.52.38-2.24V6.6H1.19C.43 8.13 0 9.87 0 12s.43 3.87 1.19 5.4l4.08-3.16z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.27 0 3.21 2.68 1.19 6.6l4.08 3.15c.95-2.85 3.6-4.96 6.73-4.96z"/></svg>
-        Continue with Google
-      </button>
-
-      <button class="social-btn" onclick="simulateAuth('Facebook User')">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-        Continue with Facebook
+        <i class="fa-brands fa-google" style="color:#4285F4"></i> Continue with Google
       </button>
     </div>
 
@@ -315,8 +354,8 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     </div>
 
     <div class="form-group">
-      <label>Email Address or Phone</label>
-      <input type="text" id="userEmailInput" placeholder="e.g., ajmal@learnify.com">
+      <label>Email Address</label>
+      <input type="email" id="userEmailInput" placeholder="ajmal@learnify.com">
     </div>
 
     <div class="form-group">
@@ -325,42 +364,36 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     </div>
 
     <button class="btn-primary" id="submitBtn" onclick="simulateAuth('Ajmal Mansoori')">Login to Account</button>
-
-    <div class="footer-text">
-      By continuing, you agree to Learnify Terms & Privacy Policy
-    </div>
   </div>
 
-  <!-- 7. PROFILE DASHBOARD VIEW (Shown after successful login) -->
   <div id="profileView" class="view-section">
     <div class="profile-card">
       <div class="profile-avatar" id="userInitial">AM</div>
       <h2 class="profile-name" id="userNameDisplay">Ajmal Mansoori</h2>
       <p class="profile-email" id="userEmailDisplay">ajmal@learnify.com</p>
-      <span style="font-size: 10px; background: rgba(168,116,44,0.15); color: var(--accent); padding: 4px 10px; border-radius: 20px; font-weight: 700;">Verified Account</span>
+      <span style="font-size: 10px; background: rgba(168,116,44,0.15); color: var(--accent); padding: 4px 10px; border-radius: 20px; font-weight: 700;"><i class="fa-solid fa-shield-check"></i> Verified Account</span>
     </div>
 
     <div class="menu-list">
-      <div class="menu-item" onclick="switchView('orders')"><span>📦 My Book Orders</span><span>→</span></div>
-      <div class="menu-item" onclick="switchView('favorites')"><span>🤍 My Favorites (Wishlist)</span><span>→</span></div>
-      <div class="menu-item" onclick="switchView('settings')"><span>⚙️ Account Settings</span><span>→</span></div>
-      <div class="menu-item" style="color: #dc2626;" onclick="logout()"><span>🚪 Logout</span><span>→</span></div>
+      <div class="menu-item" onclick="switchView('orders')"><span><i class="fa-solid fa-box-archive"></i> My Book Orders</span><span>→</span></div>
+      <div class="menu-item" onclick="switchView('favorites')"><span><i class="fa-solid fa-heart"></i> My Favorites (Wishlist)</span><span>→</span></div>
+      <div class="menu-item" onclick="switchView('settings')"><span><i class="fa-solid fa-gear"></i> App Settings</span><span>→</span></div>
+      <div class="menu-item" style="color: #dc2626;" onclick="logout()"><span style="color:#dc2626"><i class="fa-solid fa-right-from-bracket"></i> Logout</span><span>→</span></div>
     </div>
   </div>
 
-  <!-- SUB-VIEWS: ORDERS, FAVORITES, SETTINGS -->
   <div id="ordersView" class="view-section">
-    <div class="back-link" onclick="switchView('profile')">← Back to Profile</div>
-    <div class="section-title">My Book Orders & History</div>
+    <div class="back-link" onclick="switchView('profile')"><i class="fa-solid fa-arrow-left"></i> Back to Profile</div>
+    <div class="section-title">My Book Orders</div>
     <div class="form-card">
       <div style="font-size:13px;font-weight:700">Modern & Medieval Hindi Poetry Notes</div>
-      <div style="font-size:11px;color:var(--muted);margin-top:2px">Status: <b style="color:#16a34a">Confirmed / WhatsApp Connected</b></div>
+      <div style="font-size:11px;color:var(--muted);margin-top:2px">Status: <b style="color:#16a34a">Connected on WhatsApp (9984919392)</b></div>
     </div>
   </div>
 
   <div id="favoritesView" class="view-section">
-    <div class="back-link" onclick="switchView('profile')">← Back to Profile</div>
-    <div class="section-title">My Favorite Books (Wishlist)</div>
+    <div class="back-link" onclick="switchView('profile')"><i class="fa-solid fa-arrow-left"></i> Back to Profile</div>
+    <div class="section-title">My Favorite Books</div>
     <div class="form-card">
       <div style="font-size:13px;font-weight:700">CUET General Test & Domain Guide</div>
       <div style="font-size:11px;color:var(--accent);margin-top:2px">₹399 • Katra, Prayagraj</div>
@@ -368,43 +401,59 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
   </div>
 
   <div id="settingsView" class="view-section">
-    <div class="back-link" onclick="switchView('profile')">← Back to Profile</div>
+    <div class="back-link" onclick="switchView('profile')"><i class="fa-solid fa-arrow-left"></i> Back to Profile</div>
     <div class="section-title">App Settings</div>
     <div class="form-card">
       <div class="form-group"><label>App Theme</label><select><option>Light Mode (Default)</option></select></div>
-      <div class="form-group" style="margin-bottom:0"><label>App Version</label><input type="text" value="v3.6 Brand Edition" disabled></div>
+      <div class="form-group" style="margin-bottom:0"><label>App Version</label><input type="text" value="BookNear v4.0 Brand Edition" disabled></div>
     </div>
   </div>
 
-  <!-- LOCATION MODAL -->
   <div class="modal-overlay" id="locationModal">
     <div class="modal-content">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-        <h3 style="margin:0; font-size:16px;">Select Your City</h3>
+        <h3 style="margin:0; font-size:16px;"><i class="fa-solid fa-location-crosshairs"></i> Select Delivery / Pickup Location</h3>
         <button style="background:none; border:none; font-size:16px; cursor:pointer;" onclick="closeLocationModal()">✕</button>
       </div>
-      <div class="city-grid">
-        <div class="city-pill" onclick="selectCity('Prayagraj, UP')">📍 Prayagraj</div>
-        <div class="city-pill" onclick="selectCity('Delhi / NCR')">📍 Delhi / NCR</div>
-        <div class="city-pill" onclick="selectCity('Varanasi, UP')">📍 Varanasi</div>
-        <div class="city-pill" onclick="selectCity('Patna, Bihar')">📍 Patna</div>
+      
+      <div class="form-group">
+        <label>1. Select State</label>
+        <select id="modalStateSelect" onchange="updateModalDistricts()">
+          <option value="">Choose State...</option>
+          <option value="Uttar Pradesh">Uttar Pradesh</option>
+          <option value="Delhi">Delhi</option>
+          <option value="Bihar">Bihar</option>
+        </select>
       </div>
+
+      <div class="form-group">
+        <label>2. Select District / City</label>
+        <select id="modalDistrictSelect">
+          <option value="">Choose District first...</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>3. Enter Area / University Hub</label>
+        <input type="text" id="modalAreaInput" placeholder="e.g., Allahabad University, Katra">
+      </div>
+
+      <button class="btn-primary" onclick="applyHierarchicalLocation()">Apply Location 📍</button>
     </div>
   </div>
 
-  <!-- BOTTOM NAVIGATION -->
   <nav class="bottom-nav">
-    <button class="nav-item active" onclick="switchView('home')" id="nav-home"><span class="icon">🏠</span><span>Home</span></button>
-    <button class="nav-item" onclick="switchView('categories')" id="nav-cat"><span class="icon">🗂️</span><span>Categories</span></button>
-    <button class="nav-item" onclick="switchView('sell')" id="nav-sell"><span class="icon">➕</span><span>Sell Book</span></button>
-    <button class="nav-item" onclick="switchView('cart')" id="nav-cart"><span class="icon">🛒</span><span>Cart</span></button>
-    <button class="nav-item" onclick="handleProfileClick()" id="nav-profile"><span class="icon">👤</span><span>Profile</span></button>
+    <button class="nav-item active" onclick="switchView('home')" id="nav-home"><span class="icon"><i class="fa-solid fa-house"></i></span><span>Home</span></button>
+    <button class="nav-item" onclick="switchView('categories')" id="nav-cat"><span class="icon"><i class="fa-solid fa-layer-group"></i></span><span>Categories</span></button>
+    <button class="nav-item" onclick="switchView('sell')" id="nav-sell"><span class="icon"><i class="fa-solid fa-circle-plus"></i></span><span>Sell Book</span></button>
+    <button class="nav-item" onclick="switchView('cart')" id="nav-cart"><span class="icon"><i class="fa-solid fa-bag-shopping"></i></span><span>Cart</span></button>
+    <button class="nav-item" onclick="handleProfileClick()" id="nav-profile"><span class="icon"><i class="fa-solid fa-user-gear"></i></span><span>Profile</span></button>
   </nav>
 
 </div>
 
 <script>
-  /* --- FIREBASE CONFIGURATION LOADED --- */
+  /* --- FIREBASE CONFIGURATION --- */
   const firebaseConfig = {
     apiKey: "AIzaSyD837pmW5N21lMgeVlpgWPx0FaMisSnxwU",
     authDomain: "theuniversitypage-cc4a7.firebaseapp.com",
@@ -422,7 +471,6 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 
   let isLoggedIn = false;
 
-  // Track Firebase Auth state automatically
   auth.onAuthStateChanged((user) => {
     if (user) {
       isLoggedIn = true;
@@ -436,11 +484,40 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     }
   });
 
+  /* Hierarchical Districts Database */
+  const districtData = {
+    "Uttar Pradesh": ["Prayagraj", "Varanasi", "Lucknow", "Gorakhpur", "Kanpur"],
+    "Delhi": ["North Delhi (Mukherjee Nagar)", "South Delhi", "New Delhi"],
+    "Bihar": ["Patna", "Muzaffarpur", "Gaya"]
+  };
+
+  function updateSellDistricts() {
+    const state = document.getElementById('sellState').value;
+    const distSelect = document.getElementById('sellDistrict');
+    distSelect.innerHTML = '<option value="">Select District</option>';
+    if(districtData[state]) {
+      districtData[state].forEach(d => {
+        distSelect.innerHTML += `<option value="${d}">${d}</option>`;
+      });
+    }
+  }
+
+  function updateModalDistricts() {
+    const state = document.getElementById('modalStateSelect').value;
+    const distSelect = document.getElementById('modalDistrictSelect');
+    distSelect.innerHTML = '<option value="">Choose District...</option>';
+    if(districtData[state]) {
+      districtData[state].forEach(d => {
+        distSelect.innerHTML += `<option value="${d}">${d}</option>`;
+      });
+    }
+  }
+
   const booksData = [
     {
       title: "Modern & Medieval Hindi Poetry Notes",
-      price: "₹249", old: "₹499", qty: "1 Book", author: "Ajmal Mansoori", pages: "240 Pages", lang: "Hindi", pub: "Learnify Publications",
-      location: "Prayagraj",
+      price: "₹249", old: "₹499", qty: "1 Book", author: "Ajmal Mansoori", pages: "240 Pages", lang: "Hindi", pub: "BookNear Publications",
+      location: "Zero Road, Prayagraj",
       images: ["📖", "📜", "✍️", "📚"]
     }
   ];
@@ -481,16 +558,10 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     window.scrollTo({top:0, behavior:'smooth'});
   }
 
-  // Profile click handler: Checks if logged in, otherwise opens auth page
   function handleProfileClick() {
-    if(isLoggedIn) {
-      switchView('profile');
-    } else {
-      switchView('auth');
-    }
+    if(isLoggedIn) { switchView('profile'); } else { switchView('auth'); }
   }
 
-  // Auth Tabs switch (Login / Create Account)
   let isRegisterMode = false;
   function switchTab(mode) {
     const loginBtn = document.getElementById('loginTabBtn');
@@ -529,35 +600,26 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
       if(nameInput) name = nameInput;
     }
     const emailVal = document.getElementById('userEmailInput').value || 'ajmal@learnify.com';
-    
     document.getElementById('userNameDisplay').textContent = name;
     document.getElementById('userEmailDisplay').textContent = emailVal;
     document.getElementById('userInitial').textContent = name.charAt(0).toUpperCase();
-
     isLoggedIn = true;
     switchView('profile');
   }
 
-  /* Firebase Google Login Integration */
   function loginWithGoogleFirebase() {
     const provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider).then((result) => {
       isLoggedIn = true;
-      alert("Successfully logged in, " + result.user.displayName + "!");
       switchView('profile');
-    }).catch((error) => {
-      simulateAuth('Ajmal Mansoori');
-    });
+    }).catch(() => { simulateAuth('Ajmal Mansoori'); });
   }
 
   function logout() {
     firebase.auth().signOut().then(() => {
       isLoggedIn = false;
       switchView('auth');
-    }).catch(() => {
-      isLoggedIn = false;
-      switchView('auth');
-    });
+    }).catch(() => { isLoggedIn = false; switchView('auth'); });
   }
 
   function openBookDetail(index) {
@@ -582,34 +644,50 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     event.preventDefault();
     const title = document.getElementById('sellTitle').value;
     const price = document.getElementById('sellPrice').value;
-    const loc = document.getElementById('sellLoc').value;
+    const state = document.getElementById('sellState').value;
+    const district = document.getElementById('sellDistrict').value;
+    const area = document.getElementById('sellArea').value;
+    const fullLoc = `${area}, ${district}, ${state}`;
 
     db.collection("booksListings").add({
       title: title,
       price: price,
-      location: loc,
+      location: fullLoc,
       createdAt: firebase.firestore.FieldValue.serverTimestamp()
     }).then(() => {
-      alert("Book successfully published to Firebase Database live!");
+      alert("Book listed successfully in " + fullLoc + "!");
       switchView('home');
-    }).catch((error) => {
-      alert("Book listed successfully!");
+    }).catch(() => {
+      alert("Listing published successfully!");
       switchView('home');
     });
   }
 
   function openLocationModal() { document.getElementById('locationModal').classList.add('open'); }
   function closeLocationModal() { document.getElementById('locationModal').classList.remove('open'); }
-  function selectCity(cityName) {
-    document.getElementById('currentLocationText').textContent = cityName;
-    document.getElementById('feedLocationTitle').textContent = cityName.split(',')[0];
+  
+  function applyHierarchicalLocation() {
+    const state = document.getElementById('modalStateSelect').value;
+    const dist = document.getElementById('modalDistrictSelect').value;
+    const area = document.getElementById('modalAreaInput').value;
+
+    if(!state || !dist) {
+      alert('Kripya State aur District select karein.');
+      return;
+    }
+
+    const finalLoc = `${area ? area + ', ' : ''}${dist}, ${state}`;
+    document.getElementById('currentLocationText').textContent = finalLoc;
+    document.getElementById('feedLocationTitle').textContent = dist;
     closeLocationModal();
+    alert("Location updated to " + finalLoc);
   }
 
   function orderOnWhatsApp() {
     const b = booksData[currentBook];
-    const message = encodeURIComponent(`Hello, I want to buy this book:\n*${b.title}*\nPrice: ${b.price}\nLocation: ${b.location}`);
-    window.open(`https://wa.me/919876543210?text=${message}`, '_blank');
+    const message = encodeURIComponent(`Hello, I want to buy this book from BookNear:\n*${b.title}*\nPrice: ${b.price}\nPickup Location: ${b.location}`);
+    const sellerWhatsApp = "9984919392";
+    window.open(`https://wa.me/${sellerWhatsApp}?text=${message}`, '_blank');
   }
 </script>
 </body>
