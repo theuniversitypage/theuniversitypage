@@ -20,129 +20,121 @@
 :root[data-theme="light"]{
  --bg:#f4f1ea; --bg2:#faf8f5; --surface:rgba(255,255,255,.95); --surface2:#ffffff;
  --text:#121417; --muted:#646a73; --line:rgba(18,20,23,.08);
- --accent:#c28c38; --accent-hover:#a0712a; --max:480px;
+ --accent:#c28c38; --accent-hover:#a0712a; --max:1200px;
 }
 :root[data-theme="dark"]{
  --bg:#0f1115; --bg2:#161920; --surface:rgba(22,25,32,.95); --surface2:#1a1e26;
  --text:#f3f4f6; --muted:#9ca3af; --line:rgba(243,244,246,.08);
- --accent:#d4a373; --accent-hover:#bc8a5f; --max:480px;
+ --accent:#d4a373; --accent-hover:#bc8a5f; --max:1200px;
 }
 
 *{box-sizing:border-box}
-body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);color:var(--text);display:flex;justify-content:center;align-items:center;min-height:100vh;transition:background .3s,color .3s}
+body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);color:var(--text);display:flex;justify-content:center;min-height:100vh;transition:background .3s,color .3s}
 
-/* Fully Responsive App Shell (Looks great on mobile & centered on desktop) */
-.app-container{width:100%;max-width:var(--max);min-height:100vh;background:var(--bg);position:relative;padding-bottom:80px;border-inline:1px solid var(--line);box-shadow:0 0 50px rgba(0,0,0,.08)}
+/* Fully Responsive App Shell (Full screen website layout on desktop, mobile app view on phones) */
+.app-container{width:100%;max-width:var(--max);min-height:100vh;background:var(--bg);position:relative;padding-bottom:90px;border-inline:1px solid var(--line);box-shadow:0 0 60px rgba(0,0,0,.06)}
 
-@media(min-width: 481px) {
-  body { padding: 20px 0; }
-  .app-container { min-height: 90vh; border-radius: 32px; border: 1px solid var(--line); overflow: hidden; }
-}
-
-.app-header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);padding:12px 16px;display:flex;flex-direction:column;gap:6px}
-.header-top-row{display:flex;align-items:center;justify-content:space-between}
-.logo{font-weight:800;font-size:18px;letter-spacing:.06em;cursor:pointer}
+.app-header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+.header-left{display:flex;flex-direction:column;gap:4px}
+.logo{font-weight:800;font-size:20px;letter-spacing:.06em;cursor:pointer}
 .logo i{color:var(--accent);font-style:normal}
-.header-actions{display:flex;gap:8px}
-.icon-btn{width:38px;height:38px;border-radius:12px;border:1px solid var(--line);background:var(--surface2);color:var(--text);display:grid;place-items:center;cursor:pointer;font-size:13px;box-shadow:0 2px 8px rgba(0,0,0,.03);transition:.2s}
+.header-actions{display:flex;gap:12px;align-items:center}
+.icon-btn{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--surface2);color:var(--text);display:grid;place-items:center;cursor:pointer;font-size:14px;box-shadow:0 2px 8px rgba(0,0,0,.03);transition:.2s}
 .icon-btn:hover{border-color:var(--accent)}
 
-.location-bar{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--accent);cursor:pointer;padding:2px 0}
-.location-bar span{color:var(--muted);font-weight:400;font-size:10px}
+.location-bar{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--accent);cursor:pointer}
+.location-bar span{color:var(--muted);font-weight:400;font-size:11px}
 
-.view-section{display:none;padding:16px}
+.view-section{display:none;padding:24px}
 .view-section.active{display:block}
 
-.section-title{font-size:15px;font-weight:800;margin:0 0 12px;display:flex;justify-content:space-between;align-items:center}
-.categories{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}
+.section-title{font-size:18px;font-weight:800;margin:0 0 14px;display:flex;justify-content:space-between;align-items:center}
+.categories{display:flex;gap:12px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none}
 .categories::-webkit-scrollbar{display:none}
-.cat-pill{flex:0 0 auto;padding:8px 16px;background:var(--surface2);border:1px solid var(--line);border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.02);transition:.2s}
-.cat-pill:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.cat-pill{flex:0 0 auto;padding:10px 20px;background:var(--surface2);border:1px solid var(--line);border-radius:24px;font-size:12px;font-weight:700;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.02);transition:.2s}
+.cat-pill:hover, .cat-pill.active{background:var(--accent);color:#fff;border-color:var(--accent)}
 
-.product-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:20px}
-.product-card{background:var(--surface2);border:1px solid var(--line);border-radius:18px;padding:12px;cursor:pointer;transition:.2s;position:relative;box-shadow:0 4px 15px rgba(0,0,0,.02)}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));gap:16px;margin-bottom:24px}
+.product-card{background:var(--surface2);border:1px solid var(--line);border-radius:18px;padding:14px;cursor:pointer;transition:.2s;position:relative;box-shadow:0 4px 15px rgba(0,0,0,.02)}
 .product-card:hover{border-color:var(--accent);transform:translateY(-2px)}
-.p-img{height:125px;background:rgba(194,140,56,.08);border-radius:14px;display:grid;place-items:center;font-size:28px;color:var(--accent);margin-bottom:8px;position:relative;overflow:hidden}
-.p-tag{position:absolute;top:6px;left:6px;background:rgba(18,20,23,.8);color:#fff;font-size:7px;padding:2px 6px;border-radius:4px;font-weight:700;z-index:2}
-.fav-icon{position:absolute;top:6px;right:6px;background:var(--surface2);border-radius:50%;width:26px;height:26px;display:grid;place-items:center;font-size:12px;cursor:pointer;box-shadow:0 2px 5px rgba(0,0,0,.05);z-index:2}
-.p-loc{font-size:9px;color:var(--accent);font-weight:700;margin-bottom:2px}
-.p-title{font-size:12px;font-weight:700;margin:0 0 4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.price{font-size:14px;font-weight:800;color:var(--accent)}
-.old-price{font-size:10px;color:var(--muted);text-decoration:line-through;margin-left:4px}
+.p-img{height:150px;background:rgba(194,140,56,.08);border-radius:14px;display:grid;place-items:center;font-size:32px;color:var(--accent);margin-bottom:10px;position:relative;overflow:hidden}
+.p-tag{position:absolute;top:8px;left:8px;background:rgba(18,20,23,.8);color:#fff;font-size:8px;padding:3px 8px;border-radius:4px;font-weight:700;z-index:2}
+.fav-icon{position:absolute;top:8px;right:8px;background:var(--surface2);border-radius:50%;width:28px;height:28px;display:grid;place-items:center;font-size:12px;cursor:pointer;box-shadow:0 2px 5px rgba(0,0,0,.05);z-index:2}
+.p-loc{font-size:10px;color:var(--accent);font-weight:700;margin-bottom:3px}
+.p-title{font-size:13px;font-weight:700;margin:0 0 6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.price{font-size:15px;font-weight:800;color:var(--accent)}
+.old-price{font-size:11px;color:var(--muted);text-decoration:line-through;margin-left:6px}
 
-.back-link{font-size:12px;color:var(--accent);cursor:pointer;font-weight:700;margin-bottom:14px;display:inline-block}
-.main-img-box{width:100%;height:230px;background:var(--surface2);border:1px solid var(--line);border-radius:18px;display:grid;place-items:center;font-size:50px;color:var(--accent);margin-bottom:10px;box-shadow:0 4px 15px rgba(0,0,0,.02);overflow:hidden}
-.thumb-row{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:16px}
-.thumb-item{height:46px;background:var(--surface2);border:1px solid var(--line);border-radius:12px;display:grid;place-items:center;font-size:11px;cursor:pointer;color:var(--muted);font-weight:700;transition:.2s}
+.back-link{font-size:13px;color:var(--accent);cursor:pointer;font-weight:700;margin-bottom:16px;display:inline-block}
+.main-img-box{width:100%;max-width:400px;height:280px;background:var(--surface2);border:1px solid var(--line);border-radius:18px;display:grid;place-items:center;font-size:50px;color:var(--accent);margin:0 auto 12px;box-shadow:0 4px 15px rgba(0,0,0,.02);overflow:hidden}
+.thumb-row{display:flex;justify-content:center;gap:12px;margin-bottom:20px}
+.thumb-item{padding:8px 16px;background:var(--surface2);border:1px solid var(--line);border-radius:12px;font-size:12px;cursor:pointer;color:var(--muted);font-weight:700;transition:.2s}
 .thumb-item.active, .thumb-item:hover{border-color:var(--accent);color:var(--accent);background:rgba(194,140,56,.06)}
-.book-title{font-size:18px;font-weight:800;margin:0 0 6px}
-.price-box{display:flex;align-items:baseline;gap:8px;margin-bottom:12px}
-.current-rate{font-size:22px;font-weight:800;color:var(--accent)}
-.original-rate{font-size:12px;color:var(--muted);text-decoration:line-through}
 
-.info-card{background:var(--surface2);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:12px;font-size:12px;box-shadow:0 2px 8px rgba(0,0,0,.02)}
-.info-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line)}
+.info-card{background:var(--surface2);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:16px;font-size:13px;box-shadow:0 2px 8px rgba(0,0,0,.02)}
+.info-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line)}
 .info-row:last-child{border-bottom:none}
 
-.cart-list{display:flex;flex-direction:column;gap:12px;margin-bottom:16px}
-.cart-item{background:var(--surface2);border:1px solid var(--line);border-radius:18px;padding:14px;display:flex;gap:12px;align-items:center;position:relative;box-shadow:0 2px 8px rgba(0,0,0,.02)}
-.item-img{width:50px;height:50px;background:rgba(194,140,56,.08);border-radius:12px;display:grid;place-items:center;font-size:20px;flex-shrink:0;color:var(--accent)}
+.cart-list{display:flex;flex-direction:column;gap:12px;margin-bottom:20px}
+.cart-item{background:var(--surface2);border:1px solid var(--line);border-radius:18px;padding:16px;display:flex;gap:16px;align-items:center;position:relative;box-shadow:0 2px 8px rgba(0,0,0,.02)}
+.item-img{width:60px;height:60px;background:rgba(194,140,56,.08);border-radius:12px;display:grid;place-items:center;font-size:22px;flex-shrink:0;color:var(--accent);overflow:hidden}
 .item-details{flex:1}
-.item-title{font-size:11px;font-weight:700;margin:0 0 4px;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
-.item-price{font-size:12px;font-weight:800;color:var(--accent);margin-bottom:6px}
-.qty-control{display:flex;align-items:center;gap:8px}
-.qty-btn{width:24px;height:24px;border:1px solid var(--line);background:var(--surface);border-radius:8px;font-weight:700;cursor:pointer;display:grid;place-items:center;font-size:11px}
-.qty-num{font-size:11px;font-weight:700;width:14px;text-align:center}
-.remove-btn{position:absolute;top:10px;right:10px;background:none;border:none;color:var(--muted);cursor:pointer;font-size:13px}
-.bill-card{background:var(--surface2);border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.02)}
-.bill-row{display:flex;justify-content:space-between;font-size:11px;margin-bottom:6px;color:var(--muted)}
-.bill-row.total{font-size:13px;font-weight:800;color:var(--text);border-top:1px solid var(--line);padding-top:8px;margin-top:8px}
+.item-title{font-size:13px;font-weight:700;margin:0 0 4px}
+.item-price{font-size:14px;font-weight:800;color:var(--accent);margin-bottom:6px}
+.qty-control{display:flex;align-items:center;gap:10px}
+.qty-btn{width:26px;height:26px;border:1px solid var(--line);background:var(--surface);border-radius:8px;font-weight:700;cursor:pointer;display:grid;place-items:center;font-size:12px}
+.qty-num{font-size:12px;font-weight:700;width:18px;text-align:center}
+.remove-btn{position:absolute;top:12px;right:12px;background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px}
+.bill-card{background:var(--surface2);border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.02)}
+.bill-row{display:flex;justify-content:space-between;font-size:12px;margin-bottom:8px;color:var(--muted)}
+.bill-row.total{font-size:14px;font-weight:800;color:var(--text);border-top:1px solid var(--line);padding-top:10px;margin-top:10px}
 
-.cat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.cat-card{background:var(--surface2);border:1px solid var(--line);border-radius:18px;padding:22px 16px;text-align:center;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.02);transition:.2s}
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));gap:16px}
+.cat-card{background:var(--surface2);border:1px solid var(--line);border-radius:18px;padding:24px 16px;text-align:center;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.02);transition:.2s}
 .cat-card:hover{border-color:var(--accent);transform:translateY(-2px)}
 
-.form-card{background:var(--surface2);border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:14px;box-shadow:0 2px 8px rgba(0,0,0,.02)}
-.form-group{margin-bottom:12px}
-.form-group label{display:block;font-size:11px;color:var(--muted);margin-bottom:4px;font-weight:700}
-.form-group input, .form-group select, .form-group textarea{width:100%;padding:11px 14px;background:var(--bg2);border:1px solid var(--line);border-radius:12px;color:var(--text);font:inherit;font-size:12px;outline:none;transition:.2s}
+.form-card{background:var(--surface2);border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.02)}
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:700}
+.form-group input, .form-group select, .form-group textarea{width:100%;padding:12px 14px;background:var(--bg2);border:1px solid var(--line);border-radius:12px;color:var(--text);font:inherit;font-size:13px;outline:none;transition:.2s}
 .form-group input:focus, .form-group select:focus{border-color:var(--accent);background:var(--surface2)}
-.row-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.row-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
 
-.menu-list{display:flex;flex-direction:column;gap:8px}
-.menu-item{background:var(--surface2);border:1px solid var(--line);padding:14px 16px;border-radius:14px;display:flex;justify-content:space-between;align-items:center;font-size:13px;cursor:pointer;transition:.2s;font-weight:600;box-shadow:0 2px 6px rgba(0,0,0,.02)}
+.menu-list{display:flex;flex-direction:column;gap:10px}
+.menu-item{background:var(--surface2);border:1px solid var(--line);padding:16px 20px;border-radius:14px;display:flex;justify-content:space-between;align-items:center;font-size:14px;cursor:pointer;transition:.2s;font-weight:600;box-shadow:0 2px 6px rgba(0,0,0,.02)}
 .menu-item:hover{border-color:var(--accent)}
 
-.auth-header{text-align:center;margin-bottom:22px}
-.auth-header h1{font-size:24px;font-weight:800;margin:0 0 4px;letter-spacing:-.03em}
-.auth-header p{font-size:12px;color:var(--muted);margin:0}
+.auth-header{text-align:center;margin-bottom:24px}
+.auth-header h1{font-size:26px;font-weight:800;margin:0 0 6px;letter-spacing:-.03em}
+.auth-header p{font-size:13px;color:var(--muted);margin:0}
 .auth-tabs{display:flex;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:4px;margin-bottom:20px}
-.tab-btn{flex:1;padding:10px;text-align:center;font-size:12px;font-weight:700;cursor:pointer;border-radius:10px;background:none;border:none;color:var(--muted);transition:.2s}
+.tab-btn{flex:1;padding:12px;text-align:center;font-size:13px;font-weight:700;cursor:pointer;border-radius:10px;background:none;border:none;color:var(--muted);transition:.2s}
 .tab-btn.active{background:var(--surface2);color:var(--text);box-shadow:0 2px 8px rgba(0,0,0,.06)}
-.social-buttons{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
-.social-btn{width:100%;padding:12px 16px;border-radius:14px;border:1px solid var(--line);background:var(--surface2);color:var(--text);font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;transition:.2s;box-shadow:0 2px 6px rgba(0,0,0,.02)}
+.social-buttons{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
+.social-btn{width:100%;padding:14px 16px;border-radius:14px;border:1px solid var(--line);background:var(--surface2);color:var(--text);font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;transition:.2s;box-shadow:0 2px 6px rgba(0,0,0,.02)}
 .social-btn:hover{border-color:var(--accent);transform:translateY(-1px)}
-.divider{display:flex;align-items:center;text-align:center;color:var(--muted);font-size:11px;margin-bottom:18px}
+.divider{display:flex;align-items:center;text-align:center;color:var(--muted);font-size:12px;margin-bottom:20px}
 .divider::before, .divider::after{content:'';flex:1;border-bottom:1px solid var(--line)}
 .divider::before{margin-right:.75em}
 .divider::after{margin-left:.75em}
-.btn-primary{width:100%;background:var(--accent);border:none;color:#fff;padding:13px;border-radius:14px;font-weight:800;font-size:13px;cursor:pointer;transition:.2s;margin-top:4px;box-shadow:0 4px 12px rgba(194,140,56,.25)}
+.btn-primary{width:100%;background:var(--accent);border:none;color:#fff;padding:14px;border-radius:14px;font-weight:800;font-size:14px;cursor:pointer;transition:.2s;margin-top:4px;box-shadow:0 4px 12px rgba(194,140,56,.25)}
 .btn-primary:hover{background:var(--accent-hover);transform:translateY(-1px)}
 
-.profile-card{background:var(--surface2);border:1px solid var(--line);border-radius:20px;padding:20px;text-align:center;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,.03)}
-.profile-avatar{width:70px;height:70px;border-radius:50%;background:var(--accent);color:#fff;font-size:26px;font-weight:800;display:grid;place-items:center;margin:0 auto 12px;box-shadow:0 4px 12px rgba(194,140,56,.3)}
-.profile-name{font-size:18px;font-weight:800;margin:0 0 2px}
-.profile-email{font-size:12px;color:var(--muted);margin-bottom:14px}
+.profile-card{background:var(--surface2);border:1px solid var(--line);border-radius:20px;padding:24px;text-align:center;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,.03)}
+.profile-avatar{width:75px;height:75px;border-radius:50%;background:var(--accent);color:#fff;font-size:28px;font-weight:800;display:grid;place-items:center;margin:0 auto 12px;box-shadow:0 4px 12px rgba(194,140,56,.3)}
+.profile-name{font-size:19px;font-weight:800;margin:0 0 2px}
+.profile-email{font-size:13px;color:var(--muted);margin-bottom:14px}
 
-/* Location Modal */
-.modal-overlay{position:fixed;inset:0;background:rgba(12,14,17,0.65);backdrop-filter:blur(6px);z-index:200;display:none;align-items:flex-end;justify-content:center}
-.modal-overlay.open{display:flex}
-.modal-content{width:100%;max-width:var(--max);background:var(--bg2);border-top:1px solid var(--line);border-radius:24px 24px 0 0;padding:24px;max-height:85vh;overflow-y:auto;box-shadow:0 -10px 40px rgba(0,0,0,.15)}
+/* Smooth Sliding Location Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(12,14,17,0.65);backdrop-filter:blur(6px);z-index:200;display:none;align-items:flex-end;justify-content:center;opacity:0;transition:opacity .3s ease}
+.modal-overlay.open{display:flex;opacity:1}
+.modal-content{width:100%;max-width:600px;background:var(--bg2);border-top:1px solid var(--line);border-radius:24px 24px 0 0;padding:28px;max-height:85vh;overflow-y:auto;box-shadow:0 -10px 40px rgba(0,0,0,.15);transform:translateY(100%);transition:transform .3s cubic-bezier(0.16, 1, 0.3, 1)}
+.modal-overlay.open .modal-content{transform:translateY(0)}
 
-.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:var(--max);height:65px;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(20px);border-top:1px solid var(--line);display:flex;justify-content:space-around;align-items:center;z-index:60;padding:0 10px}
-.nav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--muted);font-size:9px;font-weight:700;background:none;border:none;cursor:pointer;transition:.2s}
-.nav-item span.icon{font-size:16px}
+.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:var(--max);height:70px;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(20px);border-top:1px solid var(--line);display:flex;justify-content:space-around;align-items:center;z-index:60;padding:0 10px}
+.nav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--muted);font-size:10px;font-weight:700;background:none;border:none;cursor:pointer;transition:.2s}
+.nav-item span.icon{font-size:18px}
 .nav-item.active, .nav-item:hover{color:var(--accent)}
 </style>
 </head>
@@ -152,31 +144,33 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 
   <!-- HEADER -->
   <header class="app-header">
-    <div class="header-top-row">
+    <div class="header-left">
       <div class="logo" onclick="switchView('home')"><i class="fa-solid fa-book-open"></i> BOOK<i>NEAR</i></div>
-      <div class="header-actions">
-        <button class="icon-btn" onclick="switchView('cart')"><i class="fa-solid fa-cart-shopping"></i></button>
-        <button class="icon-btn" onclick="handleProfileClick()"><i class="fa-solid fa-user"></i></button>
+      <div class="location-bar" onclick="openLocationModal()">
+        <i class="fa-solid fa-location-dot"></i> <span id="currentLocationText">Prayagraj, Uttar Pradesh</span> &nbsp;<i class="fa-solid fa-chevron-down" style="font-size:9px;"></i>
       </div>
     </div>
-    <div class="location-bar" onclick="openLocationModal()">
-      <i class="fa-solid fa-location-dot"></i> <span id="currentLocationText">Prayagraj, Uttar Pradesh</span> &nbsp;<i class="fa-solid fa-chevron-down" style="font-size:9px;"></i>
+    <div class="header-actions">
+      <button class="icon-btn" onclick="switchView('cart')" title="Cart"><i class="fa-solid fa-cart-shopping"></i> <span id="cartBadge" style="background:var(--accent);color:#fff;font-size:9px;padding:2px 5px;border-radius:10px;margin-left:4px">0</span></button>
+      <button class="icon-btn" onclick="handleProfileClick()" title="Profile"><i class="fa-solid fa-user"></i></button>
     </div>
   </header>
 
-  <!-- 1. HOME VIEW -->
+  <!-- 1. HOME VIEW (Dynamic Multi-Sections based on City/District) -->
   <div id="homeView" class="view-section active">
-    <div class="section-title">Categories <span style="font-size:11px;color:var(--accent);cursor:pointer;" onclick="switchView('categories')">See All</span></div>
+    <div class="section-title">Explore Categories</div>
     <div class="categories">
-      <div class="cat-pill" onclick="switchView('categories')">Books</div>
-      <div class="cat-pill" onclick="switchView('categories')">E-Books</div>
-      <div class="cat-pill" onclick="switchView('categories')">University Books</div>
-      <div class="cat-pill" onclick="switchView('categories')">Notes</div>
+      <div class="cat-pill active" onclick="filterCategory('All', this)">All Books</div>
+      <div class="cat-pill" onclick="filterCategory('Books', this)">Books</div>
+      <div class="cat-pill" onclick="filterCategory('E-Books', this)">E-Books</div>
+      <div class="cat-pill" onclick="filterCategory('University Books', this)">University Books</div>
+      <div class="cat-pill" onclick="filterCategory('Notes', this)">Notes</div>
     </div>
-    <div style="height: 14px;"></div>
+    <div style="height: 20px;"></div>
 
-    <div class="section-title">Books Near <span id="feedLocationTitle" style="color:var(--accent)">Prayagraj</span></div>
-    <div class="product-grid" id="productGridContainer"></div>
+    <div id="dynamicFeedsContainer">
+      <!-- Dynamic City/Hub Sections will be rendered here -->
+    </div>
   </div>
 
   <!-- 2. BOOK DETAIL VIEW -->
@@ -193,29 +187,30 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     <div class="price-box">
       <span class="current-rate" id="dPrice">₹249</span>
       <span class="original-rate" id="dOldPrice">₹499</span>
-      <span style="font-size:11px;color:#16a34a;font-weight:700;margin-left:auto">50% OFF</span>
+      <span style="font-size:12px;color:#16a34a;font-weight:700;margin-left:auto">Verified Student Deal</span>
     </div>
 
     <div class="info-card">
-      <div class="info-row"><span><i class="fa-solid fa-user-pen"></i> Author</span> <b id="dAuthor" style="color:var(--text)">Ajmal Mansoori</b></div>
+      <div class="info-row"><span><i class="fa-solid fa-user-pen"></i> Author / Creator</span> <b id="dAuthor" style="color:var(--text)">Ajmal Mansoori</b></div>
       <div class="info-row"><span><i class="fa-solid fa-map-pin"></i> Pickup Location</span> <b id="dLoc" style="color:var(--accent)">Zero Road, Prayagraj</b></div>
-      <div class="info-row"><span><i class="fa-solid fa-box"></i> Net Quantity</span> <b id="dQty">1 Unit (Printed Book)</b></div>
+      <div class="info-row"><span><i class="fa-solid fa-box"></i> Net Quantity</span> <b id="dQty">1 Unit (Physical / Digital)</b></div>
     </div>
 
-    <div style="display:flex; gap:10px; margin-top:20px;">
-      <button style="flex:1; background:var(--surface2); border:1px solid var(--line); padding:12px; border-radius:14px; font-weight:700; cursor:pointer;" onclick="alert('Added to Cart!')"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
-      <button style="flex:1; background:#25D366; border:none; color:#fff; padding:12px; border-radius:14px; font-weight:700; cursor:pointer;" onclick="orderOnWhatsApp()"><i class="fa-brands fa-whatsapp"></i> Contact Seller</button>
+    <div style="display:flex; gap:12px; margin-top:24px;">
+      <button style="flex:1; background:var(--surface2); border:1px solid var(--line); padding:14px; border-radius:14px; font-weight:700; cursor:pointer;" onclick="addToCartActiveBook()"><i class="fa-solid fa-cart-plus"></i> Add to Cart 🛒</button>
+      <button style="flex:1; background:#25D366; border:none; color:#fff; padding:14px; border-radius:14px; font-weight:700; cursor:pointer;" onclick="orderOnWhatsApp()"><i class="fa-brands fa-whatsapp"></i> Contact Seller</button>
     </div>
   </div>
 
   <!-- 3. CATEGORIES VIEW -->
   <div id="categoriesView" class="view-section">
-    <div class="section-title">Explore Categories</div>
+    <div class="back-link" onclick="switchView('home')"><i class="fa-solid fa-arrow-left"></i> Back to Home</div>
+    <div class="section-title">All Categories</div>
     <div class="cat-grid">
-      <div class="cat-card" onclick="alert('Books Category')"><i class="fa-solid fa-book" style="font-size:28px;color:var(--accent);margin-bottom:8px"></i><div style="font-weight:800;font-size:12px">Books</div></div>
-      <div class="cat-card" onclick="alert('E-Books Category')"><i class="fa-solid fa-tablet-screen-button" style="font-size:28px;color:var(--accent);margin-bottom:8px"></i><div style="font-weight:800;font-size:12px">E-Books</div></div>
-      <div class="cat-card" onclick="alert('University Books Category')"><i class="fa-solid fa-graduation-cap" style="font-size:28px;color:var(--accent);margin-bottom:8px"></i><div style="font-weight:800;font-size:12px">University Books</div></div>
-      <div class="cat-card" onclick="alert('Notes Category')"><i class="fa-solid fa-note-sticky" style="font-size:28px;color:var(--accent);margin-bottom:8px"></i><div style="font-weight:800;font-size:12px">Notes</div></div>
+      <div class="cat-card" onclick="filterCategoryAndGo('Books')"><i class="fa-solid fa-book" style="font-size:32px;color:var(--accent);margin-bottom:10px"></i><div style="font-weight:800;font-size:13px">Books</div></div>
+      <div class="cat-card" onclick="filterCategoryAndGo('E-Books')"><i class="fa-solid fa-tablet-screen-button" style="font-size:32px;color:var(--accent);margin-bottom:10px"></i><div style="font-weight:800;font-size:13px">E-Books</div></div>
+      <div class="cat-card" onclick="filterCategoryAndGo('University Books')"><i class="fa-solid fa-graduation-cap" style="font-size:32px;color:var(--accent);margin-bottom:10px"></i><div style="font-weight:800;font-size:13px">University Books</div></div>
+      <div class="cat-card" onclick="filterCategoryAndGo('Notes')"><i class="fa-solid fa-note-sticky" style="font-size:32px;color:var(--accent);margin-bottom:10px"></i><div style="font-weight:800;font-size:13px">Notes</div></div>
     </div>
   </div>
 
@@ -252,10 +247,10 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
             <label>Category *</label>
             <select id="sellCategory" required>
               <option value="">Select Category</option>
-              <option>Books</option>
-              <option>E-Books</option>
-              <option>University Books</option>
-              <option>Notes</option>
+              <option value="Books">Books</option>
+              <option value="E-Books">E-Books</option>
+              <option value="University Books">University Books</option>
+              <option value="Notes">Notes</option>
             </select>
           </div>
         </div>
@@ -263,7 +258,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
         <div class="form-group">
           <label><i class="fa-brands fa-whatsapp"></i> Seller WhatsApp Number (India +91 Auto) *</label>
           <div style="display:flex; align-items:center; gap:8px;">
-            <span style="background:var(--bg2); border:1px solid var(--line); padding:11px 12px; border-radius:12px; font-weight:700; font-size:12px;">+91</span>
+            <span style="background:var(--bg2); border:1px solid var(--line); padding:12px 14px; border-radius:12px; font-weight:700; font-size:13px;">+91</span>
             <input type="tel" id="sellWhatsApp" placeholder="e.g., 9984919392" maxlength="10" required style="flex:1;">
           </div>
         </div>
@@ -310,44 +305,20 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 
   <!-- 5. CART VIEW -->
   <div id="cartView" class="view-section">
-    <div class="section-title">Your Shopping Bag (2 Items)</div>
-    <div class="cart-list">
-      <div class="cart-item">
-        <div class="item-img"><i class="fa-solid fa-book"></i></div>
-        <div class="item-details">
-          <div class="item-title">Modern & Medieval Hindi Poetry Notes</div>
-          <div class="item-price">₹249</div>
-          <div class="qty-control">
-            <button class="qty-btn" onclick="updateQty(1, -1)">-</button>
-            <span class="qty-num" id="qty1">1</span>
-            <button class="qty-btn" onclick="updateQty(1, 1)">+</button>
-          </div>
-        </div>
-        <button class="remove-btn" onclick="this.closest('.cart-item').remove()"><i class="fa-solid fa-trash"></i></button>
-      </div>
-
-      <div class="cart-item">
-        <div class="item-img"><i class="fa-solid fa-bullseye"></i></div>
-        <div class="item-details">
-          <div class="item-title">CUET General Test & Domain Guide</div>
-          <div class="item-price">₹399</div>
-          <div class="qty-control">
-            <button class="qty-btn" onclick="updateQty(2, -1)">-</button>
-            <span class="qty-num" id="qty2">1</span>
-            <button class="qty-btn" onclick="updateQty(2, 1)">+</button>
-          </div>
-        </div>
-        <button class="remove-btn" onclick="this.closest('.cart-item').remove()"><i class="fa-solid fa-trash"></i></button>
-      </div>
+    <div class="section-title">Your Shopping Bag (<span id="cartCountHeader">0</span> Items)</div>
+    <div class="cart-list" id="cartListContainer">
+      <p style="font-size:13px; color:var(--muted); text-align:center; padding:20px;">Your cart is currently empty. Add books to proceed!</p>
     </div>
 
-    <div class="section-title" style="font-size: 14px;">Price Details</div>
-    <div class="bill-card">
-      <div class="bill-row"><span>Bag Total</span> <span>₹648</span></div>
-      <div class="bill-row"><span>Discount</span> <span style="color:#16a34a">- ₹400</span></div>
-      <div class="bill-row total"><span>Total Amount</span> <span>₹648</span></div>
+    <div id="cartBillSection" style="display:none;">
+      <div class="section-title" style="font-size: 15px;">Price Details</div>
+      <div class="bill-card">
+        <div class="bill-row"><span>Bag Total</span> <span id="cartTotalSummary">₹0</span></div>
+        <div class="bill-row"><span>Student Discount</span> <span style="color:#16a34a">- ₹0</span></div>
+        <div class="bill-row total"><span>Total Amount</span> <span id="cartFinalSummary">₹0</span></div>
+      </div>
+      <button style="width:100%;background:#25D366;border:none;color:#fff;padding:14px;border-radius:14px;font-weight:800;cursor:pointer;box-shadow:0 4px 12px rgba(37,211,102,.25);" onclick="checkoutCartWhatsApp()"><i class="fa-brands fa-whatsapp"></i> Checkout via WhatsApp</button>
     </div>
-    <button style="width:100%;background:#25D366;border:none;color:#fff;padding:13px;border-radius:14px;font-weight:800;cursor:pointer;box-shadow:0 4px 12px rgba(37,211,102,.25);" onclick="orderOnWhatsApp()"><i class="fa-brands fa-whatsapp"></i> Checkout via WhatsApp</button>
   </div>
 
   <!-- 6. AUTH / LOGIN VIEW -->
@@ -421,9 +392,8 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
   <div id="favoritesView" class="view-section">
     <div class="back-link" onclick="switchView('profile')"><i class="fa-solid fa-arrow-left"></i> Back to Profile</div>
     <div class="section-title">My Favorite Books</div>
-    <div class="form-card">
-      <div style="font-size:13px;font-weight:700">CUET General Test & Domain Guide</div>
-      <div style="font-size:11px;color:var(--accent);margin-top:2px">₹399 • Katra, Prayagraj</div>
+    <div class="form-card" id="favoritesContainer">
+      <p style="font-size:13px; color:var(--muted);">No favorites added yet.</p>
     </div>
   </div>
 
@@ -440,17 +410,17 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
       </div>
       <div class="form-group" style="margin-bottom:0">
         <label>App Version</label>
-        <input type="text" value="BookNear v9.0 Fully Responsive" disabled>
+        <input type="text" value="BookNear v10.0 Production Launch Edition" disabled>
       </div>
     </div>
   </div>
 
-  <!-- LOCATION SELECTOR MODAL -->
-  <div class="modal-overlay" id="locationModal">
+  <!-- LOCATION SELECTOR MODAL (Smooth Sliding) -->
+  <div class="modal-overlay" id="locationModal" onclick="checkModalBackdrop(event)">
     <div class="modal-content">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-        <h3 style="margin:0; font-size:16px;"><i class="fa-solid fa-location-crosshairs"></i> Select Delivery / Pickup Location</h3>
-        <button style="background:none; border:none; font-size:16px; cursor:pointer;" onclick="closeLocationModal()">✕</button>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+        <h3 style="margin:0; font-size:18px;"><i class="fa-solid fa-location-crosshairs"></i> Select Delivery / Pickup Location</h3>
+        <button style="background:none; border:none; font-size:18px; cursor:pointer;" onclick="closeLocationModal()">✕</button>
       </div>
       
       <div class="form-group">
@@ -508,7 +478,10 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 
   let isLoggedIn = false;
   let currentUserObject = null;
-  let booksData = [];
+  let allBooksData = [];
+  let cartItems = [];
+  let currentCategoryFilter = 'All';
+  let currentSelectedCity = 'Prayagraj';
 
   // Theme Management
   function changeThemeMode(mode) {
@@ -537,51 +510,90 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     }
   });
 
-  // Persistent Firestore Listener (No data loss on refresh)
+  // Persistent Firestore Listener with Multi-City Section Rendering
   function fetchLiveBooksFromFirebase() {
     db.collection("booksListings").orderBy("createdAt", "desc").onSnapshot((snapshot) => {
-      const container = document.getElementById('productGridContainer');
-      container.innerHTML = "";
-      
-      let combinedBooks = [
-        {
-          title: "Modern & Medieval Hindi Poetry Notes",
-          price: "₹249", old: "₹499", author: "Ajmal Mansoori",
-          location: "Zero Road, Prayagraj", whatsapp: "+919984919392",
-          imageUrlFront: "", imageUrlBack: ""
-        },
-        {
-          title: "CUET General Test & Domain Guide",
-          price: "₹399", old: "₹799", author: "Learnify Classes",
-          location: "Katra, Prayagraj", whatsapp: "+919984919392",
-          imageUrlFront: "", imageUrlBack: ""
-        }
-      ];
+      allBooksData = [];
 
       snapshot.forEach((doc) => {
         const b = doc.data();
-        combinedBooks.unshift({
+        allBooksData.push({
+          id: doc.id,
           title: b.title || "Untitled Book",
           price: "₹" + (b.price || "0"),
+          numericPrice: parseInt(b.price) || 0,
           old: b.oldPrice ? "₹" + b.oldPrice : "₹499",
           author: b.author || "Student Seller",
+          category: b.category || "Books",
           location: b.location || "Local Hub",
+          city: extractCityFromLocation(b.location || "Prayagraj"),
           whatsapp: b.whatsapp || "+919984919392",
           imageUrlFront: b.imageUrlFront || "",
           imageUrlBack: b.imageUrlBack || ""
         });
       });
 
-      booksData = combinedBooks;
+      renderFeedSections();
+    }, (error) => {
+      console.log("Offline mode or sync error.");
+    });
+  }
 
-      booksData.forEach((b, index) => {
+  function extractCityFromLocation(locStr) {
+    const parts = locStr.split(',');
+    if(parts.length >= 2) {
+      return parts[parts.length - 2].trim();
+    }
+    return locStr;
+  }
+
+  // Render multi-city sections dynamically (e.g. Book Near Prayagraj, Book Near Aligarh, etc.)
+  function renderFeedSections() {
+    const container = document.getElementById('dynamicFeedsContainer');
+    container.innerHTML = "";
+
+    // Filter by category if selected
+    let filtered = allBooksData;
+    if(currentCategoryFilter !== 'All') {
+      filtered = allBooksData.filter(b => b.category === currentCategoryFilter);
+    }
+
+    if(filtered.length === 0) {
+      container.innerHTML = `
+        <div style="text-align:center; padding:40px 20px; background:var(--surface2); border:1px solid var(--line); border-radius:18px;">
+          <i class="fa-solid fa-books" style="font-size:40px; color:var(--accent); margin-bottom:12px;"></i>
+          <h3 style="margin:0 0 6px; font-size:16px;">No Books Found</h3>
+          <p style="margin:0; font-size:12px; color:var(--muted);">No books are currently listed under this category/location. Be the first to publish one!</p>
+        </div>
+      `;
+      return;
+    }
+
+    // Group by city
+    let cityGroups = {};
+    filtered.forEach(b => {
+      let city = b.city || "Prayagraj";
+      if(!cityGroups[city]) cityGroups[city] = [];
+      cityGroups[city].push(b);
+    });
+
+    for(let city in cityGroups) {
+      let sectionHtml = `
+        <div style="margin-bottom:24px;">
+          <div class="section-title">Book Near <span style="color:var(--accent)">${city}</span></div>
+          <div class="product-grid">
+      `;
+
+      cityGroups[city].forEach((b) => {
+        // Find global index in allBooksData for detail view mapping
+        const globalIndex = allBooksData.findIndex(item => item === b);
         const imgContent = b.imageUrlFront 
           ? `<img src="${b.imageUrlFront}" style="width:100%; height:100%; object-fit:cover; border-radius:14px;" />` 
           : `<i class="fa-solid fa-book"></i>`;
 
-        container.innerHTML += `
-          <div class="product-card" onclick="openBookDetail(${index})">
-            <div class="fav-icon" onclick="toggleFavorite(event, ${index})"><i class="fa-regular fa-heart"></i></div>
+        sectionHtml += `
+          <div class="product-card" onclick="openBookDetail(${globalIndex})">
+            <div class="fav-icon" onclick="toggleFavorite(event, ${globalIndex})"><i class="fa-regular fa-heart"></i></div>
             <div class="p-img">${imgContent}</div>
             <div class="p-loc"><i class="fa-solid fa-location-pin"></i> ${b.location}</div>
             <div class="p-title">${b.title}</div>
@@ -589,13 +601,33 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
           </div>
         `;
       });
-    }, (error) => {
-      console.log("Loading offline view.");
+
+      sectionHtml += `</div></div>`;
+      container.innerHTML += sectionHtml;
+    }
+  }
+
+  function filterCategory(catName, elem) {
+    currentCategoryFilter = catName;
+    document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+    elem.classList.add('active');
+    renderFeedSections();
+  }
+
+  function filterCategoryAndGo(catName) {
+    currentCategoryFilter = catName;
+    switchView('home');
+    // Highlight pill on home
+    const pills = document.querySelectorAll('.cat-pill');
+    pills.forEach(p => {
+      if(p.textContent.trim() === catName) p.classList.add('active');
+      else p.classList.remove('active');
     });
+    renderFeedSections();
   }
 
   const districtData = {
-    "Uttar Pradesh": ["Prayagraj", "Varanasi", "Lucknow", "Gorakhpur", "Kanpur"],
+    "Uttar Pradesh": ["Prayagraj", "Varanasi", "Lucknow", "Gorakhpur", "Kanpur", "Aligarh"],
     "Delhi": ["North Delhi (Mukherjee Nagar)", "South Delhi", "New Delhi"],
     "Bihar": ["Patna", "Muzaffarpur", "Gaya"]
   };
@@ -644,6 +676,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     } else if(viewName === 'cart') {
       document.getElementById('cartView').classList.add('active');
       document.getElementById('nav-cart').classList.add('active');
+      renderCartView();
     } else if(viewName === 'profile') {
       document.getElementById('profileView').classList.add('active');
       document.getElementById('nav-profile').classList.add('active');
@@ -745,7 +778,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 
   function openBookDetail(index) {
     currentBook = index;
-    const b = booksData[index];
+    const b = allBooksData[index];
     document.getElementById('dTitle').textContent = b.title;
     document.getElementById('dPrice').textContent = b.price;
     document.getElementById('dOldPrice').textContent = b.old;
@@ -757,7 +790,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
   }
 
   function displayBookImage(type) {
-    const b = booksData[currentBook];
+    const b = allBooksData[currentBook];
     const mainImgBox = document.getElementById('mainImg');
     const thumbs = document.querySelectorAll('.thumb-item');
     
@@ -780,12 +813,91 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     }
   }
 
-  function updateQty(itemId, change) {
-    const qtyElem = document.getElementById('qty' + itemId);
-    let currentQty = parseInt(qtyElem.textContent);
-    currentQty += change;
-    if (currentQty < 1) currentQty = 1;
-    qtyElem.textContent = currentQty;
+  // Cart Management
+  function addToCartActiveBook() {
+    const book = allBooksData[currentBook];
+    // Check if already in cart
+    const existing = cartItems.find(item => item.title === book.title);
+    if(existing) {
+      existing.qty += 1;
+    } else {
+      cartItems.push({ ...book, qty: 1 });
+    }
+    updateCartBadge();
+    alert("Book successfully added to Cart! 🛒");
+  }
+
+  function updateCartBadge() {
+    const totalCount = cartItems.reduce((sum, item) => sum + item.qty, 0);
+    document.getElementById('cartBadge').textContent = totalCount;
+  }
+
+  function renderCartView() {
+    const container = document.getElementById('cartListContainer');
+    const billSection = document.getElementById('cartBillSection');
+    document.getElementById('cartCountHeader').textContent = cartItems.reduce((sum, i) => sum + i.qty, 0);
+
+    if(cartItems.length === 0) {
+      container.innerHTML = `<p style="font-size:13px; color:var(--muted); text-align:center; padding:20px;">Your cart is currently empty. Add books from store!</p>`;
+      billSection.style.display = 'none';
+      return;
+    }
+
+    container.innerHTML = "";
+    let subtotal = 0;
+
+    cartItems.forEach((item, idx) => {
+      subtotal += item.numericPrice * item.qty;
+      const imgTag = item.imageUrlFront 
+        ? `<img src="${item.imageUrlFront}" style="width:100%;height:100%;object-fit:cover;" />` 
+        : `<i class="fa-solid fa-book"></i>`;
+
+      container.innerHTML += `
+        <div class="cart-item">
+          <div class="item-img">${imgTag}</div>
+          <div class="item-details">
+            <div class="item-title">${item.title}</div>
+            <div class="item-price">${item.price}</div>
+            <div class="qty-control">
+              <button class="qty-btn" onclick="updateCartQty(${idx}, -1)">-</button>
+              <span class="qty-num">${item.qty}</span>
+              <button class="qty-btn" onclick="updateCartQty(${idx}, 1)">+</button>
+            </div>
+          </div>
+          <button class="remove-btn" onclick="removeFromCart(${idx})"><i class="fa-solid fa-trash"></i></button>
+        </div>
+      `;
+    });
+
+    document.getElementById('cartTotalSummary').textContent = "₹" + subtotal;
+    document.getElementById('cartFinalSummary').textContent = "₹" + subtotal;
+    billSection.style.display = 'block';
+  }
+
+  function updateCartQty(index, change) {
+    cartItems[index].qty += change;
+    if(cartItems[index].qty < 1) cartItems[index].qty = 1;
+    updateCartBadge();
+    renderCartView();
+  }
+
+  function removeFromCart(index) {
+    cartItems.splice(index, 1);
+    updateCartBadge();
+    renderCartView();
+  }
+
+  function checkoutCartWhatsApp() {
+    if(cartItems.length === 0) return;
+    let summary = "Hello, I want to order these books from BookNear:\n";
+    let total = 0;
+    cartItems.forEach(i => {
+      summary += `- ${i.title} (${i.qty}x) : ₹${i.numericPrice * i.qty}\n`;
+      total += i.numericPrice * i.qty;
+    });
+    summary += `\nTotal Amount: ₹${total}`;
+    const encoded = encodeURIComponent(summary);
+    window.open(`https://wa.me/9984919392?text=${encoded}`, '_blank');
   }
 
   function convertFileToBase64(file) {
@@ -851,8 +963,18 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     });
   }
 
-  function openLocationModal() { document.getElementById('locationModal').classList.add('open'); }
-  function closeLocationModal() { document.getElementById('locationModal').classList.remove('open'); }
+  // Smooth Location Modal
+  function openLocationModal() { 
+    document.getElementById('locationModal').classList.add('open'); 
+  }
+  function closeLocationModal() { 
+    document.getElementById('locationModal').classList.remove('open'); 
+  }
+  function checkModalBackdrop(event) {
+    if(event.target.id === 'locationModal') {
+      closeLocationModal();
+    }
+  }
   
   function applyHierarchicalLocation() {
     const state = document.getElementById('modalStateSelect').value;
@@ -872,7 +994,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
   }
 
   function orderOnWhatsApp() {
-    const b = booksData[currentBook];
+    const b = allBooksData[currentBook];
     const message = encodeURIComponent(`Hello, I want to buy this book from BookNear:\n*${b.title}*\nPrice: ${b.price}\nPickup Location: ${b.location}`);
     const sellerWhatsApp = (b.whatsapp || "+919984919392").replace(/^\+/, '');
     window.open(`https://wa.me/${sellerWhatsApp}?text=${message}`, '_blank');
