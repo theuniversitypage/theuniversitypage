@@ -20,21 +20,21 @@
 :root[data-theme="light"]{
  --bg:#f4f1ea; --bg2:#faf8f5; --surface:rgba(255,255,255,.95); --surface2:#ffffff;
  --text:#121417; --muted:#646a73; --line:rgba(18,20,23,.08);
- --accent:#c28c38; --accent-hover:#a0712a; --max:1200px;
+ --accent:#c28c38; --accent-hover:#a0712a;
 }
 :root[data-theme="dark"]{
  --bg:#0f1115; --bg2:#161920; --surface:rgba(22,25,32,.95); --surface2:#1a1e26;
  --text:#f3f4f6; --muted:#9ca3af; --line:rgba(243,244,246,.08);
- --accent:#d4a373; --accent-hover:#bc8a5f; --max:1200px;
+ --accent:#d4a373; --accent-hover:#bc8a5f;
 }
 
 *{box-sizing:border-box}
-body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);color:var(--text);display:flex;justify-content:center;min-height:100vh;transition:background .3s,color .3s}
+body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);color:var(--text);min-height:100vh;transition:background .3s,color .3s}
 
-/* Fully Responsive App Shell (Full screen website layout on desktop, mobile app view on phones) */
-.app-container{width:100%;max-width:var(--max);min-height:100vh;background:var(--bg);position:relative;padding-bottom:90px;border-inline:1px solid var(--line);box-shadow:0 0 60px rgba(0,0,0,.06)}
+/* Fully Responsive Layout for Laptop & Mobile */
+.app-container{width:100%;min-height:100vh;background:var(--bg);position:relative;padding-bottom:90px;box-shadow:0 0 40px rgba(0,0,0,.04)}
 
-.app-header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+.app-header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
 .header-left{display:flex;flex-direction:column;gap:4px}
 .logo{font-weight:800;font-size:20px;letter-spacing:.06em;cursor:pointer}
 .logo i{color:var(--accent);font-style:normal}
@@ -45,7 +45,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 .location-bar{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--accent);cursor:pointer}
 .location-bar span{color:var(--muted);font-weight:400;font-size:11px}
 
-.view-section{display:none;padding:24px}
+.view-section{display:none;padding:28px max(5vw, 24px);max-width:1400px;margin:0 auto}
 .view-section.active{display:block}
 
 .section-title{font-size:18px;font-weight:800;margin:0 0 14px;display:flex;justify-content:space-between;align-items:center}
@@ -54,10 +54,10 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 .cat-pill{flex:0 0 auto;padding:10px 20px;background:var(--surface2);border:1px solid var(--line);border-radius:24px;font-size:12px;font-weight:700;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.02);transition:.2s}
 .cat-pill:hover, .cat-pill.active{background:var(--accent);color:#fff;border-color:var(--accent)}
 
-.product-grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));gap:16px;margin-bottom:24px}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(240px, 1fr));gap:20px;margin-bottom:24px}
 .product-card{background:var(--surface2);border:1px solid var(--line);border-radius:18px;padding:14px;cursor:pointer;transition:.2s;position:relative;box-shadow:0 4px 15px rgba(0,0,0,.02)}
 .product-card:hover{border-color:var(--accent);transform:translateY(-2px)}
-.p-img{height:150px;background:rgba(194,140,56,.08);border-radius:14px;display:grid;place-items:center;font-size:32px;color:var(--accent);margin-bottom:10px;position:relative;overflow:hidden}
+.p-img{height:160px;background:rgba(194,140,56,.08);border-radius:14px;display:grid;place-items:center;font-size:32px;color:var(--accent);margin-bottom:10px;position:relative;overflow:hidden}
 .p-tag{position:absolute;top:8px;left:8px;background:rgba(18,20,23,.8);color:#fff;font-size:8px;padding:3px 8px;border-radius:4px;font-weight:700;z-index:2}
 .fav-icon{position:absolute;top:8px;right:8px;background:var(--surface2);border-radius:50%;width:28px;height:28px;display:grid;place-items:center;font-size:12px;cursor:pointer;box-shadow:0 2px 5px rgba(0,0,0,.05);z-index:2}
 .p-loc{font-size:10px;color:var(--accent);font-weight:700;margin-bottom:3px}
@@ -66,7 +66,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 .old-price{font-size:11px;color:var(--muted);text-decoration:line-through;margin-left:6px}
 
 .back-link{font-size:13px;color:var(--accent);cursor:pointer;font-weight:700;margin-bottom:16px;display:inline-block}
-.main-img-box{width:100%;max-width:400px;height:280px;background:var(--surface2);border:1px solid var(--line);border-radius:18px;display:grid;place-items:center;font-size:50px;color:var(--accent);margin:0 auto 12px;box-shadow:0 4px 15px rgba(0,0,0,.02);overflow:hidden}
+.main-img-box{width:100%;max-width:450px;height:300px;background:var(--surface2);border:1px solid var(--line);border-radius:18px;display:grid;place-items:center;font-size:50px;color:var(--accent);margin:0 auto 12px;box-shadow:0 4px 15px rgba(0,0,0,.02);overflow:hidden}
 .thumb-row{display:flex;justify-content:center;gap:12px;margin-bottom:20px}
 .thumb-item{padding:8px 16px;background:var(--surface2);border:1px solid var(--line);border-radius:12px;font-size:12px;cursor:pointer;color:var(--muted);font-weight:700;transition:.2s}
 .thumb-item.active, .thumb-item:hover{border-color:var(--accent);color:var(--accent);background:rgba(194,140,56,.06)}
@@ -75,7 +75,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 .info-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line)}
 .info-row:last-child{border-bottom:none}
 
-.cart-list{display:flex;flex-direction:column;gap:12px;margin-bottom:20px}
+.cart-list{display:flex;flex-direction:column;gap:12px;margin-bottom:20px;max-width:800px}
 .cart-item{background:var(--surface2);border:1px solid var(--line);border-radius:18px;padding:16px;display:flex;gap:16px;align-items:center;position:relative;box-shadow:0 2px 8px rgba(0,0,0,.02)}
 .item-img{width:60px;height:60px;background:rgba(194,140,56,.08);border-radius:12px;display:grid;place-items:center;font-size:22px;flex-shrink:0;color:var(--accent);overflow:hidden}
 .item-details{flex:1}
@@ -85,15 +85,15 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 .qty-btn{width:26px;height:26px;border:1px solid var(--line);background:var(--surface);border-radius:8px;font-weight:700;cursor:pointer;display:grid;place-items:center;font-size:12px}
 .qty-num{font-size:12px;font-weight:700;width:18px;text-align:center}
 .remove-btn{position:absolute;top:12px;right:12px;background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px}
-.bill-card{background:var(--surface2);border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.02)}
+.bill-card{background:var(--surface2);border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:20px;max-width:800px;box-shadow:0 2px 8px rgba(0,0,0,.02)}
 .bill-row{display:flex;justify-content:space-between;font-size:12px;margin-bottom:8px;color:var(--muted)}
 .bill-row.total{font-size:14px;font-weight:800;color:var(--text);border-top:1px solid var(--line);padding-top:10px;margin-top:10px}
 
-.cat-grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));gap:16px}
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));gap:16px}
 .cat-card{background:var(--surface2);border:1px solid var(--line);border-radius:18px;padding:24px 16px;text-align:center;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.02);transition:.2s}
 .cat-card:hover{border-color:var(--accent);transform:translateY(-2px)}
 
-.form-card{background:var(--surface2);border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.02)}
+.form-card{background:var(--surface2);border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.02);max-width:800px}
 .form-group{margin-bottom:14px}
 .form-group label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:700}
 .form-group input, .form-group select, .form-group textarea{width:100%;padding:12px 14px;background:var(--bg2);border:1px solid var(--line);border-radius:12px;color:var(--text);font:inherit;font-size:13px;outline:none;transition:.2s}
@@ -101,27 +101,27 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 .row-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
 
-.menu-list{display:flex;flex-direction:column;gap:10px}
+.menu-list{display:flex;flex-direction:column;gap:10px;max-width:600px}
 .menu-item{background:var(--surface2);border:1px solid var(--line);padding:16px 20px;border-radius:14px;display:flex;justify-content:space-between;align-items:center;font-size:14px;cursor:pointer;transition:.2s;font-weight:600;box-shadow:0 2px 6px rgba(0,0,0,.02)}
 .menu-item:hover{border-color:var(--accent)}
 
 .auth-header{text-align:center;margin-bottom:24px}
 .auth-header h1{font-size:26px;font-weight:800;margin:0 0 6px;letter-spacing:-.03em}
 .auth-header p{font-size:13px;color:var(--muted);margin:0}
-.auth-tabs{display:flex;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:4px;margin-bottom:20px}
+.auth-tabs{display:flex;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:4px;margin-bottom:20px;max-width:400px;margin-inline:auto}
 .tab-btn{flex:1;padding:12px;text-align:center;font-size:13px;font-weight:700;cursor:pointer;border-radius:10px;background:none;border:none;color:var(--muted);transition:.2s}
 .tab-btn.active{background:var(--surface2);color:var(--text);box-shadow:0 2px 8px rgba(0,0,0,.06)}
-.social-buttons{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
+.social-buttons{display:flex;flex-direction:column;gap:10px;margin-bottom:20px;max-width:400px;margin-inline:auto}
 .social-btn{width:100%;padding:14px 16px;border-radius:14px;border:1px solid var(--line);background:var(--surface2);color:var(--text);font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;transition:.2s;box-shadow:0 2px 6px rgba(0,0,0,.02)}
 .social-btn:hover{border-color:var(--accent);transform:translateY(-1px)}
-.divider{display:flex;align-items:center;text-align:center;color:var(--muted);font-size:12px;margin-bottom:20px}
+.divider{display:flex;align-items:center;text-align:center;color:var(--muted);font-size:12px;margin-bottom:20px;max-width:400px;margin-inline:auto}
 .divider::before, .divider::after{content:'';flex:1;border-bottom:1px solid var(--line)}
 .divider::before{margin-right:.75em}
 .divider::after{margin-left:.75em}
 .btn-primary{width:100%;background:var(--accent);border:none;color:#fff;padding:14px;border-radius:14px;font-weight:800;font-size:14px;cursor:pointer;transition:.2s;margin-top:4px;box-shadow:0 4px 12px rgba(194,140,56,.25)}
 .btn-primary:hover{background:var(--accent-hover);transform:translateY(-1px)}
 
-.profile-card{background:var(--surface2);border:1px solid var(--line);border-radius:20px;padding:24px;text-align:center;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,.03)}
+.profile-card{background:var(--surface2);border:1px solid var(--line);border-radius:20px;padding:24px;text-align:center;margin-bottom:20px;max-width:600px;box-shadow:0 4px 15px rgba(0,0,0,.03)}
 .profile-avatar{width:75px;height:75px;border-radius:50%;background:var(--accent);color:#fff;font-size:28px;font-weight:800;display:grid;place-items:center;margin:0 auto 12px;box-shadow:0 4px 12px rgba(194,140,56,.3)}
 .profile-name{font-size:19px;font-weight:800;margin:0 0 2px}
 .profile-email{font-size:13px;color:var(--muted);margin-bottom:14px}
@@ -132,7 +132,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 .modal-content{width:100%;max-width:600px;background:var(--bg2);border-top:1px solid var(--line);border-radius:24px 24px 0 0;padding:28px;max-height:85vh;overflow-y:auto;box-shadow:0 -10px 40px rgba(0,0,0,.15);transform:translateY(100%);transition:transform .3s cubic-bezier(0.16, 1, 0.3, 1)}
 .modal-overlay.open .modal-content{transform:translateY(0)}
 
-.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:var(--max);height:70px;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(20px);border-top:1px solid var(--line);display:flex;justify-content:space-around;align-items:center;z-index:60;padding:0 10px}
+.bottom-nav{position:fixed;bottom:0;left:0;width:100%;height:70px;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(20px);border-top:1px solid var(--line);display:flex;justify-content:space-around;align-items:center;z-index:60;padding:0 10px}
 .nav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--muted);font-size:10px;font-weight:700;background:none;border:none;cursor:pointer;transition:.2s}
 .nav-item span.icon{font-size:18px}
 .nav-item.active, .nav-item:hover{color:var(--accent)}
@@ -156,7 +156,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     </div>
   </header>
 
-  <!-- 1. HOME VIEW (Dynamic Multi-Sections based on City/District) -->
+  <!-- 1. HOME VIEW -->
   <div id="homeView" class="view-section active">
     <div class="section-title">Explore Categories</div>
     <div class="categories">
@@ -169,7 +169,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     <div style="height: 20px;"></div>
 
     <div id="dynamicFeedsContainer">
-      <!-- Dynamic City/Hub Sections will be rendered here -->
+      <!-- Dynamic City/Hub Sections will render here only when books are uploaded -->
     </div>
   </div>
 
@@ -190,13 +190,13 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
       <span style="font-size:12px;color:#16a34a;font-weight:700;margin-left:auto">Verified Student Deal</span>
     </div>
 
-    <div class="info-card">
+    <div class="info-card" style="max-width:800px;">
       <div class="info-row"><span><i class="fa-solid fa-user-pen"></i> Author / Creator</span> <b id="dAuthor" style="color:var(--text)">Ajmal Mansoori</b></div>
       <div class="info-row"><span><i class="fa-solid fa-map-pin"></i> Pickup Location</span> <b id="dLoc" style="color:var(--accent)">Zero Road, Prayagraj</b></div>
       <div class="info-row"><span><i class="fa-solid fa-box"></i> Net Quantity</span> <b id="dQty">1 Unit (Physical / Digital)</b></div>
     </div>
 
-    <div style="display:flex; gap:12px; margin-top:24px;">
+    <div style="display:flex; gap:12px; margin-top:24px; max-width:800px;">
       <button style="flex:1; background:var(--surface2); border:1px solid var(--line); padding:14px; border-radius:14px; font-weight:700; cursor:pointer;" onclick="addToCartActiveBook()"><i class="fa-solid fa-cart-plus"></i> Add to Cart 🛒</button>
       <button style="flex:1; background:#25D366; border:none; color:#fff; padding:14px; border-radius:14px; font-weight:700; cursor:pointer;" onclick="orderOnWhatsApp()"><i class="fa-brands fa-whatsapp"></i> Contact Seller</button>
     </div>
@@ -257,7 +257,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 
         <div class="form-group">
           <label><i class="fa-brands fa-whatsapp"></i> Seller WhatsApp Number (India +91 Auto) *</label>
-          <div style="display:flex; align-items:center; gap:8px;">
+          <div style="display:flex; align-items:center; gap:8px; max-width:400px;">
             <span style="background:var(--bg2); border:1px solid var(--line); padding:12px 14px; border-radius:12px; font-weight:700; font-size:13px;">+91</span>
             <input type="tel" id="sellWhatsApp" placeholder="e.g., 9984919392" maxlength="10" required style="flex:1;">
           </div>
@@ -299,7 +299,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
         </div>
       </div>
 
-      <button type="submit" class="btn-primary"><i class="fa-solid fa-cloud-arrow-up"></i> Publish Listing Free</button>
+      <button type="submit" class="btn-primary" style="max-width:800px;"><i class="fa-solid fa-cloud-arrow-up"></i> Publish Listing Free</button>
     </form>
   </div>
 
@@ -317,7 +317,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
         <div class="bill-row"><span>Student Discount</span> <span style="color:#16a34a">- ₹0</span></div>
         <div class="bill-row total"><span>Total Amount</span> <span id="cartFinalSummary">₹0</span></div>
       </div>
-      <button style="width:100%;background:#25D366;border:none;color:#fff;padding:14px;border-radius:14px;font-weight:800;cursor:pointer;box-shadow:0 4px 12px rgba(37,211,102,.25);" onclick="checkoutCartWhatsApp()"><i class="fa-brands fa-whatsapp"></i> Checkout via WhatsApp</button>
+      <button style="width:100%;max-width:800px;background:#25D366;border:none;color:#fff;padding:14px;border-radius:14px;font-weight:800;cursor:pointer;box-shadow:0 4px 12px rgba(37,211,102,.25);" onclick="checkoutCartWhatsApp()"><i class="fa-brands fa-whatsapp"></i> Checkout via WhatsApp</button>
     </div>
   </div>
 
@@ -343,22 +343,24 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 
     <div class="divider" id="dividerText">or with email & password</div>
 
-    <div class="form-group" id="nameFieldGroup" style="display:none;">
+    <div class="form-group" id="nameFieldGroup" style="display:none;max-width:400px;margin-inline:auto;">
       <label>Full Name</label>
       <input type="text" id="fullNameInput" placeholder="Enter your full name">
     </div>
 
-    <div class="form-group">
+    <div class="form-group" style="max-width:400px;margin-inline:auto;">
       <label>Email Address</label>
       <input type="email" id="userEmailInput" placeholder="e.g., ajmal@learnify.com">
     </div>
 
-    <div class="form-group">
+    <div class="form-group" style="max-width:400px;margin-inline:auto;">
       <label>Password</label>
       <input type="password" id="userPassInput" placeholder="Enter your password">
     </div>
 
-    <button class="btn-primary" id="submitAuthBtn" onclick="handleEmailAuth()">Login to Account</button>
+    <div style="max-width:400px;margin-inline:auto;">
+      <button class="btn-primary" id="submitAuthBtn" onclick="handleEmailAuth()">Login to Account</button>
+    </div>
   </div>
 
   <!-- 7. PROFILE DASHBOARD VIEW -->
@@ -400,7 +402,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
   <div id="settingsView" class="view-section">
     <div class="back-link" onclick="switchView('profile')"><i class="fa-solid fa-arrow-left"></i> Back to Profile</div>
     <div class="section-title">App Settings</div>
-    <div class="form-card">
+    <div class="form-card" style="max-width:600px;">
       <div class="form-group">
         <label>App Theme Mode</label>
         <select id="themeSelector" onchange="changeThemeMode(this.value)">
@@ -410,12 +412,12 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
       </div>
       <div class="form-group" style="margin-bottom:0">
         <label>App Version</label>
-        <input type="text" value="BookNear v10.0 Production Launch Edition" disabled>
+        <input type="text" value="BookNear v10.5 Desktop Pro Edition" disabled>
       </div>
     </div>
   </div>
 
-  <!-- LOCATION SELECTOR MODAL (Smooth Sliding) -->
+  <!-- LOCATION SELECTOR MODAL -->
   <div class="modal-overlay" id="locationModal" onclick="checkModalBackdrop(event)">
     <div class="modal-content">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
@@ -481,9 +483,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
   let allBooksData = [];
   let cartItems = [];
   let currentCategoryFilter = 'All';
-  let currentSelectedCity = 'Prayagraj';
 
-  // Theme Management
   function changeThemeMode(mode) {
     document.documentElement.setAttribute('data-theme', mode);
     localStorage.setItem('booknear_theme', mode);
@@ -510,7 +510,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     }
   });
 
-  // Persistent Firestore Listener with Multi-City Section Rendering
+  // Persistent Firestore Listener with Multi-City Section Rendering (Zero Default Books)
   function fetchLiveBooksFromFirebase() {
     db.collection("booksListings").orderBy("createdAt", "desc").onSnapshot((snapshot) => {
       allBooksData = [];
@@ -547,12 +547,11 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     return locStr;
   }
 
-  // Render multi-city sections dynamically (e.g. Book Near Prayagraj, Book Near Aligarh, etc.)
+  // Render multi-city sections dynamically only when uploaded
   function renderFeedSections() {
     const container = document.getElementById('dynamicFeedsContainer');
     container.innerHTML = "";
 
-    // Filter by category if selected
     let filtered = allBooksData;
     if(currentCategoryFilter !== 'All') {
       filtered = allBooksData.filter(b => b.category === currentCategoryFilter);
@@ -560,16 +559,15 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 
     if(filtered.length === 0) {
       container.innerHTML = `
-        <div style="text-align:center; padding:40px 20px; background:var(--surface2); border:1px solid var(--line); border-radius:18px;">
-          <i class="fa-solid fa-books" style="font-size:40px; color:var(--accent); margin-bottom:12px;"></i>
-          <h3 style="margin:0 0 6px; font-size:16px;">No Books Found</h3>
-          <p style="margin:0; font-size:12px; color:var(--muted);">No books are currently listed under this category/location. Be the first to publish one!</p>
+        <div style="text-align:center; padding:60px 20px; background:var(--surface2); border:1px solid var(--line); border-radius:18px; max-width:800px; margin:0 auto;">
+          <i class="fa-solid fa-book-open" style="font-size:48px; color:var(--accent); margin-bottom:14px;"></i>
+          <h3 style="margin:0 0 6px; font-size:18px;">No Books Found</h3>
+          <p style="margin:0; font-size:13px; color:var(--muted);">No books have been uploaded yet. Be the first student to list your book or notes!</p>
         </div>
       `;
       return;
     }
 
-    // Group by city
     let cityGroups = {};
     filtered.forEach(b => {
       let city = b.city || "Prayagraj";
@@ -579,13 +577,12 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 
     for(let city in cityGroups) {
       let sectionHtml = `
-        <div style="margin-bottom:24px;">
+        <div style="margin-bottom:28px;">
           <div class="section-title">Book Near <span style="color:var(--accent)">${city}</span></div>
           <div class="product-grid">
       `;
 
       cityGroups[city].forEach((b) => {
-        // Find global index in allBooksData for detail view mapping
         const globalIndex = allBooksData.findIndex(item => item === b);
         const imgContent = b.imageUrlFront 
           ? `<img src="${b.imageUrlFront}" style="width:100%; height:100%; object-fit:cover; border-radius:14px;" />` 
@@ -617,7 +614,6 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
   function filterCategoryAndGo(catName) {
     currentCategoryFilter = catName;
     switchView('home');
-    // Highlight pill on home
     const pills = document.querySelectorAll('.cat-pill');
     pills.forEach(p => {
       if(p.textContent.trim() === catName) p.classList.add('active');
@@ -813,10 +809,16 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     }
   }
 
-  // Cart Management
+  function updateQty(itemId, change) {
+    const qtyElem = document.getElementById('qty' + itemId);
+    let currentQty = parseInt(qtyElem.textContent);
+    currentQty += change;
+    if (currentQty < 1) currentQty = 1;
+    qtyElem.textContent = currentQty;
+  }
+
   function addToCartActiveBook() {
     const book = allBooksData[currentBook];
-    // Check if already in cart
     const existing = cartItems.find(item => item.title === book.title);
     if(existing) {
       existing.qty += 1;
@@ -963,7 +965,6 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     });
   }
 
-  // Smooth Location Modal
   function openLocationModal() { 
     document.getElementById('locationModal').classList.add('open'); 
   }
