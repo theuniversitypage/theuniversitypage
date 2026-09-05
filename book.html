@@ -31,7 +31,6 @@
 *{box-sizing:border-box}
 body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);color:var(--text);min-height:100vh;transition:background .3s,color .3s}
 
-/* Fully Responsive Layout for Laptop & Mobile */
 .app-container{width:100%;min-height:100vh;background:var(--bg);position:relative;padding-bottom:90px;box-shadow:0 0 40px rgba(0,0,0,.04)}
 
 .app-header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
@@ -59,6 +58,10 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 .product-card:hover{border-color:var(--accent);transform:translateY(-2px)}
 .p-img{height:160px;background:rgba(194,140,56,.08);border-radius:14px;display:grid;place-items:center;font-size:32px;color:var(--accent);margin-bottom:10px;position:relative;overflow:hidden}
 .p-tag{position:absolute;top:8px;left:8px;background:rgba(18,20,23,.8);color:#fff;font-size:8px;padding:3px 8px;border-radius:4px;font-weight:700;z-index:2}
+.stock-badge{position:absolute;bottom:8px;left:8px;font-size:9px;padding:2px 6px;border-radius:4px;font-weight:700;z-index:2}
+.stock-badge.available{background:#16a34a;color:#fff;}
+.stock-badge.out{background:#dc2626;color:#fff;}
+
 .fav-icon{position:absolute;top:8px;right:8px;background:var(--surface2);border-radius:50%;width:28px;height:28px;display:grid;place-items:center;font-size:12px;cursor:pointer;box-shadow:0 2px 5px rgba(0,0,0,.05);z-index:2}
 .p-loc{font-size:10px;color:var(--accent);font-weight:700;margin-bottom:3px}
 .p-title{font-size:13px;font-weight:700;margin:0 0 6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
@@ -71,7 +74,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 .thumb-item{padding:8px 16px;background:var(--surface2);border:1px solid var(--line);border-radius:12px;font-size:12px;cursor:pointer;color:var(--muted);font-weight:700;transition:.2s}
 .thumb-item.active, .thumb-item:hover{border-color:var(--accent);color:var(--accent);background:rgba(194,140,56,.06)}
 
-.info-card{background:var(--surface2);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:16px;font-size:13px;box-shadow:0 2px 8px rgba(0,0,0,.02)}
+.info-card{background:var(--surface2);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:16px;font-size:13px;box-shadow:0 2px 8px rgba(0,0,0,.02);max-width:800px}
 .info-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line)}
 .info-row:last-child{border-bottom:none}
 
@@ -126,7 +129,6 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 .profile-name{font-size:19px;font-weight:800;margin:0 0 2px}
 .profile-email{font-size:13px;color:var(--muted);margin-bottom:14px}
 
-/* Smooth Sliding Location Modal */
 .modal-overlay{position:fixed;inset:0;background:rgba(12,14,17,0.65);backdrop-filter:blur(6px);z-index:200;display:none;align-items:flex-end;justify-content:center;opacity:0;transition:opacity .3s ease}
 .modal-overlay.open{display:flex;opacity:1}
 .modal-content{width:100%;max-width:600px;background:var(--bg2);border-top:1px solid var(--line);border-radius:24px 24px 0 0;padding:28px;max-height:85vh;overflow-y:auto;box-shadow:0 -10px 40px rgba(0,0,0,.15);transform:translateY(100%);transition:transform .3s cubic-bezier(0.16, 1, 0.3, 1)}
@@ -168,9 +170,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     </div>
     <div style="height: 20px;"></div>
 
-    <div id="dynamicFeedsContainer">
-      <!-- Dynamic City/Hub Sections will render here only when books are uploaded -->
-    </div>
+    <div id="dynamicFeedsContainer"></div>
   </div>
 
   <!-- 2. BOOK DETAIL VIEW -->
@@ -187,7 +187,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     <div class="price-box">
       <span class="current-rate" id="dPrice">₹249</span>
       <span class="original-rate" id="dOldPrice">₹499</span>
-      <span style="font-size:12px;color:#16a34a;font-weight:700;margin-left:auto">Verified Student Deal</span>
+      <span id="dStockBadge" style="font-size:12px;font-weight:700;margin-left:auto;padding:3px 8px;border-radius:6px;">Available</span>
     </div>
 
     <div class="info-card" style="max-width:800px;">
@@ -196,7 +196,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
       <div class="info-row"><span><i class="fa-solid fa-box"></i> Net Quantity</span> <b id="dQty">1 Unit (Physical / Digital)</b></div>
     </div>
 
-    <div style="display:flex; gap:12px; margin-top:24px; max-width:800px;">
+    <div style="display:flex; gap:12px; margin-top:24px; max-width:800px;" id="actionButtonsBox">
       <button style="flex:1; background:var(--surface2); border:1px solid var(--line); padding:14px; border-radius:14px; font-weight:700; cursor:pointer;" onclick="addToCartActiveBook()"><i class="fa-solid fa-cart-plus"></i> Add to Cart 🛒</button>
       <button style="flex:1; background:#25D366; border:none; color:#fff; padding:14px; border-radius:14px; font-weight:700; cursor:pointer;" onclick="orderOnWhatsApp()"><i class="fa-brands fa-whatsapp"></i> Contact Seller</button>
     </div>
@@ -255,11 +255,20 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
           </div>
         </div>
 
-        <div class="form-group">
-          <label><i class="fa-brands fa-whatsapp"></i> Seller WhatsApp Number (India +91 Auto) *</label>
-          <div style="display:flex; align-items:center; gap:8px; max-width:400px;">
-            <span style="background:var(--bg2); border:1px solid var(--line); padding:12px 14px; border-radius:12px; font-weight:700; font-size:13px;">+91</span>
-            <input type="tel" id="sellWhatsApp" placeholder="e.g., 9984919392" maxlength="10" required style="flex:1;">
+        <div class="row-2">
+          <div class="form-group">
+            <label><i class="fa-brands fa-whatsapp"></i> Seller WhatsApp Number *</label>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span style="background:var(--bg2); border:1px solid var(--line); padding:12px 14px; border-radius:12px; font-weight:700; font-size:13px;">+91</span>
+              <input type="tel" id="sellWhatsApp" placeholder="e.g., 9984919392" maxlength="10" required style="flex:1;">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Availability Status *</label>
+            <select id="sellStockStatus" required>
+              <option value="Available">Available (In Stock)</option>
+              <option value="Out of Stock">Out of Stock (Sold Out)</option>
+            </select>
           </div>
         </div>
 
@@ -372,6 +381,11 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
       <span style="font-size: 10px; background: rgba(194,140,56,0.12); color: var(--accent); padding: 4px 10px; border-radius: 20px; font-weight: 700;"><i class="fa-solid fa-shield-check"></i> Verified Account</span>
     </div>
 
+    <div class="section-title" style="font-size:15px; margin-top:20px;">My Uploaded Listings</div>
+    <div id="myListingsContainer" style="display:flex; flex-direction:column; gap:10px; margin-bottom:20px; max-width:600px;">
+      <p style="font-size:12px; color:var(--muted);">Loading your listings...</p>
+    </div>
+
     <div class="menu-list">
       <div class="menu-item" onclick="switchView('sell')"><span><i class="fa-solid fa-circle-plus" style="color:var(--accent)"></i> Sell a Book / Notes</span><span>→</span></div>
       <div class="menu-item" onclick="switchView('orders')"><span><i class="fa-solid fa-box-archive"></i> My Book Orders</span><span>→</span></div>
@@ -412,7 +426,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
       </div>
       <div class="form-group" style="margin-bottom:0">
         <label>App Version</label>
-        <input type="text" value="BookNear v10.5 Desktop Pro Edition" disabled>
+        <input type="text" value="BookNear v11.0 Production Ready" disabled>
       </div>
     </div>
   </div>
@@ -481,7 +495,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
   let isLoggedIn = false;
   let currentUserObject = null;
   let allBooksData = [];
-  let cartItems = [];
+  let cartItems = JSON.parse(localStorage.getItem('booknear_cart') || '[]');
   let currentCategoryFilter = 'All';
 
   function changeThemeMode(mode) {
@@ -493,6 +507,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     const savedTheme = localStorage.getItem('booknear_theme') || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
     document.getElementById('themeSelector').value = savedTheme;
+    updateCartBadge();
     fetchLiveBooksFromFirebase();
   });
 
@@ -504,6 +519,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
       document.getElementById('userNameDisplay').textContent = displayName;
       document.getElementById('userEmailDisplay').textContent = user.email;
       document.getElementById('userInitial').textContent = displayName.charAt(0).toUpperCase();
+      renderUserListings();
     } else {
       isLoggedIn = false;
       currentUserObject = null;
@@ -528,12 +544,15 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
           location: b.location || "Local Hub",
           city: extractCityFromLocation(b.location || "Prayagraj"),
           whatsapp: b.whatsapp || "+919984919392",
+          stockStatus: b.stockStatus || "Available",
+          sellerEmail: b.sellerEmail || "",
           imageUrlFront: b.imageUrlFront || "",
           imageUrlBack: b.imageUrlBack || ""
         });
       });
 
       renderFeedSections();
+      if(isLoggedIn) renderUserListings();
     }, (error) => {
       console.log("Offline mode or sync error.");
     });
@@ -583,15 +602,19 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
       `;
 
       cityGroups[city].forEach((b) => {
-        const globalIndex = allBooksData.findIndex(item => item === b);
+        const globalIndex = allBooksData.findIndex(item => item.id === b.id);
         const imgContent = b.imageUrlFront 
           ? `<img src="${b.imageUrlFront}" style="width:100%; height:100%; object-fit:cover; border-radius:14px;" />` 
           : `<i class="fa-solid fa-book"></i>`;
 
+        const stockBadge = b.stockStatus === 'Out of Stock' 
+          ? `<span class="stock-badge out">Out of Stock</span>` 
+          : `<span class="stock-badge available">Available</span>`;
+
         sectionHtml += `
           <div class="product-card" onclick="openBookDetail(${globalIndex})">
             <div class="fav-icon" onclick="toggleFavorite(event, ${globalIndex})"><i class="fa-regular fa-heart"></i></div>
-            <div class="p-img">${imgContent}</div>
+            <div class="p-img">${imgContent} ${stockBadge}</div>
             <div class="p-loc"><i class="fa-solid fa-location-pin"></i> ${b.location}</div>
             <div class="p-title">${b.title}</div>
             <div><span class="price">${b.price}</span><span class="old-price">${b.old}</span></div>
@@ -601,6 +624,40 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
 
       sectionHtml += `</div></div>`;
       container.innerHTML += sectionHtml;
+    }
+  }
+
+  function renderUserListings() {
+    const container = document.getElementById('myListingsContainer');
+    if(!currentUserObject) return;
+
+    const userBooks = allBooksData.filter(b => b.sellerEmail === currentUserObject.email);
+    if(userBooks.length === 0) {
+      container.innerHTML = `<p style="font-size:12px; color:var(--muted);">You haven't listed any books yet.</p>`;
+      return;
+    }
+
+    container.innerHTML = "";
+    userBooks.forEach(b => {
+      container.innerHTML += `
+        <div style="background:var(--bg2); border:1px solid var(--line); padding:10px 14px; border-radius:12px; display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <div style="font-weight:700; font-size:13px;">${b.title}</div>
+            <div style="font-size:11px; color:var(--muted);">${b.price} • <b style="color:${b.stockStatus === 'Out of Stock' ? '#dc2626' : '#16a34a'}">${b.stockStatus}</b></div>
+          </div>
+          <button onclick="deleteBookListing('${b.id}')" style="background:#dc2626; border:none; color:#fff; padding:6px 12px; border-radius:8px; font-size:11px; font-weight:700; cursor:pointer;"><i class="fa-solid fa-trash"></i> Delete</button>
+        </div>
+      `;
+    });
+  }
+
+  function deleteBookListing(bookId) {
+    if(confirm("Are you sure you want to delete this book listing?")) {
+      db.collection("booksListings").doc(bookId).delete().then(() => {
+        alert("Book deleted successfully!");
+      }).catch(err => {
+        alert("Error deleting book: " + err.message);
+      });
     }
   }
 
@@ -676,6 +733,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     } else if(viewName === 'profile') {
       document.getElementById('profileView').classList.add('active');
       document.getElementById('nav-profile').classList.add('active');
+      renderUserListings();
     } else if(viewName === 'auth') {
       document.getElementById('authView').classList.add('active');
       document.getElementById('nav-profile').classList.add('active');
@@ -780,6 +838,24 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     document.getElementById('dOldPrice').textContent = b.old;
     document.getElementById('dLoc').textContent = b.location;
     document.getElementById('dAuthor').textContent = b.author;
+
+    const stockBadge = document.getElementById('dStockBadge');
+    const actionBox = document.getElementById('actionButtonsBox');
+
+    if(b.stockStatus === 'Out of Stock') {
+      stockBadge.textContent = "Out of Stock (Sold Out)";
+      stockBadge.style.background = "#dc2626";
+      stockBadge.style.color = "#fff";
+      actionBox.innerHTML = `<button style="width:100%; background:#dc2626; border:none; color:#fff; padding:14px; border-radius:14px; font-weight:800; cursor:not-allowed;" disabled>Out of Stock (This book is sold out)</button>`;
+    } else {
+      stockBadge.textContent = "Available / In Stock";
+      stockBadge.style.background = "#16a34a";
+      stockBadge.style.color = "#fff";
+      actionBox.innerHTML = `
+        <button style="flex:1; background:var(--surface2); border:1px solid var(--line); padding:14px; border-radius:14px; font-weight:700; cursor:pointer;" onclick="addToCartActiveBook()"><i class="fa-solid fa-cart-plus"></i> Add to Cart 🛒</button>
+        <button style="flex:1; background:#25D366; border:none; color:#fff; padding:14px; border-radius:14px; font-weight:700; cursor:pointer;" onclick="orderOnWhatsApp()"><i class="fa-brands fa-whatsapp"></i> Contact Seller</button>
+      `;
+    }
     
     displayBookImage('front');
     switchView('detail');
@@ -817,6 +893,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     qtyElem.textContent = currentQty;
   }
 
+  // Cart Management with LocalStorage Persistence
   function addToCartActiveBook() {
     const book = allBooksData[currentBook];
     const existing = cartItems.find(item => item.title === book.title);
@@ -825,6 +902,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     } else {
       cartItems.push({ ...book, qty: 1 });
     }
+    localStorage.setItem('booknear_cart', JSON.stringify(cartItems));
     updateCartBadge();
     alert("Book successfully added to Cart! 🛒");
   }
@@ -840,7 +918,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     document.getElementById('cartCountHeader').textContent = cartItems.reduce((sum, i) => sum + i.qty, 0);
 
     if(cartItems.length === 0) {
-      container.innerHTML = `<p style="font-size:13px; color:var(--muted); text-align:center; padding:20px;">Your cart is currently empty. Add books from store!</p>`;
+      container.innerHTML = `<p style="font-size:13px; color:var(--muted); text-align:center; padding:20px;">Your cart is currently empty. Add books to proceed!</p>`;
       billSection.style.display = 'none';
       return;
     }
@@ -879,12 +957,14 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
   function updateCartQty(index, change) {
     cartItems[index].qty += change;
     if(cartItems[index].qty < 1) cartItems[index].qty = 1;
+    localStorage.setItem('booknear_cart', JSON.stringify(cartItems));
     updateCartBadge();
     renderCartView();
   }
 
   function removeFromCart(index) {
     cartItems.splice(index, 1);
+    localStorage.setItem('booknear_cart', JSON.stringify(cartItems));
     updateCartBadge();
     renderCartView();
   }
@@ -923,6 +1003,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
     const title = document.getElementById('sellTitle').value;
     const author = document.getElementById('sellAuthor').value;
     const category = document.getElementById('sellCategory').value;
+    const stockStatus = document.getElementById('sellStockStatus').value;
     const rawWhatsApp = document.getElementById('sellWhatsApp').value.trim();
     const whatsapp = "+91" + rawWhatsApp.replace(/^\+91/, '');
     const price = document.getElementById('sellPrice').value;
@@ -949,6 +1030,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
       title: title,
       author: author,
       category: category,
+      stockStatus: stockStatus,
       whatsapp: whatsapp,
       price: price,
       oldPrice: oldPrice || "499",
