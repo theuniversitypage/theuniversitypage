@@ -29,9 +29,15 @@
 }
 
 *{box-sizing:border-box}
-body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);color:var(--text);display:flex;justify-content:center;min-height:100vh;transition:background .3s,color .3s}
+body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);color:var(--text);display:flex;justify-content:center;align-items:center;min-height:100vh;transition:background .3s,color .3s}
 
-.app-container{width:100%;max-width:var(--max);min-height:100vh;background:var(--bg);position:relative;padding-bottom:80px;border-inline:1px solid var(--line);box-shadow:0 0 50px rgba(0,0,0,.04)}
+/* Fully Responsive App Shell (Looks great on mobile & centered on desktop) */
+.app-container{width:100%;max-width:var(--max);min-height:100vh;background:var(--bg);position:relative;padding-bottom:80px;border-inline:1px solid var(--line);box-shadow:0 0 50px rgba(0,0,0,.08)}
+
+@media(min-width: 481px) {
+  body { padding: 20px 0; }
+  .app-container { min-height: 90vh; border-radius: 32px; border: 1px solid var(--line); overflow: hidden; }
+}
 
 .app-header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);padding:12px 16px;display:flex;flex-direction:column;gap:6px}
 .header-top-row{display:flex;align-items:center;justify-content:space-between}
@@ -434,7 +440,7 @@ body{margin:0;font-family:"Bricolage Grotesque",sans-serif;background:var(--bg);
       </div>
       <div class="form-group" style="margin-bottom:0">
         <label>App Version</label>
-        <input type="text" value="BookNear v8.5 Elite Edition" disabled>
+        <input type="text" value="BookNear v9.0 Fully Responsive" disabled>
       </div>
     </div>
   </div>
