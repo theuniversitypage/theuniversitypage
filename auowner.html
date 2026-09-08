@@ -1,0 +1,1789 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffffff">
+<meta name="description" content="The University Page Student Community 2026-27">
+<title>The University Page | Student Community 2026-27[cite: 1]</title>
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --bg:#ffffff;
+    --soft:#f8fafc;
+    --soft2:#f1f5f9;
+    --text:#0f172a;
+    --muted:#64748b;
+    --line:rgba(15,23,42,.09);
+    --accent:#2563eb;
+    --accent2:#3b82f6;
+    --max:1120px;
+    --radius:22px;
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+/* English Default Font */
+body{
+    font-family: "Bricolage Grotesque", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+/* Hindi Font */
+.hindi, p.hindi, label.hindi, span.hindi, div.hindi {
+    font-family: "Anek Devanagari", "Segoe UI", Arial, sans-serif !important;
+}
+
+body:before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background-image:
+    linear-gradient(rgba(15,23,42,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(15,23,42,.025) 1px,transparent 1px);
+    background-size:44px 44px;
+    mask-image:linear-gradient(to bottom,black,transparent 85%);
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+button,
+input,
+select{
+    font-family:inherit;
+}
+
+.wrap{
+    width:min(calc(100% - 34px),var(--max));
+    margin:auto;
+}
+
+/* NAV */
+
+nav{
+    height:78px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:relative;
+    z-index:10;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.brand strong{
+    display:block;
+    font-size:15px;
+    letter-spacing:.12em;
+}
+
+.brand small{
+    display:block;
+    color:var(--muted);
+    font-size:10px;
+    letter-spacing:.08em;
+    margin-top:2px;
+}
+
+.nav-actions{
+    display:flex;
+    align-items:center;
+    gap:9px;
+}
+
+.navbtn{
+    border:1px solid var(--line);
+    padding:10px 15px;
+    border-radius:12px;
+    color:var(--text);
+    font-size:12px;
+    background:var(--soft);
+    transition:.25s;
+}
+
+.navbtn:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+}
+
+/* HERO */
+
+.hero{
+    padding:78px 0 65px;
+    position:relative;
+}
+
+.eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    color:var(--accent);
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    border:1px solid rgba(37,99,235,.2);
+    background:rgba(37,99,235,.05);
+    padding:9px 12px;
+    border-radius:999px;
+}
+
+.dot{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:var(--accent);
+    box-shadow:0 0 10px var(--accent);
+}
+
+h1{
+    font-weight: 700;
+    font-size:clamp(48px,8vw,86px);
+    line-height:.96;
+    letter-spacing:-.045em;
+    max-width:900px;
+    margin:22px 0 20px;
+}
+
+h1 span{
+    color:var(--accent);
+}
+
+.hero p{
+    max-width:700px;
+    color:var(--muted);
+    font-size:16px;
+    line-height:1.75;
+}
+
+.ctas{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:30px;
+}
+
+.primary,
+.secondary{
+    padding:14px 19px;
+    border-radius:13px;
+    font-size:13px;
+    font-weight:700;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    transition:.25s;
+}
+
+.primary{
+    background:linear-gradient(135deg,var(--accent2),var(--accent));
+    color:#fff;
+    box-shadow:0 10px 25px rgba(37,99,235,.25);
+}
+
+.primary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 15px 30px rgba(37,99,235,.3);
+}
+
+.secondary{
+    border:1px solid var(--line);
+    background:var(--soft);
+}
+
+.secondary:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+}
+
+/* HERO CARDS */
+
+.heroGrid{
+    display:grid;
+    grid-template-columns:1.2fr .8fr;
+    gap:18px;
+    margin-top:55px;
+}
+
+.panel{
+    border:1px solid var(--line);
+    background:var(--soft);
+    border-radius:var(--radius);
+    padding:24px;
+}
+
+.panelTitle{
+    font-size:12px;
+    color:var(--muted);
+    letter-spacing:.08em;
+    text-transform:uppercase;
+}
+
+.quote{
+    font-weight: 600;
+    font-size:28px;
+    line-height:1.25;
+    margin-top:15px;
+}
+
+.quote em{
+    color:var(--accent);
+    font-style:normal;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin-top:18px;
+}
+
+.stat{
+    padding:17px;
+    border:1px solid var(--line);
+    border-radius:16px;
+    background:#fff;
+}
+
+.stat b{
+    font-size:24px;
+}
+
+.stat span{
+    display:block;
+    color:var(--muted);
+    font-size:11px;
+    margin-top:4px;
+}
+
+/* SECTIONS */
+
+.section{
+    padding:78px 0;
+}
+
+.sectionHead{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    align-items:end;
+    margin-bottom:26px;
+}
+
+.sectionHead h2{
+    font-weight: 700;
+    font-size:40px;
+    letter-spacing:-.025em;
+}
+
+.sectionHead p{
+    max-width:470px;
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.7;
+}
+
+/* FEATURES */
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+}
+
+.feature{
+    padding:25px;
+    border:1px solid var(--line);
+    border-radius:19px;
+    background:var(--soft);
+    transition:.25s;
+}
+
+.feature:hover{
+    transform:translateY(-4px);
+    border-color:rgba(37,99,235,.25);
+    box-shadow:0 15px 35px rgba(15,23,42,.06);
+}
+
+.featureNumber{
+    font-size:11px;
+    color:var(--accent);
+    font-weight:700;
+    letter-spacing:.12em;
+    margin-bottom:18px;
+}
+
+.feature h3{
+    font-size:16px;
+    margin-bottom:8px;
+}
+
+.feature p{
+    font-size:12px;
+    line-height:1.7;
+    color:var(--muted);
+}
+
+/* NETWORK */
+
+.network{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+}
+
+.networkCard{
+    border:1px solid var(--line);
+    background:var(--soft);
+    border-radius:22px;
+    padding:28px;
+}
+
+.networkCard h3{
+    font-weight: 700;
+    font-size:28px;
+    margin-bottom:10px;
+}
+
+.networkCard p{
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.7;
+}
+
+.tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:20px;
+}
+
+.tag{
+    padding:9px 12px;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:10px;
+    font-size:11px;
+    color:var(--muted);
+}
+
+/* STEPS */
+
+.stepsGrid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+}
+
+.stepCard{
+    border:1px solid var(--line);
+    background:#fff;
+    border-radius:18px;
+    padding:21px;
+}
+
+.stepNo{
+    width:32px;
+    height:32px;
+    display:grid;
+    place-items:center;
+    border-radius:10px;
+    background:rgba(37,99,235,.09);
+    color:var(--accent);
+    font-size:12px;
+    font-weight:800;
+    margin-bottom:18px;
+}
+
+.stepCard h3{
+    font-size:14px;
+    margin-bottom:6px;
+}
+
+.stepCard p{
+    font-size:11px;
+    line-height:1.65;
+    color:var(--muted);
+}
+
+/* REGISTRATION */
+
+.formArea{
+    display:grid;
+    grid-template-columns:.75fr 1.25fr;
+    gap:18px;
+    align-items:start;
+}
+
+.side{
+    position:sticky;
+    top:20px;
+}
+
+.side h2{
+    font-weight: 700;
+    font-size:42px;
+    line-height:1.05;
+    margin:12px 0;
+}
+
+.side p{
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.7;
+}
+
+.sideSteps{
+    margin-top:26px;
+    display:grid;
+    gap:11px;
+}
+
+.sideStep{
+    display:flex;
+    gap:11px;
+    align-items:center;
+    font-size:12px;
+    color:var(--muted);
+}
+
+.sideStep i{
+    font-style:normal;
+    width:27px;
+    height:27px;
+    border-radius:9px;
+    display:grid;
+    place-items:center;
+    background:rgba(37,99,235,.1);
+    color:var(--accent);
+}
+
+.formCard{
+    border:1px solid var(--line);
+    border-radius:23px;
+    padding:25px;
+    background:var(--soft);
+    box-shadow:0 20px 40px rgba(0,0,0,.04);
+}
+
+.formTop{
+    margin-bottom:22px;
+}
+
+.formTop h3{
+    font-size:21px;
+}
+
+.formTop p{
+    color:var(--muted);
+    font-size:12px;
+    margin-top:5px;
+}
+
+.field{
+    margin-bottom:15px;
+}
+
+.row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+label{
+    font-size:11px;
+    color:var(--muted);
+    font-weight:700;
+    display:block;
+    margin-bottom:7px;
+}
+
+.req{
+    color:var(--accent);
+}
+
+input,
+select{
+    width:100%;
+    height:47px;
+    border-radius:12px;
+    border:1px solid var(--line);
+    background:#fff;
+    color:var(--text);
+    padding:0 13px;
+    outline:none;
+    font-size:13px;
+}
+
+input::placeholder{
+    color:#94a3b8;
+}
+
+input:focus,
+select:focus{
+    border-color:var(--accent);
+    box-shadow:0 0 0 3px rgba(37,99,235,.15);
+}
+
+.pills{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:8px;
+}
+
+.pills label{
+    margin:0;
+}
+
+.pills input{
+    display:none;
+}
+
+.pills span{
+    height:44px;
+    border:1px solid var(--line);
+    border-radius:11px;
+    display:grid;
+    place-items:center;
+    color:var(--muted);
+    cursor:pointer;
+    font-size:12px;
+    background:#fff;
+    transition:.2s;
+}
+
+.pills input:checked + span{
+    background:rgba(37,99,235,.1);
+    border-color:var(--accent);
+    color:var(--accent);
+}
+
+.consent{
+    display:flex;
+    gap:9px;
+    align-items:flex-start;
+    margin-top:7px;
+    padding:12px;
+    border:1px solid var(--line);
+    border-radius:12px;
+    background:#fff;
+}
+
+.consent input{
+    width:16px;
+    height:16px;
+    margin-top:1px;
+    accent-color:var(--accent);
+}
+
+.consent label{
+    font-weight:500;
+    font-size:10px;
+    line-height:1.55;
+    margin:0;
+    color:var(--muted);
+}
+
+.submit{
+    width:100%;
+    height:50px;
+    margin-top:15px;
+    border:0;
+    border-radius:12px;
+    background:linear-gradient(135deg,var(--accent2),var(--accent));
+    font-weight:800;
+    color:#fff;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.submit:hover{
+    transform:translateY(-1px);
+}
+
+.note{
+    text-align:center;
+    color:var(--muted);
+    font-size:9px;
+    margin-top:10px;
+}
+
+/* SUCCESS */
+
+.success{
+    display:none;
+    text-align:center;
+    padding:45px 20px;
+}
+
+.check{
+    width:68px;
+    height:68px;
+    border-radius:50%;
+    margin:auto;
+    display:grid;
+    place-items:center;
+    background:rgba(37,99,235,.1);
+    border:1px solid rgba(37,99,235,.3);
+    color:var(--accent);
+    font-size:28px;
+}
+
+.success h3{
+    font-weight: 700;
+    font-size:31px;
+    margin:17px 0 7px;
+}
+
+.success p{
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.6;
+}
+
+.successButtons{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:22px;
+}
+
+.communityBtn{
+    padding:12px 16px;
+    border-radius:11px;
+    font-size:12px;
+    font-weight:700;
+    border:1px solid var(--line);
+    background:#fff;
+}
+
+.communityBtn:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+}
+
+/* FAQ */
+
+.faq{
+    display:grid;
+    gap:10px;
+}
+
+.faqItem{
+    border:1px solid var(--line);
+    border-radius:15px;
+    background:var(--soft);
+    overflow:hidden;
+}
+
+.faqQuestion{
+    padding:18px;
+    cursor:pointer;
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    font-size:13px;
+    font-weight:700;
+}
+
+.faqAnswer{
+    max-height:0;
+    overflow:hidden;
+    transition:.3s ease;
+}
+
+.faqAnswer p{
+    padding:0 18px 18px;
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.7;
+}
+
+.faqItem.active .faqAnswer{
+    max-height:180px;
+}
+
+.faqIcon{
+    color:var(--accent);
+}
+
+/* TRUST */
+
+.trust{
+    border:1px solid var(--line);
+    border-radius:22px;
+    padding:28px;
+    background:var(--soft);
+}
+
+.trust h3{
+    font-weight: 700;
+    font-size:28px;
+    margin-bottom:9px;
+}
+
+.trust p{
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.75;
+    max-width:800px;
+}
+
+/* FOOTER */
+
+footer{
+    border-top:1px solid var(--line);
+    padding:30px 0 80px;
+    color:var(--muted);
+    font-size:10px;
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+/* MOBILE CTA */
+
+.mobileCTA{
+    display:none;
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    padding:10px 12px;
+    background:rgba(255,255,255,.94);
+    backdrop-filter:blur(12px);
+    border-top:1px solid var(--line);
+    z-index:100;
+}
+
+.mobileCTA a{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:46px;
+    border-radius:11px;
+    background:var(--accent);
+    color:#fff;
+    font-size:12px;
+    font-weight:800;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:820px){
+    .heroGrid,
+    .formArea,
+    .network{
+        grid-template-columns:1fr;
+    }
+
+    .features{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .stepsGrid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .side{
+        position:static;
+    }
+
+    .hero{
+        padding-top:55px;
+    }
+}
+
+@media(max-width:560px){
+    .wrap{
+        width:min(calc(100% - 24px),var(--max));
+    }
+
+    nav{
+        height:68px;
+    }
+
+    .brand strong{
+        font-size:10px;
+    }
+
+    .brand small{
+        font-size:8px;
+    }
+
+    .nav-actions .navbtn:first-child{
+        display:none;
+    }
+
+    .navbtn{
+        font-size:10px;
+        padding:9px 11px;
+    }
+
+    h1{
+        font-size:48px;
+    }
+
+    .hero p{
+        font-size:14px;
+    }
+
+    .features,
+    .stepsGrid{
+        grid-template-columns:1fr;
+    }
+
+    .row{
+        grid-template-columns:1fr;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .section{
+        padding:55px 0;
+    }
+
+    .sectionHead{
+        display:block;
+    }
+
+    .sectionHead h2{
+        font-size:32px;
+    }
+
+    .sectionHead p{
+        margin-top:9px;
+    }
+
+    .formCard{
+        padding:18px;
+    }
+
+    .pills{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .mobileCTA{
+        display:block;
+    }
+
+    footer{
+        padding-bottom:90px;
+    }
+}
+
+/* Hindi text class helper */
+.hindi, p.hindi, label.hindi, span.hindi, div.hindi {
+    font-family: "Anek Devanagari", "Segoe UI", Arial, sans-serif !important;
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+<nav>
+
+<a class="brand" href="#">
+    <div>
+        <strong>THE UNIVERSITY PAGE</strong>
+        <small>STUDENT COMMUNITY · 2026–27</small>
+    </div>
+</a>
+
+<div class="nav-actions">
+    <a class="navbtn" href="auowner.html">FOUNDER</a>
+    <a class="navbtn" href="#why">ABOUT</a>
+    <a class="navbtn" href="#register">REGISTRATION</a>
+</div>
+
+</nav>
+
+
+<main>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="eyebrow">
+    <span class="dot"></span>
+    Freshers Community 2026–27
+</div>
+
+<h1>
+    Your university journey<br>
+    <span>starts together.</span>
+</h1>
+
+<p class="hindi">
+    नए students के लिए एक student community,
+    जहाँ useful updates, college connections और student support एक ही जगह मिलें।
+</p>
+
+<div class="ctas">
+    <a class="primary" href="#register">
+        Join the Community →
+    </a>
+
+    <a class="secondary" href="#why">
+        Why join?
+    </a>
+</div>
+
+<div class="heroGrid">
+
+<div class="panel">
+    <div class="panelTitle">A community built for students</div>
+
+    <div class="quote">
+        “University life becomes easier when you don't have to
+        <em>figure everything out alone.</em>”
+    </div>
+</div>
+
+<div class="panel">
+
+    <div class="panelTitle">Built around students</div>
+
+    <div class="stats">
+
+        <div class="stat">
+            <b>01</b>
+            <span>University</span>
+        </div>
+
+        <div class="stat">
+            <b>20+</b>
+            <span>Colleges</span>
+        </div>
+
+        <div class="stat">
+            <b>∞</b>
+            <span>Connections</span>
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- WHY JOIN -->
+
+<section class="section" id="why">
+
+<div class="sectionHead">
+
+<div>
+    <h2>More than a group.</h2>
+</div>
+
+<p class="hindi">
+    Registration सिर्फ शुरुआत है। हमारा उद्देश्य
+    students को एक useful और connected student network देना है।
+</p>
+
+</div>
+
+
+<div class="features">
+
+<div class="feature">
+    <div class="featureNumber">01 · COMMUNITY</div>
+    <h3>Meet your batch</h3>
+    <p class="hindi">
+        अपने college और course के नए students से जुड़ें और अपने batch
+        का हिस्सा बनें।
+    </p>
+</div>
+
+<div class="feature">
+    <div class="featureNumber">02 · UPDATES</div>
+    <h3>Useful updates</h3>
+    <p class="hindi">
+        Admission, examination, results, notices और student-related
+        important updates तक आसान पहुँच।
+    </p>
+</div>
+
+<div class="feature">
+    <div class="featureNumber">03 · NETWORK</div>
+    <h3>Find your people</h3>
+    <p class="hindi">
+        Course, college और batch के आधार पर students से connect होने
+        का आसान रास्ता।
+    </p>
+</div>
+
+<div class="feature">
+    <div class="featureNumber">04 · STUDY</div>
+    <h3>Academic support</h3>
+    <p class="hindi">
+        Notes, PYQs, study resources और useful academic information
+        को एक जगह discover करें।
+    </p>
+</div>
+
+<div class="feature">
+    <div class="featureNumber">05 · ALERTS</div>
+    <h3>Important alerts</h3>
+    <p class="hindi">
+        ऐसी student information जो miss नहीं करनी चाहिए, उसे समय पर
+        पाने की कोशिश करें।
+    </p>
+</div>
+
+<div class="feature">
+    <div class="featureNumber">06 · CONNECTIONS</div>
+    <h3>Build your network</h3>
+    <p class="hindi">
+        University journey के दौरान useful student connections बनाएं।
+    </p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- NETWORK -->
+
+<section class="section">
+
+<div class="sectionHead">
+
+<h2>One student network.</h2>
+
+<p class="hindi">
+    अलग-अलग colleges और courses के students को एक common community
+    में connect करने की कोशिश।
+</p>
+
+</div>
+
+
+<div class="network">
+
+<div class="networkCard">
+
+<h3>For every student</h3>
+
+<p class="hindi">
+    चाहे आप Main Campus में हों या किसी affiliated college में,
+    community में आपके लिए जगह है।
+</p>
+
+<div class="tags">
+    <span class="tag">Main Campus</span>
+    <span class="tag">Affiliated Colleges</span>
+    <span class="tag">Freshers</span>
+    <span class="tag">UG Students</span>
+</div>
+
+</div>
+
+
+<div class="networkCard">
+
+<h3>Choose your path</h3>
+
+<p class="hindi">
+    अपना course और college select करें ताकि community को students
+    की जरूरत के अनुसार बेहतर बनाया जा सके।
+</p>
+
+<div class="tags">
+    <span class="tag">BA</span>
+    <span class="tag">B.Sc</span>
+    <span class="tag">B.Com</span>
+    <span class="tag">BCA</span>
+    <span class="tag">B.Voc</span>
+    <span class="tag">Other Courses</span>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- HOW IT WORKS -->
+
+<section class="section">
+
+<div class="sectionHead">
+
+<h2>How it works.</h2>
+
+<p class="hindi">
+    Community से जुड़ना simple रखा गया है।
+</p>
+
+</div>
+
+
+<div class="stepsGrid">
+
+<div class="stepCard">
+    <div class="stepNo">01</div>
+    <h3>Register</h3>
+    <p class="hindi">
+        अपनी basic student details submit करें।
+    </p>
+</div>
+
+<div class="stepCard">
+    <div class="stepNo">02</div>
+    <h3>Select your college</h3>
+    <p class="hindi">
+        अपना campus और college चुनें।
+    </p>
+</div>
+
+<div class="stepCard">
+    <div class="stepNo">03</div>
+    <h3>Join the community</h3>
+    <p class="hindi">
+        Available community channels से जुड़ें।
+    </p>
+</div>
+
+<div class="stepCard">
+    <div class="stepNo">04</div>
+    <h3>Stay connected</h3>
+    <p class="hindi">
+        Useful student information और updates पाते रहें।
+    </p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- REGISTRATION -->
+
+<section class="section" id="register">
+
+<div class="formArea">
+
+<div class="side">
+
+<div class="eyebrow">
+    Step 01 · Registration
+</div>
+
+<h2>
+    Let's get you<br>
+    on the list.
+</h2>
+
+<p class="hindi">
+    कुछ basic details भरें और The University Page की
+    Freshers Community का हिस्सा बनें।
+</p>
+
+<div class="sideSteps">
+
+<div class="sideStep">
+    <i>1</i>
+    Basic details भरें
+</div>
+
+<div class="sideStep">
+    <i>2</i>
+    अपना College और Course चुनें
+</div>
+
+<div class="sideStep">
+    <i>3</i>
+    Community से जुड़ें
+</div>
+
+</div>
+
+</div>
+
+
+<div class="formCard">
+
+<div id="formBox">
+
+<div class="formTop">
+
+<h3>Freshers Registration</h3>
+
+<p>
+    2026–27 batch · The University Page
+</p>
+
+</div>
+
+
+<form id="studentForm">
+
+
+<div class="field">
+
+<label>
+    FULL NAME <span class="req">*</span>
+</label>
+
+<input
+    id="name"
+    type="text"
+    placeholder="आपका पूरा नाम"
+    autocomplete="name"
+    required
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+    WHATSAPP NUMBER <span class="req">*</span>
+</label>
+
+<input
+    id="mobile"
+    type="tel"
+    inputmode="numeric"
+    maxlength="10"
+    placeholder="10 digit WhatsApp number"
+    autocomplete="tel"
+    required
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+    GENDER <span class="req">*</span>
+</label>
+
+<div class="pills">
+
+<label>
+<input type="radio" name="gender" value="Male" required>
+<span>Male</span>
+</label>
+
+<label>
+<input type="radio" name="gender" value="Female">
+<span>Female</span>
+</label>
+
+</div>
+
+</div>
+
+
+<div class="field">
+
+<label>
+    CAMPUS / COLLEGE <span class="req">*</span>
+</label>
+
+<select id="college" required>
+
+<option value="">
+    Select your college
+</option>
+
+<option>
+    Main Campus
+</option>
+
+<option>
+    Allahabad Degree College
+</option>
+
+<option>
+    Iswar Saran Degree College
+</option>
+
+<option>
+    Jagat Taran Girls' Degree College
+</option>
+
+<option>
+    Prayagraj Degree College
+</option>
+
+<option>
+    Shyama Prasad Mukherjee Government Degree College
+</option>
+
+<option>
+    Other Affiliated College
+</option>
+
+</select>
+
+</div>
+
+
+<div class="row">
+
+<div class="field">
+
+<label>
+    COURSE <span class="req">*</span>
+</label>
+
+<select id="course" required>
+
+<option value="">
+    Select course
+</option>
+
+<option>BA</option>
+<option>B.Sc</option>
+<option>B.Com</option>
+<option>BCA</option>
+<option>B.Voc</option>
+<option>MA</option>
+<option>M.Sc</option>
+<option>M.Com</option>
+<option>MCA</option>
+<option>LLB</option>
+<option>BA LLB</option>
+<option>Other</option>
+
+</select>
+
+</div>
+
+
+<div class="field">
+
+<label>
+    SEMESTER <span class="req">*</span>
+</label>
+
+<select id="semester" required>
+
+<option value="">
+    Select semester
+</option>
+
+<option>1st Semester</option>
+
+</select>
+
+</div>
+
+</div>
+
+
+<div class="field">
+
+<label>
+    CITY / DISTRICT <span class="req">*</span>
+</label>
+
+<input
+    id="city"
+    type="text"
+    placeholder="जैसे Prayagraj"
+    required
+>
+
+</div>
+
+
+<div class="consent">
+
+<input
+    id="consent"
+    type="checkbox"
+    required
+>
+
+<label for="consent" class="hindi">
+
+मैं सहमत हूँ कि मेरी दी गई जानकारी का उपयोग
+The University Page की student community और
+student-related updates के लिए किया जा सकता है।
+
+</label>
+
+</div>
+
+
+<button
+    class="submit"
+    type="submit"
+>
+    COMPLETE REGISTRATION →
+</button>
+
+<div class="note">
+    Your details are collected for community and student-update purposes.
+</div>
+
+</form>
+
+</div>
+
+
+<!-- SUCCESS -->
+
+<div class="success" id="successBox">
+
+<div class="check">✓</div>
+
+<h3>You're on the list.</h3>
+
+<p class="hindi">
+    Registration successfully submitted.
+    <br>
+    अब अपनी student community से जुड़ें।
+</p>
+
+
+<div class="successButtons">
+
+<a
+    class="communityBtn"
+    href="https://chat.whatsapp.com/"
+    target="_blank"
+>
+    JOIN WHATSAPP
+</a>
+
+<a
+    class="communityBtn"
+    href="https://t.me/"
+    target="_blank"
+>
+    JOIN TELEGRAM
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FAQ -->
+
+<section class="section">
+
+<div class="sectionHead">
+
+<h2>Frequently asked.</h2>
+
+<p class="hindi">
+    Community के बारे में कुछ basic बातें।
+</p>
+
+</div>
+
+
+<div class="faq">
+
+
+<div class="faqItem">
+
+<div class="faqQuestion">
+    यह community किसके लिए है?
+    <span class="faqIcon">+</span>
+</div>
+
+<div class="faqAnswer">
+
+<p class="hindi">
+    यह university के स्टूडेंट्स और विशेष रूप से
+    2026–27 batch के नए students को connect करने के उद्देश्य
+    से बनाई गई student community है।
+</p>
+
+</div>
+
+</div>
+
+
+<div class="faqItem">
+
+<div class="faqQuestion">
+    Registration करने के बाद क्या होगा?
+    <span class="faqIcon">+</span>
+</div>
+
+<div class="faqAnswer">
+
+<p class="hindi">
+    Registration के बाद available community channels और
+    आगे की student-related information के बारे में बताया जाएगा।
+</p>
+
+</div>
+
+</div>
+
+
+<div class="faqItem">
+
+<div class="faqQuestion">
+    क्या registration free है?
+    <span class="faqIcon">+</span>
+</div>
+
+<div class="faqAnswer">
+
+<p class="hindi">
+    हाँ, इस student community में registration के लिए कोई
+    registration fee नहीं रखी गई है।
+</p>
+
+</div>
+
+</div>
+
+
+<div class="faqItem">
+
+<div class="faqQuestion">
+    क्या यह official website है?
+    <span class="faqIcon">+</span>
+</div>
+
+<div class="faqAnswer">
+
+<p class="hindi">
+    नहीं। यह The University Page द्वारा संचालित
+    student-focused community platform है। यह किसी भी University की
+    official website या official authority नहीं है।
+</p>
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- TRUST -->
+
+<section class="section">
+
+<div class="trust">
+
+<h3>Student-first community.</h3>
+
+<p class="hindi">
+    The University Page का उद्देश्य students तक useful
+    information पहुँचाना और उन्हें एक बेहतर student network
+    से connect करना है। Registration के दौरान दी गई जानकारी
+    community और student-related communication के उद्देश्य से
+    उपयोग की जाएगी।
+</p>
+
+</div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+<span>
+    © 2026 The University Page
+</span>
+
+<span>
+    Crafted by Ajmal Mansoori
+</span>
+
+</footer>
+
+</div>
+
+
+<!-- MOBILE CTA -->
+
+<div class="mobileCTA">
+
+<a href="#register">
+    JOIN STUDENT COMMUNITY
+</a>
+
+</div>
+
+
+<script>
+
+const form = document.getElementById("studentForm");
+const mobile = document.getElementById("mobile");
+
+
+/* MOBILE NUMBER */
+
+mobile.addEventListener("input", () => {
+
+    mobile.value = mobile.value
+        .replace(/\D/g,"")
+        .slice(0,10);
+
+});
+
+
+/* FORM */
+
+form.addEventListener("submit", async (e) => {
+
+    e.preventDefault();
+
+
+    if(!/^[6-9]\d{9}$/.test(mobile.value)){
+
+        alert(
+            "कृपया सही 10 अंकों का WhatsApp Number दर्ज करें।"
+        );
+
+        mobile.focus();
+
+        return;
+    }
+
+
+    const data = {
+
+        name:
+        document.getElementById("name").value.trim(),
+
+        whatsapp:
+        mobile.value,
+
+        gender:
+        document.querySelector(
+            'input[name="gender"]:checked'
+        ).value,
+
+        college:
+        document.getElementById("college").value,
+
+        course:
+        document.getElementById("course").value,
+
+        semester:
+        document.getElementById("semester").value,
+
+        city:
+        document.getElementById("city").value.trim(),
+
+        submittedAt:
+        new Date().toISOString()
+
+    };
+
+
+    console.log("Registration data:", data);
+
+
+    document.getElementById("formBox")
+        .style.display = "none";
+
+    document.getElementById("successBox")
+        .style.display = "block";
+
+    document.getElementById("successBox")
+        .scrollIntoView({
+            behavior:"smooth",
+            block:"center"
+        });
+
+});
+
+
+/* FAQ */
+
+document.querySelectorAll(".faqQuestion")
+.forEach(question => {
+
+    question.addEventListener("click", () => {
+
+        const item =
+        question.parentElement;
+
+        const isActive =
+        item.classList.contains("active");
+
+
+        document
+        .querySelectorAll(".faqItem")
+        .forEach(other => {
+
+            other.classList.remove("active");
+
+            other.querySelector(".faqIcon")
+                .textContent = "+";
+
+        });
+
+
+        if(!isActive){
+
+            item.classList.add("active");
+
+            question.querySelector(".faqIcon")
+                .textContent = "−";
+
+        }
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
