@@ -21,7 +21,7 @@
 .dash-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:15px}
 .dash-header h2{margin:0;font-size:22px}
 
-/* Original Stats Cards with Black Numbers */
+/* Stats Cards with Black Numbers */
 .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:24px}
 .stat-card{background:var(--soft);border:1px solid #d8e1ff;padding:20px;border-radius:18px;display:flex;flex-direction:column;gap:5px}
 .stat-card span{color:var(--muted);font-size:12px;font-weight:700;font-family:"Anek Devanagari",sans-serif}
@@ -31,15 +31,16 @@
 .dash-actions input, .dash-actions select{flex:1;min-width:180px;height:48px;border:1px solid #dfe2e9;border-radius:13px;padding:0 14px;font:500 14px "Bricolage Grotesque","Anek Devanagari",sans-serif;outline:0;background:#fff;color:var(--ink);transition:.2s}
 .dash-actions input:focus, .dash-actions select:focus{border-color:#8da2ff;box-shadow:0 0 0 4px #eef2ff}
 
-/* Exact Button Animation matching your video frames */
+/* APPX Style Exact Black Button: Solid black with right-side soft white/grey light gradient */
 .btn-black {
   position: relative;
   overflow: hidden;
   padding: 0 22px;
   height: 46px;
-  border: 1px solid rgba(255,255,255,.15);
+  border: 1px solid rgba(255,255,255,.08);
   border-radius: 14px;
-  background: #111318;
+  /* Right side subtle white/grey fade matching your screenshot */
+  background: linear-gradient(135deg, #0b0c0f 40%, #3a3f4c 100%);
   color: #fff;
   font: 700 13px "Bricolage Grotesque", "Anek Devanagari", sans-serif;
   cursor: pointer;
@@ -48,27 +49,13 @@
   justify-content: center;
   gap: 10px;
   text-decoration: none;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-  transition: transform .3s ease, box-shadow .3s ease;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  transition: transform .25s ease, box-shadow .25s ease;
 }
 
-/* Shine overlay moving from right to left on hover/touch */
-.btn-black::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(110deg, transparent 20%, rgba(255, 255, 255, 0.25) 50%, transparent 80%);
-  transform: translateX(120%);
-  transition: transform 0.6s ease-in-out;
-}
-
-.btn-black:hover::before, .btn-black:active::before {
-  transform: translateX(-120%);
-}
-
-.btn-black:hover {
+.btn-black:hover, .btn-black:active {
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
 }
 
 .btn-arrow {
@@ -93,16 +80,16 @@
   padding: 0 14px;
   border-radius: 10px;
   border: none;
-  background: #111318;
+  background: #0b0c0f;
   color: #fff;
   font: 700 12px "Bricolage Grotesque", sans-serif;
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  transition: transform .2s ease, background .2s ease;
+  transition: transform .2s ease, box-shadow .2s ease;
 }
 .btn-view:hover {
   transform: translateY(-1px);
-  background: #252a35;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
 }
 
 .table-container{width:100%;overflow-x:auto;border:1px solid var(--line);border-radius:16px}
@@ -155,7 +142,7 @@ tr:hover td{background:#fafbff}
   </div>
 </div>
 
-<!-- Stats Cards (Original Style with Black Numbers) -->
+<!-- Stats Cards -->
 <div class="stats-grid">
   <div class="stat-card"><span>Total Registrations</span><h3 id="statTotal">0</h3></div>
   <div class="stat-card"><span>Male Students</span><h3 id="statMale">0</h3></div>
