@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Allahabad University Page | Student Registration</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@400;500;600;700;800&family=Bricolage+Grotesque:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#101522;--muted:#6c7484;--line:#e7e9ef;--bg:#f6f7fb;--card:#fff;--accent:#315cff;--accent2:#7048ff;--soft:#eef2ff;--danger:#d92d20}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque","Anek Devanagari",sans-serif}
+.page{min-height:100vh;display:grid;place-items:center;padding:28px 16px}
+.shell{width:min(1120px,100%);background:var(--card);border:1px solid #e5e7ee;border-radius:30px;overflow:hidden;box-shadow:0 30px 90px rgba(20,28,55,.12)}
+.top{padding:26px 34px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:20px}
+.brand{display:flex;align-items:center;gap:13px}.mark{width:48px;height:48px;border-radius:15px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;display:grid;place-items:center;font-weight:800;font-size:20px;box-shadow:0 10px 25px rgba(49,92,255,.24)}
+.brand h1{font-size:18px;margin:0;font-weight:800}.brand p{margin:3px 0 0;color:var(--muted);font-size:12px}
+.badge{padding:9px 13px;background:#f5f6f9;border:1px solid var(--line);border-radius:999px;font-size:12px;font-weight:700}
+.hero{padding:48px 54px 30px;text-align:center}.eyebrow{display:inline-flex;padding:8px 13px;border-radius:999px;background:var(--soft);color:#294bd0;font-size:12px;font-weight:800;letter-spacing:.4px}
+.hero h2{font-size:clamp(32px,5vw,58px);line-height:1.02;margin:18px auto 13px;letter-spacing:-2px;max-width:800px}.hero h2 span{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{margin:auto;color:var(--muted);font-family:"Anek Devanagari",sans-serif;font-size:18px;max-width:680px;line-height:1.55}
+.formwrap{padding:18px 54px 50px}.section{border:1px solid var(--line);border-radius:22px;padding:24px;margin-top:18px}.sectionhead{display:flex;align-items:center;gap:11px;margin-bottom:20px}.num{width:30px;height:30px;border-radius:10px;background:#111827;color:#fff;display:grid;place-items:center;font-size:12px;font-weight:800}.section h3{margin:0;font-size:16px}.section small{color:var(--muted);font-family:"Anek Devanagari",sans-serif}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.field.full{grid-column:1/-1}label{display:block;font-size:12px;font-weight:800;margin-bottom:8px;color:#343b49}input,select{width:100%;height:50px;border:1px solid #dfe2e9;border-radius:13px;padding:0 14px;font:500 14px "Bricolage Grotesque","Anek Devanagari",sans-serif;outline:0;background:#fff;color:var(--ink);transition:.2s}select{font-family:"Anek Devanagari","Bricolage Grotesque",sans-serif}input:focus,select:focus{border-color:#8da2ff;box-shadow:0 0 0 4px #eef2ff}.hint{font-size:11px;color:var(--muted);margin-top:6px}
+.consent{display:flex;gap:10px;align-items:flex-start;margin:20px 2px;color:#5c6472;font:14px "Anek Devanagari",sans-serif}.consent input{width:18px;height:18px;margin-top:2px;accent-color:var(--accent)}
+.submit{position:relative;overflow:hidden;width:100%;height:58px;border:1px solid rgba(255,255,255,.10);border-radius:14px;background:#0b0c0f;color:#fff;font:700 15px "Bricolage Grotesque","Anek Devanagari",sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:14px;box-shadow:0 12px 28px rgba(0,0,0,.16);transition:transform .3s ease,box-shadow .3s ease}.submit:before{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 25%,rgba(255,255,255,.10) 45%,transparent 65%);transform:translateX(-120%);transition:transform .8s ease}.submit:hover:before{transform:translateX(120%)}.submit:hover{transform:translateY(-2px);box-shadow:0 18px 38px rgba(0,0,0,.22)}.buttonText{position:relative;min-width:145px;text-align:left;white-space:nowrap}.buttonArrow{position:relative;width:31px;height:31px;border-radius:50%;background:rgba(255,255,255,.10);display:grid;place-items:center;font-size:17px;transition:transform .3s,background .3s}.submit:hover .buttonArrow{transform:translate(3px,-3px);background:rgba(255,255,255,.17)}
+.footer{text-align:center;padding:0 20px 28px;color:#8a919f;font-size:11px}.success{display:none;text-align:center;padding:28px;border:1px solid #d8e1ff;background:#f5f7ff;border-radius:18px;margin-top:18px}.success strong{display:block;font-size:18px;margin-bottom:7px;color:#203cbd}.success p{margin:0;color:#626b7b;font-family:"Anek Devanagari",sans-serif}
+@media(max-width:700px){.top{padding:20px}.hero{padding:38px 22px 20px}.formwrap{padding:10px 18px 35px}.grid{grid-template-columns:1fr}.field.full{grid-column:auto}.badge{display:none}.shell{border-radius:22px}.hero h2{letter-spacing:-1px}.section{padding:19px}}
+@keyframes floatIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}@keyframes buttonBreath{0%,100%{box-shadow:0 12px 28px rgba(0,0,0,.14)}50%{box-shadow:0 16px 34px rgba(0,0,0,.22)}}@keyframes typeCursor{0%,45%{opacity:1}46%,100%{opacity:0}}.shell{animation:floatIn .8s cubic-bezier(.2,.8,.2,1)}.section{animation:floatIn .7s both}.section:nth-child(2){animation-delay:.12s}.submit{animation:buttonBreath 3s ease-in-out infinite}.field{transition:transform .25s}.field:focus-within{transform:translateY(-2px)}</style>
+</head>
+<body>
+<div class="page">
+<main class="shell">
+<header class="top">
+<div class="brand"><div><h1>Learnify Classes</h1><p>Student Community • Allahabad University</p></div></div>
+<div class="badge">NEW STUDENT • 2026</div>
+</header>
+
+<section class="hero">
+<div class="eyebrow">WELCOME TO LEARNIFY CLASSES</div>
+<h2>University life starts <span>here.</span></h2>
+<p>Allahabad University में नए आए students के लिए Learnify Classes community से जुड़ने के लिए अपना registration पूरा करें।</p>
+</section>
+
+<form id="studentForm" class="formwrap">
+<section class="section">
+<div class="sectionhead"><div class="num">01</div><div><h3>Student Details</h3><small>अपनी basic information भरें</small></div></div>
+<div class="grid">
+<div class="field"><label>FULL NAME *</label><input name="name" placeholder="Enter your full name" required></div>
+<div class="field"><label>WHATSAPP NUMBER *</label><input name="whatsapp" type="tel" inputmode="numeric" maxlength="10" pattern="[6-9][0-9]{9}" placeholder="Enter your WhatsApp number" required><div class="hint">अपना active WhatsApp number दर्ज करें</div></div>
+<div class="field"><label>GENDER *</label><select name="gender" required><option value="">Select gender</option><option>Male</option><option>Female</option></select></div>
+<div class="field"><label>COLLEGE / CAMPUS *</label><select name="college" required><option value="">Select your college / campus</option>
+<option>Allahabad University Main Campus</option>
+<option>Amar Nath Jha Hostel Campus</option>
+<option>Acharya Narendra Dev Hostel Campus</option>
+<option>Sir Ganganath Jha Hostel Campus</option>
+<option>Prayag Mahila Vidyapeeth College</option>
+<option>Allahabad Degree College</option>
+<option>Iswar Saran Degree College</option>
+<option>Jagat Taran Girls' Degree College</option>
+<option>Sam Higginbottom University / Associated Campus</option>
+<option>SPM Degree College</option>
+<option>Other Allahabad University Associated College</option></select></div>
+<div class="field full"><label>COURSE / PROGRAMME *</label><select name="course" required><option value="">Select your course / programme</option>
+<option>B.A. (Bachelor of Arts)</option><option>B.Sc. (Bachelor of Science)</option><option>B.Com. (Bachelor of Commerce)</option>
+<option>B.A. LL.B.</option><option>B.C.A.</option><option>B.Voc.</option><option>B.Ed.</option><option>B.P.Ed.</option>
+<option>LL.B.</option><option>M.A.</option><option>M.Sc.</option><option>M.Com.</option><option>M.A. / M.Sc. / M.Com. (PG)</option>
+<option>M.B.A.</option><option>M.C.A.</option><option>M.Ed.</option><option>M.P.Ed.</option><option>LL.M.</option>
+<option>Ph.D.</option><option>Diploma / Certificate Course</option><option>Other Programme</option></select></div>
+</div>
+</section>
+
+<section class="section">
+<div class="sectionhead"><div class="num">02</div><div><h3>Stay Connected</h3><small>आप तक सही university updates पहुँचाने के लिए</small></div></div>
+<div class="grid">
+<div class="field full"><label>WHAT DO YOU WANT FROM ALLAHABAD UNIVERSITY PAGE?</label><select name="interest"><option value="">Select an option</option><option>University Updates</option><option>Admission & Counselling</option><option>Exam & Result Updates</option><option>Notes & Study Material</option><option>All Updates</option></select></div>
+</div>
+<div class="consent"><input id="agree" type="checkbox" required><span>मैं सहमत हूँ कि Allahabad University Page ऊपर दी गई जानकारी का उपयोग student community updates और communication के लिए कर सकता है।</span></div>
+<button class="submit" type="submit">
+  <span class="buttonText" data-text="Submit Registration">Submit Registration</span>
+  <span class="buttonArrow">↗</span>
+</button>
+<div id="success" class="success"><strong>Registration Submitted</strong><p>धन्यवाद! आपका registration successfully submit हो गया है।</p></div>
+</section>
+</form>
+<div class="footer">© 2026 Allahabad University Page • Student Community</div>
+</main>
+</div>
+
+<script>
+const form=document.getElementById("studentForm");
+const buttonText=document.querySelector(".buttonText");
+const words=["Submit Registration","Join the Community","Start Your AU Journey"];
+let wordIndex=0,charIndex=0,deleting=false;
+function typeButton(){
+  const word=words[wordIndex];
+  buttonText.textContent=deleting?word.slice(0,charIndex--):word.slice(0,charIndex++);
+  if(!deleting && charIndex>word.length){deleting=true;setTimeout(typeButton,1500);return}
+  if(deleting && charIndex<0){deleting=false;wordIndex=(wordIndex+1)%words.length;charIndex=0}
+  setTimeout(typeButton,deleting?45:75);
+}
+setTimeout(typeButton,900);
+const phone=form.querySelector('input[name="whatsapp"]');
+phone.addEventListener("input",()=>{phone.value=phone.value.replace(/\\D/g,"").slice(0,10)});
+form.addEventListener("submit",(e)=>{
+ e.preventDefault();
+ if(!form.checkValidity()){form.reportValidity();return}
+ const data=Object.fromEntries(new FormData(form).entries());
+ console.log("Student Registration:",data);
+ document.getElementById("success").style.display="block";
+ document.getElementById("success").scrollIntoView({behavior:"smooth",block:"center"});
+ form.querySelector(".submit").textContent="REGISTRATION SUBMITTED ✓";
+ form.querySelector(".submit").disabled=true;
+});
+</script>
+</body>
+</html>
