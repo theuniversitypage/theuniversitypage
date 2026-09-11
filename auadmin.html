@@ -27,17 +27,66 @@
 .dash-actions{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap}
 .dash-actions input, .dash-actions select{flex:1;min-width:180px;height:48px;border:1px solid #dfe2e9;border-radius:13px;padding:0 14px;font:500 14px "Bricolage Grotesque","Anek Devanagari",sans-serif;outline:0;background:#fff;color:var(--ink);transition:.2s}
 .dash-actions input:focus, .dash-actions select:focus{border-color:#8da2ff;box-shadow:0 0 0 4px #eef2ff}
-.btn{padding:0 18px;height:42px;border-radius:12px;border:none;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:8px;font-size:13px;text-decoration:none;transition:.2s}
-.btn-primary{background:var(--accent);color:#fff}
-.btn-primary:hover{background:#2347db}
-.btn-secondary{background:#111827;color:#fff}
-.btn-secondary:hover{background:#000}
 
-/* Go To Form Button Styling matching screenshot */
-.btn-go-form{position:relative;overflow:hidden;padding:0 18px;height:42px;border:1px solid rgba(255,255,255,.10);border-radius:12px;background:#0b0c0f;color:#fff;font:700 13px "Bricolage Grotesque","Anek Devanagari",sans-serif;cursor:pointer;display:inline-flex;align-items:center;gap:12px;text-decoration:none;box-shadow:0 8px 20px rgba(0,0,0,.15);transition:transform .3s ease,box-shadow .3s ease}
-.btn-go-form:hover{transform:translateY(-2px);box-shadow:0 12px 25px rgba(0,0,0,.2)}
-.btn-go-arrow{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.10);display:grid;place-items:center;font-size:14px;transition:transform .3s,background .3s}
-.btn-go-form:hover .btn-go-arrow{transform:translate(2px,-2px);background:rgba(255,255,255,.2)}
+/* Black Buttons with White Glow on Hover/Touch */
+.btn-black {
+  position: relative;
+  overflow: hidden;
+  padding: 0 18px;
+  height: 42px;
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 12px;
+  background: #0b0c0f;
+  color: #fff;
+  font: 700 13px "Bricolage Grotesque", "Anek Devanagari", sans-serif;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform .3s ease, box-shadow .3s ease, background .3s ease;
+}
+
+.btn-black:hover, .btn-black:active {
+  transform: translateY(-2px);
+  background: #16181d;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4), 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.btn-arrow {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+  transition: transform .3s, background .3s;
+}
+
+.btn-black:hover .btn-arrow {
+  transform: translate(2px, -2px);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* View Button in Table (Also Black with White Glow) */
+.btn-view {
+  height: 32px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: none;
+  background: #0b0c0f;
+  color: #fff;
+  font: 700 12px "Bricolage Grotesque", sans-serif;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.btn-view:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.4);
+}
 
 .table-container{width:100%;overflow-x:auto;border:1px solid var(--line);border-radius:16px}
 table{width:100%;border-collapse:collapse;text-align:left;font-size:14px}
@@ -71,14 +120,20 @@ tr:hover td{background:#fafbff}
 
 <div class="dashboard-wrap">
 <div class="dash-header">
-  <h2>🎓 Student Registrations Record</h2>
+  <h2>Student Registrations Record</h2>
   <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
-    <button class="btn btn-primary" onclick="exportCSV()">📥 Export CSV</button>
-    <button class="btn btn-secondary" onclick="exportPDF()">📄 Export PDF</button>
+    <!-- Export CSV Button -->
+    <button class="btn-black" onclick="exportCSV()">
+      <span>Export CSV</span>
+    </button>
+    <!-- Export PDF Button -->
+    <button class="btn-black" onclick="exportPDF()">
+      <span>Export PDF</span>
+    </button>
     <!-- Go To Form Button -->
-    <a href="aupage.html" class="btn-go-form">
+    <a href="aupage.html" class="btn-black">
       <span>Go to Form</span>
-      <span class="btn-go-arrow">↗</span>
+      <span class="btn-arrow">↗</span>
     </a>
   </div>
 </div>
@@ -205,7 +260,7 @@ function updateDashboard(students) {
       <td>${s.gender}</td>
       <td>${s.college}</td>
       <td>${s.course}</td>
-      <td><button class="btn btn-primary" style="height:32px; padding:0 12px;" onclick="viewDetails('${s.id}')">View</button></td>
+      <td><button class="btn-view" onclick="viewDetails('${s.id}')">View</button></td>
     `;
     tbody.appendChild(tr);
   });
@@ -247,7 +302,7 @@ function updateDashboardFiltered(students) {
       <td>${s.gender}</td>
       <td>${s.college}</td>
       <td>${s.course}</td>
-      <td><button class="btn btn-primary" style="height:32px; padding:0 12px;" onclick="viewDetails('${s.id}')">View</button></td>
+      <td><button class="btn-view" onclick="viewDetails('${s.id}')">View</button></td>
     `;
     tbody.appendChild(tr);
   });
