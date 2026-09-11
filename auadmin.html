@@ -28,30 +28,45 @@
 .dash-actions input, .dash-actions select{flex:1;min-width:180px;height:48px;border:1px solid #dfe2e9;border-radius:13px;padding:0 14px;font:500 14px "Bricolage Grotesque","Anek Devanagari",sans-serif;outline:0;background:#fff;color:var(--ink);transition:.2s}
 .dash-actions input:focus, .dash-actions select:focus{border-color:#8da2ff;box-shadow:0 0 0 4px #eef2ff}
 
-/* Black Buttons with White Glow on Hover/Touch */
+/* Black Button with Right-side Glow shifting to Left on Hover/Touch */
 .btn-black {
   position: relative;
   overflow: hidden;
-  padding: 0 18px;
-  height: 42px;
+  padding: 0 20px;
+  height: 44px;
   border: 1px solid rgba(255,255,255,.15);
-  border-radius: 12px;
-  background: #0b0c0f;
+  border-radius: 14px;
+  /* Default background with light white glow on the right side */
+  background: linear-gradient(135deg, #111318 0%, #1f232d 100%);
   color: #fff;
   font: 700 13px "Bricolage Grotesque", "Anek Devanagari", sans-serif;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   text-decoration: none;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transition: transform .3s ease, box-shadow .3s ease, background .3s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  transition: transform .3s ease, box-shadow .3s ease;
 }
 
-.btn-black:hover, .btn-black:active {
+/* Shine overlay that moves from right to left on hover */
+.btn-black::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 20%, rgba(255, 255, 255, 0.25) 50%, transparent 80%);
+  transform: translateX(120%);
+  transition: transform 0.7s ease-in-out;
+}
+
+.btn-black:hover::before, .btn-black:active::before {
+  transform: translateX(-120%);
+}
+
+.btn-black:hover {
   transform: translateY(-2px);
-  background: #16181d;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4), 0 8px 25px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
 .btn-arrow {
@@ -70,22 +85,22 @@
   background: rgba(255, 255, 255, 0.2);
 }
 
-/* View Button in Table (Also Black with White Glow) */
+/* View Button in Table */
 .btn-view {
   height: 32px;
   padding: 0 14px;
   border-radius: 10px;
   border: none;
-  background: #0b0c0f;
+  background: #111318;
   color: #fff;
   font: 700 12px "Bricolage Grotesque", sans-serif;
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  transition: transform .2s ease, box-shadow .2s ease;
+  transition: transform .2s ease, background .2s ease;
 }
 .btn-view:hover {
   transform: translateY(-1px);
-  box-shadow: 0 0 14px rgba(255, 255, 255, 0.4);
+  background: #252a35;
 }
 
 .table-container{width:100%;overflow-x:auto;border:1px solid var(--line);border-radius:16px}
