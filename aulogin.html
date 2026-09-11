@@ -86,6 +86,8 @@ function handleLogin(e) {
   e.preventDefault();
   const user = document.getElementById("username").value;
   if(user) {
+    // Secure Session Set किया
+    sessionStorage.setItem("isLoggedIn", "true");
     window.location.href = "auadmin.html";
   }
 }
