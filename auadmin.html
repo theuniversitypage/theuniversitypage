@@ -8,12 +8,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@400;500;600;700;800&family=Bricolage+Grotesque:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--ink:#101522;--muted:#6c7484;--line:#e7e9ef;--bg:#f6f7fb;--card:#fff;--accent:#315cff;--accent2:#7048ff;--soft:#eef2ff;--danger:#d92d20;--success:#12b76a}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque","Anek Devanagari",sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque","Anek Devanagari",sans-serif;scroll-behavior:smooth}
 .page{min-height:100vh;padding:28px 16px;display:flex;flex-direction:column;align-items:center}
 .shell{width:min(1240px,100%);background:var(--card);border:1px solid #e5e7ee;border-radius:30px;overflow:hidden;box-shadow:0 30px 90px rgba(20,28,55,.12);margin-bottom:30px}
 .top{padding:26px 34px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:20px}
 .brand{display:flex;align-items:center;gap:13px}.mark{width:48px;height:48px;border-radius:15px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;display:grid;place-items:center;font-weight:800;font-size:20px;box-shadow:0 10px 25px rgba(49,92,255,.24)}
 .brand h1{font-size:18px;margin:0;font-weight:800}.brand p{margin:3px 0 0;color:var(--muted);font-size:12px}
+.top-actions{display:flex;align-items:center;gap:12px}
 .badge{padding:9px 13px;background:#f5f6f9;border:1px solid var(--line);border-radius:999px;font-size:12px;font-weight:700}
 .hero{padding:48px 54px 30px;text-align:center}.eyebrow{display:inline-flex;padding:8px 13px;border-radius:999px;background:var(--soft);color:#294bd0;font-size:12px;font-weight:800;letter-spacing:.4px}
 .hero h2{font-size:clamp(32px,5vw,58px);line-height:1.02;margin:18px auto 13px;letter-spacing:-2px;max-width:800px}.hero h2 span{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -25,7 +26,7 @@
 .success{display:none;text-align:center;padding:28px;border:1px solid #d8e1ff;background:#f5f7ff;border-radius:18px;margin-top:18px}.success strong{display:block;font-size:18px;margin-bottom:7px;color:#203cbd}.success p{margin:0;color:#626b7b;font-family:"Anek Devanagari",sans-serif}
 
 /* Dashboard Styles */
-.dashboard-shell{width:min(1240px,100%);background:var(--card);border:1px solid #e5e7ee;border-radius:30px;padding:30px;box-shadow:0 30px 90px rgba(20,28,55,.12)}
+.dashboard-shell{width:min(1240px,100%);background:var(--card);border:1px solid #e5e7ee;border-radius:30px;padding:30px;box-shadow:0 30px 90px rgba(20,28,55,.12);scroll-margin-top:20px}
 .dash-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:15px}
 .dash-header h2{margin:0;font-size:24px}
 .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:24px}
@@ -34,7 +35,7 @@
 .stat-card h3{margin:0;font-size:28px;color:var(--accent)}
 .dash-actions{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap}
 .dash-actions input, .dash-actions select{flex:1;min-width:200px;height:44px}
-.btn{padding:0 18px;height:44px;border-radius:12px;border:none;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:8px;font-size:13px}
+.btn{padding:0 18px;height:44px;border-radius:12px;border:none;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:8px;font-size:13px;text-decoration:none}
 .btn-primary{background:var(--accent);color:#fff}
 .btn-secondary{background:#111827;color:#fff}
 .table-container{width:100%;overflow-x:auto;border:1px solid var(--line);border-radius:16px}
@@ -54,6 +55,7 @@ tr:hover td{background:#fafbff}
 
 .footer{text-align:center;padding:10px 20px;color:#8a919f;font-size:11px}
 @keyframes floatIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@media(max-width:700px){.top{flex-direction:column;align-items:flex-start}}
 </style>
 </head>
 <body>
@@ -62,7 +64,10 @@ tr:hover td{background:#fafbff}
 <main class="shell">
 <header class="top">
 <div class="brand"><div><h1>Learnify Classes</h1><p>Student Community • Allahabad University Page</p></div></div>
-<div class="badge">NEW STUDENT • 2026</div>
+<div class="top-actions">
+  <div class="badge">NEW STUDENT • 2026</div>
+  <a href="#adminDashboard" class="btn btn-primary">⚡ Admin Dashboard</a>
+</div>
 </header>
 
 <section class="hero">
@@ -115,7 +120,7 @@ tr:hover td{background:#fafbff}
 </main>
 
 <!-- Admin Dashboard Shell -->
-<section class="dashboard-shell">
+<section class="dashboard-shell" id="adminDashboard">
 <div class="dash-header">
   <h2>🎓 Admin Dashboard & Registrations</h2>
   <div style="display:flex; gap:10px;">
