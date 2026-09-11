@@ -106,13 +106,27 @@ tr:hover td{background:#fafbff}
 </style>
 </head>
 <body>
+
+<!-- Security Guard Script: बिना लॉगिन सीधे खोलने पर लॉगिन पेज पर रीडायरेक्ट कर देगा -->
+<script>
+  if (sessionStorage.getItem("isLoggedIn") !== "true") {
+    window.location.href = "aulogin.html";
+  }
+</script>
+
 <div class="page">
 <main class="shell">
 <header class="top">
 <div class="brand">
   <div><h1>Learnify Classes</h1><p>Student Community • Allahabad University Page</p></div>
 </div>
-<div class="badge">ADMIN DASHBOARD • 2026</div>
+<div style="display:flex; gap:10px; align-items:center;">
+  <div class="badge">ADMIN DASHBOARD • 2026</div>
+  <!-- Logout Button -->
+  <button class="btn-black" onclick="logoutAdmin()" style="height: 38px; padding: 0 14px; font-size: 12px;">
+    <span>Logout</span>
+  </button>
+</div>
 </header>
 
 <div class="dashboard-wrap">
@@ -215,6 +229,11 @@ tr:hover td{background:#fafbff}
 </script>
 
 <script>
+function logoutAdmin() {
+  sessionStorage.removeItem("isLoggedIn");
+  window.location.href = "aulogin.html";
+}
+
 function updateDashboard(students) {
   const tbody = document.getElementById("tableBody");
   tbody.innerHTML = "";
