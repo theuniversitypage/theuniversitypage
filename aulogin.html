@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Allahabad University Page | Admin Login</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@400;500;600;700;800&family=Bricolage+Grotesque:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:flex;font-family:"Bricolage Grotesque","Anek Devanagari",sans-serif;background:#fff;color:#101522}
+
+/* Left Hero Section */
+.left-side{flex:1;background:#000;color:#fff;padding:60px 50px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.left-content{max-width:520px;z-index:2}
+.left-content h1{font-size:clamp(40px, 5vw, 68px);line-height:1.05;margin:0 0 24px;font-weight:800;letter-spacing:-2px}
+.left-content p{color:#94a3b8;font-size:16px;line-height:1.6;margin:0;font-family:"Anek Devanagari",sans-serif;max-width:440px}
+
+/* Right Form Section */
+.right-side{width:520px;background:#fff;padding:40px;display:flex;flex-direction:column;justify-content:space-between;align-items:center}
+.form-container{width:100%;max-width:380px;margin:auto}
+
+.logo-area{display:flex;justify-content:flex-end;width:100%;margin-bottom:30px}
+.brand-badge{display:flex;align-items:center;gap:8px;font-weight:800;font-size:18px;color:#101522}
+.brand-badge span{color:#ff4b2b}
+
+.form-title{text-align:center;font-size:20px;font-weight:700;margin-bottom:30px;color:#101522}
+
+.field{margin-bottom:20px}
+label{display:block;font-size:12px;font-weight:700;margin-bottom:8px;color:#475569}
+input{width:100%;height:48px;border:1px solid #cbd5e1;border-radius:10px;padding:0 14px;font:500 14px "Bricolage Grotesque",sans-serif;outline:0;background:#fff;color:#101522;transition:.2s}
+input:focus{border-color:#315cff;box-shadow:0 0 0 4px #eef2ff}
+
+/* Captcha Box Mock */
+.captcha-box{display:flex;align-items:center;justify-content:space-between;border:1px solid #cbd5e1;border-radius:10px;padding:10px 14px;background:#f8fafc;margin-bottom:24px}
+.captcha-left{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;color:#334155}
+.captcha-left input{width:18px;height:18px;cursor:pointer}
+.captcha-right img{height:32px}
+
+/* Exact APPX / Desired Black Button Style */
+.btn-black {
+  position: relative;
+  width: 100%;
+  height: 48px;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 12px;
+  background: linear-gradient(135deg, #0b0c0f 40%, #3a3f4c 100%);
+  color: #fff;
+  font: 700 14px "Bricolage Grotesque", "Anek Devanagari", sans-serif;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-decoration: none;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.btn-black:hover, .btn-black:active {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.28);
+}
+
+.footer-copy{text-align:center;font-size:12px;color:#64748b;margin-top:20px}
+
+@media(max-width:900px){
+  body{flex-direction:column}
+  .left-side{padding:40px 20px;min-height:280px}
+  .right-side{width:100%;padding:30px 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- Left Hero Panel -->
+<div class="left-side">
+  <div class="left-content">
+    <h1>Ignite your<br>Digital<br>Journey</h1>
+    <p>Experience the next generation of student management with intuitive design and powerful features.</p>
+  </div>
+</div>
+
+<!-- Right Login Panel -->
+<div class="right-side">
+  <div class="logo-area">
+    <div class="brand-badge">📄 <span>APPX</span></div>
+  </div>
+
+  <div class="form-container">
+    <div class="form-title">Login to your account</div>
+    
+    <form id="loginForm" onsubmit="handleLogin(event)">
+      <div class="field">
+        <label>Username</label>
+        <input type="text" id="username" placeholder="Enter Username" required>
+      </div>
+
+      <div class="field">
+        <label>Password</label>
+        <input type="password" id="password" placeholder="Enter Password" required>
+      </div>
+
+      <!-- Captcha UI -->
+      <div class="captcha-box">
+        <div class="captcha-left">
+          <input type="checkbox" id="robotCheck" required>
+          <label for="robotCheck" style="margin:0;cursor:pointer;color:#334155;">I'm not a robot</label>
+        </div>
+        <div class="captcha-right">
+          <!-- Simple placeholder for captcha icon -->
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.73-5.73"/></svg>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-black">
+        <span>Login →</span>
+      </button>
+    </form>
+  </div>
+
+  <div class="footer-copy">
+    Copyright © APPX 2026
+  </div>
+</div>
+
+<script>
+function handleLogin(e) {
+  e.preventDefault();
+  const user = document.getElementById("username").value;
+  // यहाँ आप अपना एडमिन ऑथेंटिकेशन या रीडायरेक्ट लॉजिक जोड़ सकते हैं
+  if(user) {
+    window.location.href = "auadmin.html";
+  }
+}
+</script>
+
+</body>
+</html>
