@@ -113,16 +113,37 @@ tr:hover td{background:#fafbff}
 .detail-row span:first-child{color:var(--muted);font-weight:700;font-family:"Anek Devanagari",sans-serif}
 .footer{text-align:center;padding:18px 20px 24px;color:#8a919f;font-size:11px}
 
+/* Professional PDF Print Layout matching your screenshot */
+.print-header { display: none; }
+
 @media print {
-  body { background: #fff; }
+  @page { size: landscape; margin: 10mm; }
+  body { background: #fff; -webkit-print-color-adjust: exact; }
   .page { padding: 0; display: block; }
-  .shell { border: none; box-shadow: none; width: 100%; }
+  .shell { border: none; box-shadow: none; width: 100%; border-radius: 0; }
   .top, .dash-actions, .no-print, .btn-black, .btn-view, .footer { display: none !important; }
   .dashboard-wrap { padding: 0; }
   .stats-grid { display: none; }
-  .table-container { border: 1px solid #000; border-radius: 0; }
-  table { width: 100%; }
-  th, td { border: 1px solid #ddd; color: #000; }
+  
+  .print-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #315cff;
+    color: #fff;
+    padding: 16px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    border-radius: 8px;
+  }
+  .print-header span { font-size: 13px; font-weight: normal; }
+
+  .table-container { border: 1px solid #101522; border-radius: 8px; overflow: visible; }
+  table { width: 100%; border-collapse: collapse; }
+  th { background: #101522 !important; color: #fff !important; font-size: 13px; padding: 12px; }
+  td { border-bottom: 1px solid #e7e9ef; color: #101522; font-size: 12px; padding: 10px 12px; }
+  tr:nth-child(even) { background-color: #f8fafc; }
 }
 
 @keyframes floatIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
@@ -152,6 +173,12 @@ tr:hover td{background:#fafbff}
 </header>
 
 <div class="dashboard-wrap">
+  
+  <div class="print-header">
+    <div>The University Page - Student Community Registrations Report</div>
+    <div id="printDateTime">Generated on: --/--/2026, --:--:-- --</div>
+  </div>
+
 <div class="dash-header">
   <h2>Student Registrations Record</h2>
   <div class="no-print" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
@@ -191,6 +218,7 @@ tr:hover td{background:#fafbff}
   <table>
     <thead>
       <tr>
+        <th>#</th>
         <th>Date</th>
         <th>Full Name</th>
         <th>WhatsApp</th>
@@ -215,7 +243,6 @@ tr:hover td{background:#fafbff}
     <div id="modalBody"></div>
   </div>
 </div>
-
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
   import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
@@ -266,20 +293,20 @@ function updateDashboard(students) {
   const todayStr = new Date().toLocaleDateString();
 
   if(total === 0) {
-    tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; color:var(--muted); padding:30px;">No registrations found yet.</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; color:var(--muted); padding:30px;">No registrations found yet.</td></tr>`;
   }
 
-  students.forEach((s) => {
+  students.forEach((s, index) => {
     if(s.gender === "Male") male++;
     if(s.gender === "Female") female++;
     if(s.dateFormatted === todayStr) todayCount++;
 
-    // WhatsApp Message with Student Name Included
     const msg = encodeURIComponent(`Hello ${s.name}, you have successfully joined the Allahabad University Page community. Welcome!`);
     const waLink = `https://wa.me/91${s.whatsapp}?text=${msg}`;
 
     const tr = document.createElement("tr");
     tr.innerHTML = `
+      <td>${index + 1}</td>
       <td>${s.dateFormatted || 'N/A'}</td>
       <td><strong>${s.name}</strong></td>
       <td><a href="${waLink}" target="_blank" class="whatsapp-link" title="Click to chat on WhatsApp">💬 ${s.whatsapp}</a></td>
@@ -316,15 +343,16 @@ function updateDashboardFiltered(students) {
   const tbody = document.getElementById("tableBody");
   tbody.innerHTML = "";
   if(students.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; color:var(--muted); padding:30px;">No matching records found.</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; color:var(--muted); padding:30px;">No matching records found.</td></tr>`;
     return;
   }
-  students.forEach(s => {
+  students.forEach((s, index) => {
     const msg = encodeURIComponent(`Hello ${s.name}, you have successfully joined the Allahabad University Page community. Welcome!`);
     const waLink = `https://wa.me/91${s.whatsapp}?text=${msg}`;
 
     const tr = document.createElement("tr");
     tr.innerHTML = `
+      <td>${index + 1}</td>
       <td>${s.dateFormatted || 'N/A'}</td>
       <td><strong>${s.name}</strong></td>
       <td><a href="${waLink}" target="_blank" class="whatsapp-link" title="Click to chat on WhatsApp">💬 ${s.whatsapp}</a></td>
@@ -375,6 +403,8 @@ function exportCSV() {
 
 function exportPDF() {
   if(!window.allStudents.length) { alert("No data to export!"); return; }
+  const now = new Date();
+  document.getElementById("printDateTime").textContent = "Generated on: " + now.toLocaleDateString() + ", " + now.toLocaleTimeString();
   window.print();
 }
 </script>
