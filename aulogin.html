@@ -8,30 +8,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@450;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}body{margin:0;min-height:100vh;display:flex;font-family:"Poppins",sans-serif;background:#fff;color:#101522}
-
-/* Left Hero Section */
 .left-side{flex:1;background:#000;color:#fff;padding:60px 50px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
 .left-content{max-width:520px;z-index:2}
 .left-content h1{font-size:clamp(36px, 4.5vw, 60px);line-height:1.1;margin:0 0 24px;font-weight:800;letter-spacing:-1px}
 .left-content h1 span{color:#00C896;}
 .left-content p{color:#94a3b8;font-size:15px;line-height:1.6;margin:0;max-width:440px}
-
-/* Right Form Section */
 .right-side{width:520px;background:#fff;padding:40px;display:flex;flex-direction:column;justify-content:space-between;align-items:center}
 .form-container{width:100%;max-width:380px;margin:auto}
-
 .logo-area{display:flex;justify-content:flex-end;width:100%;margin-bottom:30px}
 .brand-badge{display:flex;align-items:center;gap:8px;font-weight:800;font-size:18px;color:#101522}
 .brand-badge span{color:#00C896;}
-
 .form-title{text-align:center;font-size:20px;font-weight:700;margin-bottom:30px;color:#101522}
-
 .field{margin-bottom:20px}
 label{display:block;font-size:12px;font-weight:600;margin-bottom:8px;color:#475569}
 input{width:100%;height:48px;border:1px solid #cbd5e1;border-radius:10px;padding:0 14px;font:500 14px "Poppins",sans-serif;outline:0;background:#fff;color:#101522;transition:.2s}
 input:focus{border-color:#00C896;box-shadow:0 0 0 4px #e6f9f3}
-
-/* Exact Black Button Style */
 .btn-black {
   position: relative;
   width: 100%;
@@ -51,24 +42,15 @@ input:focus{border-color:#00C896;box-shadow:0 0 0 4px #e6f9f3}
   transition: transform .25s ease, box-shadow .25s ease;
   margin-top: 10px;
 }
-
 .btn-black:hover, .btn-black:active {
   transform: translateY(-2px);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.28);
 }
-
 .footer-copy{text-align:center;font-size:12px;color:#64748b;margin-top:20px}
-
-@media(max-width:900px){
-  body{flex-direction:column}
-  .left-side{padding:40px 20px;min-height:260px}
-  .right-side{width:100%;padding:30px 20px}
-}
+@media(max-width:900px){body{flex-direction:column}.left-side{padding:40px 20px;min-height:260px}.right-side{width:100%;padding:30px 20px}}
 </style>
 </head>
 <body>
-
-<!-- Left Hero Panel -->
 <div class="left-side">
   <div class="left-content">
     <h1>Manage Your <span style="color:#00C896;">AU Community</span> Seamlessly</h1>
@@ -76,35 +58,27 @@ input:focus{border-color:#00C896;box-shadow:0 0 0 4px #e6f9f3}
   </div>
 </div>
 
-<!-- Right Login Panel -->
 <div class="right-side">
   <div class="logo-area">
     <div class="brand-badge"><span style="color:#00C896;">Admin Login</span></div>
   </div>
-
   <div class="form-container">
     <div class="form-title">Login to your account</div>
-    
     <form id="loginForm" onsubmit="handleLogin(event)">
       <div class="field">
         <label>Username</label>
         <input type="text" id="username" placeholder="Enter Username" required>
       </div>
-
       <div class="field">
         <label>Password</label>
         <input type="password" id="password" placeholder="Enter Password" required>
       </div>
-
       <button type="submit" class="btn-black">
         <span>Login →</span>
       </button>
     </form>
   </div>
-
-  <div class="footer-copy">
-    Copyright © Ajmal Mansoori 2026
-  </div>
+  <div class="footer-copy">Copyright © Ajmal Mansoori 2026</div>
 </div>
 
 <script>
@@ -116,6 +90,5 @@ function handleLogin(e) {
   }
 }
 </script>
-
 </body>
 </html>
