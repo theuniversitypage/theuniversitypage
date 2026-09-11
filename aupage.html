@@ -43,9 +43,9 @@
 </header>
 
 <section class="hero">
-<div class="eyebrow">WELCOME TO LEARNIFY CLASSES</div>
+<div class="eyebrow">Welcome to Allahabad Univeristy Page</div>
 <h2>University life starts <span>here.</span></h2>
-<p>Allahabad University में नए आए students के लिए Learnify Classes community से जुड़ने के लिए अपना registration पूरा करें।</p>
+<p>Allahabad University में नए आए students के लिए Allahabad University Page community से जुड़ने के लिए अपना registration पूरा करें।</p>
 </section>
 
 <form id="studentForm" class="formwrap">
@@ -67,12 +67,13 @@
 <option>Arya Kanya Mahila Degree College (AKMDC)</option>
 <option>KP Trening College</option>
 <option>Other Allahabad University Associated College</option></select></div>
-<div class="field full"><label>COURSE / PROGRAMME *</label><select name="course" required><option value="">Select your course / programme</option>
+<div class="field"><label>COURSE / PROGRAMME *</label><select name="course" required><option value="">Select your course / programme</option>
 <option>B.A. (Bachelor of Arts)</option><option>B.Sc. (Bachelor of Science)</option><option>B.Com. (Bachelor of Commerce)</option>
 <option>B.A. LL.B.</option><option>B.C.A.</option><option>B.Voc.</option><option>B.Ed.</option><option>B.P.Ed.</option>
 <option>LL.B.</option><option>M.A.</option><option>M.Sc.</option><option>M.Com.</option><option>M.A. / M.Sc. / M.Com. (PG)</option>
 <option>M.B.A.</option><option>M.C.A.</option><option>M.Ed.</option><option>M.P.Ed.</option><option>LL.M.</option>
 <option>Ph.D.</option><option>Diploma / Certificate Course</option><option>Other Programme</option></select></div>
+<div class="field"><label>ADMISSION SESSION *</label><select name="session" required><option value="">Select session</option><option>2025-26</option><option>2026-27</option></select></div>
 </div>
 </section>
 
@@ -96,7 +97,7 @@
 <div class="custom-modal" id="alertModal">
   <div class="custom-modal-content">
     <h3 style="color:#d92d20;">Already Registered</h3>
-    <p>This WhatsApp number is already registered!<br>इस व्हाट्सएप नंबर से पहले ही रजिस्ट्रेशन किया जा चुका है।</p>
+    <p>Already registered!<br>पहले ही रजिस्ट्रेशन किया जा चुका है।</p>
     <button class="modal-btn" onclick="closeAlertModal()">OK / ठीक है</button>
   </div>
 </div>
@@ -187,7 +188,7 @@ function typeButton(){
   setTimeout(typeButton,deleting?45:75);
 }
 setTimeout(typeButton,900);
-const phone=document.querySelector('input[name="whatsapp"]');
+const phone=form.querySelector('input[name="whatsapp"]');
 phone.addEventListener("input",()=>{phone.value=phone.value.replace(/\D/g,"").slice(0,10)});
 </script>
 </body>
