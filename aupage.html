@@ -130,18 +130,15 @@
     const whatsappInput = form.querySelector('input[name="whatsapp"]').value.trim();
     const registrationsRef = ref(db, 'registrations');
 
-    // Check if WhatsApp number already exists in database
     const q = query(registrationsRef, orderByChild("whatsapp"), equalTo(whatsappInput));
     
     try {
       const snapshot = await get(q);
       if (snapshot.exists()) {
-        // Show Bilingual Already Registered Popup
         document.getElementById("alertModal").style.display = "grid";
         return;
       }
 
-      // If not registered, proceed to submit
       const formData = new FormData(form);
       const data = Object.fromEntries(formData.entries());
       data.timestamp = new Date().toISOString();
@@ -178,7 +175,7 @@ function typeButton(){
   setTimeout(typeButton,deleting?45:75);
 }
 setTimeout(typeButton,900);
-const phone=form.querySelector('input[name="whatsapp"]');
+const phone=document.querySelector('input[name="whatsapp"]');
 phone.addEventListener("input",()=>{phone.value=phone.value.replace(/\D/g,"").slice(0,10)});
 </script>
 </body>
