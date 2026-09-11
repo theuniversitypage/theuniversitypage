@@ -88,6 +88,22 @@
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.25);
 }
+.btn-delete {
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 10px;
+  border: none;
+  background: #d92d20;
+  color: #fff;
+  font: 700 12px "Bricolage Grotesque", sans-serif;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(217,45,32,0.3);
+  transition: transform .2s ease, background .2s ease;
+}
+.btn-delete:hover {
+  transform: translateY(-1px);
+  background: #b42318;
+}
 .whatsapp-link {
   color: #008069;
   text-decoration: none;
@@ -113,7 +129,7 @@ tr:hover td{background:#fafbff}
 .detail-row span:first-child{color:var(--muted);font-weight:700;font-family:"Anek Devanagari",sans-serif}
 .footer{text-align:center;padding:18px 20px 24px;color:#8a919f;font-size:11px}
 
-/* Professional PDF Print Layout matching your screenshot */
+/* Print Header for Professional PDF Export */
 .print-header { display: none; }
 
 @media print {
@@ -121,7 +137,7 @@ tr:hover td{background:#fafbff}
   body { background: #fff; -webkit-print-color-adjust: exact; }
   .page { padding: 0; display: block; }
   .shell { border: none; box-shadow: none; width: 100%; border-radius: 0; }
-  .top, .dash-actions, .no-print, .btn-black, .btn-view, .footer { display: none !important; }
+  .top, .dash-actions, .no-print, .btn-black, .btn-view, .btn-delete, .footer { display: none !important; }
   .dashboard-wrap { padding: 0; }
   .stats-grid { display: none; }
   
@@ -243,9 +259,10 @@ tr:hover td{background:#fafbff}
     <div id="modalBody"></div>
   </div>
 </div>
+
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-  import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+  import { getDatabase, ref, onValue, remove } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyD837pmW5N21lMgeVlpgWPx0FaMisSnxwU",
@@ -275,6 +292,18 @@ tr:hover td{background:#fafbff}
     window.allStudents.reverse();
     updateDashboard(window.allStudents);
   });
+
+  // Delete Function Connected to Firebase
+  window.deleteStudent = function(id) {
+    if (confirm("Are you sure you want to delete this student record? / क्या आप वाकई इस रिकॉर्ड को डिलीट करना चाहते हैं?")) {
+      const studentRef = ref(db, 'registrations/' + id);
+      remove(studentRef).then(() => {
+        // Successfully deleted
+      }).catch((error) => {
+        alert("Error deleting record: " + error.message);
+      });
+    }
+  }
 </script>
 
 <script>
@@ -313,7 +342,10 @@ function updateDashboard(students) {
       <td>${s.gender}</td>
       <td>${s.college}</td>
       <td>${s.course}</td>
-      <td class="no-print"><button class="btn-view" onclick="viewDetails('${s.id}')">View</button></td>
+      <td class="no-print">
+        <button class="btn-view" onclick="viewDetails('${s.id}')">View</button>
+        <button class="btn-delete" onclick="deleteStudent('${s.id}')" style="margin-left: 5px;">Delete</button>
+      </td>
     `;
     tbody.appendChild(tr);
   });
@@ -359,7 +391,10 @@ function updateDashboardFiltered(students) {
       <td>${s.gender}</td>
       <td>${s.college}</td>
       <td>${s.course}</td>
-      <td class="no-print"><button class="btn-view" onclick="viewDetails('${s.id}')">View</button></td>
+      <td class="no-print">
+        <button class="btn-view" onclick="viewDetails('${s.id}')">View</button>
+        <button class="btn-delete" onclick="deleteStudent('${s.id}')" style="margin-left: 5px;">Delete</button>
+      </td>
     `;
     tbody.appendChild(tr);
   });
