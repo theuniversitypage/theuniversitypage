@@ -12,26 +12,18 @@
 .page{min-height:100vh;display:grid;place-items:center;padding:28px 16px}
 .shell{width:min(1120px,100%);background:var(--card);border:1px solid #e5e7ee;border-radius:30px;overflow:hidden;box-shadow:0 30px 90px rgba(20,28,55,.12);animation:floatIn .8s cubic-bezier(.2,.8,.2,1)}
 .top{padding:26px 34px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:20px}
-.brand{display:flex;align-items:center;gap:13px}
 .brand h1{font-size:18px;margin:0;font-weight:800}.brand p{margin:3px 0 0;color:var(--muted);font-size:12px}
 .badge{padding:9px 13px;background:#f5f6f9;border:1px solid var(--line);border-radius:999px;font-size:12px;font-weight:700}
-
-/* Dashboard Content inside Shell */
 .dashboard-wrap{padding:30px 34px}
 .dash-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:15px}
 .dash-header h2{margin:0;font-size:22px}
-
-/* Stats Cards with Black Numbers */
 .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:24px}
 .stat-card{background:var(--soft);border:1px solid #d8e1ff;padding:20px;border-radius:18px;display:flex;flex-direction:column;gap:5px}
 .stat-card span{color:var(--muted);font-size:12px;font-weight:700;font-family:"Anek Devanagari",sans-serif}
 .stat-card h3{margin:0;font-size:28px;color:#0b0c0f;}
-
 .dash-actions{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap}
 .dash-actions input, .dash-actions select{flex:1;min-width:180px;height:48px;border:1px solid #dfe2e9;border-radius:13px;padding:0 14px;font:500 14px "Bricolage Grotesque","Anek Devanagari",sans-serif;outline:0;background:#fff;color:var(--ink);transition:.2s}
 .dash-actions input:focus, .dash-actions select:focus{border-color:#8da2ff;box-shadow:0 0 0 4px #eef2ff}
-
-/* APPX Style Exact Black Button: Solid black with right-side soft white/grey light gradient */
 .btn-black {
   position: relative;
   overflow: hidden;
@@ -39,7 +31,6 @@
   height: 46px;
   border: 1px solid rgba(255,255,255,.08);
   border-radius: 14px;
-  /* Right side subtle white/grey fade matching your screenshot */
   background: linear-gradient(135deg, #0b0c0f 40%, #3a3f4c 100%);
   color: #fff;
   font: 700 13px "Bricolage Grotesque", "Anek Devanagari", sans-serif;
@@ -52,12 +43,21 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
   transition: transform .25s ease, box-shadow .25s ease;
 }
-
-.btn-black:hover, .btn-black:active {
+.btn-black::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 20%, rgba(255, 255, 255, 0.25) 50%, transparent 80%);
+  transform: translateX(120%);
+  transition: transform 0.6s ease-in-out;
+}
+.btn-black:hover::before, .btn-black:active::before {
+  transform: translateX(-120%);
+}
+.btn-black:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
 }
-
 .btn-arrow {
   width: 24px;
   height: 24px;
@@ -68,13 +68,10 @@
   font-size: 13px;
   transition: transform .3s, background .3s;
 }
-
 .btn-black:hover .btn-arrow {
   transform: translate(2px, -2px);
   background: rgba(255, 255, 255, 0.2);
 }
-
-/* View Button in Table */
 .btn-view {
   height: 32px;
   padding: 0 14px;
@@ -91,22 +88,18 @@
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.25);
 }
-
 .table-container{width:100%;overflow-x:auto;border:1px solid var(--line);border-radius:16px}
 table{width:100%;border-collapse:collapse;text-align:left;font-size:14px}
 th, td{padding:14px 16px;border-bottom:1px solid var(--line);white-space:nowrap}
 th{background:#f9fafc;font-weight:800;color:var(--muted);font-family:"Anek Devanagari",sans-serif}
 tr:last-child td{border-bottom:none}
 tr:hover td{background:#fafbff}
-
-/* Modal */
 .modal{display:none;position:fixed;inset:0;background:rgba(16,21,34,0.5);place-items:center;z-index:1000;padding:16px;backdrop-filter:blur(4px)}
 .modal-content{background:#fff;width:min(480px,100%);padding:28px;border-radius:24px;box-shadow:0 20px 40px rgba(0,0,0,0.15);position:relative;animation:floatIn .3s ease}
 .modal-close{position:absolute;top:20px;right:20px;background:#f5f6f9;border:none;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;cursor:pointer;font-weight:bold}
 .modal-content h3{margin-top:0;margin-bottom:15px;font-size:18px}
 .detail-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}
 .detail-row span:first-child{color:var(--muted);font-weight:700;font-family:"Anek Devanagari",sans-serif}
-
 .footer{text-align:center;padding:18px 20px 24px;color:#8a919f;font-size:11px}
 @keyframes floatIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 @media(max-width:700px){.top{padding:20px}.dashboard-wrap{padding:20px 16px}.shell{border-radius:22px}}
@@ -126,15 +119,8 @@ tr:hover td{background:#fafbff}
 <div class="dash-header">
   <h2>Student Registrations Record</h2>
   <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
-    <!-- Export CSV Button -->
-    <button class="btn-black" onclick="exportCSV()">
-      <span>Export CSV</span>
-    </button>
-    <!-- Export PDF Button -->
-    <button class="btn-black" onclick="exportPDF()">
-      <span>Export PDF</span>
-    </button>
-    <!-- Go To Form Button -->
+    <button class="btn-black" onclick="exportCSV()"><span>Export CSV</span></button>
+    <button class="btn-black" onclick="exportPDF()"><span>Export PDF</span></button>
     <a href="aupage.html" class="btn-black">
       <span>Go to Form</span>
       <span class="btn-arrow">↗</span>
@@ -142,7 +128,6 @@ tr:hover td{background:#fafbff}
   </div>
 </div>
 
-<!-- Stats Cards -->
 <div class="stats-grid">
   <div class="stat-card"><span>Total Registrations</span><h3 id="statTotal">0</h3></div>
   <div class="stat-card"><span>Male Students</span><h3 id="statMale">0</h3></div>
@@ -150,7 +135,6 @@ tr:hover td{background:#fafbff}
   <div class="stat-card"><span>Today's Entries</span><h3 id="statToday">0</h3></div>
 </div>
 
-<!-- Search & Filters -->
 <div class="dash-actions">
   <input type="text" id="searchInput" placeholder="Search by name, whatsapp..." onkeyup="filterTable()">
   <select id="filterGender" onchange="filterTable()">
@@ -167,7 +151,6 @@ tr:hover td{background:#fafbff}
   </select>
 </div>
 
-<!-- Table -->
 <div class="table-container">
   <table>
     <thead>
@@ -181,18 +164,14 @@ tr:hover td{background:#fafbff}
         <th>Action</th>
       </tr>
     </thead>
-    <tbody id="tableBody">
-      <!-- Data injected dynamically -->
-    </tbody>
+    <tbody id="tableBody"></tbody>
   </table>
 </div>
 </div>
-
 <div class="footer">© 2026 Allahabad University Page • Student Community</div>
 </main>
 </div>
 
-<!-- Student Detail Modal -->
 <div class="modal" id="detailModal">
   <div class="modal-content">
     <button class="modal-close" onclick="closeModal()">✕</button>
@@ -201,7 +180,6 @@ tr:hover td{background:#fafbff}
   </div>
 </div>
 
-<!-- Firebase SDK Integration -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
   import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
@@ -240,7 +218,6 @@ tr:hover td{background:#fafbff}
 function updateDashboard(students) {
   const tbody = document.getElementById("tableBody");
   tbody.innerHTML = "";
-
   let total = students.length;
   let male = 0;
   let female = 0;
