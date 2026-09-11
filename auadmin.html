@@ -88,6 +88,17 @@
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.25);
 }
+.whatsapp-link {
+  color: #008069;
+  text-decoration: none;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.whatsapp-link:hover {
+  text-decoration: underline;
+}
 .table-container{width:100%;overflow-x:auto;border:1px solid var(--line);border-radius:16px}
 table{width:100%;border-collapse:collapse;text-align:left;font-size:14px}
 th, td{padding:14px 16px;border-bottom:1px solid var(--line);white-space:nowrap}
@@ -101,6 +112,19 @@ tr:hover td{background:#fafbff}
 .detail-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}
 .detail-row span:first-child{color:var(--muted);font-weight:700;font-family:"Anek Devanagari",sans-serif}
 .footer{text-align:center;padding:18px 20px 24px;color:#8a919f;font-size:11px}
+
+@media print {
+  body { background: #fff; }
+  .page { padding: 0; display: block; }
+  .shell { border: none; box-shadow: none; width: 100%; }
+  .top, .dash-actions, .no-print, .btn-black, .btn-view, .footer { display: none !important; }
+  .dashboard-wrap { padding: 0; }
+  .stats-grid { display: none; }
+  .table-container { border: 1px solid #000; border-radius: 0; }
+  table { width: 100%; }
+  th, td { border: 1px solid #ddd; color: #000; }
+}
+
 @keyframes floatIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 @media(max-width:700px){.top{padding:20px}.dashboard-wrap{padding:20px 16px}.shell{border-radius:22px}}
 </style>
@@ -115,7 +139,7 @@ tr:hover td{background:#fafbff}
 
 <div class="page">
 <main class="shell">
-<header class="top">
+<header class="top no-print">
 <div class="brand">
   <div><h1>Learnify Classes</h1><p>Student Community • Allahabad University Page</p></div>
 </div>
@@ -130,7 +154,7 @@ tr:hover td{background:#fafbff}
 <div class="dashboard-wrap">
 <div class="dash-header">
   <h2>Student Registrations Record</h2>
-  <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+  <div class="no-print" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
     <button class="btn-black" onclick="exportCSV()"><span>Export CSV</span></button>
     <button class="btn-black" onclick="exportPDF()"><span>Export PDF</span></button>
     <a href="aupage.html" class="btn-black">
@@ -140,14 +164,14 @@ tr:hover td{background:#fafbff}
   </div>
 </div>
 
-<div class="stats-grid">
+<div class="stats-grid no-print">
   <div class="stat-card"><span>Total Registrations</span><h3 id="statTotal">0</h3></div>
   <div class="stat-card"><span>Male Students</span><h3 id="statMale">0</h3></div>
   <div class="stat-card"><span>Female Students</span><h3 id="statFemale">0</h3></div>
   <div class="stat-card"><span>Today's Entries</span><h3 id="statToday">0</h3></div>
 </div>
 
-<div class="dash-actions">
+<div class="dash-actions no-print">
   <input type="text" id="searchInput" placeholder="Search by name, whatsapp..." onkeyup="filterTable()">
   <select id="filterGender" onchange="filterTable()">
     <option value="">All Genders</option>
@@ -173,14 +197,14 @@ tr:hover td{background:#fafbff}
         <th>Gender</th>
         <th>College / Campus</th>
         <th>Course</th>
-        <th>Action</th>
+        <th class="no-print">Action</th>
       </tr>
     </thead>
     <tbody id="tableBody"></tbody>
   </table>
 </div>
 </div>
-<div class="footer">© 2026 Allahabad University Page • Student Community</div>
+<div class="footer no-print">© 2026 Allahabad University Page • Student Community</div>
 </main>
 </div>
 
@@ -250,15 +274,19 @@ function updateDashboard(students) {
     if(s.gender === "Female") female++;
     if(s.dateFormatted === todayStr) todayCount++;
 
+    // WhatsApp Message with Student Name Included
+    const msg = encodeURIComponent(`Hello ${s.name}, you have successfully joined the Allahabad University Page community. Welcome!`);
+    const waLink = `https://wa.me/91${s.whatsapp}?text=${msg}`;
+
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td>${s.dateFormatted || 'N/A'}</td>
       <td><strong>${s.name}</strong></td>
-      <td>${s.whatsapp}</td>
+      <td><a href="${waLink}" target="_blank" class="whatsapp-link" title="Click to chat on WhatsApp">💬 ${s.whatsapp}</a></td>
       <td>${s.gender}</td>
       <td>${s.college}</td>
       <td>${s.course}</td>
-      <td><button class="btn-view" onclick="viewDetails('${s.id}')">View</button></td>
+      <td class="no-print"><button class="btn-view" onclick="viewDetails('${s.id}')">View</button></td>
     `;
     tbody.appendChild(tr);
   });
@@ -292,15 +320,18 @@ function updateDashboardFiltered(students) {
     return;
   }
   students.forEach(s => {
+    const msg = encodeURIComponent(`Hello ${s.name}, you have successfully joined the Allahabad University Page community. Welcome!`);
+    const waLink = `https://wa.me/91${s.whatsapp}?text=${msg}`;
+
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td>${s.dateFormatted || 'N/A'}</td>
       <td><strong>${s.name}</strong></td>
-      <td>${s.whatsapp}</td>
+      <td><a href="${waLink}" target="_blank" class="whatsapp-link" title="Click to chat on WhatsApp">💬 ${s.whatsapp}</a></td>
       <td>${s.gender}</td>
       <td>${s.college}</td>
       <td>${s.course}</td>
-      <td><button class="btn-view" onclick="viewDetails('${s.id}')">View</button></td>
+      <td class="no-print"><button class="btn-view" onclick="viewDetails('${s.id}')">View</button></td>
     `;
     tbody.appendChild(tr);
   });
