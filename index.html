@@ -148,64 +148,43 @@
         }
 
         .sr-box-content {
-            padding: 15px;
+            padding: 25px 15px;
             min-height: 250px;
             max-height: 350px;
-            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
         }
 
-        .sr-box-content ul {
-            list-style-type: none;
-            padding-left: 0;
-        }
-
-        .sr-box-content li {
-            margin-bottom: 10px;
-            font-size: 13px;
-            position: relative;
-            padding-left: 18px;
-            border-bottom: 1px dashed #f1f5f9;
-            padding-bottom: 8px;
-        }
-
-        .sr-box-content li::before {
-            content: "▪";
+        /* ⏳ COMING SOON STATE STYLING */
+        .coming-soon-icon {
+            font-size: 40px;
             color: #8B0000;
-            font-size: 14px;
-            position: absolute;
-            left: 0;
-            top: -1px;
+            margin-bottom: 12px;
+            animation: bounce 2s infinite;
         }
 
-        .sr-box-content a {
-            color: #1d4ed8;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.2s;
-        }
-
-        .sr-box-content a:hover {
-            color: #dc2626;
-            text-decoration: underline;
-        }
-
-        .new-blink {
-            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-            color: white;
-            font-size: 10px;
-            padding: 2px 6px;
+        .coming-soon-title {
+            font-size: 16px;
             font-weight: 700;
-            border-radius: 4px;
-            animation: pulse 1.5s infinite;
-            display: inline-block;
-            margin-left: 5px;
-            box-shadow: 0 2px 4px rgba(239, 68, 68, 0.3);
+            color: #1e293b;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        @keyframes pulse {
-            0% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.6; transform: scale(0.96); }
-            100% { opacity: 1; transform: scale(1); }
+        .coming-soon-text {
+            font-size: 13px;
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-8px);}
+            60% {transform: translateY(-4px);}
         }
 
         /* 📋 QUICK LINKS TABLE SECTION */
@@ -315,9 +294,8 @@
     <!-- ⚡ TICKER -->
     <div class="sr-ticker">
         <marquee scrollamount="5">
-            🔥 <a href="scor.html">CUET UG Scorecard & Normalised Ranks Released - Check Direct Link Here</a> &nbsp;|&nbsp; 
-            🏛️ <a href="admission-details.html">Allahabad University Main Campus UG Counseling Phase-1 Active</a> &nbsp;|&nbsp; 
-            ⚡ <a href="https://t.me/AllahabadUniversityPage" target="_blank">Join Telegram Channel for Instant Cutoff Drop Alerts</a>
+            🚀 <a href="#">Website Backend Integration in Progress - All Sections Coming Soon!</a> &nbsp;|&nbsp; 
+            🔥 <a href="https://learnifyclasses.akamai.net.in/new-courses" target="_blank">Access Learnify Classes App & Complete Batches Now</a>
         </marquee>
     </div>
 
@@ -331,13 +309,9 @@
             <div class="sr-box">
                 <div class="sr-box-header"><i class="fa-solid fa-square-poll-vertical"></i> Result</div>
                 <div class="sr-box-content">
-                    <ul>
-                        <li><a href="scor.html">CUET UG Scorecard / Result 2026</a> <span class="new-blink">NEW</span></li>
-                        <li><a href="result.html">Allahabad University PGAT Result 2026</a></li>
-                        <li><a href="result.html">BHU UG / PG Entrance Merit List 2026</a></li>
-                        <li><a href="result.html">Delhi University CSAS Merit Lists</a></li>
-                        <li><a href="result.html">CBSE Class 12th Board Results 2026</a></li>
-                    </ul>
+                    <i class="fa-solid fa-clock-rotate-left coming-soon-icon"></i>
+                    <div class="coming-soon-title">Coming Soon</div>
+                    <div class="coming-soon-text">Backend database integration is underway. Live result portals will be live shortly.</div>
                 </div>
             </div>
 
@@ -345,13 +319,9 @@
             <div class="sr-box">
                 <div class="sr-box-header"><i class="fa-solid fa-id-card"></i> Admit Card</div>
                 <div class="sr-box-content">
-                    <ul>
-                        <li><a href="admission.html">CUET UG City Intimation Slip 2026</a></li>
-                        <li><a href="admission.html">Allahabad University Counseling Call Letter</a> <span class="new-blink">NEW</span></li>
-                        <li><a href="admission.html">BHU Entrance Admit Card Download</a></li>
-                        <li><a href="admission.html">DU CSAS Portal Admit Slip</a></li>
-                        <li><a href="admission.html">SSC CGL Tier-1 Admit Card 2026</a></li>
-                    </ul>
+                    <i class="fa-solid fa-hammer coming-soon-icon"></i>
+                    <div class="coming-soon-title">Upcoming Section</div>
+                    <div class="coming-soon-text">We are setting up the automated admit card download server. Stay tuned!</div>
                 </div>
             </div>
 
@@ -359,13 +329,9 @@
             <div class="sr-box">
                 <div class="sr-box-header"><i class="fa-solid fa-briefcase"></i> Latest Job</div>
                 <div class="sr-box-content">
-                    <ul>
-                        <li><a href="#">SSC CGL 2026 Notification Online Form</a></li>
-                        <li><a href="#">UPSC Civil Services IAS / IFS 2026 Apply Online</a></li>
-                        <li><a href="#">IBPS PO / Clerk Recruitment 2026</a></li>
-                        <li><a href="#">Railway RRB NTPC / Group D Vacancy</a></li>
-                        <li><a href="#">UP Police Constable New Vacancy 2026</a></li>
-                    </ul>
+                    <i class="fa-solid fa-rocket coming-soon-icon"></i>
+                    <div class="coming-soon-title">Coming Soon</div>
+                    <div class="coming-soon-text">Job notification feeds and filtering backend are currently under development.</div>
                 </div>
             </div>
 
@@ -378,13 +344,9 @@
             <div class="sr-box">
                 <div class="sr-box-header"><i class="fa-solid fa-school-flag"></i> Admission 2026</div>
                 <div class="sr-box-content">
-                    <ul>
-                        <li><a href="admission.html">Allahabad University (AU) UG/PG Admission 2026 Form</a> <span class="new-blink">LIVE</span></li>
-                        <li><a href="admission.html">Delhi University DU CSAS UG Admission 2026</a></li>
-                        <li><a href="admission.html">Banaras Hindu University BHU Admission Portal</a></li>
-                        <li><a href="admission.html">Jawaharlal Nehru University JNU Admission 2026</a></li>
-                        <li><a href="https://learnifyclasses.akamai.net.in/new-courses" target="_blank">Learnify Classes CUET Complete Batches</a></li>
-                    </ul>
+                    <i class="fa-solid fa-graduation-cap coming-soon-icon"></i>
+                    <div class="coming-soon-title">Upcoming Feature</div>
+                    <div class="coming-soon-text">University admission forms and counseling trackers will be linked soon.</div>
                 </div>
             </div>
 
@@ -392,13 +354,9 @@
             <div class="sr-box">
                 <div class="sr-box-header"><i class="fa-solid fa-book-bookmark"></i> Syllabus & Study Material</div>
                 <div class="sr-box-content">
-                    <ul>
-                        <li><a href="syllabus.html">CUET UG 2026 Complete Syllabus PDF (All Subjects)</a></li>
-                        <li><a href="https://learnifyclasses.akamai.net.in/ebooks" target="_blank">CUET History, Geography, Hindi & English E-Books</a> <span class="new-blink">NEW</span></li>
-                        <li><a href="syllabus.html">Allahabad University NEP Syllabus & Credit System</a></li>
-                        <li><a href="https://learnifyclasses.akamai.net.in/ebooks" target="_blank">Download Chapter-Wise Practice Booklets (300+ Qs)</a></li>
-                        <li><a href="syllabus.html">Previous Year Question Papers (PYQs) PDF</a></li>
-                    </ul>
+                    <i class="fa-solid fa-book-open coming-soon-icon"></i>
+                    <div class="coming-soon-title">Coming Soon</div>
+                    <div class="coming-soon-text">Syllabus PDFs and practice booklet archives are being connected to the server.</div>
                 </div>
             </div>
 
