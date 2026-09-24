@@ -409,6 +409,7 @@ function viewDetails(id) {
     <div class="detail-row"><span>College / Campus</span><span>${student.college}</span></div>
     <div class="detail-row"><span>Course</span><span>${student.course}</span></div>
     <div class="detail-row"><span>Admission Session</span><span>${student.session || 'N/A'}</span></div>
+    <div class="detail-row"><span>Interest / Purpose</span><span>${student.interest || 'N/A'}</span></div>
     <div class="detail-row"><span>Registration Date</span><span>${student.dateFormatted || 'N/A'}</span></div>
   `;
   document.getElementById("detailModal").style.display = "grid";
@@ -420,9 +421,9 @@ function closeModal() {
 
 function exportCSV() {
   if(!window.allStudents.length) { alert("No data to export!"); return; }
-  let csvContent = "data:text/csv;charset=utf-8,Name,WhatsApp,Gender,College,Course,Session,Date\n";
+  let csvContent = "data:text/csv;charset=utf-8,Name,WhatsApp,Gender,College,Course,Session,Interest,Date\n";
   window.allStudents.forEach(s => {
-    csvContent += `"${s.name}","${s.whatsapp}","${s.gender}","${s.college}","${s.course}","${s.session || ''}","${s.dateFormatted || ''}"\n`;
+    csvContent += `"${s.name}","${s.whatsapp}","${s.gender}","${s.college}","${s.course}","${s.session || ''}","${s.interest || ''}","${s.dateFormatted || ''}"\n`;
   });
   const encodedUri = encodeURI(csvContent);
   const link = document.createElement("a");
@@ -434,7 +435,9 @@ function exportCSV() {
 }
 
 function exportPDF() {
-  document.getElementById("printDateTime").textContent = "Generated on: " + new Date().toLocaleString();
+  if(!window.allStudents.length) { alert("No data to export!"); return; }
+  const now = new Date();
+  document.getElementById("printDateTime").textContent = "Generated on: " + now.toLocaleDateString() + ", " + now.toLocaleTimeString();
   window.print();
 }
 </script>
