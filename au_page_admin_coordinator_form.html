@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#102b50">
+  <meta name="description" content="Allahabad University Page Admin and Coordinator team application form.">
+  <title>Join Our Team | Allahabad University Page</title>
+  <style>
+    :root {
+      --navy: #102b50;
+      --blue: #245edb;
+      --cyan: #45c7d9;
+      --ink: #17243a;
+      --muted: #64748b;
+      --line: #dfe7f2;
+      --paper: #ffffff;
+      --bg: #f3f6fc;
+      --green: #13784b;
+      --red: #b42318;
+      --shadow: 0 22px 65px rgba(16, 43, 80, .12);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; color: var(--ink); background:
+        radial-gradient(circle at 8% 4%, rgba(69,199,217,.13), transparent 26rem),
+        radial-gradient(circle at 96% 18%, rgba(36,94,219,.10), transparent 24rem),
+        var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+    button, input, select, textarea { font: inherit; }
+    .hero {
+      position: relative; overflow: hidden; padding: 44px 20px 88px; color: white;
+      background: linear-gradient(125deg, #0b1d38 0%, #123b70 58%, #176b8c 100%);
+    }
+    .hero::before, .hero::after {
+      content: ""; position: absolute; border: 1px solid rgba(255,255,255,.13);
+      border-radius: 50%; pointer-events: none;
+    }
+    .hero::before { width: 420px; height: 420px; right: -100px; top: -210px; }
+    .hero::after { width: 280px; height: 280px; right: 10px; top: -130px; }
+    .hero-inner { position: relative; z-index: 1; max-width: 1040px; margin: auto; }
+    .brand { display: flex; align-items: center; gap: 13px; margin-bottom: 34px; }
+    .brand-mark {
+      width: 54px; height: 54px; border-radius: 17px; display: grid; place-items: center;
+      color: #fff; font-size: 17px; font-weight: 900; letter-spacing: -1px;
+      background: linear-gradient(145deg, #49d1df, #3476ef);
+      box-shadow: 0 9px 28px rgba(0,0,0,.22);
+    }
+    .brand-name { font-size: 14px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .brand-sub { color: #c7d8f0; font-size: 12px; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px;
+      border: 1px solid rgba(255,255,255,.22); border-radius: 999px;
+      color: #e5f7ff; background: rgba(255,255,255,.08); font-size: 12px; font-weight: 700;
+      letter-spacing: .04em;
+    }
+    .eyebrow-dot { width: 7px; height: 7px; background: #5ce0c0; border-radius: 50%; }
+    h1 { max-width: 760px; margin: 18px 0 12px; font-size: clamp(32px, 5.5vw, 56px); line-height: 1.08; letter-spacing: -.04em; }
+    .hero p { max-width: 690px; color: #d8e5f8; margin: 0; font-size: clamp(15px, 2vw, 18px); }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 24px; }
+    .hero-tags span { padding: 8px 12px; border-radius: 9px; background: rgba(255,255,255,.09); color: #edf5ff; font-size: 12px; }
+    .page { max-width: 1040px; margin: -48px auto 0; padding: 0 18px 48px; position: relative; z-index: 2; }
+    .notice {
+      display: flex; gap: 12px; align-items: flex-start; margin-bottom: 18px; padding: 16px 18px;
+      border: 1px solid #c8dafa; border-radius: 15px; background: #edf5ff; color: #23446e;
+      box-shadow: 0 8px 25px rgba(16,43,80,.04); font-size: 13px;
+    }
+    .notice-icon { flex: 0 0 27px; height: 27px; display: grid; place-items: center; border-radius: 9px; background: #d7e8ff; font-weight: 900; }
+    .layout { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(250px, .8fr); gap: 20px; align-items: start; }
+    .panel { background: var(--paper); border: 1px solid rgba(213,224,239,.9); border-radius: 20px; box-shadow: var(--shadow); }
+    .form-panel { padding: clamp(20px, 3.5vw, 34px); }
+    .side-panel { padding: 24px; position: sticky; top: 18px; }
+    .panel-heading { margin-bottom: 25px; }
+    .panel-heading h2 { font-size: 23px; letter-spacing: -.025em; margin: 0 0 6px; }
+    .panel-heading p { color: var(--muted); font-size: 13px; margin: 0; }
+    .section { padding-top: 23px; margin-top: 24px; border-top: 1px solid #edf1f7; }
+    .section:first-of-type { border-top: 0; padding-top: 0; margin-top: 0; }
+    .section-title { display: flex; align-items: center; gap: 10px; margin: 0 0 16px; font-size: 15px; font-weight: 850; }
+    .step { width: 28px; height: 28px; display: grid; place-items: center; flex: 0 0 28px; color: #245edb; background: #eaf1ff; border-radius: 9px; font-size: 12px; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; }
+    .field { min-width: 0; display: flex; flex-direction: column; gap: 7px; }
+    .field.full { grid-column: 1 / -1; }
+    label, .field-label { font-size: 12px; font-weight: 750; color: #34435a; }
+    .req { color: #d92d20; }
+    input, select, textarea {
+      width: 100%; min-width: 0; border: 1px solid #d8e1ed; border-radius: 10px; padding: 12px 13px;
+      background: #fff; color: var(--ink); outline: none; font-size: 13px; transition: border-color .18s, box-shadow .18s;
+    }
+    input::placeholder, textarea::placeholder { color: #9aa7b9; }
+    input:focus, select:focus, textarea:focus { border-color: #4b7be8; box-shadow: 0 0 0 3px rgba(36,94,219,.11); }
+    textarea { min-height: 100px; resize: vertical; }
+    .hint { color: #78869a; font-size: 11px; }
+    .role-intro { color: var(--muted); font-size: 12px; margin: -8px 0 15px; }
+    .role-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .role-option { position: relative; }
+    .role-option input { position: absolute; opacity: 0; pointer-events: none; }
+    .role-card {
+      display: block; height: 100%; padding: 13px; border: 1px solid #e0e7f0; border-radius: 13px;
+      cursor: pointer; transition: .18s; background: #fff;
+    }
+    .role-card:hover { border-color: #9cb8f6; transform: translateY(-1px); }
+    .role-option input:checked + .role-card { border-color: #3c6de0; background: #f0f5ff; box-shadow: inset 0 0 0 1px #3c6de0; }
+    .role-option input:focus-visible + .role-card { outline: 3px solid #9bb9ff; outline-offset: 2px; }
+    .role-icon { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 10px; background: #eef4ff; font-size: 17px; margin-bottom: 9px; }
+    .role-card strong { display: block; font-size: 12px; margin-bottom: 4px; }
+    .role-card small { display: block; color: #77859a; font-size: 11px; line-height: 1.45; }
+    .declaration { display: flex; align-items: flex-start; gap: 10px; margin-top: 22px; color: #536176; font-size: 12px; }
+    .declaration input { width: 16px; height: 16px; flex: 0 0 16px; margin: 2px 0 0; accent-color: var(--blue); }
+    .submit {
+      width: 100%; display: flex; justify-content: center; align-items: center; gap: 9px;
+      border: 0; border-radius: 12px; padding: 15px 18px; margin-top: 22px;
+      color: white; background: linear-gradient(105deg, #245edb, #167aab); font-weight: 800; font-size: 14px;
+      cursor: pointer; box-shadow: 0 10px 20px rgba(36,94,219,.18); transition: transform .18s, opacity .18s;
+    }
+    .submit:hover { transform: translateY(-1px); }
+    .submit:disabled { opacity: .65; cursor: wait; transform: none; }
+    .status { display: none; margin-top: 15px; border-radius: 11px; padding: 13px 14px; font-size: 13px; overflow-wrap: anywhere; }
+    .status.success { display: block; color: #11643c; background: #ecfdf3; border: 1px solid #abefc6; }
+    .status.error { display: block; color: #9a271d; background: #fff1f0; border: 1px solid #fecdca; }
+    .side-kicker { font-size: 10px; font-weight: 900; letter-spacing: .13em; text-transform: uppercase; color: #3d6ddd; }
+    .side-panel h3 { font-size: 21px; line-height: 1.2; letter-spacing: -.025em; margin: 10px 0; }
+    .side-panel > p { color: var(--muted); font-size: 13px; }
+    .benefit { display: flex; gap: 11px; margin-top: 20px; align-items: flex-start; }
+    .benefit-icon { width: 33px; height: 33px; display: grid; place-items: center; flex: 0 0 33px; border-radius: 10px; background: #eef4ff; }
+    .benefit strong { display: block; font-size: 12px; margin-bottom: 3px; }
+    .benefit span { display: block; color: var(--muted); font-size: 11px; }
+    .side-note { margin-top: 24px; padding: 13px; background: #f6f8fc; border-radius: 11px; color: #69778b; font-size: 11px; }
+    footer { max-width: 1040px; margin: auto; padding: 0 18px 28px; text-align: center; color: #7d899a; font-size: 11px; }
+    @media (max-width: 780px) { .layout { grid-template-columns: 1fr; } .side-panel { position: static; order: -1; } .side-panel .benefit-list { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 4px 15px; } }
+    @media (max-width: 540px) {
+      .hero { padding: 28px 18px 76px; }
+      .brand { margin-bottom: 26px; }
+      .page { padding: 0 11px 32px; }
+      .grid, .role-grid { grid-template-columns: 1fr; }
+      .field.full { grid-column: auto; }
+      .form-panel { padding: 20px 16px; }
+      .side-panel { padding: 20px; }
+      .notice { padding: 13px; }
+      h1 { font-size: 35px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="brand">
+        <div class="brand-mark" aria-label="AU Page logo">AU<span style="font-size:9px">+</span></div>
+        <div>
+          <div class="brand-name">Allahabad University Page</div>
+          <div class="brand-sub">Student Community • Learn • Connect • Contribute</div>
+        </div>
+      </div>
+      <div class="eyebrow"><span class="eyebrow-dot"></span> TEAM APPLICATIONS</div>
+      <h1>Build the student community<br>with us.</h1>
+      <p>Join our student-led team to help share useful university updates, admission information, notes and resources with students.</p>
+      <div class="hero-tags">
+        <span>✦ Student coordinators</span>
+        <span>✦ Content & social media</span>
+        <span>✦ Student support</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="notice">
+      <div class="notice-icon">i</div>
+      <div><strong>Before you apply</strong><br>
+        This is an application for the independent Allahabad University Page student community, not an official University of Allahabad recruitment form. Applying does not guarantee selection. Only apply if you currently study at the University or one of its affiliated colleges.
+      </div>
+    </div>
+
+    <div class="layout">
+      <section class="panel form-panel">
+        <div class="panel-heading">
+          <h2>Team application form</h2>
+          <p>Fill in the details below. Fields marked <span class="req">*</span> are required.</p>
+        </div>
+
+        <form id="applicationForm">
+          <div class="section">
+            <h3 class="section-title"><span class="step">01</span> Personal details</h3>
+            <div class="grid">
+              <div class="field">
+                <label for="name">Full name <span class="req">*</span></label>
+                <input id="name" name="name" type="text" maxlength="100" autocomplete="name" placeholder="Your full name" required>
+              </div>
+              <div class="field">
+                <label for="email">Email address <span class="req">*</span></label>
+                <input id="email" name="email" type="email" maxlength="150" autocomplete="email" placeholder="you@example.com" required>
+              </div>
+              <div class="field">
+                <label for="phone">Mobile number <span class="req">*</span></label>
+                <input id="phone" name="phone" type="tel" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" autocomplete="tel" placeholder="10-digit mobile number" required>
+                <span class="hint">Enter 10 digits without spaces.</span>
+              </div>
+              <div class="field">
+                <label for="city">City / District <span class="req">*</span></label>
+                <input id="city" name="city" type="text" maxlength="100" placeholder="City or district" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title"><span class="step">02</span> University & college details</h3>
+            <div class="grid">
+              <div class="field">
+                <label for="institution_type">Institution type <span class="req">*</span></label>
+                <select id="institution_type" name="institution_type" required>
+                  <option value="">Select institution</option>
+                  <option>University of Allahabad — Main Campus</option>
+                  <option>Affiliated College</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="college">College / Department name <span class="req">*</span></label>
+                <input id="college" name="college" type="text" maxlength="160" placeholder="Enter institution name" required>
+              </div>
+              <div class="field">
+                <label for="course">Course / Programme <span class="req">*</span></label>
+                <select id="course" name="course" required>
+                  <option value="">Select course</option>
+                  <option>BA</option><option>BSc</option><option>BCom</option>
+                  <option>BCA / Other UG course</option><option>MA</option>
+                  <option>MSc</option><option>MCom</option><option>Other PG course</option>
+                  <option>PhD / Research</option><option>Other</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="semester">Current year / semester <span class="req">*</span></label>
+                <select id="semester" name="semester" required>
+                  <option value="">Select year / semester</option>
+                  <option>First year / Semester I</option><option>Second year / Semester III</option>
+                  <option>Third year / Semester V</option><option>Fourth year / Semester VII</option>
+                  <option>Postgraduate</option><option>Research</option><option>Other</option>
+                </select>
+              </div>
+              <div class="field full">
+                <label for="roll_number">University / College roll number</label>
+                <input id="roll_number" name="roll_number" type="text" maxlength="60" placeholder="Optional">
+                <span class="hint">Optional. Do not enter passwords, OTPs or other confidential information.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title"><span class="step">03</span> Choose your role</h3>
+            <p class="role-intro">Select the role that best matches your interests. Suggested roles are for this independent page, not official university posts.</p>
+            <div class="role-grid">
+              <div class="role-option">
+                <input type="radio" id="role_university" name="role" value="University Coordinator" required>
+                <label class="role-card" for="role_university"><span class="role-icon">🎓</span><strong>University Coordinator</strong><small>Coordinate student information and campus updates.</small></label>
+              </div>
+              <div class="role-option">
+                <input type="radio" id="role_college" name="role" value="College Coordinator">
+                <label class="role-card" for="role_college"><span class="role-icon">🏛️</span><strong>College Coordinator</strong><small>Share verified updates from your affiliated college.</small></label>
+              </div>
+              <div class="role-option">
+                <input type="radio" id="role_department" name="role" value="Department Coordinator">
+                <label class="role-card" for="role_department"><span class="role-icon">📚</span><strong>Department Coordinator</strong><small>Help organize course and department information.</small></label>
+              </div>
+              <div class="role-option">
+                <input type="radio" id="role_rep" name="role" value="Student Representative">
+                <label class="role-card" for="role_rep"><span class="role-icon">🤝</span><strong>Student Representative</strong><small>Connect students with useful public information.</small></label>
+              </div>
+              <div class="role-option">
+                <input type="radio" id="role_admin" name="role" value="Admin / Assistant Admin">
+                <label class="role-card" for="role_admin"><span class="role-icon">🛡️</span><strong>Admin / Assistant Admin</strong><small>Help manage page operations and community posts.</small></label>
+              </div>
+              <div class="role-option">
+                <input type="radio" id="role_content" name="role" value="Content Creator / Content Admin">
+                <label class="role-card" for="role_content"><span class="role-icon">✍️</span><strong>Content Creator / Admin</strong><small>Write, check and prepare student-focused content.</small></label>
+              </div>
+              <div class="role-option">
+                <input type="radio" id="role_social" name="role" value="Social Media Coordinator">
+                <label class="role-card" for="role_social"><span class="role-icon">📱</span><strong>Social Media Coordinator</strong><small>Support publishing and online community engagement.</small></label>
+              </div>
+              <div class="role-option">
+                <input type="radio" id="role_resources" name="role" value="Admission, Notes & Resources Coordinator">
+                <label class="role-card" for="role_resources"><span class="role-icon">🗂️</span><strong>Admission & Resources</strong><small>Help organize admissions information, notes and resources.</small></label>
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title"><span class="step">04</span> Experience & contribution</h3>
+            <div class="grid">
+              <div class="field">
+                <label for="experience">Previous experience</label>
+                <select id="experience" name="experience">
+                  <option value="">Select (optional)</option>
+                  <option>Yes, I have experience</option>
+                  <option>No, I am a beginner</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="availability">Time you can contribute</label>
+                <select id="availability" name="availability">
+                  <option value="">Select (optional)</option>
+                  <option>Up to 30 minutes daily</option>
+                  <option>30–60 minutes daily</option>
+                  <option>1–2 hours daily</option>
+                  <option>More than 2 hours daily</option>
+                </select>
+              </div>
+              <div class="field full">
+                <label for="skills">Skills / areas of interest</label>
+                <textarea id="skills" name="skills" maxlength="1200" placeholder="Writing, graphic design, video editing, research, social media, student support, etc."></textarea>
+              </div>
+              <div class="field full">
+                <label for="reason">Why would you like to join? <span class="req">*</span></label>
+                <textarea id="reason" name="reason" maxlength="1600" placeholder="Tell us how you would contribute to the student community." required></textarea>
+              </div>
+              <div class="field full">
+                <label for="social_link">Social media profile / portfolio link</label>
+                <input id="social_link" name="social_link" type="url" maxlength="500" placeholder="https://... (optional)">
+              </div>
+            </div>
+          </div>
+
+          <!-- Honeypot anti-spam field. Keep it hidden from normal users. -->
+          <div style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden" aria-hidden="true">
+            <label for="website">Leave this field empty</label>
+            <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+          </div>
+
+          <label class="declaration" for="consent">
+            <input id="consent" name="consent" type="checkbox" required>
+            <span>I confirm that the information provided is accurate, I am currently a student at the University of Allahabad or an affiliated college, and I understand that applying does not guarantee selection. I agree that the team may contact me about this application. <span class="req">*</span></span>
+          </label>
+
+          <button class="submit" id="submitBtn" type="submit">
+            <span id="submitLabel">Submit application</span><span aria-hidden="true">→</span>
+          </button>
+          <div class="status" id="statusBox" role="status" aria-live="polite"></div>
+          <p class="hint" style="margin-top:12px;text-align:center">Your application is sent only after EmailJS is configured and confirms success.</p>
+        </form>
+      </section>
+
+      <aside class="panel side-panel">
+        <div class="side-kicker">Your contribution matters</div>
+        <h3>Help students stay informed.</h3>
+        <p>Join a student community focused on useful, clear and responsible university information.</p>
+        <div class="benefit-list">
+          <div class="benefit"><div class="benefit-icon">📣</div><div><strong>Share updates</strong><span>Help circulate relevant student information.</span></div></div>
+          <div class="benefit"><div class="benefit-icon">📝</div><div><strong>Create resources</strong><span>Support notes, guides and helpful content.</span></div></div>
+          <div class="benefit"><div class="benefit-icon">🌐</div><div><strong>Build connections</strong><span>Connect students across departments and colleges.</span></div></div>
+          <div class="benefit"><div class="benefit-icon">💡</div><div><strong>Learn by contributing</strong><span>Use your skills in a collaborative team.</span></div></div>
+        </div>
+        <div class="side-note"><strong>Privacy note:</strong> Collect only information needed to review applications. Limit access to submissions and do not publish applicants' phone numbers or email addresses.</div>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Allahabad University Page · Independent student community, not an official University portal.
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    /*
+      SETUP REQUIRED:
+      1) Create an EmailJS account and connect an email service.
+      2) Create an email template using the variable names listed in the setup guide.
+      3) Replace all three placeholders below with your EmailJS IDs/keys.
+      The public key is intended for browser use; never put an EmailJS private key here.
+    */
+    const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";
+    const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
+    const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
+
+    const form = document.getElementById("applicationForm");
+    const submitBtn = document.getElementById("submitBtn");
+    const submitLabel = document.getElementById("submitLabel");
+    const statusBox = document.getElementById("statusBox");
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const emailConfigured = () =>
+      window.emailjs &&
+      EMAILJS_PUBLIC_KEY !== "YOUR_PUBLIC_KEY" &&
+      EMAILJS_SERVICE_ID !== "YOUR_SERVICE_ID" &&
+      EMAILJS_TEMPLATE_ID !== "YOUR_TEMPLATE_ID";
+
+    if (window.emailjs && EMAILJS_PUBLIC_KEY !== "YOUR_PUBLIC_KEY") {
+      emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+    }
+
+    function showStatus(type, message) {
+      statusBox.className = "status " + type;
+      statusBox.textContent = message;
+      statusBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+
+      // Basic bot trap: if filled, do not send.
+      if (document.getElementById("website").value.trim()) {
+        showStatus("success", "Thank you. If your application is valid, it will be reviewed.");
+        return;
+      }
+
+      if (!emailConfigured()) {
+        showStatus("error", "Email sending is not configured yet. Follow the EmailJS setup steps below, add your Public Key, Service ID and Template ID in this file, then try again. No application email was sent.");
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitLabel.textContent = "Sending application…";
+      statusBox.className = "status";
+      statusBox.textContent = "";
+
+      const params = {
+        applicant_name: form.elements.name.value.trim(),
+        applicant_email: form.elements.email.value.trim(),
+        applicant_phone: form.elements.phone.value.trim(),
+        applicant_city: form.elements.city.value.trim(),
+        institution_type: form.elements.institution_type.value,
+        college: form.elements.college.value.trim(),
+        course: form.elements.course.value,
+        semester: form.elements.semester.value,
+        roll_number: form.elements.roll_number.value.trim() || "Not provided",
+        role: form.elements.role.value,
+        experience: form.elements.experience.value || "Not provided",
+        availability: form.elements.availability.value || "Not provided",
+        skills: form.elements.skills.value.trim() || "Not provided",
+        reason: form.elements.reason.value.trim(),
+        social_link: form.elements.social_link.value.trim() || "Not provided",
+        submitted_at: new Date().toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" })
+      };
+
+      try {
+        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params);
+        showStatus("success", "Application submitted successfully! The email service confirmed that your application was sent. If you need a copy, check the email address you provided.");
+        form.reset();
+      } catch (error) {
+        console.error("EmailJS submission failed:", error);
+        showStatus("error", "We could not send your application. Please check your internet connection and try again later. If the problem continues, contact the page team. No success has been recorded.");
+      } finally {
+        submitBtn.disabled = false;
+        submitLabel.textContent = "Submit application";
+      }
+    });
+  </script>
+</body>
+</html>
